@@ -11,14 +11,14 @@ The following lab exercise walks through the procedure to install and setup a si
 ### Login as developer and start AMP with template
 
 1. Obtain the public IP for your OpenShift environment, as you'll need it to run the below commands
-2. Run the below commands, and replace the associated <PUBLIC_IP> with the public IP for your OpenShift lab environment
+2. Run the below commands, and replace the associated <PUBLIC_DNS> with the public DNS for your OpenShift lab environment.  Do the same by replacing <USERNAME> with your assigned lab username.
 
 ```
-oc login https://<PUBLIC_IP>:8443 --insecure-skip-tls-verify
+oc login https://<PUBLIC_DNS>:8443 --insecure-skip-tls-verify
 
-oc new-project 3scale-amp
+oc new-project 3scale-amp-<USERNAME>
 
-oc new-app --file https://raw.githubusercontent.com/RedHatWorkshops/dayinthelife-integration/master/labs/operations-track/artifacts/amp.yml --param TENANT_NAME=3scale --param WILDCARD_DOMAIN=<PUBLIC_IP>.xip.io >> /tmp/3scale_amp_provision_details.txt
+oc new-app --file https://raw.githubusercontent.com/RedHatWorkshops/dayinthelife-integration/master/labs/operations-track/artifacts/amp.yml --param TENANT_NAME=3scale-<USERNAME> --param WILDCARD_DOMAIN=apps.<PUBLIC_DNS> >> /tmp/3scale_amp_provision_details.txt
 ```
 3. Verify the script ran correctly by verifying the output log.  Notice the admin login credentials underneath the `system` section.  You'll need these credentials later.
 
@@ -69,32 +69,41 @@ system-redis-1-klthg      1/1       Running   0          44s
 zync-database-1-w66qf     1/1       Running   0          52s
 ```
 
-```
-2. Resume backend listener and worker deployments:
+6.  Via the OpenShift Web Console, navigate to Applications > Deployments.  If after roughly 2 minutes there are deployment pods stuck in a "Running" state, this could be because of a Resource Limit issue.  Click on the deployment config for that pod and modify the resource limits by selecting Actions > Edit Resource Limits.  If there is an issue, it should be highlighted in red.  Update the value to the maximum allowed limit for your system e.g. 6 GiB.  The pod should redeploy once you've saved the change.
 
+7.  Resume backend listener and worker deployments:
+
+```
 for x in backend-listener backend-worker; do echo Resuming dc:  $x; sleep 2; oc rollout resume dc/$x; done
 ```
 
-```
-3. Resume the system-app and its two containers:
+8. Resume the system-app and its two containers:
 
+```
 oc rollout resume dc/system-app
 ```
 
-```
-4. Resume additional system and backend application utilities:
+9. Resume additional system and backend application utilities:
 
+```
 for x in system-resque system-sidekiq backend-cron system-sphinx; do echo Resuming dc:  $x; sleep 2; oc rollout resume dc/$x; done
 ```
 
-```
-5. Resume apicast gateway deployments:
+10. Resume apicast gateway deployments:
 
+```
 for x in apicast-staging apicast-production; do echo Resuming dc:  $x; sleep 2; oc rollout resume dc/$x; done
 ```
 
-```
-6. Resume remaining deployments:
+11. Resume remaining deployments:
 
+```
 for x in apicast-wildcard-router zync; do echo Resuming dc:  $x; sleep 2; oc rollout resume dc/$x; done
 ```
+
+12.  If you have completed this task correctly, you should see all 16 pods in an "Active" state like below: 
+
+![Type Project Name](images/01-Step-12.png)
+
+13.  You can also verify the installation by logging into the 3scale admin page following the link and credentials specified by the output log file in Step 3.
+
