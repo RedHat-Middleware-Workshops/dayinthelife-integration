@@ -14,7 +14,7 @@ The following lab exercise walks through the procedure to install and setup a si
 2. Run the below commands, and replace the associated <PUBLIC_DNS> with the public DNS for your OpenShift lab environment.  Do the same by replacing <USERNAME> with your assigned lab username.
 
 ```
-oc login https://<PUBLIC_DNS>:8443 --insecure-skip-tls-verify
+oc login https://master.<PUBLIC_DNS>:8443 --insecure-skip-tls-verify
 
 oc new-project 3scale-amp-<USERNAME>
 
@@ -27,28 +27,44 @@ oc new-app --file https://raw.githubusercontent.com/RedHatWorkshops/dayinthelife
 cat /tmp/3scale_amp_provision_details.txt
 
 
---> Deploying template "3scale-amp/system" for "amp.yml" to project 3scale-amp
+--> Deploying template "3scale-amp-user1/3scale-api-management" for "https://raw.githubusercontent.com/RedHatWorkshops/dayinthelife-integration/master/labs/operations-track/artifacts/amp.yml" to project 3scale-amp-user1
 
-     system
+     3scale API Management
      ---------
-     Login on Login on https://3scale-admin.54.86.18.216.xip.io as admin/gu8edykg    <===== LOGIN with these credentials
+     3scale API Management main system
+
+     Login on https://3scale-user1-admin.apps.boston.openshiftworkshop.com as admin/pnxw6h76
 
      * With parameters:
-        * AMP_RELEASE=er3
-        * ADMIN_PASSWORD=gu8edykg # generated
+        * PostgreSQL Connection Password=nfr8GSShoKQmke60 # generated
+        * ZYNC_SECRET_KEY_BASE=pYwfDdc7lFVFmHcE # generated
+        * ZYNC_AUTHENTICATION_TOKEN=qHGtOaIUMc2GeEje # generated
+        * AMP_RELEASE=2.2.0
+        * ADMIN_PASSWORD=pnxw6h76 # generated
         * ADMIN_USERNAME=admin
-        * APICAST_ACCESS_TOKEN=rthdeuql # generated
-        * ADMIN_ACCESS_TOKEN=4o2txf0v4e3wgvtw # generated
-        * WILDCARD_DOMAIN=<PUBLIC_IP>.xip.io
-        * SUBDOMAIN=3scale
+        * APICAST_ACCESS_TOKEN=tlmvxmj7 # generated
+        * ADMIN_ACCESS_TOKEN=ax3s1h46kywsjhbg # generated
+        * WILDCARD_DOMAIN=apps.boston.openshiftworkshop.com
+        * WILDCARD_POLICY=None
+        * TENANT_NAME=3scale-user1
         * MySQL User=mysql
-        * MySQL Password=qfnt75jf # generated
+        * MySQL Password=a1x6j0c1 # generated
         * MySQL Database Name=system
-        * MySQL Root password.=7dhquse7 # generated
+        * MySQL Root password.=d2ttu7c5 # generated
         * SYSTEM_BACKEND_USERNAME=3scale_api_user
-        * SYSTEM_BACKEND_PASSWORD=a3i3n7by # generated
-        * REDIS_IMAGE=rhscl/redis-32-rhel7:3.2-5.3
-        * SYSTEM_BACKEND_SHARED_SECRET=s4wpndxj # generated
+        * SYSTEM_BACKEND_PASSWORD=bda7lqc3 # generated
+        * REDIS_IMAGE=registry.access.redhat.com/rhscl/redis-32-rhel7:3.2
+        * MYSQL_IMAGE=registry.access.redhat.com/rhscl/mysql-57-rhel7:5.7-5
+        * SYSTEM_BACKEND_SHARED_SECRET=hc21sw03 # generated
+        * SYSTEM_APP_SECRET_KEY_BASE=8d7eaaa455b4a5cbe64a476d33e71e33cae1c5845b2844884056b8d3cd72c51506433601050ed56b58182716de8362782bc4d030103d828e77b57025d26e55eb # generated
+        * APICAST_MANAGEMENT_API=status
+        * APICAST_OPENSSL_VERIFY=false
+        * APICAST_RESPONSE_CODES=true
+        * MASTER_NAME=master
+        * MASTER_USER=master
+        * MASTER_PASSWORD=7twglug7 # generated
+        * MASTER_ACCESS_TOKEN=l3xbnhtj # generated
+        * APICAST_REGISTRY_URL=http://apicast-staging:8090/policies
 ```
 
 4. Via the CLI, resume the database tier pods by running the following commands:
@@ -105,5 +121,8 @@ for x in apicast-wildcard-router zync; do echo Resuming dc:  $x; sleep 2; oc rol
 
 ![Type Project Name](images/01-Step-12.png)
 
-13.  You can also verify the installation by logging into the 3scale admin page following the link and credentials specified by the output log file in Step 3.
+13.  You can also verify the installation by logging into the 3scale admin page following the link and credentials specified by the output log file in Step 3.  If you successfully login, you should see the following screen:
+
+![Type Project Name](images/01-Step-13.png)
+
 
