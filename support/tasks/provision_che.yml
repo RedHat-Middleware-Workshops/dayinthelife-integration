@@ -1,0 +1,35 @@
+---
+
+- name: Define che
+  set_fact:
+    che_project: "rh-che-{{guid}}"
+      
+- name: Create project for CHE IDE
+  shell: "oc new-project {{che_project}} --display-name='CHE IDE'"
+  ignore_errors: true
+
+- name: Make sure we go back do default project
+  shell: "oc project default"
+  
+- name: Provision Che with Single User
+  shell: "oc process -f https://raw.githubusercontent.com/minishift/minishift-addons/master/add-ons/che/templates/che-single-user.yml \
+  --param PROJECT_NAME={{che_project}} \
+  --param DOMAIN_NAME={{ocp_apps_domain}} \
+  --param OPENSHIFT_OAUTH_TOKEN={{openshift_oauth_token}} \
+  | oc create -f - -n {{che_project}}"
+
+- name: Make sure we go back do default project
+  shell: "oc set resources dc/che --limits=cpu=1,memory=2Gi --requests=cpu=200m,memory=512Mi -n {{che_project}}"
+                
+- name: Annotate the empty project as requested by user
+  shell: "oc annotate namespace {{che_project}} openshift.io/requester={{ocp_username}} --overwrite"
+
+- name: Give ocp_username access to ocp_project; user = {{ocp_username}}
+  shell: "oc policy add-role-to-user admin {{ocp_username}} -n {{che_project}}"
+  
+
+- name: workload Tasks Complete
+  debug:
+    msg: workload Tasks Complete
+
+  

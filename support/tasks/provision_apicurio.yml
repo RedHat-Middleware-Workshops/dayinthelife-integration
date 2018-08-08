@@ -1,0 +1,74 @@
+---
+
+- name: Define Apicurio Project
+  set_fact:
+    apicurio_project: "tools-{{guid}}"
+
+- name: Define Apicurio Password
+  set_fact:
+    apicurio_pwd: "password"
+          
+- name: Define SSO Project
+  set_fact:
+    sso_project: "rh-sso-{{guid}}"
+    
+
+- name: Make sure we go back to default project
+  shell: "oc project default"
+
+- name: Get SSO token
+  shell: "curl --insecure -X POST 'https://secure-sso-{{sso_project}}.{{ocp_apps_domain}}/auth/realms/master/protocol/openid-connect/token' \
+  -H 'Content-Type: application/x-www-form-urlencoded' -d 'username=keyadmin' -d 'password=keypassword' -d 'grant_type=password' -d 'client_id=admin-cli'"
+  register: token_text
+  
+- debug: var=token_text
+
+- set_fact: TKN={{ (token_text.stdout | from_json).access_token }}
+
+- debug: var=TKN
+
+- name: Get Apicurio realm
+  uri:
+    url: 'https://raw.githubusercontent.com/weimeilin79/dayinthelife-integration/master/support/template/apicurio-realm.json'
+    return_content: yes
+  register: apicurio_realm
+
+
+- debug: var=apicurio_realm.content
+
+
+- set_fact: realm={{ apicurio_realm.content | regex_replace('APICURIO_UI_URL', 'http://apicurio-studio.' + ocp_apps_domain) }}
+
+- debug: var=realm
+
+- name: Create Apicurio Realm
+  uri: 
+    url: 'https://secure-sso-{{sso_project}}.{{ocp_apps_domain}}/auth/admin/realms'
+    method: POST
+    body: "{{ realm }}"
+    body_format: json
+    headers:
+      Content-Type: "application/json"
+      Authorization: "Bearer {{ TKN }}"
+    return_content: yes
+    validate_certs: no
+    status_code: 201  
+
+#- name: Create Apicurio users
+#  uri: 
+#    url: 'https://secure-sso-{{sso_project}}.{{ocp_apps_domain}}/auth/admin/realms/{{ ocp_username }}/users'
+#    method: POST
+#    headers:
+#      Content-Type: "application/json"
+#      Authorization: "Bearer {{ TKN }}"
+#    body: "{\"username\":\"{{ ocp_username }}\",\"enabled\":true,\"firstName\":\"{{ ocp_username }}\",\"credentials\":[{\"type\":\"{{ apicurio_pwd }}\",\"value\":\"{{ apicurio_pwd }}\",\"temporary\":false}]}"
+#    body_format: json
+#    validate_certs: no
+#    status_code: 201
+#  
+
+- name: Create Apicurio app
+  shell: "oc new-app -f https://raw.githubusercontent.com/weimeilin79/dayinthelife-integration/master/support/template/apicurio-template.yml \
+  -p UI_ROUTE=apicurio-studio.{{ ocp_apps_domain }} -p API_ROUTE=apicurio-studio-api.{{ ocp_apps_domain }} \
+  -p WS_ROUTE=apicurio-studio-ws.{{ ocp_apps_domain }} -p AUTH_ROUTE=secure-sso-{{sso_project}}.{{ocp_apps_domain}} -n {{ apicurio_project }}"
+

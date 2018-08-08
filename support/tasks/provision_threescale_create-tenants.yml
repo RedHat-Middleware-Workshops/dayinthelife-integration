@@ -1,0 +1,55 @@
+---
+- name: Define 3scale
+  set_fact:
+    org_name: "workshop"    
+
+- name: Define 3scale password
+  set_fact:
+    threescale_password: "password" 
+
+- name: Create Tenant {{ ocp_username }}
+  uri:
+    url: https://master-admin.{{ ocp_apps_domain }}/master/api/providers.xml
+    method: POST
+    return_content: yes
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+    body: "access_token=mastertoken&org_name={{ org_name }}&username={{ ocp_username }}&email=admin%40{{ org_name }}.com&password={{ threescale_password }}"
+    validate_certs: no
+    status_code: 201
+  register: create_tenant_result
+
+- debug: var=create_tenant_result.content
+
+- set_fact: signup={{ create_tenant_result.content }}
+
+- name: Get Ids
+  xml:
+    xmlstring: '{{ signup }}'
+    xpath: //account/id | //user[username='{{ ocp_username }}']/id | //account/admin_domain | //account/domain
+    content: text
+  register: xmlstring
+
+- debug: var=xmlstring.matches
+
+- set_fact: ids={{ xmlstring.matches }}
+
+
+- name: Activate Tenant User {{ ocp_username }}
+  uri:
+    url: https://master-admin.{{ocp_apps_domain}}/admin/api/accounts/{{ ids[0].id }}/users/{{ ids[3].id }}/activate.xml
+    method: PUT
+    return_content: yes
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+    body: "access_token=mastertoken&account_id={{ ids[0].id }}&id={{ ids[3].id }}"
+    validate_certs: no
+    status_code: 200
+
+
+
+- name: Create Admin Tenant {{ ocp_username }} Router
+  shell: "oc create route edge system-provider-{{ ocp_username }}-admin-route --service=system-provider --hostname={{ ids[1].admin_domain }} --port=http --insecure-policy=Allow -n {{ threescale_project }}"
+
+- name: Create Developer Tenant {{ item }} Router
+  shell: "oc create route edge system-developer-{{ ocp_username }}-route --service=system-developer --hostname={{ ids[2].domain }} --port=http --insecure-policy=Allow -n {{ threescale_project }}"
