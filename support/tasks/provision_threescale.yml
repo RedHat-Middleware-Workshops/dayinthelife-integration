@@ -42,7 +42,7 @@
 
 - name: Create tenants
   include_tasks: ./provision_threescale_create-tenants.yml
-
+  become: true
 
 - name: Make sure we go back to default project
   shell: "oc project default"
