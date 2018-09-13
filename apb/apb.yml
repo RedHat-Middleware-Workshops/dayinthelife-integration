@@ -1,0 +1,64 @@
+version: 1.0
+name: cloudnative-workshop-apb
+description: APB to deploy required infra components for the Day in The Life - Integration workshop on an OpenShift cluster
+bindable: False
+async: optional
+tags:
+- workshop
+metadata:
+  dependencies: []
+  displayName: "Day in the Life - Integration Workshop Installer"
+  longDescription: "Installs required components (Git server, Nexus, Eclipse Che, 3Scale, Fuse, etc) for running the Day in the Life - Integration Workshop https://github.com/RedHatWorkshops/dayinthelife-integration"
+  console.openshift.io/iconClass: "pficon pficon-process-automation"
+  providerDisplayName: "Red Hat, Inc."
+plans:
+  - name: default
+    description: Deploys the Day in the Life - Integration Workshop Infrastructure
+    free: True
+    metadata:
+      displayName: Default
+    parameters:
+    - name: openshift_user
+      title: Username
+      description: User is required for creating project admin resources
+      type: string
+      required: true
+      display_group: OpenShift Admin User
+    - name: openshift_password
+      title: Password
+      description: Password is required for creating project admin resources
+      type: string
+      required: true
+      display_type: password
+      display_group: OpenShift Admin User
+    - name: openshift_master_url
+      title: OpenShift Master URL
+      description: The address to OpenShift master URL to be displayed in the lab guide to participants
+      type: string
+      required: true
+      display_type: string
+      display_group: Lab Guide
+    - name: openshift_user_password
+      title: OpenShift User Password
+      description: The OpenShift password for participants to be displayed in the lab guide to participants
+      type: string
+      required: true
+      display_type: string
+      value: "openshift"
+      display_group: Lab Guide
+    - name: infrasvcs_adm_user
+      title: Infra Services Admin User
+      description: Admin user for infrastructure services (Gogs, Che, ...)
+      type: string
+      default: "adminuser"
+      required: true
+      display_type: text
+      display_group: Workshop Infra Services
+    - name: infrasvcs_adm_pwd
+      title: Infra Services Admin Password
+      description: Admin password for infrastructure services (Gogs, Che, ...)
+      type: string
+      default: "adminpwd"
+      required: true
+      display_type: text
+      display_group: Workshop Infra Services

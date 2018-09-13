@@ -101,4 +101,4 @@
 
 - name: Run Apicurio
   include: ./provision_apicurio.yml
-  become: false 
+  become: true 
