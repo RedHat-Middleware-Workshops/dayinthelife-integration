@@ -201,38 +201,22 @@ Let's start crafting your API.
     * Example:
 
         ```bash
-        [
-            {
-                "id": 1,
-                "name": "International Inc Corporate Office",
-                "location": {
-                    "lat": 51.5013673,
-                    "lng": -0.1440787
-                },
-                "type": "headquarter",
-                "status": "1"
-            },
-            {
-                "id": 2,
-                "name": "International Inc North America",
-                "location": {
-                    "lat": 40.6976701,
-                    "lng": -74.259876
-                },
-                "type": "office",
-                "status": "1"
-            },
-            {
-                "id": 3,
-                "name": "International Inc France",
-                "location": {
-                    "lat": 48.859,
-                    "lng": 2.2069746
-                },
-                "type": "office",
-                "status": "1"
-            }
-        ]
+[{
+		"name": "Fred Smith",
+		"dest": "Phoenix",
+		"status": "Weather"
+	},
+	{
+		"name": "Jane Jones",
+		"dest": "Atlanta",
+		"status": "Traffic"
+	},
+	{
+		"name": "Pat Wallace",
+		"dest": "Dallas",
+		"status": "Security"
+	}
+]
         ```
 
     ![design-response-example](images/design-20.png "Response Example")
