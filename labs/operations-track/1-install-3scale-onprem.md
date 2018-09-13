@@ -73,6 +73,11 @@ cat /tmp/3scale_amp_provision_details.txt
 for x in backend-redis system-memcache system-mysql system-redis zync-database; do echo Resuming dc:  $x; sleep 2; oc rollout resume dc/$x; done
 ```
 
+Watch for errors during the deployment
+```
+oc get events -w
+```
+
 5. Via the OpenShift Web Console or CLI, verify the Database pods are running:
 
 ```
