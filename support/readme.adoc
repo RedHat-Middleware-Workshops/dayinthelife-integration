@@ -19,8 +19,6 @@
 * This file link:./defaults/main.yml[./defaults/main.yml] contains all the variables you
  need to define to control the deployment of your workload.
 
-NOTE: Check the link:./provision.sh[provision.sh] script to see an example.
-
 === Importing on ansible_agnostic_deployer manually (while RHPDS is still pending to create the catalog item)
 
 These steps are only needed while RHPDS does not create the catalog item. So you can go there and request your `OpenShift Workshop` from the catalog.
