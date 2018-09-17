@@ -1,0 +1,48 @@
+Lab 1 - Agile Integration Deployment Overview
+
+Step 0: Deploy and configure your API management platform 
+Step 1: Deploy and configure your API gateway
+Step 2: Setup the pipelines
+
+Lab 2 - API Management 
+
+Part 1 - API Definition (Integrator + Developer Tracks)
+
+Step 1: Define your API Proxy
+Step 2: Define your API Policies
+Step 3: Configure the Upstream Endpoint
+
+Part 2 - API Security + Securing your service using API Key
+	
+Step 1: Secure your API using API Key 
+Step 2: tbd 
+Step 3: Configure 3scale Integration
+Step 4: Create a Test App
+
+Part 3 (Advanced) - API Security - Configure and setup OpenID Connect
+	
+Step 1: Get Red Hat Single Sign On Service Account Credentials
+Step 2: Add User to Realm
+Step 3: Configure 3scale Integration
+Step 4: Create a Test App
+
+Lab 3 - Publish your API - API Portal - Configure & Setup portal 
+
+Step 1: Customizing Developer Portal
+Step 2: Register New Accounts Using Developer Portal
+Step 3: Login to Developer Portal
+
+
+Lab 4 - API Consumption 
+
+Step 0: Setup the collaboration environment using Git (Gogs)
+Step 1: Deploying International Inc Web Page
+Step 2: Calling a Secured Service with Red Hat Single Sign On
+Step 3: Update Red Hat Single Sign On Application Callback
+Step 4: Updating OpenShift Deployment
+Step 5: Test the Single Sign On Integration
+
+
+Lab 5 - Test your agile integration 
+
+TBD
