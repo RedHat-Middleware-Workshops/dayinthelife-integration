@@ -1,0 +1,52 @@
+Audience: API Developer
+Scope: Walk the user through an API development and integration process leveraging OpenShift, Ansible, Apicurio, Microcks, Fuse, 3scale AMP
+
+Lab 1 - API Design (Apicurio)
+
+Step 1: Creating APIs with Apicurio Studio
+Step 2: Editing APIs
+Step 3: Adding Paths
+Step 4: Download the API definition
+
+Lab 2 - API Mockup (Microcks)
+
+Step 0: Setup the collaboration environment using Git (Gogs)
+Step 1: Create a Microcks Job
+Step 2: Test the REST Mock Service
+
+Lab 3 - API Implementation (Fuse)
+
+Step 1: Rest DSL 
+Step 2: Composite Integration (Broker /API)
+Step 3: Fuse Online Salesforce to DB
+
+
+Lab 4 - API Management - + Securing your service using API Key
+
+Part 1 - API Definition
+
+Step 1: Define your API Proxy
+Step 2: Define your API Policies
+Step 3: Configure the Upstream Endpoint
+
+Part 2 (Advanced lab) - API Security - Configure and setup OpenID Connect
+	
+Step 1: Get Red Hat Single Sign On Service Account Credentials
+Step 2: Add User to Realm
+Step 3: Configure 3scale Integration
+Step 4: Create a Test App
+
+
+Lab 5 - API Consumption 
+
+Step 0: Setup the collaboration environment using Git (Gogs)
+Step 1: Deploying International Inc Web Page
+Step 2: Calling a Secured Service with Red Hat Single Sign On
+Step 3: Update Red Hat Single Sign On Application Callback
+Step 4: Updating OpenShift Deployment
+Step 5: Test the Single Sign On Integration
+
+
+Lab 6 - Test your agile integration 
+
+TBD
