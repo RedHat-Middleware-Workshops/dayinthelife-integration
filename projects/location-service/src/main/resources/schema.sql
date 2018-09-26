@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS locations; 
+
 CREATE TABLE locations (
   id integer NOT NULL,
   name varchar(255) NOT NULL,

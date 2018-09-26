@@ -26,7 +26,7 @@ public class CamelRoutes extends RouteBuilder {
 		
 		restConfiguration()
 			.component("undertow")
-	    	.port(8082)
+	    	.port(8080)
 	    	.bindingMode(RestBindingMode.json)
 			.contextPath("/")
 	    	.dataFormatProperty("prettyPrint", "true")
@@ -49,7 +49,7 @@ public class CamelRoutes extends RouteBuilder {
 		from("direct:getalllocationphone")
 			.setBody().simple("${headers.id}")
 			.unmarshal().json(JsonLibrary.Jackson)
-			.to("cxf://http://localhost:8080/ws/location?serviceClass=com.redhat.LocationDetailServicePortType&defaultOperationName=phone")
+			.to("cxf://http://location-soap:8080/ws/location?serviceClass=com.redhat.LocationDetailServicePortType&defaultOperationName=phone")
 			.process(
 					new Processor(){
 

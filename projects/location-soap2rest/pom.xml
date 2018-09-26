@@ -3,9 +3,9 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.mycompany</groupId>
-  <artifactId>camel-ose-springboot-xml</artifactId>
+  <artifactId>location-soap2rest</artifactId>
   <version>1.0.0-SNAPSHOT</version>
-  <name>Fabric8 :: Quickstarts :: Spring-Boot :: Camel XML</name>
+  <name>Day in the Life :: SOAP to REST:: Location Detail</name>
   <description>Spring Boot example running a Camel route defined in XML</description>
   <properties>
     <spring-boot.version>1.5.4.RELEASE</spring-boot.version>
@@ -135,7 +135,7 @@
           </execution>
         </executions>
       </plugin>
-      <plugin>
+     <!--  <plugin>
 		<groupId>org.apache.cxf</groupId>
 		<artifactId>cxf-codegen-plugin</artifactId>
 		<version>3.2.6</version>
@@ -150,13 +150,13 @@
 					<sourceRoot>${basedir}/src/main/java</sourceRoot>
 						<wsdlOptions>
 							<wsdlOption>
-								<wsdl>http://localhost:8080/ws/location?wsdl</wsdl>
+								<wsdl>http://location-soap:8080/ws/location?wsdl</wsdl>
 							</wsdlOption>
 						</wsdlOptions>
 				</configuration>
 			</execution>
 		</executions>
-	 </plugin>
+	 </plugin>--> 
     </plugins>
   </build>
 </project>
