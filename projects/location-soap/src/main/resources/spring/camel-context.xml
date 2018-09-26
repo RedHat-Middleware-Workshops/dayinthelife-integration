@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:camel="http://camel.apache.org/schema/spring"
+    xmlns:cxf="http://camel.apache.org/schema/cxf"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="                  http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd                               http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd                        http://camel.apache.org/schema/cxf http://camel.apache.org/schema/cxf/camel-cxf-spring.xsd">
+    <!-- Define a traditional camel context here -->
+    <cxf:cxfEndpoint address="/location"
+        id="locationDetailServiceEndpoint" serviceClass="com.redhat.LocationDetailService"/>
+    <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
+        <route id="_route1">
+            <from id="_from1" uri="cxf:bean:locationDetailServiceEndpoint"/>
+            <log id="_log1" message="INPUT ------- ID ------- ${body}"/>
+            <convertBodyTo id="_convertBodyTo1" type="java.lang.Integer"/>
+            <to id="_to1" uri="sql:select phone from location_detail where id=:#${body}?dataSource=dataSource"/>
+            <choice>
+            	<when>
+            		<simple>${body.size} > 0</simple>
+            		<setBody id="_setBody1">
+		                <simple>${body[0]['PHONE']}</simple>
+		            </setBody>
+            	</when>
+            	<otherwise>
+            		<setHeader headerName="HTTP_RESPONSE_CODE">
+            			<constant>404</constant>
+            		</setHeader>
+            		<setBody id="_setBody2">
+		                <constant>NOT FOUND</constant>
+		            </setBody>
+            	</otherwise>
+            </choice>
+        </route>
+    </camelContext>
+</beans>
