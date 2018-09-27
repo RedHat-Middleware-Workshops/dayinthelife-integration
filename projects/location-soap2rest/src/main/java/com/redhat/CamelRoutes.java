@@ -40,7 +40,7 @@ public class CamelRoutes extends RouteBuilder {
 	
 		rest("/location").description("Location information")
 			.produces("application/json")
-			.get("/phone/{id}").description("Location Phone Number")
+			.get("/contact/{id}").description("Location Contact Info")
 				.responseMessage().code(200).message("Data successfully returned").endResponseMessage()
 				.to("direct:getalllocationphone")
 			

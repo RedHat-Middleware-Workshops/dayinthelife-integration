@@ -13,7 +13,7 @@ public class CamelRoutes extends RouteBuilder {
 		
 		restConfiguration()
 			.component("undertow")
-        	.port(8085)
+        	.port(8080)
         	.bindingMode(RestBindingMode.json)
 			.contextPath("/")
         	.dataFormatProperty("prettyPrint", "true")
@@ -40,21 +40,21 @@ public class CamelRoutes extends RouteBuilder {
 		from("direct:getlocationAll")
 		.log("All-----")
 		.removeHeaders("CamelHttp*")
-		.toD("http4://localhost:8082/locations?bridgeEndpoint=true")
+		.toD("http4://location-service:8080/locations?bridgeEndpoint=true")
 		.convertBodyTo(String.class)
 	;
 		
 		from("direct:getlocation")
 			.log("Location-----${headers.id}")
 			.removeHeaders("CamelHttp*")
-			.toD("http4://localhost:8082/locations/${headers.id}?bridgeEndpoint=true")
+			.toD("http4://location-service:8080/locations/${headers.id}?bridgeEndpoint=true")
 			.convertBodyTo(String.class)
 		;
 		
 		from("direct:phone")
 			.log("phone-----${headers.id}")
 			.removeHeaders("CamelHttp*")
-			.toD("http4://localhost:8082/location/phone/${headers.id}?bridgeEndpoint=true")
+			.toD("http4://location-soap2rest:8080/location/phone/${headers.id}?bridgeEndpoint=true")
 			.convertBodyTo(String.class)
 		;
 		
