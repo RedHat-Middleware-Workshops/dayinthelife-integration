@@ -6,27 +6,18 @@
     <!-- Define a traditional camel context here -->
     <cxf:cxfEndpoint address="/location"
         id="locationDetailServiceEndpoint" serviceClass="com.redhat.LocationDetailService"/>
+    <bean class="com.redhat.processor.ResultProcessor" id="resultProcessor"/>
     <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
         <route id="_route1">
             <from id="_from1" uri="cxf:bean:locationDetailServiceEndpoint"/>
             <log id="_log1" message="INPUT ------- ID ------- ${body}"/>
             <convertBodyTo id="_convertBodyTo1" type="java.lang.Integer"/>
-            <to id="_to1" uri="sql:select phone,owner,operating_hour from location_detail where id=:#${body}?dataSource=dataSource"/>
+            <to id="_to1" uri="sql:select id,phone,owner,operating_hour from location_detail where id=:#${body}?dataSource=dataSource"/>
             <choice id="_choice1">
                 <when id="_when1">
                     <simple>${body.size} &gt; 0</simple>
-                    <setBody id="_setBody1">
-                        <simple>${body[0]}</simple>
-                    </setBody>
+                    <bean id="_bean1" ref="resultProcessor"/>
                 </when>
-                <otherwise id="_otherwise1">
-                    <setHeader headerName="HTTP_RESPONSE_CODE" id="_setHeader1">
-                        <constant>404</constant>
-                    </setHeader>
-                    <setBody id="_setBody2">
-                        <constant>NOT FOUND</constant>
-                    </setBody>
-                </otherwise>
             </choice>
         </route>
     </camelContext>

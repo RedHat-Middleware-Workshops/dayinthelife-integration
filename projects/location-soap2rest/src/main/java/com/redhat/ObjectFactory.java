@@ -24,8 +24,8 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _Phone_QNAME = new QName("http://redhat.com/", "phone");
-    private final static QName _PhoneResponse_QNAME = new QName("http://redhat.com/", "phoneResponse");
+    private final static QName _Contact_QNAME = new QName("http://redhat.com/", "contact");
+    private final static QName _ContactResponse_QNAME = new QName("http://redhat.com/", "contactResponse");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.redhat
@@ -35,37 +35,45 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Phone }
+     * Create an instance of {@link Contact }
      * 
      */
-    public Phone createPhone() {
-        return new Phone();
+    public Contact createContact() {
+        return new Contact();
     }
 
     /**
-     * Create an instance of {@link PhoneResponse }
+     * Create an instance of {@link ContactResponse }
      * 
      */
-    public PhoneResponse createPhoneResponse() {
-        return new PhoneResponse();
+    public ContactResponse createContactResponse() {
+        return new ContactResponse();
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Phone }{@code >}}
+     * Create an instance of {@link ContactInfo }
      * 
      */
-    @XmlElementDecl(namespace = "http://redhat.com/", name = "phone")
-    public JAXBElement<Phone> createPhone(Phone value) {
-        return new JAXBElement<Phone>(_Phone_QNAME, Phone.class, null, value);
+    public ContactInfo createContactInfo() {
+        return new ContactInfo();
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link PhoneResponse }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Contact }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://redhat.com/", name = "phoneResponse")
-    public JAXBElement<PhoneResponse> createPhoneResponse(PhoneResponse value) {
-        return new JAXBElement<PhoneResponse>(_PhoneResponse_QNAME, PhoneResponse.class, null, value);
+    @XmlElementDecl(namespace = "http://redhat.com/", name = "contact")
+    public JAXBElement<Contact> createContact(Contact value) {
+        return new JAXBElement<Contact>(_Contact_QNAME, Contact.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ContactResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://redhat.com/", name = "contactResponse")
+    public JAXBElement<ContactResponse> createContactResponse(ContactResponse value) {
+        return new JAXBElement<ContactResponse>(_ContactResponse_QNAME, ContactResponse.class, null, value);
     }
 
 }

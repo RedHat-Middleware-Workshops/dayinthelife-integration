@@ -49,20 +49,20 @@ public class CamelRoutes extends RouteBuilder {
 		from("direct:getalllocationphone")
 			.setBody().simple("${headers.id}")
 			.unmarshal().json(JsonLibrary.Jackson)
-			.to("cxf://http://location-soap:8080/ws/location?serviceClass=com.redhat.LocationDetailServicePortType&defaultOperationName=phone")
+			.to("cxf://http://location-service:8080/ws/location?serviceClass=com.redhat.LocationDetailServicePortType&defaultOperationName=contact")
 			.process(
 					new Processor(){
 
 						@Override
 						public void process(Exchange exchange) throws Exception {
-							LocationDetail locationDetail = new LocationDetail();
-							locationDetail.setId(Integer.valueOf((String)exchange.getIn().getHeader("id")));
+							//LocationDetail locationDetail = new LocationDetail();
+							//locationDetail.setId(Integer.valueOf((String)exchange.getIn().getHeader("id")));
 							
 							MessageContentsList list = (MessageContentsList)exchange.getIn().getBody();
+							System.out.println();
+							//locationDetail.setPhone((String)list.get(0));
 							
-							locationDetail.setPhone((String)list.get(0));
-							
-							exchange.getOut().setBody(locationDetail);
+							exchange.getOut().setBody((ContactInfo)list.get(0));
 						}
 					}
 			)
