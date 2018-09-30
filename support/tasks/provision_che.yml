@@ -89,6 +89,15 @@
             },
             "commands": [
               {
+                "commandLine": "mvn install -f ${current.project.path}",
+                "name": "Build project",
+                "type": "mvn",
+                "attributes": {
+                  "goal": "Build",
+                  "previewUrl": ""
+                }
+              },
+              {
                 "commandLine": "mvn spring-boot:run -f ${current.project.path}",
                 "name": "run spring-boot",
                 "type": "mvn",
