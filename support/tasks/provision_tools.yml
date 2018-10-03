@@ -20,11 +20,11 @@
   shell: "oc project default"
   
 - name: Create Gogs app
-  shell: "oc new-app -f https://raw.githubusercontent.com/OpenShiftDemos/gogs-openshift-docker/master/openshift/gogs-template.yaml \
+  shell: "oc new-app -f https://raw.githubusercontent.com/OpenShiftDemos/gogs-openshift-docker/master/openshift/gogs-persistent-template.yaml \
   -p GOGS_VERSION={{gogs_version}} \
   -p SKIP_TLS_VERIFY=true \
   -p HOSTNAME=gogs.{{ ocp_apps_domain }} \
-  -n {{ tools_project }}"
+  -n {{tools_project }}"
 
 - name: Annotate the empty project as requested by user
   shell: "oc annotate namespace {{tools_project}} openshift.io/requester={{ocp_username}} --overwrite"
@@ -47,7 +47,7 @@
 
 - name: Create Gogs users
   uri:
-    url: http://gogs.{{ ocp_apps_domain }}/user/sign_up
+    url: http://gogs.{{ ocp_apps_domain}}/user/sign_up
     method: POST
     follow_redirects: safe
     return_content: yes
