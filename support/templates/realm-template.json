@@ -1,0 +1,30 @@
+{
+    "realm" : "userx",
+    "sslRequired" : "none",
+    "registrationAllowed" : false,
+    "enabled": true,
+    "displayName" : "userx Security Realm",
+    "users" : [ {
+      "username" : "userx",
+      "enabled" : true,
+      "email" : "userx@openshiftworkshop.com",
+      "credentials" : [ {
+        "type" : "password",
+        "value" : "openshift"
+      } ],
+      "realmRoles" : [ "admin", "offline_access", "uma_authorization" ],
+      "clientRoles" : {
+        "account" : [ "manage-account", "view-profile" ],
+        "realm-management" : [ "create-client", "impersonation", "manage-authorization", "manage-clients", "manage-events", "manage-identity-providers", "manage-realm", "manage-users", "realm-admin" ]
+      }
+    } ],
+    "scopeMappings": [],
+    "clients" : [ {
+      "clientId" : "3scale-admin",
+      "protocol" : "openid-connect",
+      "standardFlowEnabled" : false,
+      "directAccessGrantsEnabled" : false,
+      "serviceAccountsEnabled" : true,
+      "publicClient" : false
+    } ]
+  }

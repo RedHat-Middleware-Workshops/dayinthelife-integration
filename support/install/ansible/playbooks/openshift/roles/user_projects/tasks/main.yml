@@ -1,0 +1,10 @@
+---
+- name: Process namespace
+  include_role:
+    name: project
+  vars:
+    project: '{{ item }}'
+    display_name: '{{ item }}'
+
+- name: Give {{ item }} access to project
+  shell: oc policy add-role-to-user admin {{ item }}

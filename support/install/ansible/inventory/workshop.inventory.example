@@ -1,0 +1,17 @@
+[workshop]
+localhost ansible_connection=local
+
+[workshop:vars]
+ocp_domain=GUID.openshiftworkshop.com
+ocp_apps_domain=apps.GUID.openshiftworkshop.com
+usersno=20
+threescale=true
+apicurio=true
+gogs=true
+microcks=true
+sso=true
+backend=true
+user_projects=true
+configure_only=false
+create_tenants=true
+create_realms=true

@@ -1,0 +1,2 @@
+dependencies:
+  - { role: project, when: configure_only == 'false',  project: '{{ sso_project }}', display_name: "Red Hat Single Sign On" }
