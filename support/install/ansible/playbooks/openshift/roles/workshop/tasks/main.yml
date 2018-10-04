@@ -5,17 +5,17 @@
   with_sequence: start=1 end={{ usersno }} format=user%d
   when: user_projects
 
-# - import_role:
-#     name: provision_che
-#   when: che
+- import_role:
+    name: provision_che
+  when: che
 
-# - import_role:
-#     name: provision_fuse
-#   when: fuse
+- import_role:
+    name: provision_fuse
+  when: fuse
 
-# - import_role:
-#     name: provision_sso
-#   when: sso
+- import_role:
+    name: provision_sso
+  when: sso
 
 - import_role:
     name: provision_threescale
