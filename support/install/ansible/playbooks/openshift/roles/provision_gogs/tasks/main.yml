@@ -1,0 +1,39 @@
+---
+- name: Make sure we go back to default project
+  shell: "oc project default"
+
+- name: Create Gogs app
+  shell: "oc new-app -f https://raw.githubusercontent.com/OpenShiftDemos/gogs-openshift-docker/master/openshift/gogs-template.yaml \
+  -p GOGS_VERSION=0.11.34 -p SKIP_TLS_VERIFY=true -p HOSTNAME=gogs.{{ ocp_apps_domain }} -n {{ gogs_project }}"
+  when: configure_only == 'false'
+
+- name: Wait until Gogs API is available 
+  uri: 
+    url: http://gogs.{{ocp_apps_domain}}
+    method: GET
+    follow_redirects: safe
+    validate_certs: no
+  register: wait_gogs_result
+  until: wait_gogs_result is succeeded
+  ignore_errors: yes
+  retries: 15
+  delay: 30
+  when: create_realms
+
+- name: Create Gogs users
+  uri:
+    url: http://gogs.{{ ocp_apps_domain }}/user/sign_up
+    method: POST
+    follow_redirects: safe
+    return_content: yes
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+    body: "user_name={{ item }}&password=openshift&retype=openshift&email={{ item }}@example.com"
+    validate_certs: no
+    status_code: 200
+  register: create_tenant_result
+  ignore_errors: true
+  with_sequence: start=0 end={{ usersno }} format=user%d
+  when: create_realms
+
+- debug: var=create_tenant_result

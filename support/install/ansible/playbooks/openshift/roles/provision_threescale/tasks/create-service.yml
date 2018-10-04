@@ -1,0 +1,137 @@
+---
+- name: Create service
+  uri: 
+    url: "https://3scale-admin.{{ocp_apps_domain}}/admin/api/services.xml"
+    method: POST
+    return_content: yes
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+    body: "access_token={{ admintoken }}&name={{ name | urlencode }}&deployment_option=hosted&backend_version={{ '1' if backend_version == 'oidc' else backend_version }}&system_name={{ system_name }}"
+    validate_certs: no
+    status_code: 201
+  register: create_svc_result
+  when: configure_only == 'false'
+
+- name: Get service Id
+  xml:
+    xmlstring: '{{ create_svc_result.content }}'
+    xpath: //service/id
+    content: text
+  register: xmlstring
+  when: configure_only == 'false'
+
+- debug: var=xmlstring.matches[0].id
+  when: configure_only == 'false'
+
+- set_fact: id={{ xmlstring.matches[0].id }}
+  when: configure_only == 'false'
+
+- name: Update sso service (workaround for oidc bug)
+  uri: 
+    url: "https://3scale-admin.{{ocp_apps_domain}}/admin/api/services/{{ id }}.xml"
+    method: PUT
+    return_content: yes
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+    body: "access_token={{ admintoken }}&backend_version=oidc"
+    validate_certs: no
+  when: backend_version == 'oidc'
+
+- debug: var=proxy_config.production_endpoint
+  when: proxy_config is defined
+- debug: var=proxy_config.staging_endpoint
+  when: proxy_config is defined
+- debug: var=proxy_config.backend_endpoint
+  when: proxy_config is defined
+- debug: var=proxy_config.sso_endpoint
+  when: proxy_config is defined and proxy_config.sso_endpoint is defined
+
+- set_fact: oidc_issuer={{ ( backend_version == 'oidc' and proxy_config.sso_endpoint is defined ) | ternary('&oidc_issuer_endpoint=' + ( proxy_config.sso_endpoint | default('') | urlencode ), '') }}
+
+- debug: var=oidc_issuer
+
+- name: Config backend service proxy
+  uri: 
+    url: "https://3scale-admin.{{ocp_apps_domain}}/admin/api/services/{{ id }}/proxy.xml"
+    method: PATCH
+    return_content: yes
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+    body: "access_token={{ admintoken }}&endpoint={{ proxy_config.production_endpoint | urlencode }}\
+    &sandbox_endpoint={{ proxy_config.staging_endpoint | urlencode }}\
+    &api_backend={{ proxy_config.backend_endpoint | urlencode }}\
+    {{ oidc_issuer }}"
+    validate_certs: no
+  when: proxy_config is defined
+
+- name: Create application plan
+  uri: 
+    url: "https://3scale-admin.{{ocp_apps_domain}}/admin/api/services/{{ id }}/application_plans.xml"
+    method: POST
+    return_content: yes
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+    body: "access_token={{ admintoken }}&name={{ application_plan.name | urlencode }}&system_name={{ application_plan.system_name }}&state=published"
+    validate_certs: no
+    status_code: 201
+  register: create_plan_result
+  when: application_plan is defined and configure_only == 'false'
+
+- name: Get plan Id
+  xml:
+    xmlstring: '{{ create_plan_result.content }}'
+    xpath: //plan/id
+    content: text
+  register: xmlstring
+  when: application_plan is defined and configure_only == 'false'
+
+- debug: var=xmlstring.matches[0].id
+  when: application_plan is defined and configure_only == 'false'
+
+- set_fact: plan_id={{ xmlstring.matches[0].id }}
+  when: application_plan is defined and configure_only == 'false'
+
+- set_fact: redirect_uri={{ ( app_config.redirect_uri is defined ) | ternary('&redirect_url=' + ( app_config.redirect_uri | default('') | urlencode ), '') }}
+  when: app_config is defined and configure_only == 'false'
+
+- debug: var=redirect_uri
+
+- name: Create application
+  uri: 
+    url: "https://3scale-admin.{{ocp_apps_domain}}/admin/api/accounts/{{ account_id }}/applications.xml"
+    method: POST
+    return_content: yes
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+    body: "access_token={{ admintoken }}&plan_id={{ plan_id }}&name={{ app_config.name }}\
+    &description={{ app_config.description }}&application_id={{ app_config.id }}\
+    &user_key=12345{{ redirect_uri }}"
+    validate_certs: no
+    status_code: 201
+  register: create_app_result
+  when: app_config is defined and configure_only == 'false'
+
+- name: Get policy chain template
+  uri:
+    url: 'https://raw.githubusercontent.com/jbossdemocentral/3scale-api-workshop/master/support/templates/policy-config.json'
+    return_content: yes
+  register: get_policies
+  when: proxy_config is defined
+
+- debug: var=get_policies.content
+  when: proxy_config is defined
+
+- name: Enable CORS
+  uri: 
+    url: "https://3scale-admin.{{ocp_apps_domain}}/admin/api/services/{{ id }}/proxy/policies.json"
+    method: PUT
+    return_content: yes
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+    body: "access_token={{ admintoken }}&policies_config={{ get_policies.content | urlencode }}"
+    validate_certs: no
+    status_code: 200
+  register: update_policies_result
+  when: proxy_config is defined
+
+- debug: var=update_policies_result

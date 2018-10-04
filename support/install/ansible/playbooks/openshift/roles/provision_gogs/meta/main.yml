@@ -1,0 +1,2 @@
+dependencies:
+  - { role: project, when: configure_only == 'false',  project: '{{ gogs_project }}', display_name: "Gogs Git Service" }
