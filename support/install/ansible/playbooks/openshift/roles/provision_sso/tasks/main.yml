@@ -1,0 +1,96 @@
+---
+- name: Make sure we go back to default project
+  shell: "oc project default"
+
+- name: Check if image streams are available
+  shell: "oc describe is redhat-sso72-openshift -n openshift"
+  register: imagestream_exists
+  when: configure_only == 'false'
+  ignore_errors: true
+
+- name: Create image streams for RH SSO
+  shell: "oc create -f https://raw.githubusercontent.com/jboss-openshift/application-templates/{{ sso_version }}/sso/sso72-image-stream.json -n openshift"
+  when: configure_only == 'false' and imagestream_exists.failed
+
+- name: Create secrets for RH SSO
+  shell: "oc create -f https://raw.githubusercontent.com/jboss-openshift/application-templates/{{ sso_version }}/secrets/sso-app-secret.json -n {{ sso_project }}"
+  when: configure_only == 'false'
+
+- name: Create service account for clustering
+  shell: "oc create sa sso-service-account -n {{ sso_project }}"
+  when: configure_only == 'false'
+
+- name: Add cluster view policy to sa for clustering
+  shell: "oc policy add-role-to-user view system:serviceaccount:{{ sso_project }}:sso-service-account -n {{ sso_project }}"
+  when: configure_only == 'false'
+
+- name: Create RH SSO app
+  shell: "oc new-app -f https://raw.githubusercontent.com/jboss-openshift/application-templates/{{ sso_version }}/sso/sso72-mysql-persistent.json -p HTTPS_NAME=jboss -p HTTPS_PASSWORD=mykeystorepass -p SSO_ADMIN_USERNAME=keyadmin \
+  -p SSO_ADMIN_PASSWORD=keypassword -n {{sso_project}}"
+  when: configure_only == 'false'
+
+- name: Wait until RH SSO API is available 
+  uri: 
+    url: https://secure-sso-{{sso_project}}.{{ocp_apps_domain}}
+    method: HEAD
+    follow_redirects: safe
+    validate_certs: no
+  register: wait_sso_result
+  until: wait_sso_result is succeeded
+  ignore_errors: yes
+  retries: 15
+  delay: 60
+  when: create_realms
+
+- name: Get templated realm
+  uri:
+    url: 'https://raw.githubusercontent.com/jbossdemocentral/3scale-api-workshop/master/support/templates/realm-template.json'
+    return_content: yes
+  register: get_realm
+  when: create_realms
+
+- debug: var=get_realm.content
+  when: create_realms
+
+- name: Get SSO token
+  shell: "curl --insecure -X POST 'https://secure-sso-{{sso_project}}.{{ocp_apps_domain}}/auth/realms/master/protocol/openid-connect/token' \
+  -H 'Content-Type: application/x-www-form-urlencoded' -d 'username=keyadmin' -d 'password=keypassword' -d 'grant_type=password' -d 'client_id=admin-cli'"
+  register: token_text
+
+- set_fact: TKN={{ (token_text.stdout | from_json).access_token }}
+
+- name: Increase Token Lifespan (60mins)
+  uri: 
+    url: 'https://secure-sso-{{sso_project}}.{{ocp_apps_domain}}/auth/admin/realms/master'
+    method: PUT
+    body: "{\"realm\":\"master\", \"accessTokenLifespan\":\"3600\"}"
+    body_format: json
+    headers:
+      Content-Type: "application/json"
+      Authorization: "Bearer {{ TKN }}"
+    return_content: yes
+    validate_certs: no
+    status_code: 204
+
+- name: Get SSO Token Longer Lifespan
+  shell: "curl --insecure -X POST 'https://secure-sso-{{sso_project}}.{{ocp_apps_domain}}/auth/realms/master/protocol/openid-connect/token' \
+  -H 'Content-Type: application/x-www-form-urlencoded' -d 'username=keyadmin' -d 'password=keypassword' -d 'grant_type=password' -d 'client_id=admin-cli'"
+  register: token_text
+
+- set_fact: TKN={{ (token_text.stdout | from_json).access_token }}
+
+- debug: var=TKN
+
+- name: Create user realms
+  include_tasks: ./create-realm.yml
+  with_sequence: start=1 end={{ usersno }} format=user%d
+  when: create_realms
+
+- name: Create threescale realm
+  include_tasks: ./create-realm.yml
+  vars:
+    item: threescale
+  when: create_realms
+
+- name: Make sure we go back to default project
+  shell: "oc project default"

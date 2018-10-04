@@ -1,0 +1,94 @@
+---
+- name: Create serviceaccount-as-oauthclient
+  shell: "oc create -f {{ syndesisio_sa_yml }} -n {{ item }}"
+
+- name: Create syndesisio template {{ syndesisio_template_yml }}
+  shell: "oc create -f {{ syndesisio_template_yml }} -n {{ item }}"
+
+- name: Load fuse-ignite-is
+  shell: "oc create -f {{ fuse_ignite_is_yaml }} -n {{ item }}" 
+
+- name: Create the syndesisio app
+  shell: |
+      oc new-app {{ ignite_template_name }} \
+      -p ROUTE_HOSTNAME=fuse-{{ item }}.{{ ocp_apps_domain }} \
+      -p OPENSHIFT_MASTER=https://master.{{ ocp_domain }} \
+      -p OPENSHIFT_PROJECT={{ item }} \
+      -p POSTGRESQL_MEMORY_LIMIT={{ POSTGRESQL_MEMORY_LIMIT }} \
+      -p PROMETHEUS_MEMORY_LIMIT={{ PROMETHEUS_MEMORY_LIMIT }} \
+      -p META_MEMORY_LIMIT={{ META_MEMORY_LIMIT }} \
+      -p SERVER_MEMORY_LIMIT={{ SERVER_MEMORY_LIMIT }} \
+      -p OPENSHIFT_OAUTH_CLIENT_SECRET=$(oc sa get-token syndesis-oauth-client -n {{ item }}) \
+      -p MAX_INTEGRATIONS_PER_USER={{ MAX_INTEGRATIONS_PER_USER }} \
+      -p IMAGE_STREAM_NAMESPACE={{ item }} \
+      -n {{ item }}
+
+- name: resume syndesis oauthproxy and db
+  shell: oc rollout resume dc/syndesis-oauthproxy dc/syndesis-db -n {{ item }}
+- include_tasks: ./fuseonline_wait_for_deploy.yml
+  vars:
+    fuseonline_project: '{{ item }}'
+    pod_to_wait:
+      - syndesis-oauthproxy
+      - syndesis-db
+
+- name: Scale up broker-amq
+  shell: |
+      oc scale dc/broker-amq --replicas=1 -n {{ item }}
+
+- name: resume broker-amq
+  shell: oc rollout resume dc/broker-amq -n {{ item }}
+
+- include_tasks: ./fuseonline_wait_for_deploy.yml
+  vars:
+    fuseonline_project: '{{ item }}'
+    pod_to_wait:
+      - "broker-amq"
+
+- name: resume syndesis-meta
+  shell: oc rollout resume dc/syndesis-meta -n {{ item }}
+
+- include_tasks: ./fuseonline_wait_for_deploy.yml
+  vars:
+    fuseonline_project: '{{ item }}'
+    pod_to_wait:
+      - syndesis-meta
+
+- name: resume syndesis-server
+  shell: oc rollout resume dc/syndesis-server -n {{ item }}
+
+- include_tasks: ./fuseonline_wait_for_deploy.yml
+  vars:
+    fuseonline_project: '{{ item }}'
+    pod_to_wait:
+      - syndesis-server
+
+- name: resume syndesis-ui
+  shell: oc rollout resume dc/syndesis-ui -n {{ item }}
+
+- include_tasks: ./fuseonline_wait_for_deploy.yml
+  vars:
+    fuseonline_project: '{{ item }}'
+    pod_to_wait:
+      - syndesis-ui
+
+- name: resume syndesis-prometheus
+  shell: oc rollout resume dc/syndesis-prometheus -n {{ item }}
+
+- include_tasks: ./fuseonline_wait_for_deploy.yml
+  vars:
+    fuseonline_project: '{{ item }}'
+    pod_to_wait:
+      - syndesis-prometheus
+
+- name: resume todo
+  shell: oc rollout resume dc/todo -n {{ item }}
+
+- include_tasks: ./fuseonline_wait_for_deploy.yml
+  vars:
+    fuseonline_project: '{{ item }}'
+    pod_to_wait:
+      - todo
+
+- name: Annotate the empty project as requested by user
+  shell: "oc annotate namespace {{ item }} openshift.io/requester={{ item }} --overwrite"

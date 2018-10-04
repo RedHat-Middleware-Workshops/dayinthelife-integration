@@ -1,0 +1,58 @@
+---
+- name: Make sure we go back to default project
+  shell: "oc project default"
+
+- name: Get SSO token
+  shell: "curl --insecure -X POST 'https://secure-sso-{{sso_project}}.{{ocp_apps_domain}}/auth/realms/master/protocol/openid-connect/token' \
+  -H 'Content-Type: application/x-www-form-urlencoded' -d 'username=keyadmin' -d 'password=keypassword' -d 'grant_type=password' -d 'client_id=admin-cli'"
+  register: token_text
+
+- set_fact: TKN={{ (token_text.stdout | from_json).access_token }}
+
+- debug: var=TKN
+
+- name: Get Microcks realm
+  uri:
+    url: 'https://raw.githubusercontent.com/jbossdemocentral/3scale-api-workshop/master/support/templates/microcks-realm.json'
+    return_content: yes
+  register: microcks_realm
+  when: create_realms
+
+- debug: var=microcks_realm.content
+  when: create_realms
+
+- set_fact: realm={{ microcks_realm.content | regex_replace('MICROCKS_UI_URL', 'http://microcks.' + ocp_apps_domain) }}
+
+- debug: var=realm
+
+- name: Create Microcks Realm
+  uri: 
+    url: 'https://secure-sso-{{sso_project}}.{{ocp_apps_domain}}/auth/admin/realms'
+    method: POST
+    body: "{{ realm }}"
+    body_format: json
+    headers:
+      Content-Type: "application/json"
+      Authorization: "Bearer {{ TKN }}"
+    return_content: yes
+    validate_certs: no
+    status_code: 201  
+
+- name: Create Microcks users
+  uri: 
+    url: 'https://secure-sso-{{sso_project}}.{{ocp_apps_domain}}/auth/admin/realms/{{microcks_project}}/users'
+    method: POST
+    headers:
+      Content-Type: "application/json"
+      Authorization: "Bearer {{ TKN }}"
+    body: "{\"username\":\"{{ item }}\",\"enabled\":true,\"firstName\":\"{{ item }}\",\"credentials\":[{\"type\":\"password\",\"value\":\"openshift\",\"temporary\":false}]}"
+    body_format: json
+    validate_certs: no
+    status_code: 201
+  with_sequence: start=1 end={{ usersno }} format=user%d
+
+- name: Create Microcks app
+  shell: "oc new-app -f https://raw.githubusercontent.com/jbossdemocentral/3scale-api-workshop/master/support/templates/microcks-template.yml \
+  -p KEYCLOAK_ROUTE_HOSTNAME=sso-{{sso_project}}.{{ ocp_apps_domain }} -p APP_ROUTE_HOSTNAME={{ microcks_project }}.{{ ocp_apps_domain }} \
+  -n {{ microcks_project }}"
+  when: configure_only == 'false'

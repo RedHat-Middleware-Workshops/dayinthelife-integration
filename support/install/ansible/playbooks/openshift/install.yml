@@ -1,0 +1,5 @@
+---
+- name: "Install API Workshop"
+  hosts: workshop
+  roles:
+    - workshop

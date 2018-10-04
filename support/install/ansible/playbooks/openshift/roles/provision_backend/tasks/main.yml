@@ -1,0 +1,44 @@
+---
+- name: Make sure we go back to default project
+  shell: "oc project default"
+
+- name: Check if Fuse 7.0 image streams are available
+  shell: "oc describe is jboss-fuse70-java-openshift -n openshift"
+  register: imagestream_exists
+  when: configure_only == 'false'
+  ignore_errors: true
+
+- name: Create image streams for Fuse 7.0
+  shell: "oc create -f https://raw.githubusercontent.com/jbossdemocentral/3scale-api-workshop/master/support/templates/fuse-image-streams.json -n openshift"
+  when: configure_only == 'false' and imagestream_exists.failed
+
+- name: Check if Fuse 7.0 template is available
+  shell: "oc describe template s2i-fuse70-spring-boot-camel -n openshift"
+  register: template_exists
+  when: configure_only == 'false'
+  ignore_errors: true
+
+- name: Create template for Fuse 7.0
+  shell: "oc create -f https://raw.githubusercontent.com/jbossdemocentral/3scale-api-workshop/master/support/templates/spring-boot-camel-template.json -n openshift"
+  when: configure_only == 'false' and template_exists.failed
+
+- name: Create Backend Database
+  shell: "oc new-app -f https://raw.githubusercontent.com/openshift/origin/master/examples/db-templates/mysql-ephemeral-template.json \
+  -p MYSQL_PASSWORD=password -p MYSQL_ROOT_PASSWORD=password -p MYSQL_USER=dbuser -e MYSQL_MAX_CONNECTIONS=512 -n {{ backend_project }}"
+  when: configure_only == 'false'
+  
+- name: Create Backend API service
+  shell: "oc new-app s2i-fuse70-spring-boot-camel -p GIT_REPO=https://github.com/jbossdemocentral/3scale-api-workshop \
+  -p CONTEXT_DIR=/projects/location-service -p APP_NAME=location-service -p GIT_REF=master -n {{ backend_project }}"
+  when: configure_only == 'false'
+
+- name: Create Webpage application
+  shell: "oc new-app https://github.com/jbossdemocentral/3scaleworkshop-wwwpage#secured --name www \
+  --build-env API_BACKEND_URL=https://location-sso-staging.amp.{{ ocp_apps_domain }}/locations \
+  --build-env SSO_URL=http://sso-rh-sso.{{ ocp_apps_domain }} --build-env SSO_REALM=threescale \
+  --build-env CLIENT_ID=www-secured -n {{ backend_project }}"
+  when: configure_only == 'false'
+
+- name: Create webapp route
+  shell: "oc expose svc/www -n {{ backend_project }}"
+  when: configure_only == 'false'
