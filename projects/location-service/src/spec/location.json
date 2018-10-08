@@ -1,0 +1,47 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0.0",
+    "title" : "Location API"
+  },
+  "host" : "0.0.0.0:8080",
+  "basePath" : "/",
+  "tags" : [ {
+    "name" : "locations",
+    "description" : "Location information"
+  } ],
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/locations/" : {
+      "get" : {
+        "tags" : [ "locations" ],
+        "summary" : "Retrieve all locations data",
+        "operationId" : "route1",
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "Data successfully returned"
+          }
+        }
+      }
+    },
+    "/locations/{id}" : {
+      "get" : {
+        "tags" : [ "locations" ],
+        "operationId" : "route2",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Data successfully returned"
+          }
+        }
+      }
+    }
+  }
+}

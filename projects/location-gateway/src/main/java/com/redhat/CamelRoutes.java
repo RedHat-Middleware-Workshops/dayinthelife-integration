@@ -6,9 +6,11 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class CamelRoutes extends RouteBuilder {
-
+	
 	@Override
 	public void configure() throws Exception {
+		
+		
 		
 		
 		restConfiguration()
@@ -51,17 +53,13 @@ public class CamelRoutes extends RouteBuilder {
 			.convertBodyTo(String.class)
 		;
 		
-		from("direct:phone")
-			.log("phone-----${headers.id}")
-			.removeHeaders("CamelHttp*")
-			.toD("http4://location-soap2rest:8080/location/phone/${headers.id}?bridgeEndpoint=true")
-			.convertBodyTo(String.class)
-		;
+		
 		
 		from("direct:addlocation")
 			.log("Add Location-----${headers.id}")
 			.removeHeaders("CamelHttp*")
-			.toD("http4://localhost:8082/location/?bridgeEndpoint=true")
+			.convertBodyTo(String.class)
+			.toD("https4://i-addlocation-71.apps.52d6.openshift.opentlc.com/webhook/42H0LyaZK6Dn4Ylq93gakpQfWpkkIlaIsoqq963Mxz6yt98ojl?bridgeEndpoint=true")
 			.convertBodyTo(String.class)
 		;
 			
