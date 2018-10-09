@@ -69,15 +69,13 @@ openshift
 
     ![00-create-workspace.png](images/00-create-workspace.png "Create Workspace")
 
-1. Select **Clients** from the left menu.
+1. Enter a unique name for your workspace e.g. simon-dev-workspace.  Select "day in the life workshop" stack, increase the RAM to 4MB and then click **Create**.
 
-    ![00-clients.png](images/00-clients.png "Clients")
+    ![00-new-workspace.png](images/00-new-workspace.png "New Workspace")
 
-    *A 3scale-admin client and service account was already created for you*.
+1. Click on **Open** to generate and open the workspace.
 
-1. Click on the **3scale-admin** link to view the details.
-
-    ![00-3scale-admin.png](images/00-3scale-admin.png "3scale admin account")
+    ![00-open-workspace.png](images/00-open-workspace.png "Open Workspace")
 
 1. Click the **Credentials** tab.
 
