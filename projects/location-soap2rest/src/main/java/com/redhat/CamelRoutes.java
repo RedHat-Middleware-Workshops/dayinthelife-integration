@@ -49,7 +49,8 @@ public class CamelRoutes extends RouteBuilder {
 		from("direct:getalllocationphone")
 			.setBody().simple("${headers.id}")
 			.unmarshal().json(JsonLibrary.Jackson)
-			.to("cxf://http://location-service:8080/ws/location?serviceClass=com.redhat.LocationDetailServicePortType&defaultOperationName=contact")
+			.to("cxf://http://location-soap-user1-dev.apps.52d6.openshift.opentlc.com/ws/location?serviceClass=com.redhat.LocationDetailServicePortType&defaultOperationName=contact")
+			
 			.process(
 					new Processor(){
 
@@ -59,8 +60,6 @@ public class CamelRoutes extends RouteBuilder {
 							//locationDetail.setId(Integer.valueOf((String)exchange.getIn().getHeader("id")));
 							
 							MessageContentsList list = (MessageContentsList)exchange.getIn().getBody();
-							System.out.println();
-							//locationDetail.setPhone((String)list.get(0));
 							
 							exchange.getOut().setBody((ContactInfo)list.get(0));
 						}
