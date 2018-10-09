@@ -77,41 +77,28 @@ openshift
 
     ![00-open-workspace.png](images/00-open-workspace.png "Open Workspace")
 
-1. Click the **Credentials** tab.
+### Step 2: Import the skeleton projects from Git an convert them to Maven projects.
 
-    ![00-sa-credentials.png](images/00-sa-credentials.png "Service Account Credentials")
+1. Click on the **Import Project** link.  A pop-up will appear.
 
-1. Take notice of the service account **Secret**. Copy and save it or write it down as you will use it to configure 3scale.
+    ![00-import-project.png](images/00-import-project.png "Import Project")
 
-    ![00-sa-secret.png](images/00-sa-secret.png "Service Account Secret")
+1. Enter `https://github.com/weimeilin79/dayinthelife-import` as the git URL, select "Import Recursively" and then click "Import".
 
-### Step 2: Add User to Realm
+1. When the "Save" pop-up appears, click the "X" to close the pop-up.
 
-1. Click on the Users menu on the left side of the screen.
+    ![00-close-save.png](images/00-close-save.png "Close Save")
 
-    ![00-users.png](images/00-users.png "Users Menu")
+1. Write click on the **location-soap2rest** project and select **Convert to Project**
 
-1. Click the Add user button.
+    ![00-convert-project.png](images/00-convert-project.png "Convert Project")
 
-    ![00-add-user.png](images/00-add-user.png "Add User")
+1. Select **Maven** then click **Save**.
 
-1. Type **apiuser** as the Username.
+    ![00-select-maven.png](images/00-select-maven.png "Select Maven")
 
-    ![00-username.png](images/00-username.png "User Details")
+1. Convert the remaining projects to Maven, by repeating steps 4 - 6 for the **location-service** and **location-gateway** projects.
 
-1. Click on the **Save** button.
-
-1. Click on the **Credentials** tab to reset the password. Type **apipassword** as the *New Password* and *Password Confirmation*. Turn OFF the *Temporary* to avoid the password reset at the next login.
-
-    ![00-user-credentials.png](images/00-user-credentials.png "User Credentials")
-
-1. Click on **Reset Password**.
-
-1. Click on the **Change password** button in the pop-up dialog.
-
-    ![00-change-password.png](images/00-change-password.png "Change Password Dialog")
-
-    *Now you have a user to test your integration.*
 
 ### Step 3: Configure 3scale Integration
 
