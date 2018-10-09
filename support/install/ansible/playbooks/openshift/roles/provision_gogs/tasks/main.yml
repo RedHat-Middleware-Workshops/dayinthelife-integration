@@ -37,3 +37,27 @@
   when: create_realms
 
 - debug: var=create_tenant_result
+
+- name: Get Git Repo
+  uri:
+    url: 'https://raw.githubusercontent.com/RedHatWorkshops/dayinthelife-integration/master/support/templates/gogs.json'
+    return_content: yes
+  register: get_gitrepo
+  
+- debug: var=get_gitrepo.content
+
+- name: Config repo
+  uri: 
+    url: 'http://gogs.{{ ocp_apps_domain }}/api/v1/repos/migrate'
+    method: POST
+    body: "{{ get_gitrepo.content | regex_replace('USER_ID', item) }}"
+    body_format: json
+    user: "user{{ (item|int) - 1 }}"
+    password: "openshift"
+    headers:
+      Content-Type: "application/json"
+    force_basic_auth: yes
+    return_content: yes
+    validate_certs: no
+    status_code: 201
+  with_sequence: start=2 end={{ usersno + 1 }}

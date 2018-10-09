@@ -17,6 +17,7 @@ gogs: true
 microcks: true
 sso: true
 backend: true
+user_tools_projects: true
 user_projects: true
 configure_only: false
 create_tenants: true
