@@ -8,9 +8,12 @@ import com.redhat.processor.ResultProcessor;
 
 @Component
 public class CamelRoutes extends RouteBuilder {
+	
 
 	@Override
 	public void configure() throws Exception {
+		
+		
 		
 		ResultProcessor resultProcessor = new ResultProcessor();
 		
@@ -45,7 +48,7 @@ public class CamelRoutes extends RouteBuilder {
 		;
 		
 		from("direct:getlocation")
-			.to("sql:select * from locations where id=:#id?dataSource=dataSource")
+			.to("sql:select * from locations where id=cast(:#id as int)?dataSource=dataSource")
 			.process(resultProcessor)
 			.choice()
 				.when(simple("${body.size} > 0"))
