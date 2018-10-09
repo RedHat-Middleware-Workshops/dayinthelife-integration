@@ -9,11 +9,11 @@
 
 ## Overview
 
-Once you have APIs in your organization and have applications being written, you also want to be sure in many cases that thee various types of users of the APIs are correctly authenticated. In this lab you will discover how to set up the widely used OpenID connect pattern for Authentication. 
+In the context of defining API's, it's common for a business analyst (or Citizen Integrator) to create an API specification or contract first.  By beginning the process with a clearly defined a contract, a Developer can easily take that contract and auto-generate the underlying service to implement that API.  We call this "separation of concern", whereby an Citizen Integrator and Developer can both collaborate and contribute to creating an end-to-end API implementation. 
 
 ### Why Red Hat?
 
-The Red Hat SSO product provides important functionality for managing identities at scale. In this lab you can see how it fits together with 3scale and OpenShift.
+Eclipse Che, together with APICurio and Microck provide important functionality for defining API's. In this lab you can see how our tooling fits together with 3scale, Fuse and OpenShift to create a scalable API.
 
 ### Skipping The Lab
 
@@ -89,7 +89,7 @@ openshift
 
     ![00-close-save.png](images/00-close-save.png "Close Save")
 
-1. Write click on the **location-soap2rest** project and select **Convert to Project**
+1. Right-click on the **location-soap2rest** project and select **Convert to Project**
 
     ![00-convert-project.png](images/00-convert-project.png "Convert Project")
 
@@ -97,7 +97,7 @@ openshift
 
     ![00-select-maven.png](images/00-select-maven.png "Select Maven")
 
-1. Convert the remaining projects to Maven, by repeating steps 4 - 6 for the **location-service** and **location-gateway** projects.
+1. Convert the remaining projects to Maven, by repeating steps 4 & 5 for the **location-service** and **location-gateway** projects.
 
 
 ### Step 3: Configure 3scale Integration
