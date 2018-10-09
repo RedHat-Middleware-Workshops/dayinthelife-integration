@@ -67,7 +67,7 @@ openshift
 
 1. Click on **Create Workspace**.
 
-    ![00-create-workspace.png](images/00-create-workspace "Create Workspace")
+    ![00-create-workspace.png](images/00-create-workspace.png "Create Workspace")
 
 1. Select **Clients** from the left menu.
 
