@@ -2,22 +2,22 @@
 
 ## Swagger to REST
 
-### Contract-first API development with a DB interface, implemented using Eclipse Che.
+### Contract-first API development with a database interface, implemented using Eclipse Che.
 
 * Duration: 20 mins
 * Audience: Developers and Architects
 
 ## Overview
 
-In the context of defining API's, it's common for a business analyst (or Citizen Integrator) to create an API specification or contract first.  By beginning the process with a clearly defined a contract, a Developer can easily take that contract and auto-generate the underlying service to implement that API.  We call this "separation of concern", whereby an Citizen Integrator and Developer can both collaborate and contribute to creating an end-to-end API implementation. 
+In the context of defining API's, it's common for a Business Analyst (or Citizen Integrator) to create an API specification or contract first.  By beginning the process with a clearly defined a contract, a Developer can easily take the contract and auto-generate the underlying service to implement that API.  We call this *separation of concern*, whereby an Citizen Integrator and Developer can both collaborate and contribute to create an end-to-end API implementation. 
 
 ### Why Red Hat?
 
-Eclipse Che, together with APICurio and Microck provide important functionality for defining API's. In this lab you can see how our tooling fits together with 3scale, Fuse and OpenShift to create a scalable API.
+Eclipse Che, our online IDE, provides important functionality for implementing API services. In this lab you can see how our API tooling fits together with 3scale, Fuse and OpenShift to create a scalable API.
 
 ### Skipping The Lab
 
-We know sometime we don't have enough time to go over the labs step by step. So here is a [short video](https://youtu.be/-3QGAD3Tt48) where you can see how to implement a Contract-first API.
+We know sometime we don't have enough time to go over the labs step by step. So here is a [short video](https://youtu.be/-3QGAD3Tt48) where you can see how to implement a contract-first API.
 
 If you are planning to follow to the next lab or are having trouble with this lab, you can reference the working project [here](https://github.com/RedHatWorkshops/dayinthelife-integration/tree/master/projects/location-service)
 
