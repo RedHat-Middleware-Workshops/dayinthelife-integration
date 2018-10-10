@@ -73,18 +73,18 @@ openshift
 
 1. Enter below values for Database Configuration
 
-   ```
-   Connection URL: jdbc:postgresql://postgresql.user1.svc:5432/sampledb
-   Username      : dbuser
-   Password      : password
-   Schema        : keep it empty
-   ```
+    ```
+    Connection URL: jdbc:postgresql://postgresql.user1.svc:5432/sampledb
+    Username      : dbuser
+    Password      : password
+    Schema        : keep it empty
+    ```
 
-1. Click on **Validate** and verify if the connection is successful. Click **Next** to proceed.
+1. Click **Validate** and verify if the connection is successful. Click **Next** to proceed.
 
   ![02-click-validate.png](images/02-click-validate.png "Validate")
 
-1. Add below `Connection details` and click **Create**
+6. Add below `Connection details` and click **Create**
 
    ```
    Connection Name: LocationDB
@@ -94,6 +94,6 @@ openshift
    
    ![03-connection-details.png](images/03-connection-details.png "Add Connection Details")
 
-1. Verify that the `Location Database` is successfully created.
+7. Verify that the `Location Database` is successfully created.
 
 
