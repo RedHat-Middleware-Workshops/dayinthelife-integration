@@ -66,3 +66,34 @@ openshift
 1. Click on **Connection --> Create Connection**
 
    ![00-create-connection.png](images/00-create-connection.png "Create Connection")
+
+1. Select **Database**
+
+   ![01-select-database.png](images/01-select-database.png "Select Database")
+
+1. Enter below values for Database Configuration
+
+   ```
+   Connection URL: jdbc:postgresql://postgresql.user1.svc:5432/sampledb
+   Username      : dbuser
+   Password      : password
+   Schema        : keep it empty
+   ```
+
+1. Click on **Validate** and verify if the connection is successful. Click **Next** to proceed.
+
+  ![02-click-validate.png](images/02-click-validate.png "Validate")
+
+1. Add below `Connection details` and click **Create**
+
+   ```
+   Connection Name: LocationDB
+   Description    : Location Database
+   ```
+
+   
+   ![03-connection-details.png](images/03-connection-details.png "Add Connection Details")
+
+1. Verify that the `Location Database` is successfully created.
+
+
