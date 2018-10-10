@@ -9,7 +9,7 @@
 
 ## Overview
 
-In the context of defining API's, it's common for a Business Analyst (or Citizen Integrator) to create an API specification or contract first.  By beginning the process with a clearly defined a contract, a Developer can easily take the contract and auto-generate the underlying service to implement that API.  We call this *separation of concern*, whereby an Citizen Integrator and Developer can both collaborate and contribute to create an end-to-end API implementation. 
+In the context of defining API's, it's common for a Business Analyst (or Citizen Integrator) to first create an API specification or contract.  By beginning the process with a clearly defined contract, a Developer can easily take the contract and auto-generate the underlying service to implement that API.  This *separation of concern*, whereby an Citizen Integrator and Developer can independently collaborate and contribute to create an end-to-end API implementation, is a powerful method for defining API's.
 
 ### Why Red Hat?
 
@@ -100,31 +100,38 @@ openshift
 1. Convert the remaining projects to Maven, by repeating steps 4 & 5 for the **location-service** and **location-gateway** projects.
 
 
-### Step 3: Configure 3scale Integration
+### Step 3: Import the Swagger specification
 
-1. Open a browser window and navigate to:
+Once you've received the swagger specification (API contract) from your friendly Citizen Integrator, we need to import it into our skeleton Maven project (`location-service`).  Follow these steps:
 
-    ```bash
-    https://userX-admin.apps.GUID.openshiftworkshop.com/
-    ```
+1. Expand the `location-service` project and right-click on the `src` folder, selecting New > Folder.  Give the folder the name `spec`.
 
-    *Remember to replace the GUID with your [environment](#environment) value and your user number.*
+    ![00-create-spec.png](images/00-create-spec.png "Create Spec")
 
-1. Accept the self-signed certificate if you haven't.
+1. Right-click on your newly created spec folder and select New > File.  Name the file `location.yaml`.
 
-    ![selfsigned-cert](images/00-selfsigned-cert.png "Self-Signed Cert")
+    ![00-location-yaml.png](images/00-location-yaml.png)
 
-1. Log into 3scale using your designated [user and password](#environment). Click on **Sign In**.
+1. Copy the contents of this [file](https://raw.githubusercontent.com/RedHatWorkshops/dayinthelife-integration/master/docs/labs/developer-track/resources/Locations.yaml) to your newly created `location.yaml` file.  The file will auto-save so no need to click **Save**.
 
-    ![01-login.png](images/01-login.png)
+1. Open the `pom.xml` file, and examine and update the plugin entry for `camel-restdsl-swagger-plugin` located at the bottom of the file.  Update both the `specificationUri` and the `outputDirectory` to have the fully qualified path to your project.  You can find this out by opening terminal, relocating to the dayinthelife-import directory and typing `pwd`.  Your plugin entry should look like this once updated:
 
-1. The first page you will land is the *API Management Dashboard*. Click on the **API** menu link.
 
-    ![01a-dashboard.png](images/01a-dashboard.png)
+```bash
+      <plugin>
+		  <groupId>org.apache.camel</groupId>
+		  <artifactId>camel-restdsl-swagger-plugin</artifactId>
+		  <version>2.21.0</version>
+		  <configuration>
+		    <specificationUri>/projects/dayinthelife-import/location-service/src/spec/location.yaml</specificationUri>
+		    <className>CamelRoutes</className>
+		    <packageName>com.redhat</packageName>
+		    <outputDirectory>/projects/dayinthelife-import/location-service/src/main/java</outputDirectory>      
+		  </configuration>
 
-1. This is the *API Overview* page. Here you can take an overview of all your services. Click on the **Integration** link.
+```
 
-    ![02-api-integration.png](images/02-api-integration.png)
+    ![00-terminal.png](images/00-terminal.png)
 
 1. Click on the **edit integration settings** to edit the API settings for the gateway.
 
