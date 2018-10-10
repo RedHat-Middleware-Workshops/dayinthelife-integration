@@ -63,6 +63,6 @@ openshift
 
     *Remember to replace the GUID with your [environment](#environment) value and your user number.*
 
-1. Click on ** Connection --> Create Connection **
+1. Click on **Connection --> Create Connection**
 
    ![00-create-connection.png](images/00-create-connection.png "Create Connection")
