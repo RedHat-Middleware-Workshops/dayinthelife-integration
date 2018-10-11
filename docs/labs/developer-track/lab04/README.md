@@ -2,14 +2,14 @@
 
 ## Swagger to REST
 
-### Contract-first API development with a database interface, implemented using Eclipse Che.
+### Contract-first API development with a database interface, implemented using Eclipse Che
 
 * Duration: 20 mins
 * Audience: Developers and Architects
 
 ## Overview
 
-In the context of defining API's, it's common for a Business Analyst (or Citizen Integrator) to first create an API specification or contract.  By beginning the process with a clearly defined contract, a Developer can easily take the contract and auto-generate the underlying service to implement that API.  This *separation of concern*, whereby an Citizen Integrator and Developer can independently collaborate and contribute to create an end-to-end API implementation, is a powerful method for defining API's.
+In the context of defining API's, it's common for a Business Analyst (or Citizen Integrator) to first create an API specification or contract.  By beginning the process with a clearly defined contract, a Developer can easily take the contract and auto-generate the underlying service to implement that API.  This *separation of concern*, whereby a Citizen Integrator and Developer can independently collaborate and contribute to create an end-to-end API implementation, is a powerful method for defining API's.
 
 ### Why Red Hat?
 
@@ -25,7 +25,7 @@ If you are planning to follow to the next lab or are having trouble with this la
 
 **URLs:**
 
-Check with your instruction the *GUID* number of your current workshop environment. Replace the actual number on all the URLs where you find **GUID**. 
+Check with your instructor which *GUID* number to use for your current workshop environment. Replace the actual number on all the URLs where you find **GUID**. 
 
 Example in case of *GUID* = **1234**: 
 
@@ -77,13 +77,71 @@ openshift
 
     ![00-open-workspace.png](images/00-open-workspace.png "Open Workspace")
 
-### Step 2: Import the skeleton projects from Git an convert them to Maven projects.
+
+### Step 2: Create your own personal Openshift project and setup a sample database
+
+1. Open a browser window and navigate to:
+
+    ```bash
+    http://master.GUID.openshiftworkshop.com
+    ```
+
+    *Remember to replace the GUID with your [environment](#environment) value and your user number.*
+
+1. Click on **Create Project** and enter a unique name e.g. `simon-dev`.
+
+    ![00-create-ocp-project.png](images/00-create-ocp-project.png "Create Project")
+
+1. Click on **Browse Catalog**, then navigate to the **Database** menu and select **Postgres**.  From there, select the **PostgreSQL** (Ephemeral) template.
+
+    ![00-select-postgres.png](images/00-select-postgres.png "Select Postgres")
+
+1. In the pop-up window that appears, click the **Next** button to reach the **Configuration** page.  Update **PostgreSQL Connection Username** to `dbuser` and **PostgreSQL Connection Password** to `password`.
+
+    ![00-postgres-credentials.png](images/00-postgres-credentials.png "Postgres Credentials")
+
+1. Click **Next** and ensure *Do not Bind at this time* is selected.  Click **Create** to generate the service.
+
+
+### Step 3: Import the sample SOAP project into your Openshift project
+
+1. Navigate back to your Eclipse Che workspace and open the terminal window.
+
+    ![00-open-terminal.png](images/00-open-terminal.png "Open Terminal")
+
+1. Login to Openshift via the CLI using the following commands: 
+
+```bash
+oc login http://master.GUID.openshiftworkshop.com
+oc project <your OCP project from Step 2>
+mkdir <your OCP project from Step 2>
+cd <your OCP project from Step 2>
+```
+
+1. Clone the sample SOAP project from GitHub, then deploy the project to your Openshift project using s2i binary streams.
+
+```bash
+git clone https://github.com/RedHatWorkshops/dayinthelife-integration
+cd projects/location-soap
+mvn fabric8:deploy
+```
+
+1. The Maven build / deploy can take 10-15 minutes as it needs to download a bunch of project dependencies (libraries). Please be patient.
+
+1. Once the build and deploy is complete, navigate back to your Openshift web console and verify the project is running.
+
+    ![00-verify-location-soap.png](images/00-verify-location-soap.png "Verify Pod")
+
+1. You can also try to connect to the route link above the pod, and add the `/ws/location?wsdl` URI to the end to ensure the WSDL is available.
+
+
+### Step 4: Import the skeleton projects from Git and convert them to Maven projects.
 
 1. Click on the **Import Project** link.  A pop-up will appear.
 
     ![00-import-project.png](images/00-import-project.png "Import Project")
 
-1. Enter `https://github.com/weimeilin79/dayinthelife-import` as the git URL, select "Import Recursively" and then click "Import".
+1. Enter `https://github.com/weimeilin79/dayinthelife-import` as the git URL, select **Import Recursively** and then click **Import**.
 
 1. When the "Save" pop-up appears, click the "X" to close the pop-up.
 
@@ -100,7 +158,7 @@ openshift
 1. Convert the remaining projects to Maven, by repeating steps 4 & 5 for the **location-service** and **location-gateway** projects.
 
 
-### Step 3: Import the Swagger specification
+### Step 4: Import the Swagger specification
 
 Once you've received the swagger specification (API contract) from your friendly Citizen Integrator, we need to import it into our skeleton Maven project (`location-service`).  Follow these steps:
 
@@ -186,7 +244,7 @@ Once you've received the swagger specification (API contract) from your friendly
 
     ![08a-promote-production.png](images/08a-promote-production.png "Update Environment")
 
-### Step 4: Create a Test App
+### Step 5: Create a Test App
 
 1. Go to the *Developers* tab and click on **Developer**.
 
