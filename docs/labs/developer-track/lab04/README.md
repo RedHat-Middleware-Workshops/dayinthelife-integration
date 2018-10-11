@@ -180,7 +180,7 @@ Once you've received the swagger specification (API contract) from your friendly
 
     ```xml
           <plugin>
-    		  <groupId>org.apache.camel</groupId>
+		  <groupId>org.apache.camel</groupId>
 		  <artifactId>camel-restdsl-swagger-plugin</artifactId>
 		  <version>2.21.0</version>
 		  <configuration>
@@ -202,15 +202,51 @@ Once you've received the swagger specification (API contract) from your friendly
 
     ![00-run-mvn.png](images/00-run-mvn.png)
 
-1. Open the `CamelRoutes.java` file and update it with the following code:
+1. Open the `CamelRoutes.java` file.  Notice that the `camel-restdsl-swagger-plugin` maven plugin has generated Camel RESTdsl code for the various HTTP GET and POST operations.  What is missing though are the underlying Camel routes, which will form our API service implementations:
 
 ```java
+package com.redhat;
 
+import javax.annotation.Generated;
+import org.apache.camel.builder.RouteBuilder;
+import org.apache.camel.model.rest.RestParamType;
+
+/**
+ * Generated from Swagger specification by Camel REST DSL generator.
+ */
+@Generated("org.apache.camel.generator.swagger.PathGenerator")
+public final class CamelRoutes extends RouteBuilder {
+    /**
+     * Defines Apache Camel routes using REST DSL fluent API.
+     */
+    public void configure() {
+        rest()
+            .get("/locations")
+                .to("direct:rest1")
+            .post("/locations")
+                .to("direct:rest2")
+            .get("/locations/{id}")
+                .param()
+                    .name("id")
+                    .type(RestParamType.path)
+                    .dataType("integer")
+                    .required(true)
+                .endParam()
+                .to("direct:rest3")
+            .get("/location/phone/{id}")
+                .param()
+                    .name("id")
+                    .type(RestParamType.path)
+                    .dataType("integer")
+                    .required(true)
+                .endParam()
+                .to("direct:rest4");
+    }
+}
 
 ```
 
     ![00-camel-routes.png](images/00-camel-routes.png)
-
 
 
 1. Dismiss the warning about changing the Authentication mode by clicking **OK**.
