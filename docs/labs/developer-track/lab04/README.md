@@ -128,20 +128,29 @@ Once you've received the swagger specification (API contract) from your friendly
 		    <packageName>com.redhat</packageName>
 		    <outputDirectory>/projects/dayinthelife-import/location-service/src/main/java</outputDirectory>      
 		  </configuration>
-
+	  </plugin>
 ```
 
     ![00-terminal.png](images/00-terminal.png)
 
-1. Click on the **edit integration settings** to edit the API settings for the gateway.
+1. After you've updated the `pom.xml` file, we need to run a Maven command to generate the Camel RESTdsl from our specification.  To do this, first highlight the `location-service` project then click the **Manage Commands** button.
 
-    ![03-edit-settings.png](images/03-edit-settings.png)
+    ![00-select-mvn.png](images/00-select-mvn.png)
 
-1. Scrolll down the page, under the *Authentication* deployment options, select **OpenID Connect**. 
+1. Select the **Generate REST DSL from..** script and click **Run** to execute the script. If everything completes successfully, it should generate a new file under `src/main/java/com/redhat` called `CamelRoutes.java`. 
 
-    ![04-authentication.png](images/04-authentication.png)
+    ![00-run-mvn.png](images/00-run-mvn.png)
 
-1. Click on the **Update Service** button.
+1. Open the `CamelRoutes.java` file and update it with the following code:
+
+```java
+
+
+```
+
+    ![00-camel-routes.png](images/00-camel-routes.png)
+
+
 
 1. Dismiss the warning about changing the Authentication mode by clicking **OK**.
 
