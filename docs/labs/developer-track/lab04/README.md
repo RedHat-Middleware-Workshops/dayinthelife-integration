@@ -111,22 +111,23 @@ openshift
 
 1. Login to Openshift via the Terminal window using the following commands: 
 
-```bash
-oc login http://master.GUID.openshiftworkshop.com
-oc project OCPPROJECT
-mkdir OCPPROJECT
-cd OCPPROJECT
-```
+    ```bash
+    oc login http://master.GUID.openshiftworkshop.com
+    oc project OCPPROJECT
+    mkdir OCPPROJECT
+    cd OCPPROJECT
+    ```
+
     *Remember to replace the OCPPROJECT with the OpenShift project you created in Step 2.*
 
 
 1. Clone the sample SOAP project from GitHub, then deploy the project to your Openshift project using s2i binary streams.
 
-```bash
-git clone https://github.com/RedHatWorkshops/dayinthelife-integration
-cd projects/location-soap
-mvn fabric8:deploy
-```
+    ```bash
+    git clone https://github.com/RedHatWorkshops/dayinthelife-integration
+    cd projects/location-soap
+    mvn fabric8:deploy
+    ```
 
 1. The Maven build / deploy can take 10-15 minutes as it needs to download a bunch of project dependencies (libraries). Please be patient.
 
