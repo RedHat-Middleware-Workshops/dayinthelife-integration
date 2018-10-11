@@ -155,6 +155,7 @@ Description goes here
 
  ![13-publish-integration.png](images/13-publish-integration.png "Publish Integration")
 
+<<<<<<< HEAD
 *Congratulations*. You sucessfully published the integration. (Wait for few minutes to build and publish the integration)
 
 ### Step 3: Create a POST request
@@ -217,4 +218,8 @@ You can now proceed to [Lab 7](../lab07/#lab-7)
 ## Notes and Further Reading
 
 TBD
+=======
+*Congratulations*. You sucessfully published the integration.
+
+>>>>>>> 8aa32e86cb6637e9748381ac1965770aebf98b3b
 
