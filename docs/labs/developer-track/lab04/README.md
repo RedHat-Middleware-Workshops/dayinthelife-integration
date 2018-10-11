@@ -179,7 +179,7 @@ Once you've received the swagger specification (API contract) from your friendly
 
 
     ```xml
-          <plugin>
+	  <plugin>
 		  <groupId>org.apache.camel</groupId>
 		  <artifactId>camel-restdsl-swagger-plugin</artifactId>
 		  <version>2.21.0</version>
@@ -202,7 +202,9 @@ Once you've received the swagger specification (API contract) from your friendly
 
     ![00-run-mvn.png](images/00-run-mvn.png)
 
-1. Open the `CamelRoutes.java` file.  Notice that the `camel-restdsl-swagger-plugin` maven plugin has generated Camel RESTdsl code for the various HTTP GET and POST operations.  What is missing though are the underlying Camel routes, which will form our API service implementations:
+1. Open the `CamelRoutes.java` file.  Notice that the `camel-restdsl-swagger-plugin` maven plugin has generated Camel RESTDsl code for the various HTTP GET and POST operations.  What is missing though are the underlying Camel routes, which will form our API service implementations:
+
+    ![00-camel-routes.png](images/00-camel-routes.png)
 
     ```java
     package com.redhat;
@@ -246,33 +248,56 @@ Once you've received the swagger specification (API contract) from your friendly
     
     ```
 
-    ![00-camel-routes.png](images/00-camel-routes.png)
+1. We need to copy the ContactInfo (location_detail) POJO model over from the `location-soap` project.  Open up the **OCPPROJECT** referenced during Step 3 in the Workspace palette, and navigate to `OCPPROJECT/dayinthelife-integration/projects/location-soap/src/main/java/com/redhat/model/`.  Copy the `ContactInfo.java` file over to the equivalent folder in your own `dayinthelife-import` project.
 
-1. Dismiss the warning about changing the Authentication mode by clicking **OK**.
-
-    ![04b-authentication-warning.png](images/04b-authentication-warning.png)
+    ![00-copy-contact-info.png](images/00-copy-contact-info.png)
     
-1. Back in the service integration page, click on the **edit APIcast configuration**.
+1. Rename the `dayinthelife-import/location-service/src/main/java/com/redhat/processor/ResultProcessor.java` file to `LocationProcessor.java`.  You can easily rename the file by right-clicking and selecting **Open in Terminal**.
 
-    ![05-edit-apicast.png](images/05-edit-apicast.png)
+    ![00-open-in-terminal.png](images/00-open-in-terminal.png)
 
-1. Scroll down the page and expand the authentication options by clicking the **Authentication Settings** link.
+1. To rename the file, type `mv ResultProcessor.java LocationResultProcessor.java`.  Open the new file and update the class name to `LocationResultProcessor`.
 
-    ![05-authentication-settings.png](images/05-authentication-settings.png)
+    ![00-location-result-processor.png](images/00-location-result-processor.png)
 
-1. In the **OpenID Connect Issuer** field, type in your previously noted client credentials with the URL of your Red Hat Single Sing On instance:
+1. Copy the `OCPPROJECT/dayinthelife-integration/projects/location-soap/src/main/java/com/redhat/processor/ResultProcessor.java` file to `dayinthelife-import/location-service/src/main/java/com/redhat/processor/`.  Rename the file to `ContactInfoResultProcessor.java` using the termainal and update the class name appropriately.
 
-    ```bash
-    http://3scale-admin:CLIENT_SECRET@sso-rh-sso.apps.GUID.openshiftworkshop.com/auth/realms/userX
+    ![00-move-contact-info-processor.png](images/00-move-contact-info-processor.png "Contact Info Result Processor")
+
+1. Open the generated `CamelRoutes.java` file.  We need to first instantiate our newly created Result Processors':
+
+    ```java
+	...
+
+	import org.springframework.stereotype.Component;
+	import com.redhat.processor.*;
+
+	@Component
+	public class CamelRoutes extends RouteBuilder {
+	
+	...
+
+	@Override
+	public void configure() throws Exception {		
+		
+		ContactInfoResultProcessor ciResultProcessor = new ContactInfoResultProcessor();
+		LocationResultProcessor locationResultProcessor = new LocationResultProcessor();
+	
+		restConfiguration()
+			.component("undertow")
+        	.port(8080)
+        	.bindingMode(RestBindingMode.json)
+			.contextPath("/")
+        	.dataFormatProperty("prettyPrint", "true")
+        	.enableCORS(true)
+        	.apiContextPath("/api-doc")
+        	.apiProperty("api.title", "Location API")
+        	.apiProperty("api.version", "1.0.0")
+        ;
+
+	...
+
     ```
-
-    *Remember to replace the GUID with your [environment](#environment) value, your user number and the CLIENT_SECRET you get in the [Step 1](#step-1-get-red-hat-single-sign-on-service-account-credentials)*.
-
-    ![06-openid-issuer.png](images/06-openid-issuer.png "OpenID Connect Issuer")
-
-1. Scroll down the page and click on the **Update Staging Environment** button.
-
-    ![08-back-integration.png](images/08-back-integration.png "Back Integration")
 
 1. After the reload, scroll down again and click the **Back to Integration &amp; Configuration** link.
 
