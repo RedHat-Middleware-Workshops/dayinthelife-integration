@@ -155,6 +155,66 @@ Description goes here
 
  ![13-publish-integration.png](images/13-publish-integration.png "Publish Integration")
 
-*Congratulations*. You sucessfully published the integration.
+*Congratulations*. You sucessfully published the integration. (Wait for few minutes to build and publish the integration)
 
+### Step 3: Create a POST request
+
+1. Copy the External URL and form a POST request like below. We will be creating the `101th` record field.   
+
+ ![14-copy-URL.png](images/14-copy-URL.png "Copy URL")
+
+*Remember to replace the below hostname with the copied URL*
+
+**CURL POST request**
+
+  ```
+    curl -X POST \
+      https://i-addlocation-vinay.apps.rhtena.openshiftworkshop.com/webhook/pUGTWtLu8nnVTNJ1JYIsThcrKyMJAxBJMRURvRVEHSSvoMExTk \
+      -H 'Content-Type: application/json' \
+      -d '{
+        "id": 101,
+        "name": "Kamarhati",
+        "type": "Regional Branch",
+        "status": "1",
+        "location": {
+          "lat": "-28.32555",
+          "lng": "-5.91531"
+        }
+      
+  }' -k
+  ```
+
+2. Click on **Activity > Refresh** and verify if the newly record is created.
+
+ ![15-activity-refresh.png](images/15-activity-refresh.png "Activity Refresh")
+
+3. (Optional) Visit the application URL in browser and verify if the recoard can be fetched.
+
+  ```
+  http://location-service-user1.apps.rhtena.openshiftworkshop.com/locations/101
+  ```
+
+
+  ```
+  {
+    "id" : 101,
+    "name" : "Kamarhati",
+    "type" : "Regional Branch",
+    "status" : "1",
+    "location" : {
+      "lat" : "-28.32555",
+      "lng" : "-5.91531"
+    }
+  }
+  ```
+
+## Summary
+
+TBD
+
+You can now proceed to [Lab 7](../lab07/#lab-7)
+
+## Notes and Further Reading
+
+TBD
 
