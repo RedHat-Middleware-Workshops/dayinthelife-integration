@@ -135,12 +135,12 @@ openshift
 
     ![00-verify-location-soap.png](images/00-verify-location-soap.png "Verify Pod")
 
-1. You can also try to connect to the route link above the pod, and add the `/ws/location?wsdl` URI to the end to ensure the WSDL is available.
+1. You can also try to connect to the route link above the pod, by appending the `/ws/location?wsdl` URI to the end of the link.  This should render the WSDL if the application is running correctly.
 
 
 ### Step 4: Import the skeleton projects from Git and convert them to Maven projects.
 
-1. Click on the **Import Project** link.  A pop-up will appear.
+1. Click on Workspace > Import Project from the main menu.  A pop-up will appear.
 
     ![00-import-project.png](images/00-import-project.png "Import Project")
 
@@ -178,9 +178,9 @@ Once you've received the swagger specification (API contract) from your friendly
 1. Open the `pom.xml` file, and examine and update the plugin entry for `camel-restdsl-swagger-plugin` located at the bottom of the file.  Update both the `specificationUri` and the `outputDirectory` to have the fully qualified path to your project.  You can find this out by opening terminal, relocating to the dayinthelife-import directory and typing `pwd`.  Your plugin entry should look like this once updated:
 
 
-```bash
-      <plugin>
-		  <groupId>org.apache.camel</groupId>
+    ```xml
+          <plugin>
+    		  <groupId>org.apache.camel</groupId>
 		  <artifactId>camel-restdsl-swagger-plugin</artifactId>
 		  <version>2.21.0</version>
 		  <configuration>
@@ -190,7 +190,7 @@ Once you've received the swagger specification (API contract) from your friendly
 		    <outputDirectory>/projects/dayinthelife-import/location-service/src/main/java</outputDirectory>      
 		  </configuration>
 	  </plugin>
-```
+    ```
 
     ![00-terminal.png](images/00-terminal.png)
 
