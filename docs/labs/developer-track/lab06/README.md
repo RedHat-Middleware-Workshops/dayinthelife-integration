@@ -217,6 +217,5 @@ You can now proceed to [Lab 7](../lab07/#lab-7)
 ## Notes and Further Reading
 
 TBD
-=======
-*Congratulations*. You sucessfully published the integration.
+
 
