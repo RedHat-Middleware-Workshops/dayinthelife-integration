@@ -109,14 +109,16 @@ openshift
 
     ![00-open-terminal.png](images/00-open-terminal.png "Open Terminal")
 
-1. Login to Openshift via the CLI using the following commands: 
+1. Login to Openshift via the Terminal window using the following commands: 
 
 ```bash
 oc login http://master.GUID.openshiftworkshop.com
-oc project <your OCP project from Step 2>
-mkdir <your OCP project from Step 2>
-cd <your OCP project from Step 2>
+oc project OCPPROJECT
+mkdir OCPPROJECT
+cd OCPPROJECT
 ```
+    *Remember to replace the OCPPROJECT with the OpenShift project you created in Step 2.*
+
 
 1. Clone the sample SOAP project from GitHub, then deploy the project to your Openshift project using s2i binary streams.
 
