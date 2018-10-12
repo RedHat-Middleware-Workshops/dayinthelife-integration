@@ -384,12 +384,9 @@ Notice that we now have both ResultProcessor's instantiated, and we've stood-up 
 
 1. Lastly, via the Eclipse Che terminal, test the HTTP post using curl.  You can use the following command:
 
-     ```bash
-	curl --header "Content-Type: application/json" \
-  --request POST \
-  --data '{"id": 101,"name": "Kakadu","type": "HQ","status": "1","location": {"lat": "78.88436","lng": "99.05295"}}' \
-  http://location-service-OCPPROJECT.apps.GUID.openshift.opentlc.com/locations
-     ```
+    ```bash
+	curl --header "Content-Type: application/json" --request POST --data '{"id": 101,"name": "Kakadu","type": "HQ","status": "1","location": {"lat": "78.88436","lng": "99.05295"}}' http://location-service-OCPPROJECT.apps.GUID.openshift.opentlc.com/locations
+    ```
 
 Remember to replace OCPPROJECT and GUID with your unique environment variables.
 
