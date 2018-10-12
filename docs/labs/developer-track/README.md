@@ -5,7 +5,7 @@
 1. Review Apicurio
 2. Microck (From Hugo's lab)
 3. Test the mocked endpoint
-4. Swagger to Rest and DB(with Che)
+4. [Swagger to Rest and DB (with Che)](lab04)
 5. SOAP to Rest
 6. Fuse Online
 7. Import 3scale management (AUTOMATED)

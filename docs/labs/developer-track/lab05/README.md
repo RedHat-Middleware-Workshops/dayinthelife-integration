@@ -1,25 +1,25 @@
-# Lab 4
+# Lab 5
 
-## Swagger to REST
+## SOAP to REST
 
-### Contract-first API development with a database interface, implemented using Eclipse Che
+### Contract-first API development wrapping an existing SOAP service, implemented using Eclipse Che
 
 * Duration: 20 mins
 * Audience: Developers and Architects
 
 ## Overview
 
-In the context of defining API's, it's common for a Business Analyst (or Citizen Integrator) to first create an API specification or contract.  By beginning the process with a clearly defined contract, a Developer can easily take the contract and auto-generate the underlying service to implement that API.  This *separation of concern*, whereby a Citizen Integrator and Developer can independently collaborate and contribute to create an end-to-end API implementation, is a powerful method for defining API's.
+Another important use case in developing API's is to take an existing legacy SOAP service and wrap it with a new RESTful endpoint.  This SOAP to REST transformation is implemented in the API service layer (Fuse).  This lab will walk you through taking an existing SOAP contract (WSDL), converting it to Java POJO's and exposing it using Camel RESTdsl.
 
 ### Why Red Hat?
 
-Eclipse Che, our online IDE, provides important functionality for implementing API services. In this lab you can see how our API tooling fits together with 3scale, Fuse and OpenShift to create a scalable API.
+Eclipse Che, our online IDE, provides important functionality for implementing API services. In this lab you can see how our Eclipse Che and Fuse can help with SOAP to REST transformation on OpenShift.
 
 ### Skipping The Lab
 
-We know sometimes we don't have enough time to go over the labs step by step. So here is a [short video](https://youtu.be/-3QGAD3Tt48) where you can see how to implement a contract-first API.
+We know sometimes we don't have enough time to go over the labs step by step. So here is a [short video](https://youtu.be/xfbyg2ftWgI) where you can see how to implement a SOAP to REST transformation API.
 
-If you are planning to follow to the next lab or are having trouble with this lab, you can reference the working project [here](https://github.com/RedHatWorkshops/dayinthelife-integration/tree/master/projects/location-service)
+If you are planning to follow to the next lab or are having trouble with this lab, you can reference the working project [here](https://github.com/RedHatWorkshops/dayinthelife-integration/tree/master/projects/location-soap2rest)
 
 ### Environment
 
