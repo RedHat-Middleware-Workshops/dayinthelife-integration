@@ -392,7 +392,7 @@ Once you've received the swagger specification (API contract) from your friendly
 
 1.  If the HTTP POST is successful, you should be able to view it by repeating the HTTP GET /locations test.
 
-*Congratulations!* You have now an application to test your OpenId Connect integration.
+*Congratulations!* You have now an application to test your Swagger to RESTdsl integration.
 
 ## Summary
 

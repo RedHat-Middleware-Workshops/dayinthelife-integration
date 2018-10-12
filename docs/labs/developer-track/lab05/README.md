@@ -23,41 +23,7 @@ If you are planning to follow to the next lab or are having trouble with this la
 
 ### Environment
 
-**URLs:**
-
-Check with your instructor which *GUID* number to use for your current workshop environment. Replace the actual number on all the URLs where you find **GUID**. 
-
-Example in case of *GUID* = **1234**: 
-
-```bash
-https://master.GUID.openshiftworkshop.com
-```
-
-becomes =>
-
-```bash
-https://master.1234.openshiftworkshop.com
-```
-
-**Credentials:**
-
-Your username is your assigned user number. For example, if you are assigned user number **1**, your username is: 
-
-```bash
-user1
-```
-
-The password to login is always the same:
-
-```bash
-openshift
-```
-
-## Lab Instructions
-
-### Step 1: Create an Eclipse Che environment for your personal use
-
-1. Open a browser window and navigate to:
+Open a browser window and navigate to:
 
     ```bash
     http://che-rh-che-0879.apps.GUID.openshift.opentlc.com/dashboard/#/
@@ -65,338 +31,99 @@ openshift
 
     *Remember to replace the GUID with your [environment](#environment) value and your user number.*
 
-1. Click on **Create Workspace**.
+    Please re-use the Workspace you used during Lab04.
 
-    ![00-create-workspace.png](images/00-create-workspace.png "Create Workspace")
+## Lab Instructions
 
-1. Enter a unique name for your workspace e.g. simon-dev-workspace.  Select "day in the life workshop" stack, increase the RAM to 4MB and then click **Create**.
+### Step 1: Modify the skeleton location-soap2rest project
 
-    ![00-new-workspace.png](images/00-new-workspace.png "New Workspace")
+1. In the OpenShift console, click on the route associated with the `location-soap` deployment.  A pop-up will appear.  Append the `/ws/location?wsdl` path to the URI and verify the WSDL appears. Copy the link to the clipboard.
 
-1. Click on **Open** to generate and open the workspace.
+    ![00-verify-wsdl.png](images/00-verify-wsdl.png "Verify WSDL")
 
-    ![00-open-workspace.png](images/00-open-workspace.png "Open Workspace")
+1. Return to your Eclipse Che workspace and open the `dayintelife-import/location-soap2rest` project.  Open the `pom.xml` file and scroll to the bottom.  Uncomment out the `cxf-codegen-plugin` entry at the bottom.  Update the `<wsdl>` entry with your fully qualified WSDL URL e.g. `http://location-soap-simon-dev.apps.52d6.openshift.opentlc.com/ws/location?wsdl`.
 
+    ![00-uncomment-codegen.png](images/00-uncomment-codegen.png "Uncomment codegen plugin")
 
-### Step 2: Create your own personal Openshift project and setup a sample database
+1. We now need to generate the POJO objects from the WSDL contract.  To do this, change to the **Manage commands** view and double-click the `run generate-sources` script.  Click **Run** to execute the script.
 
-1. Open a browser window and navigate to:
+    ![00-generate-sources.png](images/00-generate-sources.png "Generate Sources")
 
-    ```bash
-    http://master.GUID.openshiftworkshop.com
-    ```
+1. Once the script has completed, navigate back to the **Workspace** view and open the `src/main/java/com/redhat` folder.  Notice that there are a bunch of new POJO classes that were created by the Maven script.
 
-    *Remember to replace the GUID with your [environment](#environment) value and your user number.*
+    ![00-verify-pojos.png](images/00-verify-pojos.png "Verify Pojos")
 
-1. Click on **Create Project** and enter a unique name e.g. `simon-dev`.
-
-    ![00-create-ocp-project.png](images/00-create-ocp-project.png "Create Project")
-
-1. Click on **Browse Catalog**, then navigate to the **Databases** menu and select **Postgres**.  From there, select the **PostgreSQL** (Ephemeral) template.
-
-    ![00-select-postgres.png](images/00-select-postgres.png "Select Postgres")
-
-1. In the pop-up window that appears, click the **Next** button to reach the **Configuration** page.  Update **PostgreSQL Connection Username** to `dbuser` and **PostgreSQL Connection Password** to `password`.
-
-    ![00-postgres-credentials.png](images/00-postgres-credentials.png "Postgres Credentials")
-
-1. Click **Next** and ensure *Do not Bind at this time* is selected.  Click **Create** to generate the service.
-
-
-### Step 3: Import the sample SOAP project into your Openshift project
-
-1. Navigate back to your Eclipse Che workspace and open the terminal window.
-
-    ![00-open-terminal.png](images/00-open-terminal.png "Open Terminal")
-
-1. Login to Openshift via the Terminal window using the following commands: 
-
-    ```bash
-    oc login http://master.GUID.openshiftworkshop.com
-    oc project OCPPROJECT
-    mkdir OCPPROJECT
-    cd OCPPROJECT
-    ```
-
-    *Remember to replace the OCPPROJECT with the OpenShift project you created in Step 2.*
-
-
-1. Clone the sample SOAP project from GitHub, then deploy the project to your Openshift project using s2i binary streams.
-
-    ```bash
-    git clone https://github.com/RedHatWorkshops/dayinthelife-integration
-    cd dayinthelife-integration/projects/location-soap
-    mvn fabric8:deploy
-    ```
-
-1. The Maven build / deploy can take 10-15 minutes as it needs to download a bunch of project dependencies (libraries). Please be patient.
-
-1. Once the build and deploy is complete, navigate back to your Openshift web console and verify the project is running.
-
-    ![00-verify-location-soap.png](images/00-verify-location-soap.png "Verify Pod")
-
-1. You can also try to connect to the route link above the pod, by appending the `/ws/location?wsdl` URI to the end of the link.  This should render the WSDL if the application is running correctly.
-
-
-### Step 4: Import the skeleton projects from Git and convert them to Maven projects.
-
-1. In Eclipse Che, click on Workspace > Import Project from the main menu.  A pop-up will appear.
-
-    ![00-import-project.png](images/00-import-project.png "Import Project")
-
-1. Enter `https://github.com/weimeilin79/dayinthelife-import` as the git URL, select **Import Recursively** and then click **Import**.
-
-1. When the "Save" pop-up appears, click the "X" to close the pop-up.
-
-    ![00-close-save.png](images/00-close-save.png "Close Save")
-
-1. Open the dayinthelife-import folder, and right-click on the **location-soap2rest** project and select **Convert to Project**
-
-    ![00-convert-project.png](images/00-convert-project.png "Convert Project")
-
-1. Select **Maven** then click **Save**.
-
-    ![00-select-maven.png](images/00-select-maven.png "Select Maven")
-
-1. Convert the remaining projects to Maven, by repeating steps 4 & 5 for the **location-service** and **location-gateway** projects.
-
-
-### Step 4: Import the Swagger specification
-
-Once you've received the swagger specification (API contract) from your friendly Citizen Integrator, we need to import it into our skeleton Maven project (`location-service`).  Follow these steps:
-
-1. Expand the `location-service` project and right-click on the `src` folder, selecting New > Folder.  Give the folder the name `spec`.
-
-    ![00-create-spec.png](images/00-create-spec.png "Create Spec")
-
-1. Right-click on your newly created spec folder and select New > File.  Name the file `location.yaml`.
-
-    ![00-location-yaml.png](images/00-location-yaml.png)
-
-1. Copy the contents of this [file](https://raw.githubusercontent.com/RedHatWorkshops/dayinthelife-integration/master/docs/labs/developer-track/resources/Locations.yaml) to your newly created `location.yaml` file.  The file will auto-save so no need to click **Save**.
-
-1. Open the `pom.xml` file, and examine and update the plugin entry for `camel-restdsl-swagger-plugin` located at the bottom of the file.  Update both the `specificationUri` and the `outputDirectory` to have the fully qualified path to your project.  You can find this out by opening terminal, relocating to the dayinthelife-import directory and typing `pwd`.  Your plugin entry should look like this once updated:
-
-
-    ```xml
-	  <plugin>
-		  <groupId>org.apache.camel</groupId>
-		  <artifactId>camel-restdsl-swagger-plugin</artifactId>
-		  <version>2.21.0</version>
-		  <configuration>
-		    <specificationUri>/projects/dayinthelife-import/location-service/src/spec/location.yaml</specificationUri>
-		    <className>CamelRoutes</className>
-		    <packageName>com.redhat</packageName>
-		    <outputDirectory>/projects/dayinthelife-import/location-service/src/main/java</outputDirectory>      
-		  </configuration>
-	  </plugin>
-    ```
-
-    ![00-terminal.png](images/00-terminal.png)
-
-1. After you've updated the `pom.xml` file, we need to run a Maven command to generate the Camel RESTdsl from our specification.  To do this, first highlight the `location-service` project then click the **Manage Commands** button.
-
-    ![00-select-mvn.png](images/00-select-mvn.png)
-
-1. Select the **Generate REST DSL from..** script and click **Run** to execute the script. If everything completes successfully, it should generate a new file under `src/main/java/com/redhat` called `CamelRoutes.java`. 
-
-    ![00-run-mvn.png](images/00-run-mvn.png)
-
-1. Click on the workspace button (located next to the **Manage Commands** button).  Open the `CamelRoutes.java` file under `src/main/java/com/redhat`.  Notice that the `camel-restdsl-swagger-plugin` maven plugin has generated Camel RESTdsl code for the various HTTP GET and POST operations.  What is missing though are the underlying Camel routes, which will form our API service implementations:
-
-    ![00-camel-routes.png](images/00-camel-routes.png)
+1. Open up the `CamelRoutes.java` file.  Notice that the existing implementation is barebones. First of all, we need to enter the SOAP service address and WSDL location for our CXF client to call.  Secondly, we need to create our Camel route implementation and create the RESTful endpoint.  To do this, include the following code:
 
     ```java
-    package com.redhat;
-    
-    import javax.annotation.Generated;
-    import org.apache.camel.builder.RouteBuilder;
-    import org.apache.camel.model.rest.RestParamType;
-    
-    /**
-     * Generated from Swagger specification by Camel REST DSL generator.
-     */
-    @Generated("org.apache.camel.generator.swagger.PathGenerator")
-    public final class CamelRoutes extends RouteBuilder {
-        /**
-         * Defines Apache Camel routes using REST DSL fluent API.
-         */
-        public void configure() {
-            rest()
-                .get("/locations")
-                    .to("direct:rest1")
-                .post("/locations")
-                    .to("direct:rest2")
-                .get("/locations/{id}")
-                    .param()
-                        .name("id")
-                        .type(RestParamType.path)
-                        .dataType("integer")
-                        .required(true)
-                    .endParam()
-                    .to("direct:rest3")
-                .get("/location/phone/{id}")
-                    .param()
-                        .name("id")
-                        .type(RestParamType.path)
-                        .dataType("integer")
-                        .required(true)
-                    .endParam()
-                    .to("direct:rest4");
-        }
-    }
-    
-    ```
-
-1. We need to copy the ContactInfo (location_detail) POJO model over from the `location-soap` project.  Open up the **OCPPROJECT** referenced during Step 3 in the Workspace palette, and navigate to `OCPPROJECT/dayinthelife-integration/projects/location-soap/src/main/java/com/redhat/model/`.  Copy the `ContactInfo.java` file over to the equivalent folder in your own `dayinthelife-import` project.
-
-    ![00-copy-contact-info.png](images/00-copy-contact-info.png)
-    
-1. Rename the `dayinthelife-import/location-service/src/main/java/com/redhat/processor/ResultProcessor.java` file to `LocationProcessor.java`.  You can easily rename the file by right-clicking and selecting **Open in Terminal**.
-
-    ![00-open-in-terminal.png](images/00-open-in-terminal.png)
-
-1. To rename the file, type `mv ResultProcessor.java LocationResultProcessor.java` in the terminal window.  Open the new file and update the class name to `LocationResultProcessor`.
-
-    ![00-location-result-processor.png](images/00-location-result-processor.png)
-
-1. Copy the `OCPPROJECT/dayinthelife-integration/projects/location-soap/src/main/java/com/redhat/processor/ResultProcessor.java` file to `dayinthelife-import/location-service/src/main/java/com/redhat/processor/`.  Rename the file to `ContactInfoResultProcessor.java` using the termainal and update the class name appropriately.
-
-    ![00-move-contact-info-processor.png](images/00-move-contact-info-processor.png "Contact Info Result Processor")
-
-1. Open the generated `CamelRoutes.java` file.  We need to first instantiate our newly created Result Processors' and include the necessary imports.  Update the `CamelRoutes.java` file with the below additions:
-
-    ```java
-	...
-
-	import com.redhat.processor.*;
-	import com.redhat.model.*;
-	import org.springframework.stereotype.Component;
-	import org.apache.camel.model.rest.RestBindingMode;
-
-	@Component
-	public class CamelRoutes extends RouteBuilder {
+	...	
 	
-	...
-
-	@Override
-	public void configure() throws Exception {		
-		
-		ContactInfoResultProcessor ciResultProcessor = new ContactInfoResultProcessor();
-		LocationResultProcessor locationResultProcessor = new LocationResultProcessor();
-	
-		restConfiguration()
-			.component("undertow")
-        	.port(8080)
-        	.bindingMode(RestBindingMode.json)
-			.contextPath("/")
-        	.dataFormatProperty("prettyPrint", "true")
-        	.enableCORS(true)
-        	.apiContextPath("/api-doc")
-        	.apiProperty("api.title", "Location and Contact Info API")
-        	.apiProperty("api.version", "1.0.0")
-        ;
-
-	...
-    
-    ```
-
-    If the IDE has any issues compiling the code and you receive errors, then navigate to **Project > Configure Classpath** then click **Done**.  This will trigger the compiler to run in the background and should eliminate any errors. 
-
-    Notice that we now have both ResultProcessor's instantiated, and we've stood-up an Undertow HTTP listener for our RESTful endpoint, together with some basic self-documenting API docs that describe our new service.
-
-1. Next we need to implement our Camel routes.  We need to create 4 routes, each matching their associated HTTP GET / POST endpoint.  Add the following code below the RESTdsl code:
-
-    ```java
-	...
-        from("direct:getalllocations")
-			.to("sql:select * from locations?dataSource=dataSource")
-			.process(locationResultProcessor)
-			.log("${body}")
-	;
-		
-	from("direct:getlocation")
-			.to("sql:select * from locations where id=cast(:#id as int)?dataSource=dataSource")
-			.process(locationResultProcessor)
-			.choice()
-				.when(simple("${body.size} > 0"))
-					.setBody(simple("${body[0]}"))
-				.otherwise()
-					.setHeader("HTTP_RESPONSE_CODE",constant("404"))
-			.log("${body}")
-	;
-		
-        from("direct:addlocation")
-            		.log("Creating new location")
-			.to("sql:INSERT INTO locations (id,name,lat,lng,location_type,status) VALUES (:#${body.id},:#${body.name},:#${body.location.lat},:#${body.location.lng},:#${body.type},:#${body.status});?dataSource=dataSource")
+		rest("/location").description("Location information")
+			.produces("application/json")
+			.get("/contact/{id}").description("Location Contact Info")
+				.responseMessage().code(200).message("Data successfully returned").endResponseMessage()
+				.to("direct:getalllocationphone")
+			
 		;
 		
-        from("direct:getlocationdetail")
-			.to("sql:select * from location_detail where id=cast(:#id as int)?dataSource=dataSource")
-			.process(ciResultProcessor)
-	;
-	...
+		from("direct:getalllocationphone")
+			.setBody().simple("${headers.id}")
+			.unmarshal().json(JsonLibrary.Jackson)
+			.to("cxf://http://location-soap-user1-dev.apps.52d6.openshift.opentlc.com/ws/location?serviceClass=com.redhat.LocationDetailServicePortType&defaultOperationName=contact")
+			
+			.process(
+					new Processor(){
+
+						@Override
+						public void process(Exchange exchange) throws Exception {
+							//LocationDetail locationDetail = new LocationDetail();
+							//locationDetail.setId(Integer.valueOf((String)exchange.getIn().getHeader("id")));
+							
+							MessageContentsList list = (MessageContentsList)exchange.getIn().getBody();
+							
+							exchange.getOut().setBody((ContactInfo)list.get(0));
+						}
+					}
+			)
+			
+		;
+	
+	}
+	
+	
+
+}    
     ```
 
-1. Lastly, we need to update the RESTdsl code to accommodate our new routes.  Replace the existing RESTdsl with the following:
+1. Now that we have our API service implementation, we can try to test this locally.  Navigate back to the **Manage commands" view and execute the `run spring-boot` script.  Click the **Run** button.
 
-    ```java
-	...
-       rest()
-            .get("/locations")
-                .to("direct:getalllocations")
-            .post("/locations")
-                .type(Location.class)
-                .to("direct:addlocation")
-            .get("/locations/{id}")
-                .param()
-                    .name("id")
-                    .type(RestParamType.path)
-                    .dataType("integer")
-                    .required(true)
-                .endParam()
-                .to("direct:getlocation")
-            .get("/location/phone/{id}")
-                .param()
-                    .name("id")
-                    .type(RestParamType.path)
-                    .dataType("integer")
-                    .required(true)
-                .endParam()
-                .outType(ContactInfo.class)
-                .to("direct:getlocationdetail")
-        ;
-    ```
+    ![00-local-testing.png](images/00-local-testing.png)
+    
+1. Once the application starts, navigate to the Servers window and click on the URL corresponding to port 8080.  A new tab should appear:
 
-1. Now that we have our API service implementation, we can deploy it to our running OpenShift environment.  To do this, navigate back to the **Manage commands** screen, double-click the **fabric8:deploy** script and hit **Run**.  The script will run and deploy to your OCPPROJECT.
+    ![00-select-servers.png](images/00-select-servers.png)
 
-    ![00-mvn-deploy.png](images/00-mvn-deploy.png "Maven Deploy")
+1. In the new tab, append the URL with the following URI: `/location/contact/2`.  A contact should be returned:
+
+    ![00-hit-contact-local.png](images/00-hit-contact-local.png)
+
+1. Now that we've successfully tested our new SOAP to REST service locally, we can deploy it to OpenShift.  Stop the running application by clicking **Cancel**.  Open the terminal and login using the `oc login` command and select your corresponding OCPPROJECT e.g. `oc project OCPPROJECT`.  Open the `fabic8:deploy` script and hit the **Run** button to deploy it to OpenShift.
+
+    ![00-mvn-f8-deploy.png](images/00-mvn-f8-deploy.png "Maven Fabric8 Deploy")
+
 
 1. If the deployment script completes successfully, navigate back to your OCPPROJECT web console and verify the pod is running
 
-    ![00-verify-location-service.png](images/00-verify-location-service.png "Location Service")
+    ![00-verify-pod.png](images/00-verify-pod.png "Location SOAP2REST")
 
-1. Click on the route link above the location-service pod and append `locations` to the URI.  As a result, you should receive a list of all locations
+1. Click on the route link above the location-soap2rest pod and append `/location/contact/2` to the URI.  As a result, you should a contact back.
 
-    ![00-location-list.png](images/00-location-list.png "Location List")
 
-1. You can also search for individual locations by adjusting the URI to `/locations/{id}` e.g. `/locations/100`.
-
-1. Lastly, via the Eclipse Che terminal, test the HTTP post using curl.  You can use the following command:
-
-    ```bash
-	curl --header "Content-Type: application/json" --request POST --data '{"id": 101,"name": "Kakadu","type": "HQ","status": "1","location": {"lat": "78.88436","lng": "99.05295"}}' http://location-service-OCPPROJECT.apps.GUID.openshift.opentlc.com/locations
-    ```
-
-    Remember to replace OCPPROJECT and GUID with your unique environment variables.
-
-1.  If the HTTP POST is successful, you should be able to view it by repeating the HTTP GET /locations test.
-
-*Congratulations!* You have now an application to test your OpenId Connect integration.
+*Congratulations!* You have now an application to test your SOAP to REST API.
 
 ## Summary
 
-You have now successfully created a contract-first API using a Swagger contract together with generated Camel RESTdsl, incorporating both HTTP GET and POST requests that perform select and inserts on a Postgres database table.
+You have now successfully created a contract-first API using a SOAP WSDL contract together with generated Camel RESTdsl.
 
-You can now proceed to [Lab 5](../lab05/#lab-5)
+You can now proceed to [Lab 6](../lab06/#lab-6)
 
