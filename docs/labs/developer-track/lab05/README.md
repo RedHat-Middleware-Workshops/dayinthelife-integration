@@ -51,7 +51,7 @@ Open a browser window and navigate to `http://che-rh-che-0879.apps.GUID.openshif
 	
 	...
 
-	@Autowired
+    	@Autowired
     	private CamelContext camelContext;
 	
 	private static final String SERVICE_ADDRESS = "http://localhost:8080/ws/location";
@@ -96,7 +96,7 @@ Open a browser window and navigate to `http://che-rh-che-0879.apps.GUID.openshif
 	}
     ```
 
-1. Now that we have our API service implementation, we can try to test this locally.  Navigate back to the **Manage commands" view and execute the `run spring-boot` script.  Click the **Run** button.
+1. Now that we have our API service implementation, we can try to test this locally.  Navigate back to the **Manage commands** view and execute the `run spring-boot` script.  Click the **Run** button.
 
     ![00-local-testing.png](images/00-local-testing.png)
     
@@ -117,10 +117,10 @@ Open a browser window and navigate to `http://che-rh-che-0879.apps.GUID.openshif
 
     ![00-verify-pod.png](images/00-verify-pod.png "Location SOAP2REST")
 
-1. Click on the route link above the location-soap2rest pod and append `/location/contact/2` to the URI.  As a result, you should a contact back.
+1. Click on the route link above the location-soap2rest pod and append `/location/contact/2` to the URI.  As a result, you should get a contact back.
 
 
-*Congratulations!* You have now an application to test your SOAP to REST API.
+*Congratulations!* You have created application SOAP to REST transformation API.
 
 ## Summary
 
