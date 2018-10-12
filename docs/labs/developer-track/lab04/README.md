@@ -298,12 +298,12 @@ Once you've received the swagger specification (API contract) from your friendly
         ;
 
 	...
-
+    
     ```
 
-If the IDE has any issues compiling the code and you receive errors, then navigate to **Project > Configure Classpath** then click **Done**.  This will trigger the compiler to run in the background and should eliminate any errors. 
+    If the IDE has any issues compiling the code and you receive errors, then navigate to **Project > Configure Classpath** then click **Done**.  This will trigger the compiler to run in the background and should eliminate any errors. 
 
-Notice that we now have both ResultProcessor's instantiated, and we've stood-up an Undertow HTTP listener for our RESTful endpoint, together with some basic self-documenting API docs that describe our new service.
+    Notice that we now have both ResultProcessor's instantiated, and we've stood-up an Undertow HTTP listener for our RESTful endpoint, together with some basic self-documenting API docs that describe our new service.
 
 1. Next we need to implement our Camel routes.  We need to create 4 routes, each matching their associated HTTP GET / POST endpoint.  Add the following code below the RESTdsl code:
 
