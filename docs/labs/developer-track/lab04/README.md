@@ -17,7 +17,7 @@ Eclipse Che, our online IDE, provides important functionality for implementing A
 
 ### Skipping The Lab
 
-We know sometime we don't have enough time to go over the labs step by step. So here is a [short video](https://youtu.be/-3QGAD3Tt48) where you can see how to implement a contract-first API.
+We know sometimes we don't have enough time to go over the labs step by step. So here is a [short video](https://youtu.be/-3QGAD3Tt48) where you can see how to implement a contract-first API.
 
 If you are planning to follow to the next lab or are having trouble with this lab, you can reference the working project [here](https://github.com/RedHatWorkshops/dayinthelife-integration/tree/master/projects/location-service)
 
@@ -92,7 +92,7 @@ openshift
 
     ![00-create-ocp-project.png](images/00-create-ocp-project.png "Create Project")
 
-1. Click on **Browse Catalog**, then navigate to the **Database** menu and select **Postgres**.  From there, select the **PostgreSQL** (Ephemeral) template.
+1. Click on **Browse Catalog**, then navigate to the **Databases** menu and select **Postgres**.  From there, select the **PostgreSQL** (Ephemeral) template.
 
     ![00-select-postgres.png](images/00-select-postgres.png "Select Postgres")
 
@@ -125,7 +125,7 @@ openshift
 
     ```bash
     git clone https://github.com/RedHatWorkshops/dayinthelife-integration
-    cd projects/location-soap
+    cd dayinthelife-integration/projects/location-soap
     mvn fabric8:deploy
     ```
 
@@ -140,7 +140,7 @@ openshift
 
 ### Step 4: Import the skeleton projects from Git and convert them to Maven projects.
 
-1. Click on Workspace > Import Project from the main menu.  A pop-up will appear.
+1. In Eclipse Che, click on Workspace > Import Project from the main menu.  A pop-up will appear.
 
     ![00-import-project.png](images/00-import-project.png "Import Project")
 
@@ -150,7 +150,7 @@ openshift
 
     ![00-close-save.png](images/00-close-save.png "Close Save")
 
-1. Right-click on the **location-soap2rest** project and select **Convert to Project**
+1. Open the dayinthelife-import folder, and right-click on the **location-soap2rest** project and select **Convert to Project**
 
     ![00-convert-project.png](images/00-convert-project.png "Convert Project")
 
@@ -202,7 +202,7 @@ Once you've received the swagger specification (API contract) from your friendly
 
     ![00-run-mvn.png](images/00-run-mvn.png)
 
-1. Open the `CamelRoutes.java` file.  Notice that the `camel-restdsl-swagger-plugin` maven plugin has generated Camel RESTDsl code for the various HTTP GET and POST operations.  What is missing though are the underlying Camel routes, which will form our API service implementations:
+1. Click on the workspace button (located next to the **Manage Commands** button).  Open the `CamelRoutes.java` file under `src/main/java/com/redhat`.  Notice that the `camel-restdsl-swagger-plugin` maven plugin has generated Camel RESTdsl code for the various HTTP GET and POST operations.  What is missing though are the underlying Camel routes, which will form our API service implementations:
 
     ![00-camel-routes.png](images/00-camel-routes.png)
 
@@ -256,7 +256,7 @@ Once you've received the swagger specification (API contract) from your friendly
 
     ![00-open-in-terminal.png](images/00-open-in-terminal.png)
 
-1. To rename the file, type `mv ResultProcessor.java LocationResultProcessor.java`.  Open the new file and update the class name to `LocationResultProcessor`.
+1. To rename the file, type `mv ResultProcessor.java LocationResultProcessor.java` in the terminal window.  Open the new file and update the class name to `LocationResultProcessor`.
 
     ![00-location-result-processor.png](images/00-location-result-processor.png)
 
@@ -264,13 +264,15 @@ Once you've received the swagger specification (API contract) from your friendly
 
     ![00-move-contact-info-processor.png](images/00-move-contact-info-processor.png "Contact Info Result Processor")
 
-1. Open the generated `CamelRoutes.java` file.  We need to first instantiate our newly created Result Processors':
+1. Open the generated `CamelRoutes.java` file.  We need to first instantiate our newly created Result Processors' and include the necessary imports.  Update the `CamelRoutes.java` file with the below additions:
 
     ```java
 	...
 
-	import org.springframework.stereotype.Component;
 	import com.redhat.processor.*;
+	import com.redhat.model.*;
+	import org.springframework.stereotype.Component;
+	import org.apache.camel.model.rest.RestBindingMode;
 
 	@Component
 	public class CamelRoutes extends RouteBuilder {
@@ -291,7 +293,7 @@ Once you've received the swagger specification (API contract) from your friendly
         	.dataFormatProperty("prettyPrint", "true")
         	.enableCORS(true)
         	.apiContextPath("/api-doc")
-        	.apiProperty("api.title", "Location API")
+        	.apiProperty("api.title", "Location and Contact Info API")
         	.apiProperty("api.version", "1.0.0")
         ;
 
@@ -299,63 +301,105 @@ Once you've received the swagger specification (API contract) from your friendly
 
     ```
 
-1. After the reload, scroll down again and click the **Back to Integration &amp; Configuration** link.
+If the IDE has any issues compiling the code and you receive errors, then navigate to **Project > Configure Classpath** then click **Done**.  This will trigger the compiler to run in the background and should eliminate any errors. 
 
-    ![07-update-environment.png](images/07-update-environment.png "Update Environment")
+Notice that we now have both ResultProcessor's instantiated, and we've stood-up an Undertow HTTP listener for our RESTful endpoint, together with some basic self-documenting API docs that describe our new service.
 
-1. Promote to Production by clicking the **Promote to Production** button.
+1. Next we need to implement our Camel routes.  We need to create 4 routes, each matching their associated HTTP GET / POST endpoint.  Add the following code below the RESTdsl code:
 
-    ![08a-promote-production.png](images/08a-promote-production.png "Update Environment")
+    ```java
+	...
+        from("direct:getalllocations")
+			.to("sql:select * from locations?dataSource=dataSource")
+			.process(locationResultProcessor)
+			.log("${body}")
+	;
+		
+	from("direct:getlocation")
+			.to("sql:select * from locations where id=cast(:#id as int)?dataSource=dataSource")
+			.process(locationResultProcessor)
+			.choice()
+				.when(simple("${body.size} > 0"))
+					.setBody(simple("${body[0]}"))
+				.otherwise()
+					.setHeader("HTTP_RESPONSE_CODE",constant("404"))
+			.log("${body}")
+	;
+		
+        from("direct:addlocation")
+            		.log("Creating new location")
+			.to("sql:INSERT INTO locations (id,name,lat,lng,location_type,status) VALUES (:#${body.id},:#${body.name},:#${body.location.lat},:#${body.location.lng},:#${body.type},:#${body.status});?dataSource=dataSource")
+		;
+		
+        from("direct:getlocationdetail")
+			.to("sql:select * from location_detail where id=cast(:#id as int)?dataSource=dataSource")
+			.process(ciResultProcessor)
+	;
+	...
+    ```
 
-### Step 5: Create a Test App
+1. Lastly, we need to update the RESTdsl code to accommodate our new routes.  Replace the existing RESTdsl with the following:
 
-1. Go to the *Developers* tab and click on **Developer**.
+    ```java
+	...
+       rest()
+            .get("/locations")
+                .to("direct:getalllocations")
+            .post("/locations")
+                .type(Location.class)
+                .to("direct:addlocation")
+            .get("/locations/{id}")
+                .param()
+                    .name("id")
+                    .type(RestParamType.path)
+                    .dataType("integer")
+                    .required(true)
+                .endParam()
+                .to("direct:getlocation")
+            .get("/location/phone/{id}")
+                .param()
+                    .name("id")
+                    .type(RestParamType.path)
+                    .dataType("integer")
+                    .required(true)
+                .endParam()
+                .outType(ContactInfo.class)
+                .to("direct:getlocationdetail")
+        ;
+    ```
 
-    ![09-developers.png](images/09-developers.png "Developers")
+1. Now that we have our API service implementation, we can deploy it to our running OpenShift environment.  To do this, navigate back to the **Manage commands** screen, double-click the **fabric8:deploy** script and hit **Run**.  The script will run and deploy to your OCPPROJECT.
 
-1. Click on the **Applications** link.
+    ![00-mvn-deploy.png](images/00-mvn-deploy.png "Maven Deploy")
 
-    ![10-applications.png](images/10-applications.png "Applications")
+1. If the deployment script completes successfully, navigate back to your OCPPROJECT web console and verify the pod is running
 
-1. Click on **Create Application** link.
+    ![00-verify-location-service.png](images/00-verify-location-service.png "Location Service")
 
-    ![11-create-application.png](images/11-create-application.png "Create Application")
+1. Click on the route link above the location-service pod and append `locations` to the URI.  As a result, you should receive a list of all locations
 
-1. Select **Basic** plan from the combo box. Type the following information:
+    ![00-location-list.png](images/00-location-list.png "Location List")
 
-    * Name: **Secure App**
-    * Description: **OpenID Connect Secured Application**
+1. You can also search for individual locations by adjusting the URI to `/locations/{id}` e.g. `/locations/100`.
 
-    ![12-application-details.png](images/12-application-details.png "Application Details")
+1. Lastly, via the Eclipse Che terminal, test the HTTP post using curl.  You can use the following command:
 
-1. Finally, scroll down the page and click on the **Create Application** button.
+     ```bash
+	curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"id": 101,"name": "Kakadu","type": "HQ","status": "1","location": {"lat": "78.88436","lng": "99.05295"}}' \
+  http://location-service-OCPPROJECT.apps.GUID.openshift.opentlc.com/locations
+     ```
 
-    ![13-create-app.png](images/13-create-app.png "Create App")
+Remember to replace OCPPROJECT and GUID with your unique environment variables.
 
-1. Note the *API Credentials*. Write them down as you will need the **Client ID** and the **Client Secret** to test your integration.
-
-    ![14-app-credentials.png](images/14-app-credentials.png "App Credentials")
+1.  If the HTTP POST is successful, you should be able to view it by repeating the HTTP GET /locations test.
 
 *Congratulations!* You have now an application to test your OpenId Connect integration.
 
-## Steps Beyond
-
-So, you want more? Login to the Red Hat Single Sign On admin console for your realm if you are not there already. Click on the Clients menu. Now you can check that 3scale zync component creates a new Client in SSO. This new Client has the same ID as the Client ID and Secret from the 3scale admin portal.
-
-### Test the integration
-
-You can try to use Postman or OpenID Connet playground to test your integration. Remember to update the *Redirect URL*.
-
 ## Summary
 
-Now that you can secure your API using three-leg authentication with Red Hat Single Sign-On, you can leverage the current assets of your organization like current LDAP identities or even federate the authentication using other IdP services.
-
-For more information about Single Sign-On, you can check its [page](https://access.redhat.com/products/red-hat-single-sign-on).
+You have now successfully created a contract-first API using a Swagger contract together with generated Camel RESTdsl, incorporating both HTTP GET and POST requests that perform select and inserts on a Postgres database table.
 
 You can now proceed to [Lab 5](../lab05/#lab-5)
 
-## Notes and Further Reading
-
-* [Red Hat 3scale API Management](http://microcks.github.io/)
-* [Red Hat Single Sign On](https://access.redhat.com/products/red-hat-single-sign-on)
-* [Setup OIDC with 3scale](https://developers.redhat.com/blog/2017/11/21/setup-3scale-openid-connect-oidc-integration-rh-sso/)
