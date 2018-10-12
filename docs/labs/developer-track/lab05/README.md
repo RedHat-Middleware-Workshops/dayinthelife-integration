@@ -23,15 +23,7 @@ If you are planning to follow to the next lab or are having trouble with this la
 
 ### Environment
 
-Open a browser window and navigate to:
-
-    ```bash
-    http://che-rh-che-0879.apps.GUID.openshift.opentlc.com/dashboard/#/
-    ```
-
-    *Remember to replace the GUID with your [environment](#environment) value and your user number.*
-
-    Please re-use the Workspace you used during Lab04.
+Open a browser window and navigate to `http://che-rh-che-0879.apps.GUID.openshift.opentlc.com/dashboard/#/`.  *Remember to replace the GUID with your [environment](#environment) value and your user number.*. Please re-use the Workspace you used during Lab04.
 
 ## Lab Instructions
 
@@ -56,6 +48,18 @@ Open a browser window and navigate to:
 1. Open up the `CamelRoutes.java` file.  Notice that the existing implementation is barebones. First of all, we need to enter the SOAP service address and WSDL location for our CXF client to call.  Secondly, we need to create our Camel route implementation and create the RESTful endpoint.  To do this, include the following code:
 
     ```java
+	
+	...
+
+	@Autowired
+    	private CamelContext camelContext;
+	
+	private static final String SERVICE_ADDRESS = "http://localhost:8080/ws/location";
+	private static final String WSDL_URL = "http://localhost:8080/ws/location?wsdl";
+
+	@Override
+	public void configure() throws Exception {
+	
 	...	
 	
 		rest("/location").description("Location information")
@@ -90,8 +94,6 @@ Open a browser window and navigate to:
 	
 	}
 	
-	
-
 }    
     ```
 
