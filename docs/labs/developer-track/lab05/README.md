@@ -17,7 +17,7 @@ Eclipse Che, our online IDE, provides important functionality for implementing A
 
 ### Skipping The Lab
 
-We know sometimes we don't have enough time to go over the labs step by step. So here is a [short video](https://youtu.be/xfbyg2ftWgI) where you can see how to implement a SOAP to REST transformation API.
+We know sometimes we don't have enough time to go over the labs step by step. So here is a [short video](https://youtu.be/CjmO7v3o5dA) where you can see how to implement a SOAP to REST transformation API.
 
 If you are planning to follow to the next lab or are having trouble with this lab, you can reference the working project [here](https://github.com/RedHatWorkshops/dayinthelife-integration/tree/master/projects/location-soap2rest)
 
