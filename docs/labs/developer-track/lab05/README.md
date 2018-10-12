@@ -92,9 +92,8 @@ Open a browser window and navigate to `http://che-rh-che-0879.apps.GUID.openshif
 			
 		;
 	
+	    }
 	}
-	
-}    
     ```
 
 1. Now that we have our API service implementation, we can try to test this locally.  Navigate back to the **Manage commands" view and execute the `run spring-boot` script.  Click the **Run** button.
