@@ -120,7 +120,7 @@ Open a browser window and navigate to `http://che-rh-che-0879.apps.GUID.openshif
 1. Click on the route link above the location-soap2rest pod and append `/location/contact/2` to the URI.  As a result, you should get a contact back.
 
 
-*Congratulations!* You have created application SOAP to REST transformation API.
+*Congratulations!* You have created a SOAP to REST transformation API.
 
 ## Summary
 
