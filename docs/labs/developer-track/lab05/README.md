@@ -1,130 +1,221 @@
-# Lab 5
+# Lab 6
 
-## SOAP to REST
+## Fuse Online
 
-### Contract-first API development wrapping an existing SOAP service, implemented using Eclipse Che
+## todo
 
 * Duration: 20 mins
 * Audience: Developers and Architects
 
 ## Overview
 
-Another important use case in developing API's is to take an existing legacy SOAP service and wrap it with a new RESTful endpoint.  This SOAP to REST transformation is implemented in the API service layer (Fuse).  This lab will walk you through taking an existing SOAP contract (WSDL), converting it to Java POJO's and exposing it using Camel RESTdsl.
+TBD
 
 ### Why Red Hat?
 
-Eclipse Che, our online IDE, provides important functionality for implementing API services. In this lab you can see how our Eclipse Che and Fuse can help with SOAP to REST transformation on OpenShift.
+TBD
 
-### Skipping The Lab
+### Skipping the lab
 
-We know sometimes we don't have enough time to go over the labs step by step. So here is a [short video](https://youtu.be/CjmO7v3o5dA) where you can see how to implement a SOAP to REST transformation API.
-
-If you are planning to follow to the next lab or are having trouble with this lab, you can reference the working project [here](https://github.com/RedHatWorkshops/dayinthelife-integration/tree/master/projects/location-soap2rest)
+TBD
 
 ### Environment
 
-Open a browser window and navigate to `http://che-rh-che-0879.apps.GUID.openshift.opentlc.com/dashboard/#/`.  *Remember to replace the GUID with your [environment](#environment) value and your user number.*. Please re-use the Workspace you used during Lab04.
+**URLs:**
+
+Check with your instruction the *GUID* number of your current workshop environment. Replace the actual number on all the URLs where you find **GUID**. 
+
+Example in case of *GUID* = **1234**: 
+
+```bash
+https://master.GUID.openshiftworkshop.com
+```
+
+becomes =>
+
+```bash
+https://master.1234.openshiftworkshop.com
+```
+
+**Credentials:**
+
+Your username is your asigned user number. For example, if you are assigned user number **1**, your username is: 
+
+```bash
+user1
+```
+
+The password to login is always the same:
+
+```bash
+openshift
+```
 
 ## Lab Instructions
 
-### Step 1: Modify the skeleton location-soap2rest project
+### Step 1: Create database connection
 
-1. In the OpenShift console, click on the route associated with the `location-soap` deployment.  A pop-up will appear.  Append the `/ws/location?wsdl` path to the URI and verify the WSDL appears. Copy the link to the clipboard.
+1. Open a browser window and navigate to:
 
-    ![00-verify-wsdl.png](images/00-verify-wsdl.png "Verify WSDL")
-
-1. Return to your Eclipse Che workspace and open the `dayintelife-import/location-soap2rest` project.  Open the `pom.xml` file and scroll to the bottom.  Uncomment out the `cxf-codegen-plugin` entry at the bottom.  Update the `<wsdl>` entry with your fully qualified WSDL URL e.g. `http://location-soap-simon-dev.apps.52d6.openshift.opentlc.com/ws/location?wsdl`.
-
-    ![00-uncomment-codegen.png](images/00-uncomment-codegen.png "Uncomment codegen plugin")
-
-1. We now need to generate the POJO objects from the WSDL contract.  To do this, change to the **Manage commands** view and double-click the `run generate-sources` script.  Click **Run** to execute the script.
-
-    ![00-generate-sources.png](images/00-generate-sources.png "Generate Sources")
-
-1. Once the script has completed, navigate back to the **Workspace** view and open the `src/main/java/com/redhat` folder.  Notice that there are a bunch of new POJO classes that were created by the Maven script.
-
-    ![00-verify-pojos.png](images/00-verify-pojos.png "Verify Pojos")
-
-1. Open up the `CamelRoutes.java` file.  Notice that the existing implementation is barebones. First of all, we need to enter the SOAP service address and WSDL location for our CXF client to call.  Secondly, we need to create our Camel route implementation and create the RESTful endpoint.  To do this, include the following code:
-
-    ```java
-	
-	...
-
-    	@Autowired
-    	private CamelContext camelContext;
-	
-	private static final String SERVICE_ADDRESS = "http://localhost:8080/ws/location";
-	private static final String WSDL_URL = "http://localhost:8080/ws/location?wsdl";
-
-	@Override
-	public void configure() throws Exception {
-	
-	...	
-	
-		rest("/location").description("Location information")
-			.produces("application/json")
-			.get("/contact/{id}").description("Location Contact Info")
-				.responseMessage().code(200).message("Data successfully returned").endResponseMessage()
-				.to("direct:getalllocationphone")
-			
-		;
-		
-		from("direct:getalllocationphone")
-			.setBody().simple("${headers.id}")
-			.unmarshal().json(JsonLibrary.Jackson)
-			.to("cxf://http://location-soap-user1-dev.apps.52d6.openshift.opentlc.com/ws/location?serviceClass=com.redhat.LocationDetailServicePortType&defaultOperationName=contact")
-			
-			.process(
-					new Processor(){
-
-						@Override
-						public void process(Exchange exchange) throws Exception {
-							//LocationDetail locationDetail = new LocationDetail();
-							//locationDetail.setId(Integer.valueOf((String)exchange.getIn().getHeader("id")));
-							
-							MessageContentsList list = (MessageContentsList)exchange.getIn().getBody();
-							
-							exchange.getOut().setBody((ContactInfo)list.get(0));
-						}
-					}
-			)
-			
-		;
-	
-	    }
-	}
+    ```bash
+    http://https://syndesis-user1.apps.GUID.openshift.opentlc.com/
     ```
 
-1. Now that we have our API service implementation, we can try to test this locally.  Navigate back to the **Manage commands** view and execute the `run spring-boot` script.  Click the **Run** button.
+    *Remember to replace the GUID with your [environment](#environment) value and your user number.*
 
-    ![00-local-testing.png](images/00-local-testing.png)
-    
-1. Once the application starts, navigate to the Servers window and click on the URL corresponding to port 8080.  A new tab should appear:
+1. Click on **Connection > Create Connection**
 
-    ![00-select-servers.png](images/00-select-servers.png)
+   ![00-create-connection.png](images/00-create-connection.png "Create Connection")
 
-1. In the new tab, append the URL with the following URI: `/location/contact/2`.  A contact should be returned:
+1. Select **Database**
 
-    ![00-hit-contact-local.png](images/00-hit-contact-local.png)
+   ![01-select-database.png](images/01-select-database.png "Select Database")
 
-1. Now that we've successfully tested our new SOAP to REST service locally, we can deploy it to OpenShift.  Stop the running application by clicking **Cancel**.  Open the terminal and login using the `oc login` command and select your corresponding OCPPROJECT e.g. `oc project OCPPROJECT`.  Open the `fabic8:deploy` script and hit the **Run** button to deploy it to OpenShift.
+1. Enter below values for Database Configuration
 
-    ![00-mvn-f8-deploy.png](images/00-mvn-f8-deploy.png "Maven Fabric8 Deploy")
+    ```
+    Connection URL: jdbc:postgresql://postgresql.user1.svc:5432/sampledb
+    Username      : dbuser
+    Password      : password
+    Schema        : keep it empty
+    ```
+
+1. Click **Validate** and verify if the connection is successful. Click **Next** to proceed.
+
+  ![02-click-validate.png](images/02-click-validate.png "Validate")
+
+6. Add `Connection details`. `Connection Name: LocationDB` and `Description: Location Database`. Click **Create**.
+   
+   ![03-connection-details.png](images/03-connection-details.png "Add Connection Details")
+
+7. Verify that the `Location Database` is successfully created.
+
+### Step 2: Create webhook integration
+
+Description goes here
+
+1. Click on **Integration > Create Integration** 
+
+  ![04-create-integration.png](images/04-create-integration.png "Create Integration")
+
+2. Choose **Webhook**
+
+  ![05-choose-weebhook.png](images/05-choose-weebhook.png "Choose webhook")
+
+3. Click on `Incoming webhook` 
+
+  ![06-incoming-webhook.png](images/06-incoming-webhook.png "Add incoming webhook")
+
+4. It navigates to the `Webhook Token` screen. Click **Next**
+
+  ![07-webhook-configuration.png](images/07-webhook-configuration.png "Webhook Configuration")
+
+5. Define the Output Data Type. `Select type` from the dropdown as `JSON instance`. Enter `Data type Name: Custom`. `Defination: `, copy below JSON data.
+
+    ```
+		{
+		  "id": 1,
+		  "name": "Kamarhati",
+		  "type": "Regional Branch",
+		  "status": "1",
+		  "location": {
+		    "lat": "-28.32555",
+		    "lng": "-5.91531"
+		  }
+		}
+    ```
+
+  **Screenshot**
+
+ ![08-data-type.png](images/08-data-type.png "Data Type")
+
+6. Click on `LocationDB` from the catalog and then select `Invoke SQL`
+
+ ![09-invoke-sql.png](images/09-invoke-sql.png "Invoke SQL")
+
+7. Enter the SQL statement and click **Done**.
+
+ ```
+   INSERT INTO locations (id,name,lat,lng,location_type,status) VALUES (:#id,:#name,:#lat,:#lng,:#location_type,:#status )
+ ```
+
+ **Screenshot**
+
+ ![10-invoke-sql-2.png](images/10-invoke-sql-2.png "Invoke SQL 2")
+
+8. Click on `Add step` and select `Data mapper`
+
+ ![11-data-mapper.png](images/11-data-mapper.png "Data Mapper")
+
+9. Drag and drop the matching `Source` Data type to the `Target`. Click **Done**
+
+ ![12-configure-mapper.png](images/12-configure-mapper.png "Configure Mapper")
+
+10. Click **Publish** on the next screen and add `Integration Name: addLocation`. Again Click **Publish**.
+
+ ![13-publish-integration.png](images/13-publish-integration.png "Publish Integration")
+
+*Congratulations*. You sucessfully published the integration. (Wait for few minutes to build and publish the integration)
+
+### Step 3: Create a POST request
+
+1. Copy the External URL and form a POST request like below. We will be creating the `101th` record field.   
+
+ ![14-copy-URL.png](images/14-copy-URL.png "Copy URL")
+
+*Remember to replace the below hostname with the copied URL*
+
+**CURL POST request**
+
+  ```
+    curl -X POST \
+      https://i-addlocation-vinay.apps.rhtena.openshiftworkshop.com/webhook/pUGTWtLu8nnVTNJ1JYIsThcrKyMJAxBJMRURvRVEHSSvoMExTk \
+      -H 'Content-Type: application/json' \
+      -d '{
+        "id": 101,
+        "name": "Kamarhati",
+        "type": "Regional Branch",
+        "status": "1",
+        "location": {
+          "lat": "-28.32555",
+          "lng": "-5.91531"
+        }
+      
+  }' -k
+  ```
+
+2. Click on **Activity > Refresh** and verify if the newly record is created.
+
+ ![15-activity-refresh.png](images/15-activity-refresh.png "Activity Refresh")
+
+3. (Optional) Visit the application URL in browser and verify if the recoard can be fetched.
+
+  ```
+  http://location-service-user1.apps.rhtena.openshiftworkshop.com/locations/101
+  ```
 
 
-1. If the deployment script completes successfully, navigate back to your OCPPROJECT web console and verify the pod is running
-
-    ![00-verify-pod.png](images/00-verify-pod.png "Location SOAP2REST")
-
-1. Click on the route link above the location-soap2rest pod and append `/location/contact/2` to the URI.  As a result, you should get a contact back.
-
-
-*Congratulations!* You have created a SOAP to REST transformation API.
+  ```
+  {
+    "id" : 101,
+    "name" : "Kamarhati",
+    "type" : "Regional Branch",
+    "status" : "1",
+    "location" : {
+      "lat" : "-28.32555",
+      "lng" : "-5.91531"
+    }
+  }
+  ```
 
 ## Summary
 
-You have now successfully created a contract-first API using a SOAP WSDL contract together with generated Camel RESTdsl.
+TBD
 
-You can now proceed to [Lab 6](../lab06/#lab-6)
+You can now proceed to [Lab 7](../lab07/#lab-7)
+
+## Notes and Further Reading
+
+TBD
+
 
