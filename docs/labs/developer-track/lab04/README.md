@@ -1,4 +1,4 @@
-# Lab 5
+# Lab 4
 
 ## SOAP to REST
 
@@ -126,5 +126,5 @@ Open a browser window and navigate to `http://che-rh-che-0879.apps.GUID.openshif
 
 You have now successfully created a contract-first API using a SOAP WSDL contract together with generated Camel RESTdsl.
 
-You can now proceed to [Lab 6](../lab06/#lab-6)
+You can now proceed to [Lab 5](../lab05/#lab-5)
 
