@@ -2,7 +2,7 @@
 
 ## API Design
 
-### Create an OpenAPI Specification using Apicurio Studio
+### Review an OpenAPI Specification using Apicurio Studio
 
 * Duration: 10 mins
 * Audience: API Owner, Product Manager, Developers, Architects
@@ -10,6 +10,8 @@
 ## Overview
 
 As APIs become more widespread in the enterprise, consist design and usage is critically important to improve re-usability. The more re-usable APIs are, the less friction there is for other internal or external teams to make progress. Having design standards and tools baked into the API development and maintenance process is a very powerful way to enable this consistency.
+
+As a developer, we need to be familiar with API Design even though it's not our capability.  Therefore, in this lab will will review Red Hat's API Designer product, Apicurio, so that we're familiar with it's capabilities only.
 
 ### Why Red Hat?
 
@@ -87,7 +89,7 @@ openshift
 
 1. Create a brand new API by completing the following information:
 
-    * Type: **Open API 3.0.1**
+    * Type: **Open API 2.0 (Swagger)**
     * Name: **Locations-UserX** (Replace *X* with your user number)
     * Description: **Locations API**
 
@@ -173,14 +175,6 @@ Let's start crafting your API.
 
     ![design-edit-response](images/design-12.png "Edit Response")
 
-1. Scroll down again to the bottom of the page. Click on the **Add Media Type** button to define and configure the response media type.
-
-    ![design-add-media](images/design-13.png "Add Media Type")
-
-1. Leave **application/json** as the value of *Media Type*. Click the **Add** button.
-
-    ![design-media-json](images/design-14.png "Media Type JSON")
-
 1. Click on the *Choose Type* combo box to display the different types. First select **Array**.
 
     ![design-location-type](images/design-18.png "Location Type")
@@ -239,7 +233,7 @@ Let's start crafting your API.
 
 1. Click the **Add** button.
 
-1. Click the **Done** button to finish the response editing.
+1. Click the **OK** button to finish the response editing.
 
     ![design-response-done](images/design-21.png "Finish Response")
 
@@ -259,7 +253,7 @@ Let's start crafting your API.
 
     ![design-api-source](images/design-24.png "API Defintion Source")
 
-*Congratulations!* You have crated your first API definition based on the OpenAPI Specification  using Red Hat's Apicurio. Don't lose track of the file, you will use this definition for your next lab.
+*Congratulations!* You have crated your first API definition based on the OpenAPI Specification  using Red Hat's Apicurio. 
 
 ## Steps Beyond
 
@@ -267,9 +261,9 @@ So, you want more? Did you notice the link **source** when editing the *Paths* o
 
 ## Summary
 
-In this lab you used Apicurio Studio to create a simple API definition using the OpenAPI Specification. You learned how to author and download a standards compliant API Specification using Red Hat's APICurio.
+In this lab you used Apicurio Studio to create a simple API definition using the OpenAPI Specification (Swagger 2.0). You learned how to author and download a standards compliant API Specification using Red Hat's APICurio.
 
-You can now proceed to [Lab 1](../lab02/#lab-1)
+You can now proceed to [Lab 2](../lab02/#lab-2)
 
 ## Notes and Further Reading
 
