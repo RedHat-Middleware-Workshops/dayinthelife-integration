@@ -2,7 +2,7 @@
 ## Audience: API Integrator
 ### Scope: Walk the user through an API Design and management using Apicurio, Microcks, Fuse Online, 3scale API Management 
 
-1. Design API with Apicurio (From https://github.com/jbossdemocentral/3scale-api-workshop/tree/master/docs/labs/lab01)
+1. [Design an API with Apicurio](lab01/#lab-1)
 2. Review mocked endpoints in Microcks (TODO)
 3. Testing Microcks mocked tests (https://github.com/jbossdemocentral/3scale-api-workshop/tree/master/docs/labs/lab102#step-1-create-a-microcks-job) 
 4. [Fuse Online](lab04/#lab-4) 
