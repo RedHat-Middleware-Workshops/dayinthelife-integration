@@ -8,6 +8,6 @@
 4. [SOAP to Rest](lab05/#lab-5)
 5. [Fuse Online](lab06/#lab-6)
 6. Import 3scale management (TODO)
-7. Sign up Dev portal (TODO)
+7. Sign up Dev portal (https://github.com/jbossdemocentral/3scale-api-workshop/tree/master/docs/labs/lab05#step-2-register-new-accounts-using-developer-portal)
 8. Secure endpoint development on Node.js (https://github.com/jbossdemocentral/3scale-api-workshop/tree/master/docs/labs/lab06)
 9. INTERNATIONAL INC in Action (TODO)
