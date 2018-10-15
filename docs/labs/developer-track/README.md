@@ -2,8 +2,8 @@
 ## Audience: API Developer
 ### Scope: Walk the user through an API development and integration process leveraging OpenShift, Ansible, Apicurio, Microcks, Fuse, 3scale AMP
 
-1. Review Apicurio (TODO)
-2. Microck (From https://github.com/jbossdemocentral/3scale-api-workshop/tree/master/docs/labs/lab102)
+1. [Review Apicurio API Designer](lab01/#lab-1)
+2. [Microcks API Mocking](lab02/#lab-2)
 3. [Swagger to Rest and DB (with Che)](lab03/#lab-3)
 4. [SOAP to Rest](lab04/#lab-4)
 5. [Fuse Online](lab05/#lab-5)
