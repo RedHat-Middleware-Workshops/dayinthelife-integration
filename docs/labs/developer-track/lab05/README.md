@@ -1,4 +1,4 @@
-# Lab 6
+# Lab 5
 
 ## Fuse Online
 
@@ -212,7 +212,7 @@ Description goes here
 
 TBD
 
-You can now proceed to [Lab 7](../lab07/#lab-7)
+You can now proceed to [Lab 6](../lab06/#lab-6)
 
 ## Notes and Further Reading
 

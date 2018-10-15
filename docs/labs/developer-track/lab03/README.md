@@ -1,4 +1,4 @@
-# Lab 4
+# Lab 3
 
 ## Swagger to REST
 
@@ -398,5 +398,5 @@ Once you've received the swagger specification (API contract) from your friendly
 
 You have now successfully created a contract-first API using a Swagger contract together with generated Camel RESTdsl, incorporating both HTTP GET and POST requests that perform select and inserts on a Postgres database table.
 
-You can now proceed to [Lab 5](../lab05/#lab-5)
+You can now proceed to [Lab 4](../lab04/#lab-4)
 
