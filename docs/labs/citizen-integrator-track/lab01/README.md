@@ -9,17 +9,17 @@
 
 ## Overview
 
-As APIs become more widespread in the enterprise, consist design and usage is critically important to improve re-usability. The more re-usable APIs are, the less friction there is for other internal or external teams to make progress. Having design standards and tools baked into the API development and maintenance process is a very powerful way to enable this consistency.
+As APIs become more widespread in the enterprise, consistent design and usage is critically important to improve reusability. The more reusable APIs are, the less friction there is for other internal or external teams to make progress. Having design standards and tools baked into the API development and maintenance process is a very powerful way to enable this consistency.
 
 ### Why Red Hat?
 
-RedHat is one of the founding members of the Linux Foundation Open API Initiative which is produces the leading standard for REST API specifications. Red Hat consistently uses this format throughout it's tooling, starting with the Apicurio Studio API Design editor.
+Red Hat is one of the founding members of the Linux Foundation OpenAPI Initiative (OAI) which produces the leading standard for REST API specifications. Red Hat consistently uses this standard throughout its tooling, starting with the Apicurio Studio API Designer editor.
 
 ### Skipping The Lab
 
 We know sometimes we don't have enough time to go over step by step on the labs. So here is a [short video](https://youtu.be/FnZwy8KeC-A) where you can see how to create an OpenAPI Specification with Apicurio Studio.
 
-If you are planning to skip this lab and follow the next one, here is a [link](https://github.com/jbossdemocentral/3scaleworkshop-openapi/blob/Lab-01/locations-api/Locations-UserX.yaml) to the specification generated in this lab.
+If you are planning to skip this lab and follow the next one, here is a [link](https://github.com/RedHatWorkshops/dayinthelife-integration/tree/master/docs/labs/citizen-integrator-track/resources) to the specification generated in this lab.
 
 ### Environment
 
@@ -87,7 +87,7 @@ openshift
 
 1. Create a brand new API by completing the following information:
 
-    * Type: **Open API 3.0.1**
+    * Type: **Open API 2.0 (Swagger)**
     * Name: **Locations-UserX** (Replace *X* with your user number)
     * Description: **Locations API**
 
@@ -173,15 +173,8 @@ Let's start crafting your API.
 
     ![design-edit-response](images/design-12.png "Edit Response")
 
-1. Scroll down again to the bottom of the page. Click on the **Add Media Type** button to define and configure the response media type.
 
-    ![design-add-media](images/design-13.png "Add Media Type")
-
-1. Leave **application/json** as the value of *Media Type*. Click the **Add** button.
-
-    ![design-media-json](images/design-14.png "Media Type JSON")
-
-1. Click on the *Choose Type* combo box to display the different types. First select **Array**.
+1. Click on the *Type* combo box to display the different types. First select **Array**.
 
     ![design-location-type](images/design-18.png "Location Type")
 
@@ -239,7 +232,7 @@ Let's start crafting your API.
 
 1. Click the **Add** button.
 
-1. Click the **Done** button to finish the response editing.
+1. Click the **OK** button to finish the response editing.
 
     ![design-response-done](images/design-21.png "Finish Response")
 
@@ -257,7 +250,7 @@ Let's start crafting your API.
 
 1. You can open the file with any text editor. Take a look at the source file. Everything is there.
 
-    ![design-api-source](images/design-24.png "API Defintion Source")
+    ![design-api-source](images/design-24.png "API Definition Source")
 
 *Congratulations!* You have crated your first API definition based on the OpenAPI Specification  using Red Hat's Apicurio. Don't lose track of the file, you will use this definition for your next lab.
 
