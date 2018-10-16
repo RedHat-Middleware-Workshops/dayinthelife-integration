@@ -1,237 +1,130 @@
 # Lab 4
 
-## Swagger to REST
+## SOAP to REST
 
-### Contract-first API development with a DB interface, implemented using Eclipse Che.
+### Contract-first API development wrapping an existing SOAP service, implemented using Eclipse Che
 
 * Duration: 20 mins
 * Audience: Developers and Architects
 
 ## Overview
 
-Once you have APIs in your organization and have applications being written, you also want to be sure in many cases that thee various types of users of the APIs are correctly authenticated. In this lab you will discover how to set up the widely used OpenID connect pattern for Authentication. 
+Another important use case in developing API's is to take an existing legacy SOAP service and wrap it with a new RESTful endpoint.  This SOAP to REST transformation is implemented in the API service layer (Fuse).  This lab will walk you through taking an existing SOAP contract (WSDL), converting it to Java POJO's and exposing it using Camel RESTdsl.
 
 ### Why Red Hat?
 
-The Red Hat SSO product provides important functionality for managing identities at scale. In this lab you can see how it fits together with 3scale and OpenShift.
+Eclipse Che, our online IDE, provides important functionality for implementing API services. In this lab you can see how our Eclipse Che and Fuse can help with SOAP to REST transformation on OpenShift.
 
 ### Skipping The Lab
 
-We know sometime we don't have enough time to go over the labs step by step. So here is a [short video](https://youtu.be/-3QGAD3Tt48) where you can see how to implement a Contract-first API.
+We know sometimes we don't have enough time to go over the labs step by step. So here is a [short video](https://youtu.be/CjmO7v3o5dA) where you can see how to implement a SOAP to REST transformation API.
 
-If you are planning to follow to the next lab or are having trouble with this lab, you can reference the working project [here](https://github.com/RedHatWorkshops/dayinthelife-integration/tree/master/projects/location-service)
+If you are planning to follow to the next lab or are having trouble with this lab, you can reference the working project [here](https://github.com/RedHatWorkshops/dayinthelife-integration/tree/master/projects/location-soap2rest)
 
 ### Environment
 
-**URLs:**
-
-Check with your instruction the *GUID* number of your current workshop environment. Replace the actual number on all the URLs where you find **GUID**. 
-
-Example in case of *GUID* = **1234**: 
-
-```bash
-https://master.GUID.openshiftworkshop.com
-```
-
-becomes =>
-
-```bash
-https://master.1234.openshiftworkshop.com
-```
-
-**Credentials:**
-
-Your username is your asigned user number. For example, if you are assigned user number **1**, your username is: 
-
-```bash
-user1
-```
-
-The password to login is always the same:
-
-```bash
-openshift
-```
+Open a browser window and navigate to `http://che-rh-che-0879.apps.GUID.openshift.opentlc.com/dashboard/#/`.  *Remember to replace the GUID with your [environment](#environment) value and your user number.*. Please re-use the Workspace you used during Lab04.
 
 ## Lab Instructions
 
-### Step 1: Create an Eclipse Che environment for your personal use
+### Step 1: Modify the skeleton location-soap2rest project
 
-1. Open a browser window and navigate to:
+1. In the OpenShift console, click on the route associated with the `location-soap` deployment.  A pop-up will appear.  Append the `/ws/location?wsdl` path to the URI and verify the WSDL appears. Copy the link to the clipboard.
 
-    ```bash
-    http://che-rh-che-0879.apps.GUID.openshift.opentlc.com/dashboard/#/
+    ![00-verify-wsdl.png](images/00-verify-wsdl.png "Verify WSDL")
+
+1. Return to your Eclipse Che workspace and open the `dayintelife-import/location-soap2rest` project.  Open the `pom.xml` file and scroll to the bottom.  Uncomment out the `cxf-codegen-plugin` entry at the bottom.  Update the `<wsdl>` entry with your fully qualified WSDL URL e.g. `http://location-soap-simon-dev.apps.52d6.openshift.opentlc.com/ws/location?wsdl`.
+
+    ![00-uncomment-codegen.png](images/00-uncomment-codegen.png "Uncomment codegen plugin")
+
+1. We now need to generate the POJO objects from the WSDL contract.  To do this, change to the **Manage commands** view and double-click the `run generate-sources` script.  Click **Run** to execute the script.
+
+    ![00-generate-sources.png](images/00-generate-sources.png "Generate Sources")
+
+1. Once the script has completed, navigate back to the **Workspace** view and open the `src/main/java/com/redhat` folder.  Notice that there are a bunch of new POJO classes that were created by the Maven script.
+
+    ![00-verify-pojos.png](images/00-verify-pojos.png "Verify Pojos")
+
+1. Open up the `CamelRoutes.java` file.  Notice that the existing implementation is barebones. First of all, we need to enter the SOAP service address and WSDL location for our CXF client to call.  Secondly, we need to create our Camel route implementation and create the RESTful endpoint.  To do this, include the following code:
+
+    ```java
+	
+	...
+
+    	@Autowired
+    	private CamelContext camelContext;
+	
+	private static final String SERVICE_ADDRESS = "http://localhost:8080/ws/location";
+	private static final String WSDL_URL = "http://localhost:8080/ws/location?wsdl";
+
+	@Override
+	public void configure() throws Exception {
+	
+	...	
+	
+		rest("/location").description("Location information")
+			.produces("application/json")
+			.get("/contact/{id}").description("Location Contact Info")
+				.responseMessage().code(200).message("Data successfully returned").endResponseMessage()
+				.to("direct:getalllocationphone")
+			
+		;
+		
+		from("direct:getalllocationphone")
+			.setBody().simple("${headers.id}")
+			.unmarshal().json(JsonLibrary.Jackson)
+			.to("cxf://http://location-soap-user1-dev.apps.52d6.openshift.opentlc.com/ws/location?serviceClass=com.redhat.LocationDetailServicePortType&defaultOperationName=contact")
+			
+			.process(
+					new Processor(){
+
+						@Override
+						public void process(Exchange exchange) throws Exception {
+							//LocationDetail locationDetail = new LocationDetail();
+							//locationDetail.setId(Integer.valueOf((String)exchange.getIn().getHeader("id")));
+							
+							MessageContentsList list = (MessageContentsList)exchange.getIn().getBody();
+							
+							exchange.getOut().setBody((ContactInfo)list.get(0));
+						}
+					}
+			)
+			
+		;
+	
+	    }
+	}
     ```
 
-    *Remember to replace the GUID with your [environment](#environment) value and your user number.*
+1. Now that we have our API service implementation, we can try to test this locally.  Navigate back to the **Manage commands** view and execute the `run spring-boot` script.  Click the **Run** button.
 
-1. Click on **Create Workspace**.
-
-    ![00-create-workspace.png](images/00-create-workspace.png "Create Workspace")
-
-1. Enter a unique name for your workspace e.g. simon-dev-workspace.  Select "day in the life workshop" stack, increase the RAM to 4MB and then click **Create**.
-
-    ![00-new-workspace.png](images/00-new-workspace.png "New Workspace")
-
-1. Click on **Open** to generate and open the workspace.
-
-    ![00-open-workspace.png](images/00-open-workspace.png "Open Workspace")
-
-1. Click the **Credentials** tab.
-
-    ![00-sa-credentials.png](images/00-sa-credentials.png "Service Account Credentials")
-
-1. Take notice of the service account **Secret**. Copy and save it or write it down as you will use it to configure 3scale.
-
-    ![00-sa-secret.png](images/00-sa-secret.png "Service Account Secret")
-
-### Step 2: Add User to Realm
-
-1. Click on the Users menu on the left side of the screen.
-
-    ![00-users.png](images/00-users.png "Users Menu")
-
-1. Click the Add user button.
-
-    ![00-add-user.png](images/00-add-user.png "Add User")
-
-1. Type **apiuser** as the Username.
-
-    ![00-username.png](images/00-username.png "User Details")
-
-1. Click on the **Save** button.
-
-1. Click on the **Credentials** tab to reset the password. Type **apipassword** as the *New Password* and *Password Confirmation*. Turn OFF the *Temporary* to avoid the password reset at the next login.
-
-    ![00-user-credentials.png](images/00-user-credentials.png "User Credentials")
-
-1. Click on **Reset Password**.
-
-1. Click on the **Change password** button in the pop-up dialog.
-
-    ![00-change-password.png](images/00-change-password.png "Change Password Dialog")
-
-    *Now you have a user to test your integration.*
-
-### Step 3: Configure 3scale Integration
-
-1. Open a browser window and navigate to:
-
-    ```bash
-    https://userX-admin.apps.GUID.openshiftworkshop.com/
-    ```
-
-    *Remember to replace the GUID with your [environment](#environment) value and your user number.*
-
-1. Accept the self-signed certificate if you haven't.
-
-    ![selfsigned-cert](images/00-selfsigned-cert.png "Self-Signed Cert")
-
-1. Log into 3scale using your designated [user and password](#environment). Click on **Sign In**.
-
-    ![01-login.png](images/01-login.png)
-
-1. The first page you will land is the *API Management Dashboard*. Click on the **API** menu link.
-
-    ![01a-dashboard.png](images/01a-dashboard.png)
-
-1. This is the *API Overview* page. Here you can take an overview of all your services. Click on the **Integration** link.
-
-    ![02-api-integration.png](images/02-api-integration.png)
-
-1. Click on the **edit integration settings** to edit the API settings for the gateway.
-
-    ![03-edit-settings.png](images/03-edit-settings.png)
-
-1. Scrolll down the page, under the *Authentication* deployment options, select **OpenID Connect**. 
-
-    ![04-authentication.png](images/04-authentication.png)
-
-1. Click on the **Update Service** button.
-
-1. Dismiss the warning about changing the Authentication mode by clicking **OK**.
-
-    ![04b-authentication-warning.png](images/04b-authentication-warning.png)
+    ![00-local-testing.png](images/00-local-testing.png)
     
-1. Back in the service integration page, click on the **edit APIcast configuration**.
+1. Once the application starts, navigate to the Servers window and click on the URL corresponding to port 8080.  A new tab should appear:
 
-    ![05-edit-apicast.png](images/05-edit-apicast.png)
+    ![00-select-servers.png](images/00-select-servers.png)
 
-1. Scroll down the page and expand the authentication options by clicking the **Authentication Settings** link.
+1. In the new tab, append the URL with the following URI: `/location/contact/2`.  A contact should be returned:
 
-    ![05-authentication-settings.png](images/05-authentication-settings.png)
+    ![00-hit-contact-local.png](images/00-hit-contact-local.png)
 
-1. In the **OpenID Connect Issuer** field, type in your previously noted client credentials with the URL of your Red Hat Single Sing On instance:
+1. Now that we've successfully tested our new SOAP to REST service locally, we can deploy it to OpenShift.  Stop the running application by clicking **Cancel**.  Open the terminal and login using the `oc login` command and select your corresponding OCPPROJECT e.g. `oc project OCPPROJECT`.  Open the `fabic8:deploy` script and hit the **Run** button to deploy it to OpenShift.
 
-    ```bash
-    http://3scale-admin:CLIENT_SECRET@sso-rh-sso.apps.GUID.openshiftworkshop.com/auth/realms/userX
-    ```
+    ![00-mvn-f8-deploy.png](images/00-mvn-f8-deploy.png "Maven Fabric8 Deploy")
 
-    *Remember to replace the GUID with your [environment](#environment) value, your user number and the CLIENT_SECRET you get in the [Step 1](#step-1-get-red-hat-single-sign-on-service-account-credentials)*.
 
-    ![06-openid-issuer.png](images/06-openid-issuer.png "OpenID Connect Issuer")
+1. If the deployment script completes successfully, navigate back to your OCPPROJECT web console and verify the pod is running
 
-1. Scroll down the page and click on the **Update Staging Environment** button.
+    ![00-verify-pod.png](images/00-verify-pod.png "Location SOAP2REST")
 
-    ![08-back-integration.png](images/08-back-integration.png "Back Integration")
+1. Click on the route link above the location-soap2rest pod and append `/location/contact/2` to the URI.  As a result, you should get a contact back.
 
-1. After the reload, scroll down again and click the **Back to Integration &amp; Configuration** link.
 
-    ![07-update-environment.png](images/07-update-environment.png "Update Environment")
-
-1. Promote to Production by clicking the **Promote to Production** button.
-
-    ![08a-promote-production.png](images/08a-promote-production.png "Update Environment")
-
-### Step 4: Create a Test App
-
-1. Go to the *Developers* tab and click on **Developer**.
-
-    ![09-developers.png](images/09-developers.png "Developers")
-
-1. Click on the **Applications** link.
-
-    ![10-applications.png](images/10-applications.png "Applications")
-
-1. Click on **Create Application** link.
-
-    ![11-create-application.png](images/11-create-application.png "Create Application")
-
-1. Select **Basic** plan from the combo box. Type the following information:
-
-    * Name: **Secure App**
-    * Description: **OpenID Connect Secured Application**
-
-    ![12-application-details.png](images/12-application-details.png "Application Details")
-
-1. Finally, scroll down the page and click on the **Create Application** button.
-
-    ![13-create-app.png](images/13-create-app.png "Create App")
-
-1. Note the *API Credentials*. Write them down as you will need the **Client ID** and the **Client Secret** to test your integration.
-
-    ![14-app-credentials.png](images/14-app-credentials.png "App Credentials")
-
-*Congratulations!* You have now an application to test your OpenId Connect integration.
-
-## Steps Beyond
-
-So, you want more? Login to the Red Hat Single Sign On admin console for your realm if you are not there already. Click on the Clients menu. Now you can check that 3scale zync component creates a new Client in SSO. This new Client has the same ID as the Client ID and Secret from the 3scale admin portal.
-
-### Test the integration
-
-You can try to use Postman or OpenID Connet playground to test your integration. Remember to update the *Redirect URL*.
+*Congratulations!* You have created a SOAP to REST transformation API.
 
 ## Summary
 
-Now that you can secure your API using three-leg authentication with Red Hat Single Sign-On, you can leverage the current assets of your organization like current LDAP identities or even federate the authentication using other IdP services.
-
-For more information about Single Sign-On, you can check its [page](https://access.redhat.com/products/red-hat-single-sign-on).
+You have now successfully created a contract-first API using a SOAP WSDL contract together with generated Camel RESTdsl.
 
 You can now proceed to [Lab 5](../lab05/#lab-5)
 
-## Notes and Further Reading
-
-* [Red Hat 3scale API Management](http://microcks.github.io/)
-* [Red Hat Single Sign On](https://access.redhat.com/products/red-hat-single-sign-on)
-* [Setup OIDC with 3scale](https://developers.redhat.com/blog/2017/11/21/setup-3scale-openid-connect-oidc-integration-rh-sso/)
