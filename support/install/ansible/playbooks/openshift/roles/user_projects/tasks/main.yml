@@ -14,5 +14,14 @@
     display_name: 'User{{ item }} Tools Project'
   when: user_tools_projects
 
-- name: Give {{ item }} access to project
-  shell: oc policy add-role-to-user admin user{{ item  }}
+- name: Provision {{ item }} database
+  shell: "oc new-app --template=postgresql-ephemeral --param=POSTGRESQL_USER=dbuser \
+  --param=POSTGRESQL_PASSWORD=password --param=POSTGRESQL_DATABASE=sampledb \
+  -n user{{ item  }}"
+  when: configure_only is false
+
+- name: Give {{ item }} access to user project
+  shell: "oc policy add-role-to-user admin user{{ item  }} -n user{{ item }}"
+
+- name: Give {{ item }} access to tools project
+  shell: "oc policy add-role-to-user admin user{{ item  }} -n tools{{ item }}"
