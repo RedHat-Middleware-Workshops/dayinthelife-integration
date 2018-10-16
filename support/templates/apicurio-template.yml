@@ -25,10 +25,10 @@ objects:
     name: api
   spec:
     tags:
-      - name: latest-snapshot
+      - name: latest-release
         from:
           kind: DockerImage
-          name: apicurio/apicurio-studio-api:latest-snapshot
+          name: apicurio/apicurio-studio-api:latest-release
         importPolicy:
           scheduled: true
 - apiVersion: v1
@@ -37,10 +37,10 @@ objects:
     name: ws
   spec:
     tags:
-      - name: latest-snapshot
+      - name: latest-release
         from:
           kind: DockerImage
-          name: apicurio/apicurio-studio-ws:latest-snapshot
+          name: apicurio/apicurio-studio-ws:latest-release
         importPolicy:
           scheduled: true
 - apiVersion: v1
@@ -49,10 +49,10 @@ objects:
     name: ui
   spec:
     tags:
-      - name: latest-snapshot
+      - name: latest-release
         from:
           kind: DockerImage
-          name: apicurio/apicurio-studio-ui:latest-snapshot
+          name: apicurio/apicurio-studio-ui:latest-release
         importPolicy:
           scheduled: true
 # Persistent volumes: Postgresql
@@ -289,7 +289,7 @@ objects:
       spec:
         replicas: 1
         containers:
-        - image: api:latest-snapshot
+        - image: api:latest-release
           imagePullPolicy: Always
           name: apicurio-studio-api
           ports:
@@ -359,7 +359,7 @@ objects:
           - apicurio-studio-api
         from:
           kind: ImageStreamTag
-          name: 'api:latest-snapshot'
+          name: 'api:latest-release'
     - type: ConfigChange
   status: {}
 # Apicurio WS Deployment Configuration
@@ -393,7 +393,7 @@ objects:
       spec:
         replicas: 1
         containers:
-        - image: ws:latest-snapshot
+        - image: ws:latest-release
           imagePullPolicy: Always
           name: apicurio-studio-ws
           ports:
@@ -459,7 +459,7 @@ objects:
           - apicurio-studio-ws
         from:
           kind: ImageStreamTag
-          name: 'ws:latest-snapshot'
+          name: 'ws:latest-release'
     - type: ConfigChange
   status: {}
 # Apicurio UI Deployment Configuration
@@ -493,7 +493,7 @@ objects:
       spec:
         replicas: 1
         containers:
-        - image: ui:latest-snapshot
+        - image: ui:latest-release
           imagePullPolicy: Always
           name: apicurio-studio-ui
           ports:
@@ -553,7 +553,7 @@ objects:
           - apicurio-studio-ui
         from:
           kind: ImageStreamTag
-          name: 'ui:latest-snapshot'
+          name: 'ui:latest-release'
     - type: ConfigChange
   status: {}
 # The Routes: api, ws, ui (no route needed for postgresql)
