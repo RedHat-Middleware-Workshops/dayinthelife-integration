@@ -2,20 +2,20 @@
 
 ## API Design
 
-### Review an OpenAPI Specification using Apicurio Studio
+### Import an OpenAPI Specification using Apicurio Studio
 
 * Duration: 10 mins
 * Audience: API Owner, Product Manager, Developers, Architects
 
 ## Overview
 
-As APIs become more widespread in the enterprise, consist design and usage is critically important to improve re-usability. The more re-usable APIs are, the less friction there is for other internal or external teams to make progress. Having design standards and tools baked into the API development and maintenance process is a very powerful way to enable this consistency.
+As APIs become more widespread in the enterprise, consistent design and usage is critically important to improve reusability. The more reusable APIs are, the less friction there is for other internal or external teams to make progress. Having design standards and tools baked into the API development and maintenance process is a very powerful way to enable this consistency.
 
-As a developer, we need to be familiar with API Design even though it's not our capability.  Therefore, in this lab will will review Red Hat's API Designer product, Apicurio, so that we're familiar with it's capabilities only.
+As a developer, we need to be familiar with API Design even though it's not our core capability.  Therefore, in this lab we will review Red Hat's API Designer product, Apicurio, so that we're familiar with it's capabilities only.
 
 ### Why Red Hat?
 
-RedHat is one of the founding members of the Linux Foundation Open API Initiative which is produces the leading standard for REST API specifications. Red Hat consistently uses this format throughout it's tooling, starting with the Apicurio Studio API Design editor.
+RedHat is one of the founding members of the Linux Foundation Open API Initiative (OAI) which produces the leading standard for REST API specifications. Red Hat consistently uses this standard throughout its tooling, starting with the Apicurio Studio API Design editor.
 
 ### Skipping The Lab
 
@@ -43,7 +43,7 @@ https://master.1234.openshiftworkshop.com
 
 **Credentials:**
 
-Your username is your asigned user number. For example, if you are assigned user number **1**, your username is: 
+Your username is your assigned user number. For example, if you are assigned user number **1**, your username is: 
 
 ```bash
 user1
@@ -57,7 +57,7 @@ openshift
 
 ## Lab Instructions
 
-### Step 1: Creating APIs with Apicurio Studio
+### Step 1: Importing APIs with Apicurio Studio
 
 1. Open a browser window and navigate to:
 
@@ -83,177 +83,60 @@ openshift
 
     ![design-apis](images/design-02.png "APIs")
 
-1. Click on **Create New API**.
+1. Click on **Import API**.
 
-    ![design-new-api](images/design-03.png "Create New API")
+    ![design-new-api](images/design-03.png "Import API")
 
-1. Create a brand new API by completing the following information:
+1. Import the API created by our friendly Citizen Integrator:
 
-    * Type: **Open API 2.0 (Swagger)**
-    * Name: **Locations-UserX** (Replace *X* with your user number)
-    * Description: **Locations API**
+    * Import From URL: **Open API 2.0 (Swagger)**
+    * Url: `https://raw.githubusercontent.com/RedHatWorkshops/dayinthelife-integration/master/docs/labs/developer-track/resources/Locations.yaml`
 
-    ![design-create-api](images/design-04.png "Create API")
+    ![design-import-api](images/design-04.png "Import API")
 
-1. Click on **Create API**.
+1. Click on **Import API**.
 
-1. Finally, click on **Edit API** to start editing your newly created API.
+1. Finally, click on **Edit API** to walkthrough your newly imported API.
 
     ![design-edit-api](images/design-05.png "Edit API")
 
-### Step 2: Editing APIs
+### Step 2: Verifying APIs
 
 You are now in the main screen to edit your APIs. Different from other API editor products, Apicurio's Editor is a graphical, form-based editor. With Apicurio you don't need master in and out all the details of the **OpenAPI Specification**. It allows you to design beautiful, functionals APIs with zero coding.
 
-Let's start crafting your API.
+Let's start verifying your API.
 
-1. Time to prepare our data definitions for the API. Click on the **Add a definition** link under the *Definitions*.
+1. Time to verify our data definitions for the API. Click on the `location/phone{id}` link under the *Definitions*.
 
     ![design-add-definition](images/design-15.png "Add Definition")
 
-1. Fill in the *Name* with the **location** value. Expand the *FROM EXAMPLE (optional)* to paste the following example:
+1. Notice that this API path has a single path parameter (`id` defined as an int32) and a single GET operation defined.  Click on the GET operation, then click the Edit button for the 200 OK response.
 
-    * Name: **location**
-    * FROM EXAMPLE:
-
-        ```bash
-        {
-            "id": 1,
-            "name": "International Inc Corporate Office",
-            "location": {
-                "lat": 51.5013673,
-                "lng": -0.1440787
-            },
-            "type": "headquarter",
-            "status": "1"
-        }
         ```
 
     ![design-definition-name](images/design-16.png "Definition Name")
 
-1. Apicurio automatically trys to detect the data types from the provided example.
+1. Notice that this API path has a single response defined (a `200 OK` response) and the type that is returned is a location object.
 
     ![design-definition-types](images/design-17.png "Definition Data Types")
 
-    *Time to start creating some paths*.
+### Step 3: Verify the location object
 
-### Step 3: Adding Paths
-
-1. Click on the **Add a path** link under the *Paths* section. APIs need at least one path.
+1. Click on the `</> location` object link under the *Definitions* section.  Notice that the object has a bunch of properties defined which make up the object.
 
     ![design-add-path](images/design-06.png "Add Path")
 
-1. Fill in the new resource path with the following information:
-
-    * Path: **/locations**
+1. Click on the source link and notice that we have both YAML and JSON schemas generated by our object design:
 
     ![design-path](images/design-07.png "Path")
 
-1. Click **Add**.
+### Step 4: Verify the /locations path
 
-    *By default, Apicurio suggest a series of available operations for your new path*.
-
-1. Click **Create Operation** under the *GET* operation.
-
-    ![design-create-operation](images/design-08.png "Create Operation")
-
-1. Click on the green **GET** operation button to edit the operation information.
-
-    ![design-get-operation](images/design-09.png "Get Operation")
-
-    *As you can notice, Apicurio Editor guides you with warning for the elements missing in your design*.
-
-1. Click on the **Add a response** link under *Responses* to edit the response for this operation.
-
-    ![design-add-response](images/design-10.png "Add Response")
-
-1. Leave the **200** option selected in the  *Response Status Code* combo box and click on **Add**.
-
-    ![design-add-response-code](images/design-11.png "Add Response Code")
-
-1. Scroll down to the bottom of the page. Move your mouse over the **200 OK** response to enable the options. Click on the **Edit** button to edit the response details.
-
-    ![design-edit-response](images/design-12.png "Edit Response")
-
-1. Click on the *Choose Type* combo box to display the different types. First select **Array**.
-
-    ![design-location-type](images/design-18.png "Location Type")
-
-1. This will enable a second combo box. In this new box, select **location** from the displayed options.
-
-    ![design-location-type](images/design-18a.png "Location Type")
-
-1. Click the **Add an example** link to add a Response Example. 
-
-    *This will be useful to mock your API in the next lab*.
-
-    ![design-add-example](images/design-19.png "Add Example")
-
-1. Fill in the information for your response example:
-
-    * Name: **all**
-    * Example:
-
-        ```bash
-        [
-            {
-                "id": 1,
-                "name": "International Inc Corporate Office",
-                "location": {
-                    "lat": 51.5013673,
-                    "lng": -0.1440787
-                },
-                "type": "headquarter",
-                "status": "1"
-            },
-            {
-                "id": 2,
-                "name": "International Inc North America",
-                "location": {
-                    "lat": 40.6976701,
-                    "lng": -74.259876
-                },
-                "type": "office",
-                "status": "1"
-            },
-            {
-                "id": 3,
-                "name": "International Inc France",
-                "location": {
-                    "lat": 48.859,
-                    "lng": 2.2069746
-                },
-                "type": "office",
-                "status": "1"
-            }
-        ]
-        ```
-
-    ![design-response-example](images/design-20.png "Response Example")
-
-1. Click the **Add** button.
-
-1. Click the **OK** button to finish the response editing.
-
-    ![design-response-done](images/design-21.png "Finish Response")
-
-### Step 4: Download the API definition
-
-1. Click the **Locations-UserX** link to return to the API admin page.
+1. Click the **/locations** path.  Then click on the source tab.  Notice that we have both a GET and POST request defined, together with a couple of example requests.  Using a POST method, we can insert a new record into our sample database with Fuse.
 
     ![design-locations-api](images/design-22.png "Locations API")
 
-1. To start using your new API definition, display the API menu from the kebab link. Click the **Download (YAML)** option from the menu.
-
-    ![design-download-yaml](images/design-23.png "Download API")
-
-1. This will start the download of your API definition file. It could take a few seconds to start the download. **Save** it to your local disk drive. 
-
-1. You can open the file with any text editor. Take a look at the source file. Everything is there.
-
-    ![design-api-source](images/design-24.png "API Defintion Source")
-
-*Congratulations!* You have crated your first API definition based on the OpenAPI Specification  using Red Hat's Apicurio. 
+*Congratulations!* You have imported your first API definition based on the OpenAPI Specification  using Red Hat's Apicurio. 
 
 ## Steps Beyond
 
@@ -261,7 +144,7 @@ So, you want more? Did you notice the link **source** when editing the *Paths* o
 
 ## Summary
 
-In this lab you used Apicurio Studio to create a simple API definition using the OpenAPI Specification (Swagger 2.0). You learned how to author and download a standards compliant API Specification using Red Hat's APICurio.
+In this lab you used Apicurio Studio to import a simple API definition using the OpenAPI Specification (Swagger 2.0). You learned how to author and download a standards compliant API Specification using Red Hat's APICurio.
 
 You can now proceed to [Lab 2](../lab02/#lab-2)
 
