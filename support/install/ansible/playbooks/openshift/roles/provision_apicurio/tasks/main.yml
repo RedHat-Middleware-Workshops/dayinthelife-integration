@@ -61,5 +61,5 @@
 - name: Create Apicurio app
   shell: "oc new-app -f https://raw.githubusercontent.com/jbossdemocentral/3scale-api-workshop/master/support/templates/apicurio-template.yml \
   -p UI_ROUTE=apicurio-studio.{{ ocp_apps_domain }} -p API_ROUTE=apicurio-studio-api.{{ ocp_apps_domain }} \
-  -p WS_ROUTE=apicurio-studio-ws.{{ ocp_apps_domain }} -p AUTH_ROUTE=secure-sso-{{sso_project}}.{{ocp_apps_domain}} -n {{ apicurio_project }}"
+  -p WS_ROUTE=apicurio-studio-ws.{{ ocp_apps_domain }} -p AUTH_ROUTE=sso-{{sso_project}}.{{ocp_apps_domain}} -n {{ apicurio_project }}"
   when: configure_only == 'false'
