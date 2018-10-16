@@ -5,7 +5,7 @@
 ### Import an OpenAPI Specification using Apicurio Studio
 
 * Duration: 10 mins
-* Audience: API Owner, Product Manager, Developers, Architects
+* Audience: Developers, Architects
 
 ## Overview
 
@@ -15,7 +15,7 @@ As a developer, we need to be familiar with API Design even though it's not our 
 
 ### Why Red Hat?
 
-RedHat is one of the founding members of the Linux Foundation Open API Initiative (OAI) which produces the leading standard for REST API specifications. Red Hat consistently uses this standard throughout its tooling, starting with the Apicurio Studio API Design editor.
+Red Hat is one of the founding members of the Linux Foundation Open API Initiative (OAI) which produces the leading standard for REST API specifications. Red Hat consistently uses this standard throughout its tooling, starting with the Apicurio Studio API Design editor.
 
 ### Skipping The Lab
 
@@ -87,7 +87,7 @@ openshift
 
     ![design-new-api](images/design-03.png "Import API")
 
-1. Import the API created by our friendly Citizen Integrator:
+1. Import the API created by your friendly Citizen Integrator:
 
     * Import From URL: **Open API 2.0 (Swagger)**
     * Url: `https://raw.githubusercontent.com/RedHatWorkshops/dayinthelife-integration/master/docs/labs/developer-track/resources/Locations.yaml`
@@ -106,17 +106,15 @@ You are now in the main screen to edit your APIs. Different from other API edito
 
 Let's start verifying your API.
 
-1. Time to verify our data definitions for the API. Click on the `location/phone{id}` link under the *Definitions*.
+1. Time to verify our data definitions for the API. Click on the `location/phone{id}` link under the *Paths*.
 
     ![design-add-definition](images/design-15.png "Add Definition")
 
-1. Notice that this API path has a single path parameter (`id` defined as an int32) and a single GET operation defined.  Click on the GET operation, then click the Edit button for the 200 OK response.
-
-        ```
+1. Notice that this API path has a single path parameter (`id` defined as an `int32`) and a single GET operation defined.  Click on the GET operation, then click the Edit button for the 200 OK response.
 
     ![design-definition-name](images/design-16.png "Definition Name")
 
-1. Notice that this API path has a single response defined (a `200 OK` response) and the type that is returned is a location object.
+1. Notice that this API path has a single response defined (a `200 OK` response) and the type that is returned is a `location` object.
 
     ![design-definition-types](images/design-17.png "Definition Data Types")
 
@@ -134,7 +132,7 @@ Let's start verifying your API.
 
 1. Click the **/locations** path.  Then click on the source tab.  Notice that we have both a GET and POST request defined, together with a couple of example requests.  Using a POST method, we can insert a new record into our sample database with Fuse.
 
-    ![design-locations-api](images/design-22.png "Locations API")
+    ![design-locations-api](images/design-23.png "Locations API")
 
 *Congratulations!* You have imported your first API definition based on the OpenAPI Specification  using Red Hat's Apicurio. 
 
