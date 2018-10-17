@@ -1,0 +1,9 @@
+---
+- name: Check if {{ project }} namespace exists
+  shell: oc project {{ project }}
+  register: namespace_exists
+  ignore_errors: true
+
+- name: Create {{ project }} namespace
+  shell: oc new-project {{ project }} --display-name='{{ display_name }}'
+  when: namespace_exists.failed

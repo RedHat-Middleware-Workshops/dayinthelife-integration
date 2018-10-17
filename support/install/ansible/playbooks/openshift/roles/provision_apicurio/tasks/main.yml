@@ -2,6 +2,12 @@
 - name: Make sure we go back to default project
   shell: "oc project default"
 
+- name: Create Apicurio app
+  shell: "oc new-app -f https://raw.githubusercontent.com/jbossdemocentral/3scale-api-workshop/master/support/templates/apicurio-template.yml \
+  -p UI_ROUTE=apicurio-studio.{{ ocp_apps_domain }} -p API_ROUTE=apicurio-studio-api.{{ ocp_apps_domain }} \
+  -p WS_ROUTE=apicurio-studio-ws.{{ ocp_apps_domain }} -p AUTH_ROUTE=sso-{{sso_project}}.{{ocp_apps_domain}} -n {{ apicurio_project }}"
+  when: configure_only == 'false'
+
 - name: Get SSO token
   shell: "curl --insecure -X POST 'https://secure-sso-{{sso_project}}.{{ocp_apps_domain}}/auth/realms/master/protocol/openid-connect/token' \
   -H 'Content-Type: application/x-www-form-urlencoded' -d 'username=keyadmin' -d 'password=keypassword' -d 'grant_type=password' -d 'client_id=admin-cli'"
@@ -43,7 +49,7 @@
     validate_certs: no
     status_code: 201
   when: create_realms
-
+  
 - name: Create Apicurio users
   uri: 
     url: 'https://secure-sso-{{sso_project}}.{{ocp_apps_domain}}/auth/admin/realms/{{apicurio_project}}/users'
@@ -57,9 +63,3 @@
     status_code: 201
   with_sequence: start=1 end={{ usersno }} format=user%d
   when: create_realms
-
-- name: Create Apicurio app
-  shell: "oc new-app -f https://raw.githubusercontent.com/jbossdemocentral/3scale-api-workshop/master/support/templates/apicurio-template.yml \
-  -p UI_ROUTE=apicurio-studio.{{ ocp_apps_domain }} -p API_ROUTE=apicurio-studio-api.{{ ocp_apps_domain }} \
-  -p WS_ROUTE=apicurio-studio-ws.{{ ocp_apps_domain }} -p AUTH_ROUTE=secure-sso-{{sso_project}}.{{ocp_apps_domain}} -n {{ apicurio_project }}"
-  when: configure_only == 'false'

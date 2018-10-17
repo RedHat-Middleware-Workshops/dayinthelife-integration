@@ -1,5 +1,5 @@
 ---
-- name: Provision Che with Single User
+- name: Provision Che for {{ item }}
   shell: "oc process -f https://raw.githubusercontent.com/minishift/minishift/master/addons/che/templates/che-single-user.yml \
   --param PROJECT_NAME={{ item }} \
   --param DOMAIN_NAME={{ ocp_apps_domain }} \
@@ -7,7 +7,7 @@
   | oc create -f - -n {{ item }}"
   ignore_errors: true
 
-- name: Check if che Che is deployed
+- name: Check if Che IDE is deployed
   uri: 
     url: http://che-{{ item }}.{{ ocp_apps_domain }}/api/stack
     method: GET
