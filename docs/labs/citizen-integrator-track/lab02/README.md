@@ -150,7 +150,7 @@ Follow this instructions to set up the repository.
 
 1. Refresh your window to get it to the latest state.
 
-1. You will se 3 labels next to your Job. Click the **Services** label.
+1. You will see 3 labels next to your Job. Click the **Services** label.
 
     ![mock-job-services](images/mock-16.png "Job Services")
 
