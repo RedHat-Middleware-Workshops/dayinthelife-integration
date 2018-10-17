@@ -45,7 +45,7 @@ Open a browser window and navigate to `http://che-rh-che-0879.apps.GUID.openshif
 
     ![00-verify-pojos.png](images/00-verify-pojos.png "Verify Pojos")
 
-1. Open up the `CamelRoutes.java` file.  Notice that the existing implementation is barebones. First of all, we need to enter the SOAP service address and WSDL location for our CXF client to call.  Secondly, we need to create our Camel route implementation and create the RESTful endpoint.  To do this, include the following code:
+1. Open up the `CamelRoutes.java` file.  Notice that the existing implementation is barebones. First of all, we need to enter the SOAP service address and WSDL location for our CXF client to call.  Secondly, we need to create our Camel route implementation and create the RESTful endpoint.  To do this, include the following code (making sure to update the GUID and username values in the `to("cxf://` URL):
 
     ```java
 	
@@ -73,7 +73,7 @@ Open a browser window and navigate to `http://che-rh-che-0879.apps.GUID.openshif
 		from("direct:getalllocationphone")
 			.setBody().simple("${headers.id}")
 			.unmarshal().json(JsonLibrary.Jackson)
-			.to("cxf://http://location-soap-user1-dev.apps.52d6.openshift.opentlc.com/ws/location?serviceClass=com.redhat.LocationDetailServicePortType&defaultOperationName=contact")
+			.to("cxf://http://location-soap-userX.apps.GUID.openshiftworkshop.com/ws/location?serviceClass=com.redhat.LocationDetailServicePortType&defaultOperationName=contact")
 			
 			.process(
 					new Processor(){
