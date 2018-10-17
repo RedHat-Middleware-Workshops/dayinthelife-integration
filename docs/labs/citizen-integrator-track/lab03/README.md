@@ -1,33 +1,30 @@
-# Lab 102
+# Lab 3
 
-## API Mocking
+## Fuse Online
 
-### Bring your APIs to life
+## todo
 
 * Duration: 20 mins
-* Audience: Developers, Architects, Testers, Quality Engineers
+* Audience: Developers and Architects
 
 ## Overview
 
-When building and working with APIS, you often need to simulate the responses of the system before it has been fully completed. This is what we explore in this workshop - mocking up API structures quickly so they can be subjected to testing withouth having to create all the final service code.
+When it comes to quick API development, you need both the integration experts as well as application developers to easily develop, deploy the APIs.Here is how to create an simple API with Fuse online. 
 
 ### Why Red Hat?
 
-Red hat combines and number of commercial and Open Source tools to cover each part of the API Design lifecycle. In this lab we'll be using the Microcks open source tool.
+Red Hat Fuse integration solution empowers integration experts, application developers, and business users to engage in enterprise-wide collaboration and high-productivity self-service. 
 
 ### Skipping The Lab
-
-We know sometime we don't have enough time to go over step by step on the labs. So here is a [short video](wip-link) where you can see how to mock the API you previously created using Microcks.
-
-If you are planning to follow the next lab, here is a [link](wip-link) to the REST mock service running the Location API.
+We know sometimes we don't have enough time to go over the labs step by step. So here is a [short video](https://youtu.be/-3QGAD3Tt48) where you can see how to implement a contract-first API.
 
 ### Environment
 
 **URLs:**
 
-Check with your instruction the *GUID* number of your current workshop environment. Replace the actual number on all the URLs where you find **GUID**.
+Check with your instruction the *GUID* number of your current workshop environment. Replace the actual number on all the URLs where you find **GUID**. 
 
-Example in case of *GUID* = **1234**:
+Example in case of *GUID* = **1234**: 
 
 ```bash
 https://master.GUID.openshiftworkshop.com
@@ -55,160 +52,170 @@ openshift
 
 ## Lab Instructions
 
-### Step 0: Setup the collaboration environment using Git (Gogs)
-
-For this lab we require a collaboration environment based on Git. You can use GitHub, GitLab or other Git provider to finish this lab. If you don't want to use your personal account, the provided lab environment has an user provided for you in Gogs. 
-
-Follow this instructions to set up the repository.
+### Step 1: Create database connection
 
 1. Open a browser window and navigate to:
 
     ```bash
-    http://gogs.apps.GUID.openshiftworkshop.com/user/login?redirect_to=
+    http://https://syndesis-user1.apps.GUID.openshift.opentlc.com/
     ```
 
-1. Log into Gogs using your designated [user and password](#environment). Click on **Sign In**.
+    *Remember to replace the GUID with your [environment](#environment) value and your user number.*
 
-    ![mock-sign-in](images/mock-01.png "Sign In")
+1. Click on **Connection > Create Connection**
 
-1. In the main page, click in the **+** sign in the right top corner to display the *New* menu. Click the **New Migration** option.
+   ![00-create-connection.png](images/00-create-connection.png "Create Connection")
 
-    ![mock-gogs-new](images/mock-02.png "New Migration")
+1. Select **Database**
 
-1. Fill in the information of the repository migration with the following values:
+   ![01-select-database.png](images/01-select-database.png "Select Database")
 
-    * Clone Address: **https://github.com/jbossdemocentral/3scaleworkshop-openapi.git**
-    * Owner: **UserX**
-    * Repository Name: **locations-api**
+1. Enter below values for Database Configuration
 
-    ![mock-gogs-migration](images/mock-03.png "New Migration Repository")
-
-1. Click on **Migrate Repository** to fork the GitHub repo into Gogs.
-
-1. Click on **Upload File** to load the OpenAPI Specification you created and download in [Lab 1](lab01.md).
-
-    ![mock-gogs-upload](images/mock-04.png "Upload File")
-
-1. Select the file from your local disk folder where you downloaded the file.
-
-    ![mock-gogs-file](images/mock-05.png "Upload Commit")
-
-1. Click on the **Commit Changes** button to commit the file.
-
-1. Click the filename link **Locations-UserX.yaml** to open and review the file.
-
-    ![mock-gogs-file](images/mock-06.png "File Uploaded")
-
-1. If everything is fine, click the **RAW** button to get the raw download version of the file.
-
-    ![mock-gogs-raw](images/mock-07.png "Raw File")
-
-1. Copy the browser tab URL. Store that URL address as you will use it in the next steps of the lab. The URL should look like the following:
-
-    ```bash
-    http://gogs.apps.GUID.openshiftworkshop.com/user1/locations-api/raw/master/Locations-UserX.yaml
+    ```
+    Connection URL: jdbc:postgresql://postgresql.user1.svc:5432/sampledb
+    Username      : dbuser
+    Password      : password
+    Schema        : keep it empty
     ```
 
-    *If you feel more comfortable, you can also copy and paste the RAW button link from the previous step*.
+1. Click **Validate** and verify if the connection is successful. Click **Next** to proceed.
 
-### Step 1: Create a Microcks Job
+  ![02-click-validate.png](images/02-click-validate.png "Validate")
 
-1. Open a browser window and navigate to:
+6. Add `Connection details`. `Connection Name: LocationDB` and `Description: Location Database`. Click **Create**.
+   
+   ![03-connection-details.png](images/03-connection-details.png "Add Connection Details")
 
-    ```bash
-    http://microcks.apps.GUID.openshiftworkshop.com/
+7. Verify that the `Location Database` is successfully created.
+
+### Step 2: Create webhook integration
+
+Description goes here
+
+1. Click on **Integration > Create Integration** 
+
+  ![04-create-integration.png](images/04-create-integration.png "Create Integration")
+
+2. Choose **Webhook**
+
+  ![05-choose-weebhook.png](images/05-choose-weebhook.png "Choose webhook")
+
+3. Click on `Incoming webhook` 
+
+  ![06-incoming-webhook.png](images/06-incoming-webhook.png "Add incoming webhook")
+
+4. It navigates to the `Webhook Token` screen. Click **Next**
+
+  ![07-webhook-configuration.png](images/07-webhook-configuration.png "Webhook Configuration")
+
+5. Define the Output Data Type. `Select type` from the dropdown as `JSON instance`. Enter `Data type Name: Custom`. `Defination: `, copy below JSON data.
+
+    ```
+		{
+		  "id": 1,
+		  "name": "Kamarhati",
+		  "type": "Regional Branch",
+		  "status": "1",
+		  "location": {
+		    "lat": "-28.32555",
+		    "lng": "-5.91531"
+		  }
+		}
     ```
 
-1. Log in into Microks using your designated [user and password](#environment).
+  **Screenshot**
 
-    ![mock-openshift-login](images/mock-09.png "Openshift Login")
+ ![08-data-type.png](images/08-data-type.png "Data Type")
 
-1. You are now in the main Microcks page. Click the **Jobs** button to access the Jobs page.
+6. Click on `LocationDB` from the catalog and then select `Invoke SQL`
 
-    ![mock-jobs](images/mock-11.png "Job")
+ ![09-invoke-sql.png](images/09-invoke-sql.png "Invoke SQL")
 
-1. Click the **ADD JOB...** button to create your first job.
+7. Enter the SQL statement and click **Done**.
 
-    ![mock-add-job](images/mock-12.png "Add Job")
+ ```
+   INSERT INTO locations (id,name,lat,lng,location_type,status) VALUES (:#id,:#name,:#lat,:#lng,:#location_type,:#status )
+ ```
 
-1. In the Add Job dialog, type in the following information replacing **X** with your user number and GUID with your working [environment](#environment):
+ **Screenshot**
 
-    * Name: **Locations-UserX**
-    * Repository URL: **http://gogs.apps.GUID.openshiftworkshop.com/userX/locations-api/raw/master/Locations-UserX.yaml**
+ ![10-invoke-sql-2.png](images/10-invoke-sql-2.png "Invoke SQL 2")
 
-    *You can also copy and paste the raw url you saved from the Gogs repository (Step 0)*.
+8. Click on `Add step` and select `Data mapper`
 
-    ![mock-job-details](images/mock-13.png "Job Details")
+ ![11-data-mapper.png](images/11-data-mapper.png "Data Mapper")
 
-1. After your job is created, click the **ACTION** menu and select the **Activate** option.
+9. Drag and drop the matching `Source` Data type to the `Target`. Click **Done**
 
-    ![mock-job-activate](images/mock-14.png "Activate Job")
+ ![12-configure-mapper.png](images/12-configure-mapper.png "Configure Mapper")
 
-1. Repet the last step, but now select the **Start** option. This will start the synchronization job.
+10. Click **Publish** on the next screen and add `Integration Name: addLocation`. Again Click **Publish**.
 
-    ![mock-job-start](images/mock-15.png "Start Job")
+ ![13-publish-integration.png](images/13-publish-integration.png "Publish Integration")
 
-1. Refresh your window to get it to the latest state.
+*Congratulations*. You sucessfully published the integration. (Wait for few minutes to build and publish the integration)
 
-1. You will se 3 labels next to your Job. Click the **Services** label.
+### Step 3: Create a POST request
 
-    ![mock-job-services](images/mock-16.png "Job Services")
+1. Copy the External URL and form a POST request like below. We will be creating the `101th` record field.   
 
-1. In the dialog you will see your service listed. Click on the **Locations-UserX - 1.0.0.** link.
+ ![14-copy-URL.png](images/14-copy-URL.png "Copy URL")
 
-    ![mock-job-service](images/mock-17.png "Job Service")
+*Remember to replace the below hostname with the copied URL*
 
-1. Click **OK** to dismiss the dialog.
+**CURL POST request**
 
-1. This is your new REST mock service based on the OpenAPI definition you just loaded to Microcks. Click the **Operation GET /locations** link to check the example under that operation.
+  ```
+    curl -X POST \
+      https://i-addlocation-vinay.apps.rhtena.openshiftworkshop.com/webhook/pUGTWtLu8nnVTNJ1JYIsThcrKyMJAxBJMRURvRVEHSSvoMExTk \
+      -H 'Content-Type: application/json' \
+      -d '{
+        "id": 101,
+        "name": "Kamarhati",
+        "type": "Regional Branch",
+        "status": "1",
+        "location": {
+          "lat": "-28.32555",
+          "lng": "-5.91531"
+        }
+      
+  }' -k
+  ```
 
-    ![mock-mock-service](images/mock-18.png "Mock Service")
+2. Click on **Activity > Refresh** and verify if the newly record is created.
 
-1. You can check that the example we added to the definition in [Lab 1](lab01.md) will be used to return the mock values. Copy and save the **Mocks URL**, we will use that endopoint to test the REST mock service.
+ ![15-activity-refresh.png](images/15-activity-refresh.png "Activity Refresh")
 
-    ![mock-mock-operation](images/mock-19.png "Mock Operation")
+3. (Optional) Visit the application URL in browser and verify if the recoard can be fetched.
 
-### Step 2: Test the REST Mock Service
+  ```
+  http://location-service-user1.apps.rhtena.openshiftworkshop.com/locations/101
+  ```
 
-We now have a working REST mock service listening for requests. We will use an online cURL tool to test it.
 
-1. Open a browser window and navigate to:
-
-    ```bash
-    https://onlinecurl.com/
-    ```
-
-1. Enter the following URL: **http://microcks.apps.GUID.openshiftworkshop.com + {{your-user-api-mocks-url}}**. Remember to replace the GUID with your [environment](#environment) values and your user number. It should look like this:
-
-    ```bash
-    http://microcks.apps.GUID.openshiftworkshop.com/rest/Locations-UserX/1.0.0/locations
-    ```
-
-1. Click the **START YOUR CURL** button.
-
-    ![mock-curl-service](images/mock-20.png "cURL Service")
-
-1. The page will load the response information from the service. You will be able to see the *RESPONSE HEADERS* and the actual *RESPONSE_BODY*. This last part contains the examples we add during the design phase.
-
-    ![mock-curl-response](images/mock-21.png "cURL Response")
-
-*Congratulations!* You have successfully configure a Microcks Job to create a REST mock service to test your API.
-
-## Steps Beyond
-
-> So, you want more? ...
+  ```
+  {
+    "id" : 101,
+    "name" : "Kamarhati",
+    "type" : "Regional Branch",
+    "status" : "1",
+    "location" : {
+      "lat" : "-28.32555",
+      "lng" : "-5.91531"
+    }
+  }
+  ```
 
 ## Summary
 
-In this lab you used Microcks to configure a REST mock service for the API definition you created in the previous lab. REST mock services allows you to simulate a REST API service when you are in a prototyping stage of your API program journey. 
+In this lab you discovered how to create an adhoc API service using Fuse Online. 
 
-Microcks allows you to test a number of various responses for client application requests. When deploying API, micro-services or SOA practices at large scale, Microcks solves the problems of providing and sharing consistent documentation and mocks to the involved teams. It acts as a central repository and server that can be used for browsing but also by your Continuous Integration builds or pipelines.
+You can now proceed to [Lab 5](../lab04/#lab-4)
 
-You can now proceed to [Lab 2](../lab02/#lab-2)
 
 ## Notes and Further Reading
 
-* Microcks
-  * [Webpage](http://microcks.github.io/)
-  * [Jenkins Plugin](http://microcks.github.io/automating/jenkins/)
-  * [Installing on OpenShift](http://microcks.github.io/installing/openshift/)
+TBD
+
+
