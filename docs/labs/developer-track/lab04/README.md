@@ -51,8 +51,8 @@ Open a browser window and navigate to `http://che-rh-che-0879.apps.GUID.openshif
 	
 	...
 
-    	@Autowired
-    	private CamelContext camelContext;
+	@Autowired
+	private CamelContext camelContext;
 	
 	private static final String SERVICE_ADDRESS = "http://localhost:8080/ws/location";
 	private static final String WSDL_URL = "http://localhost:8080/ws/location?wsdl";
