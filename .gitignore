@@ -21,3 +21,4 @@ target/
 .camel/
 lib/
 /.metadata/
+*.retry
