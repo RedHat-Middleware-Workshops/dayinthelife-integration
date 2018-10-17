@@ -18,7 +18,7 @@
   shell: "oc new-app --template=postgresql-ephemeral --param=POSTGRESQL_USER=dbuser \
   --param=POSTGRESQL_PASSWORD=password --param=POSTGRESQL_DATABASE=sampledb \
   -n user{{ item  }}"
-  when: configure_only is false
+  when: configure_only == 'false'
 
 - name: Give {{ item }} access to user project
   shell: "oc policy add-role-to-user admin user{{ item  }} -n user{{ item }}"
