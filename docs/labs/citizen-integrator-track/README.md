@@ -6,6 +6,6 @@
 2. [Review mocked endpoints in Microcks](lab02/#lab-2)
 3. [Fuse Online](lab03/#lab-3) 
 4. [Managing API Endpoints](lab04/#lab-4)
-5. [API Security](lab05/#lab-5) 
-6. Discovering API from developer portal (https://github.com/jbossdemocentral/3scale-api-workshop/tree/master/docs/labs/lab05)
+5. [API Security](lab05/#lab-5)
+6. [API Developer Portal](lab06/#lab-6) 
 7. INTERNATIONAL INC in Action (TODO)
