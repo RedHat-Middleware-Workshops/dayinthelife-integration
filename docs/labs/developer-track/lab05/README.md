@@ -9,6 +9,7 @@
 
 ## Overview
 
+<<<<<<< HEAD
 TBD
 
 ### Why Red Hat?
@@ -18,6 +19,16 @@ TBD
 ### Skipping the lab
 
 TBD
+=======
+When it comes to quick API development, you need both the integration experts as well as application developers to easily develop, deploy the APIs.Here is how to create an simple API with Fuse online. 
+
+### Why Red Hat?
+
+Red Hat Fuse integration solution empowers integration experts, application developers, and business users to engage in enterprise-wide collaboration and high-productivity self-service. 
+
+### Skipping The Lab
+We know sometimes we don't have enough time to go over the labs step by step. So here is a [short video](https://youtu.be/-3QGAD3Tt48) where you can see how to implement a contract-first API.
+>>>>>>> b97728ca82e310968ffc24dde6f6e6236d2ef46e
 
 ### Environment
 
@@ -210,10 +221,18 @@ Description goes here
 
 ## Summary
 
+<<<<<<< HEAD
 TBD
 
 You can now proceed to [Lab 6](../lab06/#lab-6)
 
+=======
+In this lab you discovered how to create an adhoc API service using Fuse Online. 
+
+You can now proceed to [Lab 6](../lab06/#lab-6)
+
+
+>>>>>>> b97728ca82e310968ffc24dde6f6e6236d2ef46e
 ## Notes and Further Reading
 
 TBD
