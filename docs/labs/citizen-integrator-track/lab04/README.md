@@ -201,7 +201,7 @@ The order in which the policies are executed, known as the “policy chain”, c
 
 1. Scroll back to the top of the page. Fill in the information for accessing your API:
 
-    * Private Base URL: **http://location-service.userX.svc:8080**
+    * Private Base URL: **http://location-service.international.svc:8080**
 
     * Staging Public Base URL: **https://location-userX-api-staging.amp.apps.GUID.openshiftworkshop.com:443**
 
