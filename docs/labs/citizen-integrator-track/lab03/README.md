@@ -73,7 +73,7 @@ openshift
 1. Enter below values for Database Configuration
 
     ```
-    Connection URL: jdbc:postgresql://postgresql.user1.svc:5432/sampledb
+    Connection URL: jdbc:postgresql://postgresql.international.svc:5432/sampledb
     Username      : dbuser
     Password      : password
     Schema        : keep it empty
