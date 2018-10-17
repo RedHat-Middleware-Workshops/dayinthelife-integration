@@ -1,31 +1,35 @@
-# Lab 6
+# Lab 4
 
-## Fuse Online
+## Managing API Endpoints
 
-## todo
+### Take control of your APIs
 
-* Duration: 20 mins
-* Audience: Developers and Architects
+* Duration: 15 mins
+* Audience: API Owners, Product Managers, Developers, Architects
 
 ## Overview
 
-TBD
+Once you have APIs deployed in your environment, it becomes critically important to manage who may use them and for what purpose. You also need to begin to track usage of these different users to know who is/is not succeeding in their usage. For this reason in this lab you will be adding management capabilites to the API to give you control and visibility of it's usage.
 
 ### Why Red Hat?
 
-TBD
+Red Hat provides one the leading API Management tools which provide management services. The 3scale API Management solution enables you to quickly and easy protect and manage your APIs.
 
-### Skipping the lab
+### Skipping The Lab
 
-TBD
+If you are planning to follow to the next lab, there is an already running API proxy for the Location API Service in this endpoint:
+
+```bash
+https://location-service-api.amp.apps.GUID.openshiftworkshop.com
+```
 
 ### Environment
 
 **URLs:**
 
-Check with your instruction the *GUID* number of your current workshop environment. Replace the actual number on all the URLs where you find **GUID**. 
+Check with your instruction the *GUID* number of your current workshop environment. Replace the actual number on all the URLs where you find **GUID**.
 
-Example in case of *GUID* = **1234**: 
+Example in case of *GUID* = **1234**:
 
 ```bash
 https://master.GUID.openshiftworkshop.com
@@ -53,169 +57,203 @@ openshift
 
 ## Lab Instructions
 
-### Step 1: Create database connection
+### Step 1: Define your API Proxy
+
+Your 3scale Admin Portal provides access to a number of configuration features.
 
 1. Open a browser window and navigate to:
 
     ```bash
-    http://https://syndesis-user1.apps.GUID.openshift.opentlc.com/
+    https://userX-admin.apps.GUID.openshiftworkshop.com/
     ```
 
     *Remember to replace the GUID with your [environment](#environment) value and your user number.*
 
-1. Click on **Connection > Create Connection**
+1. Accept the self-signed certificate if you haven't.
 
-   ![00-create-connection.png](images/00-create-connection.png "Create Connection")
+    ![selfsigned-cert](images/00-selfsigned-cert.png "Self-Signed Cert")
 
-1. Select **Database**
+1. Log into 3scale using your designated [user and password](#environment). Click on **Sign In**.
 
-   ![01-select-database.png](images/01-select-database.png "Select Database")
+    ![01-login.png](images/01-login.png)
 
-1. Enter below values for Database Configuration
+1. The first page you will land is the *API Management Dashboard*. Click on the **API** menu link.
 
+    ![01a-dashboard.png](images/01a-dashboard.png)
+
+1. This is the *API Overview* page. Here you can take an overview of all your services. Click on the **Integration** link.
+
+    ![02-api-integration.png](images/02-api-integration.png)
+
+1. Click on the **edit integration settings** to edit the API settings for the gateway.
+
+    ![03-edit-settings.png](images/03-edit-settings.png)
+
+1. Keep select the **APIcast** deployment option in the *Gateway* section.
+
+    ![04-apicast.png](images/04-apicast.png)
+
+1. Scroll down and keep the **API Key (user_key)** Authentication.
+
+    ![05-authentication.png](images/05-authentication.png)
+
+1. Click on **Update Service**.
+
+1. Click on the **add the Base URL of your API and save the configuration** button
+
+    ![04-base-url](images/04-base-url.png)
+
+1. Scroll down and expand the **MAPPING RULES** section to define the allowed methods on our exposed API.
+
+    *The default mapping is the root ("/") of our API resources, something that we might want to avoid*.
+
+    ![07b-mapping-rules.png](images/07b-mapping-rules.png)
+
+1. Click on the **Metric or Method (Define)**  link.
+
+    ![07b-mapping-rules-define.png](images/07b-mapping-rules-define.png)
+
+1. Click on the **New Method** link in the *Methods* section.
+
+    ![07b-new-method.png](images/07b-new-method.png)
+
+1. Fill in the information for your Fuse Method.
+
+    * Friendly name: **Get Locations**
+
+    * System name: **locations_all**
+
+    * Description: **Method to return all locations**
+
+    ![07b-new-method-data.png](images/07b-new-method-data.png)
+
+1. Click on **Create Method**.
+
+1. Click on the **Add mapping rule** link
+
+    ![07b-add-mapping-rule.png](images/07b-add-mapping-rule.png)
+
+1. Click on the edit icon next to the GET mapping rule.
+
+    ![07b-edit-mapping-rule.png](images/07b-edit-mapping-rule.png)
+
+1. Type in the *Pattern* text box the following: 
+
+    ```bash
+    /locations
     ```
-    Connection URL: jdbc:postgresql://postgresql.user1.svc:5432/sampledb
-    Username      : dbuser
-    Password      : password
-    Schema        : keep it empty
+
+1. Select **locations_all** as Method from the combo box.
+
+    ![07b-getall-rule.png](images/07b-getall-rule.png)
+
+### Step 2: Define your API Policies
+
+Red Hat 3scale API Management provides units of functionality that modify the behavior of the API Gateway without the need to implement code. These management components are know in 3scale as policies.
+
+The order in which the policies are executed, known as the “policy chain”, can be configured to introduce differing behavior based on the position of the policy in the chain. Adding custom headers, perform URL rewriting, enable CORS, and configurable caching are some of the most common API gateway capabilities implemented as policies.
+
+1. Scroll down and expand the **POLICIES** section to define the allowed methods on our exposed API.
+
+    ![01-policies](images/policies-01.png "Policies")
+
+    *The default policy in the Policy Chain is APIcast. This is the main policy and must of the times you want to keep it*.
+
+1. Click the **Add Policy** link to add a new policy to the chain.
+
+    ![02-add-policy](images/policies-02.png)
+
+    _Out-of-the-box 3scale includes a set of policies you can use to modify the way your API gateway behaves. For this lab, we will focus on the **Cross Origin Resource Sharing (CORS)** one as we will use it in the consumption lab_.
+
+1. Click in the **CORS** link to add the policy.
+
+    ![03-cors-policy](images/policies-03.png "CORS")
+
+1. Put your mouse over the right side of the policy name to enable the reorder of the chain. Drag and drop the CORS policy to the top of the chain.
+
+    ![04-chain-order](images/policies-04.png "Chain Order")
+
+1. Now **CORS** policy will be executed before the **APIcast**. Click the **CORS** link to edit the policy.
+
+    ![05-cors-configuration](images/policies-05.png "Cors Configuration")
+
+1. In the *Edit Policy* section, click the green **+** button to add the allowed headers.
+
+    ![06-add-headers](images/policies-06.png "Add Allow Headers")
+
+1. Type **Authorization** in the *Allowed headers* field. 
+
+    ![07-authorization-header](images/policies-07.png "Add Authorization Header")
+
+1. Tick the **allow_credentials** checkbox and fill in with a star (**\***) the *allow_origin* text box.
+
+    ![08-allow-origin](images/policies-08.png "Allow Origin")
+
+1. Click twice the green **+** button under *ALLOW_METHODS* to enable two combo boxes for the CORS allowed methods.
+
+1. Select **GET** from the first box and **OPTIONS** from the second box.
+
+    ![09-allow-methods](images/policies-09.png "Allow Methods")
+
+1. Click the **Submit** button to save the policy configuration.
+
+### Step 3: Configure the Upstream Endpoint
+
+1. Scroll back to the top of the page. Fill in the information for accessing your API:
+
+    * Private Base URL: **http://location-service.international.svc:8080**
+
+    * Staging Public Base URL: **https://location-userX-api-staging.amp.apps.GUID.openshiftworkshop.com:443**
+
+    * Production Public Base URL: **https://location-userX-api.amp.apps.GUID.openshiftworkshop.com:443**
+
+    *Remember to replace the GUID with your [environment](#environment) value*.
+
+    *We are using the internal API service, as we are deploying our services inside the same OpenShift cluster*.
+
+    ![07-baseurl-configuration.png](images/07-baseurl-configuration.png)
+
+1. Scroll down to the **API Test GET request**.
+
+1. Type in the textbox:
+
+    ```bash
+    /locations
     ```
 
-1. Click **Validate** and verify if the connection is successful. Click **Next** to proceed.
+1. Click on the **Update the Staging Environment** to save the changes and check the connection between client, gateway and API.
 
-  ![02-click-validate.png](images/02-click-validate.png "Validate")
+    ![08-update-staging.png](images/08-update-staging.png)
 
-6. Add `Connection details`. `Connection Name: LocationDB` and `Description: Location Database`. Click **Create**.
-   
-   ![03-connection-details.png](images/03-connection-details.png "Add Connection Details")
+    *If everything works, you will get a green message on the left*.
 
-7. Verify that the `Location Database` is successfully created.
+1. Click on **Back to Integration &amp; Configuration** link to return to your API overview.
 
-### Step 2: Create webhook integration
+    ![08aa-back-to-integration.png](images/08aa-back-to-integration.png)
 
-Description goes here
+1. Click on the **Promote v.1 to Production** button to promote your configuration from staging to production.
 
-1. Click on **Integration > Create Integration** 
+    ![08a-promote-production.png](images/08a-promote-production.png)
 
-  ![04-create-integration.png](images/04-create-integration.png "Create Integration")
+*Congratulations!* You have configured 3scale access control layer as a proxy to only allow authenticated calls to your backend API. 3scale is also now:
 
-2. Choose **Webhook**
+* Authenticating (If you test with an incorrect API key it will fail) 
+* Recording calls (Visit the Analytics tab to check who is calling your API).
 
-  ![05-choose-weebhook.png](images/05-choose-weebhook.png "Choose webhook")
+## Steps Beyond
 
-3. Click on `Incoming webhook` 
+In this lab we just covered the basic creating of a proxy for our API service. Red Hat 3scale API Management also allows us to get a track of the security (as you can see in the next lab) as well as the usage of our API. If getting value from APIs is also important to you, 3scale allows you to monetize your APIs with it's embedded billing system.
 
-  ![06-incoming-webhook.png](images/06-incoming-webhook.png "Add incoming webhook")
-
-4. It navigates to the `Webhook Token` screen. Click **Next**
-
-  ![07-webhook-configuration.png](images/07-webhook-configuration.png "Webhook Configuration")
-
-5. Define the Output Data Type. `Select type` from the dropdown as `JSON instance`. Enter `Data type Name: Custom`. `Defination: `, copy below JSON data.
-
-    ```
-		{
-		  "id": 1,
-		  "name": "Kamarhati",
-		  "type": "Regional Branch",
-		  "status": "1",
-		  "location": {
-		    "lat": "-28.32555",
-		    "lng": "-5.91531"
-		  }
-		}
-    ```
-
-  **Screenshot**
-
- ![08-data-type.png](images/08-data-type.png "Data Type")
-
-6. Click on `LocationDB` from the catalog and then select `Invoke SQL`
-
- ![09-invoke-sql.png](images/09-invoke-sql.png "Invoke SQL")
-
-7. Enter the SQL statement and click **Done**.
-
- ```
-   INSERT INTO locations (id,name,lat,lng,location_type,status) VALUES (:#id,:#name,:#lat,:#lng,:#location_type,:#status )
- ```
-
- **Screenshot**
-
- ![10-invoke-sql-2.png](images/10-invoke-sql-2.png "Invoke SQL 2")
-
-8. Click on `Add step` and select `Data mapper`
-
- ![11-data-mapper.png](images/11-data-mapper.png "Data Mapper")
-
-9. Drag and drop the matching `Source` Data type to the `Target`. Click **Done**
-
- ![12-configure-mapper.png](images/12-configure-mapper.png "Configure Mapper")
-
-10. Click **Publish** on the next screen and add `Integration Name: addLocation`. Again Click **Publish**.
-
- ![13-publish-integration.png](images/13-publish-integration.png "Publish Integration")
-
-*Congratulations*. You sucessfully published the integration. (Wait for few minutes to build and publish the integration)
-
-### Step 3: Create a POST request
-
-1. Copy the External URL and form a POST request like below. We will be creating the `101th` record field.   
-
- ![14-copy-URL.png](images/14-copy-URL.png "Copy URL")
-
-*Remember to replace the below hostname with the copied URL*
-
-**CURL POST request**
-
-  ```
-    curl -X POST \
-      https://i-addlocation-vinay.apps.rhtena.openshiftworkshop.com/webhook/pUGTWtLu8nnVTNJ1JYIsThcrKyMJAxBJMRURvRVEHSSvoMExTk \
-      -H 'Content-Type: application/json' \
-      -d '{
-        "id": 101,
-        "name": "Kamarhati",
-        "type": "Regional Branch",
-        "status": "1",
-        "location": {
-          "lat": "-28.32555",
-          "lng": "-5.91531"
-        }
-      
-  }' -k
-  ```
-
-2. Click on **Activity > Refresh** and verify if the newly record is created.
-
- ![15-activity-refresh.png](images/15-activity-refresh.png "Activity Refresh")
-
-3. (Optional) Visit the application URL in browser and verify if the recoard can be fetched.
-
-  ```
-  http://location-service-user1.apps.rhtena.openshiftworkshop.com/locations/101
-  ```
-
-
-  ```
-  {
-    "id" : 101,
-    "name" : "Kamarhati",
-    "type" : "Regional Branch",
-    "status" : "1",
-    "location" : {
-      "lat" : "-28.32555",
-      "lng" : "-5.91531"
-    }
-  }
-  ```
+Try to navigate through the rest of the tabs of your Administration Portal. Did you notice that there are application plans associated to your API? Application Plans allow you to take actions based on the usage of your API, like doing rate limiting or charging by hit or monthly usage.
 
 ## Summary
 
-TBD
+You set up an API management service and API proxies to control traffic into your API. From now on you will be able to issue keys and rights to users wishing to access the API.
 
-You can now proceed to [Lab 7](../lab07/#lab-7)
+You can now proceed to [Lab 5](../lab05/#lab-5)
 
 ## Notes and Further Reading
 
-TBD
-
-
+* [Red Hat 3scale API Management](http://microcks.github.io/)
+* [Developers All-in-one 3scale install](https://developers.redhat.com/blog/2017/05/22/how-to-setup-a-3scale-amp-on-premise-all-in-one-install/)
+* [ThoughtWorks Technology Radar - Overambitious API gateways](https://www.thoughtworks.com/radar/platforms/overambitious-api-gateways)
