@@ -1,0 +1,262 @@
+{
+	"variables": [],
+	"info": {
+		"_postman_id": "edb96410-8515-4e9c-a365-300a4a33e377",
+		"name": "Locations",
+		"description": "version=1.0 - Locations API description",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "locations",
+			"description": "Folder for locations",
+			"item": [
+				{
+					"name": "Retreive all Locations",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {},
+						"url": "http:///locations"
+					},
+					"response": [
+						{
+							"id": "bfe7c89b-7c5b-49f2-8bab-472829ef8caf",
+							"name": "locations",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {},
+								"url": "http:///locations"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Kamarhati\",\n    \"type\": \"Regional Branch\",\n    \"status\": \"1\",\n    \"location\": {\n      \"lat\": \"-28.32555\",\n      \"lng\": \"-5.91531\"\n    }\n  },\n  {\n    \"id\": 2,\n    \"name\": \"Otranto\",\n    \"type\": \"Local Office\",\n    \"status\": \"1\",\n    \"location\": {\n      \"lat\": \"-8.01254\",\n      \"lng\": \"101.47364\"\n    }\n  },\n  {\n    \"id\": 3,\n    \"name\": \"Millesimo\",\n    \"type\": \"Headquarter\",\n    \"status\": \"1\",\n    \"location\": {\n      \"lat\": \"78.88435\",\n      \"lng\": \"99.05294\"\n    }\n  }\n]"
+						}
+					]
+				},
+				{
+					"name": "Retreive Location by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b7dd0b09-97b0-40b4-9fa0-81c6b30b8232",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http:///locations/:id",
+							"host": [
+								"http:"
+							],
+							"port": "",
+							"path": [
+								"",
+								"",
+								"locations",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"id": "e8bfb30d-9550-4e7f-8967-a78fb2111e4b",
+							"name": "Retreive Location ID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "http:///locations/:id",
+									"host": [
+										"http:"
+									],
+									"port": "",
+									"path": [
+										"",
+										"",
+										"locations",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text",
+									"name": "Content-Type"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"id\": 1,\n  \"name\": \"Kamarhati\",\n  \"type\": \"Regional Branch\",\n  \"status\": \"1\",\n  \"location\": {\n    \"lat\": \"-28.32555\",\n    \"lng\": \"-5.91531\"\n  }\n}"
+						}
+					]
+				},
+				{
+					"name": "Retreive phone using Location ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http:///location/phone/:id",
+							"host": [
+								"http:"
+							],
+							"port": "",
+							"path": [
+								"",
+								"",
+								"location",
+								"phone",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"id": "0053f0f2-9411-4b08-bd39-ff0714cd8ee9",
+							"name": "Retreive phone using Location ID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "http:///location/phone/:id",
+									"host": [
+										"http:"
+									],
+									"port": "",
+									"path": [
+										"",
+										"",
+										"location",
+										"phone",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text",
+									"name": "Content-Type"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"id\" : 4,\n  \"operatingHour\" : \"8:00 AM - 5:00 PM\",\n  \"owner\" : \"XXX XXX\",\n  \"phone\" : \"345-678-9567\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Create (add) a new Location",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": 101,\n  \"name\": \"International Inc Canada\",\n  \"location\": {\n    \"lat\": 43.6532,\n    \"lng\": 79.3832\n  },\n  \"type\": \"Headquarter\",\n  \"status\": \"1\"\n}"
+						},
+						"url": "/locations"
+					},
+					"response": [
+						{
+							"id": "5fa92a27-f4f4-4c05-9182-5f15d58bf70e",
+							"name": "Create (add) a new Location",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": 101,\n  \"name\": \"International Inc Canada\",\n  \"location\": {\n    \"lat\": 43.6532,\n    \"lng\": 79.3832\n  },\n  \"type\": \"Headquarter\",\n  \"status\": \"1\"\n}"
+								},
+								"url": "/locations"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"header": [],
+							"cookie": [],
+							"body": "Successfully created location."
+						}
+					]
+				}
+			]
+		}
+	]
+}
