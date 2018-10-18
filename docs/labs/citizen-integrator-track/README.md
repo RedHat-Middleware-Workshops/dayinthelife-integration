@@ -8,4 +8,4 @@
 4. [Managing API Endpoints](lab04/#lab-4)
 5. [API Security](lab05/#lab-5)
 6. [API Developer Portal](lab06/#lab-6) 
-7. INTERNATIONAL INC in Action (TODO)
+7. [Testing the International Inc. Locations webpage](lab07/#lab-7)
