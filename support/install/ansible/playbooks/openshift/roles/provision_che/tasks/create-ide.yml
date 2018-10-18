@@ -95,6 +95,15 @@
                 }
               },
               {
+                "commandLine": "mvn camel-restdsl-swagger:generate -f ${current.project.path}",
+                "name": "Generate REST DSL from Swagger",
+                "type": "mvn",
+                "attributes": {
+                  "goal": "Build",
+                  "previewUrl": ""
+                }
+              },
+              {
                 "commandLine": "mvn generate-sources -f ${current.project.path}",
                 "name": "run generate-sources",
                 "type": "mvn",
