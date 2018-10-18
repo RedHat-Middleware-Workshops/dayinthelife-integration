@@ -88,7 +88,11 @@ openshift
 
     *Remember to replace the GUID with your [environment](#environment) value and your user number.*
 
+<<<<<<< HEAD
+1. Click on **Create Project** and enter a unique name e.g. `simon-dev`.
+=======
 1. Click on **Create Project** and enter a unique name using your username e.g. `user-X-dev`.
+>>>>>>> b97728ca82e310968ffc24dde6f6e6236d2ef46e
 
     ![00-create-ocp-project.png](images/00-create-ocp-project.png "Create Project")
 
