@@ -10,4 +10,4 @@
 6. Import 3scale management (TODO)
 7. [API Developer Portal](lab07/#lab-7)
 8. Secure endpoint development on Node.js (lab08/#lab-8)
-9. INTERNATIONAL INC in Action (TODO)
+9. [Testing the International Inc. Locations webpage](lab09/#lab-9)

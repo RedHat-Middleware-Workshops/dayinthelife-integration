@@ -1,4 +1,4 @@
-# Lab 6
+# Lab 8
 
 ## API Consumption
 
@@ -443,7 +443,7 @@ So, you want more? You can explore in detail the documentation on the Javascript
 
 In total you should now have been able to follow all the steps from designing and API, deploying it's code, issuing keys, connecting OpenID connect and calling it from an application. This gives you a brief overview of the creation and deployment of an API. There are many variations and extensions of these general principles to explore!
 
-This is the last lab of this workshop.
+You can now proceed to [Lab 9](../lab09/#lab-9)
 
 ## Notes and Further Reading
 
