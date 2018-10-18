@@ -2,9 +2,9 @@
 
 ## Testing the International Inc. Locations webpage
 
-### Connect Applications and APIs
+### Testing your web application
 
-* Duration: 15 mins
+* Duration: 10 mins
 * Audience: API Consumers, Developers, Architects
 
 ### Overview
@@ -57,7 +57,7 @@ openshift
 
 ## Lab Instructions
 
-### Step 1: Deploying International Inc Web Page
+### Step 1: Opening International Inc Web Page
 
 International Inc web development create a Node.js application for the company home page. They added a map service to locate the offices around the world. In this step you will deploy that application.
 
@@ -81,7 +81,7 @@ International Inc web development create a Node.js application for the company h
 
     ![02-user-project](images/deploy-02.png "User Project")
 
-1. Click the Overview link, then **Routes - External Traffic** next to the **WWW** pod to open a new tab and connect to *International Inc* new website.
+1. Click the Overview link, then **Routes - External Traffic** next to the **WWW** pod to open a new tab and connect to *International Inc* new website.  Append `/index.html` to the the route URL as it loads and re-load the webpage.
 
     ![13-build-complete](images/deploy-13.png "Build Complete")
 
@@ -106,6 +106,22 @@ International Inc web development create a Node.js application for the company h
     ![23-realm-login](images/consume-23.png "Login Realm")
 
 1. You will be redirected again to the **LOCATIONS** page where now you will be able to see the map with the International Inc Offices.
+
+    ![11-locations-page](images/consume-14.png "Locations Page")
+
+### Step 3: Troubleshooting the Locations Page
+
+1. In most cases, the Locations web page will **NOT** show the locations because of a self-signed certificate issue in your web-browser.  See the below example with missing locations:
+
+    ![00-missing-locations](images/00-missing-locations.png "Missing Locations")
+
+1. To resolve this issue in Chrome, navigate to *View > Developer > Developer Tools* menu.  A Developer Tools console should appear.
+
+    ![00-developer-console](images/00-developer-console.png "Developer Console")
+
+1. In the developer console, a red error should appear indicating a cert issue. Click on the link and accept the certificate.  
+
+1. Refresh the page, and the locations should appear.
 
     ![11-locations-page](images/consume-14.png "Locations Page")
 
