@@ -89,7 +89,7 @@ openshift
 
 1. Import the API created by your friendly Citizen Integrator:
 
-    * Import From URL: **Open API 2.0 (Swagger)**
+    * Import Type: **Import From URL**
     * Url: `https://raw.githubusercontent.com/RedHatWorkshops/dayinthelife-integration/master/docs/labs/developer-track/resources/Locations.yaml`
 
     ![design-import-api](images/design-04.png "Import API")
@@ -120,7 +120,7 @@ Let's start verifying your API.
 
 ### Step 3: Verify the location object
 
-1. Click on the `</> location` object link under the *Definitions* section.  Notice that the object has a bunch of properties defined which make up the object.
+1. Click on the `</> location` object link under the *Data Types* section.  Notice that the object has a bunch of properties defined which make up the object.
 
     ![design-add-path](images/design-06.png "Add Path")
 
