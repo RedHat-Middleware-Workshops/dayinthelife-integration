@@ -77,7 +77,7 @@ Follow this instructions to set up the repository.
 
 1. Fill in the information of the repository migration with the following values:
 
-    * Clone Address: **https://github.com/jbossdemocentral/3scaleworkshop-openapi.git**
+    * Clone Address: **https://github.com/RedHatWorkshops/dayinthelife-openapi.git**
     * Owner: **UserX**
     * Repository Name: **locations-api**
 
