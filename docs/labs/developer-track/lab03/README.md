@@ -264,7 +264,7 @@ Once you've received the swagger specification (API contract) from your friendly
 
     ![00-move-contact-info-processor.png](images/00-move-contact-info-processor.png "Contact Info Result Processor")
 
-1. Open the generated `CamelRoutes.java` file.  We need to first instantiate our newly created Result Processors' and include the necessary imports.  Update the `CamelRoutes.java` file with the below additions:
+1. Open the generated `CamelRoutes.java` file.  We need to first instantiate our newly created Result Processors' and include the necessary imports.  Also, be sure to add the `@Component` declaration to the class definition statement (under the `@Generated`).  Update the `CamelRoutes.java` file with the below additions:
 
     ```java
 	...
@@ -368,7 +368,23 @@ Once you've received the swagger specification (API contract) from your friendly
         ;
     ```
 
-1. Now that we have our API service implementation, we can deploy it to our running OpenShift environment.  To do this, navigate back to the **Manage commands** screen, double-click the **fabric8:deploy** script and hit **Run**.  The script will run and deploy to your OCPPROJECT.
+1. Before we test our newly created Camel Routes, we need to update `src/main/resources/application.properties` to point to our Postgres database.  Set the `postgresql.service.name` property to `postgres.OCPPROJECT.svc` so that it points to our OpenShift service.
+
+    ![00-update-properties.png](images/00-update-properties.png "Update Properties")
+
+1. Now we are ready to test our new Camel route locally. To do this, navigate back to the **Manage commands** screen, double-click the **run:spring-boot** script and hit **Run**.  The script will run locally in Eclipse Che.
+
+    ![00-run-locally.png](images/00-run-locally.png "Maven Deploy") 
+
+1. Once SpringBoot has started-up, right-click the dev-machine (under **Machines**) and select **Servers**.  Click the link corresponding to port 8080.  A new tab should open.
+
+    ![00-open-servers.png](images/00-open-servers.png "Open Servers") 
+
+1. Click on the route link above the location-service pod and append `/locations` to the URI.  As a result, you should receive a list of all locations
+
+    ![00-location-list.png](images/00-location-list.png "Location List")
+
+1. Now that we've tested our API service implementation locally, we can deploy it to our running OpenShift environment.  To do this, navigate back to the **Manage commands** screen, double-click the **fabric8:deploy** script and hit **Run**.  The script will run and deploy to your OCPPROJECT.
 
     ![00-mvn-deploy.png](images/00-mvn-deploy.png "Maven Deploy")
 
