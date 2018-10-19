@@ -177,7 +177,7 @@ You can add from the Admin Portal under *API Docs* the API definition to generat
 
 In this lab you discovered how to add a developer facing experience to your APIs. Developers in your organization or outside of it can now register, gain access to API keys and develop sample applications.
 
-You can now proceed to [Lab 6](../lab06/#lab-6)
+You can now proceed to [Lab 7](../lab07/#lab-7)
 
 ## Notes and Further Reading
 

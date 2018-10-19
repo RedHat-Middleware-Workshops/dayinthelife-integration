@@ -107,7 +107,7 @@ openshift
 
 1. Click on the **Save** button.
 
-1. Click on the **Credentials** tab to reset the password. Type **apipassword** as the *New Password* and *Password Confirmation*. Turn OFF the *Temporary* to avoid the password reset at the next login.
+1. Click on the **Credentials** tab to reset the password. Type **apipassword** as the *New Password* and *Password Confirmation*. Turn OFF the **Temporary** to avoid the password reset at the next login.
 
     ![00-user-credentials.png](images/00-user-credentials.png "User Credentials")
 
