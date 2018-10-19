@@ -2,9 +2,22 @@
 - name: Make sure we go back to default project
   shell: "oc project default"
 
+# TODO: Add variables for username and password.
+# username: eval_rhsso_admin_username
+# password: eval_rhsso_admin_password
+# ocp_apps_domain: eval_app_host
+# sso_project: sso
+
+- set_fact:
+    sso_project: rhsso
+
+- debug:
+    msg: "curl --insecure -X POST 'https://secure-sso-{{sso_project}}.{{ocp_apps_domain}}/auth/realms/master/protocol/openid-connect/token' \
+  -H 'Content-Type: application/x-www-form-urlencoded' -d 'username={{ eval_rhsso_admin_username | default('keyadmin') }}' -d 'password={{ eval_rhsso_admin_password | default('keypassword') }}' -d 'grant_type=password' -d 'client_id=admin-cli'"
+
 - name: Get SSO token
   shell: "curl --insecure -X POST 'https://secure-sso-{{sso_project}}.{{ocp_apps_domain}}/auth/realms/master/protocol/openid-connect/token' \
-  -H 'Content-Type: application/x-www-form-urlencoded' -d 'username=keyadmin' -d 'password=keypassword' -d 'grant_type=password' -d 'client_id=admin-cli'"
+  -H 'Content-Type: application/x-www-form-urlencoded' -d 'username={{ eval_rhsso_admin_username | default('keyadmin') }}' -d 'password={{ eval_rhsso_admin_password | default('keypassword') }}' -d 'grant_type=password' -d 'client_id=admin-cli'"
   register: token_text
 
 - set_fact: TKN={{ (token_text.stdout | from_json).access_token }}
@@ -21,6 +34,7 @@
 - debug: var=microcks_realm.content
   when: create_realms
 
+# TODO: What's ocp_apps_domain
 - set_fact: realm={{ microcks_realm.content | regex_replace('MICROCKS_UI_URL', 'http://microcks.' + ocp_apps_domain) }}
 
 - debug: var=realm

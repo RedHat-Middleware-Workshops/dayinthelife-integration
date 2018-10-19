@@ -1,0 +1,35 @@
+---
+- hosts: master
+  gather_facts: no
+  tasks:
+    - set_fact:
+        rhsso_namespace: "sso"
+    - name: Retrieve cluster route subdomain
+      slurp:
+        src: "{{ eval_openshift_master_config_path }}"
+      register: openshift_master_config
+      become: yes
+
+    - name: Retrieve RH-SSO admin user password
+      shell: oc get dc/sso -o jsonpath='{.spec.template.spec.containers[?(@.name=="sso")].env[?(@.name=="SSO_ADMIN_PASSWORD")].value}' -n {{ rhsso_namespace }}
+      register: rhsso_admin_password_cmd
+    
+
+    - name: Retrieve RH-SSO admin user name
+      shell: oc get dc/sso -o jsonpath='{.spec.template.spec.containers[?(@.name=="sso")].env[?(@.name=="SSO_ADMIN_USERNAME")].value}' -n {{ rhsso_namespace }}
+      register: rhsso_admin_user_cmd 
+    
+    
+    - set_fact:
+        eval_rhsso_admin_username: "{{rhsso_admin_user_cmd.stdout}}"
+
+    - set_fact:
+        ocp_apps_domain: "{{ (openshift_master_config['content'] | b64decode | from_yaml)['routingConfig']['subdomain'] }}"
+        
+    - set_fact:
+        eval_rhsso_admin_password: "{{rhsso_admin_password_cmd.stdout}}"
+
+- name: "Install API Workshop"
+  hosts: workshop
+  roles:
+    - workshop
