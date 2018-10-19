@@ -87,7 +87,7 @@ openshift
 
 1. Create a brand new API by completing the following information:
 
-    * Type: **Open API 2.0 (Swagger)**
+    * Type: **Open API 3.0.2**
     * Name: **Locations-UserX** (Replace *X* with your user number)
     * Description: **Locations API**
 
@@ -105,11 +105,11 @@ You are now in the main screen to edit your APIs. Different from other API edito
 
 Let's start crafting your API.
 
-1. Time to prepare our data definitions for the API. Click on the **Add a definition** link under the *Definitions*.
+1. Time to prepare our data definitions for the API. Click on the **Add a datatype** link under the *Data Types*.
 
-    ![design-add-definition](images/design-15.png "Add Definition")
+    ![design-add-datatype](images/design-15.png "Add Datatype")
 
-1. Fill in the *Name* with the **location** value. Expand the *FROM EXAMPLE (optional)* to paste the following example:
+1. Fill in the *Name* with the **location** value. Expand the *Enter the JSON Example (optional)* to paste the following example, then click **Save**:
 
     * Name: **location**
     * FROM EXAMPLE:
@@ -126,10 +126,11 @@ Let's start crafting your API.
             "status": "1"
         }
         ```
+    * Choose to create a REST Resource with the Data Type: **No Resource**
 
-    ![design-definition-name](images/design-16.png "Definition Name")
+    ![design-JSON-Example](images/design-16.png "JSON Example")
 
-1. Apicurio automatically trys to detect the data types from the provided example.
+1. Apicurio automatically tries to detect the data types from the provided example.
 
     ![design-definition-types](images/design-17.png "Definition Data Types")
 
@@ -169,16 +170,16 @@ Let's start crafting your API.
 
     ![design-add-response-code](images/design-11.png "Add Response Code")
 
-1. Scroll down to the bottom of the page. Move your mouse over the **200 OK** response to enable the options. Click on the **Edit** button to edit the response details.
+1. Scroll down to the bottom of the page. Move your mouse over the **200 OK** response to enable the options. Click on the **Add Media Type** button.
 
-    ![design-edit-response](images/design-12.png "Edit Response")
+    ![design-edit-response](images/design-12.png "Add Media Type")
 
 
-1. Click on the *Type* combo box to display the different types. First select **Array**.
+1. Click on the *Add* button to accept **application/json** as the Media Type.
 
     ![design-location-type](images/design-18.png "Location Type")
 
-1. This will enable a second combo box. In this new box, select **location** from the displayed options.
+1. Click on the *Type* dropdown and select **Array** and **Location**.
 
     ![design-location-type](images/design-18a.png "Location Type")
 
@@ -229,12 +230,6 @@ Let's start crafting your API.
         ```
 
     ![design-response-example](images/design-20.png "Response Example")
-
-1. Click the **Add** button.
-
-1. Click the **OK** button to finish the response editing.
-
-    ![design-response-done](images/design-21.png "Finish Response")
 
 ### Step 4: Download the API definition
 

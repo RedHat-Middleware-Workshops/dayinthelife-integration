@@ -49,7 +49,7 @@ public class CamelRoutes extends RouteBuilder {
 		from("direct:getalllocationphone")
 			.setBody().simple("${headers.id}")
 			.unmarshal().json(JsonLibrary.Jackson)
-			.to("cxf://http://location-soap-user1-dev.apps.52d6.openshift.opentlc.com/ws/location?serviceClass=com.redhat.LocationDetailServicePortType&defaultOperationName=contact")
+			.to("cxf://http://location-soap-userX.apps.GUID.openshiftworkshop.com/ws/location?serviceClass=com.redhat.LocationDetailServicePortType&defaultOperationName=contact")
 			
 			.process(
 					new Processor(){

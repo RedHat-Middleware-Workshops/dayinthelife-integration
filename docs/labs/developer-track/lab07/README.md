@@ -1,6 +1,6 @@
-# Lab 5
+# Lab 7
 
-## API Developers
+## API Developer Portal
 
 ### Publishing APIs to Developer Portal
 
@@ -105,7 +105,7 @@ openshift
 
 1. Update the API call examples to reflect your real Fuse API calls.
 
-    *Use your production base url and add your defined methods. Dont worry if you don't have the "real" output, it won't affect the rest of the lab. You can also copy and paste the [example](https://raw.githubusercontent.com/jbossdemocentral/3scale-api-workshop/master/docs/labs/lab05/support/homepage.example) we prepared for you*.
+    *Use your production base url and add your defined methods. Dont worry if you don't have the "real" output, it won't affect the rest of the lab. You can also copy and paste the [example](https://raw.githubusercontent.com/hguerrero/3scale-api-workshop/master/docs/labs/lab05/support/homepage.example) we prepared for you*.
 
 1. Click the **Publish** button.
 
@@ -177,7 +177,7 @@ You can add from the Admin Portal under *API Docs* the API definition to generat
 
 In this lab you discovered how to add a developer facing experience to your APIs. Developers in your organization or outside of it can now register, gain access to API keys and develop sample applications.
 
-You can now proceed to [Lab 6](../lab06/#lab-6)
+You can now proceed to [Lab 8](../lab08/#lab-8)
 
 ## Notes and Further Reading
 

@@ -69,7 +69,7 @@ openshift
 1. Open a browser window and navigate to:
 
     ```bash
-    http://https://syndesis-user1.apps.GUID.openshift.opentlc.com/
+    http://https://syndesis-userX.apps.GUID.openshift.opentlc.com/
     ```
 
     *Remember to replace the GUID with your [environment](#environment) value and your user number.*
@@ -85,7 +85,7 @@ openshift
 1. Enter below values for Database Configuration
 
     ```
-    Connection URL: jdbc:postgresql://postgresql.user1.svc:5432/sampledb
+    Connection URL: jdbc:postgresql://postgresql.userX.svc:5432/sampledb
     Username      : dbuser
     Password      : password
     Schema        : keep it empty
@@ -180,7 +180,7 @@ Description goes here
 
   ```
     curl -X POST \
-      https://i-addlocation-vinay.apps.rhtena.openshiftworkshop.com/webhook/pUGTWtLu8nnVTNJ1JYIsThcrKyMJAxBJMRURvRVEHSSvoMExTk \
+      https://i-addlocation-userX.apps.GUID.openshiftworkshop.com/webhook/pUGTWtLu8nnVTNJ1JYIsThcrKyMJAxBJMRURvRVEHSSvoMExTk \
       -H 'Content-Type: application/json' \
       -d '{
         "id": 101,
@@ -202,7 +202,7 @@ Description goes here
 3. (Optional) Visit the application URL in browser and verify if the recoard can be fetched.
 
   ```
-  http://location-service-user1.apps.rhtena.openshiftworkshop.com/locations/101
+  http://location-service-userX.apps.GUID.openshiftworkshop.com/locations/101
   ```
 
 
