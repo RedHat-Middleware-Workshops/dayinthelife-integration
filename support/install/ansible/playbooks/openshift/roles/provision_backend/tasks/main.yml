@@ -11,6 +11,7 @@
 - name: Create image streams for Fuse 7.1
   shell: "oc create -f https://raw.githubusercontent.com/jboss-fuse/application-templates/application-templates-2.1.fuse-711004/fis-image-streams.json -n openshift"
   when: configure_only == 'false' and imagestream_exists.failed
+  ignore_errors: true
 
 - name: Check if Fuse 7.0 template is available
   shell: "oc describe template s2i-fuse70-spring-boot-camel -n openshift"
@@ -21,6 +22,7 @@
 - name: Create template for Fuse 7.0
   shell: "oc create -f https://raw.githubusercontent.com/jbossdemocentral/3scale-api-workshop/master/support/templates/spring-boot-camel-template.json -n openshift"
   when: configure_only == 'false' and template_exists.failed
+  ignore_errors: true
 
 - name: Create Backend Database
   shell: "oc new-app -f https://raw.githubusercontent.com/openshift/origin/master/examples/db-templates/mysql-ephemeral-template.json \
