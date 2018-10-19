@@ -77,36 +77,30 @@ Follow this instructions to set up the repository.
 
 1. Fill in the information of the repository migration with the following values:
 
-    * Clone Address: **https://github.com/hguerrero/3scaleworkshop-openapi.git**
+    * Clone Address: **https://github.com/RedHatWorkshops/dayinthelife-openapi.git**
     * Owner: **UserX**
     * Repository Name: **locations-api**
 
-    ![mock-gogs-migration](images/mock-03.png "New Migration Repository")
+    ![mock-gogs-migration](images/mock-003.png "New Migration Repository")
 
 1. Click on **Migrate Repository** to fork the GitHub repo into Gogs.
 
-1. Click on **Upload File** to load the OpenAPI Specification you created and download in [Lab 1](lab01.md).
+1. Switch to branch `dev-track-lab-02`
 
-    ![mock-gogs-upload](images/mock-04.png "Upload File")
+    ![mock-gogs-upload](images/mock-004.png "Upload File")
 
-1. Select the file from your local disk folder where you downloaded the file.
+1. Open the `locations-api` folder and click on the filename link **Locations.json** to open and review the file.
 
-    ![mock-gogs-file](images/mock-05.png "Upload Commit")
+    ![mock-gogs-file](images/mock-005.png "File Uploaded")
 
-1. Click on the **Commit Changes** button to commit the file.
+1. If everything is fine, click the RAW button to get the raw download version of the file.
 
-1. Click the filename link **Locations-UserX.yaml** to open and review the file.
-
-    ![mock-gogs-file](images/mock-06.png "File Uploaded")
-
-1. If everything is fine, click the **RAW** button to get the raw download version of the file.
-
-    ![mock-gogs-raw](images/mock-07.png "Raw File")
+    ![mock-gogs-file](images/mock-006.png "File Uploaded")
 
 1. Copy the browser tab URL. Store that URL address as you will use it in the next steps of the lab. The URL should look like the following:
 
     ```bash
-    http://gogs.apps.GUID.openshiftworkshop.com/user1/locations-api/raw/master/Locations-UserX.yaml
+    http://gogs.apps.GUID.openshiftworkshop.com/user1/locations-api/raw/master/Locations.json
     ```
 
     *If you feel more comfortable, you can also copy and paste the RAW button link from the previous step*.
