@@ -28,7 +28,7 @@ objects:
       - name: latest-release
         from:
           kind: DockerImage
-          name: apicurio/apicurio-studio-api:latest-release
+          name: apicurio/apicurio-studio-api:0.2.17.Final
         importPolicy:
           scheduled: true
 - apiVersion: v1
@@ -40,7 +40,7 @@ objects:
       - name: latest-release
         from:
           kind: DockerImage
-          name: apicurio/apicurio-studio-ws:latest-release
+          name: apicurio/apicurio-studio-ws:0.2.17.Final
         importPolicy:
           scheduled: true
 - apiVersion: v1
@@ -52,7 +52,7 @@ objects:
       - name: latest-release
         from:
           kind: DockerImage
-          name: apicurio/apicurio-studio-ui:latest-release
+          name: apicurio/apicurio-studio-ui:0.2.17.Final
         importPolicy:
           scheduled: true
 # Persistent volumes: Postgresql
