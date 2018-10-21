@@ -2,6 +2,8 @@
 - name: Make sure we go back to default project
   shell: "oc project default"
 
+# TODO Remove the realm at the start.
+
 # TODO: Add variables for username and password.
 # username: eval_rhsso_admin_username
 # password: eval_rhsso_admin_password
@@ -9,7 +11,7 @@
 # sso_project: sso
 
 - set_fact:
-    sso_project: rhsso
+    sso_project: sso
 
 - debug:
     msg: "curl --insecure -X POST 'https://secure-sso-{{sso_project}}.{{ocp_apps_domain}}/auth/realms/master/protocol/openid-connect/token' \

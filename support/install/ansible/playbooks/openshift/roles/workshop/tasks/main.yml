@@ -1,37 +1,37 @@
 ---
-# - name: User Projects
-#   include_role:
-#     name: user_projects
-#   with_sequence: start=1 end={{ usersno }} format=%d
-#   when: user_projects
+- name: User Projects
+  include_role:
+    name: user_projects
+  with_sequence: start=1 end={{ usersno }} format=%d
+  when: user_projects
 
-# - import_role:
-#     name: provision_che
-#   when: che
+- import_role:
+    name: provision_che
+  when: che
 
-# - import_role:
-#     name: provision_fuse
-#   when: fuse
+- import_role:
+    name: provision_fuse
+  when: fuse
 
 # - import_role:
 #     name: provision_sso
 #   when: sso
 
-# - import_role:
-#     name: provision_threescale
-#   when: threescale
+- import_role:
+    name: provision_threescale
+  when: threescale
 
-# - import_role:
-#     name: provision_backend
-#   when: backend
+- import_role:
+    name: provision_backend
+  when: backend
 
-# - import_role:
-#     name: provision_apicurio
-#   when: apicurio
+- import_role:
+    name: provision_apicurio
+  when: apicurio
 
-# - import_role:
-#     name: provision_gogs
-#   when: gogs
+- import_role:
+    name: provision_gogs
+  when: gogs
 
 - import_role:
     name: provision_microcks

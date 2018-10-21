@@ -13,23 +13,24 @@
     - name: Retrieve RH-SSO admin user password
       shell: oc get dc/sso -o jsonpath='{.spec.template.spec.containers[?(@.name=="sso")].env[?(@.name=="SSO_ADMIN_PASSWORD")].value}' -n {{ rhsso_namespace }}
       register: rhsso_admin_password_cmd
-    
+
 
     - name: Retrieve RH-SSO admin user name
       shell: oc get dc/sso -o jsonpath='{.spec.template.spec.containers[?(@.name=="sso")].env[?(@.name=="SSO_ADMIN_USERNAME")].value}' -n {{ rhsso_namespace }}
-      register: rhsso_admin_user_cmd 
-    
-    
-    - set_fact:
-        eval_rhsso_admin_username: "{{rhsso_admin_user_cmd.stdout}}"
+      register: rhsso_admin_user_cmd
+
 
     - set_fact:
-        ocp_apps_domain: "{{ (openshift_master_config['content'] | b64decode | from_yaml)['routingConfig']['subdomain'] }}"
-        
-    - set_fact:
-        eval_rhsso_admin_password: "{{rhsso_admin_password_cmd.stdout}}"
+        rhsso_admin_username: "{{rhsso_admin_user_cmd.stdout}}"
 
-- name: "Install API Workshop"
-  hosts: workshop
-  roles:
-    - workshop
+    - set_fact:
+        oc_apps_domain: "{{ (openshift_master_config['content'] | b64decode | from_yaml)['routingConfig']['subdomain'] }}"
+
+    - set_fact:
+        rhsso_admin_password: "{{rhsso_admin_password_cmd.stdout}}"
+    - include_role:
+        name: workshop
+      vars:
+        eval_rhsso_admin_username: "{{ rhsso_admin_username }}"
+        eval_rhsso_admin_password: "{{ rhsso_admin_password }}"
+        ocp_apps_domain: "{{ oc_apps_domain }}"
