@@ -58,5 +58,5 @@
         name: provision_gogs
       vars:   
         ocp_apps_domain: "{{ hostvars['SHARED_VARS']['oc_apps_domain'] }}"
-        configure_only: "true"
+        configure_only: "false"
 
