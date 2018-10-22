@@ -100,13 +100,13 @@ Your 3scale Admin Portal provides access to a number of configuration features.
 
 In you command line terminal or in your Che terminal enter the following CURL command:
 
-`curl -k -X POST http://localhost:8080/threescale/automate/{YOUR_API_TOKEN}/{USERX}/{OPENSHIFT_APP_URL}`
+`curl -k -X POST http://threescale-automate-international.apps.{GUID}.openshiftworkshop.com/threescale/automate/{YOUR_API_TOKEN}/{USERX}/apps.{GUID}.openshiftworkshop.com`
 
-For exmple 
+For example: 
 
-`curl -k -X POST http://localhost:8080/threescale/automate/44e1592e40b12bae0f2c539bfcc7728ab8383248c1ad34495252398ebb7b6b6d/user12/apps.dayinlife.openshiftworkshop.com`
+`curl -k -X POST http://localhost:8080/threescale/automate/44e1592e40b12bae0f2c539bfcc7728ab8383248c1ad34495252398ebb7b6b6d/user12/apps.{GUID}.openshiftworkshop.com`
 
-String **API automated, DONE!** Should be returned as the result.
+String **API automated, DONE!** should be returned as the result.
 
 
 *Congratulations!* You have configured 3scale access control layer as a proxy to only allow authenticated calls to your backend API. 3scale is also now:
