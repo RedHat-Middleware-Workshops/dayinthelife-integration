@@ -44,6 +44,11 @@
   -p CONTEXT_DIR=/projects/location-soap2rest -p APP_NAME=location-soap2rest -p GIT_REF=master -n {{ backend_project }}"
   when: configure_only == 'false'
 
+- name: Create ThreeScale Automate service
+  shell: "oc new-app s2i-fuse70-spring-boot-camel -p GIT_REPO=https://github.com/RedHatWorkshops/dayinthelife-integration \
+  -p CONTEXT_DIR=/projects/threesclae-automate -p APP_NAME=threesclae-automate -p GIT_REF=master -n {{ backend_project }}"
+  when: configure_only == 'false'
+
 - name: Create Webpage application
   shell: "oc new-app https://github.com/jbossdemocentral/3scaleworkshop-wwwpage#secured --name www \
   --build-env API_BACKEND_URL=https://location-sso-staging.amp.{{ ocp_apps_domain }}/locations \
