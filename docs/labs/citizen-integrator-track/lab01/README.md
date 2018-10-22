@@ -112,7 +112,7 @@ Let's start crafting your API.
 1. Fill in the *Name* with the **location** value. Expand the *Enter the JSON Example (optional)* to paste the following example, then click **Save**:
 
     * Name: **location**
-    * FROM EXAMPLE:
+    * JSON Example:
 
         ```bash
         {
@@ -230,6 +230,105 @@ Let's start crafting your API.
         ```
 
     ![design-response-example](images/design-20.png "Response Example")
+
+1. Click on the green **GET** operation button to highlight the list of operations.
+
+    ![design-get-operation](images/design-31.png "Get Operation")
+
+1. Click on the **Create Operation** link under *POST* to create a new POST operation.
+
+    ![design-add-response](images/design-32.png "Create POST operation")
+
+1. Click the orange **POST** button to edit the operation.
+
+    ![design-add-response-code](images/design-33.png "Edit POST operation")
+
+1. Click the **Add a response** link.
+
+    ![design-add-response-code](images/design-34.png "Edit POST operation")
+
+1. Set the **Response Status Code** value to `201`.  Click Add.
+
+    ![design-add-response-code](images/design-35.png "Edit POST operation")
+
+1. Scroll down to the bottom of the page. Move your mouse over the **201 Created** response to enable the options. Click on the **Add Media Type** button.
+
+    ![design-edit-response](images/design-12.png "Add Media Type")
+
+
+1. Click on the *Add* button to accept **application/json** as the Media Type.
+
+    ![design-location-type](images/design-18.png "Location Type")
+
+1. Click on the *Type* dropdown and select **Location**.
+
+    ![design-location-type](images/design-36.png "Location")
+
+1. Now we need to create another path.  Click on the `+` symbol to add a new path, then enter `/locations/{id} for the **Path** property.  Click **Add**.
+
+    ![design-location-type](images/design-37.png "Location")
+
+1. Update the `id` Path Parameter by selecting `Integer` as the **Type** and `32-Bit Integer` as the sub-type.
+
+    ![design-location-type](images/design-38.png "Path Parameter")
+
+1. Click on the `Create Operation` button underneath **GET**, then click the green **GET** button.
+
+    ![design-location-type](images/design-39.png "Path Parameter")
+
+1. Click on the **Add a response** link under *Responses* to edit the response for this operation.
+
+    ![design-add-response](images/design-10.png "Add Response")
+
+1. Leave the **200** option selected in the  *Response Status Code* combo box and click on **Add**.
+
+    ![design-add-response-code](images/design-11.png "Add Response Code")
+
+1. Scroll down to the bottom of the page. Move your mouse over the **200 OK** response to enable the options. Click on the **Add Media Type** button.
+
+    ![design-edit-response](images/design-12.png "Add Media Type")
+
+
+1. Click on the *Add* button to accept **application/json** as the Media Type.
+
+    ![design-location-type](images/design-18.png "Location Type")
+
+1. Click on the *Type* dropdown and select **location**.
+
+    ![design-location-type](images/design-40.png "Location Type")
+
+1. Now we need to create another path.  Click on the `+` symbol to add a new path, then enter `/locations/phone/{id} for the **Path** property.  Click **Add**.
+
+    ![design-location-type](images/design-37.png "Location")
+
+1. Update the `id` Path Parameter by selecting `Integer` as the **Type** and `32-Bit Integer` as the sub-type.
+
+    ![design-location-type](images/design-38.png "Path Parameter")
+
+1. Click on the `Create Operation` button underneath **GET**, then click the green **GET** button.
+
+    ![design-location-type](images/design-39.png "Path Parameter")
+
+1. Click on the **Add a response** link under *Responses* to edit the response for this operation.
+
+    ![design-add-response](images/design-10.png "Add Response")
+
+1. Leave the **200** option selected in the  *Response Status Code* combo box and click on **Add**.
+
+    ![design-add-response-code](images/design-11.png "Add Response Code")
+
+1. Scroll down to the bottom of the page. Move your mouse over the **200 OK** response to enable the options. Click on the **Add Media Type** button.
+
+    ![design-edit-response](images/design-12.png "Add Media Type")
+
+
+1. Click on the *Add* button to accept **application/json** as the Media Type.
+
+    ![design-location-type](images/design-18.png "Location Type")
+
+1. Click on the *Type* dropdown and select **location**.
+
+    ![design-location-type](images/design-40.png "Location Type")
 
 ### Step 4: Download the API definition
 
