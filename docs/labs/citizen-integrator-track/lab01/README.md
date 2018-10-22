@@ -264,7 +264,7 @@ Let's start crafting your API.
 
     ![design-location-type](images/design-36.png "Location")
 
-1. Now we need to create another path.  Click on the `+` symbol to add a new path, then enter `/locations/{id} for the **Path** property.  Click **Add**.
+1. Now we need to create another path.  Click on the `+` symbol to add a new path, then enter `/locations/{id}` for the **Path** property.  Click **Add**.
 
     ![design-location-type](images/design-37.png "Location")
 
@@ -297,17 +297,17 @@ Let's start crafting your API.
 
     ![design-location-type](images/design-40.png "Location Type")
 
-1. Now we need to create another path.  Click on the `+` symbol to add a new path, then enter `/locations/phone/{id} for the **Path** property.  Click **Add**.
+1. Now we need to create another path.  Click on the `+` symbol to add a new path, then enter `/locations/phone/{id}` for the **Path** property.  Click **Add**.
 
-    ![design-location-type](images/design-37.png "Location")
+    ![design-location-type](images/design-41.png "Location")
+
+1. Click on the `Create Operation` button underneath **Get**, then click the green **Get** button.
+
+    ![design-location-type](images/design-42.png "Get operation")
 
 1. Update the `id` Path Parameter by selecting `Integer` as the **Type** and `32-Bit Integer` as the sub-type.
 
     ![design-location-type](images/design-38.png "Path Parameter")
-
-1. Click on the `Create Operation` button underneath **GET**, then click the green **GET** button.
-
-    ![design-location-type](images/design-39.png "Path Parameter")
 
 1. Click on the **Add a response** link under *Responses* to edit the response for this operation.
 
