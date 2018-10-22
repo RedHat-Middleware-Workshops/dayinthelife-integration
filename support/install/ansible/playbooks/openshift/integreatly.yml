@@ -28,9 +28,26 @@
 
     - set_fact:
         rhsso_admin_password: "{{rhsso_admin_password_cmd.stdout}}"
+ 
+    - add_host:
+        name: SHARED_VARS
+        rhsso_admin_username: "{{ rhsso_admin_username }}"
+        rhsso_admin_password: "{{ rhsso_admin_password }}"
+        oc_apps_domain: "{{ oc_apps_domain }}"
+
+- name: "Install API Workshop"
+  hosts: workshop
+  vars_files: roles/workshop/defaults/main.yml
+  tasks:
     - include_role:
-        name: workshop
+        name: provision_microcks
       vars:
-        eval_rhsso_admin_username: "{{ rhsso_admin_username }}"
-        eval_rhsso_admin_password: "{{ rhsso_admin_password }}"
-        ocp_apps_domain: "{{ oc_apps_domain }}"
+        eval_rhsso_admin_username: "{{ hostvars['SHARED_VARS']['rhsso_admin_username'] }}"
+        eval_rhsso_admin_password: "{{ hostvars['SHARED_VARS']['rhsso_admin_password'] }}"
+        ocp_apps_domain: "{{ hostvars['SHARED_VARS']['oc_apps_domain'] }}"
+    
+    - include_role:
+        name: provision_che
+      vars:
+        item: che
+        ocp_apps_domain: "{{ hostvars['SHARED_VARS']['oc_apps_domain'] }}"

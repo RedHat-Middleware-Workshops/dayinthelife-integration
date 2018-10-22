@@ -52,7 +52,7 @@
       Authorization: "Bearer {{ TKN }}"
     return_content: yes
     validate_certs: no
-    status_code: 201  
+    status_code: [201, 409]  
 
 - name: Create Microcks users
   uri: 
@@ -64,7 +64,7 @@
     body: "{\"username\":\"{{ item }}\",\"enabled\":true,\"firstName\":\"{{ item }}\",\"credentials\":[{\"type\":\"password\",\"value\":\"openshift\",\"temporary\":false}]}"
     body_format: json
     validate_certs: no
-    status_code: 201
+    status_code: [201, 409]
   with_sequence: start=1 end={{ usersno }} format=user%d
 
 - name: Create Microcks app

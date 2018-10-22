@@ -11,10 +11,13 @@ master
 ansible_user=ec2-user
 
 [master]
-master1.akeating.internal
+master.akeating.openshiftworkshop.com
 
 [workshop]
 localhost ansible_connection=local
+
+[master:vars]
+eval_openshift_master_config_path=/etc/origin/master/master-config.yaml
 
 [workshop:vars]
 ocp_domain=dayinlife.openshiftworkshop.com
