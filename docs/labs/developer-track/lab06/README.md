@@ -1,31 +1,35 @@
-# Lab 6
+# Lab 4
 
-## Fuse Online
+## Managed API Endpoints
 
-## todo
+### Take control of your APIs
 
-* Duration: 20 mins
-* Audience: Developers and Architects
+* Duration: 5 mins
+* Audience: API Owners, Product Managers, Developers, Architects
 
 ## Overview
 
-TBD
+Once you have APIs deployed in your environment, it becomes critically important to manage who may use them and for what purpose. You also need to begin to track usage of these different users to know who is/is not succeeding in their usage. For this reason in this lab you will be adding management capabilites to the API to give you control and visibility of it's usage.
 
 ### Why Red Hat?
 
-TBD
+Red Hat provides one the leading API Management tools which provide management services. The 3scale API Management solution enables you to quickly and easy protect and manage your APIs.
 
-### Skipping the lab
+### Skipping The Lab
 
-TBD
+If you are planning to follow to the next lab, there is an already running API proxy for the Location API Service in this endpoint:
+
+```bash
+https://location-service-api.amp.apps.GUID.openshiftworkshop.com
+```
 
 ### Environment
 
 **URLs:**
 
-Check with your instruction the *GUID* number of your current workshop environment. Replace the actual number on all the URLs where you find **GUID**. 
+Check with your instruction the *GUID* number of your current workshop environment. Replace the actual number on all the URLs where you find **GUID**.
 
-Example in case of *GUID* = **1234**: 
+Example in case of *GUID* = **1234**:
 
 ```bash
 https://master.GUID.openshiftworkshop.com
@@ -53,169 +57,77 @@ openshift
 
 ## Lab Instructions
 
-### Step 1: Create database connection
+### Step 1: Get your API Token for Automation
+
+Your 3scale Admin Portal provides access to a number of configuration features.
 
 1. Open a browser window and navigate to:
 
     ```bash
-    http://https://syndesis-user1.apps.GUID.openshift.opentlc.com/
+    https://userX-admin.apps.GUID.openshiftworkshop.com/
     ```
 
     *Remember to replace the GUID with your [environment](#environment) value and your user number.*
 
-1. Click on **Connection > Create Connection**
+1. Accept the self-signed certificate if you haven't.
 
-   ![00-create-connection.png](images/00-create-connection.png "Create Connection")
+    ![selfsigned-cert](images/00-selfsigned-cert.png "Self-Signed Cert")
 
-1. Select **Database**
+1. Log into 3scale using your designated [user and password](#environment). Click on **Sign In**.
 
-   ![01-select-database.png](images/01-select-database.png "Select Database")
+    ![01-login.png](images/01-login.png)
 
-1. Enter below values for Database Configuration
+1. The first page you will land is the *API Management Dashboard*. Click on the **Gear Icon** on the top right-hand corner.
 
-    ```
-    Connection URL: jdbc:postgresql://postgresql.user1.svc:5432/sampledb
-    Username      : dbuser
-    Password      : password
-    Schema        : keep it empty
-    ```
+    ![02-personalsettings.png](images/02-personalsettings.png)
 
-1. Click **Validate** and verify if the connection is successful. Click **Next** to proceed.
+1. Click onto  **Token** Tab.
+	![03-tokentab.png](images/03-tokentab.png)
 
-  ![02-click-validate.png](images/02-click-validate.png "Validate")
+1. Click  **Add Access Token** link to create a new management token.
+	![06-menu.png](images/06-menu.png)
+	
+	
+1. Create a new token that has the Read & Writeable rights to your management platform. Enter **Name** as secure token, check the **Account management API** checkbox and **READ & WRITE** for Permission.
 
-6. Add `Connection details`. `Connection Name: LocationDB` and `Description: Location Database`. Click **Create**.
-   
-   ![03-connection-details.png](images/03-connection-details.png "Add Connection Details")
+	![04-setuptoken.png](images/04-setuptoken.png)
+1. Please make sure you copy the **Token** to somewhere safe, and don't forget it. Click on **I have copied the token** to finish off. 
 
-7. Verify that the `Location Database` is successfully created.
-
-### Step 2: Create webhook integration
-
-Description goes here
-
-1. Click on **Integration > Create Integration** 
-
-  ![04-create-integration.png](images/04-create-integration.png "Create Integration")
-
-2. Choose **Webhook**
-
-  ![05-choose-weebhook.png](images/05-choose-weebhook.png "Choose webhook")
-
-3. Click on `Incoming webhook` 
-
-  ![06-incoming-webhook.png](images/06-incoming-webhook.png "Add incoming webhook")
-
-4. It navigates to the `Webhook Token` screen. Click **Next**
-
-  ![07-webhook-configuration.png](images/07-webhook-configuration.png "Webhook Configuration")
-
-5. Define the Output Data Type. `Select type` from the dropdown as `JSON instance`. Enter `Data type Name: Custom`. `Defination: `, copy below JSON data.
-
-    ```
-		{
-		  "id": 1,
-		  "name": "Kamarhati",
-		  "type": "Regional Branch",
-		  "status": "1",
-		  "location": {
-		    "lat": "-28.32555",
-		    "lng": "-5.91531"
-		  }
-		}
-    ```
-
-  **Screenshot**
-
- ![08-data-type.png](images/08-data-type.png "Data Type")
-
-6. Click on `LocationDB` from the catalog and then select `Invoke SQL`
-
- ![09-invoke-sql.png](images/09-invoke-sql.png "Invoke SQL")
-
-7. Enter the SQL statement and click **Done**.
-
- ```
-   INSERT INTO locations (id,name,lat,lng,location_type,status) VALUES (:#id,:#name,:#lat,:#lng,:#location_type,:#status )
- ```
-
- **Screenshot**
-
- ![10-invoke-sql-2.png](images/10-invoke-sql-2.png "Invoke SQL 2")
-
-8. Click on `Add step` and select `Data mapper`
-
- ![11-data-mapper.png](images/11-data-mapper.png "Data Mapper")
-
-9. Drag and drop the matching `Source` Data type to the `Target`. Click **Done**
-
- ![12-configure-mapper.png](images/12-configure-mapper.png "Configure Mapper")
-
-10. Click **Publish** on the next screen and add `Integration Name: addLocation`. Again Click **Publish**.
-
- ![13-publish-integration.png](images/13-publish-integration.png "Publish Integration")
-
-*Congratulations*. You sucessfully published the integration. (Wait for few minutes to build and publish the integration)
-
-### Step 3: Create a POST request
-
-1. Copy the External URL and form a POST request like below. We will be creating the `101th` record field.   
-
- ![14-copy-URL.png](images/14-copy-URL.png "Copy URL")
-
-*Remember to replace the below hostname with the copied URL*
-
-**CURL POST request**
-
-  ```
-    curl -X POST \
-      https://i-addlocation-vinay.apps.rhtena.openshiftworkshop.com/webhook/pUGTWtLu8nnVTNJ1JYIsThcrKyMJAxBJMRURvRVEHSSvoMExTk \
-      -H 'Content-Type: application/json' \
-      -d '{
-        "id": 101,
-        "name": "Kamarhati",
-        "type": "Regional Branch",
-        "status": "1",
-        "location": {
-          "lat": "-28.32555",
-          "lng": "-5.91531"
-        }
-      
-  }' -k
-  ```
-
-2. Click on **Activity > Refresh** and verify if the newly record is created.
-
- ![15-activity-refresh.png](images/15-activity-refresh.png "Activity Refresh")
-
-3. (Optional) Visit the application URL in browser and verify if the recoard can be fetched.
-
-  ```
-  http://location-service-user1.apps.rhtena.openshiftworkshop.com/locations/101
-  ```
+	![05-token.png](images/05-token.png)
 
 
-  ```
-  {
-    "id" : 101,
-    "name" : "Kamarhati",
-    "type" : "Regional Branch",
-    "status" : "1",
-    "location" : {
-      "lat" : "-28.32555",
-      "lng" : "-5.91531"
-    }
-  }
-  ```
+### Step 2: Start managing your APIs
+
+In you command line terminal or in your Che terminal enter the following CURL command:
+
+`curl -k -X POST http://localhost:8080/threescale/automate/{YOUR_API_TOKEN}/{USERX}/{OPENSHIFT_APP_URL}`
+
+For exmple 
+
+`curl -k -X POST http://localhost:8080/threescale/automate/44e1592e40b12bae0f2c539bfcc7728ab8383248c1ad34495252398ebb7b6b6d/user12/apps.dayinlife.openshiftworkshop.com`
+
+String **API automated, DONE!** Should be returned as the result.
+
+
+*Congratulations!* You have configured 3scale access control layer as a proxy to only allow authenticated calls to your backend API. 3scale is also now:
+
+* Authenticating (If you test with an incorrect API key it will fail) 
+* Recording calls (Visit the Analytics tab to check who is calling your API).
+
+## Steps Beyond
+
+In this lab we just covered the basic creating of a proxy for our API service. Red Hat 3scale API Management also allows us to get a track of the security (as you can see in the next lab) as well as the usage of our API. If getting value from APIs is also important to you, 3scale allows you to monetize your APIs with it's embedded billing system.
+
+Try to navigate through the rest of the tabs of your Administration Portal. Did you notice that there are application plans associated to your API? Application Plans allow you to take actions based on the usage of your API, like doing rate limiting or charging by hit or monthly usage.
 
 ## Summary
 
-TBD
+You set up an API management service and API proxies to control traffic into your API. From now on you will be able to issue keys and rights to users wishing to access the API.
 
-You can now proceed to [Lab 7](../lab07/#lab-7)
+You can now proceed to [Lab 5](../lab05/#lab-5)
 
 ## Notes and Further Reading
 
-TBD
-
-
+* [Red Hat 3scale API Management](http://microcks.github.io/)
+* [Developers All-in-one 3scale install](https://developers.redhat.com/blog/2017/05/22/how-to-setup-a-3scale-amp-on-premise-all-in-one-install/)
+* [ThoughtWorks Technology Radar - Overambitious API gateways](https://www.thoughtworks.com/radar/platforms/overambitious-api-gateways)
