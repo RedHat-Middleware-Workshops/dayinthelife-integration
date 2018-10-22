@@ -1,0 +1,191 @@
+---
+- name: Get SSO token
+  shell: "curl --insecure -X POST 'https://secure-launcher-sso-launcher.{{ocp_apps_domain}}/auth/realms/launcher_realm/protocol/openid-connect/token' \
+  -H 'Content-Type: application/x-www-form-urlencoded' -d 'username={{ admin_username | default('admin@example.com') }}' -d 'password={{ admin_password | default('Password1') }}' -d 'grant_type=password' -d 'client_id=che-client'"
+  register: token_text
+
+- set_fact: TKN={{ (token_text.stdout | from_json).access_token }}
+
+- debug: var=TKN
+
+# TODO: Make the protocol a var
+- name: Check if Che IDE is deployed
+  uri: 
+    url: https://che-{{ item }}.{{ ocp_apps_domain }}/api/stack
+    validate_certs: false
+    method: GET
+    headers:
+      Authorization: "Bearer {{ TKN }}"
+  retries: 100
+  delay:   20
+  register: response
+  until: response.status == 200
+  changed_when: false
+
+- name: Update custom stack to Che
+  tags: install_custom_stack
+  uri: 
+    url: https://che-{{ item }}.{{ ocp_apps_domain }}/api/stack
+    validate_certs: false
+    method: POST
+    return_content: yes
+    headers:
+      Authorization: "Bearer {{ TKN }}"
+    body: |
+        {
+          "name": "Day in the life Workshop",
+          "description": "Agile Integration developer Workshop",
+          "scope": "general",
+          "workspaceConfig": {
+            "environments": {
+              "default": {
+                "recipe": {
+                  "type": "dockerimage",
+                  "content": "weimeilin/che-centos-jdk8"
+                },
+                "machines": {
+                  "dev-machine": {
+                    "env": {
+                      "MAVEN_OPTS" : "-Xmx512m"
+                    },
+                    "servers": {
+                      "8080/tcp": {
+                        "attributes": {},
+                        "protocol": "http",
+                        "port": "8080"
+                      },
+                      "8000/tcp": {
+                        "attributes": {},
+                        "protocol": "http",
+                        "port": "8000"
+                      },
+                      "9000/tcp": {
+                        "attributes": {},
+                        "protocol": "http",
+                        "port": "9000"
+                      },
+                      "9001/tcp": {
+                        "attributes": {},
+                        "protocol": "http",
+                        "port": "9001"
+                      }
+                    },
+                    "volumes": {},
+                    "installers": [
+                      "org.eclipse.che.exec",
+                      "org.eclipse.che.terminal",
+                      "org.eclipse.che.ws-agent",
+                      "org.eclipse.che.ls.camel"
+                    ],
+                    "attributes": {
+                      "memoryLimitBytes": "2147483648"
+                    }
+                  }
+                }
+              }
+            },
+            "commands": [
+              {
+                "commandLine": "mvn install -f ${current.project.path}",
+                "name": "Build project",
+                "type": "mvn",
+                "attributes": {
+                  "goal": "Build",
+                  "previewUrl": ""
+                }
+              },
+              {
+                "commandLine": "mvn spring-boot:run -f ${current.project.path}",
+                "name": "run spring-boot",
+                "type": "mvn",
+                "attributes": {
+                  "goal": "Run",
+                  "previewUrl": "${server.9000/tcp}"
+                }
+              },
+              {
+                "commandLine": "mvn camel-restdsl-swagger:generate -f ${current.project.path}",
+                "name": "Generate REST DSL from Swagger",
+                "type": "mvn",
+                "attributes": {
+                  "goal": "Build",
+                  "previewUrl": ""
+                }
+              },
+              {
+                "commandLine": "mvn generate-sources -f ${current.project.path}",
+                "name": "run generate-sources",
+                "type": "mvn",
+                "attributes": {
+                  "goal": "Build",
+                  "previewUrl": ""
+                }
+              },
+              {
+                "commandLine": "cd ${explorer.current.file.path} && mvn fabric8:deploy",
+                "name": "fabric8:deploy",
+                "type": "mvn",
+                "attributes": {
+                  "goal": "Deploy",
+                  "previewUrl": ""
+                }
+              }
+            ],
+            "projects": [],
+            "defaultEnv": "default",
+            "name": "default",
+            "links": []
+          },
+          "components": [
+            {
+              "version": "---",
+              "name": "CentOS"
+            },
+            {
+              "version": "1.8.0_45",
+              "name": "JDK"
+            },
+            {
+              "version": "3.2.2",
+              "name": "Maven"
+            },
+            {
+              "version": "3.10",
+              "name": "OpenShift CLI"
+            }
+          ],
+          "creator": "ide",
+          "tags": [
+            "Java",
+            "JDK",
+            "Maven",
+            "CentOS",
+            "Git"
+          ],
+          "id": "java-oc-day-in-life"
+        }
+    body_format: json
+    status_code: [201, 409]
+  register: create_stack
+
+- name: Give stack view/read permissions to all other users
+  uri:
+    url: https://che-{{ item }}.{{ ocp_apps_domain }}/api/permissions
+    validate_certs: false
+    method: POST
+    return_content: yes
+    headers:
+      Authorization: "Bearer {{ TKN }}"
+    status_code: 204
+    body_format: json
+    body: |
+      {
+        "userId": "*",
+        "domainId": "stack",
+        "instanceId": "{{ create_stack.json.id }}",
+        "actions": [
+          "read",
+          "search"
+        ]
+      }
+  when: create_stack.status == 201

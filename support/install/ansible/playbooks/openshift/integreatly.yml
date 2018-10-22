@@ -19,7 +19,6 @@
       shell: oc get dc/sso -o jsonpath='{.spec.template.spec.containers[?(@.name=="sso")].env[?(@.name=="SSO_ADMIN_USERNAME")].value}' -n {{ rhsso_namespace }}
       register: rhsso_admin_user_cmd
 
-
     - set_fact:
         rhsso_admin_username: "{{rhsso_admin_user_cmd.stdout}}"
 
@@ -45,9 +44,19 @@
         eval_rhsso_admin_username: "{{ hostvars['SHARED_VARS']['rhsso_admin_username'] }}"
         eval_rhsso_admin_password: "{{ hostvars['SHARED_VARS']['rhsso_admin_password'] }}"
         ocp_apps_domain: "{{ hostvars['SHARED_VARS']['oc_apps_domain'] }}"
-    
+      tags: microcks
+
     - include_role:
-        name: provision_che
+        name: setup_che_multi
       vars:
         item: che
+        eval_rhsso_admin_username: "{{ hostvars['SHARED_VARS']['rhsso_admin_username'] }}"
+        eval_rhsso_admin_password: "{{ hostvars['SHARED_VARS']['rhsso_admin_password'] }}"
         ocp_apps_domain: "{{ hostvars['SHARED_VARS']['oc_apps_domain'] }}"
+        openshift_oauth_token: ""
+    - include_role:
+        name: provision_gogs
+      vars:   
+        ocp_apps_domain: "{{ hostvars['SHARED_VARS']['oc_apps_domain'] }}"
+        configure_only: "true"
+

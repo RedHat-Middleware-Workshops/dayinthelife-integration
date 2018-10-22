@@ -2,14 +2,6 @@
 - name: Make sure we go back to default project
   shell: "oc project default"
 
-# TODO Remove the realm at the start.
-
-# TODO: Add variables for username and password.
-# username: eval_rhsso_admin_username
-# password: eval_rhsso_admin_password
-# ocp_apps_domain: eval_app_host
-# sso_project: sso
-
 - set_fact:
     sso_project: sso
 
@@ -36,7 +28,6 @@
 - debug: var=microcks_realm.content
   when: create_realms
 
-# TODO: What's ocp_apps_domain
 - set_fact: realm={{ microcks_realm.content | regex_replace('MICROCKS_UI_URL', 'http://microcks.' + ocp_apps_domain) }}
 
 - debug: var=realm
