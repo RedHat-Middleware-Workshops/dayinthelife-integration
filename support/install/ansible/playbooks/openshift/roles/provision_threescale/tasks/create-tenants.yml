@@ -8,7 +8,7 @@
     return_content: yes
     headers:
       Content-Type: "application/x-www-form-urlencoded"
-    body: "access_token=mastertoken&org_name={{ userno }}&username={{ userno }}&email=admin%40{{ userno }}.com&password=openshift"
+    body: "access_token={{threescale_master_access_token}}&org_name={{ userno }}&username={{ userno }}&email=admin%40{{ userno }}.com&password=openshift"
     validate_certs: no
     status_code: 201
   register: create_tenant_result
@@ -35,7 +35,7 @@
     return_content: yes
     headers:
       Content-Type: "application/x-www-form-urlencoded"
-    body: "access_token=mastertoken&account_id={{ ids[0].id }}&id={{ ids[3].id }}"
+    body: "access_token={{threescale_master_access_token}}&account_id={{ ids[0].id }}&id={{ ids[3].id }}"
     validate_certs: no
     status_code: 200
 

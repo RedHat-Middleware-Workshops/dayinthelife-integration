@@ -27,7 +27,7 @@
         threescale_admin_token: "{{ admin_auth_config.stdout }}"
 
     - name: Retrieve 3Scale master auth token
-      shell: oc describe dc/system-app -n 3scale | grep MASTER_ACCESS_TOKEN | tail -1 | awk '{print $9}' | sed 's/MASTER_ACCESS_TOKEN=//' | sed 's/"//g'
+      shell:  oc describe dc/system-app -n 3scale | grep MASTER_ACCESS_TOKEN | head -1 | awk -F '"' '{print $2}'
       register: master_auth_config
 
     - set_fact:
@@ -87,6 +87,7 @@
         ocp_apps_domain: "{{ hostvars['SHARED_VARS']['oc_apps_domain'] }}"
         threescale_master_access_token: "{{ hostvars['SHARED_VARS']['threescale_master_token'] }}"
         threescale_admin_access_token: "{{ hostvars['SHARED_VARS']['threescale_admin_token'] }}"
+        namespace: 3scale
       tags: threescale
             
 

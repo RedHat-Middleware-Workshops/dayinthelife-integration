@@ -5,7 +5,7 @@
 - name: Create the 3scale app
   shell: "oc new-app -f https://raw.githubusercontent.com/jbossdemocentral/3scale-api-workshop/master/support/templates/amp-template.yml \
   --param WILDCARD_DOMAIN={{ ocp_apps_domain }} --param ADMIN_PASSWORD=password --param WILDCARD_POLICY=Subdomain \
-  --param ADMIN_ACCESS_TOKEN=admintoken --param MASTER_PASSWORD=password --param MASTER_ACCESS_TOKEN=mastertoken -n {{ namespace }}"
+  --param ADMIN_ACCESS_TOKEN={{threescale_admin_access_token}} --param MASTER_PASSWORD=password --param MASTER_ACCESS_TOKEN={{threescale_master_access_token}} -n {{ namespace }}"
   when: configure_only == 'false'
 
 - name: Wait until 3scale API is available 
@@ -28,7 +28,7 @@
 - name: Create apikey service
   include_tasks: ./create-service.yml
   vars:
-    admintoken: 'admintoken'
+    admintoken: '{{threescale_admin_access_token}}'
     account_id: '3'
     name: 'Location API'
     backend_version: '1'
