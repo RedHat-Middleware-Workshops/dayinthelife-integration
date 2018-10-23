@@ -89,5 +89,13 @@
         threescale_admin_access_token: "{{ hostvars['SHARED_VARS']['threescale_admin_token'] }}"
         namespace: 3scale
       tags: threescale
-            
-
+    - include_role:
+        name: provision_apicurio
+      vars:
+        ocp_apps_domain: "{{ hostvars['SHARED_VARS']['oc_apps_domain'] }}"
+        sso_project: sso
+        apicurio_template_params: -p API_STUDIO_API_IMAGE_TAG=0.2.17.Final -p API_STUDIO_WS_IMAGE_TAG=0.2.17.Final -p API_STUDIO_UI_IMAGE_TAG=0.2.17.Final
+        apicurio_template_url: https://gist.githubusercontent.com/aidenkeating/e14b8150118c6fc2d446ad2644a38d97/raw/2fe99d4b91e7c2d424fc413ca348383a4a378a5b/apicurio-template.yml
+        eval_rhsso_admin_username: "{{ hostvars['SHARED_VARS']['rhsso_admin_username'] }}"
+        eval_rhsso_admin_password: "{{ hostvars['SHARED_VARS']['rhsso_admin_password'] }}"
+      tags: apicurio
