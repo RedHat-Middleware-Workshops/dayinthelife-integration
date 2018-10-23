@@ -55,7 +55,6 @@
 
 - name: "Install API Workshop"
   hosts: workshop
-  vars_files: roles/workshop/defaults/main.yml
   tasks:
     - include_role:
         name: provision_sso

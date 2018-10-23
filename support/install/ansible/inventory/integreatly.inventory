@@ -20,9 +20,16 @@ localhost ansible_connection=local
 eval_openshift_master_config_path=/etc/origin/master/master-config.yaml
 
 [workshop:vars]
+sso_project=sso
+gogs_project=gogs
+microcks_project=microcks
+apicurio_project=apicurio
+namespace=threescale
+backend_project=international
+configure_only=false
 ocp_domain=dayinlife.openshiftworkshop.com
 ocp_apps_domain=apps.dayinlife.openshiftworkshop.com
-usersno=20
+usersno=50
 che=false
 fuse=false
 threescale=false
@@ -33,7 +40,6 @@ sso=false
 backend=false
 user_projects=false
 user_tools_projects=false
-configure_only=true
 create_tenants=true
 create_realms=true
 create_ides=true
