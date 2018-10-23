@@ -1,7 +1,7 @@
 ---
 - name: Get SSO token
   shell: "curl --insecure -X POST 'https://secure-launcher-sso-launcher.{{ocp_apps_domain}}/auth/realms/launcher_realm/protocol/openid-connect/token' \
-  -H 'Content-Type: application/x-www-form-urlencoded' -d 'username={{ admin_username | default('admin@example.com') }}' -d 'password={{ admin_password | default('Password1') }}' -d 'grant_type=password' -d 'client_id=che-client'"
+  -H 'Content-Type: application/x-www-form-urlencoded' -d 'username={{ admin_username | default('launcheradmin') }}' -d 'password={{ admin_password | default('admin') }}' -d 'grant_type=password' -d 'client_id=che-client'"
   register: token_text
 
 - set_fact: TKN={{ (token_text.stdout | from_json).access_token }}
