@@ -77,7 +77,7 @@
 - name: Create sso service
   include_tasks: ./create-service.yml
   vars:
-    admintoken: 'admintoken'
+    admintoken: '{{ threescale_admin_access_token }}'
     account_id: '3'
     name: 'SSO Location API'
     backend_version: 'oidc'

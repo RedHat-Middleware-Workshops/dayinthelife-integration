@@ -19,6 +19,22 @@
       shell: oc get dc/sso -o jsonpath='{.spec.template.spec.containers[?(@.name=="sso")].env[?(@.name=="SSO_ADMIN_USERNAME")].value}' -n {{ rhsso_namespace }}
       register: rhsso_admin_user_cmd
 
+    - name: Retrieve 3Scale admin auth token
+      shell: oc describe dc/system-app -n 3scale | grep ADMIN_ACCESS_TOKEN | tail -1 | awk '{print $2}'
+      register: admin_auth_config
+
+    - set_fact:
+        threescale_admin_token: "{{ admin_auth_config.stdout }}"
+
+    - name: Retrieve 3Scale master auth token
+      shell: oc describe dc/system-app -n 3scale | grep MASTER_ACCESS_TOKEN | tail -1 | awk '{print $9}' | sed 's/MASTER_ACCESS_TOKEN=//' | sed 's/"//g'
+      register: master_auth_config
+
+    - set_fact:
+        threescale_admin_token: "{{ admin_auth_config.stdout }}"        
+    - set_fact:
+        threescale_master_token: "{{master_auth_config.stdout}}"
+
     - set_fact:
         rhsso_admin_username: "{{rhsso_admin_user_cmd.stdout}}"
 
@@ -27,12 +43,14 @@
 
     - set_fact:
         rhsso_admin_password: "{{rhsso_admin_password_cmd.stdout}}"
- 
+
     - add_host:
         name: SHARED_VARS
         rhsso_admin_username: "{{ rhsso_admin_username }}"
         rhsso_admin_password: "{{ rhsso_admin_password }}"
         oc_apps_domain: "{{ oc_apps_domain }}"
+        threescale_master_token: "{{threescale_master_token}}"
+        threescale_admin_token: "{{threescale_admin_token}}"
 
 - name: "Install API Workshop"
   hosts: workshop
@@ -45,7 +63,6 @@
         eval_rhsso_admin_password: "{{ hostvars['SHARED_VARS']['rhsso_admin_password'] }}"
         ocp_apps_domain: "{{ hostvars['SHARED_VARS']['oc_apps_domain'] }}"
       tags: microcks
-
     - include_role:
         name: setup_che_multi
       vars:
@@ -54,9 +71,22 @@
         eval_rhsso_admin_password: "{{ hostvars['SHARED_VARS']['rhsso_admin_password'] }}"
         ocp_apps_domain: "{{ hostvars['SHARED_VARS']['oc_apps_domain'] }}"
         openshift_oauth_token: ""
+      tags: che
     - include_role:
         name: provision_gogs
       vars:   
         ocp_apps_domain: "{{ hostvars['SHARED_VARS']['oc_apps_domain'] }}"
         configure_only: "false"
+      tags: gogs
+    - include_role:
+        name: provision_threescale
+      vars:  
+        configure_only: "true"
+        eval_rhsso_admin_username: "{{ hostvars['SHARED_VARS']['rhsso_admin_username'] }}"
+        eval_rhsso_admin_password: "{{ hostvars['SHARED_VARS']['rhsso_admin_password'] }}"
+        ocp_apps_domain: "{{ hostvars['SHARED_VARS']['oc_apps_domain'] }}"
+        threescale_master_access_token: "{{ hostvars['SHARED_VARS']['threescale_master_token'] }}"
+        threescale_admin_access_token: "{{ hostvars['SHARED_VARS']['threescale_admin_token'] }}"
+      tags: threescale
+            
 
