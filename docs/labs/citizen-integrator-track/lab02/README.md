@@ -13,7 +13,7 @@ When building and working with APIs, you often need to simulate the responses of
 
 ### Why Red Hat?
 
-Red hat combines and number of commercial and Open Source tools to cover each part of the API Design lifecycle. In this lab we'll be using the Microcks open source tool.
+Red Hat combines a number of commercial and Open Source tools to cover each part of the API Design lifecycle. In this lab we'll be using the Microcks open source tool.
 
 ### Skipping The Lab
 
