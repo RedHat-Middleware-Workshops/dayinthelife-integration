@@ -105,7 +105,7 @@ Your 3scale Admin Portal provides access to a number of configuration features.
 
 1. Scroll down and expand the **MAPPING RULES** section to define the allowed methods on our exposed API.
 
-    *The default mapping is the root ("/") of our API resources, something that we might want to avoid*.
+    *The default mapping is the root ("/") of our API resources, and this example application will not use that mapping. The following actions will redefine that default root ("/") mapping.*
 
     ![07b-mapping-rules.png](images/07b-mapping-rules.png)
 
