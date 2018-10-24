@@ -25,35 +25,35 @@ http://www-international.apps.GUID.openshiftworkshop.com
 
 ### Environment
 
-**URLs:**
-
-Check with your instruction the *GUID* number of your current workshop environment. Replace the actual number on all the URLs where you find **GUID**.
-
-Example in case of *GUID* = **1234**:
-
-```bash
-https://master.GUID.openshiftworkshop.com
-```
-
-becomes =>
-
-```bash
-https://master.1234.openshiftworkshop.com
-```
-
 **Credentials:**
 
-Your username is your asigned user number. For example, if you are assigned user number **1**, your username is:
+Your username is your assigned user number. For example, if you are assigned user number **1**, your username is: 
 
 ```bash
 user1
 ```
 
-The password to login is always the same:
+Please ask your instructor for your password.
+
+**URLs:**
+
+If you haven't done so already, you need to login to the **Red Hat Solution Explorer** webpage so that a unique lab environment can be provisioned on-demand for your exclusive use.  You should open a web browser and navigate to: 
 
 ```bash
-openshift
+https://tutorial-web-app-webapp.dil.opentry.me
 ```
+
+You will be presented with a login page where you can enter your unique credentials:
+
+![design-login](images/design-50.png "Login")
+
+Enter your credentials and click **Log in**.  You'll notice a web-page appear which explains that a *unique environment* is being provisioned.
+
+![design-login](images/design-51.png "Provision")
+
+Once the environment is provisioned, you will be presented with a page that presents all the available applications which you'll need in order to complete the labs:
+
+![design-login](images/design-52.png "Applications")
 
 ## Lab Instructions
 
@@ -61,25 +61,23 @@ openshift
 
 International Inc web development create a Node.js application for the company home page. They added a map service to locate the offices around the world. In this step you will deploy that application.
 
-1. Open a browser window and navigate to:
+1. Open a browser window and navigate to **Red Hat Solution Explorer** website.:
 
     ```bash
-    https://master.GUID.openshiftworkshop.com/console
+	https://tutorial-web-app-webapp.dil.opentry.me
     ```
 
-    *Remember to replace the GUID with your [environment](#environment) value and your user number.*
+1. Click on the **Red Hat OpenShift** Application.
 
-1. Accept the self-signed certificate if you haven't.
+    ![selfsigned-cert](images/design-53.png "OpenShift App")
 
-    ![selfsigned-cert](images/00-selfsigned-cert.png "Self-Signed Cert")
+1. Log into OpenShift using your designated [user and password](#environment). Click on **Log in**.
 
-1. Log into OpenShift using your designated [user and password](#environment). Click on **Sign In**.
-
-    ![01-login](images/deploy-01.png "OpenShift Login")
+    ![01-login](images/design-54.png "OpenShift Login")
 
 1. You are now in OpenShift's main page. Click on your **userX** project in the right side of the screen.
 
-    ![02-user-project](images/deploy-02.png "User Project")
+    ![02-user-project](images/design-55.png "User Project")
 
 1. Click the Overview link, then **Routes - External Traffic** next to the **WWW** pod to open a new tab and connect to *International Inc* new website.  Append `/index.html` to the the route URL as it loads and re-load the webpage.
 
