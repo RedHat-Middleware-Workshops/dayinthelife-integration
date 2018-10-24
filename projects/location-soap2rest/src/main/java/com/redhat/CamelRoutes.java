@@ -16,8 +16,8 @@ public class CamelRoutes extends RouteBuilder {
 	@Autowired
     private CamelContext camelContext;
 	
-	private static final String SERVICE_ADDRESS = "http://localhost:8080/ws/location";
-	private static final String WSDL_URL = "http://localhost:8080/ws/location?wsdl";
+	//private static final String SERVICE_ADDRESS = "http://localhost:8080/ws/location";
+	//private static final String WSDL_URL = "http://localhost:8080/ws/location?wsdl";
 
 	@Override
 	public void configure() throws Exception {
@@ -25,7 +25,7 @@ public class CamelRoutes extends RouteBuilder {
 		
 		
 		restConfiguration()
-			.component("undertow")
+			.component("servlet")
 	    	.port(8080)
 	    	.bindingMode(RestBindingMode.json)
 			.contextPath("/")
@@ -49,7 +49,7 @@ public class CamelRoutes extends RouteBuilder {
 		from("direct:getalllocationphone")
 			.setBody().simple("${headers.id}")
 			.unmarshal().json(JsonLibrary.Jackson)
-			.to("cxf://http://location-soap-userX.apps.GUID.openshiftworkshop.com/ws/location?serviceClass=com.redhat.LocationDetailServicePortType&defaultOperationName=contact")
+			.to("cxf://http://location-soap:8080/ws/location?serviceClass=com.redhat.LocationDetailServicePortType&defaultOperationName=contact")
 			
 			.process(
 					new Processor(){
