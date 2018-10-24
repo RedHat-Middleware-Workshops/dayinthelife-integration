@@ -1,4 +1,4 @@
-# Lab 4
+# Lab 6
 
 ## Managed API Endpoints
 
@@ -91,7 +91,8 @@ Your 3scale Admin Portal provides access to a number of configuration features.
 1. Create a new token that has the Read & Writeable rights to your management platform. Enter **Name** as secure token, check the **Account management API** checkbox and **READ & WRITE** for Permission.
 
 	![04-setuptoken.png](images/04-setuptoken.png)
-1. Please make sure you copy the **Token** to somewhere safe, and don't forget it. Click on **I have copied the token** to finish off. 
+
+1. Please make sure you copy the **Token** to somewhere safe, and don't forget it. Click on **I have copied the token** to finish off. 
 
 	![05-token.png](images/05-token.png)
 
@@ -124,7 +125,7 @@ Try to navigate through the rest of the tabs of your Administration Portal. Did 
 
 You set up an API management service and API proxies to control traffic into your API. From now on you will be able to issue keys and rights to users wishing to access the API.
 
-You can now proceed to [Lab 5](../lab05/#lab-5)
+You can now proceed to [Lab 7](../lab07/#lab-7)
 
 ## Notes and Further Reading
 
