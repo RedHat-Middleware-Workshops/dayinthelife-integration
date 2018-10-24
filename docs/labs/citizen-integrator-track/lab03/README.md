@@ -72,7 +72,7 @@ Once the environment is provisioned, you will be presented with a page that pres
     Connection URL: jdbc:postgresql://postgresql.international.svc:5432/sampledb
     Username      : dbuser
     Password      : password
-    Schema        : keep it empty
+    Schema        : <blank>
     ```
 
 1. Click **Validate** and verify if the connection is successful. Click **Next** to proceed.
