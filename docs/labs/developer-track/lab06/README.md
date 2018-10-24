@@ -20,16 +20,10 @@ Red Hat provides one the leading API Management tools which provide management s
 If you are planning to follow to the next lab, there is an already running API proxy for the Location API Service in this endpoint:
 
 ```bash
-https://location-service-api.amp.apps.GUID.openshiftworkshop.com
+http://location-service-international.dil.opentry.me
 ```
 
 ### Environment
-
-**Red Hat Solution Explorer webpage** 
-
-Login to the Red Hat Solution Explorer, here you will find the link to Che.
-
-![00-integr8ly-che.png](images/00-integr8ly-che.png "Integr8ly CHE")
 
 **Credentials:**
 
@@ -39,22 +33,27 @@ Your username is your assigned user number. For example, if you are assigned use
 user1
 ```
 
-Please ask your instructor for the corresponding password.
+Please ask your instructor for your password.
 
+**URLs:**
 
-**Credentials:**
-
-Your username is your asigned user number. For example, if you are assigned user number **1**, your username is: 
-
-```bash
-user1
-```
-
-The password to login is always the same:
+If you haven't done so already, you need to login to the **Red Hat Solution Explorer** webpage so that a unique lab environment can be provisioned on-demand for your exclusive use.  You should open a web browser and navigate to: 
 
 ```bash
-openshift
+https://tutorial-web-app-webapp.dil.opentry.me
 ```
+
+You will be presented with a login page where you can enter your unique credentials:
+
+![design-login](images/design-50.png "Login")
+
+Enter your credentials and click **Log in**.  You'll notice a web-page appear which explains that a *unique environment* is being provisioned.
+
+![design-login](images/design-51.png "Provision")
+
+Once the environment is provisioned, you will be presented with a page that presents all the available applications which you'll need in order to complete the labs:
+
+![design-login](images/design-52.png "Applications")
 
 ## Lab Instructions
 
