@@ -60,7 +60,7 @@ Please ask your instructor for your password.
 
 1. Open up the `CamelRoutes.java` file.  Notice that the existing implementation is barebones. First of all, we need to enter the SOAP service address and WSDL location for our CXF client to call.  Secondly, we need to create our Camel route implementation and create the RESTful endpoint.  To do this, include the following code (making sure to update the **{YOUR_NAME_SPACE}**,  **{OPENSHIFT_APP_URL}** and username values in the `to("cxf://` URL):
 
-In this case **YOUR_NAME_SPACE** should be *userX-dev* and **{OPENSHIFT_APP_URL}** would be *dil.opentry.me*. Check with your instructor if you are not sure. 
+    In this case **YOUR_NAME_SPACE** should be *userX-dev* and **{OPENSHIFT_APP_URL}** would be *dil.opentry.me*. Check with your instructor if you are not sure. 
 
     ```java
 	...
