@@ -77,11 +77,11 @@ Once the environment is provisioned, you will be presented with a page that pres
 
     ![11-visit-devportal.png](images/11-visit-devportal.png)
 
-1. You can see there is a default portal with information of your API and how to signup. Unfortunately the API information is incorrect.
+1. You can see there is a default portal with information on your API, and how to signup. Unfortunately the API information is incorrect.
 
     ![12-devportal-overview.png](images/12-devportal-overview.png)
 
-    *We will edit our portal to update it with the correct information and we will add the cool shadowman logo*.
+    *We will edit our portal to update it with the correct information, and we will add the cool shadowman logo*.
 
 1. Go back to your admin portal browser tab and scroll down to the content sub-sections for the **Layouts** and select the **Main layout** menu option.
 
