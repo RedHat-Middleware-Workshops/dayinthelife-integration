@@ -63,7 +63,6 @@ Please ask your instructor for your password.
 In this case **YOUR_NAME_SPACE** should be *userX-dev* and **{OPENSHIFT_APP_URL}** would be *dil.opentry.me*. Check with your instructor if you are not sure. 
 
     ```java
-	
 	...
 
 	@Autowired
