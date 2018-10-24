@@ -21,11 +21,7 @@
 
 # Needed to change this to include CONTEXT_DIR
 - name: Create template for Fuse 7.1
-<<<<<<< HEAD
   shell: "oc create -f https://raw.githubusercontent.com/RedHatWorkshops/dayinthelife-integration/master/support/templates/spring-boot-camel-template.json -n openshift"
-=======
-  shell: "oc create -f https://gist.githubusercontent.com/aidenkeating/cd0ddf858c875f441532c78653bbe513/raw/46b9c22d45ad096a083e089195f175e6ac538a7f/spring-boot-camel-template.json -n openshift"
->>>>>>> Include backend
   when: configure_only == 'false' and template_exists.failed
   ignore_errors: true
 
@@ -44,9 +40,10 @@
   shell: "oc new-app -f https://raw.githubusercontent.com/openshift/origin/master/examples/db-templates/postgresql-ephemeral-template.json \
   --param=POSTGRESQL_USER=dbuser --param=POSTGRESQL_PASSWORD=password --param=POSTGRESQL_DATABASE=sampledb --param=POSTGRESQL_VERSION=latest -n {{ backend_project }}"
   when: configure_only == 'false'
-  
+  register: create_backend_db
+  failed_when: create_backend_db.stderr != '' and 'already exists' not in create_backend_db.stderr
+
 - name: Create Backend Location API service
-<<<<<<< HEAD
   shell: "oc new-app s2i-fuse71-spring-boot-camel -p GIT_REPO=https://github.com/RedHatWorkshops/dayinthelife-integration \
   -p CONTEXT_DIR=/projects/location-service -p APP_NAME=location-service -p GIT_REF=master -n {{ backend_project }}"
   when: configure_only == 'false'
@@ -89,30 +86,17 @@
   -p CONTEXT_DIR=/projects/threescale-automate -p APP_NAME=threescale-automate -p GIT_REF=master -p SSO_USERNAME={{ sso_username }} -p SSO_PASSWORD={{ sso_pwd }} -n {{ backend_project }}"
   when: configure_only == 'false'
 
-=======
-  shell: "oc new-app s2i-fuse71-spring-boot-camel -p GIT_REPO=https://github.com/aidenkeating/dayinthelife-integration \
-  -p CONTEXT_DIR=/projects/location-service -p APP_NAME=location-service -p GIT_REF=fix-location-detail-sql -n {{ backend_project }}"
-  when: configure_only == 'false'
-
-- name: Create Backend Location Detail SOAP service
-  shell: "oc new-app s2i-fuse71-spring-boot-camel -p GIT_REPO=https://github.com/aidenkeating/dayinthelife-integration \
-  -p CONTEXT_DIR=/projects/location-soap -p APP_NAME=location-soap -p GIT_REF=fix-location-detail-sql -n {{ backend_project }}"
-  when: configure_only == 'false'
-
-- name: Create Backend Location Detail SOAP to REST service
-  shell: "oc new-app s2i-fuse71-spring-boot-camel -p GIT_REPO=https://github.com/aidenkeating/dayinthelife-integration \
-  -p CONTEXT_DIR=/projects/location-soap2rest -p APP_NAME=location-soap2rest -p GIT_REF=fix-location-detail-sql -n {{ backend_project }}"
-  when: configure_only == 'false'
-
-# Needed to change this to not use a hardcoded SSL route
->>>>>>> Include backend
 - name: Create Webpage application
   shell: "oc new-app https://github.com/jbossdemocentral/3scaleworkshop-wwwpage#secured --name www \
   --build-env API_BACKEND_URL=https://location-sso-staging.amp.{{ ocp_apps_domain }}/locations \
   --build-env SSO_URL=https://secure-sso-{{ sso_project }}.{{ ocp_apps_domain }} --build-env SSO_REALM=threescale \
   --build-env CLIENT_ID=www-secured -n {{ backend_project }}"
   when: configure_only == 'false'
+  register: create_webpage_application
+  failed_when: create_webpage_application.stderr != '' and 'already exists' not in create_webpage_application.stderr
 
 - name: Create webapp route
   shell: "oc expose svc/www -n {{ backend_project }}"
   when: configure_only == 'false'
+  register: create_webapp_route
+  failed_when: create_webapp_route.stderr != '' and 'already exists' not in create_webapp_route.stderr

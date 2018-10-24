@@ -64,6 +64,7 @@
         ocp_apps_domain: "{{ hostvars['SHARED_VARS']['oc_apps_domain'] }}"        
         configure_only: "true"
         sso_project: "sso"
+      tags: sso
     - include_role:
         name: provision_microcks
       vars:
