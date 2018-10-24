@@ -7,7 +7,7 @@
 
 ## Overview
 
-When it comes to quick API development, you need both the integration experts as well as application developers to easily develop, deploy the APIs.Here is how to create an simple API with Fuse online. 
+When it comes to quick API development, you need both the integration experts as well as application developers to easily develop and deploy the APIs. Here is how to create a simple API with Fuse Online. 
 
 ### Why Red Hat?
 
