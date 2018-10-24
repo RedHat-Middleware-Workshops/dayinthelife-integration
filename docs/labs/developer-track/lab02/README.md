@@ -23,35 +23,35 @@ If you are planning to follow the next lab, here is a [link](wip-link) to the RE
 
 ### Environment
 
-**URLs:**
-
-Check with your instruction the *GUID* number of your current workshop environment. Replace the actual number on all the URLs where you find **GUID**.
-
-Example in case of *GUID* = **1234**:
-
-```bash
-https://master.GUID.openshiftworkshop.com
-```
-
-becomes =>
-
-```bash
-https://master.1234.openshiftworkshop.com
-```
-
 **Credentials:**
 
-Your username is your asigned user number. For example, if you are assigned user number **1**, your username is: 
+Your username is your assigned user number. For example, if you are assigned user number **1**, your username is: 
 
 ```bash
 user1
 ```
 
-The password to login is always the same:
+Please ask your instructor for your password.
+
+**URLs:**
+
+If you haven't done so already, you need to login to the **Red Hat Solution Explorer** webpage so that a unique lab environment can be provisioned on-demand for your exclusive use.  You should open a web browser and navigate to: 
 
 ```bash
-openshift
+https://tutorial-web-app-webapp.dil.opentry.me
 ```
+
+You will be presented with a login page where you can enter your unique credentials:
+
+![design-login](images/design-50.png "Login")
+
+Enter your credentials and click **Log in**.  You'll notice a web-page appear which explains that a *unique environment* is being provisioned.
+
+![design-login](images/design-51.png "Provision")
+
+Once the environment is provisioned, you will be presented with a page that presents all the available applications which you'll need in order to complete the labs:
+
+![design-login](images/design-52.png "Applications")
 
 ## Lab Instructions
 
@@ -64,7 +64,7 @@ Follow this instructions to set up the repository.
 1. Open a browser window and navigate to:
 
     ```bash
-    http://gogs.apps.GUID.openshiftworkshop.com/user/login?redirect_to=
+    http://gogs.dil.opentry.me/
     ```
 
 1. Log into Gogs using your designated [user and password](#environment). Click on **Sign In**.
@@ -100,17 +100,17 @@ Follow this instructions to set up the repository.
 1. Copy the browser tab URL. Store that URL address as you will use it in the next steps of the lab. The URL should look like the following:
 
     ```bash
-    http://gogs.apps.GUID.openshiftworkshop.com/user1/locations-api/raw/dev-track-lab-02/locations-api/Locations.json
+     http://gogs.dil.opentry.me/userX/locations-api/raw/dev-track-lab-02/locations-api/Locations.json
     ```
 
-    *If you feel more comfortable, you can also copy and paste the RAW button link from the previous step*.
+    *If you feel more comfortable, you can also copy and paste the RAW button link from the previous step.  Also, don't forget to update the X variable with your user number*.
 
 ### Step 1: Create a Microcks Job
 
 1. Open a browser window and navigate to:
 
     ```bash
-    http://microcks.apps.GUID.openshiftworkshop.com/
+    http://microcks.dil.opentry.me/
     ```
 
 1. Log in into Microks using your designated [user and password](#environment).
@@ -125,10 +125,10 @@ Follow this instructions to set up the repository.
 
     ![mock-add-job](images/mock-09.png "Add Job")
 
-1. In the Add Job dialog, type in the following information replacing **X** with your user number and GUID with your working [environment](#environment):
+1. In the Add Job dialog, type in the following information replacing **X** with your user number:
 
     * Name: **Locations-UserX**
-    * Repository URL: **http://gogs.apps.GUID.openshiftworkshop.com/user1/locations-api/raw/dev-track-lab-02/locations-api/Locations.json**
+    * Repository URL: **http://gogs.dil.opentry.me/userX/locations-api/raw/dev-track-lab-02/locations-api/Locations.json**
 
     *You can also copy and paste the raw url you saved from the Gogs repository (Step 0)*.
 
@@ -172,10 +172,10 @@ We now have a working REST mock service listening for requests. We will use an o
     https://onlinecurl.com/
     ```
 
-1. Enter the following URL: **http://microcks.apps.GUID.openshiftworkshop.com + {{your-user-api-mocks-url}}**. Remember to replace the GUID with your [environment](#environment) values and your user number. It should look like this:
+1. Enter the following URL: **http://microcks.dil.opentry.me + {{your-user-api-mocks-url}}**. Remember to replace your user number. It should look like this:
 
     ```bash
-    http://microcks.apps.dayinlife.openshiftworkshop.com/rest/Locations/1.0/locations
+    http://microcks.dil.opentry.me/rest/Locations/1.0/locations
     ```
 
 1. Click the **START YOUR CURL** button.
