@@ -3,24 +3,24 @@
   "kind": "Template",
   "metadata": {
     "annotations": {
-      "openshift.io/display-name": "Red Hat Fuse 7.0 Camel with Spring Boot",
+      "openshift.io/display-name": "Red Hat Fuse 7.1 Camel with Spring Boot",
       "openshift.io/provider-display-name": "Red Hat, Inc.",
       "description": "Spring Boot and Camel QuickStart. This example demonstrates how you can use Apache Camel with Spring Boot on OpenShift. The quickstart uses Spring Boot to configure an application which includes a Camel route that triggers a message every 5th second, and routes the message to a log.",
       "tags": "quickstart,java,springboot,fis,jboss-fuse",
       "iconClass": "icon-rh-integration",
       "version": "2.0"
     },
-    "name": "s2i-fuse70-spring-boot-camel"
+    "name": "s2i-fuse71-spring-boot-camel"
   },
   "labels": {
-    "template": "s2i-fuse70-spring-boot-camel"
+    "template": "s2i-fuse71-spring-boot-camel"
   },
   "parameters": [
     {
       "name": "APP_NAME",
       "displayName": "Application Name",
       "required": true,
-      "value": "s2i-fuse70-spring-boot-camel",
+      "value": "s2i-fuse71-spring-boot-camel",
       "description": "The name assigned to the application."
     },
     {
@@ -197,7 +197,7 @@
             "from": {
               "kind": "ImageStreamTag",
               "namespace": "${IMAGE_STREAM_NAMESPACE}",
-              "name": "jboss-fuse70-java-openshift:${BUILDER_VERSION}"
+              "name": "fuse7-java-openshift:${BUILDER_VERSION}"
             },
             "forcePull": true,
             "incremental": true,
