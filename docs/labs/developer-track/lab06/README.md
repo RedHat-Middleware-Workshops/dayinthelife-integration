@@ -25,21 +25,22 @@ https://location-service-api.amp.apps.GUID.openshiftworkshop.com
 
 ### Environment
 
-**URLs:**
+**Red Hat Solution Explorer webpage** 
 
-Check with your instruction the *GUID* number of your current workshop environment. Replace the actual number on all the URLs where you find **GUID**.
+Login to the Red Hat Solution Explorer, here you will find the link to Che.
 
-Example in case of *GUID* = **1234**:
+![00-integr8ly-che.png](images/00-integr8ly-che.png "Integr8ly CHE")
 
-```bash
-https://master.GUID.openshiftworkshop.com
-```
+**Credentials:**
 
-becomes =>
+Your username is your assigned user number. For example, if you are assigned user number **1**, your username is: 
 
 ```bash
-https://master.1234.openshiftworkshop.com
+user1
 ```
+
+Please ask your instructor for the corresponding password.
+
 
 **Credentials:**
 
@@ -64,10 +65,8 @@ Your 3scale Admin Portal provides access to a number of configuration features.
 1. Open a browser window and navigate to:
 
     ```bash
-    https://userX-admin.apps.GUID.openshiftworkshop.com/
+    https://userX-admin.dil.opentry.me/p/login
     ```
-
-    *Remember to replace the GUID with your [environment](#environment) value and your user number.*
 
 1. Accept the self-signed certificate if you haven't.
 
@@ -99,13 +98,16 @@ Your 3scale Admin Portal provides access to a number of configuration features.
 
 ### Step 2: Start managing your APIs
 
+By running the command lines, it will automatically setup the 3scale API configuration and start managing the API you have exposed! 
 In you command line terminal or in your Che terminal enter the following CURL command:
 
-`curl -k -X POST http://threescale-automate-international.apps.{GUID}.openshiftworkshop.com/threescale/automate/{YOUR_API_TOKEN}/{USERX}/apps.{GUID}.openshiftworkshop.com`
+`curl -k -X POST 
+http://threescale-automate-international.dil.opentry.me/threescale/automate/{YOUR_API_TOKEN}/{USERX}/{OPENSHIFT_APP_URL}`
 
 For example: 
 
-`curl -k -X POST http://localhost:8080/threescale/automate/44e1592e40b12bae0f2c539bfcc7728ab8383248c1ad34495252398ebb7b6b6d/user12/apps.{GUID}.openshiftworkshop.com`
+`curl -k -X POST 
+http://threescale-automate-international.dil.opentry.me/threescale/automate/44e1592e40b12bae0f2c539bfcc7728ab8383248c1ad34495252398ebb7b6b6d/user12/dil.opentry.me`
 
 String **API automated, DONE!** should be returned as the result.
 
