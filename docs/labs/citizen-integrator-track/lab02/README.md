@@ -106,17 +106,17 @@ Follow this instructions to set up the repository.
 1. Copy the browser tab URL. Store that URL address as you will use it in the next steps of the lab. The URL should look like the following:
 
     ```bash
-    http://gogs.apps.GUID.openshiftworkshop.com/user1/locations-api/raw/master/Locations-UserX.yaml
+    http://gogs.dil.opentry.me/userX/locations-api/raw/master/Locations-UserX.yaml
     ```
 
-    *If you feel more comfortable, you can also copy and paste the RAW button link from the previous step*.
+    *If you feel more comfortable, you can also copy and paste the RAW button link from the previous step.  Don't forget to update the `X` variable with your user number*.
 
 ### Step 1: Create a Microcks Job
 
 1. Open a browser window and navigate to:
 
     ```bash
-    http://microcks.apps.GUID.openshiftworkshop.com/
+    http://microcks.dil.opentry.me
     ```
 
 1. Log in into Microks using your designated [user and password](#environment).
@@ -131,10 +131,10 @@ Follow this instructions to set up the repository.
 
     ![mock-add-job](images/mock-12.png "Add Job")
 
-1. In the Add Job dialog, type in the following information replacing **X** with your user number and GUID with your working [environment](#environment):
+1. In the Add Job dialog, type in the following information replacing **X** with your user number:
 
     * Name: **Locations-UserX**
-    * Repository URL: **http://gogs.apps.GUID.openshiftworkshop.com/userX/locations-api/raw/master/Locations-UserX.yaml**
+    * Repository URL: **http://gogs.dil.opentry.me/userX/locations-api/raw/master/Locations-UserX.yaml**
 
     *You can also copy and paste the raw url you saved from the Gogs repository (Step 0)*.
 
@@ -178,10 +178,10 @@ We now have a working REST mock service listening for requests. We will use an o
     https://onlinecurl.com/
     ```
 
-1. Enter the following URL: **http://microcks.apps.GUID.openshiftworkshop.com + {{your-user-api-mocks-url}}**. Remember to replace the GUID with your [environment](#environment) values and your user number. It should look like this:
+1. Enter the following URL: **http://microcks.dil.opentry.me + {{your-user-api-mocks-url}}**. Remember to replace your user number. It should look like this:
 
     ```bash
-    http://microcks.apps.GUID.openshiftworkshop.com/rest/Locations-UserX/1.0.0/locations
+    http://microcks.dil.opentry.me/rest/Locations-UserX/1.0.0/locations
     ```
 
 1. Click the **START YOUR CURL** button.

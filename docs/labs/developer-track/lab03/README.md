@@ -37,11 +37,7 @@ Your username is your assigned user number. For example, if you are assigned use
 user1
 ```
 
-The password to login is always the same:
-
-```bash
-openshift
-```
+Please ask your instructor for the corresponding password.
 
 ## Lab Instructions
 
