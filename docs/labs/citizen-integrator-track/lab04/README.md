@@ -13,7 +13,7 @@ Once you have APIs deployed in your environment, it becomes critically important
 
 ### Why Red Hat?
 
-Red Hat provides one the leading API Management tools that provides API management services. The 3Scale API Management solution enables you to quickly and easily protect and manage your APIs.
+Red Hat provides one the leading API Management tools that provides API management services. The 3scale API Management solution enables you to quickly and easily protect and manage your APIs.
 
 ### Skipping The Lab
 
