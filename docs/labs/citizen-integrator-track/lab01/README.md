@@ -99,7 +99,7 @@ Let's start crafting your API.
 
     ![design-add-datatype](images/design-15.png "Add Datatype")
 
-1. Fill in the *Name* with the **location** value. Expand the *Enter the JSON Example (optional)* to paste the following example, then click **Save**:
+1. Fill in the *Name* field with the value **location**. Expand the *Enter the JSON Example (optional)* to paste the following example, then click **Save**:
 
     * Name: **location**
     * JSON Example:
