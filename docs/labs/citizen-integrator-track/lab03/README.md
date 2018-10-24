@@ -97,7 +97,7 @@ Description goes here
 
   ![05-choose-weebhook.png](images/05-choose-weebhook.png "Choose webhook")
 
-3. Click on `Incoming webhook` 
+3. Click on `Incoming Webhook` 
 
   ![06-incoming-webhook.png](images/06-incoming-webhook.png "Add incoming webhook")
 
