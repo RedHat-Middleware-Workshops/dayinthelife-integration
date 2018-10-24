@@ -2,8 +2,6 @@
 
 ## Fuse Online
 
-## todo
-
 * Duration: 20 mins
 * Audience: Developers and Architects
 
@@ -20,25 +18,9 @@ We know sometimes we don't have enough time to go over the labs step by step. So
 
 ### Environment
 
-**URLs:**
-
-Check with your instruction the *GUID* number of your current workshop environment. Replace the actual number on all the URLs where you find **GUID**. 
-
-Example in case of *GUID* = **1234**: 
-
-```bash
-https://master.GUID.openshiftworkshop.com
-```
-
-becomes =>
-
-```bash
-https://master.1234.openshiftworkshop.com
-```
-
 **Credentials:**
 
-Your username is your asigned user number. For example, if you are assigned user number **1**, your username is: 
+Your username is your assigned user number. For example, if you are assigned user number **1**, your username is: 
 
 ```bash
 user1
@@ -50,17 +32,35 @@ The password to login is always the same:
 openshift
 ```
 
+**URLs:**
+
+If you haven't done so already, you need to login to the **Red Hat Solution Explorer** webpage so that a unique lab environment can be provisioned on-demand for your exclusive use.  You should open a web browser and navigate to: 
+
+```bash
+https://tutorial-web-app-webapp.dil.opentry.me
+```
+
+You will be presented with a login page where you can enter your unique credentials:
+
+![design-login](images/design-50.png "Login")
+
+Enter your credentials and click **Log in**.  You'll notice a web-page appear which explains that a *unique environment* is being provisioned.
+
+![design-login](images/design-51.png "Provision")
+
+Once the environment is provisioned, you will be presented with a page that presents all the available applications which you'll need in order to complete the labs:
+
+![design-login](images/design-52.png "Applications")
+
 ## Lab Instructions
 
 ### Step 1: Create database connection
 
-1. Open a browser window and navigate to:
+1. Via the **Red Hat Solution Explorer** webpage, click the **Red Hat Fuse** link:
 
-    ```bash
-    http://https://syndesis-user1.apps.GUID.openshift.opentlc.com/
-    ```
+   ![00-design-53.png](images/design-53.png "Login to Fuse Online")
 
-    *Remember to replace the GUID with your [environment](#environment) value and your user number.*
+   *If you are presented with a page about permissions, click the Allow button to accept all permissions*
 
 1. Click on **Connection > Create Connection**
 
