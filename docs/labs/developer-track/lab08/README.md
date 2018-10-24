@@ -20,40 +20,40 @@ Applications can be built from many technologies. In this case we use a simple w
 If you decide to skip the lab you can check how a SSO enabled web applications looks like:
 
 ```bash
-http://www-international.apps.GUID.openshiftworkshop.com
+http://www-international.dil.opentry.me/
 ```
 
 ### Environment
 
-**URLs:**
-
-Check with your instruction the *GUID* number of your current workshop environment. Replace the actual number on all the URLs where you find **GUID**.
-
-Example in case of *GUID* = **1234**:
-
-```bash
-https://master.GUID.openshiftworkshop.com
-```
-
-becomes =>
-
-```bash
-https://master.1234.openshiftworkshop.com
-```
-
 **Credentials:**
 
-Your username is your asigned user number. For example, if you are assigned user number **1**, your username is:
+Your username is your assigned user number. For example, if you are assigned user number **1**, your username is: 
 
 ```bash
 user1
 ```
 
-The password to login is always the same:
+Please ask your instructor for your password.
+
+**URLs:**
+
+If you haven't done so already, you need to login to the **Red Hat Solution Explorer** webpage so that a unique lab environment can be provisioned on-demand for your exclusive use.  You should open a web browser and navigate to: 
 
 ```bash
-openshift
+https://tutorial-web-app-webapp.dil.opentry.me
 ```
+
+You will be presented with a login page where you can enter your unique credentials:
+
+![design-login](images/design-50.png "Login")
+
+Enter your credentials and click **Log in**.  You'll notice a web-page appear which explains that a *unique environment* is being provisioned.
+
+![design-login](images/design-51.png "Provision")
+
+Once the environment is provisioned, you will be presented with a page that presents all the available applications which you'll need in order to complete the labs:
+
+![design-login](images/design-52.png "Applications")
 
 ## Lab Instructions
 
@@ -66,7 +66,7 @@ Follow this instructions to set up the repository.
 1. Open a browser window and navigate to:
 
     ```bash
-    http://gogs.apps.GUID.openshiftworkshop.com/user/login?redirect_to=
+    http://gogs.dil.opentry.me/user/login?redirect_to=
     ```
 
 1. Log into Gogs using your designated [user and password](#environment). Click on **Sign In**.
@@ -128,7 +128,7 @@ International Inc web development create a Node.js application for the company h
 1. Fill in the configuration information with your API implementation github repo details:
 
     * Application Name: **www**
-    * Git Repository URL: **http://gogs.apps.GUID.openshiftworkshop.com/userX/www-page.git**
+    * Git Repository URL: **http://gogs.dil.opentry.me/userX/www-page.git**
 
     *Remember to replace the GUID with your [environment](#environment) value and your user number*.
 
