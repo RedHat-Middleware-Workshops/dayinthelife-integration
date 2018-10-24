@@ -208,11 +208,6 @@ Description goes here
 
 ## Summary
 
-TBD
-
-You can now proceed to [Lab 6](../lab06/#lab-6)
-
-=======
 In this lab you discovered how to create an adhoc API service using Fuse Online. 
 
 You can now proceed to [Lab 6](../lab06/#lab-6)
