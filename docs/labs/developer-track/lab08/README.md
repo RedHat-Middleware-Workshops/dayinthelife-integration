@@ -308,8 +308,10 @@ In this step, we will edit the code provided by development to add keycloak. Key
 1. Because we are using self signed certificates, you will need to accept the certificate for the secured endpoint. Open a new browser tab or window and navigate to:
 
     ```bash
-    https://location-api-staging.amp.dil.opentry.me:443/locations
+    https://location-userX-api-staging.amp.dil.opentry.me:443/locations
     ```
+    
+    *Remember to replace the `X` variable in the URL*
 
 1. Accept the self-signed certificate if you haven't.
 
