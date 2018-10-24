@@ -111,3 +111,9 @@
         eval_rhsso_admin_username: "{{ hostvars['SHARED_VARS']['rhsso_admin_username'] }}"
         eval_rhsso_admin_password: "{{ hostvars['SHARED_VARS']['rhsso_admin_password'] }}"
       tags: apicurio
+    - include_role:
+        name: provision_backend
+      vars:
+        ocp_apps_domain: "{{ hostvars['SHARED_VARS']['oc_apps_domain'] }}"
+        sso_project: sso
+      tags: backend
