@@ -9,17 +9,17 @@
 
 ## Overview
 
-Once you have APIs in your organization and have applications being written, you also want to be sure in many cases that thee various types of users of the APIs are correctly authenticated. In this lab you will discover how to set up the widely used OpenID connect pattern for Authentication. 
+Once you have APIs in your organization and have applications being written, you also want to be sure in many cases that the various types of users of the APIs are correctly authenticated. In this lab you will discover how to set up the widely used OpenID connect pattern for Authentication.
 
 ### Why Red Hat?
 
-The Red Hat SSO product provides important functionality for managing identities at scale. In this lab you can see how it fits together with 3scale and OpenShift.
+The Red Hat SSO product provides important functionality for managing identities at scale. In this lab you will see how it fits together with 3scale and OpenShift.
 
 ### Skipping The Lab
 
-We know sometime we don't have enough time to go over step by step on the labs. So here is a [short video](https://vimeo.com/middlewarepro/3scale-security-oidc-demo) where you can see how to configure OpenID Connect for your service using Red Hat Single Sign On.
+We know sometimes you don't have enough time to go over step by step labs, so here is a [short video](https://vimeo.com/middlewarepro/3scale-security-oidc-demo) where you can see how to configure OpenID Connect for your service using Red Hat Single Sign On (SSO).
 
-If you are planning to follow to the next lab, there is an already running OpenID Connect secured API proxy for the Location API Service in this endpoint:
+If you are planning to skip to the next lab, there is an already running OpenID Connect secured API proxy for the Location API Service in this endpoint:
 
 ```bash
 https://location-sso.amp.dil.opentry.me:443
