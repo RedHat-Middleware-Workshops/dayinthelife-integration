@@ -58,7 +58,7 @@ Once the environment is provisioned, you will be presented with a page that pres
 
    *If you are presented with a page about permissions, click the Allow button to accept all permissions*
 
-1. Click on **Connection > Create Connection**
+1. Click on **Connections > Create Connection**
 
    ![00-create-connection.png](images/00-create-connection.png "Create Connection")
 
