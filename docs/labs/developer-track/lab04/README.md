@@ -23,7 +23,24 @@ If you are planning to follow to the next lab or are having trouble with this la
 
 ### Environment
 
-Open a browser window and navigate to `http://che-rh-che-0879.apps.GUID.openshift.opentlc.com/dashboard/#/`.  *Remember to replace the GUID with your [environment](#environment) value and your user number.*. Please re-use the Workspace you used during Lab04.
+
+Login to the Red Hat Solution Explorer, here you will find the link to Che.
+
+![00-integr8ly-che.png](images/00-integr8ly-che.png "Integr8ly CHE")
+
+**Credentials:**
+
+Your username is your assigned user number. For example, if you are assigned user number **1**, your username is: 
+
+```bash
+user1
+```
+
+The password to login is always the same:
+
+```bash
+openshift
+```
 
 ## Lab Instructions
 
@@ -45,7 +62,10 @@ Open a browser window and navigate to `http://che-rh-che-0879.apps.GUID.openshif
 
     ![00-verify-pojos.png](images/00-verify-pojos.png "Verify Pojos")
 
-1. Open up the `CamelRoutes.java` file.  Notice that the existing implementation is barebones. First of all, we need to enter the SOAP service address and WSDL location for our CXF client to call.  Secondly, we need to create our Camel route implementation and create the RESTful endpoint.  To do this, include the following code (making sure to update the GUID and username values in the `to("cxf://` URL):
+1. Open up the `CamelRoutes.java` file.  Notice that the existing implementation is barebones. First of all, we need to enter the SOAP service address and WSDL location for our CXF client to call.  Secondly, we need to create our Camel route implementation and create the RESTful endpoint.  To do this, include the following code (making sure to update the **{YOUR_NAME_SPACE}**,  **{OPENSHIFT_APP_URL}** and username values in the `to("cxf://` URL):
+
+In this case **YOUR_NAME_SPACE** should be *userX-dev* and **{OPENSHIFT_APP_URL}** would be *dil.opentry.me*. Check with your instructor if you are not sure. 
+
 
     ```java
 	
@@ -73,7 +93,7 @@ Open a browser window and navigate to `http://che-rh-che-0879.apps.GUID.openshif
 		from("direct:getalllocationphone")
 			.setBody().simple("${headers.id}")
 			.unmarshal().json(JsonLibrary.Jackson)
-			.to("cxf://http://location-soap-userX.apps.GUID.openshiftworkshop.com/ws/location?serviceClass=com.redhat.LocationDetailServicePortType&defaultOperationName=contact")
+			.to("cxf://http://location-soap-{YOUR_NAME_SPACE}.{OPENSHIFT_APP_URL}/ws/location?serviceClass=com.redhat.LocationDetailServicePortType&defaultOperationName=contact")
 			
 			.process(
 					new Processor(){
