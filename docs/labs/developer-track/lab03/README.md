@@ -26,7 +26,7 @@ If you are planning to follow to the next lab or are having trouble with this la
 **Red Hat Solution Explorer webpage** 
 Login to the Red Hat Solution Explorer, here you will find the link to Che.
 
-
+![00-integr8ly-che.png](images/00-integr8ly-che.png "Integr8ly CHE")
 
 **Credentials:**
 
@@ -46,14 +46,9 @@ openshift
 
 ### Step 1: Create an Eclipse Che environment for your personal use
 
-1. Open a browser window and navigate to:
+1. Click on Eclipse Che in **Red Hat Solution Explorer** .
 
-    ```bash
-    http://che-rh-che-0879.apps.GUID.openshift.opentlc.com/dashboard/#/
-    ```
-
-    *Remember to replace the GUID with your [environment](#environment) value and your user number.*
-
+    
 1. Click on **Create Workspace**.
 
     ![00-create-workspace.png](images/00-create-workspace.png "Create Workspace")
@@ -72,10 +67,8 @@ openshift
 1. Open a browser window and navigate to:
 
     ```bash
-    http://master.GUID.openshiftworkshop.com
+    https://dil.opentry.me/console
     ```
-
-    *Remember to replace the GUID with your [environment](#environment) value and your user number.*
 
 1. Click on **Create Project** and enter a unique name using your username e.g. `user-X-dev`.
 
