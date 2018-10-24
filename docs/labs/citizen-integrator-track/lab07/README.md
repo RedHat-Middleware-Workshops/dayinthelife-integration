@@ -63,8 +63,6 @@ International Inc web development create a Node.js application for the company h
 
 1. Open a browser tab and navigate to `http://www-international.dil.opentry.me`.
 
-    ![13-build-complete](images/deploy-13.png "Build Complete")
-
 1. You should now see what the development team created for International Inc. Click **LOCATIONS** to check the locations page.
 
     ![10-application-page](images/consume-13.png "Webpage")
