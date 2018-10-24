@@ -47,15 +47,15 @@ https://tutorial-web-app-webapp.dil.opentry.me
 
 You will be presented with a login page where you can enter your unique credentials:
 
-    ![design-login](images/design-50.png "Login")
+![design-login](images/design-50.png "Login")
 
 Enter your credentials and click **Log in**.  You'll notice a web-page appear which explains that a *unique environment* is being provisioned.
 
-    ![design-login](images/design-51.png "Provision")
+![design-login](images/design-51.png "Provision")
 
 Once the environment is provisioned, you will be presented with a page that presents all the available applications which you'll need in order to complete the labs:
 
-    ![design-login](images/design-52.png "Applications")
+![design-login](images/design-52.png "Applications")
 
 ## Lab Instructions
 
