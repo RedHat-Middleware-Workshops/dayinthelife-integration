@@ -23,21 +23,10 @@ If you are planning to follow to the next lab or are having trouble with this la
 
 ### Environment
 
-**URLs:**
+**Red Hat Solution Explorer webpage** 
+Login to the Red Hat Solution Explorer, here you will find the link to Che.
 
-Check with your instructor which *GUID* number to use for your current workshop environment. Replace the actual number on all the URLs where you find **GUID**. 
 
-Example in case of *GUID* = **1234**: 
-
-```bash
-https://master.GUID.openshiftworkshop.com
-```
-
-becomes =>
-
-```bash
-https://master.1234.openshiftworkshop.com
-```
 
 **Credentials:**
 
@@ -109,10 +98,18 @@ openshift
 
     ![00-open-terminal.png](images/00-open-terminal.png "Open Terminal")
 
-1. Login to Openshift via the Terminal window using the following commands: 
+1. Obtain your login credentials by first login to Openshift console using your username and password. 
+
+	![00-openshift-loginpage.png](images/00-openshift-loginpage.png "Commend Login")
+
+1. And obtain your user login command by clicking on your username on the top right hand corner and select **Copy Login Command**
+
+	![00-commend-login.png](images/00-commend-login.png "Commend Login")
+
+1. Login to Openshift via the Terminal window and paste the commend to the terminal: 
 
     ```bash
-    oc login http://master.GUID.openshiftworkshop.com
+    oc login https://dil.opentry.me --token=XXXXX
     oc project OCPPROJECT
     mkdir OCPPROJECT
     cd OCPPROJECT
@@ -144,7 +141,7 @@ openshift
 
     ![00-import-project.png](images/00-import-project.png "Import Project")
 
-1. Enter `https://github.com/weimeilin79/dayinthelife-import` as the git URL, select **Import Recursively** and then click **Import**.
+1. Enter `http://gogs.dil.opentry.me/userX/dayintheliferepo` as the git URL, select **Import Recursively** and then click **Import**.
 
 1. When the "Save" pop-up appears, click the "X" to close the pop-up.
 
@@ -248,21 +245,6 @@ Once you've received the swagger specification (API contract) from your friendly
     
     ```
 
-1. We need to copy the ContactInfo (location_detail) POJO model over from the `location-soap` project.  Open up the **OCPPROJECT** referenced during Step 3 in the Workspace palette, and navigate to `OCPPROJECT/dayinthelife-integration/projects/location-soap/src/main/java/com/redhat/model/`.  Copy the `ContactInfo.java` file over to the equivalent folder in your own `dayinthelife-import` project.
-
-    ![00-copy-contact-info.png](images/00-copy-contact-info.png)
-    
-1. Rename the `dayinthelife-import/location-service/src/main/java/com/redhat/processor/ResultProcessor.java` file to `LocationProcessor.java`.  You can easily rename the file by right-clicking and selecting **Open in Terminal**.
-
-    ![00-open-in-terminal.png](images/00-open-in-terminal.png)
-
-1. To rename the file, type `mv ResultProcessor.java LocationResultProcessor.java` in the terminal window.  Open the new file and update the class name to `LocationResultProcessor`.
-
-    ![00-location-result-processor.png](images/00-location-result-processor.png)
-
-1. Copy the `OCPPROJECT/dayinthelife-integration/projects/location-soap/src/main/java/com/redhat/processor/ResultProcessor.java` file to `dayinthelife-import/location-service/src/main/java/com/redhat/processor/`.  Rename the file to `ContactInfoResultProcessor.java` using the termainal and update the class name appropriately.
-
-    ![00-move-contact-info-processor.png](images/00-move-contact-info-processor.png "Contact Info Result Processor")
 
 1. Open the generated `CamelRoutes.java` file.  We need to first instantiate our newly created Result Processors' and include the necessary imports.  Also, be sure to add the `@Component` declaration to the class definition statement (under the `@Generated`).  Update the `CamelRoutes.java` file with the below additions:
 
@@ -286,7 +268,7 @@ Once you've received the swagger specification (API contract) from your friendly
 		LocationResultProcessor locationResultProcessor = new LocationResultProcessor();
 	
 		restConfiguration()
-			.component("undertow")
+			.component("servlet")
         	.port(8080)
         	.bindingMode(RestBindingMode.json)
 			.contextPath("/")
