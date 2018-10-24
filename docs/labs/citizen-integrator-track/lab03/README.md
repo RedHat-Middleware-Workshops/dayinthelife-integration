@@ -74,7 +74,7 @@ Once the environment is provisioned, you will be presented with a page that pres
     Connection URL: jdbc:postgresql://postgresql.international.svc:5432/sampledb
     Username      : dbuser
     Password      : password
-    Schema        : keep it empty
+    Schema        : <blank>
     ```
 
 1. Click **Validate** and verify if the connection is successful. Click **Next** to proceed.
@@ -91,7 +91,7 @@ Once the environment is provisioned, you will be presented with a page that pres
 
 Description goes here
 
-1. Click on **Integration > Create Integration** 
+1. Click on **Integrations > Create Integration** 
 
   ![04-create-integration.png](images/04-create-integration.png "Create Integration")
 
@@ -99,7 +99,7 @@ Description goes here
 
   ![05-choose-weebhook.png](images/05-choose-weebhook.png "Choose webhook")
 
-3. Click on `Incoming webhook` 
+3. Click on `Incoming Webhook` 
 
   ![06-incoming-webhook.png](images/06-incoming-webhook.png "Add incoming webhook")
 
