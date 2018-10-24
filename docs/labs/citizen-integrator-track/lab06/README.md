@@ -9,11 +9,11 @@
 
 ## Overview
 
-The focal point of your developers’ experience is the API developer portal, and the level of effort you put into it will determine the level of decreased support costs and increased developer engagement.
+The focal point of your developers’ experience is the API developer portal, and the level of effort you put into it will directly correlate to the level of success of your API program, and API developer engagement.
 
 ### Why Red Hat?
 
-3scale provides a built-in, state-of-the-art CMS portal, making it very easy to create your own branded hub with a custom domain to manage developer interactions and increase API adoption.
+3scale provides a built-in, state-of-the-art CMS portal, making it very easy to create your own branded hub with a custom domain to manage developer interactions, and help increase API adoption.
 
 You can customize the look and feel of the entire Developer Portal to match your own branding. You have complete control over every element of the portal, so you can make it as easy as possible for developers to learn how to use your API.
 
@@ -77,11 +77,11 @@ Once the environment is provisioned, you will be presented with a page that pres
 
     ![11-visit-devportal.png](images/11-visit-devportal.png)
 
-1. You can see there is a default portal with information of your API and how to signup. Unfortunately the API information is incorrect.
+1. You can see there is a default portal with information on your API, and how to signup. Unfortunately the API information is incorrect.
 
     ![12-devportal-overview.png](images/12-devportal-overview.png)
 
-    *We will edit our portal to update it with the correct information and we will add the cool shadowman logo*.
+    *We will edit our portal to update it with the correct information, and we will add the cool shadowman logo*.
 
 1. Go back to your admin portal browser tab and scroll down to the content sub-sections for the **Layouts** and select the **Main layout** menu option.
 

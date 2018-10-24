@@ -63,16 +63,6 @@ Once the environment is provisioned, you will be presented with a page that pres
     http://apicurio-studio.dil.opentry.me
     ```
 
-1. Accept the self-signed certificate if you haven't: 
-
-    1. If using Google Chrome click the **ADVANCED** link.
-
-      ![selfsigned-cert](images/00-selfsigned-cert.png "Self-Signed Cert")
-
-    1. Then click the **Proceed to..** link to accept the certificate and add the exception.
-
-      ![00-selfsigned-cert-accept](images/00-selfsigned-cert-accept.png  "Self-Signed Cert Proceed")
-
 1. Log in using your designated [user and password](#environment).
 
     ![design-login](images/design-01.png "Login")
@@ -101,7 +91,7 @@ Once the environment is provisioned, you will be presented with a page that pres
 
 ### Step 2: Editing APIs
 
-You are now in the main screen to edit your APIs. Different from other API editor products, Apicurio's Editor is a graphical, form-based editor. With Apicurio you don't need master in and out all the details of the **OpenAPI Specification**. It allows you to design beautiful, functionals APIs with zero coding.
+You are now in the main screen to edit your APIs. Apicurio is a graphical, form-based API editor. With Apicurio you don't need master in and out all the details of the **OpenAPI Specification**. It allows you to design beautiful, functionals APIs with zero coding.
 
 Let's start crafting your API.
 
@@ -109,7 +99,7 @@ Let's start crafting your API.
 
     ![design-add-datatype](images/design-15.png "Add Datatype")
 
-1. Fill in the *Name* with the **location** value. Expand the *Enter the JSON Example (optional)* to paste the following example, then click **Save**:
+1. Fill in the *Name* field with the value **location**. Expand the *Enter the JSON Example (optional)* to paste the following example, then click **Save**:
 
     * Name: **location**
     * JSON Example:

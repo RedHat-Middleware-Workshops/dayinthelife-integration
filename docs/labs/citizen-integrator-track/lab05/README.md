@@ -170,7 +170,7 @@ Once the environment is provisioned, you will be presented with a page that pres
 1. In the **OpenID Connect Issuer** field, type in your previously noted client credentials with the URL of your Red Hat Single Sing On instance:
 
     ```bash
-    http://3scale-admin:CLIENT_SECRET@sso-rh-sso.apps.GUID.openshiftworkshop.com/auth/realms/userX
+    http://3scale-admin:CLIENT_SECRET@sso-sso.dil.opentry.me/auth/realms/userX
     ```
 
     *Remember to replace the GUID with your [environment](#environment) value, your user number and the CLIENT_SECRET you get in the [Step 1](#step-1-get-red-hat-single-sign-on-service-account-credentials)*.
