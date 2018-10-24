@@ -157,7 +157,7 @@ The order in which the policies are executed, known as the “policy chain”, c
 
     ![01-policies](images/policies-01.png "Policies")
 
-    *The default policy in the Policy Chain is APIcast. This is the main policy and must of the times you want to keep it*.
+    *The default policy in the Policy Chain is APIcast. This is the main policy and most of the times you want to keep it*.
 
 1. Click the **Add Policy** link to add a new policy to the chain.
 

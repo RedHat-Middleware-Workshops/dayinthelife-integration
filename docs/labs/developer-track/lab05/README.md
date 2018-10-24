@@ -2,77 +2,64 @@
 
 ## Fuse Online
 
-## todo
-
 * Duration: 20 mins
 * Audience: Developers and Architects
 
 ## Overview
 
-<<<<<<< HEAD
-TBD
-
-### Why Red Hat?
-
-TBD
-
-### Skipping the lab
-
-TBD
-=======
-When it comes to quick API development, you need both the integration experts as well as application developers to easily develop, deploy the APIs.Here is how to create an simple API with Fuse online. 
+When it comes to quick API development, you need both the integration experts as well as application developers to easily develop, deploy the APIs. Here is how to create a simple API with Fuse online. 
 
 ### Why Red Hat?
 
 Red Hat Fuse integration solution empowers integration experts, application developers, and business users to engage in enterprise-wide collaboration and high-productivity self-service. 
 
 ### Skipping The Lab
+
 We know sometimes we don't have enough time to go over the labs step by step. So here is a [short video](https://youtu.be/-3QGAD3Tt48) where you can see how to implement a contract-first API.
->>>>>>> b97728ca82e310968ffc24dde6f6e6236d2ef46e
 
 ### Environment
 
-**URLs:**
-
-Check with your instruction the *GUID* number of your current workshop environment. Replace the actual number on all the URLs where you find **GUID**. 
-
-Example in case of *GUID* = **1234**: 
-
-```bash
-https://master.GUID.openshiftworkshop.com
-```
-
-becomes =>
-
-```bash
-https://master.1234.openshiftworkshop.com
-```
-
 **Credentials:**
 
-Your username is your asigned user number. For example, if you are assigned user number **1**, your username is: 
+Your username is your assigned user number. For example, if you are assigned user number **1**, your username is: 
 
 ```bash
 user1
 ```
 
-The password to login is always the same:
+Please ask your instructor for your password.
+
+**URLs:**
+
+If you haven't done so already, you need to login to the **Red Hat Solution Explorer** webpage so that a unique lab environment can be provisioned on-demand for your exclusive use.  You should open a web browser and navigate to: 
 
 ```bash
-openshift
+https://tutorial-web-app-webapp.dil.opentry.me
 ```
+
+You will be presented with a login page where you can enter your unique credentials:
+
+![design-login](images/design-50.png "Login")
+
+Enter your credentials and click **Log in**.  You'll notice a web-page appear which explains that a *unique environment* is being provisioned.
+
+![design-login](images/design-51.png "Provision")
+
+Once the environment is provisioned, you will be presented with a page that presents all the available applications which you'll need in order to complete the labs:
+
+![design-login](images/design-52.png "Applications")
 
 ## Lab Instructions
 
 ### Step 1: Create database connection
 
-1. Open a browser window and navigate to:
+1. Via the **Red Hat Solution Explorer** webpage, click the **Red Hat Fuse** link:
 
-    ```bash
-    http://https://syndesis-userX.apps.GUID.openshift.opentlc.com/
-    ```
+   ![00-design-53.png](images/design-53.png "Login to Fuse Online")
 
-    *Remember to replace the GUID with your [environment](#environment) value and your user number.*
+1. The first time that you hit the Fuse Online URL, you will be presented with an *Authorize Access* page.  Click the **Allow selected permissions** button to accept the defaults.
+
+   ![00-design-54.png](images/design-54.png "Accept permissions")
 
 1. Click on **Connection > Create Connection**
 
@@ -221,18 +208,11 @@ Description goes here
 
 ## Summary
 
-<<<<<<< HEAD
-TBD
-
-You can now proceed to [Lab 6](../lab06/#lab-6)
-
-=======
 In this lab you discovered how to create an adhoc API service using Fuse Online. 
 
 You can now proceed to [Lab 6](../lab06/#lab-6)
 
 
->>>>>>> b97728ca82e310968ffc24dde6f6e6236d2ef46e
 ## Notes and Further Reading
 
 TBD
