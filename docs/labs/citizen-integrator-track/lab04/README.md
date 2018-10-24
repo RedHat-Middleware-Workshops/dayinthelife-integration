@@ -242,9 +242,9 @@ The order in which the policies are executed, known as the “policy chain”, c
 
 ## Steps Beyond
 
-In this lab we just covered the basic creating of a proxy for our API service. Red Hat 3scale API Management also allows us to get a track of the security (as you can see in the next lab) as well as the usage of our API. If getting value from APIs is also important to you, 3scale allows you to monetize your APIs with it's embedded billing system.
+In this lab we just covered the basics of creating a proxy for our API service. Red Hat 3scale API Management also allows us to keep track of  security (as you will see in the next lab) as well as the usage of our API. If getting money for your APIs is also important to you, 3scale  allows you to monetize your APIs with its embedded billing system.
 
-Try to navigate through the rest of the tabs of your Administration Portal. Did you notice that there are application plans associated to your API? Application Plans allow you to take actions based on the usage of your API, like doing rate limiting or charging by hit or monthly usage.
+Try to navigate through the rest of the tabs of your Administration Portal. Did you notice that there are application plans associated to your API? Application Plans allow you to take actions based on the usage of your API, like doing rate limiting or charging by hit (API call) or monthly usage.
 
 ## Summary
 
