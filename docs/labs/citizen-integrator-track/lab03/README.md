@@ -56,7 +56,9 @@ Once the environment is provisioned, you will be presented with a page that pres
 
    ![00-design-53.png](images/design-53.png "Login to Fuse Online")
 
-   *If you are presented with a page about permissions, click the Allow button to accept all permissions*
+1. The first time that you hit the Fuse Online URL, you will be presented with an *Authorize Access* page.  Click the **Allow selected permissions** button to accept the defaults.
+
+   ![00-design-54.png](images/design-54.png "Accept permissions")
 
 1. Click on **Connections > Create Connection**
 
