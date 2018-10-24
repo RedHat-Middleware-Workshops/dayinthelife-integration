@@ -9,15 +9,15 @@
 
 ## Overview
 
-When building and working with APIS, you often need to simulate the responses of the system before it has been fully completed. This is what we explore in this workshop - mocking up API structures quickly so they can be subjected to testing withouth having to create all the final service code.
+When building and working with APIs, you often need to simulate the responses of the system before it has been fully completed. This is what we explore in this workshop - mocking up API structures quickly so they can be subjected to testing withouth having to create all the final service code.
 
 ### Why Red Hat?
 
-Red hat combines and number of commercial and Open Source tools to cover each part of the API Design lifecycle. In this lab we'll be using the Microcks open source tool.
+Red Hat combines a number of commercial and Open Source tools to cover each part of the API Design lifecycle. In this lab we'll be using the Microcks open source tool.
 
 ### Skipping The Lab
 
-We know sometime we don't have enough time to go over step by step on the labs. So here is a [short video](wip-link) where you can see how to mock the API you previously created using Microcks.
+We know that you don't always have enough time to go over step by step labs, so here is a [short video](wip-link) where you can see how to mock the API you previously created using Microcks.
 
 If you are planning to follow the next lab, here is a [link](wip-link) to the REST mock service running the Location API.
 
@@ -31,11 +31,7 @@ Your username is your assigned user number. For example, if you are assigned use
 user1
 ```
 
-The password to login is always the same:
-
-```bash
-openshift
-```
+Please ask your instructor for your password.
 
 **URLs:**
 
