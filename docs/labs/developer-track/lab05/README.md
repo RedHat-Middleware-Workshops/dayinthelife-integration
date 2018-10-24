@@ -157,53 +157,61 @@ Description goes here
 
 ### Step 3: Create a POST request
 
-1. Copy the External URL and form a POST request like below. We will be creating the `101th` record field.   
+We will use an online cURL tool to create the `101th` record field in database.
+
+1. Copy the `External URL` per the below screenshot
 
  ![14-copy-URL.png](images/14-copy-URL.png "Copy URL")
 
-*Remember to replace the below hostname with the copied URL*
+1. Open a browser window and navigate to:
 
-**CURL POST request**
+ ```
+   https://onlinecurl.com/
+ ```
 
-  ```
-    curl -X POST \
-      https://i-addlocation-userX.apps.GUID.openshiftworkshop.com/webhook/pUGTWtLu8nnVTNJ1JYIsThcrKyMJAxBJMRURvRVEHSSvoMExTk \
-      -H 'Content-Type: application/json' \
-      -d '{
-        "id": 101,
-        "name": "Kamarhati",
-        "type": "Regional Branch",
-        "status": "1",
-        "location": {
-          "lat": "-28.32555",
-          "lng": "-5.91531"
-        }
-      
-  }' -k
-  ```
+1. Below are the values for your requests
+
+ ```
+   URL: https://i-addlocation-fuse-18308937-d7b6-11e8-96c6-0a580a810006.dil.opentry.me/webhook/4dTcVchE8evWz3dVvtHFK3wvfFbFzpVLPEMq1TkcF0MGIbJmu4
+
+   --header (-H):  Content-Type: application/json
+
+   --data (-d): {"id": 101, "name": "Kamarhati", "type": "Regional Branch", "status": "1", "location": { "lat": "-28.32555", "lng": "-5.91531" }}
+
+   --request (-X): POST
+ ```
+
+ ![15-online-curl.png](images/15-online-curl.png "Online URL")
+
+ 1. The page will load the `204` response information from the service which means the request was successfully fulfilled.
+
+ ![16-response-header.png](images/16-response-header.png "Response Header")
+
 
 2. Click on **Activity > Refresh** and verify if the newly record is created.
 
- ![15-activity-refresh.png](images/15-activity-refresh.png "Activity Refresh")
+ ![17-activity-refresh.png](images/17-activity-refresh.png "Activity Refresh")
 
-3. (Optional) Visit the application URL in browser and verify if the recoard can be fetched.
+3. _(Optional)_ Visit the application URL in browser and verify if the record can be fetched.
 
+  **REQUEST**
   ```
-  http://location-service-userX.apps.GUID.openshiftworkshop.com/locations/101
+   http://location-service-international.dil.opentry.me/locations/101
+  
   ```
 
-
+  **RESPONSE**
   ```
-  {
-    "id" : 101,
-    "name" : "Kamarhati",
-    "type" : "Regional Branch",
-    "status" : "1",
-    "location" : {
-      "lat" : "-28.32555",
-      "lng" : "-5.91531"
+    {
+      "id" : 101,
+      "name" : "Kamarhati",
+      "type" : "Regional Branch",
+      "status" : "1",
+      "location" : {
+        "lat" : "-28.32555",
+        "lng" : "-5.91531"
+      }
     }
-  }
   ```
 
 ## Summary
