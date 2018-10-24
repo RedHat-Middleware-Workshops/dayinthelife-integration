@@ -93,29 +93,27 @@ Follow this instructions to set up the repository.
 
 International Inc web development create a Node.js application for the company home page. They added a map service to locate the offices around the world. In this step you will deploy that application.
 
-1. Open a browser window and navigate to:
+1. Open a browser window and navigate to **Red Hat Solution Explorer** website.:
 
     ```bash
-    https://master.GUID.openshiftworkshop.com/console
+	https://tutorial-web-app-webapp.dil.opentry.me
     ```
 
-    *Remember to replace the GUID with your [environment](#environment) value and your user number.*
+1. Click on the **Red Hat OpenShift** Application.
 
-1. Accept the self-signed certificate if you haven't.
+    ![selfsigned-cert](images/design-53.png "OpenShift App")
 
-    ![selfsigned-cert](images/00-selfsigned-cert.png "Self-Signed Cert")
+1. Log into OpenShift using your designated [user and password](#environment). Click on **Log in**.
 
-1. Log into OpenShift using your designated [user and password](#environment). Click on **Sign In**.
-
-    ![01-login](images/deploy-01.png "OpenShift Login")
+    ![01-login](images/design-54.png "OpenShift Login")
 
 1. You are now in OpenShift's main page. Click on your **userX** project in the right side of the screen.
 
-    ![02-user-project](images/deploy-02.png "User Project")
+    ![02-user-project](images/design-55.png "User Project")
 
-1. From your main project page, click **Browse Catalog**.
+1. From your main project page, click the **Browse Catalog** link from the drop-down.
 
-    ![03-browse-catalog](images/deploy-03.png "Catalog")
+    ![03-browse-catalog](images/design-56.png "Catalog")
 
 1. Scroll down the page and search for the **Node.js** template. Click on the link.
 
@@ -130,7 +128,7 @@ International Inc web development create a Node.js application for the company h
     * Application Name: **www**
     * Git Repository URL: **http://gogs.dil.opentry.me/userX/www-page.git**
 
-    *Remember to replace the GUID with your [environment](#environment) value and your user number*.
+    *Remember to replace your user number*.
 
     ![06-template-configuration](images/consume-10.png "Configuration")
 
@@ -153,9 +151,9 @@ International Inc web development create a Node.js application for the company h
 1. In the build configuration page, change to the **Environment** tab. Fill in the available row with the following information:
 
     * Name: **API\_BACKEND\_URL**
-    * Value: **http://location-service-userX.apps.GUID.openshiftworkshop.com/locations**
+    * Value: **http://location-service-userX-walkthrough-projects.dil.opentry.me/locations**
 
-    *Remember to replace the GUID with your [environment](#environment) value and your user number*.
+    *Remember to replace your user number in the URL*.
 
     ![11-environment](images/deploy-11.png)
 
@@ -310,10 +308,8 @@ In this step, we will edit the code provided by development to add keycloak. Key
 1. Because we are using self signed certificates, you will need to accept the certificate for the secured endpoint. Open a new browser tab or window and navigate to:
 
     ```bash
-    https://location-userX-api-staging.amp.apps.GUID.openshiftworkshop.com/locations
+    https://location-api-staging.amp.dil.opentry.me:443/locations
     ```
-
-    *Remember to replace the GUID with your [environment](#environment) value and your user number*.
 
 1. Accept the self-signed certificate if you haven't.
 
