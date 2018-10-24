@@ -20,7 +20,7 @@
   ignore_errors: true
 
 - name: Create template for Fuse 7.1
-  shell: "oc create -f https://raw.githubusercontent.com/jboss-fuse/application-templates/application-templates-2.1.fuse-711004/quickstarts/spring-boot-camel-template.json -n openshift"
+  shell: "oc create -f https://raw.githubusercontent.com/RedHatWorkshops/dayinthelife-integration/master/support/templates/spring-boot-camel-template.json -n openshift"
   when: configure_only == 'false' and template_exists.failed
   ignore_errors: true
 
@@ -30,22 +30,22 @@
   when: configure_only == 'false'
   
 - name: Create Backend Location API service
-  shell: "oc new-app s2i-fuse70-spring-boot-camel -p GIT_REPO=https://github.com/RedHatWorkshops/dayinthelife-integration \
+  shell: "oc new-app s2i-fuse71-spring-boot-camel -p GIT_REPO=https://github.com/RedHatWorkshops/dayinthelife-integration \
   -p CONTEXT_DIR=/projects/location-service -p APP_NAME=location-service -p GIT_REF=master -n {{ backend_project }}"
   when: configure_only == 'false'
 
 - name: Create Backend Location Detail SOAP service
-  shell: "oc new-app s2i-fuse70-spring-boot-camel -p GIT_REPO=https://github.com/RedHatWorkshops/dayinthelife-integration \
+  shell: "oc new-app s2i-fuse71-spring-boot-camel -p GIT_REPO=https://github.com/RedHatWorkshops/dayinthelife-integration \
   -p CONTEXT_DIR=/projects/location-soap -p APP_NAME=location-soap -p GIT_REF=master -n {{ backend_project }}"
   when: configure_only == 'false'
 
 - name: Create Backend Location Detail SOAP to REST service
-  shell: "oc new-app s2i-fuse70-spring-boot-camel -p GIT_REPO=https://github.com/RedHatWorkshops/dayinthelife-integration \
+  shell: "oc new-app s2i-fuse71-spring-boot-camel -p GIT_REPO=https://github.com/RedHatWorkshops/dayinthelife-integration \
   -p CONTEXT_DIR=/projects/location-soap2rest -p APP_NAME=location-soap2rest -p GIT_REF=master -n {{ backend_project }}"
   when: configure_only == 'false'
 
 - name: Create ThreeScale Automate service
-  shell: "oc new-app s2i-fuse70-spring-boot-camel -p GIT_REPO=https://github.com/RedHatWorkshops/dayinthelife-integration \
+  shell: "oc new-app s2i-fuse71-spring-boot-camel -p GIT_REPO=https://github.com/RedHatWorkshops/dayinthelife-integration \
   -p CONTEXT_DIR=/projects/threesclae-automate -p APP_NAME=threesclae-automate -p GIT_REF=master -n {{ backend_project }}"
   when: configure_only == 'false'
 
