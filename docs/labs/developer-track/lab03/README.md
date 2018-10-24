@@ -24,6 +24,7 @@ If you are planning to follow to the next lab or are having trouble with this la
 ### Environment
 
 **Red Hat Solution Explorer webpage** 
+
 Login to the Red Hat Solution Explorer, here you will find the link to Che.
 
 ![00-integr8ly-che.png](images/00-integr8ly-che.png "Integr8ly CHE")
