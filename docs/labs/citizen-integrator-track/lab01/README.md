@@ -64,7 +64,7 @@ Once the environment is provisioned, you will be presented with a page that pres
 1. Open a browser window and navigate to:
 
     ```bash
-    http://apicurio-studio.apps.GUID.openshiftworkshop.com/
+    http://apicurio-studio.dil.opentry.me
     ```
 
 1. Accept the self-signed certificate if you haven't: 
