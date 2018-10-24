@@ -71,7 +71,7 @@ Your 3scale Admin Portal provides access to a number of configuration features.
     https://userX-admin.dil.opentry.me/p/login
     ```
 
-    *Remember to replace the userX with your user number.*
+    *Remember to replace the `X` variable in the URL with your assigned user number.*
 
 1. Accept the self-signed certificate if you haven't.
 
