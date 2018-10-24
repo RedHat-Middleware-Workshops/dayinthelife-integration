@@ -9,15 +9,15 @@
 
 ## Overview
 
-Once you have APIs deployed in your environment, it becomes critically important to manage who may use them and for what purpose. You also need to begin to track usage of these different users to know who is/is not succeeding in their usage. For this reason in this lab you will be adding management capabilites to the API to give you control and visibility of it's usage.
+Once you have APIs deployed in your environment, it becomes critically important to manage who may use them, and for what purpose. You also need to begin to track usage of these different users to know who is or is not succeeding in their usage. For this reason, in this lab, you will be adding management capabilites to the API to give you control and visibility of it's usage.
 
 ### Why Red Hat?
 
-Red Hat provides one the leading API Management tools which provide management services. The 3scale API Management solution enables you to quickly and easy protect and manage your APIs.
+Red Hat provides one the leading API Management tools that provides API management services. The 3Scale API Management solution enables you to quickly and easily protect and manage your APIs.
 
 ### Skipping The Lab
 
-If you are planning to follow to the next lab, there is an already running API proxy for the Location API Service in this endpoint:
+If you are planning to skip to the next lab, there is an already running API proxy for the Location API Service in this endpoint:
 
 ```bash
 https://location-service-api.amp.apps.GUID.openshiftworkshop.com
