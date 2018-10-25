@@ -93,7 +93,7 @@ Once the environment is provisioned, you will be presented with a page that pres
 
 Description goes here
 
-1. Click on **Integration > Create Integration** 
+1. Click on **Integrations > Create Integration** 
 
   ![04-create-integration.png](images/04-create-integration.png "Create Integration")
 
