@@ -1,16 +1,20 @@
 ---
 - name: Check if ConfigMap already exists
-  shell: oc get configmap {{ configmap_name }}
+  shell: oc get configmap {{ configmap_name }} -n {{ configmap_namespace }}
   register: check_webapp_configmap
   failed_when: false
 
 - block:
-  - template:
-      src: extra-services.json.j2
-      dest: /tmp/extra-services.json
-  - name: Create the web app ConfigMap
-    shell: oc create -f /tmp/extra-services.json -n {{ configmap_namespace }}
-    when: check_webapp_configmap.stderr != '' and 'already exists' not in check_webapp_configmap.stderr 
-  - name: Mount ConfigMap
-    shell: oc set volume dc/tutorial-web-app --add -m /etc/webapp/ --type=configmap --configmap-name={{ configmap_name }}
-  when: check_webapp_configmap.stderr != '' and 'already exists' not in check_webapp_configmap.stderr
+  - name: Unmount ConfigMap
+    shell: oc set volume dc/tutorial-web-app --remove -m /etc/webapp/ --confirm -n {{ configmap_namespace }}
+  - name: Delete ConfigMap
+    shell: oc delete configmap {{ configmap_name }} -n {{ configmap_namespace }}
+  when: check_webapp_configmap.rc == 0   
+
+- template:
+    src: extra-services.json.j2
+    dest: /tmp/extra-services.json
+- name: Create the web app ConfigMap
+  shell: oc create -f /tmp/extra-services.json -n {{ configmap_namespace }}
+- name: Mount ConfigMap
+  shell: oc set volume dc/tutorial-web-app --add -m /etc/webapp/ --type=configmap --configmap-name={{ configmap_name }} -n {{ configmap_namespace }}
