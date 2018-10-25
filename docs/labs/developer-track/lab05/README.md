@@ -61,7 +61,7 @@ Once the environment is provisioned, you will be presented with a page that pres
 
    ![00-design-54.png](images/design-54.png "Accept permissions")
 
-1. Click on **Connection > Create Connection**
+1. Click on **Connections > Create Connection**
 
    ![00-create-connection.png](images/00-create-connection.png "Create Connection")
 
