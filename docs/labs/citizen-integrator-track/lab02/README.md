@@ -13,7 +13,7 @@ When building and working with APIs, you often need to simulate the responses of
 
 ### Why Red Hat?
 
-Red Hat combines a number of commercial and Open Source tools to cover each part of the API Design lifecycle. In this lab we'll be using the Microcks open source tool.
+Red Hat combines a number of commercial and Open Source tools to cover each part of the API Design lifecycle. In this lab we'll be using the [Microcks](http://microcks.github.io/) open source tool.
 
 ### Skipping The Lab
 
@@ -166,7 +166,7 @@ Follow this instructions to set up the repository.
 
 1. This is your new REST mock service based on the OpenAPI definition you just loaded to Microcks. Click the **Operation GET /locations** link to check the example under that operation.
 
-    ![mock-mock-service](images/mock-19.png "Mock Service") todo
+    ![mock-mock-service](images/mock-19.png "Mock Service")
 
 1. You can check that the example we added to the definition in [Lab 1](lab01.md) will be used to return the mock values. Copy and save the **Mocks URL**, we will use that endpoint to test the REST mock service.
 
