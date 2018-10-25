@@ -169,7 +169,7 @@ Let's start crafting your API.
 
     ![design-location-type](images/design-18.png "Location Type")
 
-1. Click on the *Type* dropdown and select **Array** and **Location**.
+1. Click on the *Type* dropdown and select **Array** and **location**.
 
     ![design-location-type](images/design-18a.png "Location Type")
 
