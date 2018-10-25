@@ -156,7 +156,7 @@ Description goes here
 
 ### Step 3: Create a POST request
 
-We will use an online cURL tool to create the `101th` record field in database.
+We will use an online cURL tool to create your own record field in database.
 
 1. Copy the `External URL` per the below screenshot
 
@@ -168,14 +168,14 @@ We will use an online cURL tool to create the `101th` record field in database.
    https://onlinecurl.com/
  ```
 
-1. Below are the values for your requests
+2. Below are the values for your requests, remember to replace the id `X` to your user number. 
 
  ```
    URL: https://i-addlocation-fuse-18308937-d7b6-11e8-96c6-0a580a810006.dil.opentry.me/webhook/4dTcVchE8evWz3dVvtHFK3wvfFbFzpVLPEMq1TkcF0MGIbJmu4
 
    --header (-H):  Content-Type: application/json
 
-   --data (-d): {"id": 101, "name": "Kamarhati", "type": "Regional Branch", "status": "1", "location": { "lat": "-28.32555", "lng": "-5.91531" }}
+   --data (-d): {"id": X, "name": "Kamarhati", "type": "Regional Branch", "status": "1", "location": { "lat": "-28.32555", "lng": "-5.91531" }}
 
    --request (-X): POST
  ```
