@@ -356,7 +356,7 @@ The `/locations/phone/{id}` path will return a single location record based on a
 
     ![design-api-source](images/design-24.png "API Definition Source")
 
-*Congratulations!* You have crated your first API definition based on the OpenAPI Specification  using Red Hat's Apicurio. Don't lose track of the file, you will use this definition for your next lab.
+*Congratulations!* You have created your first API definition based on the OpenAPI Specification  using Red Hat's Apicurio. Don't lose track of the file, you will use this definition for your next lab.
 
 ## Steps Beyond
 
