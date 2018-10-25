@@ -72,11 +72,12 @@ Once the environment is provisioned, you will be presented with a page that pres
 1. Enter below values for Database Configuration
 
     ```
-    Connection URL: jdbc:postgresql://postgresql.userX.svc:5432/sampledb
+    Connection URL: jdbc:postgresql://postgresql.OCPPROJECT.svc:5432/sampledb
     Username      : dbuser
     Password      : password
     Schema        : keep it empty
     ```
+*Remember to replace the OCPPROJECT with the OpenShift project(NameSpace) you created in last lab.*
 
 1. Click **Validate** and verify if the connection is successful. Click **Next** to proceed.
 
