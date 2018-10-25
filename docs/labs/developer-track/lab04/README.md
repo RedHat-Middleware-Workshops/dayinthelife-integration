@@ -50,29 +50,26 @@ Please ask your instructor for your password.
 
 	![00-openshift-loginpage.png](images/00-openshift-loginpage.png "Commend Login")
 
-1. And obtain your user login command by clicking on your username on the top right hand corner and select **Copy Login Command**
+1. Obtain your user login command by clicking on your username on the top right hand corner and select **Copy Login Command**
 
 	![00-commend-login.png](images/00-commend-login.png "Commend Login")
 
 1. Login to Openshift via the Terminal window and paste the commend to the terminal: 
 
     ```bash
-    oc login https://dil.opentry.me --token=XXXXX
-    oc project OCPPROJECT
-    mkdir OCPPROJECT
-    cd OCPPROJECT
+    oc login https://dil.opentry.me --token=XXXXX 
     ```
 
-    *Remember to replace the OCPPROJECT with the OpenShift project you created in Step 2.*
 
+1. Build and deploy the SOAP application using source to image(S2i) template. Paste the commend to the terminal. 
 
-1. Clone the sample SOAP project from GitHub, then deploy the project to your Openshift project using s2i binary streams.
-
-    ```bash
-    git clone https://github.com/RedHatWorkshops/dayinthelife-integration
-    cd dayinthelife-integration/projects/location-soap
-    mvn fabric8:deploy
+   ```bash
+    
+    oc new-app s2i-fuse71-spring-boot-camel -p GIT_REPO=https://github.com/RedHatWorkshops/dayinthelife-integration \
+  -p CONTEXT_DIR=/projects/location-soap -p APP_NAME=location-soap -p GIT_REF=master -n OCPPROJECT
+    
     ```
+     *Remember to replace the OCPPROJECT with the OpenShift project(NameSpace) you created in last lab.*
 
 1. Once the build and deploy is complete, navigate back to your Openshift web console and verify the project is running.
 
