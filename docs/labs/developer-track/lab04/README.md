@@ -46,7 +46,7 @@ Please ask your instructor for your password.
 
     ![00-open-terminal.png](images/00-open-terminal.png "Open Terminal")
 
-1. Obtain your login credentials by first login to Openshift console using your username and password. 
+1. In Openshift console (https://dil.opentry.me). 
 
 	![00-openshift-loginpage.png](images/00-openshift-loginpage.png "Commend Login")
 
