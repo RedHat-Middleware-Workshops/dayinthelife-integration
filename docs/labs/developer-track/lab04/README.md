@@ -40,7 +40,46 @@ Please ask your instructor for your password.
 
 ## Lab Instructions
 
-### Step 1: Modify the skeleton location-soap2rest project
+### Step 1: Import the sample SOAP project into your Openshift project
+
+1. Navigate back to your Eclipse Che workspace and open the terminal window.
+
+    ![00-open-terminal.png](images/00-open-terminal.png "Open Terminal")
+
+1. Obtain your login credentials by first login to Openshift console using your username and password. 
+
+	![00-openshift-loginpage.png](images/00-openshift-loginpage.png "Commend Login")
+
+1. And obtain your user login command by clicking on your username on the top right hand corner and select **Copy Login Command**
+
+	![00-commend-login.png](images/00-commend-login.png "Commend Login")
+
+1. Login to Openshift via the Terminal window and paste the commend to the terminal: 
+
+    ```bash
+    oc login https://dil.opentry.me --token=XXXXX
+    oc project OCPPROJECT
+    mkdir OCPPROJECT
+    cd OCPPROJECT
+    ```
+
+    *Remember to replace the OCPPROJECT with the OpenShift project you created in Step 2.*
+
+
+1. Clone the sample SOAP project from GitHub, then deploy the project to your Openshift project using s2i binary streams.
+
+    ```bash
+    git clone https://github.com/RedHatWorkshops/dayinthelife-integration
+    cd dayinthelife-integration/projects/location-soap
+    mvn fabric8:deploy
+    ```
+
+1. Once the build and deploy is complete, navigate back to your Openshift web console and verify the project is running.
+
+    ![00-verify-location-soap.png](images/00-verify-location-soap.png "Verify Pod")
+
+
+### Step 2: Modify the skeleton location-soap2rest project
 
 1. In the OpenShift console, click on the route associated with the `location-soap` deployment.  A pop-up will appear.  Append the `/ws/location?wsdl` path to the URI and verify the WSDL appears. Copy the link to the clipboard.
 
