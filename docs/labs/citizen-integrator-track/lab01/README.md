@@ -375,4 +375,4 @@ You can now proceed to [Lab 2](../lab02/#lab-2)
   * [Roadmap](https://www.apicur.io/roadmap/)
 * OpenAPI
   * [OpenAPI Initiative](https://www.openapis.org/)
-  * [OpenAPI Specification 3.0.1](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.1.md)
+  * [OpenAPI Specification 3.0.2](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md)
