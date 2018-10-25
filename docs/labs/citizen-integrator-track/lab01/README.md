@@ -241,7 +241,7 @@ Let's start crafting your API.
 
     ![design-add-response-code](images/design-35.png "Edit POST operation")
 
-1. Scroll down to the bottom of the page. Move your mouse over the **201 Created** response to enable the options. Click on the **Add Media Type** button.
+1. Scroll down to the bottom of the page. Move your mouse over the **201 Created** response to enable the options. Click the *No response media types defined* drop-down. Now click on the **Add Media Type** button.
 
     ![design-edit-response](images/design-12.png "Add Media Type")
 
@@ -274,7 +274,7 @@ Let's start crafting your API.
 
     ![design-add-response-code](images/design-11.png "Add Response Code")
 
-1. Scroll down to the bottom of the page. Move your mouse over the **200 OK** response to enable the options. Click on the **Add Media Type** button.
+1. Scroll down to the bottom of the page. Move your mouse over the **200 OK** response to enable the options. Click the *No response media types defined* drop-down. Now click on the **Add Media Type** button.
 
     ![design-edit-response](images/design-12.png "Add Media Type")
 
@@ -307,7 +307,7 @@ Let's start crafting your API.
 
     ![design-add-response-code](images/design-11.png "Add Response Code")
 
-1. Scroll down to the bottom of the page. Move your mouse over the **200 OK** response to enable the options. Click on the **Add Media Type** button.
+1. Scroll down to the bottom of the page. Move your mouse over the **200 OK** response to enable the options. Click the *No response media types defined* drop-down. Now click on the **Add Media Type** button.
 
     ![design-edit-response](images/design-12.png "Add Media Type")
 
