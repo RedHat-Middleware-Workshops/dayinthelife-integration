@@ -55,7 +55,7 @@ Once the environment is provisioned, you will be presented with a page that pres
 
 ## Lab Instructions
 
-### Step 0: Setup the collaboration environment using Git (Gogs)
+### Prerequisite: Setup the collaboration environment using Git (Gogs)
 
 For this lab we require a collaboration environment based on Git. You can use GitHub, GitLab or other Git provider to finish this lab. If you don't want to use your personal account, the provided lab environment has an user provided for you in Gogs. 
 
