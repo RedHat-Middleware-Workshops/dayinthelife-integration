@@ -128,9 +128,9 @@ Let's start crafting your API.
 
 ### Step 3: Adding Paths
 
-#### 3a: Add /locations
+#### 3a: Add `/locations` path
 
-The /locations path will return a complete set of all location records in the database.
+The `/locations` path will return a complete set of all location records in the database.
 
 1. Click on the **Add a path** link under the *Paths* section. APIs need at least one path.
 
@@ -258,9 +258,9 @@ The /locations path will return a complete set of all location records in the da
 
     ![design-location-type](images/design-36.png "Location")
 
-#### 3b: Add /locations/{id} path
+#### 3b: Add `/locations/{id}` path
 
-The /locations/{id} path will return a single location record based on a single `id` parameter, passed via the URL.
+The `/locations/{id}` path will return a single location record based on a single `id` parameter, passed via the URL.
 
 1. Now we need to create another path.  Click on the `+` symbol to add a new path, then enter `/locations/{id}` for the **Path** property.  Click **Add**.
 
@@ -299,9 +299,9 @@ The /locations/{id} path will return a single location record based on a single 
 
     ![design-location-type](images/design-40.png "Location Type")
 
-#### 3c: Add /locations/phone/{id} path
+#### 3c: Add `/locations/phone/{id}` path
 
-The /locations/phone/{id} path will return a single location record based on a single phone number parameter, passed via the URL.
+The `/locations/phone/{id}` path will return a single location record based on a single phone number parameter, passed via the URL.
 
 1. Now we need to create another path.  Click on the `+` symbol to add a new path, then enter `/locations/phone/{id}` for the **Path** property.  Click **Add**.
 
