@@ -328,11 +328,16 @@ Once you've received the swagger specification (API contract) from your friendly
 
 1. You can also search for individual locations by adjusting the URI to `/locations/{id}` e.g. `/locations/100`.
 
+1. In another browser or tab, go to Openshift console (https://dil.opentry.me). 
+
+	![00-openshift-loginpage.png](images/00-openshift-loginpage.png "Commend Login")
+
+
 1. Oobtain your user login command by clicking on your username on the top right hand corner and select **Copy Login Command**
 
 	![00-commend-login.png](images/00-commend-login.png "Commend Login")
 
-1. Login to Openshift via the Terminal window and paste the commend to the Eclipse Che terminal: 
+1. Login to Openshift via the Eclipse Che terminal: 
 
     ```bash
     oc login https://dil.opentry.me --token=XXXXX 
