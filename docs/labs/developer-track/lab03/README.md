@@ -298,7 +298,7 @@ Once you've received the swagger specification (API contract) from your friendly
         ;
     ```
 
-1. Before we test our newly created Camel Routes, we need to update `src/main/resources/application.properties` to point to our Postgres database.  Set the `postgresql.service.name` property to `postgres.OCPPROJECT.svc` so that it points to our OpenShift service.
+1. Before we test our newly created Camel Routes, we need to update `src/main/resources/application.properties` to point to our Postgres database.  Set the `postgresql.service.name` property to `postgres.OCPPROJECT.svc` so that it points to our OpenShift service. Replace `OCPPROJECT` with the OpenShift project name you created in Step 2 to host Postgres Database.
 
     ![00-update-properties.png](images/00-update-properties.png "Update Properties")
 
