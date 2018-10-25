@@ -319,6 +319,15 @@ The `/locations/phone/{id}` path will return a single location record based on a
 
     ![design-location-type](images/design-38.png "Path Parameter")
 
+1. Click **Create Operation** under the *GET* operation.
+
+    ![design-create-operation](images/design-08.png "Create Operation")
+
+1. Click on the green **GET** operation button to edit the operation information.
+
+    ![design-get-operation](images/design-09.png "Get Operation")
+
+
 1. Click on the **Add a response** link under *Responses* to edit the response for this operation.
 
     ![design-add-response](images/design-10.png "Add Response")
