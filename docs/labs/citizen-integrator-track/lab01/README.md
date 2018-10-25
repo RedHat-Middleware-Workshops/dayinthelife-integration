@@ -311,7 +311,11 @@ The `/locations/phone/{id}` path will return a single location record based on a
 
     ![design-location-type](images/design-42.png "Get operation")
 
-1. Click the drop-down arrow, then update the `id` Path Parameter by selecting `Integer` as the **Type** and `32-Bit Integer` as the sub-type.
+1. Scroll down to the `id` path parameter to highlight the row, and click the `Create` button that appears.
+
+    ![design-location-type](images/design-53.png "Get operation")
+
+1. Click the drop-down arrow next to `No Type`, then update the `id` Path Parameter by selecting `Integer` as the **Type** and `32-Bit Integer` as the sub-type.
 
     ![design-location-type](images/design-38.png "Path Parameter")
 
