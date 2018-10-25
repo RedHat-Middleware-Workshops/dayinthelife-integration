@@ -9,11 +9,11 @@
 
 ## Overview
 
-When building and working with APIS, you often need to simulate the responses of the system before it has been fully completed. This is what we explore in this workshop - mocking up API structures quickly so they can be subjected to testing withouth having to create all the final service code.
+When building and working with APIs, you often need to simulate the responses of the system before it has been fully completed. This is what we explore in this workshop - mocking up API structures quickly so they can be subjected to testing withouth having to create all the final service code.
 
 ### Why Red Hat?
 
-Red hat combines and number of commercial and Open Source tools to cover each part of the API Design lifecycle. In this lab we'll be using the Microcks open source tool.
+Red hat combines and number of commercial and Open Source tools to cover each part of the API Design lifecycle. In this lab we'll be using the [Microcks](http://microcks.github.io/) open source tool.
 
 ### Skipping The Lab
 
@@ -55,7 +55,7 @@ Once the environment is provisioned, you will be presented with a page that pres
 
 ## Lab Instructions
 
-### Step 0: Setup the collaboration environment using Git (Gogs)
+### Prerequisite: Setup the collaboration environment using Git (Gogs)
 
 For this lab we require a collaboration environment based on Git. You can use GitHub, GitLab or other Git provider to finish this lab. If you don't want to use your personal account, the provided lab environment has an user provided for you in Gogs. 
 
@@ -89,18 +89,30 @@ Follow this instructions to set up the repository.
 
     ![mock-gogs-upload](images/mock-04.png "Upload File")
 
-1. Open the `locations-api` folder and click on the filename link **Locations.json** to open and review the file.
+1. Open the `locations-api` folder and click on the filename link **Locations-UserX.json** to open and review the file.
 
-    ![mock-gogs-file](images/mock-05.png "File Uploaded")
+    ![mock-gogs-file](images/mock-05.png "Click File")
 
-1. If everything is fine, click the RAW button to get the raw download version of the file.
+1. If everything is fine, click the **Edit** button to apply your personal user settings.
 
-    ![mock-gogs-file](images/mock-06.png "File Uploaded")
+    ![mock-gogs-file](images/mock-06.png "Edit file")
+
+1. Replace **UserX** with your user number. 
+
+    ![mock-gogs-file](images/mock-07.png "Rename file")
+
+1. Commit the changes to gogs.
+
+    ![mock-gogs-file](images/mock-08.png "Commit file")
+
+1. Click the **RAW** button to get the raw download version of the file.
+
+    ![mock-gogs-file](images/mock-09.png "Raw file")
 
 1. Copy the browser tab URL. Store that URL address as you will use it in the next steps of the lab. The URL should look like the following:
 
     ```bash
-     http://gogs.dil.opentry.me/userX/locations-api/raw/dev-track-lab-02/locations-api/Locations.json
+     http://gogs.dil.opentry.me/userX/locations-api/raw/dev-track-lab-02/locations-api/Locations-UserX.json
     ```
 
     *If you feel more comfortable, you can also copy and paste the RAW button link from the previous step.  Also, don't forget to update the X variable with your user number*.
@@ -115,52 +127,59 @@ Follow this instructions to set up the repository.
 
 1. Log in into Microks using your designated [user and password](#environment).
 
-    ![mock-openshift-login](images/mock-07.png "Openshift Login")
+    ![mock-openshift-login](images/mock-10.png "Openshift Login")
 
-1. You are now in the main Microcks page. Click the **Jobs** button to access the Jobs page.
+1. You are now in the main Microcks page. Click the **Importers** button to access the Importers page.
 
-    ![mock-jobs](images/mock-08.png "Job")
+    ![mock-jobs](images/mock-11.png "Job")
 
-1. Click the **ADD JOB...** button to create your first job.
+1. Click the **Create** button to create your first job.
+    
+    ![mock-jobs](images/mock-12.png "Job")
 
-    ![mock-add-job](images/mock-09.png "Add Job")
-
-1. In the Add Job dialog, type in the following information replacing **X** with your user number:
+1. In the `Create a New Job` dialog, type in the following information replacing **X** with your user number. Click **Next**.
 
     * Name: **Locations-UserX**
-    * Repository URL: **http://gogs.dil.opentry.me/userX/locations-api/raw/dev-track-lab-02/locations-api/Locations.json**
+    * Repository URL: **http://gogs.dil.opentry.me/userX/locations-api/raw/dev-track-lab-02/locations-api/Locations-UserX.json**
 
     *You can also copy and paste the raw url you saved from the Gogs repository (Step 0)*.
 
-    ![mock-job-details](images/mock-10.png "Job Details")
+    ![mock-job-details](images/mock-13.png "Job Details")
 
-1. After your job is created, click the **ACTION** menu and select the **Activate** option.
+1. Click **Next** for the Authentication options.
 
-    ![mock-job-activate](images/mock-11.png "Activate Job")
+1. Review the details and click on **Create** to creat the job.
 
-1. Repet the last step, but now select the **Start** option. This will start the synchronization job.
+   ![mock-job-details](images/mock-14.png "Create Job")
 
-    ![mock-job-start](images/mock-12.png "Start Job")
+1. After your job is created, click on the **Activate** option.
+
+    ![mock-job-activate](images/mock-15.png "Activate Job")
+
+1. Repet the last step, but now select the **Force Import** option. This will start the synchronization job.
+
+    ![mock-job-start](images/mock-16.png "Start Job")
 
 1. Refresh your window to get it to the latest state.
 
-1. You will se 3 labels next to your Job. Click the **Services** label.
+1. You will see 3 labels next to your Job. Click the **Services** label.
 
-    ![mock-job-services](images/mock-13.png "Job Services")
+    ![mock-job-services](images/mock-17.png "Job Services")
 
-1. In the dialog you will see your service listed. Click on the **Locations-1.0** link.
+1. In the dialog you will see your service listed. Click on the **Locations-UserX - 1.0.0.** link.
 
-    ![mock-job-service](images/mock-14.png "Job Service")
+    ![mock-job-service](images/mock-18.png "Job Service")
 
-1. Click **OK** to dismiss the dialog.
+1. Click **Close** to dismiss the dialog.
 
 1. This is your new REST mock service based on the OpenAPI definition you just loaded to Microcks. Click the **Operation GET /locations** link to check the example under that operation.
 
-    ![mock-mock-service](images/mock-15.png "Mock Service")
+    ![mock-mock-service](images/mock-19.png "Mock Service")
 
-1. You can check that the example we added to the definition in [Lab 1](lab01.md) will be used to return the mock values. Copy and save the **Mocks URL**, we will use that endopoint to test the REST mock service.
+1. You can check that the example we added to the definition in [Lab 1](lab01.md) will be used to return the mock values. Copy and save the **Mocks URL**, we will use that endpoint to test the REST mock service.
 
-    ![mock-mock-operation](images/mock-16.png "Mock Operation")
+    ![mock-mock-operation](images/mock-20.png "Mock Operation")
+
 
 ### Step 2: Test the REST Mock Service
 
@@ -175,16 +194,16 @@ We now have a working REST mock service listening for requests. We will use an o
 1. Enter the following URL: **http://microcks.dil.opentry.me + {{your-user-api-mocks-url}}**. Remember to replace your user number. It should look like this:
 
     ```bash
-    http://microcks.dil.opentry.me/rest/Locations/1.0/locations
+    http://microcks.dil.opentry.me/rest/Locations-User2/1.0.0/locations
     ```
 
 1. Click the **START YOUR CURL** button.
 
-    ![mock-curl-service](images/mock-17.png "cURL Service")
+    ![mock-curl-service](images/mock-21.png "cURL Service")
 
 1. The page will load the response information from the service. You will be able to see the *RESPONSE HEADERS* and the actual *RESPONSE_BODY*. This last part contains the examples we add during the design phase.
 
-    ![mock-curl-response](images/mock-18.png "cURL Response")
+    ![mock-curl-response](images/mock-22.png "cURL Response")
 
 *Congratulations!* You have successfully configure a Microcks Job to create a REST mock service to test your API.
 
