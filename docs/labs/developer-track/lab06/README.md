@@ -57,9 +57,9 @@ Once the environment is provisioned, you will be presented with a page that pres
 
 ## Lab Instructions
 
-### Step 1: Get your API Token for Automation
+### Step 1: Get API Token for Automation
 
-Your 3scale Admin Portal provides access to a number of configuration features.
+Your 3scale Admin Portal provides access to a number of configuration features. An adminstration token is needed when automating setups for your API. This step will let you create a new token for setup.
 
 1. Open a browser window and navigate to:
 
@@ -100,13 +100,17 @@ Your 3scale Admin Portal provides access to a number of configuration features.
 By running the command lines, it will automatically setup the 3scale API configuration and start managing the API you have exposed! 
 In you command line terminal or in your Che terminal enter the following CURL command:
 
-`curl -k -X POST 
-http://threescale-automate-international.dil.opentry.me/threescale/automate/{YOUR_API_TOKEN}/{USERX}/{OPENSHIFT_APP_URL}`
+```bash
+curl -k -X POST 
+http://threescale-automate-international.dil.opentry.me/threescale/automate/{YOUR_API_TOKEN}/{USERX}/{OPENSHIFT_APP_URL}
+```
 
 For example: 
 
-`curl -k -X POST 
-http://threescale-automate-international.dil.opentry.me/threescale/automate/44e1592e40b12bae0f2c539bfcc7728ab8383248c1ad34495252398ebb7b6b6d/user12/dil.opentry.me`
+```bash
+curl -k -X POST 
+http://threescale-automate-international.dil.opentry.me/threescale/automate/44e1592e40b12bae0f2c539bfcc7728ab8383248c1ad34495252398ebb7b6b6d/user12/dil.opentry.me
+```
 
 String **API automated, DONE!** should be returned as the result.
 
