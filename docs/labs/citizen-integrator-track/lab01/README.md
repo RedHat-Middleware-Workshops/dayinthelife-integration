@@ -258,7 +258,11 @@ Let's start crafting your API.
 
     ![design-location-type](images/design-37.png "Location")
 
-1. Update the `id` Path Parameter by selecting `Integer` as the **Type** and `32-Bit Integer` as the sub-type.
+1. Scroll over the `id` *Path Parameter* value, then click the **Create** button.
+
+    ![design-location-type](images/design-37a.png "Location")
+
+1. Click the drop-down arrow, then update the `id` Path Parameter by selecting `Integer` as the **Type** and `32-Bit Integer` as the sub-type.
 
     ![design-location-type](images/design-38.png "Path Parameter")
 
