@@ -82,50 +82,8 @@ Please ask your instructor for the corresponding password.
 1. Click **Next** and ensure *Do not Bind at this time* is selected.  Click **Create** to generate the service.
 
 
-### Step 3: Import the sample SOAP project into your Openshift project
 
-1. Navigate back to your Eclipse Che workspace and open the terminal window.
-
-    ![00-open-terminal.png](images/00-open-terminal.png "Open Terminal")
-
-1. Obtain your login credentials by first login to Openshift console using your username and password. 
-
-	![00-openshift-loginpage.png](images/00-openshift-loginpage.png "Commend Login")
-
-1. And obtain your user login command by clicking on your username on the top right hand corner and select **Copy Login Command**
-
-	![00-commend-login.png](images/00-commend-login.png "Commend Login")
-
-1. Login to Openshift via the Terminal window and paste the commend to the terminal: 
-
-    ```bash
-    oc login https://dil.opentry.me --token=XXXXX
-    oc project OCPPROJECT
-    mkdir OCPPROJECT
-    cd OCPPROJECT
-    ```
-
-    *Remember to replace the OCPPROJECT with the OpenShift project you created in Step 2.*
-
-
-1. Clone the sample SOAP project from GitHub, then deploy the project to your Openshift project using s2i binary streams.
-
-    ```bash
-    git clone https://github.com/RedHatWorkshops/dayinthelife-integration
-    cd dayinthelife-integration/projects/location-soap
-    mvn fabric8:deploy
-    ```
-
-1. The Maven build / deploy can take 10-15 minutes as it needs to download a bunch of project dependencies (libraries). Please be patient.
-
-1. Once the build and deploy is complete, navigate back to your Openshift web console and verify the project is running.
-
-    ![00-verify-location-soap.png](images/00-verify-location-soap.png "Verify Pod")
-
-1. You can also try to connect to the route link above the pod, by appending the `/ws/location?wsdl` URI to the end of the link.  This should render the WSDL if the application is running correctly.
-
-
-### Step 4: Import the skeleton projects from Git and convert them to Maven projects.
+### Step 3: Import the skeleton projects from Git and convert them to Maven projects.
 
 1. In Eclipse Che, click on Workspace > Import Project from the main menu.  A pop-up will appear.
 
