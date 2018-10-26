@@ -128,9 +128,9 @@ Let's start crafting your API.
 
 ### Step 3: Adding Paths
 
-#### 3a: Add `/locations` path
+#### 3a: Add `/locations` path with GET method
 
-The `/locations` path will return a complete set of all location records in the database.
+The `/locations` path with an HTTP GET method will return a complete set of all location records in the database.
 
 1. Click on the **Add a path** link under the *Paths* section. APIs need at least one path.
 
@@ -232,6 +232,10 @@ The `/locations` path will return a complete set of all location records in the 
 1. Click on the green **GET** operation button to highlight the list of operations.
 
     ![design-get-operation](images/design-31.png "Get Operation")
+    
+#### 3b: Update `/locations` path with POST method
+
+The HTTP POST method will allow us to insert a new locations record into the database.
 
 1. Click on the **Create Operation** link under *POST* to create a new POST operation.
 
@@ -266,7 +270,7 @@ The `/locations` path will return a complete set of all location records in the 
 
     ![design-location-type](images/design-36.png "Location")
 
-#### 3b: Add `/locations/{id}` path
+#### 3c: Add `/locations/{id}` path with GET method
 
 The `/locations/{id}` path will return a single location record based on a single `id` parameter, passed via the URL.
 
@@ -311,7 +315,7 @@ The `/locations/{id}` path will return a single location record based on a singl
 
     ![design-response-example](images/design-56.png "Enter description")
 
-#### 3c: Add `/locations/phone/{id}` path
+#### 3d: Add `/locations/phone/{id}` path with GET method
 
 The `/locations/phone/{id}` path will return a single location record based on a single phone number parameter, passed via the URL.
 
