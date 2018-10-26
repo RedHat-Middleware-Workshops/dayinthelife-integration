@@ -107,7 +107,7 @@ Description goes here
 
   ![07-webhook-configuration.png](images/07-webhook-configuration.png "Webhook Configuration")
 
-5. Define the Output Data Type. `Select type` from the dropdown as `JSON instance`. Enter `Data type Name: Custom`. `Defination: `, copy below JSON data.
+5. Define the Output Data Type. `Select type` from the dropdown as `JSON instance`. Enter `Data type Name: Custom`. `Definition: `, copy below JSON data.
 
     ```
 		{
