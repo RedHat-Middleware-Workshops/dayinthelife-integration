@@ -193,7 +193,7 @@ Once you've received the swagger specification (API contract) from your friendly
     ```
 
 
-1. Open the generated `CamelRoutes.java` file.  We need to first instantiate our newly created Result Processors' and include the necessary imports.  Also, be sure to add the `@Component` declaration to the class definition statement (under the `@Generated`).  Update the `CamelRoutes.java` file with the below additions:
+1. Open the generated `CamelRoutes.java` file.  We need to first instantiate our newly created Result Processors' and include the necessary imports.  Insert the following import statements into the `CamelRoutes.java` file:
 
     ```java
 	...
@@ -202,18 +202,38 @@ Once you've received the swagger specification (API contract) from your friendly
 	import com.redhat.model.*;
 	import org.springframework.stereotype.Component;
 	import org.apache.camel.model.rest.RestBindingMode;
+	...
+    ````
 
+1. As we're using a SpringBoot, we should also include the `@Component` declaration to the class definition statement (under the `@Generated`).
+
+    ```java
+	...
+	/**
+     	* Generated from Swagger specification by Camel REST DSL generator.
+     	*/
+    	@Generated("org.apache.camel.generator.swagger.PathGenerator")
 	@Component
 	public class CamelRoutes extends RouteBuilder {
-	
 	...
+    ```
 
+1. Next we need to include an `@Override` statement for our `configure()` method, and include references to our result processors
+
+    ```java
+	...
 	@Override
 	public void configure() throws Exception {		
 		
 		ContactInfoResultProcessor ciResultProcessor = new ContactInfoResultProcessor();
 		LocationResultProcessor locationResultProcessor = new LocationResultProcessor();
-	
+	...
+    ```
+
+1. In order to startup an HTTP server for our REST service, we need to instantiate the `restConfiguration` bean with the corresponding properties.  Please include the following block underneath the result processor lines you inserted in the previous step:
+
+    ```java
+	...
 		restConfiguration()
 			.component("servlet")
         	.port(8080)
@@ -225,16 +245,15 @@ Once you've received the swagger specification (API contract) from your friendly
         	.apiProperty("api.title", "Location and Contact Info API")
         	.apiProperty("api.version", "1.0.0")
         ;
-
 	...
     
     ```
 
     If the IDE has any issues compiling the code and you receive errors, then navigate to **Project > Configure Classpath** then click **Done**.  This will trigger the compiler to run in the background and should eliminate any errors. 
 
-    Notice that we now have both ResultProcessor's instantiated, and we've stood-up an Undertow HTTP listener for our RESTful endpoint, together with some basic self-documenting API docs that describe our new service.
+    Notice that we now have both ResultProcessor's instantiated, and we've stood-up an Servlet HTTP listener for our RESTful endpoint, together with some basic self-documenting API docs that describe our new service.
 
-1. Next we need to implement our Camel routes.  We need to create 4 routes, each matching their associated HTTP GET / POST endpoint.  Add the following code below the RESTdsl code:
+1. Next we need to implement our Camel routes.  We need to create 4 routes, each matching their associated HTTP GET / POST endpoint.  Add the following code below the generated RESTdsl code in the `configure()` method:
 
     ```java
 	...
@@ -267,7 +286,7 @@ Once you've received the swagger specification (API contract) from your friendly
 	...
     ```
 
-1. Lastly, we need to update the RESTdsl code to accommodate our new routes.  Replace the existing RESTdsl with the following:
+1. Lastly, we need to update the RESTdsl code to accommodate our new routes.  Replace the existing RESTdsl block in the `configure()` method with the following:
 
     ```java
 	...
