@@ -68,7 +68,7 @@ Please ask your instructor for your password.
     oc new-app s2i-fuse71-spring-boot-camel -p GIT_REPO=https://github.com/RedHatWorkshops/dayinthelife-integration -p CONTEXT_DIR=/projects/location-soap -p APP_NAME=location-soap -p GIT_REF=master -n OCPPROJECT
     
     ```
-     *Remember to replace the OCPPROJECT with the OpenShift project(NameSpace) you created in last lab.*
+     *Remember to replace the OCPPROJECT with the OpenShift project(NameSpace) you created in last lab.  OCPPROJECT should be your username*
 
 1. Once the build and deploy is complete, navigate back to your Openshift web console and verify the project is running.
 
@@ -81,7 +81,7 @@ Please ask your instructor for your password.
 
     ![00-verify-wsdl.png](images/00-verify-wsdl.png "Verify WSDL")
 
-1. Return to your Eclipse Che workspace and open the `dayintelife-import/location-soap2rest` project.  Open the `pom.xml` file and scroll to the bottom.  Uncomment out the `cxf-codegen-plugin` entry at the bottom.  Update the `<wsdl>` entry with your fully qualified WSDL URL e.g. `http://location-soap-simon-dev.apps.52d6.openshift.opentlc.com/ws/location?wsdl`.
+1. Return to your Eclipse Che workspace and open the `dayintelife-import/location-soap2rest` project.  Open the `pom.xml` file and scroll to the bottom.  Uncomment out the `cxf-codegen-plugin` entry at the bottom.  Update the `<wsdl>` entry with your fully qualified WSDL URL e.g. `http://location-soap-userX.dil.opentry.me/ws/location?wsdl`. *Be sure to replace userX with your username.*
 
     ![00-uncomment-codegen.png](images/00-uncomment-codegen.png "Uncomment codegen plugin")
 
@@ -95,7 +95,7 @@ Please ask your instructor for your password.
 
 1. Open up the `CamelRoutes.java` file.  Notice that the existing implementation is barebones. First of all, we need to enter the SOAP service address and WSDL location for our CXF client to call.  Secondly, we need to create our Camel route implementation and create the RESTful endpoint.  To do this, include the following code (making sure to update the **{YOUR_NAME_SPACE}**,  **{OPENSHIFT_APP_URL}** and username values in the `to("cxf://` URL):
 
-    In this case **YOUR_NAME_SPACE** should be *userX-dev* and **{OPENSHIFT_APP_URL}** would be *dil.opentry.me*. Check with your instructor if you are not sure. 
+    In this case **YOUR_NAME_SPACE** should be *userX* and **{OPENSHIFT_APP_URL}** would be *dil.opentry.me*. Check with your instructor if you are not sure. 
 
     ```java
 	...
@@ -157,7 +157,10 @@ Please ask your instructor for your password.
 
     ![00-hit-contact-local.png](images/00-hit-contact-local.png)
 
-1. Now that we've successfully tested our new SOAP to REST service locally, we can deploy it to OpenShift.  Stop the running application by clicking **Cancel**.  Open the terminal and login using the `oc login` command and select your corresponding OCPPROJECT e.g. `oc project OCPPROJECT`.  Open the `fabic8:deploy` script and hit the **Run** button to deploy it to OpenShift.
+1. Now that we've successfully tested our new SOAP to REST service locally, we can deploy it to OpenShift.  Stop the running application by clicking **Cancel**.  
+
+
+1. Open the `fabic8:deploy` script and hit the **Run** button to deploy it to OpenShift.
 
     ![00-mvn-f8-deploy.png](images/00-mvn-f8-deploy.png "Maven Fabric8 Deploy")
 
