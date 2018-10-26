@@ -100,16 +100,16 @@ Your 3scale Admin Portal provides access to a number of configuration features. 
 By running the command lines, it will automatically setup the 3scale API configuration and start managing the API you have exposed! 
 In you command line terminal or in your Che terminal enter the following CURL command:
 
+*Replace USERX as your user id, such as user1, user26, and OPENSHIFT_APP_URL, if you are not sure, check with your instructor*
+
 ```bash
-curl -k -X POST 
-http://threescale-automate-international.dil.opentry.me/threescale/automate/{YOUR_API_TOKEN}/{USERX}/{OPENSHIFT_APP_URL}
+curl -X POST http://threesclae-automate-international.dil.opentry.me/threescale/automate/{YOUR_API_TOKEN}/{USERX}/{OPENSHIFT_APP_URL}
 ```
 
 For example: 
 
 ```bash
-curl -k -X POST 
-http://threescale-automate-international.dil.opentry.me/threescale/automate/44e1592e40b12bae0f2c539bfcc7728ab8383248c1ad34495252398ebb7b6b6d/user12/dil.opentry.me
+curl -X POST http://threesclae-automate-international.dil.opentry.me/threescale/automate/829405ec3d2dd0f91aa8435347827135c323c69757dd2dfb49ed41aa8ceb13ef/user26/dil.opentry.me
 ```
 
 String **API automated, DONE!** should be returned as the result.
