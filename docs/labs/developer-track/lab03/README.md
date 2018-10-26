@@ -197,7 +197,6 @@ Once you've received the swagger specification (API contract) from your friendly
 
     ```java
 	...
-
 	import com.redhat.processor.*;
 	import com.redhat.model.*;
 	import org.springframework.stereotype.Component;
@@ -205,14 +204,14 @@ Once you've received the swagger specification (API contract) from your friendly
 	...
     ````
 
-1. As we're using a SpringBoot, we should also include the `@Component` declaration to the class definition statement (under the `@Generated`).
+1. As we're using SpringBoot, we should also include the `@Component` declaration to the class definition statement (under the `@Generated`).
 
     ```java
 	...
-	/**
-     	* Generated from Swagger specification by Camel REST DSL generator.
-     	*/
-    	@Generated("org.apache.camel.generator.swagger.PathGenerator")
+	/**	
+	* Generated from Swagger specification by Camel REST DSL generator.	
+	*/	
+	@Generated("org.apache.camel.generator.swagger.PathGenerator")
 	@Component
 	public class CamelRoutes extends RouteBuilder {
 	...
@@ -246,7 +245,6 @@ Once you've received the swagger specification (API contract) from your friendly
         	.apiProperty("api.version", "1.0.0")
         ;
 	...
-    
     ```
 
     If the IDE has any issues compiling the code and you receive errors, then navigate to **Project > Configure Classpath** then click **Done**.  This will trigger the compiler to run in the background and should eliminate any errors. 
