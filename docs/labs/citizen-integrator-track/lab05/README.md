@@ -124,10 +124,10 @@ Once the environment is provisioned, you will be presented with a page that pres
 1. Open a browser window and navigate to:
 
     ```bash
-    https://userX-admin.apps.GUID.openshiftworkshop.com/
+    https://userX-admin.dil.opentry.me/p/login
     ```
 
-    *Remember to replace the GUID with your [environment](#environment) value and your user number.*
+    *Remember to replace the X with your user number.*
 
 1. Accept the self-signed certificate if you haven't.
 
