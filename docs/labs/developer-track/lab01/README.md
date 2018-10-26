@@ -65,16 +65,6 @@ Once the environment is provisioned, you will be presented with a page that pres
     http://apicurio-studio.dil.opentry.me
     ```
 
-1. Accept the self-signed certificate if you haven't: 
-
-    1. If using Google Chrome click the **ADVANCED** link.
-
-      ![selfsigned-cert](images/00-selfsigned-cert.png "Self-Signed Cert")
-
-    1. Then click the **Proceed to..** link to accept the certificate and add the exception.
-
-      ![00-selfsigned-cert-accept](images/00-selfsigned-cert-accept.png  "Self-Signed Cert Proceed")
-
 1. Log in using your designated [user and password](#environment).
 
     ![design-login](images/design-01.png "Login")
@@ -110,7 +100,7 @@ Let's start verifying your API.
 
     ![design-add-definition](images/design-15.png "Add Definition")
 
-1. Notice that this API path has a single path parameter (`id` defined as an `int32`) and a single GET operation defined.  Click on the GET operation, then click the Edit button for the 200 OK response.
+1. Notice that this API path has a single path parameter (`id` defined as an `int32`) and a single GET operation defined.  Click on the GET operation, then click the location drop-down which is part of the 200 OK response.
 
     ![design-definition-name](images/design-16.png "Definition Name")
 
