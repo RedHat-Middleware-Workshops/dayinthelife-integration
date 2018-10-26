@@ -57,7 +57,7 @@ Once the environment is provisioned, you will be presented with a page that pres
 
 ### Prerequisite: Setup the collaboration environment using Git (Gogs)
 
-For the Developer track, we require a collaboration environment based on Git. For this purpose, we  decided to use Gogs which a hosted, lighter-weight version of Gitlab. This lab environment has created a user for you in Gogs. 
+For the Developer track, we require a collaboration environment based on Git. For this purpose, we  decided to use Gogs which is a hosted, lighter-weight version of Gitlab. This lab environment has created a user for you in Gogs. 
 
 Follow this instructions to set up the repository.
 
