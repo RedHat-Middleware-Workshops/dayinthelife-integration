@@ -148,7 +148,7 @@ Follow this instructions to set up the repository.
 
     ![mock-job-activate](images/mock-15.png "Activate Job")
 
-1. Repet the last step, but now select the **Force Import** option. This will start the synchronization job.
+1. Repeat the last step, but now select the **Force Import** option. This will start the synchronization job.
 
     ![mock-job-start](images/mock-16.png "Start Job")
 
