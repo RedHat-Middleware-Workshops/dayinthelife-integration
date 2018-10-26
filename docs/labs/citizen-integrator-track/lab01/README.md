@@ -225,6 +225,10 @@ The `/locations` path will return a complete set of all location records in the 
 
     ![design-response-example](images/design-20.png "Response Example")
 
+1. Click on the drop-down next to the `No description` message, and enter `Returns an array of location records` as the description.  Click the check-mark button to accept the description.
+
+    ![design-response-example](images/design-54.png "Enter description")
+
 1. Click on the green **GET** operation button to highlight the list of operations.
 
     ![design-get-operation](images/design-31.png "Get Operation")
@@ -244,6 +248,10 @@ The `/locations` path will return a complete set of all location records in the 
 1. Set the **Response Status Code** value to `201`.  Click Add.
 
     ![design-add-response-code](images/design-35.png "Edit POST operation")
+
+1. Click on the drop-down next to the `No description` message, and enter `Creates a new location record` as the description.  Click the check-mark button to accept the description.
+
+    ![design-response-example](images/design-55.png "Enter description")
 
 1. Scroll down to the bottom of the page. Move your mouse over the **201 Created** response to enable the options. Click the *No response media types defined* drop-down. Now click on the **Add Media Type** button.
 
@@ -299,6 +307,10 @@ The `/locations/{id}` path will return a single location record based on a singl
 
     ![design-location-type](images/design-40.png "Location Type")
 
+1. Click on the drop-down next to the `No description` message, and enter `Returns a single location record` as the description.  Click the check-mark button to accept the description.
+
+    ![design-response-example](images/design-56.png "Enter description")
+
 #### 3c: Add `/locations/phone/{id}` path
 
 The `/locations/phone/{id}` path will return a single location record based on a single phone number parameter, passed via the URL.
@@ -339,6 +351,10 @@ The `/locations/phone/{id}` path will return a single location record based on a
 1. Click on the *Type* dropdown and select **location**.
 
     ![design-location-type](images/design-40.png "Location Type")
+
+1. Click on the drop-down next to the `No description` message, and enter `Returns a location record` as the description.  Click the check-mark button to accept the description.
+
+    ![design-response-example](images/design-57.png "Enter description")
 
 ### Step 4: Download the API definition
 
