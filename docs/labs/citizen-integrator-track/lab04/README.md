@@ -71,8 +71,6 @@ Your 3scale Admin Portal provides access to a number of configuration features.
 
 1. Accept the self-signed certificate if you haven't.
 
-    ![selfsigned-cert](images/00-selfsigned-cert.png "Self-Signed Cert")
-
 1. Log into 3scale using your designated [user and password](#environment). Click on **Sign In**.
 
     ![01-login.png](images/01-login.png)
