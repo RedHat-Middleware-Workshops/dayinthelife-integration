@@ -131,8 +131,6 @@ Once the environment is provisioned, you will be presented with a page that pres
 
 1. Accept the self-signed certificate if you haven't.
 
-    ![selfsigned-cert](images/00-selfsigned-cert.png "Self-Signed Cert")
-
 1. Log into 3scale using your designated [user and password](#environment). Click on **Sign In**.
 
     ![01-login.png](images/01-login.png)
