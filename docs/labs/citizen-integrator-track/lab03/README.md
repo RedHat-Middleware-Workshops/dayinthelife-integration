@@ -89,8 +89,6 @@ Once the environment is provisioned, you will be presented with a page that pres
 
 ### Step 2: Create webhook integration
 
-Description goes here
-
 1. Click on **Integrations > Create Integration** 
 
   ![04-create-integration.png](images/04-create-integration.png "Create Integration")
