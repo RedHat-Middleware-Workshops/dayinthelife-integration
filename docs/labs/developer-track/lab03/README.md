@@ -120,8 +120,7 @@ Once you've received the swagger specification (API contract) from your friendly
 
 1. Copy the contents of this [file](https://raw.githubusercontent.com/RedHatWorkshops/dayinthelife-integration/master/docs/labs/developer-track/resources/Locations.yaml) to your newly created `location.yaml` file.  The file will auto-save so no need to click **Save**.
 
-1. Open the `pom.xml` file, and examine and update the plugin entry for `camel-restdsl-swagger-plugin` located at the bottom of the file.  Update both the `specificationUri` and the `outputDirectory` to have the fully qualified path to your project.  You can find this out by opening terminal, relocating to the dayinthelife-import directory and typing `pwd`.  Your plugin entry should look like this once updated:
-
+1. Open the `pom.xml` file, and examine and update the plugin entry for `camel-restdsl-swagger-plugin` located at the bottom of the file.  Take a look at the location of the yaml file, make sure it maps to the one you created. 
 
     ```xml
 	  <plugin>
@@ -129,10 +128,10 @@ Once you've received the swagger specification (API contract) from your friendly
 		  <artifactId>camel-restdsl-swagger-plugin</artifactId>
 		  <version>2.21.0</version>
 		  <configuration>
-		    <specificationUri>/projects/dayinthelife-import/location-service/src/spec/location.yaml</specificationUri>
+		    <specificationUri>${project.basedir}/src/spec/location.yaml</specificationUri>
 		    <className>CamelRoutes</className>
 		    <packageName>com.redhat</packageName>
-		    <outputDirectory>/projects/dayinthelife-import/location-service/src/main/java</outputDirectory>      
+		    <outputDirectory>${project.basedir}/src/main/java</outputDirectory>      
 		  </configuration>
 	  </plugin>
     ```
