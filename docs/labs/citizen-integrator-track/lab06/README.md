@@ -9,11 +9,11 @@
 
 ## Overview
 
-The focal point of your developers’ experience is the API developer portal, and the level of effort you put into it will directly correlate to the level of success of your API program, and API developer engagement.
+The focal point of your developers experience is the API developer portal, and the level of effort you put into it will directly correlate to the level of success of your API program, and API developer engagement.
 
 ### Why Red Hat?
 
-3scale provides a built-in, state-of-the-art CMS portal, making it very easy to create your own branded hub with a custom domain to manage developer interactions, and help increase API adoption.
+[Red Hat 3scale API Management](https://www.3scale.net/) Solution provides a built-in, state-of-the-art CMS portal, making it very easy to create your own branded hub with a custom domain to manage developer interactions, and help increase API adoption.
 
 You can customize the look and feel of the entire Developer Portal to match your own branding. You have complete control over every element of the portal, so you can make it as easy as possible for developers to learn how to use your API.
 
@@ -62,8 +62,6 @@ Once the environment is provisioned, you will be presented with a page that pres
     *Remember to replace the `X` variable in the URL with your assigned user number.*
 
 1. Accept the self-signed certificate if you haven't.
-
-    ![selfsigned-cert](images/00-selfsigned-cert.png "Self-Signed Cert")
 
 1. Log into 3scale using your designated [user and password](#environment). Click on **Sign In**.
 
@@ -148,7 +146,7 @@ Once the environment is provisioned, you will be presented with a page that pres
 1. Open a new *Incognito/Private* browser window to test the Developer Portal login. Navigate to:
 
     ```bash
-    https://userX.apps.GUID.openshiftworkshop.com/
+    https://userX.dil.opentry.me/
     ```
 
 1. Type your portal code to finish the login.
