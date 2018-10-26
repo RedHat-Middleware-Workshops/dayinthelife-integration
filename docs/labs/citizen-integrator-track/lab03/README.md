@@ -222,5 +222,8 @@ You can now proceed to [Lab 4](../lab04/#lab-4)
 
 ## Notes and Further Reading
 
-TBD
+* Fuse Online
+  * [Webpage] (https://www.redhat.com/en/technologies/jboss-middleware/fuse-online)
+  * [Sample tutorials] (https://access.redhat.com/documentation/en-us/red_hat_fuse/7.1/html-single/fuse_online_sample_integration_tutorials/index)
+  * [Blog] (https://developers.redhat.com/blog/2017/11/02/work-done-less-code-fuse-online-tech-preview-today/)
 
