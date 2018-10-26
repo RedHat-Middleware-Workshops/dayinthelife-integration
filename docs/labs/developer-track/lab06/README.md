@@ -103,13 +103,13 @@ In you command line terminal or in your Che terminal enter the following CURL co
 *Replace USERX as your user id, such as user1, user26, and OPENSHIFT_APP_URL, if you are not sure, check with your instructor*
 
 ```bash
-curl -X POST http://threescale-automate-international.dil.opentry.me/threescale/automate/{YOUR_API_TOKEN}/{USERX}/{OPENSHIFT_APP_URL}
+curl -X POST http://threesclae-automate-international.dil.opentry.me/threescale/automate/{YOUR_API_TOKEN}/{USERX}/{OPENSHIFT_APP_URL}
 ```
 
 For example: 
 
 ```bash
-curl -X POST http://threescale-automate-international.dil.opentry.me/threescale/automate/829405ec3d2dd0f91aa8435347827135c323c69757dd2dfb49ed41aa8ceb13ef/user26/dil.opentry.me
+curl -X POST http://threesclae-automate-international.dil.opentry.me/threescale/automate/829405ec3d2dd0f91aa8435347827135c323c69757dd2dfb49ed41aa8ceb13ef/user26/dil.opentry.me
 ```
 
 String **API automated, DONE!** should be returned as the result.
