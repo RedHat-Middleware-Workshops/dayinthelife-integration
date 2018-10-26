@@ -63,3 +63,5 @@
   -p KEYCLOAK_ROUTE_HOSTNAME=sso-{{sso_project}}.{{ ocp_apps_domain }} -p APP_ROUTE_HOSTNAME={{ microcks_project }}.{{ ocp_apps_domain }} \
   -n {{ microcks_project }}"
   when: configure_only == 'false'
+  register: create_microcks_app
+  failed_when: create_microcks_app.stderr != '' and 'already exists' not in create_microcks_app.stderr
