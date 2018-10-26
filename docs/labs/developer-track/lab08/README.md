@@ -330,7 +330,7 @@ Redirect URLs are a critical part of the OAuth flow. After a user successfully a
 1. Open a browser window and navigate to:
 
     ```bash
-    http://sso-rh-sso.apps.GUID.openshiftworkshop.com/auth/admin/userX/console/
+    http://sso-sso.dil.opentry.me/auth/admin/userX/console/
     ```
 
     *Remember to replace the GUID with your [environment](#environment) value and your user number.*
