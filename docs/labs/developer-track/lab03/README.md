@@ -50,7 +50,7 @@ Please ask your instructor for the corresponding password.
 
     ![00-create-workspace.png](images/00-create-workspace.png "Create Workspace")
 
-1. Enter a unique name for your workspace e.g. simon-dev-workspace.  Select "day in the life workshop" stack, increase the RAM to 4MB and then click **Create**.
+1. Use your unique username as your workspace name e.g. userX.  Select "day in the life workshop" stack, increase the RAM to 4MB and then click **Create**.
 
     ![00-new-workspace.png](images/00-new-workspace.png "New Workspace")
 
@@ -67,7 +67,7 @@ Please ask your instructor for the corresponding password.
     https://dil.opentry.me/console
     ```
 
-1. Click on **Create Project** and enter a unique name using your username e.g. `user-X-dev`.
+1. Click on **Create Project** and enter a unique name using your username e.g. `user39`.
 
     ![00-create-ocp-project.png](images/00-create-ocp-project.png "Create Project")
 
@@ -89,7 +89,7 @@ Please ask your instructor for the corresponding password.
 
     ![00-import-project.png](images/00-import-project.png "Import Project")
 
-1. Enter `http://gogs.dil.opentry.me/userX/dayintheliferepo` as the git URL, select **Import Recursively** and then click **Import**.
+1. Enter `http://gogs.dil.opentry.me/userX/dayintheliferepo` as the git URL, making sure to update `userX` with your unique username.  Select **Import Recursively** and then click **Import**.
 
 1. When the "Save" pop-up appears, click the "X" to close the pop-up.
 
@@ -314,7 +314,7 @@ Once you've received the swagger specification (API contract) from your friendly
         ;
     ```
 
-1. Before we test our newly created Camel Routes, we need to update `src/main/resources/application.properties` to point to our Postgres database.  Set the `postgresql.service.name` property to `postgresql.OCPPROJECT.svc` so that it points to our OpenShift service. Replace `OCPPROJECT` with the OpenShift project name you created in Step 2 to host Postgres Database.
+1. Before we test our newly created Camel Routes, we need to update `src/main/resources/application.properties` to point to our Postgres database.  Set the `postgresql.service.name` property to `postgresql.OCPPROJECT.svc` so that it points to our OpenShift service. Replace `OCPPROJECT` with the OpenShift project name you created in Step 2 to host Postgres Database (this should be your unique username).
 
     ![00-update-properties.png](images/00-update-properties.png "Update Properties")
 
@@ -330,7 +330,15 @@ Once you've received the swagger specification (API contract) from your friendly
 
     ![00-location-list.png](images/00-location-list.png "Location List")
 
-1. Now that we've tested our API service implementation locally, we can deploy it to our running OpenShift environment.  To do this, navigate back to the **Manage commands** screen, double-click the **fabric8:deploy** script and hit **Run**.  The script will run and deploy to your OCPPROJECT.
+1. Now that we've tested our API service implementation locally, we can deploy it to our running OpenShift environment.  First we need to login to OpenShift via the Terminal.  Navigate back to the OpenShift web UI and click the **Copy Login Command** link.
+
+    ![00-location-list.png](images/00-login-ocp-cli.png "OCP CLI Login")
+
+1.  Navigate back to Eclipse Che, open the terminal, and paste the login command from your clipboard.  Once you've logged-in, select the OpenShift project you created earlier using `oc project userX` (replacing userX with your username).
+
+    ![00-location-list.png](images/00-login-terminal.png "OCP Terminal Login")
+
+1. To fun the fabric8 Maven command to deploy our project, navigate back to the **Manage commands** screen, double-click the **fabric8:deploy** script and hit **Run**.  The script will run and deploy to your OCPPROJECT.
 
     ![00-mvn-deploy.png](images/00-mvn-deploy.png "Maven Deploy")
 
@@ -344,28 +352,14 @@ Once you've received the swagger specification (API contract) from your friendly
 
 1. You can also search for individual locations by adjusting the URI to `/locations/{id}` e.g. `/locations/100`.
 
-1. In another browser or tab, go to Openshift console (https://dil.opentry.me). 
-
-	![00-openshift-loginpage.png](images/00-openshift-loginpage.png "Commend Login")
-
-
-1. Oobtain your user login command by clicking on your username on the top right hand corner and select **Copy Login Command**
-
-	![00-commend-login.png](images/00-commend-login.png "Commend Login")
-
-1. Login to Openshift via the Eclipse Che terminal: 
-
-    ```bash
-    oc login https://dil.opentry.me --token=XXXXX 
-    ```
     
-1. Lastly, via the Eclipse Che terminal, test the HTTP post using curl.  You can use the following command:
+1. Lastly, via the Eclipse Che terminal, test the HTTP POST using curl.  You can use the following command:
 
     ```bash
 	curl --header "Content-Type: application/json" --request POST --data '{"id": 101,"name": "Kakadu","type": "HQ","status": "1","location": {"lat": "78.88436","lng": "99.05295"}}' http://location-service-OCPPROJECT.dil.opentry.me/locations
     ```
 
-    Remember to replace OCPPROJECT with your unique environment variables.
+    Remember to replace OCPPROJECT with your username.
 
 1.  If the HTTP POST is successful, you should be able to view it by repeating the HTTP GET /locations test.
 
