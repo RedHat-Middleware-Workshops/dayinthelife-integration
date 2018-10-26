@@ -151,9 +151,9 @@ International Inc web development create a Node.js application for the company h
 1. In the build configuration page, change to the **Environment** tab. Fill in the available row with the following information:
 
     * Name: **API\_BACKEND\_URL**
-    * Value: **http://location-service-userX-walkthrough-projects.dil.opentry.me/locations**
+    * Value: **http://location-service-OCPPROJECT.dil.opentry.me/locations**
 
-    *Remember to replace your user number in the URL*.
+    *Remember to replace OCPPROJECT as in your previous Dev labs (Lab 03/04)*.
 
     ![11-environment](images/deploy-11.png)
 
