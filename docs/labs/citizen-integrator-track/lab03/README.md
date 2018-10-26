@@ -126,13 +126,11 @@ Once the environment is provisioned, you will be presented with a page that pres
 
  ![09-invoke-sql.png](images/09-invoke-sql.png "Invoke SQL")
 
-7. Enter the SQL statement and click **Done**.
+7. Enter the SQL statement. Click **Done**.
 
  ```
    INSERT INTO locations (id,name,lat,lng,location_type,status) VALUES (:#id,:#name,:#lat,:#lng,:#location_type,:#status )
  ```
-
- **Screenshot**
 
  ![10-invoke-sql-2.png](images/10-invoke-sql-2.png "Invoke SQL 2")
 
