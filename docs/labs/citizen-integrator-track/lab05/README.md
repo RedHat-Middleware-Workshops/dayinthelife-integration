@@ -173,7 +173,7 @@ Once the environment is provisioned, you will be presented with a page that pres
     http://3scale-admin:CLIENT_SECRET@sso-sso.dil.opentry.me/auth/realms/userX
     ```
 
-    *Remember to replace the GUID with your [environment](#environment) value, your user number and the CLIENT_SECRET you get in the [Step 1](#step-1-get-red-hat-single-sign-on-service-account-credentials)*.
+    *Remember to replace the X with user number*
 
     ![06-openid-issuer.png](images/06-openid-issuer.png "OpenID Connect Issuer")
 
