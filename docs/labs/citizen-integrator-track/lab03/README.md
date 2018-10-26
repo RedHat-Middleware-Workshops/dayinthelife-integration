@@ -138,7 +138,7 @@ Once the environment is provisioned, you will be presented with a page that pres
 
  ![11-data-mapper.png](images/11-data-mapper.png "Data Mapper")
 
-9. Drag and drop the matching `Source` Data type to the `Target` as per the following screenshot. When finished, click **Done**.
+9. Drag and drop the matching **Source** Data types to all their corresponding **Targets** as per the following screenshot. When finished, click **Done**.
 
  ![12-configure-mapper.png](images/12-configure-mapper.png "Configure Mapper")
 
