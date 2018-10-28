@@ -123,4 +123,5 @@
       vars:
         configmap_name: extra-services
         configmap_namespace: webapp
+        ocp_apps_domain: "{{ hostvars['SHARED_VARS']['oc_apps_domain'] }}"
       tags: webapp

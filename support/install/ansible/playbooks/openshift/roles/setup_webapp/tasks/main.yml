@@ -12,9 +12,9 @@
   when: check_webapp_configmap.rc == 0   
 
 - template:
-    src: extra-services.json.j2
-    dest: /tmp/extra-services.json
+    src: extra-services.yaml.j2
+    dest: /tmp/extra-services.yaml
 - name: Create the web app ConfigMap
-  shell: oc create -f /tmp/extra-services.json -n {{ configmap_namespace }}
+  shell: oc create -f /tmp/extra-services.yaml -n {{ configmap_namespace }}
 - name: Mount ConfigMap
   shell: oc set volume dc/tutorial-web-app --add -m /etc/webapp/ --type=configmap --configmap-name={{ configmap_name }} -n {{ configmap_namespace }}
