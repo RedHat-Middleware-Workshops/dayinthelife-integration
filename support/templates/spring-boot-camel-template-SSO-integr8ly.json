@@ -3,7 +3,7 @@
   "kind": "Template",
   "metadata": {
     "annotations": {
-      "openshift.io/display-name": "Red Hat Fuse 7.1 Camel with Spring Boot",
+      "openshift.io/display-name": "Red Hat Fuse 7.1 SSO Integr8ly Camel with Spring Boot",
       "openshift.io/provider-display-name": "Red Hat, Inc.",
       "description": "Spring Boot and Camel QuickStart. This example demonstrates how you can use Apache Camel with Spring Boot on OpenShift. The quickstart uses Spring Boot to configure an application which includes a Camel route that triggers a message every 5th second, and routes the message to a log.",
       "tags": "quickstart,java,springboot,fis,jboss-fuse",
