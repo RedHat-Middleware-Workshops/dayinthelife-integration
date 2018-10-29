@@ -124,14 +124,12 @@ Once the environment is provisioned, you will be presented with a page that pres
 1. Open a browser window and navigate to:
 
     ```bash
-    https://userX-admin.apps.GUID.openshiftworkshop.com/
+    https://userX-admin.dil.opentry.me/p/login
     ```
 
-    *Remember to replace the GUID with your [environment](#environment) value and your user number.*
+    *Remember to replace the X with your user number.*
 
 1. Accept the self-signed certificate if you haven't.
-
-    ![selfsigned-cert](images/00-selfsigned-cert.png "Self-Signed Cert")
 
 1. Log into 3scale using your designated [user and password](#environment). Click on **Sign In**.
 
@@ -173,7 +171,7 @@ Once the environment is provisioned, you will be presented with a page that pres
     http://3scale-admin:CLIENT_SECRET@sso-sso.dil.opentry.me/auth/realms/userX
     ```
 
-    *Remember to replace the GUID with your [environment](#environment) value, your user number and the CLIENT_SECRET you get in the [Step 1](#step-1-get-red-hat-single-sign-on-service-account-credentials)*.
+    *Remember to replace the X with user number*
 
     ![06-openid-issuer.png](images/06-openid-issuer.png "OpenID Connect Issuer")
 

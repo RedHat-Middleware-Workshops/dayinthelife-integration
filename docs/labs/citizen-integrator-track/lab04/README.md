@@ -13,7 +13,7 @@ Once you have APIs deployed in your environment, it becomes critically important
 
 ### Why Red Hat?
 
-Red Hat provides one the leading API Management tools that provides API management services. The 3scale API Management solution enables you to quickly and easily protect and manage your APIs.
+Red Hat provides one the leading API Management tools that provides API management services. The [3scale API Management](https://www.3scale.net/) solution enables you to quickly and easily protect and manage your APIs.
 
 ### Skipping The Lab
 
@@ -71,8 +71,6 @@ Your 3scale Admin Portal provides access to a number of configuration features.
 
 1. Accept the self-signed certificate if you haven't.
 
-    ![selfsigned-cert](images/00-selfsigned-cert.png "Self-Signed Cert")
-
 1. Log into 3scale using your designated [user and password](#environment). Click on **Sign In**.
 
     ![01-login.png](images/01-login.png)
@@ -99,7 +97,7 @@ Your 3scale Admin Portal provides access to a number of configuration features.
 
 1. Click on **Update Service**.
 
-1. Click on the **add the Base URL of your API and save the configuration** button
+1. Click on the **add the Base URL of your API and save the configuration** button.
 
     ![04-base-url](images/04-base-url.png)
 
@@ -129,7 +127,7 @@ Your 3scale Admin Portal provides access to a number of configuration features.
 
 1. Click on **Create Method**.
 
-1. Click on the **Add mapping rule** link
+1. Click on the **Add mapping rule** link.
 
     ![07b-add-mapping-rule.png](images/07b-add-mapping-rule.png)
 
@@ -203,11 +201,11 @@ The order in which the policies are executed, known as the “policy chain”, c
 
     * Private Base URL: **http://location-service.international.svc:8080**
 
-    * Staging Public Base URL: **https://location-userX-api-staging.amp.apps.GUID.openshiftworkshop.com:443**
+    * Staging Public Base URL: **https://location-userX-api-staging.amp.dil.opentry.me:443**
 
-    * Production Public Base URL: **https://location-userX-api.amp.apps.GUID.openshiftworkshop.com:443**
+    * Production Public Base URL: **https://location-userX-api.amp.dil.opentry.me:443**
 
-    *Remember to replace the GUID with your [environment](#environment) value*.
+    *Remember to replace the X with your user number*.
 
     *We are using the internal API service, as we are deploying our services inside the same OpenShift cluster*.
 
@@ -254,6 +252,6 @@ You can now proceed to [Lab 5](../lab05/#lab-5)
 
 ## Notes and Further Reading
 
-* [Red Hat 3scale API Management](http://microcks.github.io/)
+* [Red Hat 3scale API Management](https://www.3scale.net/)
 * [Developers All-in-one 3scale install](https://developers.redhat.com/blog/2017/05/22/how-to-setup-a-3scale-amp-on-premise-all-in-one-install/)
 * [ThoughtWorks Technology Radar - Overambitious API gateways](https://www.thoughtworks.com/radar/platforms/overambitious-api-gateways)

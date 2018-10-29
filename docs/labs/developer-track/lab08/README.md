@@ -151,9 +151,9 @@ International Inc web development create a Node.js application for the company h
 1. In the build configuration page, change to the **Environment** tab. Fill in the available row with the following information:
 
     * Name: **API\_BACKEND\_URL**
-    * Value: **http://location-service-userX-walkthrough-projects.dil.opentry.me/locations**
+    * Value: **http://location-service-OCPPROJECT.dil.opentry.me/locations**
 
-    *Remember to replace your user number in the URL*.
+    *Remember to replace OCPPROJECT as in your previous Dev labs (Lab 03/04)*.
 
     ![11-environment](images/deploy-11.png)
 
@@ -330,7 +330,7 @@ Redirect URLs are a critical part of the OAuth flow. After a user successfully a
 1. Open a browser window and navigate to:
 
     ```bash
-    http://sso-rh-sso.apps.GUID.openshiftworkshop.com/auth/admin/userX/console/
+    http://sso-sso.dil.opentry.me/auth/admin/userX/console/
     ```
 
     *Remember to replace the GUID with your [environment](#environment) value and your user number.*

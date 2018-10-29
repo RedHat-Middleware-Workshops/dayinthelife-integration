@@ -89,8 +89,6 @@ Once the environment is provisioned, you will be presented with a page that pres
 
 ### Step 2: Create webhook integration
 
-Description goes here
-
 1. Click on **Integrations > Create Integration** 
 
   ![04-create-integration.png](images/04-create-integration.png "Create Integration")
@@ -107,7 +105,7 @@ Description goes here
 
   ![07-webhook-configuration.png](images/07-webhook-configuration.png "Webhook Configuration")
 
-5. Define the Output Data Type. `Select type` from the dropdown as `JSON instance`. Enter `Data type Name: Custom`. `Defination: `, copy below JSON data.
+5. Define the Output Data Type. `Select type` from the dropdown as `JSON instance`. Enter `Data type Name: Custom`. `Definition: `, copy below JSON data. Click **Done**.
 
     ```
 		{
@@ -122,21 +120,17 @@ Description goes here
 		}
     ```
 
-  **Screenshot**
-
  ![08-data-type.png](images/08-data-type.png "Data Type")
 
 6. Click on `LocationDB` from the catalog and then select `Invoke SQL`
 
  ![09-invoke-sql.png](images/09-invoke-sql.png "Invoke SQL")
 
-7. Enter the SQL statement and click **Done**.
+7. Enter the SQL statement. Click **Done**.
 
  ```
    INSERT INTO locations (id,name,lat,lng,location_type,status) VALUES (:#id,:#name,:#lat,:#lng,:#location_type,:#status )
  ```
-
- **Screenshot**
 
  ![10-invoke-sql-2.png](images/10-invoke-sql-2.png "Invoke SQL 2")
 
@@ -144,7 +138,7 @@ Description goes here
 
  ![11-data-mapper.png](images/11-data-mapper.png "Data Mapper")
 
-9. Drag and drop the matching `Source` Data type to the `Target` as per the following screenshot. When finished, click **Done**.
+9. Drag and drop the matching **Source** Data types to all their corresponding **Targets** as per the following screenshot. When finished, click **Done**.
 
  ![12-configure-mapper.png](images/12-configure-mapper.png "Configure Mapper")
 
@@ -160,38 +154,36 @@ We will use an online cURL tool to create your own record field in database.
 
 1. Copy the `External URL` per the below screenshot
 
- ![14-copy-URL.png](images/14-copy-URL.png "Copy URL")
+   ![14-copy-URL.png](images/14-copy-URL.png "Copy URL")
 
 1. Open a browser window and navigate to:
 
- ```
-   https://onlinecurl.com/
- ```
+   ```
+     https://onlinecurl.com/
+   ```
 
-2. Below are the values for your requests, remember to replace the id `X` to your user number. 
+1. Below are the values for your requests, remember to replace the id `X` to your user number. 
 
- ```
-   URL: https://i-addlocation-fuse-18308937-d7b6-11e8-96c6-0a580a810006.dil.opentry.me/webhook/4dTcVchE8evWz3dVvtHFK3wvfFbFzpVLPEMq1TkcF0MGIbJmu4
-
-   --header (-H):  Content-Type: application/json
-
-   --data (-d): {"id": X, "name": "Kamarhati", "type": "Regional Branch", "status": "1", "location": { "lat": "-28.32555", "lng": "-5.91531" }}
-
-   --request (-X): POST
- ```
-
- ![15-online-curl.png](images/15-online-curl.png "Online URL")
-
- 1. The page will load the `204` response information from the service which means the request was successfully fulfilled.
-
- ![16-response-header.png](images/16-response-header.png "Response Header")
+   | Parameters | Values |
+   | --- | --- |
+   | URL | external copied url from Step 3.1 |
+   | --header (-H) | Content-Type: application/json |
+   | --data (-d)  |   {"id": X, "name": "Kamarhati", "type": "Regional Branch", "status": "1", "location": { "lat": "-28.32555", "lng": "-5.91531" }} |
+   | --request (-X) | POST |
 
 
-2. Click on **Activity > Refresh** and verify if the newly record is created.
+   ![15-online-curl.png](images/15-online-curl.png "Online URL")
 
- ![17-activity-refresh.png](images/17-activity-refresh.png "Activity Refresh")
+1. The page will load the `204` response information from the service which means the request was successfully fulfilled.
 
-3. _(Optional)_ Visit the application URL in browser and verify if the record can be fetched.
+   ![16-response-header.png](images/16-response-header.png "Response Header")
+
+
+1. Click on **Activity > Refresh** and verify if the newly record is created.
+
+   ![17-activity-refresh.png](images/17-activity-refresh.png "Activity Refresh")
+
+1. _(Optional)_ Visit the application URL in browser and verify if the record can be fetched.
 
   **REQUEST**
   ```
