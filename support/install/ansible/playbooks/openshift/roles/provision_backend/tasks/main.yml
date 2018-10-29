@@ -24,6 +24,11 @@
   when: configure_only == 'false' and template_exists.failed
   ignore_errors: true
 
+- name: Create template for Integr8ly SSO Fuse 7.1
+  shell: "oc create -f https://raw.githubusercontent.com/RedHatWorkshops/dayinthelife-integration/master/support/templates/spring-boot-camel-template-SSO-integr8ly.json -n openshift"
+  when: configure_only == 'false' and template_exists.failed
+  ignore_errors: true
+
 - name: Create Backend Database
   shell: "oc new-app -f https://raw.githubusercontent.com/openshift/origin/master/examples/db-templates/postgresql-ephemeral-template.json \
   --param=POSTGRESQL_USER=dbuser --param=POSTGRESQL_PASSWORD=password --param=POSTGRESQL_DATABASE=sampledb --param=POSTGRESQL_VERSION=latest -n {{ backend_project }}"
@@ -44,15 +49,25 @@
   -p CONTEXT_DIR=/projects/location-soap2rest -p APP_NAME=location-soap2rest -p GIT_REF=master -n {{ backend_project }}"
   when: configure_only == 'false'
 
+- name: A workaround for integr8ly, as it does not support fix SSO password nor in ConfigMap SSO UserName
+  shell: "oc describe dc/sso | grep SSO_ADMIN_USERNAME | sed 's/.*://g' | sed -e 's/^[[:space:]]*//'"
+  register: sso_username
+  when: configure_only == 'false'
+
+- name: A workaround for integr8ly, as it does not support fix SSO password nor in ConfigMap SSO Password
+  shell: "oc describe dc/sso | grep SSO_ADMIN_PASSWORD | sed 's/.*://g' | sed -e 's/^[[:space:]]*//'"
+  register: sso_pwd
+  when: configure_only == 'false'
+
 - name: Create ThreeScale Automate service
-  shell: "oc new-app s2i-fuse71-spring-boot-camel -p GIT_REPO=https://github.com/RedHatWorkshops/dayinthelife-integration \
-  -p CONTEXT_DIR=/projects/threesclae-automate -p APP_NAME=threesclae-automate -p GIT_REF=master -n {{ backend_project }}"
+  shell: "oc new-app s2i-fuse71-spring-boot-camel-integr8ly-sso -p GIT_REPO=https://github.com/RedHatWorkshops/dayinthelife-integration \
+  -p CONTEXT_DIR=/projects/threesclae-automate -p APP_NAME=threesclae-automate -p GIT_REF=master -p SSO_USERNAME={{sso_username}} -p SSO_PASSWORD={{sso_pwd}} -n {{ backend_project }}"
   when: configure_only == 'false'
 
 - name: Create Webpage application
   shell: "oc new-app https://github.com/jbossdemocentral/3scaleworkshop-wwwpage#secured --name www \
   --build-env API_BACKEND_URL=https://location-sso-staging.amp.{{ ocp_apps_domain }}/locations \
-  --build-env SSO_URL=http://sso-rh-sso.{{ ocp_apps_domain }} --build-env SSO_REALM=threescale \
+  --build-env SSO_URL=https://secure-sso-{{ sso_project }}.{{ ocp_apps_domain }} --build-env SSO_REALM=threescale \
   --build-env CLIENT_ID=www-secured -n {{ backend_project }}"
   when: configure_only == 'false'
 
