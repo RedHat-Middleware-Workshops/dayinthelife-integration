@@ -20,7 +20,7 @@ Red Hat provides one the leading API Management tools that provides API manageme
 If you are planning to skip to the next lab, there is an already running API proxy for the Location API Service in this endpoint:
 
 ```bash
-https://location-service-api.amp.apps.GUID.openshiftworkshop.com
+https://location-service-api.amp.dil.opentry.me
 ```
 
 ### Environment
