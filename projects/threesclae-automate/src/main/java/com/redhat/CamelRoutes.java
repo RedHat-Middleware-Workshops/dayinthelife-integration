@@ -39,7 +39,7 @@ public class CamelRoutes extends RouteBuilder {
 			.component("servlet")
 	    	.port(8080)
 	    	.bindingMode(RestBindingMode.json)
-			.contextPath("/")
+			//.contextPath("/")
 	    	.dataFormatProperty("prettyPrint", "true")
 	    	.enableCORS(true)
 	    	.apiContextPath("/api-doc")
@@ -69,8 +69,41 @@ public class CamelRoutes extends RouteBuilder {
 		
          
 		from("direct:threescalesetup")
+			.log("starts")
+			.log("USERNAME {{env:SSO_USERNAME}}")
+			.log("PASSWORD {{env:SSO_PASSWORD}}")
+			//SSO and TOKENS
+			
 			.removeHeaders("CamelHttp*")
-			//.removeHeader(Exchange.HTTP_URI)
+			//Get TKN from SSO
+				.setHeader(Exchange.HTTP_METHOD, constant("POST"))
+				.setHeader(Exchange.CONTENT_TYPE, constant("application/x-www-form-urlencoded"))
+				.setBody(simple("username={{env:SSO_USERNAME}}&password={{env:SSO_PASSWORD}}&grant_type=password&client_id=admin-cli"))
+			.toD("https4://secure-sso-sso.${headers.openshiftappurl}/auth/realms/master/protocol/openid-connect/token?sslContextParameters=#ssl&bridgeEndpoint=true")
+			.setHeader("tkn").jsonpath("access_token")
+			//.log("return---->  ${header.tkn}")	
+		
+			.removeHeaders("CamelHttp*")
+			//GET Client ID
+				.setHeader(Exchange.HTTP_METHOD, constant("GET"))
+				.setHeader("Authorization").simple("Bearer ${headers.tkn}")
+			.toD("https4://secure-sso-sso.${headers.openshiftappurl}/auth/admin/realms/threescale/clients?sslContextParameters=#ssl&bridgeEndpoint=true")
+			.setHeader("idClientAdmin").jsonpath("$..[?(@.clientId == '3scale-admin')].id")
+			//.log("return---->  ${headers.idClientAdmin}")	
+			
+			.removeHeaders("CamelHttp*")
+			//GET Client Secret
+				.setHeader(Exchange.HTTP_METHOD, constant("GET"))
+				.setHeader("Authorization").simple("Bearer ${headers.tkn}")
+			.toD("https4://secure-sso-sso.${headers.openshiftappurl}/auth/admin/realms/threescale/clients/${headers.idClientAdmin}/client-secret?sslContextParameters=#ssl&bridgeEndpoint=true")
+			.setHeader("secret").jsonpath("value")
+			.log("return---->  ${headers.secret}")	
+		
+			
+			
+			//3scale Setups
+			
+			.removeHeaders("CamelHttp*")
 			//Create Service
 				//.setHeader("apiToken", constant(apiToken))
 				//.setHeader("userid", constant(userid))
@@ -78,7 +111,7 @@ public class CamelRoutes extends RouteBuilder {
 				.log("${headers}")
 				.setHeader(Exchange.HTTP_METHOD, constant("POST"))
 				.setHeader(Exchange.CONTENT_TYPE, constant("application/x-www-form-urlencoded"))
-				.setBody(simple("access_token=${headers.apiToken}&name=SSO+Location+API&deployment_option=hosted&backend_version=oidc&system_name=location-sso8"))
+				.setBody(simple("access_token=${headers.apiToken}&name=SSO+Location+API&deployment_option=hosted&backend_version=oidc&system_name=location-sso"))
 			.toD("https4://${headers.userid}-admin.${headers.openshiftappurl}/admin/api/services.xml?sslContextParameters=#ssl&bridgeEndpoint=true")
 			.setHeader("serviceid").xpath("/service/id", String.class) 
 			
@@ -94,7 +127,7 @@ public class CamelRoutes extends RouteBuilder {
 			.delay(1000)//Setup Proxies
 				.setHeader(Exchange.HTTP_METHOD, constant("PATCH"))
 				.setHeader(Exchange.CONTENT_TYPE, constant("application/x-www-form-urlencoded"))
-				.setBody(simple("access_token=${headers.apiToken}&endpoint=https%3A%2F%2Flocation-${headers.userid}-api.amp.${headers.openshiftappurl}%3A443&api_backend=http%3A%2F%2Flocation-service.${headers.userid}.svc%3A8080&sandbox_endpoint=https%3A%2F%2Flocation-${headers.userid}-api-staging.amp.${headers.openshiftappurl}%3A443"))
+				.setBody(simple("access_token=${headers.apiToken}&endpoint=https%3A%2F%2Flocation-${headers.userid}-api.amp.${headers.openshiftappurl}%3A443&api_backend=http%3A%2F%2Flocation-service.${headers.userid}.svc%3A8080&sandbox_endpoint=https%3A%2F%2Flocation-${headers.userid}-api-staging.amp.${headers.openshiftappurl}%3A443&oidc_issuer_endpoint=http%3A%2F%2F3scale-admin%3A${headers.secret}%40sso-sso.${headers.openshiftappurl}%2Fauth%2Frealms"))
 			.delay(1000)
 			.toD("https4://${headers.userid}-admin.${headers.openshiftappurl}/admin/api/services/${headers.serviceid}/proxy.xml?sslContextParameters=#ssl&bridgeEndpoint=true")
 			
@@ -107,6 +140,7 @@ public class CamelRoutes extends RouteBuilder {
 			.delay(1000)
 			.toD("https4://${headers.userid}-admin.${headers.openshiftappurl}/admin/api/services/${headers.serviceid}/application_plans.xml?sslContextParameters=#ssl&bridgeEndpoint=true")
 			.setHeader("planid").xpath("/plan/id", String.class) 
+			
 			
 			.removeHeaders("CamelHttp*")
 			.log("Service : [${headers.serviceid}] and Plan [${headers.planid}] and Account [${headers.accountid}]")
@@ -136,9 +170,22 @@ public class CamelRoutes extends RouteBuilder {
 			.toD("https4://${headers.userid}-admin.${headers.openshiftappurl}/admin/api/services/${headers.serviceid}/proxy/policies.json?sslContextParameters=#ssl&bridgeEndpoint=true")
 			.log("return---->  ${body}")
 			
+			
+			
+			
+			//oc describe dc/sso | grep SSO_ADMIN_PASSWORD | sed 's/.*://g' | sed -e 's/^[[:space:]]*//'
+			
+					
+			//&oidc_issuer_endpoint=http://3scale-admin:{{ client_secret }}@sso-{{ sso_project }}.{{ ocp_apps_domain }}/auth/realms/threescale
+			
 			.setBody().constant("API automated, DONE!")
 			.setHeader(Exchange.HTTP_RESPONSE_CODE).constant("200")
 		;
+		
+		
+		
+		
+		
 	}
 		
 		
