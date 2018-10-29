@@ -236,6 +236,6 @@ You can now proceed to [Lab 6](../lab06/#lab-6)
 
 ## Notes and Further Reading
 
-* [Red Hat 3scale API Management](http://microcks.github.io/)
+* [Red Hat 3scale API Management](http://3scale.net)
 * [Red Hat Single Sign On](https://access.redhat.com/products/red-hat-single-sign-on)
 * [Setup OIDC with 3scale](https://developers.redhat.com/blog/2017/11/21/setup-3scale-openid-connect-oidc-integration-rh-sso/)
