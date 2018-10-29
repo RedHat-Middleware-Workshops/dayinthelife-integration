@@ -6,9 +6,9 @@ apicurio_project: apicurio
 gogs_project: gogs
 microcks_project: microcks
 sso_version: ose-v1.4.9
-ocp_domain: 3901.openshiftworkshop.com
-ocp_apps_domain: apps.3901.openshiftworkshop.com
-usersno: 20
+ocp_domain: d442.openshift.opentlc.com
+ocp_apps_domain: apps.d442.openshift.opentlc.com
+usersno: 10
 che: true
 fuse: true
 threescale: true
@@ -19,7 +19,7 @@ sso: true
 backend: true
 user_tools_projects: true
 user_projects: true
-configure_only: false
+configure_only: true
 create_tenants: true
 create_realms: true
 create_ides: true
