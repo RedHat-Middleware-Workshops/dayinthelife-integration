@@ -338,7 +338,7 @@ Once you've received the swagger specification (API contract) from your friendly
 
     ![00-location-list.png](images/00-login-terminal.png "OCP Terminal Login")
 
-1. To fun the fabric8 Maven command to deploy our project, navigate back to the **Manage commands** screen, double-click the **fabric8:deploy** script and hit **Run**.  The script will run and deploy to your OCPPROJECT.
+1. To run the fabric8 Maven command to deploy our project, navigate back to the **Manage commands** screen, double-click the **fabric8:deploy** script and hit **Run**.  The script will run and deploy to your OCPPROJECT.
 
     ![00-mvn-deploy.png](images/00-mvn-deploy.png "Maven Deploy")
 
