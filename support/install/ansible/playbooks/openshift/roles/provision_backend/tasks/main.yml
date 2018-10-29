@@ -49,6 +49,9 @@
   -p CONTEXT_DIR=/projects/location-soap2rest -p APP_NAME=location-soap2rest -p GIT_REF=master -n {{ backend_project }}"
   when: configure_only == 'false'
 
+- name: Make sure go to sso project
+  shell: "oc project sso"
+
 - name: A workaround for integr8ly, as it does not support fix SSO password nor in ConfigMap SSO UserName
   shell: "oc describe dc/sso | grep SSO_ADMIN_USERNAME | sed 's/.*://g' | sed -e 's/^[[:space:]]*//'"
   register: sso_username
@@ -59,9 +62,13 @@
   register: sso_pwd
   when: configure_only == 'false'
 
+- name: Make sure we go back to default project
+  shell: "oc project default"
+
+
 - name: Create ThreeScale Automate service
   shell: "oc new-app s2i-fuse71-spring-boot-camel-integr8ly-sso -p GIT_REPO=https://github.com/RedHatWorkshops/dayinthelife-integration \
-  -p CONTEXT_DIR=/projects/threesclae-automate -p APP_NAME=threesclae-automate -p GIT_REF=master -p SSO_USERNAME={{sso_username}} -p SSO_PASSWORD={{sso_pwd}} -n {{ backend_project }}"
+  -p CONTEXT_DIR=/projects/threesclae-automate -p APP_NAME=threesclae-automate -p GIT_REF=master -p SSO_USERNAME={{ sso_username }} -p SSO_PASSWORD={{ sso_pwd }} -n {{ backend_project }}"
   when: configure_only == 'false'
 
 - name: Create Webpage application
