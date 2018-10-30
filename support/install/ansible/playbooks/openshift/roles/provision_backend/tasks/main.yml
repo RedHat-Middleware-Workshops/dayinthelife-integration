@@ -24,9 +24,15 @@
   when: configure_only == 'false' and template_exists.failed
   ignore_errors: true
 
+- name: Check if Fuse 7.1 SSO template is available
+  shell: "oc describe template s2i-fuse71-spring-boot-camel-integr8ly-sso -n {{ backend_project }}"
+  register: sso_template_exists
+  when: configure_only == 'false'
+  ignore_errors: true
+
 - name: Create template for Integr8ly SSO Fuse 7.1
-  shell: "oc create -f https://raw.githubusercontent.com/RedHatWorkshops/dayinthelife-integration/master/support/templates/spring-boot-camel-template-SSO-integr8ly.json -n openshift"
-  when: configure_only == 'false' and template_exists.failed
+  shell: "oc create -f https://raw.githubusercontent.com/RedHatWorkshops/dayinthelife-integration/master/support/templates/spring-boot-camel-template-SSO-integr8ly.json -n {{ backend_project }}"
+  when: configure_only == 'false' and sso_template_exists.failed
   ignore_errors: true
 
 - name: Create Backend Database
@@ -52,20 +58,26 @@
 - name: Make sure go to sso project
   shell: "oc project sso"
 
+## oc describe dc/sso | grep SSO_ADMIN_PASSWORD | sed 's/.*://g' | sed -e 's/^[[:space:]]*//'
 - name: A workaround for integr8ly, as it does not support fix SSO password nor in ConfigMap SSO UserName
-  shell: "oc describe dc/sso | grep SSO_ADMIN_USERNAME | sed 's/.*://g' | sed -e 's/^[[:space:]]*//'"
-  register: sso_username
+  shell: "oc get dc/sso -o json"
+  register: sso_text
   when: configure_only == 'false'
 
-- name: A workaround for integr8ly, as it does not support fix SSO password nor in ConfigMap SSO Password
-  shell: "oc describe dc/sso | grep SSO_ADMIN_PASSWORD | sed 's/.*://g' | sed -e 's/^[[:space:]]*//'"
-  register: sso_pwd
-  when: configure_only == 'false'
+- set_fact: sso_username={{ (sso_text.stdout | from_json | json_query(query)) }}
+  vars:
+    query: "spec.template.spec.containers[0].env[?name=='SSO_ADMIN_USERNAME'].value"
+
+- set_fact: sso_pwd={{ (sso_text.stdout | from_json | json_query(query)) }}
+  vars:
+    query: "spec.template.spec.containers[0].env[?name=='SSO_ADMIN_PASSWORD'].value"
+
+- debug:
+    msg: "sso_username {{ sso_username }} has sso_pwd {{ sso_pwd }}"
 
 - name: Make sure we go back to default project
   shell: "oc project default"
-
-
+  
 - name: Create ThreeScale Automate service
   shell: "oc new-app s2i-fuse71-spring-boot-camel-integr8ly-sso -p GIT_REPO=https://github.com/RedHatWorkshops/dayinthelife-integration \
   -p CONTEXT_DIR=/projects/threescale-automate -p APP_NAME=threescale-automate -p GIT_REF=master -p SSO_USERNAME={{ sso_username }} -p SSO_PASSWORD={{ sso_pwd }} -n {{ backend_project }}"
