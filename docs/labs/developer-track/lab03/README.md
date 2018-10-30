@@ -113,7 +113,7 @@ Login to the Red Hat Solution Explorer, here you will find the link to Che.
 
     ![00-close-save.png](images/00-close-save.png "Close Save")
 
-1. Open the dayinthelife-import folder, and right-click on the **location-soap2rest** project and select **Convert to Project**
+1. Open the newly created folder, and right-click on the **location-soap2rest** project and select **Convert to Project**
 
     ![00-convert-project.png](images/00-convert-project.png "Convert Project")
 
