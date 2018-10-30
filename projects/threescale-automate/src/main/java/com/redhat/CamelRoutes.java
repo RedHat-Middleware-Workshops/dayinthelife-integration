@@ -73,7 +73,7 @@ public class CamelRoutes extends RouteBuilder {
 			.log("USERNAME {{env:SSO_USERNAME}}")
 			.log("PASSWORD {{env:SSO_PASSWORD}}")
 			//SSO and TOKENS
-			
+		 	
 			.removeHeaders("CamelHttp*")
 			//Get TKN from SSO
 				.setHeader(Exchange.HTTP_METHOD, constant("POST"))
@@ -173,10 +173,7 @@ public class CamelRoutes extends RouteBuilder {
 			.removeHeaders("CamelHttp*")
 			//Get Metrics id
 				.setHeader(Exchange.HTTP_METHOD, constant("GET"))
-				.setHeader(Exchange.HTTP_QUERY, simple("access_token=${headers.apiToken}"))
-				
-				.setHeader("serviceid", constant("218"))
-				
+				.setHeader(Exchange.HTTP_QUERY, simple("access_token=${headers.apiToken}"))			
 			.delay(1000)
 			.toD("https4://${headers.userid}-admin.${headers.openshiftappurl}/admin/api/services/${headers.serviceid}/metrics.xml?sslContextParameters=#ssl&bridgeEndpoint=true")
 			.setHeader("metricid").xpath("/metrics/metric/id", String.class) 
