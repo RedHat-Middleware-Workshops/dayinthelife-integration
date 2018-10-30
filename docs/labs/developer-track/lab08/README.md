@@ -333,7 +333,7 @@ Redirect URLs are a critical part of the OAuth flow. After a user successfully a
     http://sso-sso.dil.opentry.me/auth/admin/userX/console/
     ```
 
-    *Remember to replace the GUID with your [environment](#environment) value and your user number.*
+    *Remember to replace the X with your user number.*
 
 1. Log into Red Hat Single Sign On using your designated [user and password](#environment). Click on **Sign In**.
 

@@ -77,7 +77,7 @@ Your 3scale Admin Portal provides access to a number of configuration features. 
 
     ![02-personalsettings.png](images/02-personalsettings.png)
 
-1. Click onto  **Token** Tab.
+1. Click onto  **Tokens** Tab.
 	![03-tokentab.png](images/03-tokentab.png)
 
 1. Click  **Add Access Token** link to create a new management token.
