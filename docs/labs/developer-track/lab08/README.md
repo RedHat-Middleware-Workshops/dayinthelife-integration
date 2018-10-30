@@ -315,9 +315,7 @@ In this step, we will edit the code provided by development to add keycloak. Key
 
 1. Accept the self-signed certificate if you haven't.
 
-    ![selfsigned-cert](images/00-selfsigned-cert.png "Self-Signed Cert")
-
-1. You will see that your call succeded if you see the following text in your browser:
+1. You will see that your call succeeded if you see the following text in your browser:
 
     ```bash
     Authentication parameters missing
@@ -333,7 +331,7 @@ Redirect URLs are a critical part of the OAuth flow. After a user successfully a
     http://sso-sso.dil.opentry.me/auth/admin/userX/console/
     ```
 
-    *Remember to replace the GUID with your [environment](#environment) value and your user number.*
+    *Remember to replace the X with your user number.*
 
 1. Log into Red Hat Single Sign On using your designated [user and password](#environment). Click on **Sign In**.
 
@@ -343,7 +341,7 @@ Redirect URLs are a critical part of the OAuth flow. After a user successfully a
 
     ![00-clients.png](images/00-clients.png "Clients")
 
-    *3scale, through it's zync component, already synchronized the application information into the Red Hat SSO security realm*.
+    *3scale, through it's [zync](https://github.com/3scale/zync/) component, already synchronized the application information into the Red Hat SSO security realm*.
 
 1. Click on the **CLIENT_ID** link to view the details.
 
@@ -356,10 +354,10 @@ Redirect URLs are a critical part of the OAuth flow. After a user successfully a
     * Access Type: **Public**
     * Standard Flow Enabled: **ON**
     * Implicit Flow Enabled: **OFF**
-    * Valid Redirect URIs: **[http://www-userX.apps.GUID.openshiftworkshop.com/*](http://www-userX.apps.GUID.openshiftworkshop.com/*)**
+    * Valid Redirect URIs: **[http://www-userX-walkthrough-projects.dil.opentry.me//*](http://www-userX.apps.GUID.openshiftworkshop.com/*)**
     * Web Origins: **\***
 
-    *Remember to replace the GUID with your [environment](#environment) value and your user number.*
+    *Remember to replace the X your user number.*
 
     ![25-client-config](images/consume-25.png "Client Configuration")
 
@@ -382,7 +380,7 @@ OpenShift let you automatically redeploy your changes when you setup a Continuou
     _Click **Add Value** to add additional rows_.
 
     * Name: **API\_BACKEND\_URL**
-    * Value: **https://location-userX-api.amp.apps.GUID.openshiftworkshop.com/locations**
+    * Value: **https://location-userX-api.amp.dil.opentry.me/locations**
     * Name: **SSO\_URL**
     * Value: **http://sso-rh-sso.apps.GUID.openshiftworkshop.com**
     * Name: **SSO\_REALM**

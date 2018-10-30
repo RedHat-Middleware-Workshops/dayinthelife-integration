@@ -63,8 +63,6 @@ Once the environment is provisioned, you will be presented with a page that pres
 
 1. Accept the self-signed certificate if you haven't.
 
-    ![selfsigned-cert](images/00-selfsigned-cert.png "Self-Signed Cert")
-
 1. Log into 3scale using your designated [user and password](#environment). Click on **Sign In**.
 
     ![01-login.png](images/01-login.png)
@@ -105,7 +103,7 @@ Once the environment is provisioned, you will be presented with a page that pres
 
 1. Update the API call examples to reflect your real Fuse API calls.
 
-    *Use your production base url and add your defined methods. Dont worry if you don't have the "real" output, it won't affect the rest of the lab. You can also copy and paste the [example](https://raw.githubusercontent.com/hguerrero/3scale-api-workshop/master/docs/labs/lab05/support/homepage.example) we prepared for you*.
+    *Use your 3scale's production base url and add your defined methods. Dont worry if you don't have the "real" output, it won't affect the rest of the lab. You can also copy and paste the [example](https://raw.githubusercontent.com/hguerrero/3scale-api-workshop/master/docs/labs/lab05/support/homepage.example) we prepared for you*.
 
 1. Click the **Publish** button.
 
@@ -148,7 +146,7 @@ Once the environment is provisioned, you will be presented with a page that pres
 1. Open a new *Incognito/Private* browser window to test the Developer Portal login. Navigate to:
 
     ```bash
-    https://userX.apps.GUID.openshiftworkshop.com/
+    https://userX.dil.opentry.me/
     ```
 
 1. Type your portal code to finish the login.

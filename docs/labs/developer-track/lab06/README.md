@@ -69,8 +69,6 @@ Your 3scale Admin Portal provides access to a number of configuration features. 
 
 1. Accept the self-signed certificate if you haven't.
 
-    ![selfsigned-cert](images/00-selfsigned-cert.png "Self-Signed Cert")
-
 1. Log into 3scale using your designated [user and password](#environment). Click on **Sign In**.
 
     ![01-login.png](images/01-login.png)
@@ -79,7 +77,7 @@ Your 3scale Admin Portal provides access to a number of configuration features. 
 
     ![02-personalsettings.png](images/02-personalsettings.png)
 
-1. Click onto  **Token** Tab.
+1. Click onto  **Tokens** Tab.
 	![03-tokentab.png](images/03-tokentab.png)
 
 1. Click  **Add Access Token** link to create a new management token.
