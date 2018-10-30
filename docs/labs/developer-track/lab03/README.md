@@ -364,7 +364,7 @@ Once you've received the swagger specification (API contract) from your friendly
 
     ![00-verify-location-service.png](images/00-verify-location-service.png "Location Service")
 
-1. Click on the route link above the location-service pod and append `locations` to the URI.  As a result, you should receive a list of all locations
+1. Click on the route link above the location-service pod and append `locations` to the URI.  Initially, you may receive a `404` error when opening the route URL, but once you append `locations` and refresh you should receive a list of all locations
 
     ![00-location-list.png](images/00-location-list.png "Location List")
 
