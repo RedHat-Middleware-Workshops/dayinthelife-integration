@@ -6,6 +6,8 @@
   shell: "oc new-app -f https://raw.githubusercontent.com/OpenShiftDemos/gogs-openshift-docker/master/openshift/gogs-template.yaml \
   -p GOGS_VERSION=0.11.34 -p SKIP_TLS_VERIFY=true -p HOSTNAME=gogs.{{ ocp_apps_domain }} -n {{ gogs_project }}"
   when: configure_only == 'false'
+  register: create_gogs_app
+  failed_when: create_gogs_app.stderr != '' and 'already exists' not in create_gogs_app.stderr 
 
 - name: Wait until Gogs API is available 
   uri: 
@@ -60,4 +62,6 @@
     return_content: yes
     validate_certs: no
     status_code: 201
-  with_sequence: start=2 end={{ usersno + 1 }}
+  with_sequence: start=2 end={{ (usersno | int) + 1 }}
+  register: config_repo
+  failed_when: config_repo.status != 201 and 'already exists' not in config_repo.content

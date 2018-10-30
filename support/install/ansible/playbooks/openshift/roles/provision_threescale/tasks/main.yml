@@ -5,7 +5,7 @@
 - name: Create the 3scale app
   shell: "oc new-app -f https://raw.githubusercontent.com/jbossdemocentral/3scale-api-workshop/master/support/templates/amp-template.yml \
   --param WILDCARD_DOMAIN={{ ocp_apps_domain }} --param ADMIN_PASSWORD=password --param WILDCARD_POLICY=Subdomain \
-  --param ADMIN_ACCESS_TOKEN=admintoken --param MASTER_PASSWORD=password --param MASTER_ACCESS_TOKEN=mastertoken -n {{ namespace }}"
+  --param ADMIN_ACCESS_TOKEN={{threescale_admin_access_token}} --param MASTER_PASSWORD=password --param MASTER_ACCESS_TOKEN={{threescale_master_access_token}} -n {{ namespace }}"
   when: configure_only == 'false'
 
 - name: Wait until 3scale API is available 
@@ -28,10 +28,11 @@
 - name: Create apikey service
   include_tasks: ./create-service.yml
   vars:
-    admintoken: 'admintoken'
+    admintoken: '{{threescale_admin_access_token}}'
     account_id: '3'
     name: 'Location API'
     backend_version: '1'
+    configure_only: '{{no_threescale_services}}'
     system_name: 'location-api'
     proxy_config: 
       production_endpoint: 'https://location-api.amp.{{ ocp_apps_domain }}:443'
@@ -47,7 +48,7 @@
 
 - name: Get SSO Token Longer Lifespan
   shell: "curl --insecure -X POST 'https://secure-sso-{{sso_project}}.{{ocp_apps_domain}}/auth/realms/master/protocol/openid-connect/token' \
-  -H 'Content-Type: application/x-www-form-urlencoded' -d 'username=keyadmin' -d 'password=keypassword' -d 'grant_type=password' -d 'client_id=admin-cli'"
+  -H 'Content-Type: application/x-www-form-urlencoded' -d 'username={{ eval_rhsso_admin_username | default('keyadmin') }}' -d 'password={{ eval_rhsso_admin_password | default('keypassword') }}' -d 'grant_type=password' -d 'client_id=admin-cli'"
   register: token_text
   when: TKN is undefined
 
@@ -55,18 +56,18 @@
   when: TKN is undefined
 
 - name: Get id for 3scale-client
-  shell: "curl --insecure 'https://secure-sso-{{sso_project}}.{{ocp_apps_domain}}/auth/admin/realms/threescale/clients' \
+  shell: "curl --insecure 'https://secure-sso-{{sso_project}}.{{ocp_apps_domain}}/auth/admin/realms/{{threescale_realm | default('threescale')}}/clients' \
   -H 'Content-Type: application/json' -H 'Authorization: Bearer {{TKN}}'"
   register: clients_text
 
 - set_fact: IdClientAdmin={{ (clients_text.stdout | from_json | json_query(query)) }}
   vars:
-    query: "[?clientId=='3scale-admin'] | [0].id"
+    query: "[?clientId=='{{threescale_client_id | default('3scale-admin')}}'] | [0].id"
 
 - debug: var=IdClientAdmin
 
 - name: Get client secret
-  shell: "curl --insecure 'https://secure-sso-{{sso_project}}.{{ocp_apps_domain}}/auth/admin/realms/threescale/clients/{{ IdClientAdmin }}/client-secret' \
+  shell: "curl --insecure 'https://secure-sso-{{sso_project}}.{{ocp_apps_domain}}/auth/admin/realms/{{threescale_realm | default('threescale')}}/clients/{{ IdClientAdmin }}/client-secret' \
   -H 'Content-Type: application/json' -H 'Authorization: Bearer {{TKN}}'"
   register: secret_text
 
@@ -77,16 +78,17 @@
 - name: Create sso service
   include_tasks: ./create-service.yml
   vars:
-    admintoken: 'admintoken'
+    admintoken: '{{ threescale_admin_access_token }}'
     account_id: '3'
     name: 'SSO Location API'
     backend_version: 'oidc'
     system_name: 'location-sso'
+    configure_only: '{{no_threescale_services}}'
     proxy_config: 
       production_endpoint: 'https://location-sso.amp.{{ ocp_apps_domain }}:443'
       staging_endpoint: 'https://location-sso-staging.amp.{{ ocp_apps_domain }}:443'
       backend_endpoint: 'http://location-service-{{ backend_project }}.{{ ocp_apps_domain }}:80'
-      sso_endpoint: 'http://3scale-admin:{{ client_secret }}@sso-{{ sso_project }}.{{ ocp_apps_domain }}/auth/realms/threescale'
+      sso_endpoint: 'http://{{threescale_client_id | default("3scale-admin")}}:{{ client_secret }}@sso-{{ sso_project }}.{{ ocp_apps_domain }}/auth/realms/{{threescale_realm | default("threescale")}}'
     application_plan:
       name: 'Secure'
       system_name: 'secure'
@@ -98,7 +100,7 @@
 
 - name: Get id for client 'www-secured'
   uri:
-    url: 'https://secure-sso-{{sso_project}}.{{ocp_apps_domain}}/auth/admin/realms/threescale/clients'
+    url: 'https://secure-sso-{{sso_project}}.{{ocp_apps_domain}}/auth/admin/realms/{{threescale_realm | default("threescale")}}/clients'
     return_content: yes
     headers:
       Authorization: 'Bearer {{TKN}}'
@@ -116,7 +118,7 @@
 
 - name: Update the rh sso app
   uri: 
-    url: "https://secure-sso-{{sso_project}}.{{ocp_apps_domain}}/auth/admin/realms/threescale/clients/{{IdClientApp}}"
+    url: "https://secure-sso-{{sso_project}}.{{ocp_apps_domain}}/auth/admin/realms/{{threescale_realm | default('threescale')}}/clients/{{IdClientApp}}"
     method: PUT
     return_content: yes
     headers:

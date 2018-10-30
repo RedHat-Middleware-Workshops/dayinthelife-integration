@@ -2,9 +2,16 @@
 - name: Make sure we go back to default project
   shell: "oc project default"
 
+- set_fact:
+    sso_project: sso
+
+- debug:
+    msg: "curl --insecure -X POST 'https://secure-sso-{{sso_project}}.{{ocp_apps_domain}}/auth/realms/master/protocol/openid-connect/token' \
+  -H 'Content-Type: application/x-www-form-urlencoded' -d 'username={{ eval_rhsso_admin_username | default('keyadmin') }}' -d 'password={{ eval_rhsso_admin_password | default('keypassword') }}' -d 'grant_type=password' -d 'client_id=admin-cli'"
+
 - name: Get SSO token
   shell: "curl --insecure -X POST 'https://secure-sso-{{sso_project}}.{{ocp_apps_domain}}/auth/realms/master/protocol/openid-connect/token' \
-  -H 'Content-Type: application/x-www-form-urlencoded' -d 'username=keyadmin' -d 'password=keypassword' -d 'grant_type=password' -d 'client_id=admin-cli'"
+  -H 'Content-Type: application/x-www-form-urlencoded' -d 'username={{ eval_rhsso_admin_username | default('keyadmin') }}' -d 'password={{ eval_rhsso_admin_password | default('keypassword') }}' -d 'grant_type=password' -d 'client_id=admin-cli'"
   register: token_text
 
 - set_fact: TKN={{ (token_text.stdout | from_json).access_token }}
@@ -36,7 +43,7 @@
       Authorization: "Bearer {{ TKN }}"
     return_content: yes
     validate_certs: no
-    status_code: 201  
+    status_code: [201, 409]  
 
 - name: Create Microcks users
   uri: 
@@ -48,7 +55,7 @@
     body: "{\"username\":\"{{ item }}\",\"enabled\":true,\"firstName\":\"{{ item }}\",\"credentials\":[{\"type\":\"password\",\"value\":\"openshift\",\"temporary\":false}]}"
     body_format: json
     validate_certs: no
-    status_code: 201
+    status_code: [201, 409]
   with_sequence: start=1 end={{ usersno }} format=user%d
 
 - name: Create Microcks app
@@ -56,3 +63,5 @@
   -p KEYCLOAK_ROUTE_HOSTNAME=sso-{{sso_project}}.{{ ocp_apps_domain }} -p APP_ROUTE_HOSTNAME={{ microcks_project }}.{{ ocp_apps_domain }} \
   -n {{ microcks_project }}"
   when: configure_only == 'false'
+  register: create_microcks_app
+  failed_when: create_microcks_app.stderr != '' and 'already exists' not in create_microcks_app.stderr

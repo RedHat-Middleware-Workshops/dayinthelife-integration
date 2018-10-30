@@ -19,6 +19,7 @@
   when: configure_only == 'false'
   ignore_errors: true
 
+# Needed to change this to include CONTEXT_DIR
 - name: Create template for Fuse 7.1
   shell: "oc create -f https://raw.githubusercontent.com/RedHatWorkshops/dayinthelife-integration/master/support/templates/spring-boot-camel-template.json -n openshift"
   when: configure_only == 'false' and template_exists.failed
@@ -39,7 +40,9 @@
   shell: "oc new-app -f https://raw.githubusercontent.com/openshift/origin/master/examples/db-templates/postgresql-ephemeral-template.json \
   --param=POSTGRESQL_USER=dbuser --param=POSTGRESQL_PASSWORD=password --param=POSTGRESQL_DATABASE=sampledb --param=POSTGRESQL_VERSION=latest -n {{ backend_project }}"
   when: configure_only == 'false'
-  
+  register: create_backend_db
+  failed_when: create_backend_db.stderr != '' and 'already exists' not in create_backend_db.stderr
+
 - name: Create Backend Location API service
   shell: "oc new-app s2i-fuse71-spring-boot-camel -p GIT_REPO=https://github.com/RedHatWorkshops/dayinthelife-integration \
   -p CONTEXT_DIR=/projects/location-service -p APP_NAME=location-service -p GIT_REF=master -n {{ backend_project }}"
@@ -89,7 +92,11 @@
   --build-env SSO_URL=https://secure-sso-{{ sso_project }}.{{ ocp_apps_domain }} --build-env SSO_REALM=threescale \
   --build-env CLIENT_ID=www-secured -n {{ backend_project }}"
   when: configure_only == 'false'
+  register: create_webpage_application
+  failed_when: create_webpage_application.stderr != '' and 'already exists' not in create_webpage_application.stderr
 
 - name: Create webapp route
   shell: "oc expose svc/www -n {{ backend_project }}"
   when: configure_only == 'false'
+  register: create_webapp_route
+  failed_when: create_webapp_route.stderr != '' and 'already exists' not in create_webapp_route.stderr

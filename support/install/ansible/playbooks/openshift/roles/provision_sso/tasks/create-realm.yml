@@ -13,7 +13,7 @@
       Authorization: "Bearer {{ TKN }}"
     return_content: yes
     validate_certs: no
-    status_code: 201
+    status_code: 201,409
 
 - name: Get id for 3scale-client
   shell: "curl --insecure 'https://secure-sso-{{sso_project}}.{{ocp_apps_domain}}/auth/admin/realms/{{ item }}/clients' \

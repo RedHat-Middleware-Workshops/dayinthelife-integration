@@ -1,18 +1,23 @@
 ---
-- name: Provision Che for {{ item }}
-  shell: "oc process -f https://raw.githubusercontent.com/minishift/minishift/master/addons/che/templates/che-single-user.yml \
-  --param PROJECT_NAME={{ item }} \
-  --param DOMAIN_NAME={{ ocp_apps_domain }} \
-  --param OPENSHIFT_OAUTH_TOKEN={{ openshift_oauth_token }} \
-  | oc create -f - -n {{ item }}"
-  ignore_errors: true
+- name: Get SSO token
+  shell: "curl --insecure -X POST 'https://secure-launcher-sso-launcher.{{ocp_apps_domain}}/auth/realms/launcher_realm/protocol/openid-connect/token' \
+  -H 'Content-Type: application/x-www-form-urlencoded' -d 'username={{ admin_username | default('launcheradmin') }}' -d 'password={{ admin_password | default('admin') }}' -d 'grant_type=password' -d 'client_id=che-client'"
+  register: token_text
 
+- set_fact: TKN={{ (token_text.stdout | from_json).access_token }}
+
+- debug: var=TKN
+
+# TODO: Make the protocol a var
 - name: Check if Che IDE is deployed
   uri: 
-    url: http://che-{{ item }}.{{ ocp_apps_domain }}/api/stack
+    url: https://che-{{ item }}.{{ ocp_apps_domain }}/api/stack
+    validate_certs: false
     method: GET
+    headers:
+      Authorization: "Bearer {{ TKN }}"
   retries: 100
-  delay: 20
+  delay:   20
   register: response
   until: response.status == 200
   changed_when: false
@@ -20,9 +25,12 @@
 - name: Update custom stack to Che
   tags: install_custom_stack
   uri: 
-    url: http://che-{{ item }}.{{ ocp_apps_domain }}/api/stack
+    url: https://che-{{ item }}.{{ ocp_apps_domain }}/api/stack
+    validate_certs: false
     method: POST
     return_content: yes
+    headers:
+      Authorization: "Bearer {{ TKN }}"
     body: |
         {
           "name": "Day in the life Workshop",
@@ -67,7 +75,7 @@
                       "org.eclipse.che.exec",
                       "org.eclipse.che.terminal",
                       "org.eclipse.che.ws-agent",
-            					"org.eclipse.che.ls.camel"
+                      "org.eclipse.che.ls.camel"
                     ],
                     "attributes": {
                       "memoryLimitBytes": "2147483648"
@@ -157,10 +165,27 @@
           "id": "java-oc-day-in-life"
         }
     body_format: json
-    status_code: 201
+    status_code: [201, 409]
+  register: create_stack
 
-- name: Make sure we go back do default project
-  shell: "oc set resources dc/che --limits=cpu=1,memory=2Gi --requests=cpu=200m,memory=512Mi -n {{ item }}"
-                
-- name: Annotate the empty project as requested by user
-  shell: "oc annotate namespace {{ item }} openshift.io/requester={{ item }} --overwrite"
+- name: Give stack view/read permissions to all other users
+  uri:
+    url: https://che-{{ item }}.{{ ocp_apps_domain }}/api/permissions
+    validate_certs: false
+    method: POST
+    return_content: yes
+    headers:
+      Authorization: "Bearer {{ TKN }}"
+    status_code: 204
+    body_format: json
+    body: |
+      {
+        "userId": "*",
+        "domainId": "stack",
+        "instanceId": "{{ create_stack.json.id }}",
+        "actions": [
+          "read",
+          "search"
+        ]
+      }
+  when: create_stack.status == 201
