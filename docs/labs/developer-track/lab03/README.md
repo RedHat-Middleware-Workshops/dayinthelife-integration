@@ -160,7 +160,7 @@ Once you've received the swagger specification (API contract) from your friendly
 
     ![00-select-mvn.png](images/00-select-mvn.png)
 
-1. Select the **Generate REST DSL from..** script and click **Run** to execute the script. If everything completes successfully, it should generate a new file under `src/main/java/com/redhat` called `CamelRoutes.java`. 
+1. Double-click the **Generate REST DSL from..** script to open the command window.  Click **Run** to execute the script. If everything completes successfully, it should generate a new file under `src/main/java/com/redhat` called `CamelRoutes.java`. 
 
     ![00-run-mvn.png](images/00-run-mvn.png)
 
