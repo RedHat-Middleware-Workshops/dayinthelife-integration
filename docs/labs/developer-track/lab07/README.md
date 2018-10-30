@@ -146,7 +146,7 @@ Once the environment is provisioned, you will be presented with a page that pres
 1. Open a new *Incognito/Private* browser window to test the Developer Portal login. Navigate to:
 
     ```bash
-    https://userX.apps.GUID.openshiftworkshop.com/
+    https://userX.dil.opentry.me/
     ```
 
 1. Type your portal code to finish the login.
