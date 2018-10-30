@@ -32,7 +32,7 @@
   ignore_errors: true
 
 - name: Create template for Integr8ly SSO Fuse 7.1
-  shell: "oc create -f https://raw.githubusercontent.com/RedHatWorkshops/dayinthelife-integration/master/support/templates/spring-boot-camel-template-SSO-integr8ly.json -n {{ backend_project }}"
+  shell: "oc create -f https://raw.githubusercontent.com/RedHatWorkshops/dayinthelife-integration/master/support/templates/spring-boot-camel-template-SSO-integr8ly.json -n openshift"
   when: configure_only == 'false' and sso_template_exists.failed
   ignore_errors: true
 
@@ -67,11 +67,11 @@
   register: sso_text
   when: configure_only == 'false'
 
-- set_fact: sso_username={{ (sso_text.stdout | from_json | json_query(query)) }}
+- set_fact: sso_username={{ (sso_text.stdout | from_json | json_query(query)) | first }}
   vars:
     query: "spec.template.spec.containers[0].env[?name=='SSO_ADMIN_USERNAME'].value"
 
-- set_fact: sso_pwd={{ (sso_text.stdout | from_json | json_query(query)) }}
+- set_fact: sso_pwd={{ (sso_text.stdout | from_json | json_query(query)) | first }}
   vars:
     query: "spec.template.spec.containers[0].env[?name=='SSO_ADMIN_PASSWORD'].value"
 
