@@ -143,7 +143,6 @@ public class CamelRoutes extends RouteBuilder {
 			
 			
 			.removeHeaders("CamelHttp*")
-			.log("Service : [${headers.serviceid}] and Plan [${headers.planid}] and Account [${headers.accountid}]")
 			//Get Account id
 				.setHeader(Exchange.HTTP_METHOD, constant("GET"))
 				.setHeader(Exchange.HTTP_QUERY, simple("access_token=${headers.apiToken}"))
@@ -171,12 +170,27 @@ public class CamelRoutes extends RouteBuilder {
 			.log("return---->  ${body}")
 			
 			
+			.removeHeaders("CamelHttp*")
+			//Get Metrics id
+				.setHeader(Exchange.HTTP_METHOD, constant("GET"))
+				.setHeader(Exchange.HTTP_QUERY, simple("access_token=${headers.apiToken}"))
+				
+				.setHeader("serviceid", constant("218"))
+				
+			.delay(1000)
+			.toD("https4://${headers.userid}-admin.${headers.openshiftappurl}/admin/api/services/${headers.serviceid}/metrics.xml?sslContextParameters=#ssl&bridgeEndpoint=true")
+			.setHeader("metricid").xpath("/metrics/metric/id", String.class) 
 			
+			.removeHeaders("CamelHttp*")
+			.log("Service : [${headers.serviceid}] and Plan [${headers.planid}] and Account [${headers.accountid}] and Metric [${headers.metricid}]")
+			//Get Account id
+				.setHeader(Exchange.HTTP_METHOD, constant("POST"))
+				.setHeader(Exchange.CONTENT_TYPE, constant("application/x-www-form-urlencoded"))
+				.setBody(simple("access_token=${headers.apiToken}&http_method=GET&pattern=%2Flocation&delta=2&metric_id=${headers.metricid}"))
+			.delay(1000)
+			.toD("https4://${headers.userid}-admin.${headers.openshiftappurl}/admin/api/services/${headers.serviceid}/proxy/mapping_rules.xml?sslContextParameters=#ssl&bridgeEndpoint=true")
+			.setHeader("metricid").xpath("/metrics/metric/id", String.class) 
 			
-			//oc describe dc/sso | grep SSO_ADMIN_PASSWORD | sed 's/.*://g' | sed -e 's/^[[:space:]]*//'
-			
-					
-			//&oidc_issuer_endpoint=http://3scale-admin:{{ client_secret }}@sso-{{ sso_project }}.{{ ocp_apps_domain }}/auth/realms/threescale
 			
 			.setBody().constant("API automated, DONE!")
 			.setHeader(Exchange.HTTP_RESPONSE_CODE).constant("200")
