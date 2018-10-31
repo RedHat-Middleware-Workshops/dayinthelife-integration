@@ -183,7 +183,7 @@ public class CamelRoutes extends RouteBuilder {
 			.setHeader("metricid").xpath("/metrics/metric/id", String.class) 
 			
 			
-			.setBody().constant("API automated, DONE! REMEBER THIS ADDRESS FOR NEXT LAB: PLAN_URL :[ https://${headers.userid}.${headers.openshiftappurl}/signup?plan_ids[]=${headers.planid} ]")
+			.setBody().simple("API automated, DONE! REMEBER THIS ADDRESS FOR NEXT LAB: PLAN_URL :[ https://${headers.userid}.${headers.openshiftappurl}/signup?plan_ids[]=${headers.planid} ]")
 			.setHeader(Exchange.HTTP_RESPONSE_CODE).constant("200")
 		;
 		
