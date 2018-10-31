@@ -183,7 +183,7 @@ public class CamelRoutes extends RouteBuilder {
 			//Get Account id
 				.setHeader(Exchange.HTTP_METHOD, constant("POST"))
 				.setHeader(Exchange.CONTENT_TYPE, constant("application/x-www-form-urlencoded"))
-				.setBody(simple("access_token=${headers.apiToken}&http_method=GET&pattern=%2Flocation&delta=2&metric_id=${headers.metricid}"))
+				.setBody(simple("access_token=${headers.apiToken}&http_method=GET&pattern=%2Flocations&delta=2&metric_id=${headers.metricid}"))
 			.delay(1000)
 			.toD("https4://${headers.userid}-admin.${headers.openshiftappurl}/admin/api/services/${headers.serviceid}/proxy/mapping_rules.xml?sslContextParameters=#ssl&bridgeEndpoint=true")
 			.setHeader("metricid").xpath("/metrics/metric/id", String.class) 
