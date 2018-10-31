@@ -95,7 +95,7 @@ public class CamelRoutes extends RouteBuilder {
 			//GET Client Secret
 				.setHeader(Exchange.HTTP_METHOD, constant("GET"))
 				.setHeader("Authorization").simple("Bearer ${headers.tkn}")
-			.toD("https4://secure-sso-sso.${headers.openshiftappurl}/auth/admin/realms//clients/${headers.idClientAdmin}/client-secret?sslContextParameters=#ssl&bridgeEndpoint=true")
+			.toD("https4://secure-sso-sso.${headers.openshiftappurl}/auth/admin/realms/${headers.userid}/clients/${headers.idClientAdmin}/client-secret?sslContextParameters=#ssl&bridgeEndpoint=true")
 			.setHeader("secret").jsonpath("value")
 			.log("return---->  ${headers.secret}")	
 		
