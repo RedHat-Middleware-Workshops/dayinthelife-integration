@@ -57,37 +57,6 @@ Once the environment is provisioned, you will be presented with a page that pres
 
 ## Lab Instructions
 
-### Step 0: Setup the collaboration environment using Git (Gogs)
-
-For this lab we require a collaboration environment based on Git. You can use GitHub, GitLab or other Git provider to finish this lab. If you don't want to use your personal account, the provided lab environment has an user provided for you in Gogs.
-
-Follow this instructions to set up the repository.
-
-1. Open a browser window and navigate to:
-
-    ```bash
-    http://gogs.dil.opentry.me/user/login?redirect_to=
-    ```
-
-1. Log into Gogs using your designated [user and password](#environment). Click on **Sign In**.
-
-    ![gogs-sign-in](images/consume-01.png "Sign In")
-
-1. In the main page, click in the **+** sign in the right top corner to display the *New* menu. Click the **New Migration** option.
-
-    ![gogs-new](images/consume-02.png "New Migration")
-
-1. Fill in the information of the repository migration with the following values:
-
-    * Clone Address: **https://github.com/jbossdemocentral/3scaleworkshop-wwwpage.git**
-    * Owner: **UserX**
-    * Repository Name: **www-page**
-
-    ![gogs-migration](images/consume-03.png "New Migration Repository")
-
-1. Click on **Migrate Repository** to fork the GitHub repo into Gogs.
-
-    *You now have a working copy of the International Inc Web page. If you know how to, clone the repository to work locally, or you can continue working using Gogs online editor*.
 
 ### Step 1: Deploying International Inc Web Page
 
@@ -153,7 +122,7 @@ International Inc web development create a Node.js application for the company h
     * Name: **API\_BACKEND\_URL**
     * Value: **http://location-service-OCPPROJECT.dil.opentry.me/locations**
 
-    *Remember to replace OCPPROJECT as in your previous Dev labs (Lab 03/04)*.
+    *Remember to replace OCPPROJECT(userX) as in your previous Dev labs (Lab 03/04)*.
 
     ![11-environment](images/deploy-11.png)
 
@@ -183,145 +152,8 @@ International Inc web development create a Node.js application for the company h
 
 1. In the next step we will update the Locations page to use the 3scale protected API.
 
-### Step 2: Calling a Secured Service with Red Hat Single Sign On
 
-In this step, we will edit the code provided by development to add keycloak. Keycloak is the upstream project powering Red Hat Single Sign On. The Keycloack Javascript Adapter simplifies the required code to interact with the OpenID Connect authentication flows.
-
-1. Go back to your Git repository and navigate to **dev** folder.
-
-    ![15-dev-folder](images/consume-15.png "Dev Folder")
-
-1. Click on the **locations.html** link to open the file.
-
-    ![16-locations-file](images/consume-16.png "Locations File")
-
-1. Change to *edit* mode clicking on the pencil icon on the right side. 
-
-    ![17-locations-edit](images/consume-17.png "Locations Edit")
-
-1. Scroll down the page an look for the following code:
-
-    ```bash
-    <!-- Keycloak Adapter Start-->
-
-    <!-- Keycloak Adapter End -->
-    ```
-
-1. Import the Javascript Adapter library by pasting between the previous markers the following code:
-
-    ```bash
-    <script src="SSO_URL/auth/js/keycloak.js"></script>
-    ```
-1. Continue scrolling down until you find the next markers:
-
-    ```bash
-    <!-- Keycloak Login Start -->
-
-    <!-- Keycloak Login End -->
-    ```
-
-1. Here we will add a **Login** button so users can start the Authentication Flow. It will disapear and be replaced with the map when user is logged in. Paste between the markers the following code:
-
-    ```bash
-    <p><a id="loginUrl" href="#" class="btn btn-primary">Sign In to access the Location API Service</a></p>
-    ```
-
-1. Continue scrolling down until you find the next markers:
-
-    ```bash
-    // Keycloak Config Start
-
-    callService(mymap)
-
-    // Keycloak Config End
-    ```
-
-1. Replace the code between the markers with the following snippet:
-
-    ```bash
-    var keyOptions = {
-        url: 'SSO_URL/auth',
-        realm: 'SSO_REALM',
-        clientId: 'CLIENT_ID'
-    };
-
-    var keycloak = Keycloak(keyOptions);
-    keycloak.init({ onLoad: 'check-sso' }).success(function (authenticated) {
-        if (authenticated) {
-            $("<h4>Welcome " + keycloak.idTokenParsed.preferred_username + "</h4> ").insertBefore($('#mapid'));
-            callService(mymap, keycloak.token);
-            $('#mapid').show();
-            $('#loginUrl').hide();
-        }
-        else {
-            $('#mapid').hide();
-            $('#loginUrl').show();
-        }
-    }).error(function (data) {
-        alert('Failed to initialize keycloak: ' + data);
-    });
-
-    var opts = {
-        redirectUri: window.location.origin + "/locations.html"
-    };
-
-    var loginUrl = keycloak.createLoginUrl(opts);
-    document.getElementById('loginUrl').href = loginUrl;
-    ```
-
-1. Continue scrolling down until you find the next markers:
-
-    ```bash
-    /* Keycloack Params Start*/
-
-    /* Keycloak Params End */
-    ```
-
-1. Paste between the markers the following code:
-
-    ```bash
-    , token
-    ```
-
-1. Finally the last marker:
-
-    ```bash
-    // Keycloak Ajax Start
-
-    // Keycloak Ajax End
-    ```
-
-1. Paste between markers the last snippet:
-
-    ```bash
-    // Keycloak Ajax Start
-    headers: {
-         'Authorization': 'Bearer ' + token
-    },
-    // Keycloak Ajax End
-    ```
-
-1. Scroll to the bottom of the page. Update the *Commit Changes* inputs and click **Commit Changes** to save your work.
-
-    ![18-commit-changes](images/consume-18.png "Commit Changes")
-
-1. Because we are using self signed certificates, you will need to accept the certificate for the secured endpoint. Open a new browser tab or window and navigate to:
-
-    ```bash
-    https://location-userX-api-staging.amp.dil.opentry.me:443/locations
-    ```
-    
-    *Remember to replace the `X` variable in the URL*
-
-1. Accept the self-signed certificate if you haven't.
-
-1. You will see that your call succeeded if you see the following text in your browser:
-
-    ```bash
-    Authentication parameters missing
-    ```
-
-### Step 3: Update Red Hat Single Sign On Application Callback
+### Step 2: Update Secured Service with Red Hat Single Sign On Application Callback
 
 Redirect URLs are a critical part of the OAuth flow. After a user successfully authorizes an application, the authorization server will redirect the user back to the application with either an authorization code or access token in the URL. Because the redirect URL will contain sensitive information, it is critical that the service doesn’t redirect the user to arbitrary locations.
 
@@ -363,7 +195,7 @@ Redirect URLs are a critical part of the OAuth flow. After a user successfully a
 
 1. Finally, click **Save** button to persist the changes.
 
-### Step 4: Updating OpenShift Deployment
+### Step 3: Updating OpenShift Deployment
 
 OpenShift let you automatically redeploy your changes when you setup a Continuous Integration / Continuous Deployment (CI/CD) pipeline through the use of webhook. For this lab we will trigger the new build and deployment manually through the OpenShift Console.
 
@@ -372,17 +204,26 @@ OpenShift let you automatically redeploy your changes when you setup a Continuou
 1. Scroll down and click in the **www** link in the *BUILDS* section.
 
     ![10-builds](images/deploy-10.png "Builds")
+    
+1. Select **Edit** uner the **Actions** dropdown menu. 
+	![10-build-edit](images/03-build-edit.png "Edit Build Config")
 
-1. In the build configuration page, change to the **Environment** tab. 
+1. Under Git Repositoy URL, click on the advance options. 
+	![10-advance-option](images/11-advance-option.png "Choose Advance Option")
 
-1. **Replace** the unprotected endpoint URL with the new value of your 3scale-protected Location Service API URL. Also add this new three environment variables **SSO\_URL**, **SSO\_REALM** and **CLIENT\_ID**.
+1. Add **secured** to the Git Reference.So our new International Inc Web Page will now be using Red Hat SSO to secure it's location information.
+	![12-git-reference](images/12-git-reference.png "Edit Git Reference")
+
+
+
+1. Scroll down to Environment Variable section. **Replace** the unprotected endpoint URL with the new value of your 3scale-protected Location Service API URL. Also add this new three environment variables **SSO\_URL**, **SSO\_REALM** and **CLIENT\_ID**.
 
     _Click **Add Value** to add additional rows_.
 
     * Name: **API\_BACKEND\_URL**
     * Value: **https://location-userX-api.amp.dil.opentry.me/locations**
     * Name: **SSO\_URL**
-    * Value: **http://sso-rh-sso.apps.GUID.openshiftworkshop.com**
+    * Value: **http://sso-sso.dil.opentry.me**
     * Name: **SSO\_REALM**
     * Value: **userX**
     * Name: **CLIENT\_ID**
@@ -420,8 +261,8 @@ OpenShift let you automatically redeploy your changes when you setup a Continuou
 
 1. You are being redirected to Red Hat Single Sign On **Login Page**. Login using the user credentials you created in the [API Security Lab](../lab04/#step-2-add-user-to-realm)
 
-    * Username: **apiuser**
-    * Password: **apipassword**
+    * Username: **developer** (credentials from developer portal)
+    * Password: **PWD for developer** (credentials from developer portal)
 
     ![23-realm-login](images/consume-23.png "Login Realm")
 
