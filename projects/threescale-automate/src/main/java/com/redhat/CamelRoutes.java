@@ -124,11 +124,10 @@ public class CamelRoutes extends RouteBuilder {
 			.toD("https4://${headers.userid}-admin.${headers.openshiftappurl}/admin/api/services/${headers.serviceid}.xml?sslContextParameters=#ssl&bridgeEndpoint=true")
 			
 			.removeHeaders("CamelHttp*")
-			.delay(1000)//Setup Proxies
+			//Setup Proxies
 				.setHeader(Exchange.HTTP_METHOD, constant("PATCH"))
 				.setHeader(Exchange.CONTENT_TYPE, constant("application/x-www-form-urlencoded"))
 				.setBody(simple("access_token=${headers.apiToken}&endpoint=https%3A%2F%2Flocation-${headers.userid}-api.amp.${headers.openshiftappurl}%3A443&api_backend=http%3A%2F%2Flocation-service.${headers.userid}.svc%3A8080&sandbox_endpoint=https%3A%2F%2Flocation-${headers.userid}-api-staging.amp.${headers.openshiftappurl}%3A443&oidc_issuer_endpoint=http%3A%2F%2F3scale-admin%3A${headers.secret}%40sso-sso.${headers.openshiftappurl}%2Fauth%2Frealms%2F${headers.userid}"))
-			.delay(1000)
 			.toD("https4://${headers.userid}-admin.${headers.openshiftappurl}/admin/api/services/${headers.serviceid}/proxy.xml?sslContextParameters=#ssl&bridgeEndpoint=true")
 			
 			.removeHeaders("CamelHttp*")
@@ -137,7 +136,6 @@ public class CamelRoutes extends RouteBuilder {
 				.setHeader(Exchange.HTTP_METHOD, constant("POST"))
 				.setHeader(Exchange.CONTENT_TYPE, constant("application/x-www-form-urlencoded"))
 				.setBody(simple("access_token=${headers.apiToken}&name=Secure&system_name=secure"))
-			.delay(1000)
 			.toD("https4://${headers.userid}-admin.${headers.openshiftappurl}/admin/api/services/${headers.serviceid}/application_plans.xml?sslContextParameters=#ssl&bridgeEndpoint=true")
 			.setHeader("planid").xpath("/plan/id", String.class) 
 			
@@ -156,7 +154,6 @@ public class CamelRoutes extends RouteBuilder {
 				.setHeader(Exchange.HTTP_METHOD, constant("POST"))
 				.setHeader(Exchange.CONTENT_TYPE, constant("application/x-www-form-urlencoded"))
 				.setBody(simple("access_token=${headers.apiToken}&plan_id=${header.planid}&name=Secured+App&description=SSO+Secured+App&redirect_url=http%3A%2F%2Fwww-${headers.userid}.apps.${headers.openshiftappurl}%2F*"))
-			.delay(1000)
 			.toD("https4://${headers.userid}-admin.${headers.openshiftappurl}/admin/api/accounts/${header.accountid}/applications.xml?sslContextParameters=#ssl&bridgeEndpoint=true")
 			.setHeader("applicationid").xpath("/application/id", String.class) 
 			
@@ -165,7 +162,6 @@ public class CamelRoutes extends RouteBuilder {
 				.setHeader(Exchange.HTTP_METHOD, constant("PUT"))
 				.setHeader(Exchange.CONTENT_TYPE, constant("application/x-www-form-urlencoded"))
 			.setBody(simple("access_token=${headers.apiToken}&policies_config=%5B+++++%7B+++++++++%22name%22%3A+%22cors%22%2C+++++++++%22version%22%3A+%22builtin%22%2C+++++++++%22configuration%22%3A+%7B+++++++++++++%22allow_headers%22%3A+%5B+++++++++++++++++%22Authorization%22+++++++++++++%5D%2C+++++++++++++%22allow_credentials%22%3A+true%2C+++++++++++++%22allow_methods%22%3A+%5B+++++++++++++++++%22GET%22%2C+++++++++++++++++%22OPTIONS%22+++++++++++++%5D%2C+++++++++++++%22allow_origin%22%3A+%22*%22+++++++++%7D%2C+++++++++%22enabled%22%3A+true+++++%7D%2C+++++%7B+++++++++%22name%22%3A+%22apicast%22%2C+++++++++%22version%22%3A+%22builtin%22%2C+++++++++%22configuration%22%3A+%7B%7D%2C+++++++++%22enabled%22%3A+true+++++%7D+%5D"))
-			.delay(1000)
 			.toD("https4://${headers.userid}-admin.${headers.openshiftappurl}/admin/api/services/${headers.serviceid}/proxy/policies.json?sslContextParameters=#ssl&bridgeEndpoint=true")
 			.log("return---->  ${body}")
 			
@@ -174,7 +170,6 @@ public class CamelRoutes extends RouteBuilder {
 			//Get Metrics id
 				.setHeader(Exchange.HTTP_METHOD, constant("GET"))
 				.setHeader(Exchange.HTTP_QUERY, simple("access_token=${headers.apiToken}"))			
-			.delay(1000)
 			.toD("https4://${headers.userid}-admin.${headers.openshiftappurl}/admin/api/services/${headers.serviceid}/metrics.xml?sslContextParameters=#ssl&bridgeEndpoint=true")
 			.setHeader("metricid").xpath("/metrics/metric/id", String.class) 
 			
@@ -184,12 +179,11 @@ public class CamelRoutes extends RouteBuilder {
 				.setHeader(Exchange.HTTP_METHOD, constant("POST"))
 				.setHeader(Exchange.CONTENT_TYPE, constant("application/x-www-form-urlencoded"))
 				.setBody(simple("access_token=${headers.apiToken}&http_method=GET&pattern=%2Flocations&delta=2&metric_id=${headers.metricid}"))
-			.delay(1000)
 			.toD("https4://${headers.userid}-admin.${headers.openshiftappurl}/admin/api/services/${headers.serviceid}/proxy/mapping_rules.xml?sslContextParameters=#ssl&bridgeEndpoint=true")
 			.setHeader("metricid").xpath("/metrics/metric/id", String.class) 
 			
 			
-			.setBody().constant("API automated, DONE!")
+			.setBody().constant("API automated, DONE! REMEBER THIS ADDRESS FOR NEXT LAB: PLAN_URL :[ https://${headers.userid}.${headers.openshiftappurl}/signup?plan_ids[]=${headers.planid} ]")
 			.setHeader(Exchange.HTTP_RESPONSE_CODE).constant("200")
 		;
 		
