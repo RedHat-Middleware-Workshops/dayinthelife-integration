@@ -71,49 +71,33 @@ Once the environment is provisioned, you will be presented with a page that pres
 
     ![10-developer-portal.png](images/10-developer-portal.png)
 
-1. Click on the **Visit Developer Portal** to take a look of how your developer portal looks like.
 
-    ![11-visit-devportal.png](images/11-visit-devportal.png)
+1. On the right menu select **Home Page**, and replace the entire content with what's in the example link [example](https://raw.githubusercontent.com/RedHatWorkshops/dayinthelife-integration/master/docs/labs/developer-track/lab07/support/homepage.example)
 
-1. You can see there is a default portal with information of your API and how to signup. Unfortunately the API information is incorrect.
+	![15-homepage-devportal.png](images/15-homepage-devportal.png)
 
-    ![12-devportal-overview.png](images/12-devportal-overview.png)
+1. Replace the CHANGE_ME_URL to the PLAN_URL you get from last lab.
 
-    *We will edit our portal to update it with the correct information and we will add the cool shadowman logo*.
-
-1. Go back to your admin portal browser tab and scroll down to the content sub-sections for the **Layouts** and select the **Main layout** menu option.
-
-    ![12-main-layout.png](images/12-main-layout.png)
-
-1. First look for the **navbar** section of the main HTML. Replace the **{{ provider.name }}** for the shadowman image link:
-
-    `<img src="https://www.redhat.com/profiles/rh/themes/redhatdotcom/img/logo.png" alt="{{ provider.name }}">`
-
-    ![13-custom-logo.png](images/13-custom-logo.png)
-
+	![16-replace.png](images/16-replace.png)
+	
+	
 1. Click the *Publish* button at the bottom of the editor to save the changes and made them available in the site.
 
     ![14-publish-devportal.png](images/14-publish-devportal.png)
 
-1. Go back to browse the top of the content sub-sections and find the **Homepage** section.
+1. Click on the **API** Tab, select the **integration** link under **SSO Location API**, and click on the **Application Plans** on the left menu when it shows up. And publish your application plan by clicking in on the **Publish** option on the page.  
 
-    ![15-homepage-devportal.png](images/15-homepage-devportal.png)
+	![17-publishplan.png](images/17-publishplan.png)
+	
+	
 
-1. Change all the code **Echo** references in the homepage code for **Office Locations**.
+1. Go back to your **Developer Portal** tab. Click on the **Visit Developer Portal** to take a look of how your developer portal looks like.
 
-1. Update the API call examples to reflect your real Fuse API calls.
-
-    *Use your 3scale's production base url and add your defined methods. Dont worry if you don't have the "real" output, it won't affect the rest of the lab. You can also copy and paste the [example](https://raw.githubusercontent.com/RedHatWorkshops/dayinthelife-integration/master/docs/labs/developer-track/lab07/support/homepage.example) we prepared for you*.
-
-1. Click the **Publish** button.
-
-1. Refresh your Developer Portal's browser tab to check the changes. Your Developer Portal should now look like this:
-
-    ![16-updated-devportal.png](images/16-updated-devportal.png)
+    ![11-visit-devportal.png](images/11-visit-devportal.png)
 
 ### Step 2: Register New Accounts Using Developer Portal
 
-1. Take the place of one of your developers and signup for the **Basic** plan.
+1. Take the place of one of your developers and signup for the **Secure** plan.
 
     ![16a-signup-limited.png](images/16a-signup-limited.png)
 

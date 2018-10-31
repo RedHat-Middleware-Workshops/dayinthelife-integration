@@ -172,7 +172,13 @@
                     <a class="btn btn-success pull-right" href="{{ urls.signup }}?{{ plan | to_param }}">Signup to plan {{ plan.name }}</a>
                   </div>
                 </div>
-                <div class="col-md-6">
+
+              </div>
+            </article>
+          </div>
+        {% endfor %}
+      </div>
+      <div class="col-md-6">
             <article class="panel panel-default">
               <div class="panel-heading">
                 <strong>Secured</strong>
@@ -219,12 +225,6 @@
               </div>
             </article>
           </div>
-
-              </div>
-            </article>
-          </div>
-        {% endfor %}
-      </div>
     </div>
   </section>
 {% endif %}
