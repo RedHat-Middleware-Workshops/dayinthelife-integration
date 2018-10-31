@@ -76,7 +76,7 @@ International Inc web development create a Node.js application for the company h
 
 1. Let's test the integration. Click the **Sign In** button.
 
-1. You are being redirected to Red Hat Single Sign On **Login Page**. Login using the user credentials you created in the [API Security Lab](../lab04/#step-2-add-user-to-realm)
+1. You are being redirected to Red Hat Single Sign On **Login Page**. Login using the user credentials you created in the [API Security Lab](../lab05/#step-2-add-user-to-realm)
 
     * Username: **apiuser**
     * Password: **apipassword**
