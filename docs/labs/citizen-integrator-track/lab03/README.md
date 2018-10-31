@@ -162,13 +162,13 @@ We will use an online cURL tool to create your own record field in database.
      https://onlinecurl.com/
    ```
 
-1. Below are the values for your requests, remember to replace the id `X` to your user number. 
+1. Below are the values for your requests. Note: `id:101` in the payload as we are creating `101th` record in the database.
 
    | Parameters | Values |
    | --- | --- |
    | URL | external copied url from Step 3.1 |
    | --header (-H) | Content-Type: application/json |
-   | --data (-d)  |   {"id": X, "name": "Kamarhati", "type": "Regional Branch", "status": "1", "location": { "lat": "-28.32555", "lng": "-5.91531" }} |
+   | --data (-d)  |   {"id": 101, "name": "Kamarhati", "type": "Regional Branch", "status": "1", "location": { "lat": "-28.32555", "lng": "-5.91531" }} |
    | --request (-X) | POST |
 
 
@@ -183,7 +183,7 @@ We will use an online cURL tool to create your own record field in database.
 
    ![17-activity-refresh.png](images/17-activity-refresh.png "Activity Refresh")
 
-1. _(Optional)_ Visit the application URL in browser and verify if the record can be fetched.
+1. _(Optional)_ Visit the application URL in the browser and verify if the record can be fetched.  *Replace `101` in the URI with your corresponding user number.*
 
   **REQUEST**
   ```

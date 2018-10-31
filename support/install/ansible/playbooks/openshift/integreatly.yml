@@ -89,7 +89,7 @@
       tags: gogs
     - include_role:
         name: provision_threescale
-      vars:  
+      vars:
         configure_only: "true"
         eval_rhsso_admin_username: "{{ hostvars['SHARED_VARS']['rhsso_admin_username'] }}"
         eval_rhsso_admin_password: "{{ hostvars['SHARED_VARS']['rhsso_admin_password'] }}"
@@ -101,6 +101,7 @@
         threescale_client_id: "3scale-admin"
         namespace: 3scale
         no_threescale_services: "false"
+        wildcard_route_name: apicast-wildcard-router-route
       tags: threescale
     - include_role:
         name: provision_apicurio

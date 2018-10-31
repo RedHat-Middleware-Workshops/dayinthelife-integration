@@ -170,7 +170,7 @@ We will use an online cURL tool to create the `101th` record field in database.
      https://onlinecurl.com/
    ```
 
-1. Below are the values for the request
+1. Below are the values for the request. Note: `id:101` in the payload as we are creating `101th` record in the database.
 
    ```
      URL: https://i-addlocation-fuse-18308937-d7b6-11e8-96c6-0a580a810006.dil.opentry.me/webhook/4dTcVchE8evWz3dVvtHFK3wvfFbFzpVLPEMq1TkcF0MGIbJmu4

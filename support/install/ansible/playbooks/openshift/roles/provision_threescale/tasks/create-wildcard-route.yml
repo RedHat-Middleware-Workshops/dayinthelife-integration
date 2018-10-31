@@ -1,0 +1,17 @@
+---
+- name: Patch the OpenShift router to allow wildcard routes
+  shell: oc set env dc/router ROUTER_ALLOW_WILDCARD_ROUTES=true -n default
+  register: patch_openshift_router
+
+- name: Delete the existing wildcard route if it exists
+  shell: oc delete route {{ wildcard_route_name }} -n {{ namespace }}
+  register: delete_wildcard_route
+  failed_when: delete_wildcard_route.stderr != '' and 'not found' not in delete_wildcard_route
+
+- template:
+    src: wildcard-route.yml.j2
+    dest: /tmp/wildcard-route.yml
+
+- name: Create wildcard route
+  shell: oc create -f /tmp/wildcard-route.yml -n {{ namespace }}
+  register: create_wildcard_route
