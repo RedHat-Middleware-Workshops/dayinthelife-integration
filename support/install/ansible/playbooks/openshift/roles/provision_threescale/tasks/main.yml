@@ -132,5 +132,8 @@
 
 - debug: var=update_app_result
 
+- include_tasks: create-wildcard-route.yml
+  when: create_wildcard_route
+
 - name: Make sure we go back to default project
   shell: "oc project default"
