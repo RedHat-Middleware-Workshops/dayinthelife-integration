@@ -6,22 +6,20 @@
     project: 'user{{ item }}'
     display_name: 'User{{ item }} Project'
 
-- name: Process tools namespace
-  include_role:
-    name: project
-  vars:
-    project: 'tools{{ item }}'
-    display_name: 'User{{ item }} Tools Project'
-  when: user_tools_projects
-
-- name: Provision {{ item }} database
-  shell: "oc new-app --template=postgresql-ephemeral --param=POSTGRESQL_USER=dbuser \
-  --param=POSTGRESQL_PASSWORD=password --param=POSTGRESQL_DATABASE=sampledb \
-  -n user{{ item  }}"
+- name: Create Webpage application for each user
+  shell: "oc new-app https://github.com/jbossdemocentral/3scaleworkshop-wwwpage#secured --name www \
+  --build-env API_BACKEND_URL=https://location-user{{ item }}-staging.amp.{{ ocp_apps_domain }}/locations \
+  --build-env SSO_URL=http://sso-{{ sso_project }}.{{ ocp_apps_domain }} --build-env SSO_REALM=user{{ item }} \
+  --build-env CLIENT_ID=CHANGE_ME -n user{{ item }}"
   when: configure_only == 'false'
+  register: create_webpage_application
+  failed_when: create_webpage_application.stderr != '' and 'already exists' not in create_webpage_application.stderr
+
+- name: Create webapp route
+  shell: "oc expose svc/www -n user{{ item }}"
+  when: configure_only == 'false'
+  register: create_webapp_route
+  failed_when: create_webapp_route.stderr != '' and 'already exists' not in create_webapp_route.stderr
 
 - name: Give {{ item }} access to user project
   shell: "oc policy add-role-to-user admin user{{ item  }} -n user{{ item }}"
-
-- name: Give {{ item }} access to tools project
-  shell: "oc policy add-role-to-user admin user{{ item  }} -n tools{{ item }}"
