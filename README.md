@@ -1,5 +1,4 @@
-# Agile integration with APIs & Containers:
-## A hands-on workshop
+# Agile integration with APIs & Containers: A hands-on workshop
 
 The agile integration with APIs and containers event is a hands-on workshop for developing, testing, and deploying cloud-native, integrated solutions. This full-day workshop will start with an overview of agile integration and a discussion of the necessary architecture. We’ll also present examples of how customers are using Red Hat’s agile integration methodology to stay competitive.
 
