@@ -221,10 +221,6 @@ Once the environment is provisioned, you will be presented with a page that pres
 
 So, you want more? Login to the Red Hat Single Sign On admin console for your realm if you are not there already. Click on the Clients menu. Now you can check that 3scale zync component creates a new Client in SSO. This new Client has the same ID as the Client ID and Secret from the 3scale admin portal.
 
-### Test the integration
-
-You can try to use Postman or OpenID Connet playground to test your integration. Remember to update the *Redirect URL*.
-
 ## Summary
 
 Now that you can secure your API using three-leg authentication with Red Hat Single Sign-On, you can leverage the current assets of your organization like current LDAP identities or even federate the authentication using other IdP services.
