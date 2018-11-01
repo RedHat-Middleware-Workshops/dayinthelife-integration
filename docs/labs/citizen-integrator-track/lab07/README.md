@@ -120,7 +120,7 @@ Redirect URLs are a critical part of the OAuth flow. After a user successfully a
     * Access Type: **Public**
     * Standard Flow Enabled: **ON**
     * Implicit Flow Enabled: **OFF**
-    * Valid Redirect URIs: **[http://www-userX-walkthrough-projects.dil.opentry.me//*](http://www-userX.apps.GUID.openshiftworkshop.com/*)**
+    * Valid Redirect URIs: **[http://www-userX-walkthrough-projects.dil.opentry.me/*](http://www-userX.apps.GUID.openshiftworkshop.com/*)**
     * Web Origins: **\***
 
     *Remember to replace the X your user number.*
