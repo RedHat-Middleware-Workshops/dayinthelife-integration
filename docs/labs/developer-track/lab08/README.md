@@ -122,7 +122,7 @@ Redirect URLs are a critical part of the OAuth flow. After a user successfully a
     * Access Type: **Public**
     * Standard Flow Enabled: **ON**
     * Implicit Flow Enabled: **OFF**
-    * Valid Redirect URIs: **[http://www-userX.dil.opentry.me//*](http://www-userX.apps.GUID.openshiftworkshop.com/*)**
+    * Valid Redirect URIs: **http://www-userX.dil.opentry.me/*
     * Web Origins: **\***
 
     *Remember to replace the X your user number.*
@@ -130,66 +130,6 @@ Redirect URLs are a critical part of the OAuth flow. After a user successfully a
     ![25-client-config](images/consume-25.png "Client Configuration")
 
 1. Finally, click **Save** button to persist the changes.
-
-### Step 3: Updating OpenShift Deployment
-
-OpenShift let you automatically redeploy your changes when you setup a Continuous Integration / Continuous Deployment (CI/CD) pipeline through the use of webhook. For this lab we will trigger the new build and deployment manually through the OpenShift Console.
-
-1. Go back to your OpenShift web console. Navigate to your project's overview page.
-
-1. Scroll down and click in the **www** link in the *BUILDS* section.
-
-    ![10-builds](images/deploy-10.png "Builds")
-    
-1. Select **Edit** uner the **Actions** dropdown menu. 
-	![10-build-edit](images/03-build-edit.png "Edit Build Config")
-
-1. Under Git Repositoy URL, click on the advance options. 
-	![10-advance-option](images/11-advance-option.png "Choose Advance Option")
-
-1. Add **secured** to the Git Reference.So our new International Inc Web Page will now be using Red Hat SSO to secure it's location information.
-	![12-git-reference](images/12-git-reference.png "Edit Git Reference")
-
-
-
-1. Scroll down to Environment Variable section. **Replace** the unprotected endpoint URL with the new value of your 3scale-protected Location Service API URL. Also add this new three environment variables **SSO\_URL**, **SSO\_REALM** and **CLIENT\_ID**.
-
-    _Click **Add Value** to add additional rows_.
-
-    * Name: **API\_BACKEND\_URL**
-    * Value: **https://location-userX-api.amp.dil.opentry.me/locations**
-    * Name: **SSO\_URL**
-    * Value: **http://sso-sso.dil.opentry.me**
-    * Name: **SSO\_REALM**
-    * Value: **userX**
-    * Name: **CLIENT\_ID**
-    * Value: **REPLACE\_ME**
-
-    *Replace REPLACE\_ME with the Client ID you got in the [API Security Lab](../lab04/#step-4-create-a-test-app), it should look like `e343da3`. Remember to replace the GUID with your [environment](#environment) value and your user number*.
-
-    ![14-environment](images/deploy-14.png "Replace URL")
-
-1. Click **Save** button to persist the changes. A green pop up will show you that the changes were saved.
-
-1. Click the **Start Build** button to trigger a new build using the new environment variables pointing to your service.
-
-    ![12-start-build](images/deploy-12.png "Start Build")
-
-1. A new build will be triggered. Expand the row by clicking the **Builds** Icon.
-
-    ![20-build-configuraion](images/consume-20.png "Build Configuration")
-
-    *The build process checks out the code from the git repo, runs a source-to-image container image build, and redeploys the container with the new image using a rolling upgrade strategy*.
-
-1. Wait for until the new **Build to complete** and the rolling upgrade to finish to test your new deployment.
-
-    ![21-build-complete](images/consume-21.png "Build Complete")
-
-1. Refresh the browser tab where you opened the International Inc web page or click the route URL to check out the changes.
-
-    ![22-updated-app](images/consume-22.png "Updated App")
-
-    _You can notice now the **Sign In** button in the page_.
 
 ### Step 5: Test the Single Sign On Integration
 
