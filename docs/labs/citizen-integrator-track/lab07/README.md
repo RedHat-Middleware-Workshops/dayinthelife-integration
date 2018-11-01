@@ -113,7 +113,7 @@ Redirect URLs are a critical part of the OAuth flow. After a user successfully a
 
     ![24-client-application](images/consume-24.png "Client Application")
 
-    *Remember to replace CLIENT_ID with the one you got in the [API Security Lab](../lab04/#step-4-create-a-test-app). It will easily identificable as its and hexadecimal name*.
+    *Remember to replace CLIENT_ID with the one you got in the [API Security Lab](../lab05/#step-4-create-a-test-app). It will easily identificable as its and hexadecimal name*.
 
 1. Scroll down, type in and select the following options in the application configuration:
 
