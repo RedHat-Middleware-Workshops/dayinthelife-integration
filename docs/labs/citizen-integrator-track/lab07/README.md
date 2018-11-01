@@ -57,11 +57,43 @@ Once the environment is provisioned, you will be presented with a page that pres
 
 ## Lab Instructions
 
-### Step 1: Opening International Inc Web Page
+### Step 1: Update OpenShift Deployment
+
+OpenShift let you automatically redeploy your changes when you setup a Continuous Integration / Continuous Deployment (CI/CD) pipeline through the use of webhook. For this lab we will trigger the new build and deployment manually through the OpenShift Console.
+
+1. Go back to your OpenShift web console. Navigate to your project's overview page.
+
+1. Scroll down and click in the www link in the BUILDS section.
+
+   ![01-scroll-down](images/deploy-10.png "Scroll Down")
+
+1. In the build configuration page, replace the `CLIENT_ID` from `CHANGE_ME`to the one generated from [Lab 06 Step 3.5]((../lab06))
+
+   ![02-client-id](images/deploy-11.png "Change Client ID")
+
+1. Click Save button to persist the changes. A green pop up will show you that the changes were saved.
+
+1. Click the Start Build button to trigger a new build using the new environment variables pointing to your service.
+
+   ![03-start-build](images/deploy-12.png "Start Build")
+
+1. A new build will be triggered. Expand the row by clicking the Builds Icon.
+
+   ![04-view-build](images/deploy-13.png "View Build")
+
+*The build process checks out the code from the git repo, runs a source-to-image container image build, and redeploys the container with the new image using a rolling upgrade strategy.*
+
+1. Wait for until the new Build to complete and the rolling upgrade to finish to test your new deployment.
+
+   ![22-updated-app](images/consume-22.png "Updated App")
+
+### Step 2: Opening International Inc Web Page
 
 International Inc web development create a Node.js application for the company home page. They added a map service to locate the offices around the world. In this step you will deploy that application.
 
-1. Open a browser tab and navigate to `http://www-international.dil.opentry.me`.
+1. Open a browser tab and navigate to `http://www-userX.dil.opentry.me`.
+
+*Remember to replace the `X` variable in the URL with your assigned user number.*
 
 1. You should now see what the development team created for International Inc. Click **LOCATIONS** to check the locations page.
 
@@ -69,7 +101,7 @@ International Inc web development create a Node.js application for the company h
 
 1. You can notice now the **Sign In** button in the page.
 
-    ![22-updated-app](images/consume-22.png "Updated App")
+    ![11-Sign-in](images/consume-222.png "Sign-In")
 
 
 ### Step 2: Test the Single Sign On Integration
@@ -97,7 +129,9 @@ International Inc web development create a Node.js application for the company h
 
     ![00-developer-console](images/00-developer-console.png "Developer Console")
 
-1. In the developer console, a red error should appear indicating a cert issue. Click on the link and accept the certificate.  
+1. In the developer console, a red error should appear indicating a cert issue. Click on the link and accept the certificate. 
+
+*Example link: `https://location-userX-api-staging.amp.dil.opentry.me/locations`*
 
 1. Refresh the page, and the locations should appear.
 
