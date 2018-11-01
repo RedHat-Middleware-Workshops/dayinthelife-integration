@@ -87,7 +87,49 @@ OpenShift let you automatically redeploy your changes when you setup a Continuou
 
    ![22-updated-app](images/consume-22.png "Updated App")
 
-### Step 2: Opening International Inc Web Page
+### Step 2: Update Secured Service with Red Hat Single Sign On Application Callback
+
+Redirect URLs are a critical part of the OAuth flow. After a user successfully authorizes an application, the authorization server will redirect the user back to the application with either an authorization code or access token in the URL. Because the redirect URL will contain sensitive information, it is critical that the service doesn’t redirect the user to arbitrary locations.
+
+1. Open a browser window and navigate to:
+
+    ```bash
+    http://sso-sso.dil.opentry.me/auth/admin/userX/console/
+    ```
+
+    *Remember to replace the X with your user number.*
+
+1. Log into Red Hat Single Sign On using your designated [user and password](#environment). Click on **Sign In**.
+
+    ![00-login-sso.png](images/00-login-sso.png "RH SSO Login")
+
+1. Select **Clients** from the left menu.
+
+    ![00-clients.png](images/00-clients.png "Clients")
+
+    *3scale, through it's [zync](https://github.com/3scale/zync/) component, already synchronized the application information into the Red Hat SSO security realm*.
+
+1. Click on the **CLIENT_ID** link to view the details.
+
+    ![24-client-application](images/consume-24.png "Client Application")
+
+    *Remember to replace CLIENT_ID with the one you got in the [API Security Lab](../lab04/#step-4-create-a-test-app). It will easily identificable as its and hexadecimal name*.
+
+1. Scroll down, type in and select the following options in the application configuration:
+
+    * Access Type: **Public**
+    * Standard Flow Enabled: **ON**
+    * Implicit Flow Enabled: **OFF**
+    * Valid Redirect URIs: **[http://www-userX-walkthrough-projects.dil.opentry.me//*](http://www-userX.apps.GUID.openshiftworkshop.com/*)**
+    * Web Origins: **\***
+
+    *Remember to replace the X your user number.*
+
+    ![25-client-config](images/consume-25.png "Client Configuration")
+
+1. Finally, click **Save** button to persist the changes.
+
+### Step 3: Opening International Inc Web Page
 
 International Inc web development create a Node.js application for the company home page. They added a map service to locate the offices around the world. In this step you will deploy that application.
 
@@ -104,7 +146,7 @@ International Inc web development create a Node.js application for the company h
     ![11-Sign-in](images/consume-222.png "Sign-In")
 
 
-### Step 2: Test the Single Sign On Integration
+### Step 4: Test the Single Sign On Integration
 
 1. Let's test the integration. Click the **Sign In** button.
 
@@ -119,7 +161,7 @@ International Inc web development create a Node.js application for the company h
 
     ![11-locations-page](images/consume-14.png "Locations Page")
 
-### Step 3: Troubleshooting the Locations Page
+### Step 5: Troubleshooting the Locations Page
 
 1. In most cases, the Locations web page will **NOT** show the locations because of a self-signed certificate issue in your web-browser.  See the below example with missing locations:
 
