@@ -131,12 +131,16 @@ Redirect URLs are a critical part of the OAuth flow. After a user successfully a
 
 ### Step 5: Test the Single Sign On Integration
 
-1. Let's test the integration. Click the **Sign In** button.
+1. Open a browser tab and navigate to `http://www-userX.dil.opentry.me`.
+
+*Remember to replace the X your user number.*
+
+1. Click the **Sign In** button.
 
 1. You are being redirected to Red Hat Single Sign On **Login Page**. Login using the user credentials you created in the [API Security Lab](../lab04/#step-2-add-user-to-realm)
 
-    * Username: **developer** (credentials from developer portal)
-    * Password: **PWD for developer** (credentials from developer portal)
+    * Username: **userX**
+    * Password: **password you received from instructor**
 
     ![23-realm-login](images/consume-23.png "Login Realm")
 
