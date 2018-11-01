@@ -129,7 +129,7 @@ Once the environment is provisioned, you will be presented with a page that pres
 
 	![21-select-application.png](images/21-select-application.png)
 
-1. Update redirect link to *http://www-userX.dil.opentry.me*
+1. Update redirect link to http://www-userX.dil.opentry.me/*
 
 	![22-updare-redirect-link.png](images/22-updare-redirect-link.png)
 
