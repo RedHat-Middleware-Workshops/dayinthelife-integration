@@ -126,3 +126,10 @@
         configmap_namespace: webapp
         ocp_apps_domain: "{{ hostvars['SHARED_VARS']['oc_apps_domain'] }}"
       tags: webapp
+    - include_role:
+        name: user_projects
+      with_sequence: start=1 end={{ usersno }} format=%d
+      vars:
+        sso_project: sso
+        ocp_apps_domain: "{{ hostvars['SHARED_VARS']['oc_apps_domain'] }}"
+      tags: user_projects
