@@ -120,6 +120,18 @@ Once the environment is provisioned, you will be presented with a page that pres
     ![16cc-activate-account.png](images/16cc-activate-account.png)
 
     *Your user is now active and can log into the portal*.
+    
+1. Now we need to make sure the the application will redirect the user to the correct page after successful login. Go to the Developer tab and click on the user you have create in the previous steps.
+
+	![20-developers.png](images/20-developers.png)
+
+1. Select SSO Location API to set the secured API
+
+	![21-select-application.png](images/21-select-application.png)
+
+1. Update redirect link to *http://www-userX.dil.opentry.me*
+
+	![22-updare-redirect-link.png](images/22-updare-redirect-link.png)
 
 ### Step 3: Login to Developer Portal
 
