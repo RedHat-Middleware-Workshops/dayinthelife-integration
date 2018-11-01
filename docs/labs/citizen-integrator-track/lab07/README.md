@@ -67,7 +67,7 @@ OpenShift let you automatically redeploy your changes when you setup a Continuou
 
    ![01-scroll-down](images/deploy-10.png "Scroll Down")
 
-1. In the build configuration page, replace the `CLIENT_ID` from `CHANGE_ME`to the one generated from [Lab 06 Step 3.5](https://github.com/RedHatWorkshops/dayinthelife-integration/tree/master/docs/labs/citizen-integrator-track/lab06#step-3-login-to-developer-portal)
+1. In the build configuration page, replace the `CLIENT_ID` from `CHANGE_ME`to the one generated from [Lab 06 Step 3.5](../lab06#step-3-login-to-developer-portal)
 
 https://github.com/RedHatWorkshops/dayinthelife-integration/tree/master/docs/labs/citizen-integrator-track/lab06#step-3-login-to-developer-portal
 
