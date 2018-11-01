@@ -85,7 +85,7 @@ Login to the Red Hat Solution Explorer, here you will find the link to Che.
     https://dil.opentry.me/console
     ```
 
-1. Click on your unique namenamspace to enter your workspace e.g. `user39`.
+1. Click on your unique namespace to enter your workspace e.g. `user39`.
 
     ![00-create-ocp-project.png](images/00-create-ocp-project.png "Create Project")
 
