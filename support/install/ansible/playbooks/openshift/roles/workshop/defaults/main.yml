@@ -1,6 +1,6 @@
 ---
 namespace: threescale
-sso_project: rh-sso
+sso_project: sso
 backend_project: international
 apicurio_project: apicurio
 gogs_project: gogs

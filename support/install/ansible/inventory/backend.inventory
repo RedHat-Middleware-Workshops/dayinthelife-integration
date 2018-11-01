@@ -1,0 +1,22 @@
+[workshop]
+localhost ansible_connection=local
+
+[workshop:vars]
+ocp_domain=demo2.opentry.me
+ocp_apps_domain=integreatly-demo2.opentry.me
+usersno=3
+che=false
+fuse=false
+threescale=false
+apicurio=false
+gogs=false
+microcks=false
+sso=false
+backend=true
+user_projects=false
+user_tools_projects=false
+configure_only=false
+create_tenants=false
+create_realms=false
+create_ides=false
+create_fuses=false

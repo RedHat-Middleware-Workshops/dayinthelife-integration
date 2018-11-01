@@ -8,7 +8,7 @@
 
 - name: Create Webpage application for each user
   shell: "oc new-app https://github.com/jbossdemocentral/3scaleworkshop-wwwpage#secured --name www \
-  --build-env API_BACKEND_URL=https://location-user{{ item }}-staging.amp.{{ ocp_apps_domain }}/locations \
+  --build-env API_BACKEND_URL=https://location-user{{ item }}-api-staging.amp.{{ ocp_apps_domain }}/locations \
   --build-env SSO_URL=http://sso-{{ sso_project }}.{{ ocp_apps_domain }} --build-env SSO_REALM=user{{ item }} \
   --build-env CLIENT_ID=CHANGE_ME -n user{{ item }}"
   when: configure_only == 'false'

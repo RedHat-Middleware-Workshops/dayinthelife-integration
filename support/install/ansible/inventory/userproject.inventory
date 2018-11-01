@@ -1,0 +1,22 @@
+[workshop]
+localhost ansible_connection=local
+
+[workshop:vars]
+ocp_domain=dil1.opentry.me
+ocp_apps_domain=dil1.opentry.me
+usersno=3
+che=false
+fuse=false
+threescale=false
+apicurio=false
+gogs=false
+microcks=false
+sso=false
+backend=false
+user_projects=true
+user_tools_projects=false
+configure_only=false
+create_tenants=false
+create_realms=false
+create_ides=false
+create_fuses=false
