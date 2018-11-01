@@ -19,3 +19,11 @@ Each track will offer hands-on lab experience relevant to the audience.  Labs an
 | 12:00-1:00 p.m.      | Lunch |
 | 1:00-3:30 p.m.      | **Lab cont.:** Contract-first API development<br>*Choose your own adventure:*<br>__Track one:__ API design and management<br>__Track two:__ API development and security |
 | 3:30-4:00 p.m.      | Recap and summary |
+
+
+## Lab Intructions
+
+
+[Citizen integrator track](docs/labs/citizen-integrator-track)
+
+[Developer track](docs/labs/developer-track)
