@@ -212,8 +212,7 @@ Once the environment is provisioned, you will be presented with a page that pres
 
     ![13-create-app.png](images/13-create-app.png "Create App")
 
-1. Note the *API Credentials*. Write them down as you will need the **Client ID** and the **Client Secret** to test your integration.
-
+1. Update the **Redirect URL** to	 http://www-userX.dil.opentry.me. And note the *API Credentials*. Write them down as you will need the **Client ID** and the **Client Secret** to test your integration. 
     ![14-app-credentials.png](images/14-app-credentials.png "App Credentials")
 
 *Congratulations!* You have now an application to test your OpenId Connect integration.
