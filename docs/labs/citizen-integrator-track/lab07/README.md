@@ -113,14 +113,14 @@ Redirect URLs are a critical part of the OAuth flow. After a user successfully a
 
     ![24-client-application](images/consume-24.png "Client Application")
 
-    *Remember to replace CLIENT_ID with the one you got in the [API Security Lab](../lab04/#step-4-create-a-test-app). It will easily identificable as its and hexadecimal name*.
+    *Remember to replace CLIENT_ID with the one you got in the [API Security Lab](../lab05/#step-4-create-a-test-app). It will easily identificable as its and hexadecimal name*.
 
 1. Scroll down, type in and select the following options in the application configuration:
 
     * Access Type: **Public**
     * Standard Flow Enabled: **ON**
     * Implicit Flow Enabled: **OFF**
-    * Valid Redirect URIs: **[http://www-userX-walkthrough-projects.dil.opentry.me//*](http://www-userX.apps.GUID.openshiftworkshop.com/*)**
+    * Valid Redirect URIs: **[http://www-userX-walkthrough-projects.dil.opentry.me/*](http://www-userX.apps.GUID.openshiftworkshop.com/*)**
     * Web Origins: **\***
 
     *Remember to replace the X your user number.*
