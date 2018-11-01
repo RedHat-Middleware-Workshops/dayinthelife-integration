@@ -125,7 +125,7 @@ Redirect URLs are a critical part of the OAuth flow. After a user successfully a
     | Valid Redirect URIs | http://www-userX.dil.opentry.me/* |
     | Web Origins | \* |
 
-    *Remember to replace the X your user number.*
+    *Remember to replace the X with your user number.*
 
     ![25-client-config](images/consume-25.png "Client Configuration")
 
