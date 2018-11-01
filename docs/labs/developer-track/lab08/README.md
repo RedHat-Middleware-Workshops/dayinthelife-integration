@@ -69,8 +69,6 @@ OpenShift let you automatically redeploy your changes when you setup a Continuou
 
 1. In the build configuration page, replace the `CLIENT_ID` from `CHANGE_ME`to the one generated from [Lab 06 Step 3.5](https://github.com/RedHatWorkshops/dayinthelife-integration/tree/master/docs/labs/citizen-integrator-track/lab06#step-3-login-to-developer-portal)
 
-https://github.com/RedHatWorkshops/dayinthelife-integration/tree/master/docs/labs/citizen-integrator-track/lab06#step-3-login-to-developer-portal
-
    ![02-client-id](images/deploy-11.png "Change Client ID")
 
 1. Click Save button to persist the changes. A green pop up will show you that the changes were saved.
@@ -122,7 +120,7 @@ Redirect URLs are a critical part of the OAuth flow. After a user successfully a
     * Access Type: **Public**
     * Standard Flow Enabled: **ON**
     * Implicit Flow Enabled: **OFF**
-    * Valid Redirect URIs: **http://www-userX.dil.opentry.me/*
+    * Valid Redirect URIs: **http://www-userX.dil.opentry.me/**
     * Web Origins: **\***
 
     *Remember to replace the X your user number.*
