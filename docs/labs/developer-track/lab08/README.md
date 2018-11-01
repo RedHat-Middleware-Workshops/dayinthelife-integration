@@ -57,101 +57,37 @@ Once the environment is provisioned, you will be presented with a page that pres
 
 ## Lab Instructions
 
+### Step 1: Update OpenShift Deployment
 
-### Step 1: Deploying International Inc Web Page
+OpenShift let you automatically redeploy your changes when you setup a Continuous Integration / Continuous Deployment (CI/CD) pipeline through the use of webhook. For this lab we will trigger the new build and deployment manually through the OpenShift Console.
 
-International Inc web development create a Node.js application for the company home page. They added a map service to locate the offices around the world. In this step you will deploy that application.
+1. Go back to your OpenShift web console. Navigate to your project's overview page.
 
-1. Open a browser window and navigate to **Red Hat Solution Explorer** website.:
+1. Scroll down and click in the www link in the BUILDS section.
 
-    ```bash
-	https://tutorial-web-app-webapp.dil.opentry.me
-    ```
+   ![01-scroll-down](images/deploy-10.png "Scroll Down")
 
-1. Click on the **Red Hat OpenShift** Application.
+1. In the build configuration page, replace the `CLIENT_ID` from `CHANGE_ME`to the one generated from [Lab 06 Step 3.5](https://github.com/RedHatWorkshops/dayinthelife-integration/tree/master/docs/labs/citizen-integrator-track/lab06#step-3-login-to-developer-portal)
 
-    ![selfsigned-cert](images/design-53.png "OpenShift App")
+https://github.com/RedHatWorkshops/dayinthelife-integration/tree/master/docs/labs/citizen-integrator-track/lab06#step-3-login-to-developer-portal
 
-1. Log into OpenShift using your designated [user and password](#environment). Click on **Log in**.
+   ![02-client-id](images/deploy-11.png "Change Client ID")
 
-    ![01-login](images/design-54.png "OpenShift Login")
+1. Click Save button to persist the changes. A green pop up will show you that the changes were saved.
 
-1. You are now in OpenShift's main page. Click on your **userX** project in the right side of the screen.
+1. Click the Start Build button to trigger a new build using the new environment variables pointing to your service.
 
-    ![02-user-project](images/design-55.png "User Project")
+   ![03-start-build](images/deploy-12.png "Start Build")
 
-1. From your main project page, click the **Browse Catalog** link from the drop-down.
+1. A new build will be triggered. Expand the row by clicking the Builds Icon.
 
-    ![03-browse-catalog](images/design-56.png "Catalog")
+   ![04-view-build](images/deploy-13.png "View Build")
 
-1. Scroll down the page and search for the **Node.js** template. Click on the link.
+*The build process checks out the code from the git repo, runs a source-to-image container image build, and redeploys the container with the new image using a rolling upgrade strategy.*
 
-    ![04-nodejs-template](images/consume-08.png "Template")
+1. Wait for until the new Build to complete and the rolling upgrade to finish to test your new deployment.
 
-1. Click the **Next >** button.
-
-    ![05-template-information](images/consume-09.png "Information")
-
-1. Fill in the configuration information with your API implementation github repo details:
-
-    * Application Name: **www**
-    * Git Repository URL: **http://gogs.dil.opentry.me/userX/www-page.git**
-
-    *Remember to replace your user number*.
-
-    ![06-template-configuration](images/consume-10.png "Configuration")
-
-1. Click **Create**.
-  
-1. Your service will be provisioned in a moment. Click the **Continue to the project overview** link.
-
-    ![08-template-results](images/consume-11.png "Results")
-
-    _If you clicked the **Close** button, click **Overview** in the left side menu to review the deployment status_.
-
-1. From your overview page, click the white space next to the **www** link to expand the deployment information.
-
-    ![09-deployment-config](images/deploy-09.png "Deployment Config")
-
-1. Scroll down and click in the **www** link in the *BUILDS* section.
-
-    ![10-builds](images/deploy-10.png "Builds")
-
-1. In the build configuration page, change to the **Environment** tab. Fill in the available row with the following information:
-
-    * Name: **API\_BACKEND\_URL**
-    * Value: **http://location-service-OCPPROJECT.dil.opentry.me/locations**
-
-    *Remember to replace OCPPROJECT(userX) as in your previous Dev labs (Lab 03/04)*.
-
-    ![11-environment](images/deploy-11.png)
-
-    _Click the **Add Value** link to enable a new row if not already present_.
-
-1. Click **Save** button to persist the changes. A green pop up will show you that the changes were saved.
-
-1. Click the **Start Build** button to trigger a new build using the new environment variables pointing to your service.
-
-    ![12-start-build](images/deploy-12.png "Start Build")
-
-1. Click the **Overview** menu option on the left side to go back to the your project overview page.
-
-1. In the overview page, wait until the running *Build is complete* and the pod circle stays blue continously. This means the application was successfully deployed and now is ready to listen to requests.
-
-    ![13-build-complete](images/deploy-13.png "Build Complete")
-
-1. Click the **Routes - External Traffic** to open a new tab and connect to *International Inc* new website.
-
-1. You should now see what the development team created for International Inc. Click **LOCATIONS** to check the locations page.
-
-    ![10-application-page](images/consume-13.png "Webpage")
-
-1. This pages uses the unsecured Location API service. It displays the different International Inc offices around the world.
-
-    ![11-locations-page](images/consume-14.png "Locations Page")
-
-1. In the next step we will update the Locations page to use the 3scale protected API.
-
+   ![22-updated-app](images/consume-22.png "Updated App")
 
 ### Step 2: Update Secured Service with Red Hat Single Sign On Application Callback
 
@@ -186,7 +122,7 @@ Redirect URLs are a critical part of the OAuth flow. After a user successfully a
     * Access Type: **Public**
     * Standard Flow Enabled: **ON**
     * Implicit Flow Enabled: **OFF**
-    * Valid Redirect URIs: **[http://www-userX-walkthrough-projects.dil.opentry.me//*](http://www-userX.apps.GUID.openshiftworkshop.com/*)**
+    * Valid Redirect URIs: **[http://www-userX.dil.opentry.me//*](http://www-userX.apps.GUID.openshiftworkshop.com/*)**
     * Web Origins: **\***
 
     *Remember to replace the X your user number.*
