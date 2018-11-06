@@ -17,8 +17,6 @@ The Red Hat SSO product provides important functionality for managing identities
 
 ### Skipping The Lab
 
-We know sometimes you don't have enough time to go over step by step labs, so here is a [short video](https://vimeo.com/middlewarepro/3scale-security-oidc-demo) where you can see how to configure OpenID Connect for your service using Red Hat Single Sign On (SSO).
-
 If you are planning to skip to the next lab, there is an already running OpenID Connect secured API proxy for the Location API Service in this endpoint:
 
 ```bash

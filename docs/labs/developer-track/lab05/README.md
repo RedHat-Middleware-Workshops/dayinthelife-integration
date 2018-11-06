@@ -13,9 +13,6 @@ When it comes to quick API development, you need both the integration experts as
 
 Red Hat Fuse integration solution empowers integration experts, application developers, and business users to engage in enterprise-wide collaboration and high-productivity self-service. 
 
-### Skipping The Lab
-
-We know sometimes we don't have enough time to go over the labs step by step. So here is a [short video](https://youtu.be/-3QGAD3Tt48) where you can see how to implement a contract-first API.
 
 ### Environment
 

@@ -17,8 +17,6 @@ Red Hat is one of the founding members of the Linux Foundation OpenAPI Initiativ
 
 ### Skipping The Lab
 
-We know sometimes we don't have enough time to go over step by step on the labs. So here is a [short video](https://youtu.be/FnZwy8KeC-A) where you can see how to create an OpenAPI Specification with Apicurio Studio.
-
 If you are planning to skip this lab and follow the next one, here is a [link](https://github.com/RedHatWorkshops/dayinthelife-integration/tree/master/docs/labs/citizen-integrator-track/resources) to the specification generated in this lab.
 
 ### Environment

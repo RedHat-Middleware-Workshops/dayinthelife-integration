@@ -17,8 +17,6 @@ Red Hat combines a number of commercial and Open Source tools to cover each part
 
 ### Skipping The Lab
 
-We know that you don't always have enough time to go over step by step labs, so here is a [short video](wip-link) where you can see how to mock the API you previously created using Microcks.
-
 If you are planning to follow the next lab, here is a [link](wip-link) to the REST mock service running the Location API.
 
 ### Environment

@@ -17,8 +17,6 @@ Eclipse Che, our online IDE, provides important functionality for implementing A
 
 ### Skipping The Lab
 
-We know sometimes we don't have enough time to go over the labs step by step. So here is a [short video](https://youtu.be/-3QGAD3Tt48) where you can see how to implement a contract-first API.
-
 If you are planning to follow to the next lab or are having trouble with this lab, you can reference the working project [here](https://github.com/RedHatWorkshops/dayinthelife-integration/tree/master/projects/location-service)
 
 ### Environment
