@@ -81,11 +81,11 @@ Once the environment is provisioned, you will be presented with a page that pres
 
    ![mock-jobs](images/mock-14.png "Job")
 
-1. Click on the services for your username. eg: **Locations-User1**.
+1. Click on the link for your username. eg: **Locations-User1**.
 
    ![mock-jobs](images/mock-15.png "Select services")
 
-1. Click the **Operation GET /locations** link to check the example under that operation.
+1. Click on the arrow to expand the **Operation GET /locations**.
 
    ![mock-mock-service](images/mock-16.png "Mock Service")
 
