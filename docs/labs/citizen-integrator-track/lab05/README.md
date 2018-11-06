@@ -95,7 +95,7 @@ Once the environment is provisioned, you will be presented with a page that pres
 
     ![00-users.png](images/00-users.png "Users Menu")
 
-1. Click the Add user button.
+1. Click the **Add user** button.
 
     ![00-add-user.png](images/00-add-user.png "Add User")
 
@@ -187,7 +187,7 @@ Once the environment is provisioned, you will be presented with a page that pres
 
 ### Step 4: Create a Test App
 
-1. Go to the *Developers* tab and click on **Developer**.
+1. Go to the *Developers* tab and click on **Developers**.
 
     ![09-developers.png](images/09-developers.png "Developers")
 
@@ -210,10 +210,10 @@ Once the environment is provisioned, you will be presented with a page that pres
 
     ![13-create-app.png](images/13-create-app.png "Create App")
 
-1. Update the **Redirect URL** to	 http://www-userX.dil.opentry.me. And note the *API Credentials*. Write them down as you will need the **Client ID** and the **Client Secret** to test your integration. 
+1. Update the **Redirect URL** to http://www-userX.dil.opentry.me/*. And note the *API Credentials*. Write them down as you will need the **Client ID** and the **Client Secret** to test your integration. 
     ![14-app-credentials.png](images/14-app-credentials.png "App Credentials")
 
-*Congratulations!* You have now an application to test your OpenId Connect integration.
+*Congratulations!* You have now an application to test your OpenID Connect Integration.
 
 ## Steps Beyond
 
