@@ -77,6 +77,8 @@ Once the environment is provisioned, you will be presented with a page that pres
 
    ![mock-jobs](images/mock-13.png "Upload")
 
+   *Congratulations! The spec is successfully imported*
+
 1. Navigate to **APIs | Services** tab.
 
    ![mock-jobs](images/mock-14.png "Job")
