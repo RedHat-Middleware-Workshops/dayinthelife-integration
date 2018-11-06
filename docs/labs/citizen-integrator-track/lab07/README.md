@@ -67,7 +67,7 @@ OpenShift let you automatically redeploy your changes when you setup a Continuou
 
    ![01-scroll-down](images/deploy-10.png "Scroll Down")
 
-1. In the build configuration page, replace the `CLIENT_ID` from `CHANGE_ME`to the one generated from [Lab 06 Step 3.5](../lab06#step-3-login-to-developer-portal)
+1. In the build configuration page, replace the `CLIENT_ID` from `CHANGE_ME`to the one generated from [Lab 05 Step 4.6](../lab05##step-4-create-a-test-app)
 
    ![02-client-id](images/deploy-11.png "Change Client ID")
 
@@ -109,11 +109,11 @@ Redirect URLs are a critical part of the OAuth flow. After a user successfully a
 
     *3scale, through it's [zync](https://github.com/3scale/zync/) component, already synchronized the application information into the Red Hat SSO security realm*.
 
-1. Click on the **CLIENT_ID** link to view the details.
+1. Click on the **CLIENT_ID** link to view the details. 
+
+*Remember to select CLIENT_ID with the one you got in the [API Security Lab](../lab05/#step-4-create-a-test-app). It will easily identificable as its and hexadecimal name*.
 
     ![24-client-application](images/consume-24.png "Client Application")
-
-    *Remember to replace CLIENT_ID with the one you got in the [API Security Lab](../lab05/#step-4-create-a-test-app). It will easily identificable as its and hexadecimal name*.
 
 1. Scroll down, type in and select the following options in the application configuration:
 

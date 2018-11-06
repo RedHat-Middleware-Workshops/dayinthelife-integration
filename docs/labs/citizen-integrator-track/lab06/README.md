@@ -53,13 +53,13 @@ Once the environment is provisioned, you will be presented with a page that pres
 
 ### Step 1: Customizing Developer Portal
 
-1. Open a browser window and navigate to:
+1. Click on the `3scale Admin Dashboard` from the Red Hat Solution Explorer. The URL should look like
 
     ```bash
     https://userX-admin.dil.opentry.me/p/login
     ```
 
-    *Remember to replace the `X` variable in the URL with your assigned user number.*
+    *Remember the `X` variable in the URL is your assigned user number.*
 
 1. Accept the self-signed certificate if you haven't.
 
@@ -100,10 +100,6 @@ Once the environment is provisioned, you will be presented with a page that pres
     ![15-homepage-devportal.png](images/15-homepage-devportal.png)
 
 1. Change all the code **Echo** references in the homepage code for **Office Locations**.
-
-1. Update the API call examples to reflect your real Fuse API calls.
-
-    *Use your 3scale's production base url and add your defined methods. Dont worry if you don't have the "real" output, it won't affect the rest of the lab. You can also copy and paste the [example](https://raw.githubusercontent.com/RedHatWorkshops/dayinthelife-integration/master/docs/labs/citizen-integrator-track/lab06/support/homepage.example) we prepared for you*.
 
 1. Click the **Publish** button.
 
@@ -160,8 +156,6 @@ Once the environment is provisioned, you will be presented with a page that pres
 1. You will land in the developers homepage, where you will be able to check your developers settings and retrieve your newly created **Client ID** and **Client Secret**.
 
     ![16g-user-credentials.png](images/16g-user-credentials.png "Application Credentials")
-
-    *Copy down this credentials as it you will use them to authenticate yourself to the managed API*.
 
 *Congratulations!* You have successfuly customized your Developer Portal and completed a Sign Up process.
 
