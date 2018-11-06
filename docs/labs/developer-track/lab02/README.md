@@ -170,11 +170,11 @@ Follow this instructions to set up the repository.
 
 1. Click **Close** to dismiss the dialog.
 
-1. This is your new REST mock service based on the OpenAPI definition you just loaded to Microcks. Click the **Operation GET /locations** link to check the example under that operation.
+1. This is your new REST mock service based on the OpenAPI definition you just loaded to Microcks. Click on the arrow to expand the **GET /locations** operation.
 
     ![mock-mock-service](images/mock-19.png "Mock Service")
 
-1. You can check that the example we added to the definition in [Lab 1](lab01.md) will be used to return the mock values. Copy and save the **Mocks URL**, we will use that endpoint to test the REST mock service.
+1. You can check that the example we added to the definition in [Lab 1](lab01.md) will be used to return the mock values. Scroll down, copy and save the **Mocks URL**, we will use that endpoint to test the REST mock service.
 
     ![mock-mock-operation](images/mock-20.png "Mock Operation")
 
@@ -189,10 +189,10 @@ We now have a working REST mock service listening for requests. We will use an o
     https://onlinecurl.com/
     ```
 
-1. Enter the following URL: **http://microcks.dil.opentry.me + {{your-user-api-mocks-url}}**. Remember to replace your user number. It should look like this:
+1. Copy and paste the Mock URL from earlier step. It should look like 
 
     ```bash
-    http://microcks.dil.opentry.me/rest/Locations-User2/1.0.0/locations
+    http://microcks.dil.opentry.me/rest/Locations-UserX/1.0.0/locations
     ```
 
 1. Click the **START YOUR CURL** button.
