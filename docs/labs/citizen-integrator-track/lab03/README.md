@@ -160,7 +160,7 @@ We will use an online cURL tool to create your own record field in database.
      https://onlinecurl.com/
    ```
 
-1. Below are the values for your requests. Note: `id:101` in the payload as we are creating `101th` record in the database.
+1. Below are the values for your requests. Remember to click on **+ Add Option** to add additional parameters to the request. Note: `id:101` in the payload as we are creating `101th` record in the database. 
 
    | Parameters | Values |
    | --- | --- |
