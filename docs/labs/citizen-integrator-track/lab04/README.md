@@ -61,13 +61,13 @@ Once the environment is provisioned, you will be presented with a page that pres
 
 Your 3scale Admin Portal provides access to a number of configuration features.
 
-1. Open a browser window and navigate to:
+1. Click on the `3scale Admin Dashboard` from the Red Hat Solution Explorer. The URL should look like
 
     ```bash
     https://userX-admin.dil.opentry.me/p/login
     ```
 
-    *Remember to replace the `X` variable in the URL with your assigned user number.*
+    *Remember the `X` variable in the URL with your assigned user number.*
 
 1. Accept the self-signed certificate if you haven't.
 
