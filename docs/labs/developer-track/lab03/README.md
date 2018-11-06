@@ -66,7 +66,7 @@ Login to the Red Hat Solution Explorer, here you will find the link to Che.
 
     ![00-create-workspace.png](images/00-create-workspace.png "Create Workspace")
 
-1. Use your unique username as your workspace name e.g. userX.  Select "day in the life workshop" stack, increase the RAM to 4MB and then click **Create**.
+1. Use your unique username as your workspace name e.g. userX.  Select "day in the life workshop" stack, increase the RAM to 4GB and then click **Create**.
 
     ![00-new-workspace.png](images/00-new-workspace.png "New Workspace")
 
