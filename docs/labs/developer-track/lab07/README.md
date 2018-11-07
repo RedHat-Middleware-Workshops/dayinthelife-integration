@@ -85,7 +85,7 @@ Once the environment is provisioned, you will be presented with a page that pres
 
     ![14-publish-devportal.png](images/14-publish-devportal.png)
 
-1. Click on the **API** Tab, select the **integration** link under **SSO Location API**, and click on the **Application Plans** on the left menu when it shows up. And publish your application plan by clicking in on the **Publish** option on the page.  
+1. Click on the **API** Tab, select the **Integration** link under **SSO Location API**, and click on the **Application Plans** on the left menu when it shows up. And publish your application plan by clicking in on the **Publish** option on the page.  
 
 	![17-publishplan.png](images/17-publishplan.png)
 	
