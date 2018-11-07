@@ -101,7 +101,7 @@ Your 3scale Admin Portal provides access to a number of configuration features.
 
     ![04-base-url](images/04-base-url.png)
 
-1. Leave the `Private Base URL`, `Staging Public Base URL`, and `Production Public Base URL` as it is. We will come back to the screen to update the correct values in later Step.
+1. Leave the settings for `Private Base URL`, `Staging Public Base URL`, and `Production Public Base URL` as it is. We will come back to the screen to update the correct values in later step.
 
 1. Scroll down and expand the **MAPPING RULES** section to define the allowed methods on our exposed API.
 
