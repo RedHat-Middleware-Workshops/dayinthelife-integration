@@ -103,7 +103,7 @@ Redirect URLs are a critical part of the OAuth flow. After a user successfully a
 
     ![00-login-sso.png](images/00-login-sso.png "RH SSO Login")
 
-1. Select **Clients** from the left menu.
+1. Select **Clients** from the left menu. 
 
     ![00-clients.png](images/00-clients.png "Clients")
 
@@ -111,9 +111,10 @@ Redirect URLs are a critical part of the OAuth flow. After a user successfully a
 
 1. Click on the **CLIENT_ID** link to view the details.
 
-    ![24-client-application](images/consume-24.png "Client Application")
+ *Remember to select correct CLIENT_ID with the one you got in the [API Security Lab](../lab07). It will easily identificable as its and hexadecimal name*.
 
-    *Remember to replace CLIENT_ID with the one you got in the [API Security Lab](../lab04/#step-4-create-a-test-app). It will easily identificable as its and hexadecimal name*.
+
+    ![24-client-application](images/consume-24.png "Client Application")
 
 1. Scroll down, type in and select the following options in the application configuration:
 
