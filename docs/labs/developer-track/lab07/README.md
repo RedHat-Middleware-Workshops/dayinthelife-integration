@@ -125,7 +125,7 @@ Once the environment is provisioned, you will be presented with a page that pres
 
 	![20-developers.png](images/20-developers.png)
 
-1. Select SSO Location API to set the secured API
+1. Select the application for the `SSO Location API` service
 
 	![21-select-application.png](images/21-select-application.png)
 
