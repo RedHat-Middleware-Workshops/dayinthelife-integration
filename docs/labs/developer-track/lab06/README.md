@@ -84,7 +84,7 @@ Your 3scale Admin Portal provides access to a number of configuration features. 
 	![06-menu.png](images/06-menu.png)
 	
 	
-1. Create a new token that has the Read & Writeable rights to your management platform. Enter **Name** as secure token, check the **Account management API** checkbox and **READ & WRITE** for Permission.
+1. Create a new token that has the Read & Writeable rights to your management platform. Enter Name as **secure token**, check the **Account management API** checkbox and **READ & WRITE** for Permission.
 
 	![04-setuptoken.png](images/04-setuptoken.png)
 
