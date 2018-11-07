@@ -55,6 +55,10 @@ Login to the Red Hat Solution Explorer, here you will find the link to Che.
 
 ![00-integr8ly-che.png](images/00-integr8ly-che.png "Integr8ly CHE")
 
+Enter dummy values for `First Name` and `Last Name`. Click **Submit**.
+
+![00-integr8ly-che-update-acc.png](images/00-integr8ly-che-update-acc.png "Integr8ly CHE update")
+
 ## Lab Instructions
 
 ### Step 1: Create an Eclipse Che environment for your personal use
