@@ -10,4 +10,4 @@
 6. [Setup 3scale management](lab06/#lab-6)
 7. [API Developer Portal](lab07/#lab-7)
 8. [Securing Node.js endpoint development](lab08/#lab-8)
-9. [Testing the International Inc. Locations webpage](lab09/#lab-9)
+
