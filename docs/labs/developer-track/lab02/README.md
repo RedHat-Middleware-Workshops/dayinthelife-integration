@@ -189,7 +189,9 @@ We now have a working REST mock service listening for requests. We will use an o
     https://onlinecurl.com/
     ```
 
-1. Copy and paste the Mock URL from earlier step. It should look like 
+1. Copy and paste the Mock URL from earlier step. It should look like. 
+   
+   *Remember to replace X with your user number*.
 
     ```bash
     http://microcks.dil.opentry.me/rest/Locations-UserX/1.0.0/locations
