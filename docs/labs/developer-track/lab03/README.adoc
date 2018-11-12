@@ -8,19 +8,19 @@
 * Duration: 20 mins
 * Audience: Developers and Architects
 
-== Overview
+*Overview*
 
 In the context of defining API's, it's common for a Business Analyst (or Citizen Integrator) to first create an API specification or contract.  By beginning the process with a clearly defined contract, a Developer can easily take the contract and auto-generate the underlying service to implement that API.  This _separation of concern_, whereby a Citizen Integrator and Developer can independently collaborate and contribute to create an end-to-end API implementation, is a powerful method for defining API's.
 
-=== Why Red Hat?
+*Why Red Hat*
 
 Eclipse Che, our online IDE, provides important functionality for implementing API services. In this lab you can see how our API tooling fits together with 3scale, Fuse and OpenShift to create a scalable API.
 
-=== Skipping The Lab
+*Skipping The Lab*
 
 If you are planning to follow to the next lab or are having trouble with this lab, you can reference the working project https://github.com/RedHatWorkshops/dayinthelife-integration/tree/master/projects/location-service[here]
 
-=== Environment
+*Environment*
 
 *Credentials:*
 
@@ -63,6 +63,8 @@ Enter dummy values for `First Name` and `Last Name`. Click *Submit*.
 image::images/00-integr8ly-che-update-acc.png[00-integr8ly-che-update-acc.png]
 
 == Lab Instructions
+
+Perform the steps.
 
 === Step 1: Create an Eclipse Che environment for your personal use
 
@@ -386,7 +388,7 @@ Remember to replace OCPPROJECT with your username.
 
 _Congratulations!_ You have now an application to test your Swagger to RESTdsl integration.
 
-== Summary
+*Summary*
 
 You have now successfully created a contract-first API using a Swagger contract together with generated Camel RESTdsl, incorporating both HTTP GET and POST requests that perform select and inserts on a Postgres database table.
 

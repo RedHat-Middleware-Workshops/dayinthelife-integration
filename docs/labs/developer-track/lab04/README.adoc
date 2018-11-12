@@ -1,25 +1,23 @@
-= Lab 4
+= Lab  4 SOAP to REST
 
-== SOAP to REST
-
-=== Contract-first API development wrapping an existing SOAP service, implemented using Eclipse Che
+Contract-first API development wrapping an existing SOAP service, implemented using Eclipse Che
 
 * Duration: 20 mins
 * Audience: Developers and Architects
 
-== Overview
+*Overview*
 
 Another important use case in developing API's is to take an existing legacy SOAP service and wrap it with a new RESTful endpoint.  This SOAP to REST transformation is implemented in the API service layer (Fuse).  This lab will walk you through taking an existing SOAP contract (WSDL), converting it to Java POJO's and exposing it using Camel REST DSL.
 
-=== Why Red Hat?
+*Why Red Hat*
 
 Eclipse Che, our online IDE, provides important functionality for implementing API services. In this lab you can see how our Eclipse Che and Fuse can help with SOAP to REST transformation on OpenShift.
 
-=== Skipping The Lab
+*Skipping The Lab*
 
 If you are planning to follow to the next lab or are having trouble with this lab, you can reference the working project https://github.com/RedHatWorkshops/dayinthelife-integration/tree/master/projects/location-soap2rest[here]
 
-=== Environment
+*Environment*
 
 Login to the Red Hat Solution Explorer, here you will find the link to Che.
 
@@ -37,6 +35,8 @@ user1
 Please ask your instructor for your password.
 
 == Lab Instructions
+
+Perform the steps.
 
 === Step 1: Import the sample SOAP project into your Openshift project
 
@@ -169,7 +169,7 @@ image::images/00-verify-pod.png[00-verify-pod.png]
 
 _Congratulations!_ You have created a SOAP to REST transformation API.
 
-== Summary
+*Summary*
 
 You have now successfully created a contract-first API using a SOAP WSDL contract together with generated Camel RESTdsl.
 

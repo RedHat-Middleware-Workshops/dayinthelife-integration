@@ -1,25 +1,23 @@
-= Lab 2
+= Lab  2 API Mocking
 
-== API Mocking
-
-=== Bring your APIs to life
+Bring your APIs to life
 
 * Duration: 20 mins
 * Audience: Developers, Architects, Testers, Quality Engineers
 
-== Overview
+*Overview*
 
 When building and working with APIs, you often need to simulate the responses of the system before it has been fully completed. This is what we explore in this workshop - mocking up API structures quickly so they can be subjected to testing withouth having to create all the final service code.
 
-=== Why Red Hat?
+*Why Red Hat*
 
 Red Hat combines a number of commercial and Open Source tools to cover each part of the API Design lifecycle. In this lab we'll be using the http://microcks.github.io/[Microcks] open source tool.
 
-=== Skipping The Lab
+*Skipping The Lab*
 
 If you are planning to follow the next lab, here is a link:wip-link[link] to the REST mock service running the Location API.
 
-=== Environment
+*Environment*
 
 *Credentials:*
 
@@ -54,6 +52,8 @@ Once the environment is provisioned, you will be presented with a page that pres
 image::images/design-52.png[design-login]
 
 == Lab Instructions
+
+Perform the steps.
 
 === Step 1: Create a Microcks Job
 
@@ -132,13 +132,13 @@ image::images/mock-19.png[mock-curl-response]
 
 _Congratulations!_ You have successfully configure a Microcks Job to create a REST mock service to test your API.
 
-== Steps Beyond
+*Steps Beyond*
 
 ____
 So, you want more? ...
 ____
 
-== Summary
+*Summary*
 
 In this lab you used Microcks to configure a REST mock service for the API definition you created in the previous lab. REST mock services allows you to simulate a REST API service when you are in a prototyping stage of your API program journey.
 
@@ -146,7 +146,7 @@ Microcks allows you to test a number of various responses for client application
 
 You can now proceed to link:../lab03/#lab-3[Lab 3]
 
-== Notes and Further Reading
+*Notes and Further Reading*
 
 * Microcks
  ** http://microcks.github.io/[Webpage]

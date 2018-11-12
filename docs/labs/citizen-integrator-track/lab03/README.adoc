@@ -6,15 +6,15 @@
 * Duration: 20 mins
 * Audience: Developers and Architects
 
-== Overview
+*Overview*
 
 When it comes to quick API development, you need both the integration experts as well as application developers to easily develop and deploy the APIs. Here is how to create a simple API with Fuse Online.
 
-=== Why Red Hat?
+*Why Red Hat*
 
 Red Hat Fuse integration solution empowers integration experts, application developers, and business users to engage in enterprise-wide collaboration and high-productivity self-service.
 
-=== Environment
+*Environment*
 
 *Credentials:*
 
@@ -49,6 +49,8 @@ Once the environment is provisioned, you will be presented with a page that pres
 image::images/design-52.png[design-login]
 
 == Lab Instructions
+
+Perform the steps.
 
 === Step 1: Create database connection
 
@@ -213,13 +215,13 @@ image::images/17-activity-refresh.png[17-activity-refresh.png]
     }
 ----
 
-== Summary
+*Summary*
 
 In this lab you discovered how to create an adhoc API service using Fuse Online.
 
 You can now proceed to link:../lab04/#lab-4[Lab 4]
 
-== Notes and Further Reading
+*Notes and Further Reading*
 
 * Fuse Online
  ** https://www.redhat.com/en/technologies/jboss-middleware/fuse-online[Webpage]

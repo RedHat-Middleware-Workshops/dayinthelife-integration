@@ -1,27 +1,25 @@
-= Lab 1
+= Lab  1 API Design
 
-== API Design
-
-=== Import an OpenAPI Specification using Apicurio Studio
+Import an OpenAPI Specification using Apicurio Studio
 
 * Duration: 10 mins
 * Audience: Developers, Architects
 
-== Overview
+*Overview*
 
 As APIs become more widespread in the enterprise, consistent design and usage is critically important to improve reusability. The more reusable APIs are, the less friction there is for other internal or external teams to make progress. Having design standards and tools baked into the API development and maintenance process is a very powerful way to enable this consistency.
 
 As a developer, we need to be familiar with API Design even though it's not our core capability.  Therefore, in this lab we will review Red Hat's API Designer product, Apicurio, so that we're familiar with it's capabilities only.
 
-=== Why Red Hat?
+*Why Red Hat*
 
 Red Hat is one of the founding members of the Linux Foundation Open API Initiative (OAI) which produces the leading standard for REST API specifications. Red Hat consistently uses this standard throughout its tooling, starting with the Apicurio Studio API Design editor.
 
-=== Skipping The Lab
+*Skipping The Lab*
 
 If you are planning to skip this lab and follow the next one, here is a https://github.com/hguerrero/3scaleworkshop-openapi/blob/Lab-01/locations-api/Locations-UserX.yaml[link] to the specification generated in this lab.
 
-=== Environment
+*Environment*
 
 *Credentials:*
 
@@ -56,6 +54,8 @@ Once the environment is provisioned, you will be presented with a page that pres
 image::images/design-52.png[design-login]
 
 == Lab Instructions
+
+Perform the steps.
 
 === Step 1: Importing APIs with Apicurio Studio
 
@@ -125,17 +125,17 @@ image::images/design-23.png[design-locations-api]
 
 _Congratulations!_ You have imported your first API definition based on the OpenAPI Specification  using Red Hat's Apicurio.
 
-== Steps Beyond
+*Steps Beyond*
 
 So, you want more? Did you notice the link *source* when editing the _Paths_ or the _Definitions_? Get back to the API editor and follow the link. What do you see? Apicurio lets you follow the form-based editor or go one step beyond and also lets you direct edit the source of your API definition.
 
-== Summary
+*Summary*
 
 In this lab you used Apicurio Studio to import a simple API definition using the OpenAPI Specification (Swagger 2.0). You learned how to author and download a standards compliant API Specification using Red Hat's APICurio.
 
 You can now proceed to link:../lab02/#lab-2[Lab 2]
 
-== Notes and Further Reading
+*Notes and Further Reading*
 
 * Apicurio
  ** https://www.apicur.io[Webpage]

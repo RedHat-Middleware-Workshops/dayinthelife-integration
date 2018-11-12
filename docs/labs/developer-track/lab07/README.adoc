@@ -8,17 +8,17 @@
 * Duration: 20 mins
 * Audience: API Owners, Product Managers, Developers, Architects
 
-== Overview
+*Overview*
 
 The focal point of your developers`' experience is the API developer portal, and the level of effort you put into it will determine the level of decreased support costs and increased developer engagement.
 
-=== Why Red Hat?
+*Why Red Hat*
 
 3scale provides a built-in, state-of-the-art CMS portal, making it very easy to create your own branded hub with a custom domain to manage developer interactions and increase API adoption.
 
 You can customize the look and feel of the entire Developer Portal to match your own branding. You have complete control over every element of the portal, so you can make it as easy as possible for developers to learn how to use your API.
 
-=== Environment
+*Environment*
 
 *Credentials:*
 
@@ -53,6 +53,8 @@ Once the environment is provisioned, you will be presented with a page that pres
 image::images/design-52.png[design-login]
 
 == Lab Instructions
+
+Perform the steps.
 
 === Step 1: Customizing Developer Portal
 
@@ -161,19 +163,19 @@ _Copy down this credentials as it you will use them to authenticate yourself to 
 
 _Congratulations!_ You have successfuly customized your Developer Portal and completed a Sign Up process.
 
-== Steps Beyond
+*Steps Beyond*
 
 So, you want more? Click the *Documentation* link. Where does it takes you? _API Docs_ is where you can add your interactive documentation for your APIs. Is based on the known _Swagger UI_ interface.
 
 You can add from the Admin Portal under _API Docs_ the API definition to generate the live testing.
 
-== Summary
+*Summary*
 
 In this lab you discovered how to add a developer facing experience to your APIs. Developers in your organization or outside of it can now register, gain access to API keys and develop sample applications.
 
 You can now proceed to link:../lab08/#lab-8[Lab 8]
 
-== Notes and Further Reading
+*Notes and Further Reading*
 
 Red Hat 3scale Developer Portal's CMS consists of a few elements:
 

@@ -1,21 +1,19 @@
-= Lab 5
+= Lab  5 API Security
 
-== API Security
-
-=== Securing APIs with OpenID Connect and Red Hat Single Sign On
+Securing APIs with OpenID Connect and Red Hat Single Sign On
 
 * Duration: 20 mins
 * Audience: API Owners, Product Managers, Developers, Architects
 
-== Overview
+*Overview*
 
 Once you have APIs in your organization and have applications being written, you also want to be sure in many cases that the various types of users of the APIs are correctly authenticated. In this lab you will discover how to set up the widely used OpenID connect pattern for Authentication.
 
-=== Why Red Hat?
+*Why Red Hat*
 
 The Red Hat SSO product provides important functionality for managing identities at scale. In this lab you will see how it fits together with 3scale and OpenShift.
 
-=== Skipping The Lab
+*Skipping The Lab*
 
 If you are planning to skip to the next lab, there is an already running OpenID Connect secured API proxy for the Location API Service in this endpoint:
 
@@ -24,7 +22,7 @@ If you are planning to skip to the next lab, there is an already running OpenID 
 https://location-sso.amp.dil.opentry.me:443
 ----
 
-=== Environment
+*Environment*
 
 *Credentials:*
 
@@ -59,6 +57,8 @@ Once the environment is provisioned, you will be presented with a page that pres
 image::images/design-52.png[design-login]
 
 == Lab Instructions
+
+Perform the steps.
 
 === Step 1: Get Red Hat Single Sign On Service Account Credentials
 
@@ -216,11 +216,11 @@ image::images/13-create-app.png[13-create-app.png]
 
 _Congratulations!_ You have now an application to test your OpenID Connect Integration.
 
-== Steps Beyond
+*Steps Beyond*
 
 So, you want more? Login to the Red Hat Single Sign On admin console for your realm if you are not there already. Click on the Clients menu. Now you can check that 3scale zync component creates a new Client in SSO. This new Client has the same ID as the Client ID and Secret from the 3scale admin portal.
 
-== Summary
+*Summary*
 
 Now that you can secure your API using three-leg authentication with Red Hat Single Sign-On, you can leverage the current assets of your organization like current LDAP identities or even federate the authentication using other IdP services.
 
@@ -228,7 +228,7 @@ For more information about Single Sign-On, you can check its https://access.redh
 
 You can now proceed to link:../lab06/#lab-6[Lab 6]
 
-== Notes and Further Reading
+*Notes and Further Reading*
 
 * http://3scale.net[Red Hat 3scale API Management]
 * https://access.redhat.com/products/red-hat-single-sign-on[Red Hat Single Sign On]

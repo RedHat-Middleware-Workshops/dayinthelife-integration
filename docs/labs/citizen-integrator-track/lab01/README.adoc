@@ -1,25 +1,23 @@
-= Lab 1
+= Lab  1 API Design
 
-== API Design
-
-=== Create an OpenAPI Specification using Apicurio Studio
+Create an OpenAPI Specification using Apicurio Studio
 
 * Duration: 10 mins
 * Audience: API Owner, Product Manager, Developers, Architects
 
-== Overview
+*Overview*
 
 As APIs become more widespread in the enterprise, consistent design and usage is critically important to improve reusability. The more reusable APIs are, the less friction there is for other internal or external teams to make progress. Having design standards and tools baked into the API development and maintenance process is a very powerful way to enable this consistency.
 
-=== Why Red Hat?
+*Why Red Hat*
 
 Red Hat is one of the founding members of the Linux Foundation OpenAPI Initiative (OAI) which produces the leading standard for REST API specifications. Red Hat consistently uses this standard throughout its tooling, starting with the Apicurio Studio API Designer editor.
 
-=== Skipping The Lab
+*Skipping The Lab*
 
 If you are planning to skip this lab and follow the next one, here is a https://github.com/RedHatWorkshops/dayinthelife-integration/tree/master/docs/labs/citizen-integrator-track/resources[link] to the specification generated in this lab.
 
-=== Environment
+*Environment*
 
 *Credentials:*
 
@@ -54,6 +52,8 @@ Once the environment is provisioned, you will be presented with a page that pres
 image::images/design-52.png[design-login]
 
 == Lab Instructions
+
+Perform the steps.
 
 === Step 1: Creating APIs with Apicurio Studio
 
@@ -372,17 +372,17 @@ image::images/design-24.png[design-api-source]
 
 _Congratulations!_ You have created your first API definition based on the OpenAPI Specification  using Red Hat's Apicurio. Don't lose track of the file, you will use this definition for your next lab.
 
-== Steps Beyond
+*Steps Beyond*
 
 So, you want more? Did you notice the link *source* when editing the _Paths_ or the _Definitions_? Get back to the API editor and follow the link. What do you see? Apicurio lets you follow the form-based editor or go one step beyond and also lets you direct edit the source of your API definition.
 
-== Summary
+*Summary*
 
 In this lab you used Apicurio Studio to create a simple API definition using the OpenAPI Specification. You learned how to author and download a standards compliant API Specification using Red Hat's APICurio.
 
 You can now proceed to link:../lab02/#lab-2[Lab 2]
 
-== Notes and Further Reading
+*Notes and Further Reading*
 
 * Apicurio
  ** https://www.apicur.io[Webpage]
