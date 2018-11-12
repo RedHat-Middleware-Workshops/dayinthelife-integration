@@ -1,0 +1,16 @@
+= Setup a Jenkins Pipeline for Integration flow deployment on Openshift
+
+Blah
+
+[discrete]
+=== Prerequisites
+
+. Ensure you have installed a Java IDE.  JBDS is also suffice for this lab.
+. An account with https://launch.openshift.io/[OpenShift.IO]
+
+[discrete]
+=== Procedure
+
+To begin, we need to download the booster-circuitbreaker project from OpenShift.IO.
+
+. Login to https://launch.openshift.io/

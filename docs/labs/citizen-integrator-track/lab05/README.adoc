@@ -1,0 +1,235 @@
+= Lab 5
+
+== API Security
+
+=== Securing APIs with OpenID Connect and Red Hat Single Sign On
+
+* Duration: 20 mins
+* Audience: API Owners, Product Managers, Developers, Architects
+
+== Overview
+
+Once you have APIs in your organization and have applications being written, you also want to be sure in many cases that the various types of users of the APIs are correctly authenticated. In this lab you will discover how to set up the widely used OpenID connect pattern for Authentication.
+
+=== Why Red Hat?
+
+The Red Hat SSO product provides important functionality for managing identities at scale. In this lab you will see how it fits together with 3scale and OpenShift.
+
+=== Skipping The Lab
+
+If you are planning to skip to the next lab, there is an already running OpenID Connect secured API proxy for the Location API Service in this endpoint:
+
+[source,bash]
+----
+https://location-sso.amp.dil.opentry.me:443
+----
+
+=== Environment
+
+*Credentials:*
+
+Your username is your assigned user number. For example, if you are assigned user number *1*, your username is:
+
+[source,bash]
+----
+user1
+----
+
+Please ask your instructor for your password.
+
+*URLs:*
+
+If you haven't done so already, you need to login to the *Red Hat Solution Explorer* webpage so that a unique lab environment can be provisioned on-demand for your exclusive use.  You should open a web browser and navigate to:
+
+[source,bash]
+----
+https://tutorial-web-app-webapp.dil.opentry.me
+----
+
+You will be presented with a login page where you can enter your unique credentials:
+
+image::images/design-50.png[design-login]
+
+Enter your credentials and click *Log in*.  You'll notice a web-page appear which explains that a _unique environment_ is being provisioned.
+
+image::images/design-51.png[design-login]
+
+Once the environment is provisioned, you will be presented with a page that presents all the available applications which you'll need in order to complete the labs:
+
+image::images/design-52.png[design-login]
+
+== Lab Instructions
+
+=== Step 1: Get Red Hat Single Sign On Service Account Credentials
+
+. Open a browser window and navigate to:
++
+[source,bash]
+----
+ https://secure-sso-sso.dil.opentry.me/auth/admin/userX/console
+----
++
+_Remember to replace the `X` variable in the URL with your assigned user number._
+
+. Log into Red Hat Single Sign On using your designated <<environment,user and password>>. Click on *Sign In*.
++
+image::images/00-login-sso.png[00-login-sso.png]
+
+. Select *Clients* from the left menu.
++
+image::images/00-clients.png[00-clients.png]
++
+_A 3scale-admin client and service account was already created for you_.
+
+. Click on the *3scale-admin* link to view the details.
++
+image::images/00-3scale-admin.png[00-3scale-admin.png]
+
+. Click the *Credentials* tab.
++
+image::images/00-sa-credentials.png[00-sa-credentials.png]
+
+. Take notice of the service account *Secret*. Copy and save it or write it down as you will use it to configure 3scale.
++
+image::images/00-sa-secret.png[00-sa-secret.png]
+
+=== Step 2: Add User to Realm
+
+. Click on the Users menu on the left side of the screen.
++
+image::images/00-users.png[00-users.png]
+
+. Click the *Add user* button.
++
+image::images/00-add-user.png[00-add-user.png]
+
+. Type *apiuser* as the Username.
++
+image::images/00-username.png[00-username.png]
+
+. Click on the *Save* button.
+. Click on the *Credentials* tab to reset the password. Type *apipassword* as the _New Password_ and _Password Confirmation_. Turn OFF the *Temporary* to avoid the password reset at the next login.
++
+image::images/00-user-credentials.png[00-user-credentials.png]
+
+. Click on *Reset Password*.
+. Click on the *Change password* button in the pop-up dialog.
++
+image::images/00-change-password.png[00-change-password.png]
++
+_Now you have a user to test your integration._
+
+=== Step 3: Configure 3scale Integration
+
+. Open a browser window and navigate to:
++
+[source,bash]
+----
+ https://userX-admin.dil.opentry.me/p/login
+----
++
+_Remember to replace the X with your user number._
+
+. Accept the self-signed certificate if you haven't.
+. Log into 3scale using your designated <<environment,user and password>>. Click on *Sign In*.
++
+image::images/01-login.png[01-login.png]
+
+. The first page you will land is the _API Management Dashboard_. Click on the *API* menu link.
++
+image::images/01a-dashboard.png[01a-dashboard.png]
+
+. This is the _API Overview_ page. Here you can take an overview of all your services. Click on the *Integration* link.
++
+image::images/02-api-integration.png[02-api-integration.png]
+
+. Click on the *edit integration settings* to edit the API settings for the gateway.
++
+image::images/03-edit-settings.png[03-edit-settings.png]
+
+. Scrolll down the page, under the _Authentication_ deployment options, select *OpenID Connect*.
++
+image::images/04-authentication.png[04-authentication.png]
+
+. Click on the *Update Service* button.
+. Dismiss the warning about changing the Authentication mode by clicking *OK*.
++
+image::images/04b-authentication-warning.png[04b-authentication-warning.png]
+
+. Back in the service integration page, click on the *edit APIcast configuration*.
++
+image::images/05-edit-apicast.png[05-edit-apicast.png]
+
+. Scroll down the page and expand the authentication options by clicking the *Authentication Settings* link.
++
+image::images/05-authentication-settings.png[05-authentication-settings.png]
+
+. In the *OpenID Connect Issuer* field, type in your previously noted client credentials with the URL of your Red Hat Single Sing On instance:
++
+[source,bash]
+----
+ http://3scale-admin:CLIENT_SECRET@sso-sso.dil.opentry.me/auth/realms/userX
+----
++
+_Remember to replace the X with user number_
++
+image::images/06-openid-issuer.png[06-openid-issuer.png]
+
+. Scroll down the page and click on the *Update Staging Environment* button.
++
+image::images/08-back-integration.png[08-back-integration.png]
+
+. After the reload, scroll down again and click the *Back to Integration & Configuration* link.
++
+image::images/07-update-environment.png[07-update-environment.png]
+
+. Promote to Production by clicking the *Promote to Production* button.
++
+image::images/08a-promote-production.png[08a-promote-production.png]
+
+=== Step 4: Create a Test App
+
+. Go to the _Developers_ tab and click on *Developers*.
++
+image::images/09-developers.png[09-developers.png]
+
+. Click on the *Applications* link.
++
+image::images/10-applications.png[10-applications.png]
+
+. Click on *Create Application* link.
++
+image::images/11-create-application.png[11-create-application.png]
+
+. Select *Basic* plan from the combo box. Type the following information:
+ ** Name: *Secure App*
+ ** Description: *OpenID Connect Secured Application*
+
++
+image::images/12-application-details.png[12-application-details.png]
+. Finally, scroll down the page and click on the *Create Application* button.
++
+image::images/13-create-app.png[13-create-app.png]
+
+. Update the *Redirect URL* to http://www-userX.dil.opentry.me/_. And note the *API Credentials_. Write them down as you will need the *Client ID* and the *Client Secret* to test your integration.
+ image:images/14-app-credentials.png[14-app-credentials.png]
+
+_Congratulations!_ You have now an application to test your OpenID Connect Integration.
+
+== Steps Beyond
+
+So, you want more? Login to the Red Hat Single Sign On admin console for your realm if you are not there already. Click on the Clients menu. Now you can check that 3scale zync component creates a new Client in SSO. This new Client has the same ID as the Client ID and Secret from the 3scale admin portal.
+
+== Summary
+
+Now that you can secure your API using three-leg authentication with Red Hat Single Sign-On, you can leverage the current assets of your organization like current LDAP identities or even federate the authentication using other IdP services.
+
+For more information about Single Sign-On, you can check its https://access.redhat.com/products/red-hat-single-sign-on[page].
+
+You can now proceed to link:../lab06/#lab-6[Lab 6]
+
+== Notes and Further Reading
+
+* http://3scale.net[Red Hat 3scale API Management]
+* https://access.redhat.com/products/red-hat-single-sign-on[Red Hat Single Sign On]
+* https://developers.redhat.com/blog/2017/11/21/setup-3scale-openid-connect-oidc-integration-rh-sso/[Setup OIDC with 3scale]

@@ -1,0 +1,192 @@
+= Lab 7
+:experimental:
+
+== API Developer Portal
+
+=== Publishing APIs to Developer Portal
+
+* Duration: 20 mins
+* Audience: API Owners, Product Managers, Developers, Architects
+
+== Overview
+
+The focal point of your developers`' experience is the API developer portal, and the level of effort you put into it will determine the level of decreased support costs and increased developer engagement.
+
+=== Why Red Hat?
+
+3scale provides a built-in, state-of-the-art CMS portal, making it very easy to create your own branded hub with a custom domain to manage developer interactions and increase API adoption.
+
+You can customize the look and feel of the entire Developer Portal to match your own branding. You have complete control over every element of the portal, so you can make it as easy as possible for developers to learn how to use your API.
+
+=== Environment
+
+*Credentials:*
+
+Your username is your assigned user number. For example, if you are assigned user number *1*, your username is:
+
+[source,bash]
+----
+user1
+----
+
+Please ask your instructor for your password.
+
+*URLs:*
+
+If you haven't done so already, you need to login to the *Red Hat Solution Explorer* webpage so that a unique lab environment can be provisioned on-demand for your exclusive use.  You should open a web browser and navigate to:
+
+[source,bash]
+----
+https://tutorial-web-app-webapp.dil.opentry.me
+----
+
+You will be presented with a login page where you can enter your unique credentials:
+
+image::images/design-50.png[design-login]
+
+Enter your credentials and click *Log in*.  You'll notice a web-page appear which explains that a _unique environment_ is being provisioned.
+
+image::images/design-51.png[design-login]
+
+Once the environment is provisioned, you will be presented with a page that presents all the available applications which you'll need in order to complete the labs:
+
+image::images/design-52.png[design-login]
+
+== Lab Instructions
+
+=== Step 1: Customizing Developer Portal
+
+. Open a browser window and navigate to:
++
+[source,bash]
+----
+ https://userX-admin.dil.opentry.me/p/login
+----
++
+_Remember to replace `X` with your user number._
+
+. Accept the self-signed certificate if you haven't.
+. Log into 3scale using your designated <<environment,user and password>>. Click on *Sign In*.
++
+image::images/01-login.png[01-login.png]
+
+. Click on the *Developer Portal* tab to access the developer portal settings.
++
+image::images/10-developer-portal.png[10-developer-portal.png]
+
+. On the right menu select *Home Page*, and replace the entire content with what's in the example link https://raw.githubusercontent.com/RedHatWorkshops/dayinthelife-integration/master/docs/labs/developer-track/lab07/support/homepage.example[example]
++
+image::images/15-homepage-devportal.png[15-homepage-devportal.png]
+
+. Replace the CHANGE_ME_URL to the PLAN_URL you get from last lab.
++
+image::images/16-replace.png[16-replace.png]
+
+. Click the _Publish_ button at the bottom of the editor to save the changes and made them available in the site.
++
+image::images/14-publish-devportal.png[14-publish-devportal.png]
+
+. Click on the *API* Tab, select the *Integration* link under *SSO Location API*, and click on the *Application Plans* on the left menu when it shows up. And publish your application plan by clicking in on the *Publish* option on the page.
++
+image::images/17-publishplan.png[17-publishplan.png]
+
+. Go back to your *Developer Portal* tab. Click on the *Visit Developer Portal* to take a look of how your developer portal looks like.
++
+image::images/11-visit-devportal.png[11-visit-devportal.png]
+
+=== Step 2: Register New Accounts Using Developer Portal
+
+. Take the place of one of your developers and signup for the *Secure* plan.
++
+image::images/16a-signup-limited.png[16a-signup-limited.png]
+
+. Fill in your information and an email to register as a developer. Click on the *Sign up* button.
++
+image::images/16b-signup-form.png[16b-signup-form.png]
+
+. The system will try to send a message with an activation link.
++
+image::images/16bb-signup-thankyou.png[16bb-signup-thankyou.png]
++
+_Currently the lab environment doesn't have a configured email server, so we won't be able to receive the email_.
+
+. Go back to your _Admin Portal_ tab and navigate to *Developers* to activate the new account.
++
+image::images/16bc-developers-tab.png[16bc-developers-tab.png]
+
+. Find your user under the _Accounts_ and click the *Activate* link.
++
+image::images/16cc-activate-account.png[16cc-activate-account.png]
++
+_Your user is now active and can log into the portal_.
+
+. Now we need to make sure the the application will redirect the user to the correct page after successful login. Go to the Developer tab and click on the user you have create in the previous steps.
++
+image::images/20-developers.png[20-developers.png]
+
+. Select the application for the `SSO Location API` service
++
+image::images/21-select-application.png[21-select-application.png]
+
+. Update redirect link to http://www-userX.dil.opentry.me/*
++
+image::images/22-updare-redirect-link.png[22-updare-redirect-link.png]
+
+=== Step 3: Login to Developer Portal
+
+. As your portal is not currently public, you will need your portal code to login. You can get the code in your admin portal navigating to: menu:Settings[Developer Portal > Domains & Access].
++
+image::images/16d-access-portal.png[16d-access-portal.png]
+
+. Open a new _Incognito/Private_ browser window to test the Developer Portal login. Navigate to:
++
+[source,bash]
+----
+ https://userX.dil.opentry.me/
+----
+
+. Type your portal code to finish the login.
++
+image::images/16e-ingress-code.png[16e-ingress-code.png]
+
+. Sign in to the portal.
++
+image::images/16f-dev-signin.png[16f-dev-signin.png]
+
+. You will land in the developers homepage, where you will be able to check your developers settings and retrieve your newly created *Client ID* and *Client Secret*.
++
+image::images/16g-user-credentials.png[16g-user-credentials.png]
++
+_Copy down this credentials as it you will use them to authenticate yourself to the managed API_.
+
+_Congratulations!_ You have successfuly customized your Developer Portal and completed a Sign Up process.
+
+== Steps Beyond
+
+So, you want more? Click the *Documentation* link. Where does it takes you? _API Docs_ is where you can add your interactive documentation for your APIs. Is based on the known _Swagger UI_ interface.
+
+You can add from the Admin Portal under _API Docs_ the API definition to generate the live testing.
+
+== Summary
+
+In this lab you discovered how to add a developer facing experience to your APIs. Developers in your organization or outside of it can now register, gain access to API keys and develop sample applications.
+
+You can now proceed to link:../lab08/#lab-8[Lab 8]
+
+== Notes and Further Reading
+
+Red Hat 3scale Developer Portal's CMS consists of a few elements:
+
+* Horizontal menu in the Admin Portal with access to content, redirects, and changes
+* The main area containing details of the sections above
+* CMS mode, accessible through the preview option
+
+image::images/09-developer-portal.png[09-developer-portal.png]
+
+https://github.com/Shopify/liquid[Liquid] is a simple programming language used for displaying and processing most of the data from the 3scale system available for API providers. In 3scale, it is used to expose server-side data to your API developers, greatly extending the usefulness of the CMS while maintaining a high level of security.
+
+=== Links
+
+* https://access.redhat.com/documentation/en-us/red_hat_3scale/2.2/html/developer_portal/[Developer Portal Documentation]
+* https://github.com/Shopify/liquid[Liquid markup language]
+* https://www.shopify.com/partners/blog/115244038-an-overview-of-liquid-shopifys-templating-language[And Overview of Liquid]

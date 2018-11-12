@@ -1,0 +1,229 @@
+= Lab 5
+:experimental:
+
+== Fuse Online
+
+* Duration: 20 mins
+* Audience: Developers and Architects
+
+== Overview
+
+When it comes to quick API development, you need both the integration experts as well as application developers to easily develop, deploy the APIs. Here is how to create a simple API with Fuse online.
+
+=== Why Red Hat?
+
+Red Hat Fuse integration solution empowers integration experts, application developers, and business users to engage in enterprise-wide collaboration and high-productivity self-service.
+
+=== Environment
+
+*Credentials:*
+
+Your username is your assigned user number. For example, if you are assigned user number *1*, your username is:
+
+[source,bash]
+----
+user1
+----
+
+Please ask your instructor for your password.
+
+*URLs:*
+
+If you haven't done so already, you need to login to the *Red Hat Solution Explorer* webpage so that a unique lab environment can be provisioned on-demand for your exclusive use.  You should open a web browser and navigate to:
+
+[source,bash]
+----
+https://tutorial-web-app-webapp.dil.opentry.me
+----
+
+You will be presented with a login page where you can enter your unique credentials:
+
+image::images/design-50.png[design-login]
+
+Enter your credentials and click *Log in*.  You'll notice a web-page appear which explains that a _unique environment_ is being provisioned.
+
+image::images/design-51.png[design-login]
+
+Once the environment is provisioned, you will be presented with a page that presents all the available applications which you'll need in order to complete the labs:
+
+image::images/design-52.png[design-login]
+
+== Lab Instructions
+
+=== Step 1: Create database connection
+
+. Via the *Red Hat Solution Explorer* webpage, click the *Red Hat Fuse* link:
++
+image::images/design-53.png[00-design-53.png]
+
+. The first time that you hit the Fuse Online URL, you will be presented with an _Authorize Access_ page.  Click the *Allow selected permissions* button to accept the defaults.
++
+image::images/design-54.png[00-design-54.png]
+
+. Click on menu:Connections[Create Connection]
++
+image::images/00-create-connection.png[00-create-connection.png]
+
+. Select *Database*
++
+image::images/01-select-database.png[01-select-database.png]
+
+. Enter below values for Database Configuration
++
+----
+ Connection URL: jdbc:postgresql://postgresql.OCPPROJECT.svc:5432/sampledb
+ Username      : dbuser
+ Password      : password
+ Schema        : <blank>
+----
++
+_Remember to replace the OCPPROJECT with the OpenShift project(NameSpace) you created in last lab._
+
+. Click *Validate* and verify if the connection is successful. Click *Next* to proceed.
+
+image::images/02-click-validate.png[02-click-validate.png]
+
+. Add `Connection details`. `Connection Name: LocationDB` and `Description: Location Database`. Click *Create*.
++
+image::images/03-connection-details.png[03-connection-details.png]
+
+. Verify that the `Location Database` is successfully created.
+
+=== Step 2: Create webhook integration
+
+Description goes here
+
+. Click on menu:Integrations[Create Integration]
+
+image::images/04-create-integration.png[04-create-integration.png]
+
+. Choose *Webhook*
+
+image::images/05-choose-weebhook.png[05-choose-weebhook.png]
+
+. Click on `Incoming webhook`
+
+image::images/06-incoming-webhook.png[06-incoming-webhook.png]
+
+. It navigates to the `Webhook Token` screen. Click *Next*
+
+image::images/07-webhook-configuration.png[07-webhook-configuration.png]
+
+. Define the Output Data Type. `Select type` from the dropdown as `JSON instance`. Enter `Data type Name: Custom`. `Defination: `, copy below JSON data. Click *Done*.
++
+----
+     {
+       "id": 1,
+       "name": "Kamarhati",
+       "type": "Regional Branch",
+       "status": "1",
+       "location": {
+         "lat": "-28.32555",
+         "lng": "-5.91531"
+       }
+     }
+----
+
+*Screenshot*
+
+image::images/08-data-type.png[08-data-type.png]
+
+. Click on `LocationDB` from the catalog and then select `Invoke SQL`
+
+image::images/09-invoke-sql.png[09-invoke-sql.png]
+
+. Enter the SQL statement and click *Done*.
+
+----
+   INSERT INTO locations (id,name,lat,lng,location_type,status) VALUES (:#id,:#name,:#lat,:#lng,:#location_type,:#status )
+----
+
+*Screenshot*
+
+image::images/10-invoke-sql-2.png[10-invoke-sql-2.png]
+
+. Click on `Add step` and select `Data mapper`
+
+image::images/11-data-mapper.png[11-data-mapper.png]
+
+. Drag and drop the matching *Source* Data types to all their corresponding *Targets* as per the following screenshot. When finished, click *Done*.
+
+image::images/12-configure-mapper.png[12-configure-mapper.png]
+
+. Click *Publish* on the next screen and add `Integration Name: addLocation`. Again Click *Publish*.
+
+image::images/13-publish-integration.png[13-publish-integration.png]
+
+_Congratulations_. You sucessfully published the integration. (Wait for few minutes to build and publish the integration)
+
+=== Step 3: Create a POST request
+
+We will use an online cURL tool to create the `101th` record field in database.
+
+. Copy the `External URL` per the below screenshot
++
+image::images/14-copy-URL.png[14-copy-URL.png]
+
+. Open a browser window and navigate to:
++
+----
+  https://onlinecurl.com/
+----
+
+. Below are the values for the request. Note: `id:101` in the payload as we are creating `101th` record in the database.
++
+----
+  URL: https://i-addlocation-fuse-18308937-d7b6-11e8-96c6-0a580a810006.dil.opentry.me/webhook/4dTcVchE8evWz3dVvtHFK3wvfFbFzpVLPEMq1TkcF0MGIbJmu4
+
+  --header (-H):  Content-Type: application/json
+
+  --data (-d): {"id": 101, "name": "Kamarhati", "type": "Regional Branch", "status": "1", "location": { "lat": "-28.32555", "lng": "-5.91531" }}
+
+  --request (-X): POST
+----
++
+image::images/15-online-curl.png[15-online-curl.png]
+
+. The page will load the `204` response information from the service which means the request was successfully fulfilled.
++
+image::images/16-response-header.png[16-response-header.png]
+
+. Click on menu:Activity[Refresh] and verify if the newly record is created.
++
+image::images/17-activity-refresh.png[17-activity-refresh.png]
+
+. _(Optional)_ Visit the application URL in browser and verify if the record can be fetched.
+
+*REQUEST*
+
+----
+   http://location-service-international.dil.opentry.me/locations/101
+----
+
+*RESPONSE*
+
+----
+    {
+      "id" : 101,
+      "name" : "Kamarhati",
+      "type" : "Regional Branch",
+      "status" : "1",
+      "location" : {
+        "lat" : "-28.32555",
+        "lng" : "-5.91531"
+      }
+    }
+----
+
+== Summary
+
+In this lab you discovered how to create an adhoc API service using Fuse Online.
+
+You can now proceed to link:../lab06/#lab-6[Lab 6]
+
+== Notes and Further Reading
+
+* Fuse Online
+ ** https://www.redhat.com/en/technologies/jboss-middleware/fuse-online[Webpage]
+ ** https://access.redhat.com/documentation/en-us/red_hat_fuse/7.1/html-single/fuse_online_sample_integration_tutorials/index[Sample tutorials]
+ ** https://developers.redhat.com/blog/2017/11/02/work-done-less-code-fuse-online-tech-preview-today/[Blog]

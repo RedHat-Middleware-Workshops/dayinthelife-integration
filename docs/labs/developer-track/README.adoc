@@ -1,0 +1,14 @@
+= Agenda
+
+== Audience: API Developer
+
+=== Scope: Walk the user through an API development and integration process leveraging OpenShift, Ansible, Apicurio, Microcks, Fuse, 3scale AMP
+
+. link:lab01/#lab-1[Review Apicurio API Designer]
+. link:lab02/#lab-2[Microcks API Mocking]
+. link:lab03/#lab-3[Swagger to Rest and DB (with Che)]
+. link:lab04/#lab-4[SOAP to Rest]
+. link:lab05/#lab-5[Fuse Online]
+. link:lab06/#lab-6[Setup 3scale management]
+. link:lab07/#lab-7[API Developer Portal]
+. link:lab08/#lab-8[Securing Node.js endpoint development]

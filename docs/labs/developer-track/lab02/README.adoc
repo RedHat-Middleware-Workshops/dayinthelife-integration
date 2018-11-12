@@ -1,0 +1,229 @@
+= Lab 2
+
+== API Mocking
+
+=== Bring your APIs to life
+
+* Duration: 20 mins
+* Audience: Developers, Architects, Testers, Quality Engineers
+
+== Overview
+
+When building and working with APIs, you often need to simulate the responses of the system before it has been fully completed. This is what we explore in this workshop - mocking up API structures quickly so they can be subjected to testing withouth having to create all the final service code.
+
+=== Why Red Hat?
+
+Red hat combines and number of commercial and Open Source tools to cover each part of the API Design lifecycle. In this lab we'll be using the http://microcks.github.io/[Microcks] open source tool.
+
+=== Skipping The Lab
+
+If you are planning to follow the next lab, here is a link:wip-link[link] to the REST mock service running the Location API.
+
+=== Environment
+
+*Credentials:*
+
+Your username is your assigned user number. For example, if you are assigned user number *1*, your username is:
+
+[source,bash]
+----
+user1
+----
+
+Please ask your instructor for your password.
+
+*URLs:*
+
+If you haven't done so already, you need to login to the *Red Hat Solution Explorer* webpage so that a unique lab environment can be provisioned on-demand for your exclusive use.  You should open a web browser and navigate to:
+
+[source,bash]
+----
+https://tutorial-web-app-webapp.dil.opentry.me
+----
+
+You will be presented with a login page where you can enter your unique credentials:
+
+image::images/design-50.png[design-login]
+
+Enter your credentials and click *Log in*.  You'll notice a web-page appear which explains that a _unique environment_ is being provisioned.
+
+image::images/design-51.png[design-login]
+
+Once the environment is provisioned, you will be presented with a page that presents all the available applications which you'll need in order to complete the labs:
+
+image::images/design-52.png[design-login]
+
+== Lab Instructions
+
+=== Prerequisite: Setup the collaboration environment using Git (Gogs)
+
+For the Developer track, we require a collaboration environment based on Git. For this purpose, we  decided to use Gogs which is a hosted, lighter-weight version of Gitlab. This lab environment has created a user for you in Gogs.
+
+Follow this instructions to set up the repository.
+
+. Open a browser window and navigate to:
++
+[source,bash]
+----
+ http://gogs.dil.opentry.me/
+----
+
+. Log into Gogs using your designated <<environment,user and password>>. Click on *Sign In*.
++
+image::images/mock-01.png[mock-sign-in]
+
+. In the main page, click in the *+* sign in the right top corner to display the _New_ menu. Click the *New Migration* option.
++
+image::images/mock-02.png[mock-gogs-new]
+
+. Fill in the information of the repository migration with the following values:
+ ** Clone Address: *https://github.com/RedHatWorkshops/dayinthelife-openapi.git*
+ ** Owner: *UserX*
+ ** Repository Name: *locations-api*
+
++
+image::images/mock-03.png[mock-gogs-migration]
+. Click on *Migrate Repository* to fork the GitHub repo into Gogs.
+. Switch to branch `dev-track-lab-02`
++
+image::images/mock-04.png[mock-gogs-upload]
+
+. Open the `locations-api` folder and click on the filename link *Locations-UserX.json* to open and review the file.
++
+image::images/mock-05.png[mock-gogs-file]
+
+. If everything is fine, click the *Edit* button to apply your personal user settings.
++
+image::images/mock-06.png[mock-gogs-file]
+
+. Replace *UserX* with your user number.
++
+image::images/mock-07.png[mock-gogs-file]
+
+. Commit the changes to gogs.
++
+image::images/mock-08.png[mock-gogs-file]
+
+. Click the *RAW* button to get the raw download version of the file.
++
+image::images/mock-09.png[mock-gogs-file]
+
+. Copy the browser tab URL. Store that URL address as you will use it in the next steps of the lab. The URL should look like the following:
++
+[source,bash]
+----
+  http://gogs.dil.opentry.me/userX/locations-api/raw/dev-track-lab-02/locations-api/Locations-UserX.json
+----
++
+_If you feel more comfortable, you can also copy and paste the RAW button link from the previous step.  Also, don't forget to update the X variable with your user number_.
+
+=== Step 1: Create a Microcks Job
+
+. Open a browser window and navigate to:
++
+[source,bash]
+----
+ http://microcks.dil.opentry.me/
+----
+
+. Log in into Microks using your designated <<environment,user and password>>.
++
+image::images/mock-10.png[mock-openshift-login]
+
+. You are now in the main Microcks page. Click the *Importers* button to access the Importers page.
++
+image::images/mock-11.png[mock-jobs]
+
+. Click the *Create* button to create your first job.
++
+image::images/mock-12.png[mock-jobs]
+
+. In the `Create a New Job` dialog, type in the following information replacing *X* with your user number. Click *Next*.
+ ** Name: *Locations-UserX*
+ ** Repository URL: *http://gogs.dil.opentry.me/userX/locations-api/raw/dev-track-lab-02/locations-api/Locations-UserX.json*
+
++
+_You can also copy and paste the raw url you saved from the Gogs repository (Step 0)_.
++
+image::images/mock-13.png[mock-job-details]
+. Click *Next* for the Authentication options.
+. Review the details and click on *Create* to creat the job.
++
+image::images/mock-14.png[mock-job-details]
+
+. After your job is created, click on the *Activate* option.
++
+image::images/mock-15.png[mock-job-activate]
+
+. Repet the last step, but now select the *Force Import* option. This will start the synchronization job.
++
+image::images/mock-16.png[mock-job-start]
+
+. Refresh your window to get it to the latest state.
+. You will see 3 labels next to your Job. Click the *Services* label.
++
+image::images/mock-17.png[mock-job-services]
+
+. In the dialog you will see your service listed. Click on the *Locations-UserX - 1.0.0.* link.
++
+image::images/mock-18.png[mock-job-service]
+
+. Click *Close* to dismiss the dialog.
+. This is your new REST mock service based on the OpenAPI definition you just loaded to Microcks. Click on the arrow to expand the *GET /locations* operation.
++
+image::images/mock-19.png[mock-mock-service]
+
+. You can check that the example we added to the definition in xref:lab01.adoc[Lab 1] will be used to return the mock values. Scroll down, copy and save the *Mocks URL*, we will use that endpoint to test the REST mock service.
++
+image::images/mock-20.png[mock-mock-operation]
+
+=== Step 2: Test the REST Mock Service
+
+We now have a working REST mock service listening for requests. We will use an online cURL tool to test it.
+
+. Open a browser window and navigate to:
++
+[source,bash]
+----
+ https://onlinecurl.com/
+----
+
+. Copy and paste the Mock URL from earlier step. It should look like.
++
+_Remember to replace X with your user number_.
++
+[source,bash]
+----
+ http://microcks.dil.opentry.me/rest/Locations-UserX/1.0.0/locations
+----
+
+. Click the *START YOUR CURL* button.
++
+image::images/mock-21.png[mock-curl-service]
+
+. The page will load the response information from the service. You will be able to see the _RESPONSE HEADERS_ and the actual _RESPONSE_BODY_. This last part contains the examples we add during the design phase.
++
+image::images/mock-22.png[mock-curl-response]
+
+_Congratulations!_ You have successfully configure a Microcks Job to create a REST mock service to test your API.
+
+== Steps Beyond
+
+____
+So, you want more? ...
+____
+
+== Summary
+
+In this lab you used Microcks to configure a REST mock service for the API definition you created in the previous lab. REST mock services allows you to simulate a REST API service when you are in a prototyping stage of your API program journey.
+
+Microcks allows you to test a number of various responses for client application requests. When deploying API, micro-services or SOA practices at large scale, Microcks solves the problems of providing and sharing consistent documentation and mocks to the involved teams. It acts as a central repository and server that can be used for browsing but also by your Continuous Integration builds or pipelines.
+
+You can now proceed to link:../lab03/#lab-3[Lab 3]
+
+== Notes and Further Reading
+
+* Microcks
+ ** http://microcks.github.io/[Webpage]
+ ** http://microcks.github.io/automating/jenkins/[Jenkins Plugin]
+ ** http://microcks.github.io/installing/openshift/[Installing on OpenShift]

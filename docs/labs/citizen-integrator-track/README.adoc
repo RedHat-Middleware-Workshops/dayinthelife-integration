@@ -1,0 +1,13 @@
+= Agenda
+
+== Audience: API Integrator
+
+=== Scope: Walk the user through an API Design and management using Apicurio, Microcks, Fuse Online, 3scale API Management
+
+. link:lab01/#lab-1[Design an API with Apicurio]
+. link:lab02/#lab-2[Review mocked endpoints in Microcks]
+. link:lab03/#lab-3[Fuse Online]
+. link:lab04/#lab-4[Managing API Endpoints]
+. link:lab05/#lab-5[API Security]
+. link:lab06/#lab-6[API Developer Portal]
+. link:lab07/#lab-7[Testing the International Inc. Locations webpage]
