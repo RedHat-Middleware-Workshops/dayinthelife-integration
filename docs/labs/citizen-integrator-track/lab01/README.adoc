@@ -1,3 +1,4 @@
+:imagesdir: https://github.com/RedHatWorkshops/dayinthelife-integration/raw/master/docs/labs/citizen-integrator-track/lab01/
 = Lab  1 API Design
 
 Create an OpenAPI Specification using Apicurio Studio
