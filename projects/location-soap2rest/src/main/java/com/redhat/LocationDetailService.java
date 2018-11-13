@@ -19,10 +19,10 @@ import javax.xml.ws.Service;
                   targetNamespace = "http://redhat.com/")
 public class LocationDetailService extends Service {
 
-    public final static URL WSDL_LOCATION;
+    public static final URL WSDL_LOCATION;
 
-    public final static QName SERVICE = new QName("http://redhat.com/", "LocationDetailService");
-    public final static QName LocationDetailServicePort = new QName("http://redhat.com/", "LocationDetailServicePort");
+    public static final QName SERVICE = new QName("http://redhat.com/", "LocationDetailService");
+    public static final QName LocationDetailServicePort = new QName("http://redhat.com/", "LocationDetailServicePort");
     static {
         URL url = null;
         try {

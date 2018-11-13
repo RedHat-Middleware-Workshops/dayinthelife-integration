@@ -24,8 +24,8 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _Contact_QNAME = new QName("http://redhat.com/", "contact");
-    private final static QName _ContactResponse_QNAME = new QName("http://redhat.com/", "contactResponse");
+    private static final QName _Contact_QNAME = new QName("http://redhat.com/", "contact");
+    private static final QName _ContactResponse_QNAME = new QName("http://redhat.com/", "contactResponse");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.redhat
