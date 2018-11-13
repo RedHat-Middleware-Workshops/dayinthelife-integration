@@ -159,7 +159,7 @@ Once the environment is provisioned, you will be presented with a page that pres
 
     *Copy down this credentials as it you will use them to authenticate yourself to the managed API*.
 
-*Congratulations!* You have successfuly customized your Developer Portal and completed a Sign Up process.
+*Congratulations!* You have successfully customized your Developer Portal and completed a Sign Up process.
 
 ## Steps Beyond
 

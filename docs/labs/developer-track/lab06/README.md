@@ -9,7 +9,7 @@
 
 ## Overview
 
-Once you have APIs deployed in your environment, it becomes critically important to manage who may use them and for what purpose. You also need to begin to track usage of these different users to know who is/is not succeeding in their usage. For this reason in this lab you will be adding management capabilites to the API to give you control and visibility of it's usage.
+Once you have APIs deployed in your environment, it becomes critically important to manage who may use them and for what purpose. You also need to begin to track usage of these different users to know who is/is not succeeding in their usage. For this reason in this lab you will be adding management capabilities to the API to give you control and visibility of it's usage.
 
 ### Why Red Hat?
 
@@ -59,7 +59,7 @@ Once the environment is provisioned, you will be presented with a page that pres
 
 ### Step 1: Get API Token for Automation
 
-Your 3scale Admin Portal provides access to a number of configuration features. An adminstration token is needed when automating setups for your API. This step will let you create a new token for setup.
+Your 3scale Admin Portal provides access to a number of configuration features. An administration token is needed when automating setups for your API. This step will let you create a new token for setup.
 
 1. Open a browser window and navigate to:
 

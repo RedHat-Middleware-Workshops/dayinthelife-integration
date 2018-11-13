@@ -9,7 +9,7 @@
 
 ### Overview
 
-APIs provide the building blocks for applications, but it is applications which deliver functionality to the end users. hence to see APIs in action it helps to see how applications can call APIs to provide new functionality. In this lab you'll be able to create a simple web application which consumes the API you built earlier ojn in the exercises.  
+APIs provide the building blocks for applications, but it is applications which deliver functionality to the end users. hence to see APIs in action it helps to see how applications can call APIs to provide new functionality. In this lab you'll be able to create a simple web application which consumes the API you built earlier in the exercises.  
 
 ### Why Red Hat?
 
@@ -111,7 +111,7 @@ Redirect URLs are a critical part of the OAuth flow. After a user successfully a
 
 1. Click on the **CLIENT_ID** link to view the details.
 
-   *Remember to select correct CLIENT_ID with the one you got in the [API Security Lab](../lab07). It will easily identificable as its and hexadecimal name*.
+   *Remember to select correct CLIENT_ID with the one you got in the [API Security Lab](../lab07). It will easily identifiable as its and hexadecimal name*.
 
    ![24-client-application](images/consume-24.png "Client Application")
 
