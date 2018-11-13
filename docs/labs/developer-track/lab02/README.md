@@ -123,7 +123,7 @@ Follow this instructions to set up the repository.
     http://microcks.dil.opentry.me/
     ```
 
-1. Log in into Microks using your designated [user and password](#environment).
+1. Log in into Microcks using your designated [user and password](#environment).
 
     ![mock-openshift-login](images/mock-10.png "Openshift Login")
 
@@ -146,7 +146,7 @@ Follow this instructions to set up the repository.
 
 1. Click **Next** for the Authentication options.
 
-1. Review the details and click on **Create** to creat the job.
+1. Review the details and click on **Create** to create the job.
 
    ![mock-job-details](images/mock-14.png "Create Job")
 
@@ -154,7 +154,7 @@ Follow this instructions to set up the repository.
 
     ![mock-job-activate](images/mock-15.png "Activate Job")
 
-1. Repet the last step, but now select the **Force Import** option. This will start the synchronization job.
+1. Repeat the last step, but now select the **Force Import** option. This will start the synchronization job.
 
     ![mock-job-start](images/mock-16.png "Start Job")
 

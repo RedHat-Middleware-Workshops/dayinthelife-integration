@@ -21,7 +21,7 @@ Each track will offer hands-on lab experience relevant to the audience.  Labs an
 | 3:30-4:00 p.m.      | Recap and summary |
 
 
-## Lab Intructions
+## Lab Instructions
 
 
 [Citizen integrator track](docs/labs/citizen-integrator-track)

@@ -9,7 +9,7 @@
 
 ## Overview
 
-Once you have APIs deployed in your environment, it becomes critically important to manage who may use them, and for what purpose. You also need to begin to track usage of these different users to know who is or is not succeeding in their usage. For this reason, in this lab, you will be adding management capabilites to the API to give you control and visibility of it's usage.
+Once you have APIs deployed in your environment, it becomes critically important to manage who may use them, and for what purpose. You also need to begin to track usage of these different users to know who is or is not succeeding in their usage. For this reason, in this lab, you will be adding management capabilities to the API to give you control and visibility of it's usage.
 
 ### Why Red Hat?
 
@@ -37,7 +37,7 @@ Please ask your instructor for your password.
 
 **URLs:**
 
-If you haven't done so already, you need to login to the **Red Hat Solution Explorer** webpage so that a unique lab environment can be provisioned on-demand for your exclusive use.  You should open a web browser and navigate to: 
+If you haven't done so already, you need to login to the **Red Hat Solution Explorer** webpage so that a unique lab environment can be provisioned on-demand for your exclusive use. You should open a web browser and navigate to: 
 
 ```bash
 https://tutorial-web-app-webapp.dil.opentry.me

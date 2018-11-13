@@ -144,7 +144,7 @@ Once the environment is provisioned, you will be presented with a page that pres
 
  ![13-publish-integration.png](images/13-publish-integration.png "Publish Integration")
 
-*Congratulations*. You sucessfully published the integration. (Wait for few minutes to build and publish the integration)
+*Congratulations*. You successfully published the integration. (Wait for few minutes to build and publish the integration)
 
 ### Step 3: Create a POST request
 

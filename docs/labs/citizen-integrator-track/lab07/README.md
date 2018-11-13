@@ -111,7 +111,7 @@ Redirect URLs are a critical part of the OAuth flow. After a user successfully a
 
 1. Click on the **CLIENT_ID** link to view the details. 
 
-    *Remember to select CLIENT_ID with the one you got in the [API Security Lab](../lab05/#step-4-create-a-test-app). It will easily identificable as its and hexadecimal name*.
+    *Remember to select CLIENT_ID with the one you got in the [API Security Lab](../lab05/#step-4-create-a-test-app). It will easily identifiable as its and hexadecimal name*.
 
    ![24-client-application](images/consume-24.png "Client Application")
 

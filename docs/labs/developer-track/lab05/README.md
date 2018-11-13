@@ -106,7 +106,7 @@ Description goes here
 
   ![07-webhook-configuration.png](images/07-webhook-configuration.png "Webhook Configuration")
 
-5. Define the Output Data Type. `Select type` from the dropdown as `JSON instance`. Enter `Data type Name: Custom`. `Defination: `, copy below JSON data. Click **Done**.
+5. Define the Output Data Type. `Select type` from the dropdown as `JSON instance`. Enter `Data type Name: Custom`. `Definition: `, copy below JSON data. Click **Done**.
 
     ```
 		{
@@ -151,7 +151,7 @@ Description goes here
 
  ![13-publish-integration.png](images/13-publish-integration.png "Publish Integration")
 
-*Congratulations*. You sucessfully published the integration. (Wait for few minutes to build and publish the integration)
+*Congratulations*. You successfully published the integration. (Wait for few minutes to build and publish the integration)
 
 ### Step 3: Create a POST request
 
