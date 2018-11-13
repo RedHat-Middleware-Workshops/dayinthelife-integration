@@ -59,21 +59,18 @@ public class CamelRoutes extends RouteBuilder {
 			
 		;
 		
-		 HttpComponent httpComponent = camelContext.getComponent("https4", HttpComponent.class);
-         httpComponent.setX509HostnameVerifier(NoopHostnameVerifier.INSTANCE);
+		HttpComponent httpComponent = camelContext.getComponent("https4", HttpComponent.class);
+		httpComponent.setX509HostnameVerifier(NoopHostnameVerifier.INSTANCE);
 
-         //This is important to make your cert skip CN/Hostname checks
-         httpComponent.setX509HostnameVerifier((s, sslSession) -> {
-             return true;
-         });
-		
-         
+		//This is important to make your cert skip CN/Hostname checks
+		httpComponent.setX509HostnameVerifier((s, sslSession) -> true);
+
 		from("direct:threescalesetup")
 			.log("starts")
 			.log("USERNAME {{env:SSO_USERNAME}}")
 			.log("PASSWORD {{env:SSO_PASSWORD}}")
 			//SSO and TOKENS
-		 	
+			
 			.removeHeaders("CamelHttp*")
 			//Get TKN from SSO
 				.setHeader(Exchange.HTTP_METHOD, constant("POST"))
