@@ -157,7 +157,7 @@ Once the environment is provisioned, you will be presented with a page that pres
 
     ![16g-user-credentials.png](images/16g-user-credentials.png "Application Credentials")
 
-*Congratulations!* You have successfuly customized your Developer Portal and completed a Sign Up process.
+*Congratulations!* You have successfully customized your Developer Portal and completed a Sign Up process.
 
 ## Steps Beyond
 
