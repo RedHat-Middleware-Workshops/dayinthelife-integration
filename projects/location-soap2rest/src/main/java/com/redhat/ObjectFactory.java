@@ -24,8 +24,8 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _Contact_QNAME = new QName("http://redhat.com/", "contact");
-    private final static QName _ContactResponse_QNAME = new QName("http://redhat.com/", "contactResponse");
+    private static final QName _Contact_QNAME = new QName("http://redhat.com/", "contact");
+    private static final QName _ContactResponse_QNAME = new QName("http://redhat.com/", "contactResponse");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.redhat
@@ -64,7 +64,7 @@ public class ObjectFactory {
      */
     @XmlElementDecl(namespace = "http://redhat.com/", name = "contact")
     public JAXBElement<Contact> createContact(Contact value) {
-        return new JAXBElement<Contact>(_Contact_QNAME, Contact.class, null, value);
+        return new JAXBElement<>(_Contact_QNAME, Contact.class, null, value);
     }
 
     /**
@@ -73,7 +73,7 @@ public class ObjectFactory {
      */
     @XmlElementDecl(namespace = "http://redhat.com/", name = "contactResponse")
     public JAXBElement<ContactResponse> createContactResponse(ContactResponse value) {
-        return new JAXBElement<ContactResponse>(_ContactResponse_QNAME, ContactResponse.class, null, value);
+        return new JAXBElement<>(_ContactResponse_QNAME, ContactResponse.class, null, value);
     }
 
 }
