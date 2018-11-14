@@ -7,7 +7,7 @@
 3. [Swagger to Rest and DB (with Che)](lab03/#lab-3)
 4. [SOAP to Rest](lab04/#lab-4)
 5. [Fuse Online](lab05/#lab-5)
-6. [Setup 3scale management](lab06/#lab-6)
+6. [Setup 3scale API management](lab06/#lab-6)
 7. [API Developer Portal](lab07/#lab-7)
 8. [Securing Node.js endpoint development](lab08/#lab-8)
 
