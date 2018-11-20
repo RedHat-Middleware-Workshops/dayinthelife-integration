@@ -257,7 +257,7 @@ The HTTP POST method will allow us to insert a new locations record into the dat
 
 1. Scroll down to the bottom of the page. Move your mouse over the **201 Created** response to enable the options. Click the *No response media types defined* drop-down. Now click on the **Add Media Type** button.
 
-    ![design-edit-response](images/design-69.png "Add Media Type")
+    ![design-edit-response](images/design-60.png "Add Media Type")
 
 
 1. Click on the *Add* button to accept **application/json** as the Media Type.
