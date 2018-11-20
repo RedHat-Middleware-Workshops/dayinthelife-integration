@@ -156,7 +156,7 @@ The `/locations` path with an HTTP GET method will return a complete set of all 
 
 1. Click on the **Add a response** link under *Responses* to edit the response for this operation.
 
-    ![design-add-response](images/design-10.png "Add Response")
+    ![design-add-response](images/design-58.png "Add Response")
 
 1. Leave the **200** option selected in the  *Response Status Code* combo box and click on **Add**.
 
@@ -164,7 +164,7 @@ The `/locations` path with an HTTP GET method will return a complete set of all 
 
 1. Scroll down to the bottom of the page. Move your mouse over the **200 OK** response to enable the options. Click the *No response media types defined* drop-down. Now click on the **Add Media Type** button.
 
-    ![design-edit-response](images/design-12.png "Add Media Type")
+    ![design-edit-response](images/design-59.png "Add Media Type")
 
 
 1. Click on the *Add* button to accept **application/json** as the Media Type.
@@ -257,7 +257,7 @@ The HTTP POST method will allow us to insert a new locations record into the dat
 
 1. Scroll down to the bottom of the page. Move your mouse over the **201 Created** response to enable the options. Click the *No response media types defined* drop-down. Now click on the **Add Media Type** button.
 
-    ![design-edit-response](images/design-12.png "Add Media Type")
+    ![design-edit-response](images/design-69.png "Add Media Type")
 
 
 1. Click on the *Add* button to accept **application/json** as the Media Type.
@@ -335,7 +335,7 @@ The `/locations/phone/{id}` path will return a single location record based on a
 
 1. Click on the **Add a response** link under *Responses* to edit the response for this operation.
 
-    ![design-add-response](images/design-10.png "Add Response")
+    ![design-add-response](images/design-61.png "Add Response")
 
 1. Leave the **200** option selected in the  *Response Status Code* combo box and click on **Add**.
 
@@ -343,7 +343,7 @@ The `/locations/phone/{id}` path will return a single location record based on a
 
 1. Scroll down to the bottom of the page. Move your mouse over the **200 OK** response to enable the options. Click the *No response media types defined* drop-down. Now click on the **Add Media Type** button.
 
-    ![design-edit-response](images/design-12.png "Add Media Type")
+    ![design-edit-response](images/design-62.png "Add Media Type")
 
 
 1. Click on the *Add* button to accept **application/json** as the Media Type.
@@ -352,7 +352,7 @@ The `/locations/phone/{id}` path will return a single location record based on a
 
 1. Click on the *Type* dropdown and select **location**.
 
-    ![design-location-type](images/design-40.png "Location Type")
+    ![design-location-type](images/design-63.png "Location Type")
 
 1. Click on the drop-down next to the `No description` message, and enter `Returns a location record` as the description.  Click the check-mark button to accept the description.
 
