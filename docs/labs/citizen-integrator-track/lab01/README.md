@@ -257,7 +257,7 @@ The HTTP POST method will allow us to insert a new locations record into the dat
 
 1. Scroll down to the bottom of the page. Move your mouse over the **201 Created** response to enable the options. Click the *No response media types defined* drop-down. Now click on the **Add Media Type** button.
 
-    ![design-edit-response](images/design-60.png "Add Media Type")
+    ![design-edit-response](images/design-69.png "Add Media Type")
 
 
 1. Click on the *Add* button to accept **application/json** as the Media Type.
@@ -331,7 +331,7 @@ The `/locations/phone/{id}` path will return a single location record based on a
 
 1. Click the drop-down arrow next to `No Type`, then update the `id` Path Parameter by selecting `Integer` as the **Type** and `32-Bit Integer` as the sub-type.
 
-    ![design-location-type](images/design-38.png "Path Parameter")
+    ![design-location-type](images/design-64.png "Path Parameter")
 
 1. Click on the **Add a response** link under *Responses* to edit the response for this operation.
 
