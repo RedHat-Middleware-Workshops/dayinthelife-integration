@@ -1,0 +1,45 @@
+---
+- name: Get SSO token
+  shell: "curl --insecure -X POST 'https://secure-launcher-sso-launcher.{{ocp_apps_domain}}/auth/realms/launcher_realm/protocol/openid-connect/token' \
+  -H 'Content-Type: application/x-www-form-urlencoded' -d 'username={{ admin_username | default('launcheradmin') }}' -d 'password={{ admin_password | default('admin') }}' -d 'grant_type=password' -d 'client_id=che-client'"
+  register: token_text
+
+- set_fact: TKN={{ (token_text.stdout | from_json).access_token }}
+
+- name: Get the Che stacks
+  uri:
+    url: https://che-che.{{ ocp_apps_domain }}/api/stack
+    validate_certs: false
+    method: GET
+    headers:
+      Authorization: "Bearer {{ TKN }}"
+  register: get_stack_list_response
+  failed_when: false
+
+- set_fact:
+    query: "[?name=='Day in the life Workshop'].id"
+
+- set_fact:
+    stack_ids: "{{ (get_stack_list_response.json | json_query(query)) }}"
+
+- name: Delete custom stack from Che
+  uri:
+    url: https://che-che.{{ ocp_apps_domain }}/api/stack/{{ item }}
+    validate_certs: false
+    method: DELETE
+    headers:
+      Authorization: "Bearer {{ TKN }}"
+    status_code: [204, 403]
+  with_items: "{{ stack_ids }}"
+  when: get_stack_list_response.status == 200
+
+- name: Delete stack view/read permissions to all other users
+  uri:
+    url: https://che-che.{{ ocp_apps_domain }}/api/permissions/{{ item }}?user={{  user_id }}
+    validate_certs: false
+    method: DELETE
+    return_content: yes
+    headers:
+      Authorization: "Bearer {{ TKN }}"
+  with_items: "{{ stack_ids }}"
+  failed_when: false

@@ -1,0 +1,9 @@
+---
+che_multi: true
+threescale: true
+apicurio: true
+gogs: true
+microcks: true
+sso: true
+delete_user_projects: true
+delete_realms: true

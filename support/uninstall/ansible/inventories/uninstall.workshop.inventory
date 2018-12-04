@@ -1,0 +1,22 @@
+[local:vars]
+ansible_connection=local
+
+[local]
+127.0.0.1
+
+[OSEv3:children]
+master
+
+[OSEv3:vars]
+ansible_user=ec2-user
+
+[master]
+master1.akeating-e983.internal
+
+[workshop]
+localhost ansible_connection=local
+
+[master:vars]
+eval_openshift_master_config_path=/etc/origin/master/master-config.yaml
+
+[workshop:vars]

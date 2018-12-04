@@ -1,0 +1,28 @@
+---
+- name: "Get master config"
+  hosts: master
+  gather_facts: no
+  tasks:
+  - include_role:
+      name: master_config
+
+- name: "UnInstall API Workshop"
+  hosts: workshop
+  tasks:
+    - include_role:
+        name: uninstall-workshop
+      vars:
+        configure_only: "true"
+        eval_rhsso_admin_username: "{{ hostvars['SHARED_VARS']['rhsso_admin_username'] }}"
+        eval_rhsso_admin_password: "{{ hostvars['SHARED_VARS']['rhsso_admin_password'] }}"
+        ocp_apps_domain: "{{ hostvars['SHARED_VARS']['oc_apps_domain'] }}"
+        threescale_master_access_token: "{{ hostvars['SHARED_VARS']['threescale_master_token'] }}"
+        threescale_admin_access_token: "{{ hostvars['SHARED_VARS']['threescale_admin_token'] }}"
+        sso_project: sso
+        threescale_realm: "threescale"
+        threescale_client_id: "3scale-admin"
+        namespace: 3scale
+        no_threescale_services: "false"
+        wildcard_route_name: apicast-wildcard-router-route
+        usersno: 50
+

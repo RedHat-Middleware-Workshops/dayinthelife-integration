@@ -21,3 +21,4 @@ target/
 lib/
 /.metadata/
 *.retry
+.idea/

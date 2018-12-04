@@ -1,0 +1,30 @@
+---
+- name: Delete User Projects
+  include_role:
+    name: uninstall_user_projects
+  with_sequence: start=1 end={{ usersno }} format=%d
+  when: delete_user_projects
+
+- import_role:
+    name: uninstall_che_multi
+  when: che_multi
+
+- import_role:
+    name: uninstall_sso
+  when: sso
+
+- import_role:
+    name: uninstall_threescale
+  when: threescale
+
+- import_role:
+    name: uninstall_apicurio
+  when: apicurio
+
+- import_role:
+    name: uninstall_gogs
+  when: gogs
+
+- import_role:
+    name: uninstall_microcks
+  when: microcks
