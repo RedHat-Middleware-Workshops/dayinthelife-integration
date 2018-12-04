@@ -12,6 +12,9 @@
     validate_certs: no
     status_code: 201,409
   register: create_tenant_result
+  retries: 3
+  delay: 10
+  until: create_tenant_result is not failed
 
 - debug: var=create_tenant_result.content
 
@@ -38,6 +41,10 @@
     body: "access_token={{threescale_master_access_token}}&account_id={{ ids[0].id }}&id={{ ids[3].id }}"
     validate_certs: no
     status_code: 200
+  register: activate_tenant_result
+  retries: 3
+  delay: 10
+  until: activate_tenant_result is not failed
 
 - name: Create Admin Tenant {{ item }} Router
   shell: "oc create route edge system-provider-{{ userno }}-admin-route --service=system-provider --hostname={{ ids[1].admin_domain }} --port=http --insecure-policy=Allow -n {{ namespace }}"
