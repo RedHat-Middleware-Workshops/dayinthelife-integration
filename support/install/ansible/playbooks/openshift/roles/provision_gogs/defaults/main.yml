@@ -1,0 +1,6 @@
+---
+gogs_version: 0.11.34
+gogs_skip_tls: true
+gogs_project: gogs
+gogs_template_url: https://raw.githubusercontent.com/OpenShiftDemos/gogs-openshift-docker/master/openshift/gogs-template.yaml
+gogs_git_config_url: https://raw.githubusercontent.com/RedHatWorkshops/dayinthelife-integration/master/support/templates/gogs.json

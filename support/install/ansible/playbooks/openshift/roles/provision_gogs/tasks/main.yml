@@ -3,13 +3,21 @@
   shell: "oc project default"
 
 - name: Create Gogs app
-  shell: "oc new-app -f https://raw.githubusercontent.com/OpenShiftDemos/gogs-openshift-docker/master/openshift/gogs-template.yaml \
-  -p GOGS_VERSION=0.11.34 -p SKIP_TLS_VERIFY=true -p HOSTNAME=gogs.{{ ocp_apps_domain }} -n {{ gogs_project }}"
+  shell: "oc new-app \
+  -f {{ gogs_template_url }} \
+  -p GOGS_VERSION={{ gogs_version }} \
+  -p SKIP_TLS_VERIFY={{ gogs_skip_tls }} \
+  -p HOSTNAME=gogs.{{ ocp_apps_domain }} \
+  -n {{ gogs_project }}"
   when: configure_only == 'false'
   register: create_gogs_app
-  failed_when: create_gogs_app.stderr != '' and 'already exists' not in create_gogs_app.stderr 
+  failed_when: create_gogs_app.stderr != '' and 'already exists' not in create_gogs_app.stderr
 
-- name: Wait until Gogs API is available 
+- name: Wait for deployment
+  include_tasks: wait-for-deployment.yml
+  when: configure_only == 'false'
+
+- name: Wait until Gogs API is available
   uri: 
     url: http://gogs.{{ocp_apps_domain}}
     method: GET
@@ -20,7 +28,7 @@
   ignore_errors: yes
   retries: 15
   delay: 30
-  when: create_realms
+  when: create_realms is defined and create_realms == 'true'
 
 - name: Create Gogs users
   uri:
@@ -36,13 +44,13 @@
   register: create_tenant_result
   ignore_errors: true
   with_sequence: start=0 end={{ usersno }} format=user%d
-  when: create_realms
+  when: create_realms is defined and create_realms == 'true'
 
 - debug: var=create_tenant_result
 
 - name: Get Git Repo
   uri:
-    url: 'https://raw.githubusercontent.com/RedHatWorkshops/dayinthelife-integration/master/support/templates/gogs.json'
+    url: "{{ gogs_git_config_url }}"
     return_content: yes
   register: get_gitrepo
   
