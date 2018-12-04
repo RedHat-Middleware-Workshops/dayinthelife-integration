@@ -1,0 +1,32 @@
+---
+- name: Get required gogs postgre replicas
+  shell: "oc get dc/gogs-postgresql -o jsonpath='{.status.replicas}' -n {{ gogs_project }}"
+  failed_when: false
+  until: gogs_postgresql_replicas.stdout | int > 0
+  retries: 60
+  delay: 5
+  register: gogs_postgresql_replicas
+
+- name: wait for gogs-postgresql readiness
+  shell: "oc get dc/gogs-postgresql -o jsonpath='{.status.readyReplicas}' -n {{ gogs_project }}"
+  until: gogs_postgresql_available_replicas.stdout == gogs_postgresql_replicas.stdout
+  ignore_errors: yes
+  retries: 60
+  delay: 5
+  register: gogs_postgresql_available_replicas
+    
+- name: Get required gogs replicas
+  shell: "oc get dc/gogs -o jsonpath='{.status.replicas}' -n {{ gogs_project }}"
+  until: gogs_replicas.stdout | int > 0
+  retries: 60
+  delay: 5
+  failed_when: false
+  register: gogs_replicas
+
+- name: wait for gogs readiness
+  shell: "oc get dc/gogs -o jsonpath='{.status.readyReplicas}' -n {{ gogs_project }}"
+  until: gogs_available_replicas.stdout == gogs_replicas.stdout
+  ignore_errors: yes
+  retries: 60
+  delay: 5
+  register: gogs_available_replicas
