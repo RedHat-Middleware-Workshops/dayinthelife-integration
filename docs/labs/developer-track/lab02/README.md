@@ -36,7 +36,7 @@ Please ask your instructor for your password.
 If you haven't done so already, you need to login to the **Red Hat Solution Explorer** webpage so that a unique lab environment can be provisioned on-demand for your exclusive use.  You should open a web browser and navigate to: 
 
 ```bash
-https://tutorial-web-app-webapp.dil.opentry.me
+https://tutorial-web-app-webapp.dil1.opentry.me
 ```
 
 You will be presented with a login page where you can enter your unique credentials:
@@ -62,7 +62,7 @@ Follow this instructions to set up the repository.
 1. Open a browser window and navigate to:
 
     ```bash
-    http://gogs.dil.opentry.me/
+    http://gogs.dil1.opentry.me/
     ```
 
 1. Log into Gogs using your designated [user and password](#environment). Click on **Sign In**.
@@ -110,7 +110,7 @@ Follow this instructions to set up the repository.
 1. Copy the browser tab URL. Store that URL address as you will use it in the next steps of the lab. The URL should look like the following:
 
     ```bash
-     http://gogs.dil.opentry.me/userX/locations-api/raw/dev-track-lab-02/locations-api/Locations-UserX.json
+     http://gogs.dil1.opentry.me/userX/locations-api/raw/dev-track-lab-02/locations-api/Locations-UserX.json
     ```
 
     *If you feel more comfortable, you can also copy and paste the RAW button link from the previous step.  Also, don't forget to update the X variable with your user number*.
@@ -120,7 +120,7 @@ Follow this instructions to set up the repository.
 1. Open a browser window and navigate to:
 
     ```bash
-    http://microcks.dil.opentry.me/
+    http://microcks.dil1.opentry.me/
     ```
 
 1. Log in into Microcks using your designated [user and password](#environment).
@@ -138,7 +138,7 @@ Follow this instructions to set up the repository.
 1. In the `Create a New Job` dialog, type in the following information replacing **X** with your user number. Click **Next**.
 
     * Name: **Locations-UserX**
-    * Repository URL: **http://gogs.dil.opentry.me/userX/locations-api/raw/dev-track-lab-02/locations-api/Locations-UserX.json**
+    * Repository URL: **http://gogs.dil1.opentry.me/userX/locations-api/raw/dev-track-lab-02/locations-api/Locations-UserX.json**
 
     *You can also copy and paste the raw url you saved from the Gogs repository (Step 0)*.
 
@@ -194,7 +194,7 @@ We now have a working REST mock service listening for requests. We will use an o
    *Remember to replace X with your user number*.
 
     ```bash
-    http://microcks.dil.opentry.me/rest/Locations-UserX/1.0.0/locations
+    http://microcks.dil1.opentry.me/rest/Locations-UserX/1.0.0/locations
     ```
 
 1. Click the **START YOUR CURL** button.

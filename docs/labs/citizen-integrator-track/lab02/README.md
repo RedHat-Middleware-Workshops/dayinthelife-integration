@@ -36,7 +36,7 @@ Please ask your instructor for your password.
 If you haven't done so already, you need to login to the **Red Hat Solution Explorer** webpage so that a unique lab environment can be provisioned on-demand for your exclusive use.  You should open a web browser and navigate to: 
 
 ```bash
-https://tutorial-web-app-webapp.dil.opentry.me
+https://tutorial-web-app-webapp.dil1.opentry.me
 ```
 
 You will be presented with a login page where you can enter your unique credentials:
@@ -58,7 +58,7 @@ Once the environment is provisioned, you will be presented with a page that pres
 1. Open a browser window and navigate to:
 
     ```bash
-    http://microcks.dil.opentry.me
+    http://microcks.dil1.opentry.me
     ```
 
 1. Log in into Microks using your designated [user and password](#environment).
@@ -109,7 +109,7 @@ We now have a working REST mock service listening for requests. We will use an o
 1. Enter the copied URL from **Step 9**. It should look like this:
 
     ```bash
-    http://microcks.dil.opentry.me/rest/Locations-User1/1.0.0/locations
+    http://microcks.dil1.opentry.me/rest/Locations-User1/1.0.0/locations
     ```
 
 1. Click the **START YOUR CURL** button.
