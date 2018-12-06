@@ -20,7 +20,7 @@ Applications can be built from many technologies. In this case we use a simple w
 If you decide to skip the lab you can check how a SSO enabled web applications looks like:
 
 ```bash
-http://www-international.dil1.opentry.me/
+http://www-international.dil.opentry.me/
 ```
 
 ### Environment
@@ -40,7 +40,7 @@ Please ask your instructor for your password.
 If you haven't done so already, you need to login to the **Red Hat Solution Explorer** webpage so that a unique lab environment can be provisioned on-demand for your exclusive use.  You should open a web browser and navigate to: 
 
 ```bash
-https://tutorial-web-app-webapp.dil1.opentry.me
+https://tutorial-web-app-webapp.dil.opentry.me
 ```
 
 You will be presented with a login page where you can enter your unique credentials:
@@ -94,7 +94,7 @@ Redirect URLs are a critical part of the OAuth flow. After a user successfully a
 1. Open a browser window and navigate to:
 
     ```bash
-    http://sso-sso.dil1.opentry.me/auth/admin/userX/console/
+    http://sso-sso.dil.opentry.me/auth/admin/userX/console/
     ```
 
     *Remember to replace the X with your user number.*
@@ -122,7 +122,7 @@ Redirect URLs are a critical part of the OAuth flow. After a user successfully a
     | Access Type | Public |
     | Standard Flow Enabled | ON |
     | Implicit Flow Enabled | OFF |
-    | Valid Redirect URIs | http://www-userX.dil1.opentry.me/* |
+    | Valid Redirect URIs | http://www-userX.dil.opentry.me/* |
     | Web Origins | \* |
 
     *Remember to replace the X with your user number.*
@@ -133,7 +133,7 @@ Redirect URLs are a critical part of the OAuth flow. After a user successfully a
 
 ### Step 5: Test the Single Sign On Integration
 
-1. Open a browser tab and navigate to `http://www-userX.dil1.opentry.me`.
+1. Open a browser tab and navigate to `http://www-userX.dil.opentry.me`.
 
 *Remember to replace the X your user number.*
 
