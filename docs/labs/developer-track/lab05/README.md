@@ -31,7 +31,7 @@ Please ask your instructor for your password.
 If you haven't done so already, you need to login to the **Red Hat Solution Explorer** webpage so that a unique lab environment can be provisioned on-demand for your exclusive use.  You should open a web browser and navigate to: 
 
 ```bash
-https://tutorial-web-app-webapp.dil.opentry.me
+https://tutorial-web-app-webapp.dil1.opentry.me
 ```
 
 You will be presented with a login page where you can enter your unique credentials:
@@ -170,7 +170,7 @@ We will use an online cURL tool to create the `101th` record field in database.
 1. Below are the values for the request. Note: `id:101` in the payload as we are creating `101th` record in the database.
 
    ```
-     URL: https://i-addlocation-fuse-18308937-d7b6-11e8-96c6-0a580a810006.dil.opentry.me/webhook/4dTcVchE8evWz3dVvtHFK3wvfFbFzpVLPEMq1TkcF0MGIbJmu4
+     URL: https://i-addlocation-fuse-18308937-d7b6-11e8-96c6-0a580a810006.dil1.opentry.me/webhook/4dTcVchE8evWz3dVvtHFK3wvfFbFzpVLPEMq1TkcF0MGIbJmu4
 
      --header (-H):  Content-Type: application/json
 
@@ -194,7 +194,7 @@ We will use an online cURL tool to create the `101th` record field in database.
 
   **REQUEST**
   ```
-   http://location-service-international.dil.opentry.me/locations/101
+   http://location-service-international.dil1.opentry.me/locations/101
   
   ```
 
