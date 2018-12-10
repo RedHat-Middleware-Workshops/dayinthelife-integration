@@ -2,3 +2,5 @@
 namespace: 3scale
 wildcard_route_name: apicast-wildcard-router-route
 create_wildcard_route: true
+threescale_realm: threescale
+threescale_template_url: https://raw.githubusercontent.com/jbossdemocentral/3scale-api-workshop/master/support/templates/amp-template.yml
