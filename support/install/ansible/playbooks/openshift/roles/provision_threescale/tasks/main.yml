@@ -3,12 +3,9 @@
   shell: "oc project default"
 
 - name: Create the 3scale app
-  shell: "oc new-app \
-  -f {{ threescale_template_url }} \
+  shell: "oc new-app -f https://raw.githubusercontent.com/jbossdemocentral/3scale-api-workshop/master/support/templates/amp-template.yml \
   --param WILDCARD_DOMAIN={{ ocp_apps_domain }} --param ADMIN_PASSWORD=password --param WILDCARD_POLICY=Subdomain \
   --param ADMIN_ACCESS_TOKEN={{threescale_admin_access_token}} --param MASTER_PASSWORD=password --param MASTER_ACCESS_TOKEN={{threescale_master_access_token}} -n {{ namespace }}"
-  register: create_3scale_cmd
-  failed_when: create_3scale_cmd.stderr != '' and 'already exists' not in create_3scale_cmd.stderr
   when: configure_only == 'false'
 
 - name: Wait until 3scale API is available 
@@ -50,57 +47,29 @@
       description: 'Simple WebApp'
 
 - name: Get SSO Token Longer Lifespan
-  uri:
-    url: "https://secure-sso-{{sso_project}}.{{ocp_apps_domain}}/auth/realms/master/protocol/openid-connect/token"
-    method: POST
-    body_format: form-urlencoded
-    body:
-      username: "{{ eval_rhsso_admin_username | default('keyadmin') }}"
-      password: "{{ eval_rhsso_admin_password | default('keypassword') }}"
-      grant_type: password
-      client_id: admin-cli
-    return_content: yes
-    validate_certs: no
-  retries: 10
-  delay: 60
-  until: token_text is succeeded
+  shell: "curl --insecure -X POST 'https://secure-sso-{{sso_project}}.{{ocp_apps_domain}}/auth/realms/master/protocol/openid-connect/token' \
+  -H 'Content-Type: application/x-www-form-urlencoded' -d 'username={{ eval_rhsso_admin_username | default('keyadmin') }}' -d 'password={{ eval_rhsso_admin_password | default('keypassword') }}' -d 'grant_type=password' -d 'client_id=admin-cli'"
   register: token_text
 
-- name: Set TKN var
-  set_fact:
-    TKN: "{{ token_text.json.access_token }}"
+- set_fact: TKN={{ (token_text.stdout | from_json).access_token }}
 
 - name: Get id for 3scale-client
-  uri:
-    url: "https://secure-sso-{{sso_project}}.{{ocp_apps_domain}}/auth/admin/realms/{{threescale_realm}}/clients"      
-    headers:
-      Authorization: "Bearer {{TKN}}"
-    return_content: yes
-    validate_certs: no
-  retries: 10
-  delay: 60
-  until: clients_text is succeeded
+  shell: "curl --insecure 'https://secure-sso-{{sso_project}}.{{ocp_apps_domain}}/auth/admin/realms/{{threescale_realm | default('threescale')}}/clients' \
+  -H 'Content-Type: application/json' -H 'Authorization: Bearer {{TKN}}'"
   register: clients_text
 
-- name: Select client id
-  set_fact:
-    IdClientAdmin: "{{ item.id }}"
-  when:
-    - item.clientId == (threescale_client_id | default('3scale-admin'))
-    - IdClientAdmin is undefined
-  with_items: "{{ clients_text.json }}"
+- set_fact: IdClientAdmin={{ (clients_text.stdout | from_json | json_query(query)) }}
+  vars:
+    query: "[?clientId=='{{threescale_client_id | default('3scale-admin')}}'] | [0].id"
 
 - debug: var=IdClientAdmin
 
 - name: Get client secret
-  uri:
-    url: "https://secure-sso-{{sso_project}}.{{ocp_apps_domain}}/auth/admin/realms/{{threescale_realm}}/clients/{{ IdClientAdmin }}/client-secret"
-    headers:
-      Authorization: "Bearer {{TKN}}"
+  shell: "curl --insecure 'https://secure-sso-{{sso_project}}.{{ocp_apps_domain}}/auth/admin/realms/{{threescale_realm | default('threescale')}}/clients/{{ IdClientAdmin }}/client-secret' \
+  -H 'Content-Type: application/json' -H 'Authorization: Bearer {{TKN}}'"
   register: secret_text
 
-- name: Set client_secret var
-  set_fact: client_secret={{ secret_text.json.value }}
+- set_fact: client_secret={{ (secret_text.stdout | from_json).value }}
 
 - debug: var=client_secret
 
@@ -135,12 +104,11 @@
       Authorization: 'Bearer {{TKN}}'
     validate_certs: no
   register: client_text
-  until: "'www-secured' in client_text.content"
+  until: ("www-secured" in client_text.content)
   retries: 20
   delay: 30
 
-- name: Set IdClientApp var
-  set_fact: IdClientApp={{ client_text.json | json_query(query) }}
+- set_fact: IdClientApp={{ (client_text.content | from_json | json_query(query)) }}
   vars:
     query: "[?clientId=='www-secured'] | [0].id"
 
@@ -148,19 +116,16 @@
 
 - name: Update the rh sso app
   uri: 
-    url: "https://secure-sso-{{sso_project}}.{{ocp_apps_domain}}/auth/admin/realms/{{threescale_realm}}/clients/{{IdClientApp}}"
+    url: "https://secure-sso-{{sso_project}}.{{ocp_apps_domain}}/auth/admin/realms/{{threescale_realm | default('threescale')}}/clients/{{IdClientApp}}"
     method: PUT
     return_content: yes
     headers:
       Content-Type: "application/json"
-      Authorization: "Bearer {{TKN}}"
+      Authorization: 'Bearer {{TKN}}'
     body: '{ "clientId": "www-secured", "publicClient" : "true", "rootUrl": "http://www-{{ backend_project }}.{{ ocp_apps_domain }}", "baseUrl": "/" }'
     body_format: json
     validate_certs: no
     status_code: 204
-  retries: 10
-  delay: 60
-  until: update_app_result is succeeded
   register: update_app_result
 
 - debug: var=update_app_result

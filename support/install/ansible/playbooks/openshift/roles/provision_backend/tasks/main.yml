@@ -26,7 +26,7 @@
   ignore_errors: true
 
 - name: Check if Fuse 7.1 SSO template is available
-  shell: "oc describe template s2i-fuse71-spring-boot-camel-integr8ly-sso -n openshift"
+  shell: "oc describe template s2i-fuse71-spring-boot-camel-integr8ly-sso -n {{ backend_project }}"
   register: sso_template_exists
   when: configure_only == 'false'
   ignore_errors: true
@@ -46,27 +46,24 @@
 - name: Create Backend Location API service
   shell: "oc new-app s2i-fuse71-spring-boot-camel -p GIT_REPO=https://github.com/RedHatWorkshops/dayinthelife-integration \
   -p CONTEXT_DIR=/projects/location-service -p APP_NAME=location-service -p GIT_REF=master -n {{ backend_project }}"
-  register: backend_loc_api_cmd
-  failed_when: backend_loc_api_cmd.stderr != '' and 'already exists' not in backend_loc_api_cmd.stderr
   when: configure_only == 'false'
 
 - name: Create Backend Location Detail SOAP service
   shell: "oc new-app s2i-fuse71-spring-boot-camel -p GIT_REPO=https://github.com/RedHatWorkshops/dayinthelife-integration \
   -p CONTEXT_DIR=/projects/location-soap -p APP_NAME=location-soap -p GIT_REF=master -n {{ backend_project }}"
-  register: backend_loc_soap_cmd
-  failed_when: backend_loc_soap_cmd.stderr != '' and 'already exists' not in backend_loc_soap_cmd.stderr
   when: configure_only == 'false'
 
 - name: Create Backend Location Detail SOAP to REST service
   shell: "oc new-app s2i-fuse71-spring-boot-camel -p GIT_REPO=https://github.com/RedHatWorkshops/dayinthelife-integration \
   -p CONTEXT_DIR=/projects/location-soap2rest -p APP_NAME=location-soap2rest -p GIT_REF=master -n {{ backend_project }}"
-  register: backend_loc_rest_cmd
-  failed_when: backend_loc_rest_cmd.stderr != '' and 'already exists' not in backend_loc_rest_cmd.stderr
   when: configure_only == 'false'
+
+- name: Make sure go to sso project
+  shell: "oc project sso"
 
 ## oc describe dc/sso | grep SSO_ADMIN_PASSWORD | sed 's/.*://g' | sed -e 's/^[[:space:]]*//'
 - name: A workaround for integr8ly, as it does not support fix SSO password nor in ConfigMap SSO UserName
-  shell: "oc get dc/sso -o json -n sso"
+  shell: "oc get dc/sso -o json"
   register: sso_text
   when: configure_only == 'false'
 
@@ -87,8 +84,6 @@
 - name: Create ThreeScale Automate service
   shell: "oc new-app s2i-fuse71-spring-boot-camel-integr8ly-sso -p GIT_REPO=https://github.com/RedHatWorkshops/dayinthelife-integration \
   -p CONTEXT_DIR=/projects/threescale-automate -p APP_NAME=threescale-automate -p GIT_REF=master -p SSO_USERNAME={{ sso_username }} -p SSO_PASSWORD={{ sso_pwd }} -n {{ backend_project }}"
-  register: backend_3scale_cmd
-  failed_when: backend_3scale_cmd.stderr != '' and 'already exists' not in backend_3scale_cmd.stderr
   when: configure_only == 'false'
 
 - name: Create Webpage application
