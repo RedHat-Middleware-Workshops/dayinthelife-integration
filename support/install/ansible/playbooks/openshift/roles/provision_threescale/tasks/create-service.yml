@@ -8,36 +8,12 @@
       Content-Type: "application/x-www-form-urlencoded"
     body: "access_token={{ admintoken }}&name={{ name | urlencode }}&deployment_option=hosted&backend_version={{ '1' if backend_version == 'oidc' else backend_version }}&system_name={{ system_name }}"
     validate_certs: no
-    status_code: [201, 422]
+    status_code: [201,422]
   register: create_svc_result
   when: configure_only == 'false'
   retries: 3
   delay: 10
   until: create_svc_result is not failed
-
-- name: "Service \"{{ name }}\" already exists, retrieving it"
-  block:
-    - name: Get list of services
-      uri:
-        url: "https://3scale-admin.{{ocp_apps_domain}}/admin/api/services.xml?access_token={{ admintoken }}"
-        method: GET
-        return_content: yes
-        validate_certs: no
-        status_code: [200]
-      register: list_svc_result
-      when: configure_only == 'false'
-      retries: 3
-      delay: 10
-      until: list_svc_result is not failed
-
-    - name: "Get service id from \"{{ name }}\" service"
-      xml:
-        xmlstring: "{{ list_svc_result.content }}"
-        xpath: "//service[contains(./name, '{{ name }}')]/id"
-        content: text
-      register: xml_svc_filtered
-      failed_when: xml_svc_filtered.matches | length == 0
-  when: create_svc_result.status == 422
 
 - name: Get service Id
   xml:
@@ -45,12 +21,7 @@
     xpath: //service/id
     content: text
   register: xmlstring
-  when: configure_only == 'false' and create_svc_result.status == 201
-
-- name: Set xmlstring variable again
-  set_fact:
-    xmlstring: "{{ xml_svc_filtered }}"
-  when: create_svc_result.status == 422
+  when: configure_only == 'false'
 
 - debug: var=xmlstring.matches[0].id
   when: configure_only == 'false'
@@ -120,41 +91,13 @@
   delay: 10
   until: create_plan_result is not failed
 
-- name: 
-  block:
-    - name: Get list of service plans
-      uri: 
-        url: "https://3scale-admin.{{ocp_apps_domain}}/admin/api/services/{{ id }}/application_plans.xml?access_token={{ admintoken }}"
-        method: GET
-        return_content: yes
-        validate_certs: no
-        status_code: [200]
-      register: list_plan_result
-      when: application_plan is defined and configure_only == 'false'
-      retries: 3
-      delay: 10
-      until: list_plan_result is not failed
-    - name: Get plan id
-      xml:
-        xmlstring: '{{ list_plan_result.content }}'
-        xpath: "//plan[contains(./name, '{{ application_plan.name }}')]/id"
-        content: text
-      register: xml_plan_filtered
-      when: application_plan is defined and configure_only == 'false'
-  when: create_plan_result.status == 422
-
 - name: Get plan Id
   xml:
     xmlstring: '{{ create_plan_result.content }}'
     xpath: //plan/id
     content: text
   register: xmlstring
-  when: application_plan is defined and configure_only == 'false' and create_plan_result.status == 201
-
-- name: Set xmlstring variable again
-  set_fact:
-    xmlstring: "{{ xml_plan_filtered }}"
-  when: create_plan_result.status == 422
+  when: application_plan is defined and configure_only == 'false'
 
 - debug: var=xmlstring.matches[0].id
   when: application_plan is defined and configure_only == 'false'
