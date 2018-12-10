@@ -20,7 +20,7 @@ The Red Hat SSO product provides important functionality for managing identities
 If you are planning to skip to the next lab, there is an already running OpenID Connect secured API proxy for the Location API Service in this endpoint:
 
 ```bash
-https://location-sso.amp.dil.opentry.me:443
+https://location-sso.amp.dil1.opentry.me:443
 ```
 
 ### Environment
@@ -40,7 +40,7 @@ Please ask your instructor for your password.
 If you haven't done so already, you need to login to the **Red Hat Solution Explorer** webpage so that a unique lab environment can be provisioned on-demand for your exclusive use.  You should open a web browser and navigate to: 
 
 ```bash
-https://tutorial-web-app-webapp.dil.opentry.me
+https://tutorial-web-app-webapp.dil1.opentry.me
 ```
 
 You will be presented with a login page where you can enter your unique credentials:
@@ -62,7 +62,7 @@ Once the environment is provisioned, you will be presented with a page that pres
 1. Open a browser window and navigate to:
 
     ```bash
-    https://secure-sso-sso.dil.opentry.me/auth/admin/userX/console
+    https://secure-sso-sso.dil1.opentry.me/auth/admin/userX/console
     ```
 
     *Remember to replace the `X` variable in the URL with your assigned user number.*
@@ -122,7 +122,7 @@ Once the environment is provisioned, you will be presented with a page that pres
 1. Open a browser window and navigate to:
 
     ```bash
-    https://userX-admin.dil.opentry.me/p/login
+    https://userX-admin.dil1.opentry.me/p/login
     ```
 
     *Remember to replace the X with your user number.*
@@ -166,7 +166,7 @@ Once the environment is provisioned, you will be presented with a page that pres
 1. In the **OpenID Connect Issuer** field, type in your previously noted client credentials with the URL of your Red Hat Single Sing On instance:
 
     ```bash
-    http://3scale-admin:CLIENT_SECRET@sso-sso.dil.opentry.me/auth/realms/userX
+    http://3scale-admin:CLIENT_SECRET@sso-sso.dil1.opentry.me/auth/realms/userX
     ```
 
     *Remember to replace the X with user number*
@@ -210,7 +210,7 @@ Once the environment is provisioned, you will be presented with a page that pres
 
     ![13-create-app.png](images/13-create-app.png "Create App")
 
-1. Update the **Redirect URL** to http://www-userX.dil.opentry.me/*. And note the *API Credentials*. Write them down as you will need the **Client ID** and the **Client Secret** to test your integration. 
+1. Update the **Redirect URL** to http://www-userX.dil1.opentry.me/*. And note the *API Credentials*. Write them down as you will need the **Client ID** and the **Client Secret** to test your integration. 
     ![14-app-credentials.png](images/14-app-credentials.png "App Credentials")
 
 *Congratulations!* You have now an application to test your OpenID Connect Integration.

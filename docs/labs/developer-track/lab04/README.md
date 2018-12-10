@@ -44,7 +44,7 @@ Please ask your instructor for your password.
 
     ![00-open-terminal.png](images/00-open-terminal.png "Open Terminal")
 
-1. In Openshift console (https://dil.opentry.me). 
+1. In Openshift console (https://dil1.opentry.me). 
 
 	![00-openshift-loginpage.png](images/00-openshift-loginpage.png "Commend Login")
 
@@ -55,7 +55,7 @@ Please ask your instructor for your password.
 1. Login to Openshift via the Terminal window and paste the commend to the terminal: 
 
     ```bash
-    oc login https://dil.opentry.me --token=XXXXX 
+    oc login https://dil1.opentry.me --token=XXXXX 
     ```
 
 
@@ -79,7 +79,7 @@ Please ask your instructor for your password.
 
     ![00-verify-wsdl.png](images/00-verify-wsdl.png "Verify WSDL")
 
-1. Return to your Eclipse Che workspace and open the `dayintelife-import/location-soap2rest` project.  Open the `pom.xml` file and scroll to the bottom.  Uncomment out the `cxf-codegen-plugin` entry at the bottom.  Update the `<wsdl>` entry with your fully qualified WSDL URL e.g. `http://location-soap-userX.dil.opentry.me/ws/location?wsdl`. *Be sure to replace userX with your username.*
+1. Return to your Eclipse Che workspace and open the `dayintelife-import/location-soap2rest` project.  Open the `pom.xml` file and scroll to the bottom.  Uncomment out the `cxf-codegen-plugin` entry at the bottom.  Update the `<wsdl>` entry with your fully qualified WSDL URL e.g. `http://location-soap-userX.dil1.opentry.me/ws/location?wsdl`. *Be sure to replace userX with your username.*
 
     ![00-uncomment-codegen.png](images/00-uncomment-codegen.png "Uncomment codegen plugin")
 
@@ -93,7 +93,7 @@ Please ask your instructor for your password.
 
 1. Open up the `CamelRoutes.java` file.  Notice that the existing implementation is barebones. First of all, we need to enter the SOAP service address and WSDL location for our CXF client to call.  Secondly, we need to create our Camel route implementation and create the RESTful endpoint.  To do this, include the following code (making sure to update the **{YOUR_NAME_SPACE}**,  **{OPENSHIFT_APP_URL}** and username values in the `to("cxf://` URL):
 
-    In this case **YOUR_NAME_SPACE** should be *userX* and **{OPENSHIFT_APP_URL}** would be *dil.opentry.me*. Check with your instructor if you are not sure. 
+    In this case **YOUR_NAME_SPACE** should be *userX* and **{OPENSHIFT_APP_URL}** would be *dil1.opentry.me*. Check with your instructor if you are not sure. 
 
     ```java
 	...
