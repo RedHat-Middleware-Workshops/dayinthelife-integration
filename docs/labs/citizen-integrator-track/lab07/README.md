@@ -113,6 +113,8 @@ Redirect URLs are a critical part of the OAuth flow. After a user successfully a
 
     *Remember to select CLIENT_ID with the one you got in the [API Security Lab](../lab05/#step-4-create-a-test-app). It will easily identifiable as its and hexadecimal name*.
 
+    *If you do not find the CLIENT_ID, make sure you correctly executed the sync between 3scale and RHSSO in [Step 3.12 Lab05](../lab05/#step-3-configure-3scale-integration)*
+
    ![24-client-application](images/consume-24.png "Client Application")
 
 1. Scroll down, type in and select the following options in the application configuration:
