@@ -181,7 +181,7 @@ We will use an online cURL tool to create your own record field in database.
 
    ![17-activity-refresh.png](images/17-activity-refresh.png "Activity Refresh")
 
-1. _(Optional)_ Visit the application URL in the browser and verify if the record can be fetched.  *Replace `101` in the URI with your corresponding user number.*
+1. _(Optional)_ Visit the application URL in the browser and verify if the record can be fetched.
 
   **REQUEST**
   ```
