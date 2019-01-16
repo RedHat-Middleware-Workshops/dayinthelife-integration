@@ -1,0 +1,30 @@
+---
+- set_fact: userno={{ item }}
+
+- name: Get Account for {{ userno }}
+  uri:
+    url: https://master-admin.{{ ocp_apps_domain }}/admin/api/accounts/find.json?access_token={{threescale_master_access_token}}&username={{ userno }}&email=admin%40{{ userno }}.com"
+    method: GET
+    return_content: yes
+    validate_certs: no
+  register: find_result
+  failed_when: false
+
+- name: Delete Tenant {{ item }}
+  uri:
+    url: https://master-admin.{{ ocp_apps_domain }}/master/api/providers/{{ find_result.json.account.id }}.xml
+    method: DELETE
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+    body: "access_token={{threescale_master_access_token}}"
+    validate_certs: no
+    status_code: 200
+  when: find_result.status == 200
+
+- name: Delete Admin Tenant {{ item }} Router
+  shell: "oc delete route system-provider-{{ userno }}-admin-route -n {{ namespace }}"
+  failed_when: false
+
+- name: Delete Developer Tenant {{ item }} Router
+  shell: "oc delete route system-developer-{{ userno }}-route -n {{ namespace }}"
+  failed_when: false

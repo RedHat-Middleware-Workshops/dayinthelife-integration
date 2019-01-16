@@ -44,3 +44,4 @@ create_tenants=true
 create_realms=true
 create_ides=true
 create_fuses=true
+is_on_RHPDS=false
