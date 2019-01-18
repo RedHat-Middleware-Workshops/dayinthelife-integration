@@ -118,6 +118,22 @@ String **API automated, DONE!** should be returned as the result.
 * Authenticating (If you test with an incorrect API key it will fail) 
 * Recording calls (Visit the Analytics tab to check who is calling your API).
 
+#### Common Gotcha
+If your encountered error:
+```org.apache.camel.http.common.HttpOperationFailedException: HTTP operation failed invoking https://{USERX}-admin.dil1.opentry.me/admin/api/services.xml with statusCode: 422```
+
+This may be due to a failed build. Troubleshoot by deleting SSO Location API.
+SSO Location API can be located here:
+
+* In your browser, `https://{USERX}-admin.dil1.opentry.me/config/services`
+* In the tab menu, click **APIs**
+* Click SSO Location API - **Definition**
+* Click **edit**
+* Click **I understand the consequences, proceed to delete 'SSO Location API' service.**
+
+Try running this command again in the terminal:
+```curl -X POST http://threescale-automate-international.dil.opentry.me/threescale/automate/{YOUR_API_TOKEN}/{USERX}/{OPENSHIFT_APP_URL}```
+
 ## Steps Beyond
 
 In this lab we just covered the basic creating of a proxy for our API service. Red Hat 3scale API Management also allows us to get a track of the security (as you can see in the next lab) as well as the usage of our API. If getting value from APIs is also important to you, 3scale allows you to monetize your APIs with it's embedded billing system.
