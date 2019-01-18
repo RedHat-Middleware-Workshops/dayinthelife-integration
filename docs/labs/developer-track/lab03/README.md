@@ -334,6 +334,8 @@ Once you've received the swagger specification (API contract) from your friendly
         ;
     ```
 
+    *Sample [CamelRoutes.java](https://gist.githubusercontent.com/VinayBhalerao/af845d8992a206630265cfd0bf0410bd/raw/68c2282fa3c1cfc748666f30df3e8a26b08a6935/CamelRoutes.java) for reference, just incase if you miss any step earlier.*
+
 1. Before we test our newly created Camel Routes, we need to update `src/main/resources/application.properties` to point to our Postgres database.  Set the `postgresql.service.name` property to `postgresql.OCPPROJECT.svc` so that it points to our OpenShift service. Replace `OCPPROJECT` with the OpenShift project name you created in Step 2 to host Postgres Database (this should be your unique username).
 
     ![00-update-properties.png](images/00-update-properties.png "Update Properties")
