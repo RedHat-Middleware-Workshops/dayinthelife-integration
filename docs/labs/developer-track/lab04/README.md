@@ -89,9 +89,9 @@ Please ask your instructor for your password.
 
 1. Once the script has completed, navigate back to the **Workspace** view and open the `src/main/java/com/redhat` folder.  Notice that there are a bunch of new POJO classes that were created by the Maven script.
 
-Common gotcha: If build fails due to usedd port, check if you are running with many instances of `run spring-boot`. You should only have 1 instance of `run-spring-boot`.
+Common gotcha: If build fails due to used port, check if you are running with many instances of `run spring-boot`. You should only have 1 instance of `run-spring-boot`.
 
-    ![00-verify-pojos.png](images/00-verify-pojos.png "Verify Pojos")
+![00-verify-pojos.png](images/00-verify-pojos.png "Verify Pojos")
 
 1. Open up the `CamelRoutes.java` file.  Notice that the existing implementation is barebones. First of all, we need to enter the SOAP service address and WSDL location for our CXF client to call.  Secondly, we need to create our Camel route implementation and create the RESTful endpoint.  To do this, include the following code (making sure to update the **{YOUR_NAME_SPACE}**,  **{OPENSHIFT_APP_URL}** and username values in the `to("cxf://` URL):
 
