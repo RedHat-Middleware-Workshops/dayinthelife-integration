@@ -28,3 +28,4 @@ threescale_admin_access_token: "mastertoken"
 threescale_admin_access_token: "admintoken"
 setup_threescale_services: true
 no_threescale_services: "{{configure_only}}"
+is_on_RHPDS: false
