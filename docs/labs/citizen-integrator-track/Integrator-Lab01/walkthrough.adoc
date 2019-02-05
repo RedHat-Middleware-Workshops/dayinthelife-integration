@@ -45,15 +45,15 @@ https://tutorial-web-app-webapp.{openshift-app-host}
 
 You will be presented with a login page where you can enter your unique credentials:
 
-image::images/design-50.png[design-login]
+image::images/design-50.png[design-login, role="integr8ly-img-responsive"]
 
 Enter your credentials and click *Log in*.  You'll notice a web-page appear which explains that a _unique environment_ is being provisioned.
 
-image::images/design-51.png[design-login]
+image::images/design-51.png[design-login, role="integr8ly-img-responsive"]
 
 Once the environment is provisioned, you will be presented with a page that presents all the available applications which you'll need in order to complete the labs:
 
-image::images/design-52.png[design-login]
+image::images/design-52.png[design-login, role="integr8ly-img-responsive"]
 
 == Lab Instructions
 
@@ -68,15 +68,15 @@ image::images/design-52.png[design-login]
 
 . Log in using your designated <<environment,user and password>>.
 +
-image::images/design-01.png[design-login]
+image::images/design-01.png[design-login, role="integr8ly-img-responsive"]
 
 . Click on *APIs* in the left side navigation menu from the Dashboard page.
 +
-image::images/design-02.png[design-apis]
+image::images/design-02.png[design-apis, role="integr8ly-img-responsive"]
 
 . Click on *Create New API*.
 +
-image::images/design-03.png[design-new-api]
+image::images/design-03.png[design-new-api, role="integr8ly-img-responsive"]
 
 . Create a brand new API by completing the following information:
  ** Type: *Open API 3.0.2*
@@ -84,11 +84,11 @@ image::images/design-03.png[design-new-api]
  ** Description: *Locations API*
 
 +
-image::images/design-04.png[design-create-api]
+image::images/design-04.png[design-create-api, role="integr8ly-img-responsive"]
 . Click on *Create API*.
 . Finally, click on *Edit API* to start editing your newly created API.
 +
-image::images/design-05.png[design-edit-api]
+image::images/design-05.png[design-edit-api, role="integr8ly-img-responsive"]
 
 === Step 2: Editing APIs
 
@@ -98,7 +98,7 @@ Let's start crafting your API.
 
 . Time to prepare our data definitions for the API. Click on the *Add a datatype* link under the _Data Types_.
 +
-image::images/design-15.png[design-add-datatype]
+image::images/design-15.png[design-add-datatype, role="integr8ly-img-responsive"]
 
 . Fill in the _Name_ field with the value *location*. Expand the _Enter the JSON Example (optional)_ to paste the following example, then click *Save*:
  ** Name: *location*
@@ -121,10 +121,10 @@ image::images/design-15.png[design-add-datatype]
  ** Choose to create a REST Resource with the Data Type: *No Resource*
 
 +
-image::images/design-16.png[design-JSON-Example]
+image::images/design-16.png[design-JSON-Example, role="integr8ly-img-responsive"]
 . Apicurio automatically tries to detect the data types from the provided example.
 +
-image::images/design-17.png[design-definition-types]
+image::images/design-17.png[design-definition-types, role="integr8ly-img-responsive"]
 +
 _Time to start creating some paths_.
 
@@ -136,52 +136,52 @@ The `/locations` path with an HTTP GET method will return a complete set of all 
 
 . Click on the *Add a path* link under the _Paths_ section. APIs need at least one path.
 +
-image::images/design-06.png[design-add-path]
+image::images/design-06.png[design-add-path, role="integr8ly-img-responsive"]
 
 . Fill in the new resource path with the following information:
  ** Path: */locations*
 
 +
-image::images/design-07.png[design-path]
+image::images/design-07.png[design-path, role="integr8ly-img-responsive"]
 . Click *Add*.
 +
 _By default, Apicurio suggest a series of available operations for your new path_.
 
 . Click *Create Operation* under the _GET_ operation.
 +
-image::images/design-08.png[design-create-operation]
+image::images/design-08.png[design-create-operation, role="integr8ly-img-responsive"]
 
 . Click on the green *GET* operation button to edit the operation information.
 +
-image::images/design-09.png[design-get-operation]
+image::images/design-09.png[design-get-operation, role="integr8ly-img-responsive"]
 +
 _As you can notice, Apicurio Editor guides you with warning for the elements missing in your design_.
 
 . Click on the *Add a response* link under _Responses_ to edit the response for this operation.
 +
-image::images/design-58.png[design-add-response]
+image::images/design-58.png[design-add-response, role="integr8ly-img-responsive"]
 
 . Leave the *200* option selected in the  _Response Status Code_ combo box and click on *Add*.
 +
-image::images/design-11.png[design-add-response-code]
+image::images/design-11.png[design-add-response-code, role="integr8ly-img-responsive"]
 
 . Scroll down to the bottom of the page. Move your mouse over the *200 OK* response to enable the options. Click the _No response media types defined_ drop-down. Now click on the *Add Media Type* button.
 +
-image::images/design-59.png[design-edit-response]
+image::images/design-59.png[design-edit-response, role="integr8ly-img-responsive"]
 
 . Click on the _Add_ button to accept *application/json* as the Media Type.
 +
-image::images/design-18.png[design-location-type]
+image::images/design-18.png[design-location-type, role="integr8ly-img-responsive"]
 
 . Click on the _Type_ dropdown and select *Array* and *location*.
 +
-image::images/design-18a.png[design-location-type]
+image::images/design-18a.png[design-location-type, role="integr8ly-img-responsive"]
 
 . Click the *Add an example* link to add a Response Example.
 +
 _This will be useful to mock your API in the next lab_.
 +
-image::images/design-19.png[design-add-example]
+image::images/design-19.png[design-add-example, role="integr8ly-img-responsive"]
 
 . Fill in the information for your response example:
  ** Name: *all*
@@ -224,14 +224,14 @@ image::images/design-19.png[design-add-example]
 ----
 
 +
-image::images/design-20.png[design-response-example]
+image::images/design-20.png[design-response-example, role="integr8ly-img-responsive"]
 . Click on the drop-down next to the `No description` message, and enter `Returns an array of location records` as the description.  Click the check-mark button to accept the description.
 +
-image::images/design-54.png[design-response-example]
+image::images/design-54.png[design-response-example, role="integr8ly-img-responsive"]
 
 . Click on the green *GET* operation button to highlight the list of operations.
 +
-image::images/design-31.png[design-get-operation]
+image::images/design-31.png[design-get-operation, role="integr8ly-img-responsive"]
 
 ==== 3b: Add `+/locations/{id}+` path with GET method
 
@@ -239,43 +239,43 @@ The `+/locations/{id}+` path will return a single location record based on a sin
 
 . Now we need to create another path.  Click on the `+` symbol to add a new path, then enter `+/locations/{id}+` for the *Path* property.  Click *Add*.
 +
-image::images/design-37.png[design-location-type]
+image::images/design-37.png[design-location-type, role="integr8ly-img-responsive"]
 
 . Scroll over the `id` _Path Parameter_ value, then click the *Create* button.
 +
-image::images/design-37a.png[design-location-type]
+image::images/design-37a.png[design-location-type, role="integr8ly-img-responsive"]
 
 . Click the drop-down arrow, then update the `id` Path Parameter by selecting `Integer` as the *Type* and `32-Bit Integer` as the sub-type.
 +
-image::images/design-38.png[design-location-type]
+image::images/design-38.png[design-location-type, role="integr8ly-img-responsive"]
 
 . Click on the `Create Operation` button underneath *GET*, then click the green *GET* button.
 +
-image::images/design-39.png[design-location-type]
+image::images/design-39.png[design-location-type, role="integr8ly-img-responsive"]
 
 . Click on the *Add a response* link under _Responses_ to edit the response for this operation.
 +
-image::images/design-10.png[design-add-response]
+image::images/design-10.png[design-add-response, role="integr8ly-img-responsive"]
 
 . Leave the *200* option selected in the  _Response Status Code_ combo box and click on *Add*.
 +
-image::images/design-11.png[design-add-response-code]
+image::images/design-11.png[design-add-response-code, role="integr8ly-img-responsive"]
 
 . Scroll down to the bottom of the page. Move your mouse over the *200 OK* response to enable the options. Click the _No response media types defined_ drop-down. Now click on the *Add Media Type* button.
 +
-image::images/design-12.png[design-edit-response]
+image::images/design-12.png[design-edit-response, role="integr8ly-img-responsive"]
 
 . Click on the _Add_ button to accept *application/json* as the Media Type.
 +
-image::images/design-18.png[design-location-type]
+image::images/design-18.png[design-location-type, role="integr8ly-img-responsive"]
 
 . Click on the _Type_ dropdown and select *location*.
 +
-image::images/design-40.png[design-location-type]
+image::images/design-40.png[design-location-type, role="integr8ly-img-responsive"]
 
 . Click on the drop-down next to the `No description` message, and enter `Returns a single location record` as the description.  Click the check-mark button to accept the description.
 +
-image::images/design-56.png[design-response-example]
+image::images/design-56.png[design-response-example, role="integr8ly-img-responsive"]
 
 ==== 3c: Add `+/locations/phone/{id}+` path with GET method
 
@@ -283,58 +283,58 @@ The `+/locations/phone/{id}+` path will return a single location record based on
 
 . Now we need to create another path.  Click on the `+` symbol to add a new path, then enter `+/locations/phone/{id}+` for the *Path* property.  Click *Add*.
 +
-image::images/design-41.png[design-location-type]
+image::images/design-41.png[design-location-type, role="integr8ly-img-responsive"]
 
 . Click on the `Create Operation` button underneath *Get*, then click the green *Get* button.
 +
-image::images/design-42.png[design-location-type]
+image::images/design-42.png[design-location-type, role="integr8ly-img-responsive"]
 
 . Scroll down to the `id` path parameter to highlight the row, and click the `Create` button that appears.
 +
-image::images/design-53.png[design-location-type]
+image::images/design-53.png[design-location-type, role="integr8ly-img-responsive"]
 
 . Click the drop-down arrow next to `No Type`, then update the `id` Path Parameter by selecting `Integer` as the *Type* and `32-Bit Integer` as the sub-type.
 +
-image::images/design-64.png[design-location-type]
+image::images/design-64.png[design-location-type, role="integr8ly-img-responsive"]
 
 . Click on the *Add a response* link under _Responses_ to edit the response for this operation.
 +
-image::images/design-61.png[design-add-response]
+image::images/design-61.png[design-add-response, role="integr8ly-img-responsive"]
 
 . Leave the *200* option selected in the  _Response Status Code_ combo box and click on *Add*.
 +
-image::images/design-11.png[design-add-response-code]
+image::images/design-11.png[design-add-response-code, role="integr8ly-img-responsive"]
 
 . Scroll down to the bottom of the page. Move your mouse over the *200 OK* response to enable the options. Click the _No response media types defined_ drop-down. Now click on the *Add Media Type* button.
 +
-image::images/design-62.png[design-edit-response]
+image::images/design-62.png[design-edit-response, role="integr8ly-img-responsive"]
 
 . Click on the _Add_ button to accept *application/json* as the Media Type.
 +
-image::images/design-18.png[design-location-type]
+image::images/design-18.png[design-location-type, role="integr8ly-img-responsive"]
 
 . Click on the _Type_ dropdown and select *location*.
 +
-image::images/design-63.png[design-location-type]
+image::images/design-63.png[design-location-type, role="integr8ly-img-responsive"]
 
 . Click on the drop-down next to the `No description` message, and enter `Returns a location record` as the description.  Click the check-mark button to accept the description.
 +
-image::images/design-57.png[design-response-example]
+image::images/design-57.png[design-response-example, role="integr8ly-img-responsive"]
 
 === Step 4: Download the API definition
 
 . Click the *Locations-UserX* link to return to the API admin page.
 +
-image::images/design-22.png[design-locations-api]
+image::images/design-22.png[design-locations-api, role="integr8ly-img-responsive"]
 
 . To start using your new API definition, display the API menu from the kebab link. Click the *Download (YAML)* option from the menu.
 +
-image::images/design-23.png[design-download-yaml]
+image::images/design-23.png[design-download-yaml, role="integr8ly-img-responsive"]
 
 . This will start the download of your API definition file. It could take a few seconds to start the download. *Save* it to your local disk drive.
 . You can open the file with any text editor. Take a look at the source file. Everything is there.
 +
-image::images/design-24.png[design-api-source]
+image::images/design-24.png[design-api-source, role="integr8ly-img-responsive"]
 
 _Congratulations!_ You have created your first API definition based on the OpenAPI Specification  using Red Hat's Apicurio. Don't lose track of the file, you will use this definition for your next lab.
 
