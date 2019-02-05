@@ -7,7 +7,7 @@
 
 ## Overview
 
-When it comes to quick API development, you need both the integration experts as well as application developers to easily develop and deploy the APIs. Here is how to create a simple API with Fuse Online. 
+When it comes to quick API development, you need both the integration experts as well as application developers to easily develop, deploy the APIs. Here is how to create a simple API with Fuse online. 
 
 ### Why Red Hat?
 
@@ -69,11 +69,12 @@ Once the environment is provisioned, you will be presented with a page that pres
 1. Enter below values for Database Configuration
 
     ```
-    Connection URL: jdbc:postgresql://postgresql.international.svc:5432/sampledb
+    Connection URL: jdbc:postgresql://postgresql.OCPPROJECT.svc:5432/sampledb
     Username      : dbuser
     Password      : password
     Schema        : <blank>
     ```
+*Remember to replace the OCPPROJECT with the OpenShift project(NameSpace) you created in last lab.*
 
 1. Click **Validate** and verify if the connection is successful. Click **Next** to proceed.
 
@@ -85,70 +86,158 @@ Once the environment is provisioned, you will be presented with a page that pres
 
 7. Verify that the `Location Database` is successfully created.
 
-### Step 2: Create webhook integration
+### Step 2: No CODE API developement 
+
+Description goes here
 
 1. Click on **Integrations > Create Integration** 
 
   ![04-create-integration.png](images/04-create-integration.png "Create Integration")
 
-2. Choose **Webhook**
+2. Choose **API Provider**
 
-  ![05-choose-weebhook.png](images/05-choose-weebhook.png "Choose webhook")
+   ![02-api-provider.png](images/n02-api-provider.png "Add Choose API Provider")
 
-3. Click on `Incoming Webhook` 
+3. Select **Create from scratch**
 
-  ![06-incoming-webhook.png](images/06-incoming-webhook.png "Add incoming webhook")
+  ![n03-api-from-scratch](images/n03-api-from-scratch.png "Add Choose API Provider")
+  
+4. Change the name of the API to `Location` and click on the Add a path link under the Paths section.
+![n04-api-name](images/n04-api-name.png "Set the name of the API")
 
-4. It navigates to the `Webhook Token` screen. Click **Next**
+5. Fill in the new resource path with the following information:
+ - Path: /locations 	
+![n05-api-path](images/n05-api-path.png "Set the path of the API")
 
-  ![07-webhook-configuration.png](images/07-webhook-configuration.png "Webhook Configuration")
+6. Click on the Add a datatype link under the Data Types.
+![n06-data-type](images/n06-data-type.png "Select Data Type")
 
-5. Define the Output Data Type. `Select type` from the dropdown as `JSON instance`. Enter `Data type Name: Custom`. `Definition: `, copy below JSON data. Click **Done**.
+7. Fill in the Name field with the value location. Expand the Enter the JSON Example to paste the following example, then click Save:
+ - Name: locationinput
+ - JSON Example:
+ 
+ ``
+ {
+	  "id": 1,
+	  "name": "Kamarhati",
+	  "type": "Regional Branch",
+	  "status": "1",
+	  "location": {
+	    "lat": "-28.32555",
+	    "lng": "-5.91531"
+	  }
+	}
+ ``
+ 
+ ![n07-location-input-datatype](images/n07-location-input-datatype.png "Select Data Type")
+ ![n08-location-input-datatype-save](images/n08-location-input-datatype-save.png "Select Data Type")
 
-    ```
-		{
-		  "id": 1,
-		  "name": "Kamarhati",
-		  "type": "Regional Branch",
-		  "status": "1",
-		  "location": {
-		    "lat": "-28.32555",
-		    "lng": "-5.91531"
-		  }
-		}
-    ```
 
- ![08-data-type.png](images/08-data-type.png "Data Type")
+8. Create another datatype, this time with the following config and click save.
+ - Name: location
+ - JSON Example:
+ 
+ ``
+ {
+    "id": 1,
+    "name": "International Inc Corporate Office",
+    "location": {
+        "lat": 51.5013673,
+        "lng": -0.1440787
+    },
+    "type": "headquarter",
+    "status": "1"
+ }
+ ``
+ ![n09-location-datatype](images/n09-location-datatype.png "Select Data Type")
 
-6. Click on `LocationDB` from the catalog and then select `Invoke SQL`
+9. You will be able to see the two datatypes created. 
+![n10-datatype-all](images/n10-datatype-all.png "Data Type All")
+ 
+10. Click on the Create Operation link under POST to create a new POST operation.
+![n11-post-method](images/n11-post-method.png "POST Method")
 
- ![09-invoke-sql.png](images/09-invoke-sql.png "Invoke SQL")
+11. Edit the description of the post method to *Add Location* and click the orange POST button to edit the operation
+![n12-post-description](images/n12-post-description.png "POST Method")
 
-7. Enter the SQL statement. Click **Done**.
+12. Click on **Add a request Body**
+![n13-request](images/n13-request.png "Request Body")
+
+13. Choose **locationinput** as the *Request Body Type*
+![n14-post-requst-location-input](images/n14-post-requst-location-input.png "Request Body as locationinput")
+
+14. Click the Add a response link.
+![n13-response](images/n13-response.png "Response Body")
+
+15. Set the Response Status Code value to 201. Click Add.
+![n15-post-response](images/n15-post-response.png "Response Body")
+
+16. Click on **No Description* and place *Location added* in Description box. Click on the tick to save the changes
+![n16-post-description](images/n16-post-description.png "Post Description")
+
+17. Click on the Type dropdown and select location.
+![n17-post-response-type](images/n17-post-response-type.png "Post Response Type")!
+
+18. On the top section, under operation id, name it **addLocation** and click on tick to save the changes. On the very top of the page, click on Save button to return to Fuse Online in order for us to start the API implementation.
+![n18-post-operation-id](images/n18-post-operation-id.png "Response Body")
+
+19. Click Next.
+![n19-start-of-integration](images/n19-start-of-integration.png "Response Body")
+
+20. Set `Integration Name: addLocation` and `Description: add Location`
+
+  ![n20-integration-name](images/n20-integration-name.png "Webhook Configuration")
+
+21. Click on Add Location operation. 
+
+  ![n21-choose-operation](images/n21-choose-operation.png "Webhook Configuration")
+
+
+22. Since we are adding incoming data into the database, click on the plus sign in between API entry point and return endpoint, select `Add connection` 
+
+ ![n22-add-db-connection](images/n22-add-db-connection.png "Add DB Connection")
+
+23. Click on `LocationDB` from the catalog and then select `Invoke SQL`
+
+ ![n24-invoke-sql](images/n24-invoke-sql.png "Invoke SQL")
+
+24. Enter the SQL statement and click **Done**.
 
  ```
    INSERT INTO locations (id,name,lat,lng,location_type,status) VALUES (:#id,:#name,:#lat,:#lng,:#location_type,:#status )
  ```
 
- ![10-invoke-sql-2.png](images/10-invoke-sql-2.png "Invoke SQL 2")
+ ![n25-sql-statement.png](images/n25-sql-statement.png "Invoke SQL 2")
 
-8. Click on `Add step` and select `Data mapper`
+25. In between top API endpoint and the Database connection, click on the plus sign and select `Add step` and select `Data mapper`
 
- ![11-data-mapper.png](images/11-data-mapper.png "Data Mapper")
+ ![n26-input-data-mapping](images/n26-input-data-mapping.png "Data Mapper")
+ ![n27-choose-data-mapping](images/n27-choose-data-mapping.png "Data Mapper")
 
-9. Drag and drop the matching **Source** Data types to all their corresponding **Targets** as per the following screenshot. When finished, click **Done**.
 
- ![12-configure-mapper.png](images/12-configure-mapper.png "Configure Mapper")
+26. Drag and drop the matching **Source** Data types to all their corresponding **Targets** as per the following screenshot. When finished, click **Done**.
 
-10. Click **Publish** on the next screen and add `Integration Name: addLocation`. Again Click **Publish**.
+ ![n28-data-map-db.png](images/n28-data-map-db.png "Configure Mapper")
 
- ![13-publish-integration.png](images/13-publish-integration.png "Publish Integration")
+27. In between the Database connection and the endpoint, click on the plus sign and select `Add step` and select `Data mapper`
+
+ ![n29-output-data-mapping](images/n29-output-data-mapping.png "Data Mapper")
+ ![n30-choose-data-mapping](images/n30-choose-data-mapping.png "Data Mapper")
+
+
+26. Drag and drop the matching **Source** Data types to all their corresponding **Targets** as per the following screenshot. When finished, click **Done**.
+
+ ![n31-data-map-response](images/n31-data-map-response.png "Configure Mapper")
+
+27. Click **Publish** on the next screen.
+
+ ![n32-publish](images/n32-publish.png "Publish Integration")
 
 *Congratulations*. You successfully published the integration. (Wait for few minutes to build and publish the integration)
 
 ### Step 3: Create a POST request
 
-We will use an online cURL tool to create your own record field in database.
+We will use an online cURL tool to create the `101th` record field in database.
 
 1. Copy the `External URL` per the below screenshot
 
@@ -160,15 +249,17 @@ We will use an online cURL tool to create your own record field in database.
      https://onlinecurl.com/
    ```
 
-1. Below are the values for your requests. Remember to click on **+ Add Option** to add additional parameters to the request. Note: `id:101` in the payload as we are creating `101th` record in the database. 
+1. Below are the values for the request. Note: `id:101` in the payload as we are creating `101th` record in the database.
 
-   | Parameters | Values |
-   | --- | --- |
-   | URL | external copied url from Step 3.1 |
-   | --header (-H) | Content-Type: application/json |
-   | --data (-d)  |   {"id": 101, "name": "Kamarhati", "type": "Regional Branch", "status": "1", "location": { "lat": "-28.32555", "lng": "-5.91531" }} |
-   | --request (-X) | POST |
+   ```
+     URL: http://i-addlocation-demo.apps.55b9.openshift.opentlc.com/locations
 
+     --header (-H):  Content-Type: application/json
+
+     --data (-d): {"id": 101, "name": "Kamarhati", "type": "Regional Branch", "status": "1", "location": { "lat": "-28.32555", "lng": "-5.91531" }}
+
+     --request (-X): POST
+   ```
 
    ![15-online-curl.png](images/15-online-curl.png "Online URL")
 
@@ -181,7 +272,11 @@ We will use an online cURL tool to create your own record field in database.
 
    ![17-activity-refresh.png](images/17-activity-refresh.png "Activity Refresh")
 
+<<<<<<< HEAD
 1. _(Optional)_ Visit the application URL in the browser and verify if the record can be fetched.
+=======
+1. _(Optional)_ Visit the application URL in browser and verify if the record can be fetched.
+>>>>>>> 1a3996b4b04f4a7a4997ae47d9c36f2cfa8178e2
 
   **REQUEST**
   ```
@@ -216,4 +311,5 @@ You can now proceed to [Lab 4](../lab04/#lab-4)
   * [Webpage](https://www.redhat.com/en/technologies/jboss-middleware/fuse-online)
   * [Sample tutorials](https://access.redhat.com/documentation/en-us/red_hat_fuse/7.1/html-single/fuse_online_sample_integration_tutorials/index)
   * [Blog](https://developers.redhat.com/blog/2017/11/02/work-done-less-code-fuse-online-tech-preview-today/)
+
 
