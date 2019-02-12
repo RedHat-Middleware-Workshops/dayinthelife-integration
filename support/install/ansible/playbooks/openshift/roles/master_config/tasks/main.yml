@@ -17,7 +17,7 @@
   register: rhsso_admin_user_cmd
 
 - name: Retrieve 3Scale admin auth token
-  shell: oc describe dc/system-app -n 3scale | grep ADMIN_ACCESS_TOKEN | tail -1 | awk '{print $2}'
+  shell: oc get secret/system-seed --template='{% raw %}{{.data.ADMIN_ACCESS_TOKEN}}{% endraw %}' -n 3scale | base64 -d
   register: admin_auth_config
 
 - set_fact:
