@@ -73,62 +73,62 @@
 
 - debug: var=client_secret
 
-- name: Create sso service
-  include_tasks: ./create-service.yml
-  vars:
-    admintoken: '{{ threescale_admin_access_token }}'
-    account_id: '3'
-    name: 'SSO Location API'
-    backend_version: 'oidc'
-    system_name: 'location-sso'
-    configure_only: '{{no_threescale_services}}'
-    proxy_config: 
-      production_endpoint: 'https://location-sso.amp.{{ ocp_apps_domain }}:443'
-      staging_endpoint: 'https://location-sso-staging.amp.{{ ocp_apps_domain }}:443'
-      backend_endpoint: 'http://location-service-{{ backend_project }}.{{ ocp_apps_domain }}:80'
-      sso_endpoint: 'http://{{threescale_client_id | default("3scale-admin")}}:{{ client_secret }}@sso-{{ sso_project }}.{{ ocp_apps_domain }}/auth/realms/{{threescale_realm | default("threescale")}}'
-    application_plan:
-      name: 'Secure'
-      system_name: 'secure'
-    app_config:
-      id: 'www-secured'
-      name: 'Secured App'
-      description: 'SSO Secured App'
-      redirect_uri: 'http://www-{{ backend_project }}.{{ ocp_apps_domain }}/*'
+# - name: Create sso service
+#   include_tasks: ./create-service.yml
+#   vars:
+#     admintoken: '{{ threescale_admin_access_token }}'
+#     account_id: '3'
+#     name: 'SSO Location API'
+#     backend_version: 'oidc'
+#     system_name: 'location-sso'
+#     configure_only: '{{no_threescale_services}}'
+#     proxy_config: 
+#       production_endpoint: 'https://location-sso.amp.{{ ocp_apps_domain }}:443'
+#       staging_endpoint: 'https://location-sso-staging.amp.{{ ocp_apps_domain }}:443'
+#       backend_endpoint: 'http://location-service-{{ backend_project }}.{{ ocp_apps_domain }}:80'
+#       sso_endpoint: 'http://{{threescale_client_id | default("3scale-admin")}}:{{ client_secret }}@http-{{ sso_project }}.{{ ocp_apps_domain }}/auth/realms/{{threescale_realm | default("threescale")}}'
+#     application_plan:
+#       name: 'Secure'
+#       system_name: 'secure'
+#     app_config:
+#       id: 'www-secured'
+#       name: 'Secured App'
+#       description: 'SSO Secured App'
+#       redirect_uri: 'http://www-{{ backend_project }}.{{ ocp_apps_domain }}/*'
 
-- name: Get id for client 'www-secured'
-  uri:
-    url: 'https://sso-{{sso_project}}.{{ocp_apps_domain}}/auth/admin/realms/{{threescale_realm | default("threescale")}}/clients'
-    return_content: yes
-    headers:
-      Authorization: 'Bearer {{TKN}}'
-    validate_certs: no
-  register: client_text
-  until: ("www-secured" in client_text.content)
-  retries: 20
-  delay: 30
+# - name: Get id for client 'www-secured'
+#   uri:
+#     url: 'https://sso-{{sso_project}}.{{ocp_apps_domain}}/auth/admin/realms/{{threescale_realm | default("threescale")}}/clients'
+#     return_content: yes
+#     headers:
+#       Authorization: 'Bearer {{TKN}}'
+#     validate_certs: no
+#   register: client_text
+#   until: ("www-secured" in client_text.content)
+#   retries: 20
+#   delay: 30
 
-- set_fact: IdClientApp={{ (client_text.content | from_json | json_query(query)) }}
-  vars:
-    query: "[?clientId=='www-secured'] | [0].id"
+# - set_fact: IdClientApp={{ (client_text.content | from_json | json_query(query)) }}
+#   vars:
+#     query: "[?clientId=='www-secured'] | [0].id"
 
-- debug: var=IdClientApp
+# - debug: var=IdClientApp
 
-- name: Update the rh sso app
-  uri: 
-    url: "https://sso-{{sso_project}}.{{ocp_apps_domain}}/auth/admin/realms/{{threescale_realm | default('threescale')}}/clients/{{IdClientApp}}"
-    method: PUT
-    return_content: yes
-    headers:
-      Content-Type: "application/json"
-      Authorization: 'Bearer {{TKN}}'
-    body: '{ "clientId": "www-secured", "publicClient" : "true", "rootUrl": "http://www-{{ backend_project }}.{{ ocp_apps_domain }}", "baseUrl": "/" }'
-    body_format: json
-    validate_certs: no
-    status_code: 204
-  register: update_app_result
+# - name: Update the rh sso app
+#   uri: 
+#     url: "https://sso-{{sso_project}}.{{ocp_apps_domain}}/auth/admin/realms/{{threescale_realm | default('threescale')}}/clients/{{IdClientApp}}"
+#     method: PUT
+#     return_content: yes
+#     headers:
+#       Content-Type: "application/json"
+#       Authorization: 'Bearer {{TKN}}'
+#     body: '{ "clientId": "www-secured", "publicClient" : "true", "rootUrl": "http://www-{{ backend_project }}.{{ ocp_apps_domain }}", "baseUrl": "/" }'
+#     body_format: json
+#     validate_certs: no
+#     status_code: 204
+#   register: update_app_result
 
-- debug: var=update_app_result
+# - debug: var=update_app_result
 
 - include_tasks: create-wildcard-route.yml
   when: create_wildcard_route
