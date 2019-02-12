@@ -6,11 +6,11 @@
     sso_project: sso
 
 - debug:
-    msg: "curl --insecure -X POST 'https://secure-sso-{{sso_project}}.{{ocp_apps_domain}}/auth/realms/master/protocol/openid-connect/token' \
+    msg: "curl --insecure -X POST 'https://sso-{{sso_project}}.{{ocp_apps_domain}}/auth/realms/master/protocol/openid-connect/token' \
   -H 'Content-Type: application/x-www-form-urlencoded' -d 'username={{ eval_rhsso_admin_username | default('keyadmin') }}' -d 'password={{ eval_rhsso_admin_password | default('keypassword') }}' -d 'grant_type=password' -d 'client_id=admin-cli'"
 
 - name: Get SSO token
-  shell: "curl --insecure -X POST 'https://secure-sso-{{sso_project}}.{{ocp_apps_domain}}/auth/realms/master/protocol/openid-connect/token' \
+  shell: "curl --insecure -X POST 'https://sso-{{sso_project}}.{{ocp_apps_domain}}/auth/realms/master/protocol/openid-connect/token' \
   -H 'Content-Type: application/x-www-form-urlencoded' -d 'username={{ eval_rhsso_admin_username | default('keyadmin') }}' -d 'password={{ eval_rhsso_admin_password | default('keypassword') }}' -d 'grant_type=password' -d 'client_id=admin-cli'"
   register: token_text
 
@@ -34,7 +34,7 @@
 
 - name: Create Microcks Realm
   uri: 
-    url: 'https://secure-sso-{{sso_project}}.{{ocp_apps_domain}}/auth/admin/realms'
+    url: 'https://sso-{{sso_project}}.{{ocp_apps_domain}}/auth/admin/realms'
     method: POST
     body: "{{ realm }}"
     body_format: json
@@ -47,7 +47,7 @@
 
 - name: Create Microcks users
   uri: 
-    url: 'https://secure-sso-{{sso_project}}.{{ocp_apps_domain}}/auth/admin/realms/{{microcks_project}}/users'
+    url: 'https://sso-{{sso_project}}.{{ocp_apps_domain}}/auth/admin/realms/{{microcks_project}}/users'
     method: POST
     headers:
       Content-Type: "application/json"

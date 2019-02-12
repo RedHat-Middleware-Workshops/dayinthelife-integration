@@ -47,14 +47,14 @@
       description: 'Simple WebApp'
 
 - name: Get SSO Token Longer Lifespan
-  shell: "curl --insecure -X POST 'https://secure-sso-{{sso_project}}.{{ocp_apps_domain}}/auth/realms/master/protocol/openid-connect/token' \
+  shell: "curl --insecure -X POST 'https://sso-{{sso_project}}.{{ocp_apps_domain}}/auth/realms/master/protocol/openid-connect/token' \
   -H 'Content-Type: application/x-www-form-urlencoded' -d 'username={{ eval_rhsso_admin_username | default('keyadmin') }}' -d 'password={{ eval_rhsso_admin_password | default('keypassword') }}' -d 'grant_type=password' -d 'client_id=admin-cli'"
   register: token_text
 
 - set_fact: TKN={{ (token_text.stdout | from_json).access_token }}
 
 - name: Get id for 3scale-client
-  shell: "curl --insecure 'https://secure-sso-{{sso_project}}.{{ocp_apps_domain}}/auth/admin/realms/{{threescale_realm | default('threescale')}}/clients' \
+  shell: "curl --insecure 'https://sso-{{sso_project}}.{{ocp_apps_domain}}/auth/admin/realms/{{threescale_realm | default('threescale')}}/clients' \
   -H 'Content-Type: application/json' -H 'Authorization: Bearer {{TKN}}'"
   register: clients_text
 
@@ -65,7 +65,7 @@
 - debug: var=IdClientAdmin
 
 - name: Get client secret
-  shell: "curl --insecure 'https://secure-sso-{{sso_project}}.{{ocp_apps_domain}}/auth/admin/realms/{{threescale_realm | default('threescale')}}/clients/{{ IdClientAdmin }}/client-secret' \
+  shell: "curl --insecure 'https://sso-{{sso_project}}.{{ocp_apps_domain}}/auth/admin/realms/{{threescale_realm | default('threescale')}}/clients/{{ IdClientAdmin }}/client-secret' \
   -H 'Content-Type: application/json' -H 'Authorization: Bearer {{TKN}}'"
   register: secret_text
 
@@ -98,7 +98,7 @@
 
 - name: Get id for client 'www-secured'
   uri:
-    url: 'https://secure-sso-{{sso_project}}.{{ocp_apps_domain}}/auth/admin/realms/{{threescale_realm | default("threescale")}}/clients'
+    url: 'https://sso-{{sso_project}}.{{ocp_apps_domain}}/auth/admin/realms/{{threescale_realm | default("threescale")}}/clients'
     return_content: yes
     headers:
       Authorization: 'Bearer {{TKN}}'
@@ -116,7 +116,7 @@
 
 - name: Update the rh sso app
   uri: 
-    url: "https://secure-sso-{{sso_project}}.{{ocp_apps_domain}}/auth/admin/realms/{{threescale_realm | default('threescale')}}/clients/{{IdClientApp}}"
+    url: "https://sso-{{sso_project}}.{{ocp_apps_domain}}/auth/admin/realms/{{threescale_realm | default('threescale')}}/clients/{{IdClientApp}}"
     method: PUT
     return_content: yes
     headers:

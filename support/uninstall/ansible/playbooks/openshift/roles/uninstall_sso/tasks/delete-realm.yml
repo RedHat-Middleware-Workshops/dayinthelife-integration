@@ -2,7 +2,7 @@
 
 - name: Delete {{ item }} Realm
   uri: 
-    url: 'https://secure-sso-{{sso_project}}.{{ocp_apps_domain}}/auth/admin/realms/{{item}}'
+    url: 'https://sso-{{sso_project}}.{{ocp_apps_domain}}/auth/admin/realms/{{item}}'
     method: DELETE
     headers:
       Content-Type: "application/json"

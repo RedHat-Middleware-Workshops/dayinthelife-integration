@@ -31,7 +31,7 @@
 
 - name: Wait until RH SSO API is available 
   uri: 
-    url: https://secure-sso-{{sso_project}}.{{ocp_apps_domain}}
+    url: https://sso-{{sso_project}}.{{ocp_apps_domain}}
     method: HEAD
     follow_redirects: safe
     validate_certs: no
@@ -53,7 +53,7 @@
   when: create_realms
 
 - name: Get SSO token
-  shell: "curl --insecure -X POST 'https://secure-sso-{{sso_project}}.{{ocp_apps_domain}}/auth/realms/master/protocol/openid-connect/token' \
+  shell: "curl --insecure -X POST 'https://sso-{{sso_project}}.{{ocp_apps_domain}}/auth/realms/master/protocol/openid-connect/token' \
   -H 'Content-Type: application/x-www-form-urlencoded' -d 'username={{ eval_rhsso_admin_username | default('keyadmin') }}' -d 'password={{ eval_rhsso_admin_password | default('keypassword') }}' -d 'grant_type=password' -d 'client_id=admin-cli'"
   register: token_text
 
@@ -61,7 +61,7 @@
 
 - name: Increase Token Lifespan (60mins)
   uri: 
-    url: 'https://secure-sso-{{sso_project}}.{{ocp_apps_domain}}/auth/admin/realms/master'
+    url: 'https://sso-{{sso_project}}.{{ocp_apps_domain}}/auth/admin/realms/master'
     method: PUT
     body: "{\"realm\":\"master\", \"accessTokenLifespan\":\"3600\"}"
     body_format: json
@@ -73,7 +73,7 @@
     status_code: 204
 
 - name: Get SSO Token Longer Lifespan
-  shell: "curl --insecure -X POST 'https://secure-sso-{{sso_project}}.{{ocp_apps_domain}}/auth/realms/master/protocol/openid-connect/token' \
+  shell: "curl --insecure -X POST 'https://sso-{{sso_project}}.{{ocp_apps_domain}}/auth/realms/master/protocol/openid-connect/token' \
   -H 'Content-Type: application/x-www-form-urlencoded' -d 'username={{ eval_rhsso_admin_username | default('keyadmin') }}' -d 'password={{ eval_rhsso_admin_password | default('keypassword') }}' -d 'grant_type=password' -d 'client_id=admin-cli'"
   register: token_text
 
@@ -97,7 +97,7 @@
 
 - name: Create OpenShift users
   uri:
-    url: 'https://secure-sso-{{sso_project}}.{{ocp_apps_domain}}/auth/admin/realms/openshift/users'
+    url: 'https://sso-{{sso_project}}.{{ocp_apps_domain}}/auth/admin/realms/openshift/users'
     method: POST
     headers:
       Content-Type: "application/json"

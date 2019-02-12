@@ -5,11 +5,11 @@
 - name: Create Apicurio app
   shell: "oc new-app -f {{ apicurio_template_url }} \
   -p UI_ROUTE=apicurio-studio.{{ ocp_apps_domain }} -p API_ROUTE=apicurio-studio-api.{{ ocp_apps_domain }} \
-  -p WS_ROUTE=apicurio-studio-ws.{{ ocp_apps_domain }} -p AUTH_ROUTE=secure-sso-{{sso_project}}.{{ocp_apps_domain}} {{ apicurio_template_params }} -n {{ apicurio_project }}"
+  -p WS_ROUTE=apicurio-studio-ws.{{ ocp_apps_domain }} -p AUTH_ROUTE=sso-{{sso_project}}.{{ocp_apps_domain}} {{ apicurio_template_params }} -n {{ apicurio_project }}"
   when: configure_only == 'false'
 
 - name: Get SSO token
-  shell: "curl --insecure -X POST 'https://secure-sso-{{sso_project}}.{{ocp_apps_domain}}/auth/realms/master/protocol/openid-connect/token' \
+  shell: "curl --insecure -X POST 'https://sso-{{sso_project}}.{{ocp_apps_domain}}/auth/realms/master/protocol/openid-connect/token' \
   -H 'Content-Type: application/x-www-form-urlencoded' -d 'username={{ eval_rhsso_admin_username | default('keyadmin') }}' -d 'password={{ eval_rhsso_admin_password | default('keypassword') }}' -d 'grant_type=password' -d 'client_id=admin-cli'"
   register: token_text
   when: create_realms
@@ -38,7 +38,7 @@
 
 - name: Create Apicurio Realm
   uri: 
-    url: 'https://secure-sso-{{sso_project}}.{{ocp_apps_domain}}/auth/admin/realms'
+    url: 'https://sso-{{sso_project}}.{{ocp_apps_domain}}/auth/admin/realms'
     method: POST
     body: "{{ realm }}"
     body_format: json
@@ -52,7 +52,7 @@
   
 - name: Create Apicurio users
   uri: 
-    url: 'https://secure-sso-{{sso_project}}.{{ocp_apps_domain}}/auth/admin/realms/{{apicurio_project}}/users'
+    url: 'https://sso-{{sso_project}}.{{ocp_apps_domain}}/auth/admin/realms/{{apicurio_project}}/users'
     method: POST
     headers:
       Content-Type: "application/json"

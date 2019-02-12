@@ -1,6 +1,6 @@
 ---
 - name: Get SSO token
-  shell: "curl --insecure -X POST 'https://secure-sso-{{sso_project}}.{{ocp_apps_domain}}/auth/realms/master/protocol/openid-connect/token' \
+  shell: "curl --insecure -X POST 'https://sso-{{sso_project}}.{{ocp_apps_domain}}/auth/realms/master/protocol/openid-connect/token' \
   -H 'Content-Type: application/x-www-form-urlencoded' -d 'username={{ eval_rhsso_admin_username | default('keyadmin') }}' -d 'password={{ eval_rhsso_admin_password | default('keypassword') }}' -d 'grant_type=password' -d 'client_id=admin-cli'"
   register: token_text
 
