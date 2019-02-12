@@ -3,7 +3,7 @@
 
 - name: Get Account for {{ userno }}
   uri:
-    url: https://master-admin.{{ ocp_apps_domain }}/admin/api/accounts/find.json?access_token={{threescale_master_access_token}}&username={{ userno }}&email=admin%40{{ userno }}.com"
+    url: https://master.{{ ocp_apps_domain }}/admin/api/accounts/find.json?access_token={{threescale_master_access_token}}&username={{ userno }}&email=admin%40{{ userno }}.com"
     method: GET
     return_content: yes
     validate_certs: no
@@ -12,7 +12,7 @@
 
 - name: Delete Tenant {{ item }}
   uri:
-    url: https://master-admin.{{ ocp_apps_domain }}/master/api/providers/{{ find_result.json.account.id }}.xml
+    url: https://master.{{ ocp_apps_domain }}/master/api/providers/{{ find_result.json.account.id }}.xml
     method: DELETE
     headers:
       Content-Type: "application/x-www-form-urlencoded"

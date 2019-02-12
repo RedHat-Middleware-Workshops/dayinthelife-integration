@@ -3,7 +3,7 @@
 
 - name: Create Tenant {{ item }}
   uri:
-    url: https://master-admin.{{ ocp_apps_domain }}/master/api/providers.xml
+    url: https://master.{{ ocp_apps_domain }}/master/api/providers.xml
     method: POST
     return_content: yes
     headers:
@@ -33,7 +33,7 @@
 
 - name: Activate Tenant User {{ item }}
   uri:
-    url: https://master-admin.{{ocp_apps_domain}}/admin/api/accounts/{{ ids[0].id }}/users/{{ ids[3].id }}/activate.xml
+    url: https://master.{{ocp_apps_domain}}/admin/api/accounts/{{ ids[0].id }}/users/{{ ids[3].id }}/activate.xml
     method: PUT
     return_content: yes
     headers:

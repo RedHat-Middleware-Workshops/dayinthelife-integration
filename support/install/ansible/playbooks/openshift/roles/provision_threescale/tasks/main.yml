@@ -10,7 +10,7 @@
 
 - name: Wait until 3scale API is available 
   uri: 
-    url: https://master-admin.{{ ocp_apps_domain }}
+    url: https://master.{{ ocp_apps_domain }}
     method: HEAD
     validate_certs: no
   register: wait_threescale_result

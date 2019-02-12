@@ -871,7 +871,7 @@ objects:
 - apiVersion: v1
   kind: Route
   metadata:
-    name: system-master-admin-route
+    name: system-master-route
   spec:
     host: ${MASTER_NAME}-admin.${WILDCARD_DOMAIN}
     to:
