@@ -1,4 +1,4 @@
 ---
 namespace: 3scale
-wildcard_route_name: apicast-wildcard-router-route
+wildcard_route_name: apicast-wildcard-router
 create_wildcard_route: true
