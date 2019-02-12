@@ -10,7 +10,7 @@
 
 - name: Wait for Developer account to be ready 
   uri: 
-    url: https://3scale-admin.{{guid}}.{{ocp_apps_domain}}/admin/api/accounts/find.xml
+    url: https://3scale-admin.{{ocp_apps_domain}}/admin/api/accounts/find.xml
     headers:
       Content-Type: "application/x-www-form-urlencoded"
     body: "access_token={{access_token}}&username=john"
