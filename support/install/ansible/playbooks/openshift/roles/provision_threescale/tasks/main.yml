@@ -80,7 +80,7 @@
     account_id: '3'
     name: 'SSO Location API'
     backend_version: 'oidc'
-    system_name: 'location-sso'
+    system_name: {{ 999999999999999999999 | random | to_uuid | hash('md5') }}
     configure_only: '{{no_threescale_services}}'
     proxy_config: 
       production_endpoint: 'https://location-sso.amp.{{ ocp_apps_domain }}:443'
