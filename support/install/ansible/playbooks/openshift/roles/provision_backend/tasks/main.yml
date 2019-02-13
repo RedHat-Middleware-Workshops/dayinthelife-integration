@@ -13,16 +13,9 @@
   when: configure_only == 'false' and imagestream_exists.failed
   ignore_errors: true
 
-- name: Check if Fuse 7.1 template is available
-  shell: "oc describe template s2i-fuse71-spring-boot-camel -n openshift"
-  register: template_exists
+- name: Create or Update template for Fuse 7.1
+  shell: "oc apply -f https://raw.githubusercontent.com/RedHatWorkshops/dayinthelife-integration/master/support/templates/spring-boot-camel-template.json -n openshift"
   when: configure_only == 'false'
-  ignore_errors: true
-
-# Needed to change this to include CONTEXT_DIR
-- name: Create template for Fuse 7.1
-  shell: "oc create -f https://raw.githubusercontent.com/RedHatWorkshops/dayinthelife-integration/master/support/templates/spring-boot-camel-template.json -n openshift"
-  when: configure_only == 'false' and template_exists.failed
   ignore_errors: true
 
 - name: Check if Fuse 7.1 SSO template is available
