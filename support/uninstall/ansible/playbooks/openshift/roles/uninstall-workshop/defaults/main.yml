@@ -4,6 +4,7 @@ threescale: true
 apicurio: true
 gogs: true
 microcks: true
+backend: true
 sso: true
 delete_user_projects: true
 delete_realms: true
