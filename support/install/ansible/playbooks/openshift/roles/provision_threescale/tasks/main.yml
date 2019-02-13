@@ -33,7 +33,7 @@
     name: 'Location API'
     backend_version: '1'
     configure_only: '{{no_threescale_services}}'
-    system_name: 'location-api'
+    system_name: {{ 999999999999999999999 | random | to_uuid | hash('md5') }}
     proxy_config: 
       production_endpoint: 'https://location-api.amp.{{ ocp_apps_domain }}:443'
       staging_endpoint: 'https://location-api-staging.amp.{{ ocp_apps_domain }}:443'
@@ -80,7 +80,7 @@
     account_id: '3'
     name: 'SSO Location API'
     backend_version: 'oidc'
-    system_name: {{ 999999999999999999999 | random | to_uuid | hash('md5') }}
+    system_name: {{ 999999999999999999998 | random | to_uuid | hash('md5') }}
     configure_only: '{{no_threescale_services}}'
     proxy_config: 
       production_endpoint: 'https://location-sso.amp.{{ ocp_apps_domain }}:443'
