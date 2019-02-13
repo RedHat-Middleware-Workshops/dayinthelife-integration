@@ -2,3 +2,26 @@
 - name: Delete tenants
   include_tasks: ./delete-tenants.yml
   with_sequence: start=1 end={{ usersno }} format=user%d
+
+- name: Search for shared services
+  uri:
+    url: https://3scale-admin.{{ ocp_apps_domain }}/admin/api/services.json?access_token={{threescale_admin_access_token}}
+    method: GET
+    return_content: yes
+    validate_certs: no
+  register: services_result
+
+- set_fact: ServiceIds={{ (services_result.content | from_json | json_query(query)) }}
+  vars:
+    query: "services[?contains(service.name, `Location`) == `true`].service.id"
+
+- name: Delete shared services
+  uri:
+    url: https://3scale-admin.{{ ocp_apps_domain }}/admin/api/services/{{ item }}.xml
+    method: DELETE
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+    body: "access_token={{threescale_admin_access_token}}"
+    validate_certs: no
+    status_code: 200
+  with_items: '{{ ServiceIds }}'
