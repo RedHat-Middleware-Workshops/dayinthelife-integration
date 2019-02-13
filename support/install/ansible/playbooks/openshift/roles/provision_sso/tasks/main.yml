@@ -29,6 +29,14 @@
   -p SSO_ADMIN_PASSWORD=keypassword -n {{sso_project}}"
   when: configure_only == 'false'
 
+- name: Create http service
+  shell: "oc expose dc sso --name=http --port=8080 --protocol='TCP'"
+  when: configure_only == 'false'
+
+- name: Expose http service
+  shell: "oc expose svc http --hostname='http-{{sso_project}}.{{ocp_apps_domain}}'"
+  when: configure_only == 'false'
+
 - name: Wait until RH SSO API is available 
   uri: 
     url: https://sso-{{sso_project}}.{{ocp_apps_domain}}
@@ -92,9 +100,6 @@
     item: threescale
   when: create_realms
 
-- name: Make sure we go back to default project
-  shell: "oc project default"
-
 - name: Create OpenShift users
   uri:
     url: 'https://sso-{{sso_project}}.{{ocp_apps_domain}}/auth/admin/realms/openshift/users'
@@ -108,3 +113,6 @@
     status_code: [201, 409]
   with_sequence: start=1 end={{ usersno }} format=user%d
   when: is_on_RHPDS
+
+- name: Make sure we go back to default project
+  shell: "oc project default"
