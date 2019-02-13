@@ -6,7 +6,7 @@
     return_content: yes
     headers:
       Content-Type: "application/x-www-form-urlencoded"
-    body: "access_token={{ admintoken }}&name={{ name | urlencode }}&deployment_option=hosted&backend_version={{ '1' if backend_version == 'oidc' else backend_version }}&system_name={{ system_name }}"
+    body: "access_token={{ admintoken }}&name={{ name | urlencode }}&deployment_option=hosted&backend_version={{ '1' if backend_version == 'oidc' else backend_version }}"
     validate_certs: no
     status_code: [201,422]
   register: create_svc_result

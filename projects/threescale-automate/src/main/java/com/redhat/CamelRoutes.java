@@ -109,7 +109,7 @@ public class CamelRoutes extends RouteBuilder {
 				.log("${headers}")
 				.setHeader(Exchange.HTTP_METHOD, constant("POST"))
 				.setHeader(Exchange.CONTENT_TYPE, constant(MediaType.APPLICATION_FORM_URLENCODED_VALUE))
-				.setBody(simple("access_token=${headers.apiToken}&name=SSO+Location+API&deployment_option=hosted&backend_version=oidc&system_name=location-sso"))
+				.setBody(simple("access_token=${headers.apiToken}&name=SSO+Location+API&deployment_option=hosted&backend_version=oidc"))
 			.toD("https4://${headers.userid}-admin.${headers.openshiftappurl}/admin/api/services.xml?sslContextParameters=#ssl&bridgeEndpoint=true")
 			.setHeader("serviceid").xpath("/service/id", String.class) 
 			
@@ -133,7 +133,7 @@ public class CamelRoutes extends RouteBuilder {
 			//Create Application Plans
 				.setHeader(Exchange.HTTP_METHOD, constant("POST"))
 				.setHeader(Exchange.CONTENT_TYPE, constant(MediaType.APPLICATION_FORM_URLENCODED_VALUE))
-				.setBody(simple("access_token=${headers.apiToken}&name=Secure&system_name=secure"))
+				.setBody(simple("access_token=${headers.apiToken}&name=Secure"))
 			.toD("https4://${headers.userid}-admin.${headers.openshiftappurl}/admin/api/services/${headers.serviceid}/application_plans.xml?sslContextParameters=#ssl&bridgeEndpoint=true")
 			.setHeader("planid").xpath("/plan/id", String.class) 
 			
