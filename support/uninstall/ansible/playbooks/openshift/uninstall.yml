@@ -23,6 +23,6 @@
         threescale_client_id: "3scale-admin"
         namespace: 3scale
         no_threescale_services: "false"
-        wildcard_route_name: apicast-wildcard-router-route
+        wildcard_route_name: apicast-wildcard-router
         usersno: 50
 
