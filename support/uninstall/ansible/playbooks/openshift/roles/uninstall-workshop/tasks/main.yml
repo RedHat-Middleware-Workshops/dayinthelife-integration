@@ -18,6 +18,10 @@
   when: threescale
 
 - import_role:
+    name: uninstall_backend
+  when: backend
+
+- import_role:
     name: uninstall_apicurio
   when: apicurio
 
