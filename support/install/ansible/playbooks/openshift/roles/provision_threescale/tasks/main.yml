@@ -8,15 +8,14 @@
   --param ADMIN_ACCESS_TOKEN={{threescale_admin_access_token}} --param MASTER_PASSWORD=password --param MASTER_ACCESS_TOKEN={{threescale_master_access_token}} -n {{ namespace }}"
   when: configure_only == 'false'
 
-- name: Wait for Developer account to be ready 
+- name: Wait until 3scale API is available 
   uri: 
-    url: https://3scale-admin.{{ocp_apps_domain}}/admin/api/accounts/find.xml
-    headers:
-      Content-Type: "application/x-www-form-urlencoded"
-    body: "access_token={{access_token}}&username=john"
+    url: https://master.{{ ocp_apps_domain }}
+    method: HEAD
     validate_certs: no
-  register: wait_dev_account
-  until: wait_dev_account is succeeded
+  register: wait_threescale_result
+  until: wait_threescale_result is succeeded
+  ignore_errors: yes
   retries: 10
   delay: 60
   when: create_tenants
