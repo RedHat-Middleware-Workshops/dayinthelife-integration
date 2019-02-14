@@ -86,7 +86,7 @@
       production_endpoint: 'https://location-sso.amp.{{ ocp_apps_domain }}:443'
       staging_endpoint: 'https://location-sso-staging.amp.{{ ocp_apps_domain }}:443'
       backend_endpoint: 'http://location-service-{{ backend_project }}.{{ ocp_apps_domain }}:80'
-      sso_endpoint: 'http://{{threescale_client_id | default("3scale-admin")}}:{{ client_secret }}@sso-{{ sso_project }}.{{ ocp_apps_domain }}/auth/realms/{{threescale_realm | default("threescale")}}'
+      sso_endpoint: 'https://{{threescale_client_id | default("3scale-admin")}}:{{ client_secret }}@sso-{{ sso_project }}.{{ ocp_apps_domain }}/auth/realms/{{threescale_realm | default("threescale")}}'
     application_plan:
       name: 'Secure'
       system_name: 'secure'
