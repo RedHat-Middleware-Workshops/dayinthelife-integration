@@ -65,3 +65,8 @@
   when: configure_only == 'false'
   register: create_microcks_app
   failed_when: create_microcks_app.stderr != '' and 'already exists' not in create_microcks_app.stderr
+
+- name: patch microcks env
+  shell: "oc set env dc/microcks KEYCLOAK_URL=https://sso-{{sso_project}}.{{ ocp_apps_domain }}/auth -n {{microcks_project}}"
+  register: oc_cmd
+  failed_when: oc_cmd.rc != 0  
