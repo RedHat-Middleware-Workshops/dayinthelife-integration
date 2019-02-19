@@ -12,7 +12,7 @@ RHPDS requires the installation playbook to be run within the bastion server:
 6. Replace `dayinlife` substring by your cluster guid for both `ocp_domain` and `ocp_apps_domain` vars;
 7. Update `usersno` the number of users you prefer to setup in you cluster
 8. Update `is_on_RHPDS` to true 
-9. Cd into `support/install/ansible` and run the integreatly playbook: `ansible-playbook -i inventory/inventory/9. integreatly.inventory playbooks/openshift/integreatly.yml`.
+9. cd into `support/install/ansible` and run the integreatly playbook: `ansible-playbook -i inventory/integreatly.inventory playbooks/openshift/integreatly.yml`.
 
 You can run the installation playbook from any machine as long as you are able to ssh into the master node.
 
