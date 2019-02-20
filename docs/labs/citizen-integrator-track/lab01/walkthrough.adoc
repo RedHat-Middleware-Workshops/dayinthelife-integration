@@ -24,6 +24,7 @@ If you are planning to skip this lab and follow the next one, here is a https://
 *Credentials:*
 
 Your username is: `{user-username}`
+
 Your password is: `{user-password}`
 
 [type=walkthroughResource]
