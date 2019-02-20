@@ -1,72 +1,47 @@
-= Integrator Lab 1 - API Design
 :walkthrough: Create an OpenAPI Specification using Apicurio Studio
+:apicurio-url: http://apicurio-studio.apps.apiday-3ee2.openshiftworkshop.com
 
-[time=10]
-== API Design
+[id='api-design']
+= Integrator Lab 1 - API Design
 
-=== Create an OpenAPI Specification using Apicurio Studio
+In this lab you will use Apicurio Studio to create a simple API definition using the OpenAPI Specification. You will learn how to author and download a standards compliant API Specification using Red Hat's Apicurio.
 
-* Duration: 10 mins
-* Audience: API Owner, Product Manager, Developers, Architects
+Audience: API Owner, Product Manager, Developers, Architects
 
-== Overview
+*Overview*
 
 As APIs become more widespread in the enterprise, consistent design and usage is critically important to improve reusability. The more reusable APIs are, the less friction there is for other internal or external teams to make progress. Having design standards and tools baked into the API development and maintenance process is a very powerful way to enable this consistency.
 
-=== Why Red Hat?
+*Why Red Hat?*
 
 Red Hat is one of the founding members of the Linux Foundation OpenAPI Initiative (OAI) which produces the leading standard for REST API specifications. Red Hat consistently uses this standard throughout its tooling, starting with the Apicurio Studio API Designer editor.
 
-=== Skipping The Lab
+*Skipping The Lab*
 
 If you are planning to skip this lab and follow the next one, here is a https://github.com/RedHatWorkshops/dayinthelife-integration/tree/master/docs/labs/citizen-integrator-track/resources[link] to the specification generated in this lab.
 
-=== Environment
-
 *Credentials:*
 
-Your username is your assigned user number. For example, if you are assigned user number *1*, your username is:
+Your username is:
 
 [source,bash]
 ----
-user1
+{user-username}
 ----
 
 Please ask your instructor for your password.
 
-*URLs:*
+[type=walkthroughResource]
+.Apicurio Studio
+****
+* link:{apicurio-url}[Web Application, window="_blank"]
+****
 
-If you haven't done so already, you need to login to the *Red Hat Solution Explorer* webpage so that a unique lab environment can be provisioned on-demand for your exclusive use.  You should open a web browser and navigate to:
+[time=5]
+[id="creating-apis-with-apicurio-studio"]
+== Creating APIs with Apicurio Studio
 
-[source,bash]
-----
-https://tutorial-web-app-webapp.{openshift-app-host}
-----
-
-You will be presented with a login page where you can enter your unique credentials:
-
-image::images/design-50.png[design-login, role="integr8ly-img-responsive"]
-
-Enter your credentials and click *Log in*.  You'll notice a web-page appear which explains that a _unique environment_ is being provisioned.
-
-image::images/design-51.png[design-login, role="integr8ly-img-responsive"]
-
-Once the environment is provisioned, you will be presented with a page that presents all the available applications which you'll need in order to complete the labs:
-
-image::images/design-52.png[design-login, role="integr8ly-img-responsive"]
-
-== Lab Instructions
-
-=== Step 1: Creating APIs with Apicurio Studio
-
-. Open a browser window and navigate to:
-+
-[source,bash]
-----
- http://apicurio-studio.{openshift-app-host}
-----
-
-. Log in using your designated <<environment,user and password>>.
+. Log in to link:{apicurio-url}[Apicurio Studio, window="_blank"] web console using user:{user-username} and password: openshift.
 +
 image::images/design-01.png[design-login, role="integr8ly-img-responsive"]
 
@@ -80,7 +55,7 @@ image::images/design-03.png[design-new-api, role="integr8ly-img-responsive"]
 
 . Create a brand new API by completing the following information:
  ** Type: *Open API 3.0.2*
- ** Name: *Locations-UserX* (Replace _X_ with your user number)
+ ** Name: *Locations-{user-username}*
  ** Description: *Locations API*
 
 +
@@ -90,7 +65,9 @@ image::images/design-04.png[design-create-api, role="integr8ly-img-responsive"]
 +
 image::images/design-05.png[design-edit-api, role="integr8ly-img-responsive"]
 
-=== Step 2: Editing APIs
+[time=10]
+[id="editing-apis"]
+== Editing APIs
 
 You are now in the main screen to edit your APIs. Apicurio is a graphical, form-based API editor. With Apicurio you don't need master in and out all the details of the *OpenAPI Specification*. It allows you to design beautiful, functionals APIs with zero coding.
 
@@ -128,9 +105,11 @@ image::images/design-17.png[design-definition-types, role="integr8ly-img-respons
 +
 _Time to start creating some paths_.
 
-=== Step 3: Adding Paths
+[time=15]
+[id="adding-paths"]
+== Adding Paths
 
-==== 3a: Add `/locations` path with GET method
+=== 3a: Add /locations path with GET method
 
 The `/locations` path with an HTTP GET method will return a complete set of all location records in the database.
 
@@ -233,7 +212,7 @@ image::images/design-54.png[design-response-example, role="integr8ly-img-respons
 +
 image::images/design-31.png[design-get-operation, role="integr8ly-img-responsive"]
 
-==== 3b: Add `+/locations/{id}+` path with GET method
+=== 3b: Add /locations/{id} path with GET method
 
 The `+/locations/{id}+` path will return a single location record based on a single `id` parameter, passed via the URL.
 
@@ -277,7 +256,7 @@ image::images/design-40.png[design-location-type, role="integr8ly-img-responsive
 +
 image::images/design-56.png[design-response-example, role="integr8ly-img-responsive"]
 
-==== 3c: Add `+/locations/phone/{id}+` path with GET method
+=== 3c: Add /locations/phone/{id} path with GET method
 
 The `+/locations/phone/{id}+` path will return a single location record based on a single phone number parameter, passed via the URL.
 
@@ -321,9 +300,11 @@ image::images/design-63.png[design-location-type, role="integr8ly-img-responsive
 +
 image::images/design-57.png[design-response-example, role="integr8ly-img-responsive"]
 
-=== Step 4: Download the API definition
+[time=5]
+[id="download-api-definition"]
+== Download the API definition
 
-. Click the *Locations-UserX* link to return to the API admin page.
+. Click the *Locations-{user-username}* link to return to the API admin page.
 +
 image::images/design-22.png[design-locations-api, role="integr8ly-img-responsive"]
 
@@ -338,16 +319,22 @@ image::images/design-24.png[design-api-source, role="integr8ly-img-responsive"]
 
 _Congratulations!_ You have created your first API definition based on the OpenAPI Specification  using Red Hat's Apicurio. Don't lose track of the file, you will use this definition for your next lab.
 
+[time=1]
+[id="step-beyond"]
 == Steps Beyond
 
 So, you want more? Did you notice the link *source* when editing the _Paths_ or the _Definitions_? Get back to the API editor and follow the link. What do you see? Apicurio lets you follow the form-based editor or go one step beyond and also lets you direct edit the source of your API definition.
 
+[time=1]
+[id="summary"]
 == Summary
 
-In this lab you used Apicurio Studio to create a simple API definition using the OpenAPI Specification. You learned how to author and download a standards compliant API Specification using Red Hat's APICurio.
+In this lab you used Apicurio Studio to create a simple API definition using the OpenAPI Specification. You learned how to author and download a standards compliant API Specification using Red Hat's Apicurio.
 
-You can now proceed to link:../lab02/#lab-2[Lab 2]
+You can now proceed to Lab 2.
 
+[time=1]
+[id="further-reading"]
 == Notes and Further Reading
 
 * Apicurio
