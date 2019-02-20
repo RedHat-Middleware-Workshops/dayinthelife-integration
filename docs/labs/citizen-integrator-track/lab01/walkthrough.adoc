@@ -1,5 +1,6 @@
 :walkthrough: Create an OpenAPI Specification using Apicurio Studio
 :apicurio-url: http://apicurio-studio.apps.apiday-3ee2.openshiftworkshop.com
+:user-password: openshift
 
 [id='api-design']
 = Integrator Lab 1 - API Design
@@ -22,14 +23,8 @@ If you are planning to skip this lab and follow the next one, here is a https://
 
 *Credentials:*
 
-Your username is:
-
-[source,bash]
-----
-{user-username}
-----
-
-Please ask your instructor for your password.
+Your username is: `{user-username}`
+Your password is: `{user-password}`
 
 [type=walkthroughResource]
 .Apicurio
@@ -41,7 +36,7 @@ Please ask your instructor for your password.
 [id="creating-apis-with-apicurio-studio"]
 == Creating APIs with Apicurio Studio
 
-. Log in to link:{apicurio-url}[Apicurio Studio, window="_blank"] web console using `{user-username}` and password: `openshift`.
+. Log in to link:{apicurio-url}[Apicurio Studio, window="_blank"] web console using `{user-username}` and password: `{user-password}`.
 +
 image::images/design-01.png[design-login, role="integr8ly-img-responsive"]
 
