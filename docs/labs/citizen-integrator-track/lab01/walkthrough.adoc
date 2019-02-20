@@ -32,16 +32,16 @@ Your username is:
 Please ask your instructor for your password.
 
 [type=walkthroughResource]
-.Apicurio Studio
+.Apicurio
 ****
-* link:{apicurio-url}[Web Application, window="_blank"]
+* link:{apicurio-url}[Apicurio Studio, window="_blank"]
 ****
 
 [time=5]
 [id="creating-apis-with-apicurio-studio"]
 == Creating APIs with Apicurio Studio
 
-. Log in to link:{apicurio-url}[Apicurio Studio, window="_blank"] web console using user:{user-username} and password: openshift.
+. Log in to link:{apicurio-url}[Apicurio Studio, window="_blank"] web console using `{user-username}` and password: `openshift`.
 +
 image::images/design-01.png[design-login, role="integr8ly-img-responsive"]
 
