@@ -30,12 +30,14 @@
   when: configure_only == 'false'
 
 - name: Create http service
-  shell: "oc expose dc sso --name=http --port=8080 --protocol='TCP'"
-  when: configure_only == 'false'
+  shell: "oc expose dc sso --name=http --port=8080 --protocol='TCP' -n {{ sso_project }}"
+  register: expose_sso
+  failed_when: expose_sso.stderr != '' and 'already exists' not in expose_sso.stderr
 
 - name: Expose http service
-  shell: "oc expose svc http --hostname='http-{{sso_project}}.{{ocp_apps_domain}}'"
-  when: configure_only == 'false'
+  shell: "oc expose svc http -name=http --hostname='{{sso_project}}.{{ocp_apps_domain}}' -n {{ sso_project }}"
+  register: expose_service
+  failed_when: expose_service.stderr != '' and 'already exists' not in expose_service.stderr
 
 - name: Wait until RH SSO API is available 
   uri: 

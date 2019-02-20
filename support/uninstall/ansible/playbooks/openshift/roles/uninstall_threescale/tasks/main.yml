@@ -11,9 +11,13 @@
     validate_certs: no
   register: services_result
 
+- debug: var=services_result
+
 - set_fact: ServiceIds={{ (services_result.content | from_json | json_query(query)) }}
   vars:
     query: "services[?contains(service.name, `Location`) == `true`].service.id"
+
+- debug: var=ServiceIds
 
 - name: Delete shared services
   uri:
@@ -25,3 +29,4 @@
     validate_certs: no
     status_code: 200
   with_items: '{{ ServiceIds }}'
+  when: ServiceIds | length != 0

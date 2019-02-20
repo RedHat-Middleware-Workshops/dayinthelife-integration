@@ -14,7 +14,23 @@
 - template:
     src: extra-services.yaml.j2
     dest: /tmp/extra-services.yaml
+
 - name: Create the web app ConfigMap
   shell: oc create -f /tmp/extra-services.yaml -n {{ configmap_namespace }}
+
 - name: Mount ConfigMap
   shell: oc set volume dc/tutorial-web-app --add -m /etc/webapp/ --type=configmap --configmap-name={{ configmap_name }} -n {{ configmap_namespace }}
+
+- name: Pause deployment
+  shell: oc rollout pause dc/tutorial-web-app -n {{ configmap_namespace }}
+  register: pause_dc
+  failed_when: pause_dc.stderr != '' and 'is already paused' not in pause_dc.stderr
+
+- name: Change container image #use Evan's patched
+  shell: oc patch dc tutorial-web-app --patch='{"spec":{"template":{"spec":{"containers":[{"name":"tutorial-web-app","image":"quay.io/evanshortiss/tutorial-web-app:v2.2.0-dil"}]}}}}' -n {{ configmap_namespace }}
+
+- name: Update Walkthroughs repo
+  shell: "oc set env dc tutorial-web-app -n {{ configmap_namespace }} --overwrite WALKTHROUGH_LOCATIONS=https://github.com/RedHatWorkshops/dayinthelife-integration.git?walkthroughsFolder=/docs/labs/citizen-integrator-track&walkthroughsFolder=/docs/labs/developer-track&walkthroughsFolder=/docs/labs/operations-track#V2"
+
+- name: Resume deployment
+  shell: oc rollout resume dc/tutorial-web-app -n {{ configmap_namespace }}

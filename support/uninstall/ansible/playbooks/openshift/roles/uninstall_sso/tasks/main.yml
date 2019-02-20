@@ -34,3 +34,13 @@
   vars:
     item: apicurio
   when: delete_realms
+
+- name: Delete service
+  shell: "oc delete service http -n {{ sso_project }}"
+  register: output
+  failed_when: output.stderr != '' and 'not found' not in output.stderr
+
+- name: Delete service
+  shell: "oc delete route http -n {{ sso_project }}"
+  register: output
+  failed_when: output.stderr != '' and 'not found' not in output.stderr

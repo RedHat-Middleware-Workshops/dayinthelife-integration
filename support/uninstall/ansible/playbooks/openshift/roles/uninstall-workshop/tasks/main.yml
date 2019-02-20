@@ -32,3 +32,8 @@
 - import_role:
     name: uninstall_microcks
   when: microcks
+
+- name: Resume webapp deployment config
+  shell: oc rollout resume dc/tutorial-web-app -n {{ configmap_namespace | default('webapp') }}
+  register: output
+  failed_when: output.stderr != '' and 'is not paused' not in output.stderr
