@@ -219,7 +219,7 @@ objects:
           - name: TEST_CALLBACK_URL
             value: http://${APP_NAME}:8080
           - name: KEYCLOAK_URL
-            value: http://${KEYCLOAK_ROUTE_HOSTNAME}/auth
+            value: https://${KEYCLOAK_ROUTE_HOSTNAME}/auth
           resources:
             limits:
               memory: "${MEMORY_LIMIT}"
