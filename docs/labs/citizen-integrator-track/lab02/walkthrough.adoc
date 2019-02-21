@@ -55,17 +55,11 @@ image::images/mock-13.png[mock-jobs, role="integr8ly-img-responsive"]
 +
 _Congratulations! The spec is successfully imported_
 
-. {blank}
-+
-[cols=2*]
-|===
-| Navigate to **APIs
-| Services** tab.
-|===
+. Navigate to **APIs | Services** tab.
 +
 image::images/mock-14.png[mock-jobs, role="integr8ly-img-responsive"]
 
-. Click on the link for your username. eg: *Locations-User1*.
+. Click on the link for your username. eg: *Locations-{user-username}*.
 +
 image::images/mock-15.png[mock-jobs, role="integr8ly-img-responsive"]
 
@@ -93,7 +87,7 @@ We now have a working REST mock service listening for requests. We will use an o
 
 . Enter the copied URL from previous step. It should look like this:
 +
-[source,bash]
+[source,bash,subs="attributes"]
 ----
  http://microcks.{openshift-app-host}/rest/Locations-{user-username}/1.0.0/locations
 ----
