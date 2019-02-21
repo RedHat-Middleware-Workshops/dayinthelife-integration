@@ -18,7 +18,7 @@
         configure_only: "true"
         sso_project: "sso"
       tags: sso
-    - include_role:
+    - import_role:
         name: provision_microcks
       vars:
         eval_rhsso_admin_username: "{{ hostvars['SHARED_VARS']['rhsso_admin_username'] }}"
