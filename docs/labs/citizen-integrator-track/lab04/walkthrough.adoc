@@ -73,20 +73,15 @@ Your 3scale Admin Portal provides access to a number of configuration features.
  https://userX-admin.{openshift-app-host}/p/login
 ----
 +
-_Remember the `X` variable in the URL with your assigned user number._
+_Remember to replace `X` variable in the URL with your assigned user number._
 
-. Accept the self-signed certificate if you haven't.
 . Log into 3scale using your designated <<environment,user and password>>. Click on *Sign In*.
 +
 image::images/01-login.png[01-login.png, role="integr8ly-img-responsive"]
 
-. The first page you will land is the _API Management Dashboard_. Click on the *API* menu link.
+. The first page you will land is the _API Management Dashboard_. Click on the *INTEGRATE THIS API*.
 +
 image::images/01a-dashboard.png[01a-dashboard.png, role="integr8ly-img-responsive"]
-
-. This is the _API Overview_ page. Here you can take an overview of all your services. Click on the *Integration* link.
-+
-image::images/02-api-integration.png[02-api-integration.png, role="integr8ly-img-responsive"]
 
 . Click on the *edit integration settings* to edit the API settings for the gateway.
 +
@@ -124,9 +119,9 @@ image::images/07b-new-method.png[07b-new-method.png, role="integr8ly-img-respons
  ** Friendly name: *Get Locations*
  ** System name: *locations_all*
  ** Description: *Method to return all locations*
-
 +
 image::images/07b-new-method-data.png[07b-new-method-data.png, role="integr8ly-img-responsive"]
+
 . Click on *Create Method*.
 . Click on the *Add mapping rule* link.
 +
