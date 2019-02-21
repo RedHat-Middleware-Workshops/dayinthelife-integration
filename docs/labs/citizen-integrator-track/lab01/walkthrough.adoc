@@ -1,5 +1,5 @@
 :walkthrough: Create an OpenAPI Specification using Apicurio Studio
-:apicurio-url: http://apicurio-studio.apps.apiday-3ee2.openshiftworkshop.com
+:apicurio-studio-url: http://apicurio-studio.apps.apiday-3ee2.openshiftworkshop.com
 :user-password: openshift
 
 [id='api-design']
@@ -29,14 +29,14 @@ Your password is: `{user-password}`
 [type=walkthroughResource]
 .Apicurio
 ****
-* link:{apicurio-url}[Apicurio Studio, window="_blank"]
+* link:{apicurio-studio-url}[Apicurio Studio, window="_blank"]
 ****
 
 [time=5]
 [id="creating-apis-with-apicurio-studio"]
 == Creating APIs with Apicurio Studio
 
-. Log in to link:{apicurio-url}[Apicurio Studio, window="_blank"] web console using `{user-username}` and password: `{user-password}`.
+. Log in to link:{apicurio-studio-url}[Apicurio Studio, window="_blank"] web console using `{user-username}` and password: `{user-password}`.
 +
 image::images/design-01.png[design-login, role="integr8ly-img-responsive"]
 
