@@ -1,6 +1,6 @@
 :walkthrough: Bring your APIs to life
 :testing-url: https://onlinecurl.com/
-:microcks-url: http://microcks.apps.apiday-3ee2.openshiftworkshop.com
+:microcks-url: http://microcks.{openshift-app-host}
 :user-password: openshift
 
 [id='api-mocking']

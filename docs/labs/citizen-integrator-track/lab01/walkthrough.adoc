@@ -1,5 +1,5 @@
 :walkthrough: Create an OpenAPI Specification using Apicurio Studio
-:apicurio-studio-url: http://apicurio-studio.apps.apiday-3ee2.openshiftworkshop.com
+:apicurio-studio-url: http://apicurio-studio.{openshift-app-host}
 :user-password: openshift
 
 [id='api-design']
