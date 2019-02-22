@@ -189,7 +189,7 @@ image::images/policies-08.png[08-allow-origin, role="integr8ly-img-responsive"]
 +
 image::images/policies-09.png[09-allow-methods, role="integr8ly-img-responsive"]
 
-. Click the *Submit* button to save the policy configuration.
+. Click the *Update Policy* button to save the policy configuration.
 
 === Step 3: Configure the Upstream Endpoint
 
