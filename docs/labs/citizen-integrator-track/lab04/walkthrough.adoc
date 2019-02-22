@@ -200,10 +200,12 @@ image::images/policies-09.png[09-allow-methods, role="integr8ly-img-responsive"]
 
 +
 _Remember to replace the X with your user number_.
+
 +
 _We are using the internal API service, as we are deploying our services inside the same OpenShift cluster_.
 +
 image::images/07-baseurl-configuration.png[07-baseurl-configuration.png, role="integr8ly-img-responsive"]
+
 . Scroll down to the *API Test GET request*.
 . Type in the textbox:
 +
