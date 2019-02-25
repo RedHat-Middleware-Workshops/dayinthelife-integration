@@ -81,11 +81,13 @@ image::images/01-login.png[01-login.png, role="integr8ly-img-responsive"]
 +
 image::images/02-personalsettings.png[02-personalsettings.png, role="integr8ly-img-responsive"]
 
-. Click onto  *Tokens* Tab.
+. Click onto  *Personal --> Tokens*. 
  image:images/03-tokentab.png[03-tokentab.png]
+
 . Click  *Add Access Token* link to create a new management token.
  image:images/06-menu.png[06-menu.png]
-. Create a new token that has the Read & Writeable rights to your management platform. Enter Name as *securetoken*, check the *Account management API* checkbox and *READ & WRITE* for Permission.
+
+. Create a new token that has the `Read & Write` rights to your management platform. Enter Name as *securetoken*, check the *Account management API* checkbox and *READ & WRITE* for Permission.
 +
 image::images/04-setuptoken.png[04-setuptoken.png, role="integr8ly-img-responsive"]
 
