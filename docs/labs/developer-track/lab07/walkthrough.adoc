@@ -67,7 +67,6 @@ image::images/design-52.png[design-login, role="integr8ly-img-responsive"]
 +
 _Remember to replace `X` with your user number._
 
-. Accept the self-signed certificate if you haven't.
 . Log into 3scale using your designated <<environment,user and password>>. Click on *Sign In*.
 +
 image::images/01-login.png[01-login.png, role="integr8ly-img-responsive"]
