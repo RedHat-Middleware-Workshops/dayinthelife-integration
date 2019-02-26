@@ -87,7 +87,11 @@ image::images/16-replace.png[16-replace.png, role="integr8ly-img-responsive"]
 +
 image::images/14-publish-devportal.png[14-publish-devportal.png, role="integr8ly-img-responsive"]
 
-. Click on the *API* Tab, select the *Integration* link under *SSO Location API*, and click on the *Application Plans* on the left menu when it shows up. And publish your application plan by clicking in on the *Publish* option on the page.
+. Select the * SSO Location API * from the dropdown to edit to application plan settings.
++
+image::images/14a-select-sso-api.png[14a-select-sso-api.png, role="integr8ly-img-responsive"]
+
+. Click on the *Applications* on the left menu. Select *Application plans* from the listed dropdown. And publish your application plan by clicking in on the *Publish* option on the page.
 +
 image::images/17-publishplan.png[17-publishplan.png, role="integr8ly-img-responsive"]
 
@@ -111,7 +115,7 @@ image::images/16bb-signup-thankyou.png[16bb-signup-thankyou.png, role="integr8ly
 +
 _Currently the lab environment doesn't have a configured email server, so we won't be able to receive the email_.
 
-. Go back to your _Admin Portal_ tab and navigate to *Developers* to activate the new account.
+. Go back to your _Admin Portal_ tab and navigate to *Audience* to activate the new account.
 +
 image::images/16bc-developers-tab.png[16bc-developers-tab.png, role="integr8ly-img-responsive"]
 
@@ -125,17 +129,21 @@ _Your user is now active and can log into the portal_.
 +
 image::images/20-developers.png[20-developers.png, role="integr8ly-img-responsive"]
 
+. Click on *Applications*.
++
+image::images/20a-select-applications.png[20a-select-applications.png, role="integr8ly-img-responsive"]
+
 . Select the application for the `SSO Location API` service
 +
 image::images/21-select-application.png[21-select-application.png, role="integr8ly-img-responsive"]
 
-. Update redirect link to http://www-userX.{openshift-app-host}/*
+. Update redirect link to `http://www-userX.{openshift-app-host}/*`
 +
 image::images/22-updare-redirect-link.png[22-updare-redirect-link.png, role="integr8ly-img-responsive"]
 
 === Step 3: Login to Developer Portal
 
-. As your portal is not currently public, you will need your portal code to login. You can get the code in your admin portal navigating to: menu:Settings[Developer Portal > Domains & Access].
+. As your portal is not currently public, you will need your portal code to login. You can get the code in your admin portal navigating to: menu:Audience[Developer Portal > Domains & Access].
 +
 image::images/16d-access-portal.png[16d-access-portal.png, role="integr8ly-img-responsive"]
 
@@ -154,7 +162,7 @@ image::images/16e-ingress-code.png[16e-ingress-code.png, role="integr8ly-img-res
 +
 image::images/16f-dev-signin.png[16f-dev-signin.png, role="integr8ly-img-responsive"]
 
-. You will land in the developers homepage, where you will be able to check your developers settings and retrieve your newly created *Client ID* and *Client Secret*.
+. You will land in the developers homepage, where you will be able to check your developers settings and retrieve your newly created *Client ID* and *Client Secret* for the *SSO Location API* service.
 +
 image::images/16g-user-credentials.png[16g-user-credentials.png, role="integr8ly-img-responsive"]
 +
