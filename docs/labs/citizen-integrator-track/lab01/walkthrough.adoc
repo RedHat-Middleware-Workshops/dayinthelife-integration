@@ -24,7 +24,7 @@ If you are planning to skip this lab and follow the next one, here is a https://
 *Credentials:*
 
 Your username is: `{user-username}` +
-Your password is: `{user-password}`
+Your password is: Please ask your instructor for your password
 
 [type=walkthroughResource]
 .Apicurio
@@ -36,7 +36,7 @@ Your password is: `{user-password}`
 [id="creating-apis-with-apicurio-studio"]
 == Creating APIs with Apicurio Studio
 
-. Log in to link:{apicurio-studio-url}[Apicurio Studio, window="_blank"] web console using `{user-username}` and password: `{user-password}`.
+. Log in to link:{apicurio-studio-url}[Apicurio Studio, window="_blank"] web console using `{user-username}` and password.
 +
 image::images/design-01.png[design-login, role="integr8ly-img-responsive"]
 
