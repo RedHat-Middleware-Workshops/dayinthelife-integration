@@ -72,20 +72,23 @@ Your 3scale Admin Portal provides access to a number of configuration features. 
  https://userX-admin.{openshift-app-host}/p/login
 ----
 
-. Accept the self-signed certificate if you haven't.
 . Log into 3scale using your designated <<environment,user and password>>. Click on *Sign In*.
 +
 image::images/01-login.png[01-login.png, role="integr8ly-img-responsive"]
 
-. The first page you will land is the _API Management Dashboard_. Click on the *Gear Icon* on the top right-hand corner.
+. The first page you will land is the _API Management Dashboard_. Click on the *Gear Icon* on the top.
 +
 image::images/02-personalsettings.png[02-personalsettings.png, role="integr8ly-img-responsive"]
 
-. Click onto  *Tokens* Tab.
+. Click onto  *Personal*. On the dropdown, Click on *Tokens*.
+
  image:images/03-tokentab.png[03-tokentab.png]
+
 . Click  *Add Access Token* link to create a new management token.
+
  image:images/06-menu.png[06-menu.png]
-. Create a new token that has the Read & Writeable rights to your management platform. Enter Name as *securetoken*, check the *Account management API* checkbox and *READ & WRITE* for Permission.
+
+. Create a new token that has the `Read & Write` rights to your management platform. Enter Name as *securetoken*, check the *Account management API* checkbox and *READ & WRITE* for Permission.
 +
 image::images/04-setuptoken.png[04-setuptoken.png, role="integr8ly-img-responsive"]
 
@@ -122,7 +125,7 @@ _Congratulations!_ You have configured 3scale access control layer as a proxy to
 ==== Common Gotcha
 
 If your encountered error:
-`+org.apache.camel.http.common.HttpOperationFailedException: HTTP operation failed invoking https://{USERX}-admin.dil1.opentry.me/admin/api/services.xml with statusCode: 422+`
+`+org.apache.camel.http.common.HttpOperationFailedException: HTTP operation failed invoking https://{USERX}-admin.{openshift-app-host}/admin/api/services.xml with statusCode: 422+`
 
 This may be due to a failed build. Troubleshoot by deleting SSO Location API.
 SSO Location API can be located here:

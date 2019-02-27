@@ -82,7 +82,7 @@
 - name: Create Webpage application
   shell: "oc new-app https://github.com/jbossdemocentral/3scaleworkshop-wwwpage#secured --name www \
   --build-env API_BACKEND_URL=https://location-sso-staging.amp.{{ ocp_apps_domain }}/locations \
-  --build-env SSO_URL=https://secure-sso-{{ sso_project }}.{{ ocp_apps_domain }} --build-env SSO_REALM=threescale \
+  --build-env SSO_URL=https://sso-{{ sso_project }}.{{ ocp_apps_domain }} --build-env SSO_REALM=threescale \
   --build-env CLIENT_ID=www-secured -n {{ backend_project }}"
   when: configure_only == 'false'
   register: create_webpage_application
