@@ -24,7 +24,7 @@ If you are planning to skip this lab and follow the next one, here is a https://
 *Credentials:*
 
 Your username is: `{user-username}` +
-Your password is: Please ask your instructor for your password
+Your password is: Please ask your instructor for password
 
 [type=walkthroughResource]
 .Apicurio

@@ -1,7 +1,6 @@
 :walkthrough: Bring your APIs to life
 :testing-url: https://onlinecurl.com/
 :microcks-url: http://microcks.{openshift-app-host}
-:user-password: openshift
 
 [id='api-mocking']
 = Integrator Lab 2 - API Mocking
@@ -25,7 +24,7 @@ If you are planning to follow the next lab, here is a link:wip-link[link] to the
 *Credentials:*
 
 Your username is: `{user-username}` +
-Your password is: `{user-password}`
+Your password is: Please ask your instructor for password
 
 [type=walkthroughResource]
 .Microcks
