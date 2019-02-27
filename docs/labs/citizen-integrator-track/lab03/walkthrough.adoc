@@ -36,7 +36,7 @@ If you haven't done so already, you need to login to the *Red Hat Solution Explo
 
 [source,bash]
 ----
-https://tutorial-web-app-webapp.dil.opentry.me
+https://tutorial-web-app-webapp.{openshift-app-host}
 ----
 
 You will be presented with a login page where you can enter your unique credentials:
