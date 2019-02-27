@@ -37,7 +37,7 @@ Your password is: `{user-password}`
 [id="create-microcks-job"]
 == Create a Microcks Job
 
-. Log in to link:{microcks-url}[Apicurio Studio, window="_blank"] web console using `{user-username}` and password: `{user-password}`.
+. Log in to link:{microcks-url}[Microcks, window="_blank"] web console using `{user-username}` and password: `{user-password}`.
 +
 image::images/mock-09.png[mock-openshift-login, role="integr8ly-img-responsive"]
 
