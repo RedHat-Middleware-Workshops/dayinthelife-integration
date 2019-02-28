@@ -1,0 +1,51 @@
+---
+- set_fact:
+    rhsso_namespace: "sso"
+
+- name: Retrieve cluster route subdomain
+  slurp:
+    src: "{{ eval_openshift_master_config_path }}"
+  register: openshift_master_config
+  become: yes
+
+- name: Retrieve RH-SSO admin user password
+  shell: oc get dc/sso -o jsonpath='{.spec.template.spec.containers[?(@.name=="sso")].env[?(@.name=="SSO_ADMIN_PASSWORD")].value}' -n {{ rhsso_namespace }}
+  register: rhsso_admin_password_cmd
+
+- name: Retrieve RH-SSO admin user name
+  shell: oc get dc/sso -o jsonpath='{.spec.template.spec.containers[?(@.name=="sso")].env[?(@.name=="SSO_ADMIN_USERNAME")].value}' -n {{ rhsso_namespace }}
+  register: rhsso_admin_user_cmd
+
+- name: Retrieve 3Scale admin auth token
+  shell: oc get secret/system-seed --template='{% raw %}{{.data.ADMIN_ACCESS_TOKEN}}{% endraw %}' -n 3scale | base64 -d
+  register: admin_auth_config
+
+- set_fact:
+    threescale_admin_token: "{{ admin_auth_config.stdout }}"
+
+- name: Retrieve 3Scale master auth token
+  shell:  oc describe dc/system-app -n 3scale | grep MASTER_ACCESS_TOKEN | head -1 | awk -F '"' '{print $2}'
+  register: master_auth_config
+
+- set_fact:
+    threescale_admin_token: "{{ admin_auth_config.stdout }}"
+- set_fact:
+    threescale_master_token: "{{master_auth_config.stdout}}"
+
+- set_fact:
+    rhsso_admin_username: "{{rhsso_admin_user_cmd.stdout}}"
+
+- set_fact:
+    oc_apps_domain: "{{ (openshift_master_config['content'] | b64decode | from_yaml)['routingConfig']['subdomain'] }}"
+
+- set_fact:
+    rhsso_admin_password: "{{rhsso_admin_password_cmd.stdout}}"
+
+- add_host:
+    name: SHARED_VARS
+    rhsso_admin_username: "{{ rhsso_admin_username }}"
+    rhsso_admin_password: "{{ rhsso_admin_password }}"
+    oc_apps_domain: "{{ oc_apps_domain }}"
+    threescale_master_token: "{{threescale_master_token}}"
+    threescale_admin_token: "{{threescale_admin_token}}"
+    rhsso_namespace: "{{rhsso_namespace}}"
