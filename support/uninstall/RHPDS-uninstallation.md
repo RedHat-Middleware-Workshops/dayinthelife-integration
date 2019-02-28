@@ -1,12 +1,12 @@
 ## RHPDS Instructions
 
-This section describes how to uninstall this workshop in a RHDPS cluster that is running the integratly workshop.
+The section describes how to uninstall this workshop in a RHDPS cluster that is running the integratly workshop.
 
 1. SSH into the bastion server;
 
 2. Switch to root user: `sudo -i`;
 
-3. Clone the installer repo `git clone https://github.com/RedHatWorkshops/dayinthelife-integration.git`;
+3. Clone the integration repo `git clone https://github.com/RedHatWorkshops/dayinthelife-integration.git`;
 
 4. Get the master node url: `oc get nodes -o jsonpath='{.items[?(@.metadata.labels.node-role\.kubernetes\.io/master == "true")].metadata.name}'`;
 
