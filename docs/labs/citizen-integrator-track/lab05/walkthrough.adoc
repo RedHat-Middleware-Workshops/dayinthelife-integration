@@ -165,7 +165,7 @@ image::images/05-authentication-settings.png[05-authentication-settings.png, rol
 +
 [source,bash]
 ----
- http://3scale-admin:CLIENT_SECRET@sso-sso.{openshift-app-host}/auth/realms/userX
+ https://3scale-admin:CLIENT_SECRET@sso-sso.{openshift-app-host}/auth/realms/userX
 ----
 +
 _Remember to replace the X with user number_
