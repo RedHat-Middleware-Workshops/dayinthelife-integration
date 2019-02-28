@@ -251,49 +251,6 @@ image::images/design-40.png[design-location-type, role="integr8ly-img-responsive
 +
 image::images/design-56.png[design-response-example, role="integr8ly-img-responsive"]
 
-=== 3c: Add /locations/phone/{id} path with GET method
-
-The `+/locations/phone/{id}+` path will return a single location record based on a single phone number parameter, passed via the URL.
-
-. Now we need to create another path.  Click on the `+` symbol to add a new path, then enter `+/locations/phone/{id}+` for the *Path* property.  Click *Add*.
-+
-image::images/design-41.png[design-location-type, role="integr8ly-img-responsive"]
-
-. Click on the `Create Operation` button underneath *Get*, then click the green *Get* button.
-+
-image::images/design-42.png[design-location-type, role="integr8ly-img-responsive"]
-
-. Scroll down to the `id` path parameter to highlight the row, and click the `Create` button that appears.
-+
-image::images/design-53.png[design-location-type, role="integr8ly-img-responsive"]
-
-. Click the drop-down arrow next to `No Type`, then update the `id` Path Parameter by selecting `Integer` as the *Type* and `32-Bit Integer` as the sub-type.
-+
-image::images/design-64.png[design-location-type, role="integr8ly-img-responsive"]
-
-. Click on the *Add a response* link under _Responses_ to edit the response for this operation.
-+
-image::images/design-61.png[design-add-response, role="integr8ly-img-responsive"]
-
-. Leave the *200* option selected in the  _Response Status Code_ combo box and click on *Add*.
-+
-image::images/design-11.png[design-add-response-code, role="integr8ly-img-responsive"]
-
-. Scroll down to the bottom of the page. Move your mouse over the *200 OK* response to enable the options. Click the _No response media types defined_ drop-down. Now click on the *Add Media Type* button.
-+
-image::images/design-62.png[design-edit-response, role="integr8ly-img-responsive"]
-
-. Click on the _Add_ button to accept *application/json* as the Media Type.
-+
-image::images/design-18.png[design-location-type, role="integr8ly-img-responsive"]
-
-. Click on the _Type_ dropdown and select *location*.
-+
-image::images/design-63.png[design-location-type, role="integr8ly-img-responsive"]
-
-. Click on the drop-down next to the `No description` message, and enter `Returns a location record` as the description.  Click the check-mark button to accept the description.
-+
-image::images/design-57.png[design-response-example, role="integr8ly-img-responsive"]
 
 [time=5]
 [id="download-api-definition"]
@@ -326,7 +283,7 @@ So, you want more? Did you notice the link *source* when editing the _Paths_ or 
 
 In this lab you used Apicurio Studio to create a simple API definition using the OpenAPI Specification. You learned how to author and download a standards compliant API Specification using Red Hat's Apicurio.
 
-You can now proceed to Lab 2.
+You can now proceed to link:../lab02/#lab-2[Lab 2].
 
 [time=1]
 [id="further-reading"]
