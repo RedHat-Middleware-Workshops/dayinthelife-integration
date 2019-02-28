@@ -68,7 +68,6 @@ image::images/design-52.png[design-login, role="integr8ly-img-responsive"]
 +
 _Remember the `X` variable in the URL is your assigned user number._
 
-. Accept the self-signed certificate if you haven't.
 . Log into 3scale using your designated <<environment,user and password>>. Click on *Sign In*.
 +
 image::images/01-login.png[01-login.png, role="integr8ly-img-responsive"]
@@ -127,7 +126,7 @@ image::images/16bb-signup-thankyou.png[16bb-signup-thankyou.png, role="integr8ly
 +
 _Currently the lab environment doesn't have a configured email server, so we won't be able to receive the email_.
 
-. Go back to your _Admin Portal_ tab and navigate to *Developers* to activate the new account.
+. Go back to your _Accounts > Listing_  and navigate to *Developers* to activate the new account.
 +
 image::images/16bc-developers-tab.png[16bc-developers-tab.png, role="integr8ly-img-responsive"]
 
@@ -139,7 +138,7 @@ _Your user is now active and can log into the portal_.
 
 === Step 3: Login to Developer Portal
 
-. As your portal is not currently public, you will need your portal code to login. You can get the code in your admin portal navigating to: menu:Settings[Developer Portal > Domains & Access].
+. As your portal is not currently public, you will need your portal code to login. You can get the code in your admin portal navigating to: menu:Audience[Developer Portal > Domains & Access].
 +
 image::images/16d-access-portal.png[16d-access-portal.png, role="integr8ly-img-responsive"]
 
