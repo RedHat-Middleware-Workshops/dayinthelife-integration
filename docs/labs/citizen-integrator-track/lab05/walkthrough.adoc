@@ -68,7 +68,7 @@ image::images/design-52.png[design-login, role="integr8ly-img-responsive"]
 +
 [source,bash]
 ----
- https://secure-sso-sso.{openshift-app-host}/auth/admin/userX/console
+ https://sso-sso.{openshift-app-host}/auth/admin/userX/console
 ----
 +
 _Remember to replace the `X` variable in the URL with your assigned user number._
@@ -132,18 +132,13 @@ _Now you have a user to test your integration._
 +
 _Remember to replace the X with your user number._
 
-. Accept the self-signed certificate if you haven't.
 . Log into 3scale using your designated <<environment,user and password>>. Click on *Sign In*.
 +
 image::images/01-login.png[01-login.png, role="integr8ly-img-responsive"]
 
-. The first page you will land is the _API Management Dashboard_. Click on the *API* menu link.
+. The first page you will land is the _API Management Dashboard_. Click on the *INTEGRATION* menu link.
 +
 image::images/01a-dashboard.png[01a-dashboard.png, role="integr8ly-img-responsive"]
-
-. This is the _API Overview_ page. Here you can take an overview of all your services. Click on the *Integration* link.
-+
-image::images/02-api-integration.png[02-api-integration.png, role="integr8ly-img-responsive"]
 
 . Click on the *edit integration settings* to edit the API settings for the gateway.
 +
@@ -191,7 +186,7 @@ image::images/08a-promote-production.png[08a-promote-production.png, role="integ
 
 === Step 4: Create a Test App
 
-. Go to the _Developers_ tab and click on *Developers*.
+. Go to the _Audience_ dropdown and click on *Developers*.
 +
 image::images/09-developers.png[09-developers.png, role="integr8ly-img-responsive"]
 
@@ -207,13 +202,11 @@ image::images/11-create-application.png[11-create-application.png, role="integr8
  ** Name: *Secure App*
  ** Description: *OpenID Connect Secured Application*
 
-+
-image::images/12-application-details.png[12-application-details.png, role="integr8ly-img-responsive"]
 . Finally, scroll down the page and click on the *Create Application* button.
 +
 image::images/13-create-app.png[13-create-app.png, role="integr8ly-img-responsive"]
 
-. Update the *Redirect URL* to http://www-userX.{openshift-app-host}/_. And note the *API Credentials_. Write them down as you will need the *Client ID* and the *Client Secret* to test your integration.
+. Update the *Redirect URL* to _http://www-user2.apps.mountainview-0a62.openshiftworkshop.com/*_. And note the *API Credentials_. Write them down as you will need the *Client ID* and the *Client Secret* to test your integration.
  image:images/14-app-credentials.png[14-app-credentials.png]
 
 _Congratulations!_ You have now an application to test your OpenID Connect Integration.
