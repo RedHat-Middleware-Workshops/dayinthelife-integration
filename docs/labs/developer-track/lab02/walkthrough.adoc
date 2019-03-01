@@ -90,11 +90,11 @@ image::images/mock-04.png[mock-gogs-upload]
 
 . Open the `locations-api` folder and click on the filename link *Locations-UserX.json* to open and review the file.
 +
-image::images/mock-05.png[mock-gogs-file]
+image::images/mock-06.png[mock-gogs-file]
 
 . If everything is fine, click the *Edit* button to apply your personal user settings.
 +
-image::images/mock-06.png[mock-gogs-file]
+image::images/mock-05.png[mock-gogs-file]
 
 . Replace *UserX* with your user number.
 +
