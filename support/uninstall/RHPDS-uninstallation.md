@@ -22,7 +22,7 @@ oc get nodes -o jsonpath='{.items[?(@.metadata.labels.node-role\.kubernetes\.io/
 
 5. Change the master host in the inventory file (`support/install/ansible/inventories/uninstall.workshop.inventory`) to use the internal master node hostname retrieved in the previous step;
 
-6. cd ```support/install/ansible``` 
+6. cd ```support/uninstall/ansible``` 
 
 7. Run the integreatly playbook
 ```
