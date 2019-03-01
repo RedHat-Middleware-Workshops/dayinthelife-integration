@@ -80,9 +80,9 @@ image::images/mock-02.png[mock-gogs-new]
  ** Clone Address: *https://github.com/RedHatWorkshops/dayinthelife-openapi.git*
  ** Owner: *UserX*
  ** Repository Name: *locations-api*
-
 +
-image::images/mock-03.png[mock-gogs-migration]
+image::images/mock-03.png[mock-gogs-file]
+
 . Click on *Migrate Repository* to fork the GitHub repo into Gogs.
 . Switch to branch `dev-track-lab-02`
 +
