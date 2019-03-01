@@ -94,7 +94,7 @@ Follow this instructions to set up the repository.
 
 1. If everything is fine, click the **Edit** button to apply your personal user settings.
 
-    ![mock-gogs-file](images/mock-06.png "Edit file")
+    ![mock-gogs-file](images/mock-05.png "Edit file")
 
 1. Replace **UserX** with your user number. 
 
