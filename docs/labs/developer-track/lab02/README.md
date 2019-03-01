@@ -85,11 +85,12 @@ Follow this instructions to set up the repository.
 
 1. Switch to branch `dev-track-lab-02`
 
-    ![mock-gogs-upload](images/mock-04.png "Upload File")
+    ![mock-gogs-upload](images/mock-04.png "Select Branch")
 
 1. Open the `locations-api` folder and click on the filename link **Locations-UserX.json** to open and review the file.
 
-    ![mock-gogs-file](images/mock-05.png "Click File")
+    ![mock-gogs-file](images/mock-06.png "Click Folder")
+    ![mock-gogs-file](images/mock-05.png "Review File")
 
 1. If everything is fine, click the **Edit** button to apply your personal user settings.
 
