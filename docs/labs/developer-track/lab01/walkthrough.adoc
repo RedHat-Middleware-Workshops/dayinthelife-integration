@@ -2,7 +2,7 @@
 
 = Developer Lab 1 - API Design
 
-Desctiption TODO
+TODO
 
 [time=10]
 == API Design

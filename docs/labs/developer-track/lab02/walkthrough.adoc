@@ -1,5 +1,8 @@
+:walkthrough: API Mocking
+
 = Developer Lab 2 - API Mocking
-:walkthrough: TODO
+
+TODO
 
 [time=10]
 == API Mocking
