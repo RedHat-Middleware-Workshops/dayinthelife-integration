@@ -1,11 +1,13 @@
-= Lab 2
+= Developer Lab 2 - API Mocking
+:walkthrough: TODO
 
+[time=10]
 == API Mocking
 
-=== Bring your APIs to life
+=== TODO
 
-* Duration: 20 mins
-* Audience: Developers, Architects, Testers, Quality Engineers
+* Duration: 10 mins
+* Audience: Developers, Architects
 
 == Overview
 
