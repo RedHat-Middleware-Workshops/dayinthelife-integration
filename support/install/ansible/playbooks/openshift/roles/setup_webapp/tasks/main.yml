@@ -30,7 +30,7 @@
   shell: oc patch dc tutorial-web-app --patch='{"spec":{"template":{"spec":{"containers":[{"name":"tutorial-web-app","image":"quay.io/evanshortiss/tutorial-web-app:v2.2.0-dil"}]}}}}' -n {{ configmap_namespace }}
 
 - name: Update Walkthroughs repo
-  shell: "oc set env dc tutorial-web-app -n {{ configmap_namespace }} --overwrite WALKTHROUGH_LOCATIONS=https://github.com/RedHatWorkshops/dayinthelife-integration.git?walkthroughsFolder=/docs/labs/citizen-integrator-track&walkthroughsFolder=/docs/labs/developer-track&walkthroughsFolder=/docs/labs/operations-track#V2"
+  shell: oc set env dc tutorial-web-app -n {{ configmap_namespace }} --overwrite WALKTHROUGH_LOCATIONS="https://github.com/RedHatWorkshops/dayinthelife-integration.git?walkthroughsFolder=/docs/labs/citizen-integrator-track&walkthroughsFolder=/docs/labs/developer-track&walkthroughsFolder=/docs/labs/operations-track#V2"
 
 - name: Resume deployment
   shell: oc rollout resume dc/tutorial-web-app -n {{ configmap_namespace }}
