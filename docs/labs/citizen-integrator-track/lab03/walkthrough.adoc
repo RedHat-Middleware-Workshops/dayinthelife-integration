@@ -24,7 +24,7 @@ Your username is: `{user-username}` +
 Your password is: Please ask your instructor for password
 
 [type=walkthroughResource]
-.Fuseonline
+.Fuse Online
 ****
 * link:{fuse-online-url}[Console, window="_blank"]
 ****
@@ -32,10 +32,6 @@ Your password is: Please ask your instructor for password
 [time=5]
 [id="create-fuseonline-job"]
 == Create a Database Connection
-
-. Log in to link:{fuse-online-url}[Fuse Online, window="_blank"] web console using `{user-username}` and password: `{user-password}`.
-+
-image::images/design-53.png[00-design-53.png, role="integr8ly-img-responsive"]
 
 . The first time that you hit the Fuse Online URL, you will be presented with an _Authorize Access_ page.  Click the *Allow selected permissions* button to accept the defaults.
 +
@@ -49,15 +45,18 @@ image::images/00-create-connection.png[00-create-connection.png, role="integr8ly
 +
 image::images/01-select-database.png[01-select-database.png, role="integr8ly-img-responsive"]
 
-. Enter below values for Database Configuration
-+
+. Enter below values for Database Configuration:
+
+** Connection URL: +
+[source,bash]
 ----
- Connection URL: jdbc:postgresql://postgresql.OCPPROJECT.svc:5432/sampledb
- Username      : dbuser
- Password      : password
- Schema        : <blank>
+jdbc:postgresql://postgresql.international.svc:5432/sampledb
 ----
-+
+
+** Username: *dbuser*
+** Password: *password*
+** Schema: *<leave blank>*
+
 _Remember to replace the OCPPROJECT with the OpenShift project(NameSpace) you created in last lab._
 
 . Click *Validate* and verify if the connection is successful. Click *Next* to proceed.
@@ -70,7 +69,9 @@ image::images/03-connection-details.png[03-connection-details.png, role="integr8
 
 . Verify that the `Location Database` is successfully created.
 
-=== Step 2: No CODE API developement
+[time=15]
+[id="no-code-api"]
+== Step 2: No CODE API developement
 
 Description goes here
 
