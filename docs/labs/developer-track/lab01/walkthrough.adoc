@@ -43,7 +43,7 @@ Please ask your instructor for your password.
 
 If you haven't done so already, you need to login to the *Red Hat Solution Explorer* webpage so that a unique lab environment can be provisioned on-demand for your exclusive use.  You should open a web browser and navigate to:
 
-[source,bash]
+[source,bash,subs="attributes+"]
 ----
 https://tutorial-web-app-webapp.{openshift-app-host}
 ----
@@ -66,7 +66,7 @@ image::images/design-52.png[design-login, role="integr8ly-img-responsive"]
 
 . Open a browser window and navigate to:
 +
-[source,bash]
+[source,bash,subs="attributes+"]
 ----
  http://apicurio-studio.{openshift-app-host}
 ----

@@ -41,9 +41,9 @@ Please ask your instructor for your password.
 
 If you haven't done so already, you need to login to the *Red Hat Solution Explorer* webpage so that a unique lab environment can be provisioned on-demand for your exclusive use.  You should open a web browser and navigate to:
 
-[source,bash]
+[source,bash,subs="attributes+"]`
 ----
-https://tutorial-web-app-webapp.dil.opentry.me
+https://tutorial-web-app-webapp.{openshift-app-host}
 ----
 
 You will be presented with a login page where you can enter your unique credentials:
@@ -68,9 +68,9 @@ Follow this instructions to set up the repository.
 
 . Open a browser window and navigate to:
 +
-[source,bash]
+[source,bash,subs="attributes+"]
 ----
- http://gogs.dil.opentry.me/
+ http://gogs.dil.{openshift-app-host}
 ----
 
 . Log into Gogs using your designated <<environment,user and password>>. Click on *Sign In*.
@@ -126,9 +126,9 @@ _If you feel more comfortable, you can also copy and paste the RAW button link f
 
 . Open a browser window and navigate to:
 +
-[source,bash]
+[source,bash,subs="attributes+"]
 ----
- http://microcks.dil.opentry.me/
+ http://microcks.{openshift-app-host}
 ----
 
 . Log in into Microcks using your designated <<environment,user and password>>.
@@ -151,6 +151,7 @@ image::images/mock-12.png[mock-jobs]
 _You can also copy and paste the raw url you saved from the Gogs repository (Step 0)_.
 +
 image::images/mock-13.png[mock-job-details]
+
 . Click *Next* for the Authentication options.
 . Review the details and click on *Create* to create the job.
 +
@@ -199,7 +200,7 @@ _Remember to replace X with your user number_.
 +
 [source,bash]
 ----
- http://microcks.dil.opentry.me/rest/Locations-UserX/1.0.0/locations
+ http://microcks.dil.opentry.me/rest/Locations-{user-username}/1.0.0/locations
 ----
 
 . Click the *START YOUR CURL* button.
