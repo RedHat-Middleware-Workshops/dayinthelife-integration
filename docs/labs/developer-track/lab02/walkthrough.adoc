@@ -78,7 +78,7 @@ image::images/mock-06.png[mock-gogs-file]
 +
 image::images/mock-05.png[mock-gogs-file]
 
-. Replace *UserX* with your user number.
+. Replace *userX* with your user number i.e ``{user-username}``.
 +
 image::images/mock-07.png[mock-gogs-file]
 
@@ -92,12 +92,11 @@ image::images/mock-09.png[mock-gogs-file]
 
 . Copy the browser tab URL. Store that URL address as you will use it in the next steps of the lab. The URL should look like the following:
 +
-[source,bash]
-----
-  http://gogs.{openshift-app-host}/`{user-username}`/locations-api/raw/dev-track-lab-02/locations-api/Locations-UserX.json
-----
+[source,bash,subs="attributes+"]
+  
+  `http://gogs.{openshift-app-host}/`{user-username}`/locations-api/raw/dev-track-lab-02/locations-api/Locations-UserX.json`
+
 +
-_If you feel more comfortable, you can also copy and paste the RAW button link from the previous step.  Also, don't forget to update the X variable with your user number_.
 
 === Step 1: Create a Microcks Job
 
@@ -108,7 +107,7 @@ _If you feel more comfortable, you can also copy and paste the RAW button link f
  http://microcks.{openshift-app-host}
 ----
 
-. Log in into Microcks using your designated <<environment,user and password>>.
+. Log in into Microcks using your credentials `{user-username}` and `{user-password}`.
 +
 image::images/mock-10.png[mock-openshift-login]
 
@@ -120,9 +119,11 @@ image::images/mock-11.png[mock-jobs]
 +
 image::images/mock-12.png[mock-jobs]
 
-. In the `Create a New Job` dialog, type in the following information replacing *X* with your user number. Click *Next*.
- ** Name: *Locations-UserX*
- ** Repository URL: *http://gogs.dil.opentry.me/userX/locations-api/raw/dev-track-lab-02/locations-api/Locations-UserX.json*
+. In the `Create a New Job` dialog, type in the following information. Click *Next*.
++
+[source,bash,subs="attributes+"]
+ ** Name: *Locations-{user-username}*
+ ** Repository URL: *http://gogs.{openshift-app-host}/{user-username}/locations-api/raw/dev-track-lab-02/locations-api/Locations-{user-username}.json*
 
 +
 _You can also copy and paste the raw url you saved from the Gogs repository (Step 0)_.
@@ -147,7 +148,7 @@ image::images/mock-16.png[mock-job-start]
 +
 image::images/mock-17.png[mock-job-services]
 
-. In the dialog you will see your service listed. Click on the *Locations-UserX - 1.0.0.* link.
+. In the dialog you will see your service listed. Click on the *Locations-{user-username} - 1.0.0.* link.
 +
 image::images/mock-18.png[mock-job-service]
 
@@ -173,9 +174,7 @@ We now have a working REST mock service listening for requests. We will use an o
 
 . Copy and paste the Mock URL from earlier step. It should look like.
 +
-_Remember to replace X with your user number_.
-+
-[source,bash]
+[source,bash,subs="attributes+"]
 ----
  http://microcks.{openshift-app-host}/rest/Locations-{user-username}/1.0.0/locations
 ----
