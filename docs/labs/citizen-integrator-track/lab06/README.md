@@ -34,7 +34,7 @@ Please ask your instructor for your password.
 If you haven't done so already, you need to login to the **Red Hat Solution Explorer** webpage so that a unique lab environment can be provisioned on-demand for your exclusive use.  You should open a web browser and navigate to: 
 
 ```bash
-https://tutorial-web-app-webapp.dil.opentry.me
+https://tutorial-web-app-webapp.apps.optum-ed0e.openshiftworkshop.com
 ```
 
 You will be presented with a login page where you can enter your unique credentials:
@@ -56,7 +56,7 @@ Once the environment is provisioned, you will be presented with a page that pres
 1. Click on the `3scale Admin Dashboard` from the Red Hat Solution Explorer. The URL should look like
 
     ```bash
-    https://userX-admin.dil.opentry.me/p/login
+    https://userX-admin.apps.optum-ed0e.openshiftworkshop.com/p/login
     ```
 
     *Remember the `X` variable in the URL is your assigned user number.*
@@ -142,7 +142,7 @@ Once the environment is provisioned, you will be presented with a page that pres
 1. Open a new *Incognito/Private* browser window to test the Developer Portal login. Navigate to:
 
     ```bash
-    https://userX.dil.opentry.me/
+    https://userX.apps.optum-ed0e.openshiftworkshop.com/
     ```
 
 1. Type your portal code to finish the login.

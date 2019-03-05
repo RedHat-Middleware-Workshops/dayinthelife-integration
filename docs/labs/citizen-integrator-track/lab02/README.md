@@ -23,7 +23,7 @@ If you are planning to follow the next lab, here is a [link](wip-link) to the RE
 
 **Credentials:**
 
-Your username is your assigned user number. For example, if you are assigned user number **1**, your username is: 
+Your username is your assigned user number. For example, if you are assigned user number **1**, your username is:
 
 ```bash
 user1
@@ -33,10 +33,10 @@ Please ask your instructor for your password.
 
 **URLs:**
 
-If you haven't done so already, you need to login to the **Red Hat Solution Explorer** webpage so that a unique lab environment can be provisioned on-demand for your exclusive use.  You should open a web browser and navigate to: 
+If you haven't done so already, you need to login to the **Red Hat Solution Explorer** webpage so that a unique lab environment can be provisioned on-demand for your exclusive use.  You should open a web browser and navigate to:
 
 ```bash
-https://tutorial-web-app-webapp.dil.opentry.me
+https://tutorial-web-app-webapp.apps.optum-ed0e.openshiftworkshop.com
 ```
 
 You will be presented with a login page where you can enter your unique credentials:
@@ -58,7 +58,7 @@ Once the environment is provisioned, you will be presented with a page that pres
 1. Open a browser window and navigate to:
 
     ```bash
-    http://microcks.dil.opentry.me
+    http://microcks.apps.optum-ed0e.openshiftworkshop.com
     ```
 
 1. Log in into Microks using your designated [user and password](#environment).
@@ -72,7 +72,7 @@ Once the environment is provisioned, you will be presented with a page that pres
 1. Click the **Upload** button to upload the **Locations-UserX.yaml** spec generated from [Lab 1](lab01.md).
 
    ![mock-jobs](images/mock-12.png "Upload Spec")
-    
+
 1. Click on **Upload**.
 
    ![mock-jobs](images/mock-13.png "Upload")
@@ -109,7 +109,7 @@ We now have a working REST mock service listening for requests. We will use an o
 1. Enter the copied URL from **Step 9**. It should look like this:
 
     ```bash
-    http://microcks.dil.opentry.me/rest/Locations-User1/1.0.0/locations
+    http://microcks.apps.optum-ed0e.openshiftworkshop.com/rest/Locations-User1/1.0.0/locations
     ```
 
 1. Click the **START YOUR CURL** button.
@@ -128,7 +128,7 @@ We now have a working REST mock service listening for requests. We will use an o
 
 ## Summary
 
-In this lab you used Microcks to configure a REST mock service for the API definition you created in the previous lab. REST mock services allows you to simulate a REST API service when you are in a prototyping stage of your API program journey. 
+In this lab you used Microcks to configure a REST mock service for the API definition you created in the previous lab. REST mock services allows you to simulate a REST API service when you are in a prototyping stage of your API program journey.
 
 Microcks allows you to test a number of various responses for client application requests. When deploying API, micro-services or SOA practices at large scale, Microcks solves the problems of providing and sharing consistent documentation and mocks to the involved teams. It acts as a central repository and server that can be used for browsing but also by your Continuous Integration builds or pipelines.
 

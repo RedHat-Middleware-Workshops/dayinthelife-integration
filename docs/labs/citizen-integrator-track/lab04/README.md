@@ -20,7 +20,7 @@ Red Hat provides one the leading API Management tools that provides API manageme
 If you are planning to skip to the next lab, there is an already running API proxy for the Location API Service in this endpoint:
 
 ```bash
-https://location-service-api.amp.dil.opentry.me
+https://location-service-api.amp.apps.optum-ed0e.openshiftworkshop.com
 ```
 
 ### Environment
@@ -40,7 +40,7 @@ Please ask your instructor for your password.
 If you haven't done so already, you need to login to the **Red Hat Solution Explorer** webpage so that a unique lab environment can be provisioned on-demand for your exclusive use. You should open a web browser and navigate to: 
 
 ```bash
-https://tutorial-web-app-webapp.dil.opentry.me
+https://tutorial-web-app-webapp.apps.optum-ed0e.openshiftworkshop.com
 ```
 
 You will be presented with a login page where you can enter your unique credentials:
@@ -64,7 +64,7 @@ Your 3scale Admin Portal provides access to a number of configuration features.
 1. Click on the `3scale Admin Dashboard` from the Red Hat Solution Explorer. The URL should look like
 
     ```bash
-    https://userX-admin.dil.opentry.me/p/login
+    https://userX-admin.apps.optum-ed0e.openshiftworkshop.com/p/login
     ```
 
     *Remember the `X` variable in the URL with your assigned user number.*
@@ -203,9 +203,9 @@ The order in which the policies are executed, known as the “policy chain”, c
 
     * Private Base URL: **http://location-service.international.svc:8080**
 
-    * Staging Public Base URL: **https://location-userX-api-staging.amp.dil.opentry.me:443**
+    * Staging Public Base URL: **https://location-userX-api-staging.amp.apps.optum-ed0e.openshiftworkshop.com:443**
 
-    * Production Public Base URL: **https://location-userX-api.amp.dil.opentry.me:443**
+    * Production Public Base URL: **https://location-userX-api.amp.apps.optum-ed0e.openshiftworkshop.com:443**
 
     *Remember to replace the X with your user number*.
 

@@ -318,7 +318,7 @@ The `/locations/phone/{id}` path will return a single location record based on a
 
     ![design-location-type](images/design-63.png "Location Type")
 
-1. Click on the drop-down next to the `No description` message, and enter `Returns a location record` as the description.  Click the check-mark button to accept the description.
+1. Click on the drop-down next to the `No description` message, and enter `Returns a phone record` as the description.  Click the check-mark button to accept the description.
 
     ![design-response-example](images/design-57.png "Enter description")
 
