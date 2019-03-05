@@ -38,7 +38,7 @@ Your password is: `{user-password}`
 
 [time=5]
 [id="Prerequisite"]
-=== Prerequisite: Setup the collaboration environment using Git (Gogs)
+== Prerequisite: Setup the collaboration environment using Git (Gogs)
 
 For the Developer track, we require a collaboration environment based on Git. For this purpose, we  decided to use Gogs which is a hosted, lighter-weight version of Gitlab. This lab environment has created a user for you in Gogs.
 
@@ -97,12 +97,11 @@ image::images/mock-09.png[mock-gogs-file]
  ---- 
   http://gogs.{openshift-app-host}/`{user-username}`/locations-api/raw/dev-track-lab-02/locations-api/Locations-{user-username}.json
  ----
-
 +
 
 [time=6]
 [id="Microcks setup"]
-== Setting up Microcks
+== Microcks setup
 
 === Step 1: Create a Microcks Job
 
