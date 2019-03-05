@@ -71,7 +71,7 @@ image::images/mock-03.png[mock-gogs-file]
 +
 image::images/mock-04.png[mock-gogs-upload]
 
-. Open the `locations-api` folder and click on the filename link *Locations-{user-username}.json* to open and review the file.
+. Open the `locations-api` folder and click on the filename link *Locations-userX.json* to open and review the file.
 +
 image::images/mock-06.png[mock-gogs-file]
 
@@ -95,7 +95,7 @@ image::images/mock-09.png[mock-gogs-file]
 +
 [source,bash,subs="attributes+"]
 ----
-http://gogs.{openshift-app-host}/`{user-username}`/locations-api/raw/dev-track-lab-02/locations-api/Locations-{user-username}.json
+http://gogs.{openshift-app-host}/{user-username}/locations-api/raw/dev-track-lab-02/locations-api/Locations-{user-username}.json
 ----
 
 
@@ -127,10 +127,8 @@ image::images/mock-12.png[mock-jobs]
 . In the `Create a New Job` dialog, type in the following information. Click *Next*.
 +
 [source,bash,subs="attributes+"]
-----
  ** Name: *Locations-{user-username}*
  ** Repository URL: *http://gogs.{openshift-app-host}/{user-username}/locations-api/raw/dev-track-lab-02/locations-api/Locations-{user-username}.json*
-----
 
 . Click *Next* for the Authentication options.
 . Review the details and click on *Create* to create the job.
