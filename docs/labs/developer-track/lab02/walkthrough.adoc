@@ -2,7 +2,6 @@
 :microcks-url: http://microcks.{openshift-app-host}
 :user-password: openshift
 
-
 [id='mocking']
 = Developer Lab 2 - API Mocking
 
@@ -37,6 +36,8 @@ Your password is: `{user-password}`
 * link:{microcks-url}[Microcks, window="_blank"]
 ****
 
+[time=5]
+[id="Prerequisite"]
 === Prerequisite: Setup the collaboration environment using Git (Gogs)
 
 For the Developer track, we require a collaboration environment based on Git. For this purpose, we  decided to use Gogs which is a hosted, lighter-weight version of Gitlab. This lab environment has created a user for you in Gogs.
@@ -70,7 +71,7 @@ image::images/mock-03.png[mock-gogs-file]
 +
 image::images/mock-04.png[mock-gogs-upload]
 
-. Open the `locations-api` folder and click on the filename link *Locations-UserX.json* to open and review the file.
+. Open the `locations-api` folder and click on the filename link *Locations-{user-username}.json* to open and review the file.
 +
 image::images/mock-06.png[mock-gogs-file]
 
@@ -93,10 +94,15 @@ image::images/mock-09.png[mock-gogs-file]
 . Copy the browser tab URL. Store that URL address as you will use it in the next steps of the lab. The URL should look like the following:
 +
 [source,bash,subs="attributes+"]
-  
-  `http://gogs.{openshift-app-host}/`{user-username}`/locations-api/raw/dev-track-lab-02/locations-api/Locations-UserX.json`
+ ---- 
+  http://gogs.{openshift-app-host}/`{user-username}`/locations-api/raw/dev-track-lab-02/locations-api/Locations-{user-username}.json
+ ----
 
 +
+
+[time=6]
+[id="Microcks setup"]
+== Setting up Microcks
 
 === Step 1: Create a Microcks Job
 
@@ -167,7 +173,7 @@ We now have a working REST mock service listening for requests. We will use an o
 
 . Open a browser window and navigate to:
 +
-[source,bash]
+[source,bash,subs="attributes+"]
 ----
  https://onlinecurl.com/
 ----
@@ -189,12 +195,8 @@ image::images/mock-22.png[mock-curl-response]
 
 _Congratulations!_ You have successfully configure a Microcks Job to create a REST mock service to test your API.
 
-== Steps Beyond
-
-____
-So, you want more? ...
-____
-
+[time=1]
+[id="Summary"]
 == Summary
 
 In this lab you used Microcks to configure a REST mock service for the API definition you created in the previous lab. REST mock services allows you to simulate a REST API service when you are in a prototyping stage of your API program journey.
@@ -203,6 +205,8 @@ Microcks allows you to test a number of various responses for client application
 
 You can now proceed to link:../lab03/#lab-3[Lab 3]
 
+[time=1]
+[id="Reading"]
 == Notes and Further Reading
 
 * Microcks
