@@ -1,20 +1,20 @@
 :walkthrough: API Mocking
+:microcks-url: http://microcks.{openshift-app-host}
+:user-password: openshift
 
+
+[id='mocking']
 = Developer Lab 2 - API Mocking
 
-TODO
+In this lab you will use Microcks to configure a REST mock service for the API definition you created in the previous lab. REST mock services allows you to simulate a REST API service when you are in a prototyping stage of your API program journey.
 
-[time=10]
-== API Mocking
+Audience: API Owner, Product Manager, Developers, Architects
 
-=== TODO
-
-* Duration: 10 mins
-* Audience: Developers, Architects
-
+[time=2]
+[id="overview"]
 == Overview
 
-When building and working with APIs, you often need to simulate the responses of the system before it has been fully completed. This is what we explore in this workshop - mocking up API structures quickly so they can be subjected to testing withouth having to create all the final service code.
+When building and working with APIs, you often need to simulate the responses of the system before it has been fully completed. This is what we explore in this workshop - mocking up API structures quickly so they can be subjected to testing without having to create all the final service code.
 
 === Why Red Hat?
 
@@ -28,37 +28,14 @@ If you are planning to follow the next lab, here is a link:wip-link[link] to the
 
 *Credentials:*
 
-Your username is your assigned user number. For example, if you are assigned user number *1*, your username is:
+Your username is: `{user-username}` +
+Your password is: `{user-password}`
 
-[source,bash]
-----
-user1
-----
-
-Please ask your instructor for your password.
-
-*URLs:*
-
-If you haven't done so already, you need to login to the *Red Hat Solution Explorer* webpage so that a unique lab environment can be provisioned on-demand for your exclusive use.  You should open a web browser and navigate to:
-
-[source,bash,subs="attributes+"]`
-----
-https://tutorial-web-app-webapp.{openshift-app-host}
-----
-
-You will be presented with a login page where you can enter your unique credentials:
-
-image::images/design-50.png[design-login]
-
-Enter your credentials and click *Log in*.  You'll notice a web-page appear which explains that a _unique environment_ is being provisioned.
-
-image::images/design-51.png[design-login]
-
-Once the environment is provisioned, you will be presented with a page that presents all the available applications which you'll need in order to complete the labs:
-
-image::images/design-52.png[design-login]
-
-== Lab Instructions
+[type=walkthroughResource]
+.Microcks
+****
+* link:{microcks-url}[Microcks, window="_blank"]
+****
 
 === Prerequisite: Setup the collaboration environment using Git (Gogs)
 
@@ -70,10 +47,10 @@ Follow this instructions to set up the repository.
 +
 [source,bash,subs="attributes+"]
 ----
- http://gogs.dil.{openshift-app-host}
+ http://gogs.{openshift-app-host}
 ----
 
-. Log into Gogs using your designated <<environment,user and password>>. Click on *Sign In*.
+. Log into Gogs using `{user-username}` and `{user-password}`. Click on *Sign In*.
 +
 image::images/mock-01.png[mock-sign-in]
 
@@ -83,7 +60,7 @@ image::images/mock-02.png[mock-gogs-new]
 
 . Fill in the information of the repository migration with the following values:
  ** Clone Address: *https://github.com/RedHatWorkshops/dayinthelife-openapi.git*
- ** Owner: *UserX*
+ ** Owner: *`{user-username}`*
  ** Repository Name: *locations-api*
 +
 image::images/mock-03.png[mock-gogs-file]
@@ -117,7 +94,7 @@ image::images/mock-09.png[mock-gogs-file]
 +
 [source,bash]
 ----
-  http://gogs.dil.opentry.me/userX/locations-api/raw/dev-track-lab-02/locations-api/Locations-UserX.json
+  http://gogs.{openshift-app-host}/`{user-username}`/locations-api/raw/dev-track-lab-02/locations-api/Locations-UserX.json
 ----
 +
 _If you feel more comfortable, you can also copy and paste the RAW button link from the previous step.  Also, don't forget to update the X variable with your user number_.
@@ -200,7 +177,7 @@ _Remember to replace X with your user number_.
 +
 [source,bash]
 ----
- http://microcks.dil.opentry.me/rest/Locations-{user-username}/1.0.0/locations
+ http://microcks.{openshift-app-host}/rest/Locations-{user-username}/1.0.0/locations
 ----
 
 . Click the *START YOUR CURL* button.
