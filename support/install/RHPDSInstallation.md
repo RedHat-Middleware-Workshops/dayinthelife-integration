@@ -1,6 +1,6 @@
 ## RHPDS Instructions
 
-This section describes how to install his workshop in a RHDPS cluster that is running the integratly workshop.
+This section describes how to install this workshop in a RHDPS cluster that is running the integreatly workshop.
 
 RHPDS requires the installation playbook to be run within the bastion server:
 
