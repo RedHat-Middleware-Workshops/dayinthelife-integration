@@ -1,5 +1,5 @@
 :walkthrough: Create a simple API with Fuse Online
-:fuse-online-url: http://fuse-{item}.{openshift-app-host}
+:fuse-online-url: http://{fuseonline_project}.{openshift-app-host}
 :doctype: book
 :experimental:
 
