@@ -17,13 +17,13 @@ Red Hat is one of the founding members of the Linux Foundation OpenAPI Initiativ
 
 ### Skipping The Lab
 
-If you are planning to skip this lab and follow the next one, here is a [link](https://github.com/RedHatWorkshops/dayinthelife-integration/tree/master/docs/labs/citizen-integrator-track/resources) to the specification generated in this lab.
+If you are planning to skip this lab and follow the next one, here is a [link](https://github.com/sigreen/dayinthelife-integration/tree/v2-boston/docs/labs/citizen-integrator-track/resources) to the specification generated in this lab.
 
 ### Environment
 
 **Credentials:**
 
-Your username is your assigned user number. For example, if you are assigned user number **1**, your username is: 
+Your username is your assigned user number. For example, if you are assigned user number **1**, your username is:
 
 ```bash
 user1
@@ -33,10 +33,10 @@ Please ask your instructor for your password.
 
 **URLs:**
 
-If you haven't done so already, you need to login to the **Red Hat Solution Explorer** webpage so that a unique lab environment can be provisioned on-demand for your exclusive use.  You should open a web browser and navigate to: 
+If you haven't done so already, you need to login to the **Red Hat Solution Explorer** webpage so that a unique lab environment can be provisioned on-demand for your exclusive use.  You should open a web browser and navigate to:
 
 ```bash
-https://tutorial-web-app-webapp.dil.opentry.me
+https://tutorial-web-app-webapp.apps.optum-ed0e.openshiftworkshop.com
 ```
 
 You will be presented with a login page where you can enter your unique credentials:
@@ -58,7 +58,7 @@ Once the environment is provisioned, you will be presented with a page that pres
 1. Open a browser window and navigate to:
 
     ```bash
-    http://apicurio-studio.dil.opentry.me
+    http://apicurio-studio.apps.optum-ed0e.openshiftworkshop.com
     ```
 
 1. Log in using your designated [user and password](#environment).
@@ -175,7 +175,7 @@ The `/locations` path with an HTTP GET method will return a complete set of all 
 
     ![design-location-type](images/design-18a.png "Location Type")
 
-1. Click the **Add an example** link to add a Response Example. 
+1. Click the **Add an example** link to add a Response Example.
 
     *This will be useful to mock your API in the next lab*.
 
@@ -230,7 +230,7 @@ The `/locations` path with an HTTP GET method will return a complete set of all 
 1. Click on the green **GET** operation button to highlight the list of operations.
 
     ![design-get-operation](images/design-31.png "Get Operation")
-    
+
 
 #### 3b: Add `/locations/{id}` path with GET method
 
@@ -332,7 +332,7 @@ The `/locations/phone/{id}` path will return a single location record based on a
 
     ![design-download-yaml](images/design-23.png "Download API")
 
-1. This will start the download of your API definition file. It could take a few seconds to start the download. **Save** it to your local disk drive. 
+1. This will start the download of your API definition file. It could take a few seconds to start the download. **Save** it to your local disk drive.
 
 1. You can open the file with any text editor. Take a look at the source file. Everything is there.
 
