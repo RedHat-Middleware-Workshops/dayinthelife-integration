@@ -94,7 +94,7 @@ You are now in the main screen to edit your APIs. Different from other API edito
 
 Let's start verifying your API.
 
-1. Time to verify our data definitions for the API. Click on the `location/phone{id}` link under the *Paths*.
+1. Time to verify our data definitions for the API. Click on the `location/phone/{id}` link under the *Paths*.
 
     ![design-add-definition](images/design-15.png "Add Definition")
 
