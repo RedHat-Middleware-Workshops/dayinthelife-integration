@@ -94,10 +94,10 @@ image::images/mock-09.png[mock-gogs-file]
 . Copy the browser tab URL. Store that URL address as you will use it in the next steps of the lab. The URL should look like the following:
 +
 [source,bash,subs="attributes+"]
- ---- 
-  http://gogs.{openshift-app-host}/`{user-username}`/locations-api/raw/dev-track-lab-02/locations-api/Locations-{user-username}.json
- ----
-+
+----
+http://gogs.{openshift-app-host}/`{user-username}`/locations-api/raw/dev-track-lab-02/locations-api/Locations-{user-username}.json
+----
+
 
 [time=6]
 [id="Microcks setup"]
