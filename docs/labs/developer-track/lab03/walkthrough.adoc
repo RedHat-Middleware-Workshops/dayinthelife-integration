@@ -1,15 +1,15 @@
-= Developer Lab 3 - Swagger to REST
 :walkthrough: Contract-first API development with a database interface, implemented using Eclipse Che
-:experimental:
+:user-password: openshift
 
-[time=20]
-== Swagger to REST
+[id='api-design']
+= Developer Lab 3 - Swagger to REST
 
-=== Contract-first API development with a database interface, implemented using Eclipse Che
+In this lab, we will use Contract-first API development with a database interface, implemented using Eclipse Che
 
-* Duration: 20 mins
-* Audience: Developers and Architects
+Audience: API Owner, Product Manager, Developers, Architects
 
+[time=2]
+[id="overview"]
 == Overview
 
 In the context of defining API's, it's common for a Business Analyst (or Citizen Integrator) to first create an API specification or contract.  By beginning the process with a clearly defined contract, a Developer can easily take the contract and auto-generate the underlying service to implement that API.  This _separation of concern_, whereby a Citizen Integrator and Developer can independently collaborate and contribute to create an end-to-end API implementation, is a powerful method for defining API's.
@@ -26,14 +26,8 @@ If you are planning to follow to the next lab or are having trouble with this la
 
 *Credentials:*
 
-Your username is your assigned user number. For example, if you are assigned user number *1*, your username is:
-
-[source,bash]
-----
-user1
-----
-
-Please ask your instructor for your password.
+Your username is: `{user-username}` +
+Your password is: `{user-password}`
 
 *URLs:*
 
@@ -64,6 +58,8 @@ Enter dummy values for `First Name` and `Last Name`. Click *Submit*.
 
 image::images/00-integr8ly-che-update-acc.png[00-integr8ly-che-update-acc.png, role="integr8ly-img-responsive"]
 
+[time=2]
+[id="instructions"]
 == Lab Instructions
 
 === Step 1: Create an Eclipse Che environment for your personal use
@@ -73,7 +69,7 @@ image::images/00-integr8ly-che-update-acc.png[00-integr8ly-che-update-acc.png, r
 +
 image::images/00-create-workspace.png[00-create-workspace.png, role="integr8ly-img-responsive"]
 
-. Use your unique username as your workspace name e.g. userX.  Select "day in the life workshop" stack, increase the RAM to 4GB and then click *Create*.
+. Use your unique username as your workspace name e.g. {user-username}.  Select "day in the life workshop" stack, increase the RAM to 4GB and then click *Create*.
 +
 image::images/00-new-workspace.png[00-new-workspace.png, role="integr8ly-img-responsive"]
 
@@ -85,12 +81,12 @@ image::images/00-open-workspace.png[00-open-workspace.png, role="integr8ly-img-r
 
 . Open a browser window and navigate to:
 +
-[source,bash]
+[source,bash,subs="attributes+"]
 ----
- https://{openshift-app-host}/console
+https://{openshift-app-host}/console
 ----
 
-. Click on your unique namespace to enter your workspace e.g. `user39`.
+. Click on your unique namespace to enter your workspace e.g. `{user-username}`.
 +
 image::images/00-create-ocp-project.png[00-create-ocp-project.png, role="integr8ly-img-responsive"]
 
@@ -110,7 +106,8 @@ image::images/00-postgres-credentials.png[00-postgres-credentials.png, role="int
 +
 image::images/00-import-project.png[00-import-project.png, role="integr8ly-img-responsive"]
 
-. Enter `+http://gogs.{openshift-app-host}/userX/dayintheliferepo+` as the git URL, making sure to update `userX` with your unique username.  Select *Import Recursively* and then click *Import*.
+[source,bash,subs="attributes+"]
+. Enter `+http://gogs.{openshift-app-host}/{user-username}/dayintheliferepo+` as the git URL. Select *Import Recursively* and then click *Import*.
 . When the "Save" pop-up appears, click the "X" to close the pop-up.
 +
 image::images/00-close-save.png[00-close-save.png, role="integr8ly-img-responsive"]
@@ -142,17 +139,17 @@ image::images/00-location-yaml.png[00-location-yaml.png, role="integr8ly-img-res
 +
 [source,xml]
 ----
-   <plugin>
-       <groupId>org.apache.camel</groupId>
-       <artifactId>camel-restdsl-swagger-plugin</artifactId>
-       <version>2.21.0</version>
-       <configuration>
-         <specificationUri>${project.basedir}/src/spec/location.yaml</specificationUri>
-         <className>CamelRoutes</className>
-         <packageName>com.redhat</packageName>
-         <outputDirectory>${project.basedir}/src/main/java</outputDirectory>
-       </configuration>
-   </plugin>
+<plugin>
+   <groupId>org.apache.camel</groupId>
+   <artifactId>camel-restdsl-swagger-plugin</artifactId>
+   <version>2.21.0</version>
+   <configuration>
+     <specificationUri>${project.basedir}/src/spec/location.yaml</specificationUri>
+     <className>CamelRoutes</className>
+     <packageName>com.redhat</packageName>
+     <outputDirectory>${project.basedir}/src/main/java</outputDirectory>
+   </configuration>
+</plugin>
 ----
 +
 image::images/00-terminal.png[00-terminal.png, role="integr8ly-img-responsive"]
@@ -228,9 +225,9 @@ image::images/00-camel-routes.png[00-camel-routes.png, role="integr8ly-img-respo
 [source,java]
 ----
  ...
- /**	
- * Generated from Swagger specification by Camel REST DSL generator.	
- */	
+ /**    
+ * Generated from Swagger specification by Camel REST DSL generator.    
+ */ 
  @Generated("org.apache.camel.generator.swagger.PathGenerator")
  @Component
  public class CamelRoutes extends RouteBuilder {
@@ -243,8 +240,8 @@ image::images/00-camel-routes.png[00-camel-routes.png, role="integr8ly-img-respo
 ----
  ...
  @Override
- public void configure() throws Exception {		
-		
+ public void configure() throws Exception {     
+        
      ContactInfoResultProcessor ciResultProcessor = new ContactInfoResultProcessor();
      LocationResultProcessor locationResultProcessor = new LocationResultProcessor();
  ...
@@ -257,14 +254,14 @@ image::images/00-camel-routes.png[00-camel-routes.png, role="integr8ly-img-respo
  ...
      restConfiguration()
          .component("servlet")
-     	.port(8080)
-     	.bindingMode(RestBindingMode.json)
+        .port(8080)
+        .bindingMode(RestBindingMode.json)
          .contextPath("/")
-     	.dataFormatProperty("prettyPrint", "true")
-     	.enableCORS(true)
-     	.apiContextPath("/api-doc")
-     	.apiProperty("api.title", "Location and Contact Info API")
-     	.apiProperty("api.version", "1.0.0")
+        .dataFormatProperty("prettyPrint", "true")
+        .enableCORS(true)
+        .apiContextPath("/api-doc")
+        .apiProperty("api.title", "Location and Contact Info API")
+        .apiProperty("api.version", "1.0.0")
      ;
  ...
 ----
@@ -283,7 +280,7 @@ Notice that we now have both ResultProcessor's instantiated, and we've stood-up 
          .process(locationResultProcessor)
          .log("${body}")
  ;
-		
+        
  from("direct:getlocation")
          .to("sql:select * from locations where id=cast(:#id as int)?dataSource=dataSource")
          .process(locationResultProcessor)
@@ -294,12 +291,12 @@ Notice that we now have both ResultProcessor's instantiated, and we've stood-up 
                  .setHeader("HTTP_RESPONSE_CODE",constant("404"))
          .log("${body}")
  ;
-		
+        
      from("direct:addlocation")
-         		.log("Creating new location")
+                .log("Creating new location")
          .to("sql:INSERT INTO locations (id,name,lat,lng,location_type,status) VALUES (:#${body.id},:#${body.name},:#${body.location.lat},:#${body.location.lng},:#${body.type},:#${body.status});?dataSource=dataSource")
      ;
-		
+        
      from("direct:getlocationdetail")
          .to("sql:select * from location_detail where id=cast(:#id as int)?dataSource=dataSource")
          .process(ciResultProcessor)
@@ -356,11 +353,12 @@ image::images/00-open-servers.png[00-open-servers.png, role="integr8ly-img-respo
 +
 image::images/00-location-list.png[00-location-list.png, role="integr8ly-img-responsive"]
 
+[source,bash,subs="attributes+"]
 . Now that we've tested our API service implementation locally, we can deploy it to our running OpenShift environment.  First we need to login to OpenShift via the Terminal.  Navigate back to the OpenShift web UI and click the *Copy Login Command* link.  If you aren't logged-in to OpenShift, open a new tab and navigate to `+https://{openshift-app-host}/console+`.
 +
 image::images/00-login-ocp-cli.png[00-location-list.png, role="integr8ly-img-responsive"]
 
-. Navigate back to Eclipse Che, open the terminal, and paste the login command from your clipboard.  Once you've logged-in, select the OpenShift project you created earlier using `oc project userX` (replacing userX with your username).
+. Navigate back to Eclipse Che, open the terminal, and paste the login command from your clipboard.  Once you've logged-in, select the OpenShift project you created earlier using `oc project {user-username}`
 +
 image::images/00-login-terminal.png[00-location-list.png, role="integr8ly-img-responsive"]
 
@@ -379,7 +377,7 @@ image::images/00-location-list.png[00-location-list.png, role="integr8ly-img-res
 . You can also search for individual locations by adjusting the URI to `+/locations/{id}+` e.g. `/locations/100`.
 . Lastly, via the Eclipse Che terminal, test the HTTP POST using curl.  You can use the following command:
 +
-[source,bash]
+[source,bash,subs="attributes+"]
 ----
  curl --header "Content-Type: application/json" --request POST --data '{"id": 101,"name": "Kakadu","type": "HQ","status": "1","location": {"lat": "78.88436","lng": "99.05295"}}' http://location-service-OCPPROJECT.{openshift-app-host}/locations
 ----
