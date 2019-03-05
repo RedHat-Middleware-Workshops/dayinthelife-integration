@@ -33,7 +33,7 @@ Your password is: `{user-password}`
 
 If you haven't done so already, you need to login to the *Red Hat Solution Explorer* webpage so that a unique lab environment can be provisioned on-demand for your exclusive use.  You should open a web browser and navigate to:
 
-[source,bash]
+[source,bash,subs="attributes+"]
 ----
 https://tutorial-web-app-webapp.{openshift-app-host}
 ----
@@ -83,8 +83,12 @@ image::images/00-open-workspace.png[00-open-workspace.png, role="integr8ly-img-r
 +
 [source,bash,subs="attributes+"]
 ----
-https://{openshift-app-host}/console
+https://tutorial-web-app-webapp{openshift-app-host}
 ----
+
+. Click on `Redhat Openshift`
++
+image::images/000-open-openshift.png[000-open-openshift.png, role="integr8ly-img-responsive"]
 
 . Click on your unique namespace to enter your workspace e.g. `{user-username}`.
 +
