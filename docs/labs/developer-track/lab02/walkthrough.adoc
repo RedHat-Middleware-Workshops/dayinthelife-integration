@@ -127,13 +127,10 @@ image::images/mock-12.png[mock-jobs]
 . In the `Create a New Job` dialog, type in the following information. Click *Next*.
 +
 [source,bash,subs="attributes+"]
+----
  ** Name: *Locations-{user-username}*
  ** Repository URL: *http://gogs.{openshift-app-host}/{user-username}/locations-api/raw/dev-track-lab-02/locations-api/Locations-{user-username}.json*
-
-+
-_You can also copy and paste the raw url you saved from the Gogs repository (Step 0)_.
-+
-image::images/mock-13.png[mock-job-details]
+----
 
 . Click *Next* for the Authentication options.
 . Review the details and click on *Create* to create the job.
