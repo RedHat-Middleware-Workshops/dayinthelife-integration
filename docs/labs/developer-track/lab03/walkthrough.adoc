@@ -83,14 +83,16 @@ image::images/00-open-workspace.png[00-open-workspace.png, role="integr8ly-img-r
 +
 [source,bash,subs="attributes+"]
 ----
-https://tutorial-web-app-webapp{openshift-app-host}
+https://tutorial-web-app-webapp.{openshift-app-host}
 ----
 
-. Click on `Redhat Openshift`
+. Click on `Red Hat Openshift`
 +
 image::images/000-open-openshift.png[000-open-openshift.png, role="integr8ly-img-responsive"]
 
-. Click on your unique namespace to enter your workspace e.g. `{user-username}`.
+. Enter your credentials: {user-username} and {user-password}
+
+. Click on your unique namespace to enter your workspace e.g. `{user-username} Project`.
 +
 image::images/00-create-ocp-project.png[00-create-ocp-project.png, role="integr8ly-img-responsive"]
 
@@ -110,8 +112,7 @@ image::images/00-postgres-credentials.png[00-postgres-credentials.png, role="int
 +
 image::images/00-import-project.png[00-import-project.png, role="integr8ly-img-responsive"]
 
-[source,bash,subs="attributes+"]
-. Enter `+http://gogs.{openshift-app-host}/{user-username}/dayintheliferepo+` as the git URL. Select *Import Recursively* and then click *Import*.
+. Enter `http://gogs.{openshift-app-host}/{user-username}/dayintheliferepo` as the git URL. Select *Import Recursively* and then click *Import*.
 . When the "Save" pop-up appears, click the "X" to close the pop-up.
 +
 image::images/00-close-save.png[00-close-save.png, role="integr8ly-img-responsive"]
