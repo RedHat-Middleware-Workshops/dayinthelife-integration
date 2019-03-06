@@ -140,24 +140,6 @@ image::images/00-create-spec.png[00-create-spec.png, role="integr8ly-img-respons
 image::images/00-location-yaml.png[00-location-yaml.png, role="integr8ly-img-responsive"]
 
 . Copy the contents of this https://raw.githubusercontent.com/RedHatWorkshops/dayinthelife-integration/master/docs/labs/developer-track/resources/Locations.yaml[file] to your newly created `location.yaml` file.  The file will auto-save so no need to click *Save*.
-. Open the `pom.xml` file, and examine and update the plugin entry for `camel-restdsl-swagger-plugin` located at the bottom of the file.  Take a look at the location of the yaml file, make sure it maps to the one you created.
-+
-[source,xml]
-----
-<plugin>
-   <groupId>org.apache.camel</groupId>
-   <artifactId>camel-restdsl-swagger-plugin</artifactId>
-   <version>2.21.0</version>
-   <configuration>
-     <specificationUri>${project.basedir}/src/spec/location.yaml</specificationUri>
-     <className>CamelRoutes</className>
-     <packageName>com.redhat</packageName>
-     <outputDirectory>${project.basedir}/src/main/java</outputDirectory>
-   </configuration>
-</plugin>
-----
-+
-image::images/00-terminal.png[00-terminal.png, role="integr8ly-img-responsive"]
 
 . After you've updated the `pom.xml` file, we need to run a Maven command to generate the Camel RESTdsl from our specification.  To do this, first highlight the `location-service` project then click the *Manage Commands* button.
 +
