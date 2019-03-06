@@ -24,8 +24,8 @@ oc get nodes -o jsonpath='{.items[?(@.metadata.labels.node-role\.kubernetes\.io/
 
 6. cd ```support/uninstall/ansible``` 
 
-7. Run the integreatly playbook
+7. Run the integreatly playbook. Remember to set correct value for `usersno` that was passed during installation.
 ```
-ansible-playbook -i inventories/uninstall.workshop.inventory playbooks/openshift/uninstall.yml
+ansible-playbook -i inventories/uninstall.workshop.inventory playbooks/openshift/uninstall.yml -e usersno=<value>
 ```
 
