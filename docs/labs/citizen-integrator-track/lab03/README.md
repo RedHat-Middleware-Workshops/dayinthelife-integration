@@ -7,18 +7,18 @@
 
 ## Overview
 
-When it comes to quick API development, you need both the integration experts as well as application developers to easily develop, deploy the APIs. Here is how to create a simple API with Fuse online. 
+When it comes to quick API development, you need both the integration experts as well as application developers to easily develop, deploy the APIs. Here is how to create a simple API with Fuse online.
 
 ### Why Red Hat?
 
-Red Hat Fuse integration solution empowers integration experts, application developers, and business users to engage in enterprise-wide collaboration and high-productivity self-service. 
+Red Hat Fuse integration solution empowers integration experts, application developers, and business users to engage in enterprise-wide collaboration and high-productivity self-service.
 
 
 ### Environment
 
 **Credentials:**
 
-Your username is your assigned user number. For example, if you are assigned user number **1**, your username is: 
+Your username is your assigned user number. For example, if you are assigned user number **1**, your username is:
 
 ```bash
 user1
@@ -28,7 +28,7 @@ Please ask your instructor for your password.
 
 **URLs:**
 
-If you haven't done so already, you need to login to the **Red Hat Solution Explorer** webpage so that a unique lab environment can be provisioned on-demand for your exclusive use.  You should open a web browser and navigate to: 
+If you haven't done so already, you need to login to the **Red Hat Solution Explorer** webpage so that a unique lab environment can be provisioned on-demand for your exclusive use.  You should open a web browser and navigate to:
 
 ```bash
 https://tutorial-web-app-webapp.apps.optum-ed0e.openshiftworkshop.com
@@ -69,28 +69,27 @@ Once the environment is provisioned, you will be presented with a page that pres
 1. Enter below values for Database Configuration
 
     ```
-    Connection URL: jdbc:postgresql://postgresql.OCPPROJECT.svc:5432/sampledb
+    Connection URL: jdbc:postgresql://postgresql.international.svc:5432/sampledb
     Username      : dbuser
     Password      : password
     Schema        : <blank>
     ```
-*Remember to replace the OCPPROJECT with the OpenShift project(NameSpace) you created in last lab.*
-
+    
 1. Click **Validate** and verify if the connection is successful. Click **Next** to proceed.
 
   ![02-click-validate.png](images/02-click-validate.png "Validate")
 
 6. Add `Connection details`. `Connection Name: LocationDB` and `Description: Location Database`. Click **Create**.
-   
+
    ![03-connection-details.png](images/03-connection-details.png "Add Connection Details")
 
 7. Verify that the `Location Database` is successfully created.
 
-### Step 2: No CODE API developement 
+### Step 2: No CODE API developement
 
 Description goes here
 
-1. Click on **Integrations > Create Integration** 
+1. Click on **Integrations > Create Integration**
 
   ![04-create-integration.png](images/04-create-integration.png "Create Integration")
 
@@ -101,7 +100,7 @@ Description goes here
 3. Select **Create from scratch**
 
   ![n03-api-from-scratch](images/n03-api-from-scratch.png "Add Choose API Provider")
-  
+
 4. Change the name of the API to `Location` and click on the Add a path link under the Paths section.
 ![n04-api-name](images/n04-api-name.png "Set the name of the API")
 
@@ -115,7 +114,7 @@ Description goes here
 7. Fill in the Name field with the value location. Expand the Enter the JSON Example to paste the following example, then click Save:
  - Name: locationinput
  - JSON Example:
- 
+
  ``
  {
 	  "id": 1,
@@ -128,7 +127,7 @@ Description goes here
 	  }
 	}
  ``
- 
+
  ![n07-location-input-datatype](images/n07-location-input-datatype.png "Select Data Type")
  ![n08-location-input-datatype-save](images/n08-location-input-datatype-save.png "Select Data Type")
 
@@ -136,7 +135,7 @@ Description goes here
 8. Create another datatype, this time with the following config and click save.
  - Name: location
  - JSON Example:
- 
+
  ``
  {
     "id": 1,
@@ -151,9 +150,9 @@ Description goes here
  ``
  ![n09-location-datatype](images/n09-location-datatype.png "Select Data Type")
 
-9. You will be able to see the two datatypes created. 
+9. You will be able to see the two datatypes created.
 ![n10-datatype-all](images/n10-datatype-all.png "Data Type All")
- 
+
 10. Click on the Create Operation link under POST to create a new POST operation.
 ![n11-post-method](images/n11-post-method.png "POST Method")
 
@@ -188,12 +187,12 @@ Description goes here
 
   ![n20-integration-name](images/n20-integration-name.png "Webhook Configuration")
 
-21. Click on Add Location operation. 
+21. Click on Add Location operation.
 
   ![n21-choose-operation](images/n21-choose-operation.png "Webhook Configuration")
 
 
-22. Since we are adding incoming data into the database, click on the plus sign in between API entry point and return endpoint, select `Add connection` 
+22. Since we are adding incoming data into the database, click on the plus sign in between API entry point and return endpoint, select `Add connection`
 
  ![n22-add-db-connection](images/n22-add-db-connection.png "Add DB Connection")
 
@@ -281,7 +280,7 @@ We will use an online cURL tool to create the `101th` record field in database.
   **REQUEST**
   ```
    http://location-service-international.apps.optum-ed0e.openshiftworkshop.com/locations/101
-  
+
   ```
 
   **RESPONSE**
@@ -300,7 +299,7 @@ We will use an online cURL tool to create the `101th` record field in database.
 
 ## Summary
 
-In this lab you discovered how to create an adhoc API service using Fuse Online. 
+In this lab you discovered how to create an adhoc API service using Fuse Online.
 
 You can now proceed to [Lab 4](../lab04/#lab-4)
 
@@ -311,5 +310,3 @@ You can now proceed to [Lab 4](../lab04/#lab-4)
   * [Webpage](https://www.redhat.com/en/technologies/jboss-middleware/fuse-online)
   * [Sample tutorials](https://access.redhat.com/documentation/en-us/red_hat_fuse/7.1/html-single/fuse_online_sample_integration_tutorials/index)
   * [Blog](https://developers.redhat.com/blog/2017/11/02/work-done-less-code-fuse-online-tech-preview-today/)
-
-

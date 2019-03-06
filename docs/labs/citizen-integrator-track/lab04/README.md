@@ -27,7 +27,7 @@ https://location-service-api.amp.apps.optum-ed0e.openshiftworkshop.com
 
 **Credentials:**
 
-Your username is your assigned user number. For example, if you are assigned user number **1**, your username is: 
+Your username is your assigned user number. For example, if you are assigned user number **1**, your username is:
 
 ```bash
 user1
@@ -37,7 +37,7 @@ Please ask your instructor for your password.
 
 **URLs:**
 
-If you haven't done so already, you need to login to the **Red Hat Solution Explorer** webpage so that a unique lab environment can be provisioned on-demand for your exclusive use. You should open a web browser and navigate to: 
+If you haven't done so already, you need to login to the **Red Hat Solution Explorer** webpage so that a unique lab environment can be provisioned on-demand for your exclusive use. You should open a web browser and navigate to:
 
 ```bash
 https://tutorial-web-app-webapp.apps.optum-ed0e.openshiftworkshop.com
@@ -78,10 +78,6 @@ Your 3scale Admin Portal provides access to a number of configuration features.
 1. The first page you will land is the *API Management Dashboard*. Click on the **API** menu link.
 
     ![01a-dashboard.png](images/01a-dashboard.png)
-
-1. This is the *API Overview* page. Here you can take an overview of all your services. Click on the **Integration** link.
-
-    ![02-api-integration.png](images/02-api-integration.png)
 
 1. Click on the **edit integration settings** to edit the API settings for the gateway.
 
@@ -137,7 +133,7 @@ Your 3scale Admin Portal provides access to a number of configuration features.
 
     ![07b-edit-mapping-rule.png](images/07b-edit-mapping-rule.png)
 
-1. Type in the *Pattern* text box the following: 
+1. Type in the *Pattern* text box the following:
 
     ```bash
     /locations
@@ -181,7 +177,7 @@ The order in which the policies are executed, known as the “policy chain”, c
 
     ![06-add-headers](images/policies-06.png "Add Allow Headers")
 
-1. Type **Authorization** in the *Allowed headers* field. 
+1. Type **Authorization** in the *Allowed headers* field.
 
     ![07-authorization-header](images/policies-07.png "Add Authorization Header")
 
@@ -195,7 +191,7 @@ The order in which the policies are executed, known as the “policy chain”, c
 
     ![09-allow-methods](images/policies-09.png "Allow Methods")
 
-1. Click the **Submit** button to save the policy configuration.
+1. Click the **Update Policy** button to save the policy configuration.
 
 ### Step 3: Configure the Upstream Endpoint
 
@@ -237,7 +233,7 @@ The order in which the policies are executed, known as the “policy chain”, c
 
 *Congratulations!* You have configured 3scale access control layer as a proxy to only allow authenticated calls to your backend API. 3scale is also now:
 
-* Authenticating (If you test with an incorrect API key it will fail) 
+* Authenticating (If you test with an incorrect API key it will fail)
 * Recording calls (Visit the Analytics tab to check who is calling your API).
 
 ## Steps Beyond

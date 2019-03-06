@@ -27,7 +27,7 @@ http://www-international.apps.optum-ed0e.openshiftworkshop.com/
 
 **Credentials:**
 
-Your username is your assigned user number. For example, if you are assigned user number **1**, your username is: 
+Your username is your assigned user number. For example, if you are assigned user number **1**, your username is:
 
 ```bash
 user1
@@ -37,7 +37,7 @@ Please ask your instructor for your password.
 
 **URLs:**
 
-If you haven't done so already, you need to login to the **Red Hat Solution Explorer** webpage so that a unique lab environment can be provisioned on-demand for your exclusive use.  You should open a web browser and navigate to: 
+If you haven't done so already, you need to login to the **Red Hat Solution Explorer** webpage so that a unique lab environment can be provisioned on-demand for your exclusive use.  You should open a web browser and navigate to:
 
 ```bash
 https://tutorial-web-app-webapp.apps.optum-ed0e.openshiftworkshop.com
@@ -61,7 +61,7 @@ Once the environment is provisioned, you will be presented with a page that pres
 
 OpenShift let you automatically redeploy your changes when you setup a Continuous Integration / Continuous Deployment (CI/CD) pipeline through the use of webhook. For this lab we will trigger the new build and deployment manually through the OpenShift Console.
 
-1. Go back to your OpenShift web console. Navigate to your project's overview page.
+1. Open your OpenShift web console by navigating to `https://master.optum-ed0e.openshiftworkshop.com/console/catalog`. Navigate to your project's overview page. It will be called `UserX Project` (replacing X with your username).
 
 1. Scroll down and click in the www link in the BUILDS section.
 
@@ -109,7 +109,7 @@ Redirect URLs are a critical part of the OAuth flow. After a user successfully a
 
     *3scale, through it's [zync](https://github.com/3scale/zync/) component, already synchronized the application information into the Red Hat SSO security realm*.
 
-1. Click on the **CLIENT_ID** link to view the details. 
+1. Click on the **CLIENT_ID** link to view the details.
 
     *Remember to select CLIENT_ID with the one you got in the [API Security Lab](../lab05/#step-4-create-a-test-app). It will easily identifiable as its and hexadecimal name*.
 
@@ -175,7 +175,7 @@ International Inc web development create a Node.js application for the company h
 
     ![00-developer-console](images/00-developer-console.png "Developer Console")
 
-1. In the developer console, a red error should appear indicating a cert issue. Click on the link and accept the certificate. 
+1. In the developer console, a red error should appear indicating a cert issue. Click on the link and accept the certificate.
 
 *Example link: `https://location-userX-api-staging.amp.apps.optum-ed0e.openshiftworkshop.com/locations`*
 

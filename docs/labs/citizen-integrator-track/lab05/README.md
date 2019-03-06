@@ -27,7 +27,7 @@ https://location-sso.amp.apps.optum-ed0e.openshiftworkshop.com:443
 
 **Credentials:**
 
-Your username is your assigned user number. For example, if you are assigned user number **1**, your username is: 
+Your username is your assigned user number. For example, if you are assigned user number **1**, your username is:
 
 ```bash
 user1
@@ -37,7 +37,7 @@ Please ask your instructor for your password.
 
 **URLs:**
 
-If you haven't done so already, you need to login to the **Red Hat Solution Explorer** webpage so that a unique lab environment can be provisioned on-demand for your exclusive use.  You should open a web browser and navigate to: 
+If you haven't done so already, you need to login to the **Red Hat Solution Explorer** webpage so that a unique lab environment can be provisioned on-demand for your exclusive use.  You should open a web browser and navigate to:
 
 ```bash
 https://tutorial-web-app-webapp.apps.optum-ed0e.openshiftworkshop.com
@@ -62,7 +62,7 @@ Once the environment is provisioned, you will be presented with a page that pres
 1. Open a browser window and navigate to:
 
     ```bash
-    https://secure-sso-sso.apps.optum-ed0e.openshiftworkshop.com/auth/admin/userX/console
+    https://sso-sso.apps.optum-ed0e.openshiftworkshop.com/auth/admin/userX/console
     ```
 
     *Remember to replace the `X` variable in the URL with your assigned user number.*
@@ -137,15 +137,11 @@ Once the environment is provisioned, you will be presented with a page that pres
 
     ![01a-dashboard.png](images/01a-dashboard.png)
 
-1. This is the *API Overview* page. Here you can take an overview of all your services. Click on the **Integration** link.
-
-    ![02-api-integration.png](images/02-api-integration.png)
-
 1. Click on the **edit integration settings** to edit the API settings for the gateway.
 
     ![03-edit-settings.png](images/03-edit-settings.png)
 
-1. Scrolll down the page, under the *Authentication* deployment options, select **OpenID Connect**. 
+1. Scrolll down the page, under the *Authentication* deployment options, select **OpenID Connect**.
 
     ![04-authentication.png](images/04-authentication.png)
 
@@ -154,7 +150,7 @@ Once the environment is provisioned, you will be presented with a page that pres
 1. Dismiss the warning about changing the Authentication mode by clicking **OK**.
 
     ![04b-authentication-warning.png](images/04b-authentication-warning.png)
-    
+
 1. Back in the service integration page, click on the **edit APIcast configuration**.
 
     ![05-edit-apicast.png](images/05-edit-apicast.png)
@@ -187,7 +183,7 @@ Once the environment is provisioned, you will be presented with a page that pres
 
 ### Step 4: Create a Test App
 
-1. Go to the *Developers* tab and click on **Developers**.
+1. Go to the *Developers* tab and click on **Developer**.
 
     ![09-developers.png](images/09-developers.png "Developers")
 
@@ -204,13 +200,11 @@ Once the environment is provisioned, you will be presented with a page that pres
     * Name: **Secure App**
     * Description: **OpenID Connect Secured Application**
 
-    ![12-application-details.png](images/12-application-details.png "Application Details")
-
 1. Finally, scroll down the page and click on the **Create Application** button.
 
     ![13-create-app.png](images/13-create-app.png "Create App")
 
-1. Update the **Redirect URL** to http://www-userX.apps.optum-ed0e.openshiftworkshop.com/*. And note the *API Credentials*. Write them down as you will need the **Client ID** and the **Client Secret** to test your integration. 
+1. Update the **Redirect URL** to http://www-userX.apps.optum-ed0e.openshiftworkshop.com/*. And note the *API Credentials*. Write them down as you will need the **Client ID** and the **Client Secret** to test your integration.
     ![14-app-credentials.png](images/14-app-credentials.png "App Credentials")
 
 *Congratulations!* You have now an application to test your OpenID Connect Integration.
