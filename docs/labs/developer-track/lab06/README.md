@@ -20,7 +20,7 @@ Red Hat provides one the leading API Management tools which provide management s
 If you are planning to follow to the next lab, there is an already running API proxy for the Location API Service in this endpoint:
 
 ```bash
-http://location-service-international.dil.opentry.me
+http://location-service-international.apps.newton-46c9.openshiftworkshop.com
 ```
 
 ### Environment
@@ -40,7 +40,7 @@ Please ask your instructor for your password.
 If you haven't done so already, you need to login to the **Red Hat Solution Explorer** webpage so that a unique lab environment can be provisioned on-demand for your exclusive use.  You should open a web browser and navigate to: 
 
 ```bash
-https://tutorial-web-app-webapp.dil.opentry.me
+https://tutorial-web-app-webapp.apps.newton-46c9.openshiftworkshop.com
 ```
 
 You will be presented with a login page where you can enter your unique credentials:
@@ -64,7 +64,7 @@ Your 3scale Admin Portal provides access to a number of configuration features. 
 1. Open a browser window and navigate to:
 
     ```bash
-    https://userX-admin.dil.opentry.me/p/login
+    https://userX-admin.apps.newton-46c9.openshiftworkshop.com/p/login
     ```
 
 1. Accept the self-signed certificate if you haven't.
@@ -101,13 +101,13 @@ In you command line terminal or in your Che terminal enter the following CURL co
 *Replace USERX as your user id, such as user1, user26, and OPENSHIFT_APP_URL, if you are not sure, check with your instructor*
 
 ```bash
-curl -X POST http://threescale-automate-international.dil.opentry.me/threescale/automate/{YOUR_API_TOKEN}/{USERX}/{OPENSHIFT_APP_URL}
+curl -X POST http://threescale-automate-international.apps.newton-46c9.openshiftworkshop.com/threescale/automate/{YOUR_API_TOKEN}/{USERX}/{OPENSHIFT_APP_URL}
 ```
 
 For example: 
 
 ```bash
-curl -X POST http://threescale-automate-international.dil.opentry.me/threescale/automate/829405ec3d2dd0f91aa8435347827135c323c69757dd2dfb49ed41aa8ceb13ef/user26/dil.opentry.me
+curl -X POST http://threescale-automate-international.apps.newton-46c9.openshiftworkshop.com/threescale/automate/829405ec3d2dd0f91aa8435347827135c323c69757dd2dfb49ed41aa8ceb13ef/user26/apps.newton-46c9.openshiftworkshop.com
 ```
 
 String **API automated, DONE!** should be returned as the result.
@@ -132,7 +132,7 @@ SSO Location API can be located here:
 * Click **I understand the consequences, proceed to delete 'SSO Location API' service.**
 
 Try running this command again in the terminal:
-```curl -X POST http://threescale-automate-international.dil.opentry.me/threescale/automate/{YOUR_API_TOKEN}/{USERX}/{OPENSHIFT_APP_URL}```
+```curl -X POST http://threescale-automate-international.apps.newton-46c9.openshiftworkshop.com/threescale/automate/{YOUR_API_TOKEN}/{USERX}/{OPENSHIFT_APP_URL}```
 
 ## Steps Beyond
 

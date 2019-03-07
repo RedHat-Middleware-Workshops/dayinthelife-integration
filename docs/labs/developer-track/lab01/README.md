@@ -25,7 +25,7 @@ If you are planning to skip this lab and follow the next one, here is a [link](h
 
 **Credentials:**
 
-Your username is your assigned user number. For example, if you are assigned user number **1**, your username is: 
+Your username is your assigned user number. For example, if you are assigned user number **1**, your username is:
 
 ```bash
 user1
@@ -35,10 +35,10 @@ Please ask your instructor for your password.
 
 **URLs:**
 
-If you haven't done so already, you need to login to the **Red Hat Solution Explorer** webpage so that a unique lab environment can be provisioned on-demand for your exclusive use.  You should open a web browser and navigate to: 
+If you haven't done so already, you need to login to the **Red Hat Solution Explorer** webpage so that a unique lab environment can be provisioned on-demand for your exclusive use.  You should open a web browser and navigate to:
 
 ```bash
-https://tutorial-web-app-webapp.dil.opentry.me
+https://tutorial-web-app-webapp.apps.newton-46c9.openshiftworkshop.com
 ```
 
 You will be presented with a login page where you can enter your unique credentials:
@@ -60,7 +60,7 @@ Once the environment is provisioned, you will be presented with a page that pres
 1. Open a browser window and navigate to:
 
     ```bash
-    http://apicurio-studio.dil.opentry.me
+    http://apicurio-studio.apps.newton-46c9.openshiftworkshop.com
     ```
 
 1. Log in using your designated [user and password](#environment).
@@ -122,7 +122,7 @@ Let's start verifying your API.
 
     ![design-locations-api](images/design-23.png "Locations API")
 
-*Congratulations!* You have imported your first API definition based on the OpenAPI Specification  using Red Hat's Apicurio. 
+*Congratulations!* You have imported your first API definition based on the OpenAPI Specification  using Red Hat's Apicurio.
 
 ## Steps Beyond
 

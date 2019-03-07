@@ -31,7 +31,7 @@ Please ask your instructor for your password.
 If you haven't done so already, you need to login to the **Red Hat Solution Explorer** webpage so that a unique lab environment can be provisioned on-demand for your exclusive use.  You should open a web browser and navigate to: 
 
 ```bash
-https://tutorial-web-app-webapp.dil.opentry.me
+https://tutorial-web-app-webapp.apps.newton-46c9.openshiftworkshop.com
 ```
 
 You will be presented with a login page where you can enter your unique credentials:
@@ -276,7 +276,7 @@ We will use an online cURL tool to create the `101th` record field in database.
 
   **REQUEST**
   ```
-   http://location-service-international.dil.opentry.me/locations/101
+   http://location-service-international.apps.newton-46c9.openshiftworkshop.com/locations/101
   
   ```
 

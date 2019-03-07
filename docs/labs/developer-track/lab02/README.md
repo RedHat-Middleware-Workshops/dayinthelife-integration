@@ -23,7 +23,7 @@ If you are planning to follow the next lab, here is a [link](wip-link) to the RE
 
 **Credentials:**
 
-Your username is your assigned user number. For example, if you are assigned user number **1**, your username is: 
+Your username is your assigned user number. For example, if you are assigned user number **1**, your username is:
 
 ```bash
 user1
@@ -33,10 +33,10 @@ Please ask your instructor for your password.
 
 **URLs:**
 
-If you haven't done so already, you need to login to the **Red Hat Solution Explorer** webpage so that a unique lab environment can be provisioned on-demand for your exclusive use.  You should open a web browser and navigate to: 
+If you haven't done so already, you need to login to the **Red Hat Solution Explorer** webpage so that a unique lab environment can be provisioned on-demand for your exclusive use.  You should open a web browser and navigate to:
 
 ```bash
-https://tutorial-web-app-webapp.dil.opentry.me
+https://tutorial-web-app-webapp.apps.newton-46c9.openshiftworkshop.com
 ```
 
 You will be presented with a login page where you can enter your unique credentials:
@@ -55,14 +55,14 @@ Once the environment is provisioned, you will be presented with a page that pres
 
 ### Prerequisite: Setup the collaboration environment using Git (Gogs)
 
-For the Developer track, we require a collaboration environment based on Git. For this purpose, we  decided to use Gogs which is a hosted, lighter-weight version of Gitlab. This lab environment has created a user for you in Gogs. 
+For the Developer track, we require a collaboration environment based on Git. For this purpose, we  decided to use Gogs which is a hosted, lighter-weight version of Gitlab. This lab environment has created a user for you in Gogs.
 
 Follow this instructions to set up the repository.
 
 1. Open a browser window and navigate to:
 
     ```bash
-    http://gogs.dil.opentry.me/
+    http://gogs.apps.newton-46c9.openshiftworkshop.com/
     ```
 
 1. Log into Gogs using your designated [user and password](#environment). Click on **Sign In**.
@@ -95,7 +95,7 @@ Follow this instructions to set up the repository.
 
     ![mock-gogs-file](images/mock-05.png "Edit file")
 
-1. Replace **UserX** with your user number. 
+1. Replace **UserX** with your user number.
 
     ![mock-gogs-file](images/mock-07.png "Rename file")
 
@@ -110,7 +110,7 @@ Follow this instructions to set up the repository.
 1. Copy the browser tab URL. Store that URL address as you will use it in the next steps of the lab. The URL should look like the following:
 
     ```bash
-     http://gogs.dil.opentry.me/userX/locations-api/raw/dev-track-lab-02/locations-api/Locations-UserX.json
+     http://gogs.apps.newton-46c9.openshiftworkshop.com/userX/locations-api/raw/dev-track-lab-02/locations-api/Locations-UserX.json
     ```
 
     *If you feel more comfortable, you can also copy and paste the RAW button link from the previous step.  Also, don't forget to update the X variable with your user number*.
@@ -120,7 +120,7 @@ Follow this instructions to set up the repository.
 1. Open a browser window and navigate to:
 
     ```bash
-    http://microcks.dil.opentry.me/
+    http://microcks.apps.newton-46c9.openshiftworkshop.com/
     ```
 
 1. Log in into Microcks using your designated [user and password](#environment).
@@ -132,13 +132,13 @@ Follow this instructions to set up the repository.
     ![mock-jobs](images/mock-11.png "Job")
 
 1. Click the **Create** button to create your first job.
-    
+
     ![mock-jobs](images/mock-12.png "Job")
 
 1. In the `Create a New Job` dialog, type in the following information replacing **X** with your user number. Click **Next**.
 
     * Name: **Locations-UserX**
-    * Repository URL: **http://gogs.dil.opentry.me/userX/locations-api/raw/dev-track-lab-02/locations-api/Locations-UserX.json**
+    * Repository URL: **http://gogs.apps.newton-46c9.openshiftworkshop.com/userX/locations-api/raw/dev-track-lab-02/locations-api/Locations-UserX.json**
 
     *You can also copy and paste the raw url you saved from the Gogs repository (Step 0)*.
 
@@ -189,12 +189,12 @@ We now have a working REST mock service listening for requests. We will use an o
     https://onlinecurl.com/
     ```
 
-1. Copy and paste the Mock URL from earlier step. It should look like. 
-   
+1. Copy and paste the Mock URL from earlier step. It should look like.
+
    *Remember to replace X with your user number*.
 
     ```bash
-    http://microcks.dil.opentry.me/rest/Locations-UserX/1.0.0/locations
+    http://microcks.apps.newton-46c9.openshiftworkshop.com/rest/Locations-UserX/1.0.0/locations
     ```
 
 1. Click the **START YOUR CURL** button.
@@ -213,7 +213,7 @@ We now have a working REST mock service listening for requests. We will use an o
 
 ## Summary
 
-In this lab you used Microcks to configure a REST mock service for the API definition you created in the previous lab. REST mock services allows you to simulate a REST API service when you are in a prototyping stage of your API program journey. 
+In this lab you used Microcks to configure a REST mock service for the API definition you created in the previous lab. REST mock services allows you to simulate a REST API service when you are in a prototyping stage of your API program journey.
 
 Microcks allows you to test a number of various responses for client application requests. When deploying API, micro-services or SOA practices at large scale, Microcks solves the problems of providing and sharing consistent documentation and mocks to the involved teams. It acts as a central repository and server that can be used for browsing but also by your Continuous Integration builds or pipelines.
 
