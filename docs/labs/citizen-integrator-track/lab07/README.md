@@ -1,13 +1,13 @@
-# Lab 3
+# Lab 7
 
-## Fuse Online
+## Fuse Online & Three Scale Smart Discovery Bonus Lab
 
 * Duration: 20 mins
 * Audience: Developers and Architects
 
 ## Overview
 
-When it comes to quick API development, you need both the integration experts as well as application developers to easily develop, deploy the APIs. Here is how to create a simple API with Fuse online.
+When it comes to quick API development, you need both the integration experts as well as application developers to easily develop and deploy the APIs. This lab demonstrates how to implement a simple API with Fuse Online.  Instead of using APICurio to create the API contract, we use Apicurito (an embedded version of Apicurio) to define our contract directly in Fuse Online.  We then implement our API with Fuse, then manage and secure it using 3scale.  This flow gives us an easy end-to-end walkthrough of defining, implementing, managing and securing an API.
 
 ### Why Red Hat?
 
@@ -171,7 +171,7 @@ Description goes here
 15. Set the Response Status Code value to 201. Click Add.
 ![n15-post-response](images/n15-post-response.png "Response Body")
 
-16. Click on **No Description* and place *Location added* in Description box. Click on the tick to save the changes
+16. Click on *No Description* and place *Location added* in Description box. Click on the tick to save the changes
 ![n16-post-description](images/n16-post-description.png "Post Description")
 
 17. Click on the Type dropdown and select location.
@@ -234,7 +234,181 @@ Description goes here
 
 *Congratulations*. You successfully published the integration. (Wait for few minutes to build and publish the integration)
 
-### Step 3: Create a POST request
+### Step 3: Secure the API in 3scale using Smart Discovery
+
+We will use 3scale to secure our newly deployed Fuse Online integration.  We introduce a new feature, Smart Discovery, which detects that a new API was deployed to OpenShift.
+
+1. Click on the `3scale Admin Dashboard` from the Red Hat Solution Explorer. The URL should look like
+
+    ```bash
+    https://userX-admin.apps.newton-46c9.openshiftworkshop.com/p/login
+    ```
+
+    *Remember the `X` variable in the URL with your assigned user number.*
+
+1. Accept the self-signed certificate if you haven't.
+
+1. Log into 3scale using your designated [user and password](#environment). Click on **Sign In**.
+
+    ![01-login.png](images/01-login.png)
+
+1. The first page you will land is the *API Management Dashboard*. Click on the **API** menu link.
+
+    ![01a-dashboard.png](images/01a-dashboard.png)
+
+1. Click on the **edit integration settings** to edit the API settings for the gateway.
+
+    ![03-edit-settings.png](images/03-edit-settings.png)
+
+1. Keep select the **APIcast** deployment option in the *Gateway* section.
+
+    ![04-apicast.png](images/04-apicast.png)
+
+1. Scroll down and keep the **API Key (user_key)** Authentication.
+
+    ![05-authentication.png](images/05-authentication.png)
+
+1. Click on **Update Service**.
+
+1. Click on the **add the Base URL of your API and save the configuration** button.
+
+    ![04-base-url](images/04-base-url.png)
+
+1. Leave the settings for `Private Base URL`, `Staging Public Base URL`, and `Production Public Base URL` as it is. We will come back to the screen to update the correct values in later step.
+
+1. Scroll down and expand the **MAPPING RULES** section to define the allowed methods on our exposed API.
+
+    *The default mapping is the root ("/") of our API resources, and this example application will not use that mapping. The following actions will redefine that default root ("/") mapping.*
+
+    ![07b-mapping-rules.png](images/07b-mapping-rules.png)
+
+1. Click on the **Metric or Method (Define)**  link.
+
+    ![07b-mapping-rules-define.png](images/07b-mapping-rules-define.png)
+
+1. Click on the **New Method** link in the *Methods* section.
+
+    ![07b-new-method.png](images/07b-new-method.png)
+
+1. Fill in the information for your Fuse Method.
+
+    * Friendly name: **Get Locations**
+
+    * System name: **locations_all**
+
+    * Description: **Method to return all locations**
+
+    ![07b-new-method-data.png](images/07b-new-method-data.png)
+
+1. Click on **Create Method**.
+
+1. Click on the **Add mapping rule** link.
+
+    ![07b-add-mapping-rule.png](images/07b-add-mapping-rule.png)
+
+1. Click on the edit icon next to the GET mapping rule.
+
+    ![07b-edit-mapping-rule.png](images/07b-edit-mapping-rule.png)
+
+1. Type in the *Pattern* text box the following:
+
+    ```bash
+    /locations
+    ```
+
+1. Select **locations_all** as Method from the combo box.
+
+    ![07b-getall-rule.png](images/07b-getall-rule.png)
+
+### Step 4: Define your API Policies
+
+Red Hat 3scale API Management provides units of functionality that modify the behavior of the API Gateway without the need to implement code. These management components are know in 3scale as policies.
+
+The order in which the policies are executed, known as the “policy chain”, can be configured to introduce differing behavior based on the position of the policy in the chain. Adding custom headers, perform URL rewriting, enable CORS, and configurable caching are some of the most common API gateway capabilities implemented as policies.
+
+1. Scroll down and expand the **POLICIES** section to define the allowed methods on our exposed API.
+
+    ![01-policies](images/policies-01.png "Policies")
+
+    *The default policy in the Policy Chain is APIcast. This is the main policy and most of the times you want to keep it*.
+
+1. Click the **Add Policy** link to add a new policy to the chain.
+
+    ![02-add-policy](images/policies-02.png)
+
+    _Out-of-the-box 3scale includes a set of policies you can use to modify the way your API gateway behaves. For this lab, we will focus on the **Cross Origin Resource Sharing (CORS)** one as we will use it in the consumption lab_.
+
+1. Click in the **CORS** link to add the policy.
+
+    ![03-cors-policy](images/policies-03.png "CORS")
+
+1. Put your mouse over the right side of the policy name to enable the reorder of the chain. Drag and drop the CORS policy to the top of the chain.
+
+    ![04-chain-order](images/policies-04.png "Chain Order")
+
+1. Now **CORS** policy will be executed before the **APIcast**. Click the **CORS** link to edit the policy.
+
+    ![05-cors-configuration](images/policies-05.png "Cors Configuration")
+
+1. In the *Edit Policy* section, click the green **+** button to add the allowed headers.
+
+    ![06-add-headers](images/policies-06.png "Add Allow Headers")
+
+1. Type **Authorization** in the *Allowed headers* field.
+
+    ![07-authorization-header](images/policies-07.png "Add Authorization Header")
+
+1. Tick the **allow_credentials** checkbox and fill in with a star (**\***) the *allow_origin* text box.
+
+    ![08-allow-origin](images/policies-08.png "Allow Origin")
+
+1. Click twice the green **+** button under *ALLOW_METHODS* to enable two combo boxes for the CORS allowed methods.
+
+1. Select **GET** from the first box and **OPTIONS** from the second box.
+
+    ![09-allow-methods](images/policies-09.png "Allow Methods")
+
+1. Click the **Update Policy** button to save the policy configuration.
+
+### Step 4: Configure the Upstream Endpoint
+
+1. Scroll back to the top of the page. Fill in the information for accessing your API:
+
+    * Private Base URL: **http://location-service.international.svc:8080**
+
+    * Staging Public Base URL: **https://location-userX-api-staging.amp.apps.newton-46c9.openshiftworkshop.com:443**
+
+    * Production Public Base URL: **https://location-userX-api.amp.apps.newton-46c9.openshiftworkshop.com:443**
+
+    *Remember to replace the X with your user number*.
+
+    *We are using the internal API service, as we are deploying our services inside the same OpenShift cluster*.
+
+    ![07-baseurl-configuration.png](images/07-baseurl-configuration.png)
+
+1. Scroll down to the **API Test GET request**.
+
+1. Type in the textbox:
+
+    ```bash
+    /locations
+    ```
+
+1. Click on the **Update the Staging Environment** to save the changes and check the connection between client, gateway and API.
+
+    ![08-update-staging.png](images/08-update-staging.png)
+
+    *If everything works, you will get a green message on the left*.
+
+1. Click on **Back to Integration &amp; Configuration** link to return to your API overview.
+
+    ![08aa-back-to-integration.png](images/08aa-back-to-integration.png)
+
+1. Click on the **Promote v.1 to Production** button to promote your configuration from staging to production.
+
+    ![08a-promote-production.png](images/08a-promote-production.png)
+
+### Step 4: Create a POST request
 
 We will use an online cURL tool to create the `101th` record field in database.
 

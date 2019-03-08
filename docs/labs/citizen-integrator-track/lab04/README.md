@@ -162,7 +162,7 @@ Once the environment is provisioned, you will be presented with a page that pres
 1. In the **OpenID Connect Issuer** field, type in your previously noted client credentials with the URL of your Red Hat Single Sing On instance:
 
     ```bash
-    http://3scale-admin:CLIENT_SECRET@sso-sso.apps.newton-46c9.openshiftworkshop.com/auth/realms/userX
+    https://3scale-admin:CLIENT_SECRET@sso-sso.apps.newton-46c9.openshiftworkshop.com/auth/realms/userX
     ```
 
     *Remember to replace the X with user number*

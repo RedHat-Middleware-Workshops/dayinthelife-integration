@@ -67,9 +67,11 @@ OpenShift let you automatically redeploy your changes when you setup a Continuou
 
    ![01-scroll-down](images/deploy-10.png "Scroll Down")
 
-1. In the build configuration page, replace the `CLIENT_ID` from `CHANGE_ME`to the one generated from [Lab 04 Step 4.6](../lab04##step-4-create-a-test-app)
+1. In the build configuration page, replace the `CLIENT_ID` from `CHANGE_ME`to the one generated from [Lab 04 Step 4.6](../lab04#step-4-create-a-test-app)
 
    ![02-client-id](images/deploy-11.png "Change Client ID")
+
+1. Make sure the SSO_URL is set to begin with 'https'.  If it isn't, then update it to.
 
 1. Click Save button to persist the changes. A green pop up will show you that the changes were saved.
 
@@ -113,7 +115,7 @@ Redirect URLs are a critical part of the OAuth flow. After a user successfully a
 
     *Remember to select CLIENT_ID with the one you got in the [API Security Lab](../lab04/#step-4-create-a-test-app). It will easily identifiable as its and hexadecimal name*.
 
-    *If you do not find the CLIENT_ID, make sure you correctly executed the sync between 3scale and RHSSO in [Step 3.12 Lab04](../lab04/#step-3-configure-3scale-integration)*
+    *If you do not find the CLIENT_ID, make sure you correctly executed the sync between 3scale and RHSSO in [Step 3.12 Lab04](../lab04/#step-3-configure-3scale-integration).  You should also check Step 1.4 in this lab to ensure that the SSO_URL correctly begins with https:// *
 
    ![24-client-application](images/consume-24.png "Client Application")
 
