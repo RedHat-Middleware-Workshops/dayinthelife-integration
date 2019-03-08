@@ -272,11 +272,11 @@ We will use 3scale to secure our newly deployed Fuse Online integration.  We int
 
 1.  The page should return to the dashboard.  Refresh the page.  Notice that the *I-ADDLOCATION API* has been added to the list.  Click **Integrate this API**.
 
-        ![secure-08.png](images/secure-08.png)
+    ![secure-08.png](images/secure-08.png)
 
 1. Click on the **edit integration settings** to edit the API settings for the gateway.
 
-            ![03-edit-settings.png](images/03-edit-settings.png)
+    ![03-edit-settings.png](images/03-edit-settings.png)
 
 1. Keep select the **APIcast** deployment option in the *Gateway* section.
 
