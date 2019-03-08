@@ -37,22 +37,22 @@
   failed_when: create_backend_db.stderr != '' and 'already exists' not in create_backend_db.stderr
 
 - name: Create Backend Location API service
-  shell: "oc new-app s2i-fuse71-spring-boot-camel -p GIT_REPO=https://github.com/RedHatWorkshops/dayinthelife-integration \
-  -p CONTEXT_DIR=/projects/location-service -p APP_NAME=location-service -p GIT_REF=master -n {{ backend_project }}"
+  shell: "oc new-app s2i-fuse71-spring-boot-camel -p GIT_REPO=https://github.com/sigreen/dayinthelife-integration \
+  -p CONTEXT_DIR=/projects/location-service -p APP_NAME=location-service -p GIT_REF=v2-boston -n {{ backend_project }}"
   when: configure_only == 'false'
   register: create_location_api_service
   failed_when: create_location_api_service.stderr != '' and 'already exists' not in create_location_api_service.stderr
 
 - name: Create Backend Location Detail SOAP service
-  shell: "oc new-app s2i-fuse71-spring-boot-camel -p GIT_REPO=https://github.com/RedHatWorkshops/dayinthelife-integration \
-  -p CONTEXT_DIR=/projects/location-soap -p APP_NAME=location-soap -p GIT_REF=master -n {{ backend_project }}"
+  shell: "oc new-app s2i-fuse71-spring-boot-camel -p GIT_REPO=https://github.com/sigreen/dayinthelife-integration \
+  -p CONTEXT_DIR=/projects/location-soap -p APP_NAME=location-soap -p GIT_REF=v2-boston -n {{ backend_project }}"
   when: configure_only == 'false'
   register: create_location_detail_soap_service
   failed_when: create_location_detail_soap_service.stderr != '' and 'already exists' not in create_location_detail_soap_service.stderr
 
 - name: Create Backend Location Detail SOAP to REST service
-  shell: "oc new-app s2i-fuse71-spring-boot-camel -p GIT_REPO=https://github.com/RedHatWorkshops/dayinthelife-integration \
-  -p CONTEXT_DIR=/projects/location-soap2rest -p APP_NAME=location-soap2rest -p GIT_REF=master -n {{ backend_project }}"
+  shell: "oc new-app s2i-fuse71-spring-boot-camel -p GIT_REPO=https://github.com/sigreen/dayinthelife-integration \
+  -p CONTEXT_DIR=/projects/location-soap2rest -p APP_NAME=location-soap2rest -p GIT_REF=v2-boston -n {{ backend_project }}"
   when: configure_only == 'false'
   register: create_location_soap_rest_service
   failed_when: create_location_soap_rest_service.stderr != '' and 'already exists' not in create_location_soap_rest_service.stderr
@@ -79,10 +79,10 @@
 
 - name: Make sure we go back to default project
   shell: "oc project default"
-  
+
 - name: Create ThreeScale Automate service
-  shell: "oc new-app s2i-fuse71-spring-boot-camel-integr8ly-sso -p GIT_REPO=https://github.com/RedHatWorkshops/dayinthelife-integration \
-  -p CONTEXT_DIR=/projects/threescale-automate -p APP_NAME=threescale-automate -p GIT_REF=master -p SSO_USERNAME={{ sso_username }} -p SSO_PASSWORD={{ sso_pwd }} -n {{ backend_project }}"
+  shell: "oc new-app s2i-fuse71-spring-boot-camel-integr8ly-sso -p GIT_REPO=https://github.com/sigreen/dayinthelife-integration \
+  -p CONTEXT_DIR=/projects/threescale-automate -p APP_NAME=threescale-automate -p GIT_REF=v2-boston -p SSO_USERNAME={{ sso_username }} -p SSO_PASSWORD={{ sso_pwd }} -n {{ backend_project }}"
   when: configure_only == 'false'
   register: create_threescale_automate
   failed_when: create_threescale_automate.stderr != '' and 'already exists' not in create_threescale_automate.stderr

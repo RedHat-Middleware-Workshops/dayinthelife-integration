@@ -28,7 +28,7 @@ Login to the Red Hat Solution Explorer, here you will find the link to Che.
 
 **Credentials:**
 
-Your username is your assigned user number. For example, if you are assigned user number **1**, your username is: 
+Your username is your assigned user number. For example, if you are assigned user number **1**, your username is:
 
 ```bash
 user1
@@ -44,7 +44,7 @@ Please ask your instructor for your password.
 
     ![00-open-terminal.png](images/00-open-terminal.png "Open Terminal")
 
-1. In Openshift console (https://apps.newton-46c9.openshiftworkshop.com). 
+1. In Openshift console (https://master.newton-46c9.openshiftworkshop.com). 
 
 	![00-openshift-loginpage.png](images/00-openshift-loginpage.png "Commend Login")
 
@@ -52,19 +52,19 @@ Please ask your instructor for your password.
 
 	![00-commend-login.png](images/00-commend-login.png "Commend Login")
 
-1. Login to Openshift via the Terminal window and paste the commend to the terminal: 
+1. Login to Openshift via the Terminal window and paste the commend to the terminal:
 
     ```bash
-    oc login https://apps.newton-46c9.openshiftworkshop.com --token=XXXXX 
+    oc login https://master.newton-46c9.openshiftworkshop.com --token=XXXXX
     ```
 
 
-1. Build and deploy the SOAP application using source to image(S2i) template. Paste the commend to the terminal. 
+1. Build and deploy the SOAP application using source to image(S2i) template. Paste the commend to the terminal.
 
    ```bash
-    
+
     oc new-app s2i-fuse71-spring-boot-camel -p GIT_REPO=https://github.com/RedHatWorkshops/dayinthelife-integration -p CONTEXT_DIR=/projects/location-soap -p APP_NAME=location-soap -p GIT_REF=master -n OCPPROJECT
-    
+
     ```
      *Remember to replace the OCPPROJECT with the OpenShift project(NameSpace) you created in last lab.  OCPPROJECT should be your username*
 
@@ -95,35 +95,35 @@ Common gotcha: If build fails due to used port, check if you are running with ma
 
 1. Open up the `CamelRoutes.java` file.  Notice that the existing implementation is barebones. First of all, we need to enter the SOAP service address and WSDL location for our CXF client to call.  Secondly, we need to create our Camel route implementation and create the RESTful endpoint.  To do this, include the following code (making sure to update the **{YOUR_NAME_SPACE}**,  **{OPENSHIFT_APP_URL}** and username values in the `to("cxf://` URL):
 
-    In this case **YOUR_NAME_SPACE** should be *userX* and **{OPENSHIFT_APP_URL}** would be *apps.newton-46c9.openshiftworkshop.com*. Check with your instructor if you are not sure. 
+    In this case **YOUR_NAME_SPACE** should be *userX* and **{OPENSHIFT_APP_URL}** would be *apps.newton-46c9.openshiftworkshop.com*. Check with your instructor if you are not sure.
 
     ```java
 	...
 
 	@Autowired
 	private CamelContext camelContext;
-	
+
 	private static final String SERVICE_ADDRESS = "http://localhost:8080/ws/location";
 	private static final String WSDL_URL = "http://localhost:8080/ws/location?wsdl";
 
 	@Override
 	public void configure() throws Exception {
-	
-	...	
-	
+
+	...
+
 		rest("/location").description("Location information")
 			.produces("application/json")
 			.get("/contact/{id}").description("Location Contact Info")
 				.responseMessage().code(200).message("Data successfully returned").endResponseMessage()
 				.to("direct:getalllocationphone")
-			
+
 		;
-		
+
 		from("direct:getalllocationphone")
 			.setBody().simple("${headers.id}")
 			.unmarshal().json(JsonLibrary.Jackson)
 			.to("cxf://http://location-soap-{YOUR_NAME_SPACE}.{OPENSHIFT_APP_URL}/ws/location?serviceClass=com.redhat.LocationDetailServicePortType&defaultOperationName=contact")
-			
+
 			.process(
 					new Processor(){
 
@@ -131,16 +131,16 @@ Common gotcha: If build fails due to used port, check if you are running with ma
 						public void process(Exchange exchange) throws Exception {
 							//LocationDetail locationDetail = new LocationDetail();
 							//locationDetail.setId(Integer.valueOf((String)exchange.getIn().getHeader("id")));
-							
+
 							MessageContentsList list = (MessageContentsList)exchange.getIn().getBody();
-							
+
 							exchange.getOut().setBody((ContactInfo)list.get(0));
 						}
 					}
 			)
-			
+
 		;
-	
+
 	    }
 	}
     ```
@@ -148,7 +148,7 @@ Common gotcha: If build fails due to used port, check if you are running with ma
 1. Now that we have our API service implementation, we can try to test this locally.  Navigate back to the **Manage commands** view and execute the `run spring-boot` script.  Click the **Run** button.
 
     ![00-local-testing.png](images/00-local-testing.png)
-    
+
 1. Once the application starts, navigate to the Servers window and click on the URL corresponding to port 8080.  A new tab should appear:
 
     ![00-select-servers.png](images/00-select-servers.png)
@@ -179,4 +179,3 @@ Common gotcha: If build fails due to used port, check if you are running with ma
 You have now successfully created a contract-first API using a SOAP WSDL contract together with generated Camel RESTdsl.
 
 You can now proceed to [Lab 5](../lab05/#lab-5)
-

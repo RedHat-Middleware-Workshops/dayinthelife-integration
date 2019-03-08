@@ -23,7 +23,7 @@ If you are planning to follow to the next lab or are having trouble with this la
 
 **Credentials:**
 
-Your username is your assigned user number. For example, if you are assigned user number **1**, your username is: 
+Your username is your assigned user number. For example, if you are assigned user number **1**, your username is:
 
 ```bash
 user1
@@ -33,7 +33,7 @@ Please ask your instructor for your password.
 
 **URLs:**
 
-If you haven't done so already, you need to login to the **Red Hat Solution Explorer** webpage so that a unique lab environment can be provisioned on-demand for your exclusive use.  You should open a web browser and navigate to: 
+If you haven't done so already, you need to login to the **Red Hat Solution Explorer** webpage so that a unique lab environment can be provisioned on-demand for your exclusive use.  You should open a web browser and navigate to:
 
 ```bash
 https://tutorial-web-app-webapp.apps.newton-46c9.openshiftworkshop.com
@@ -65,7 +65,7 @@ Enter dummy values for `First Name` and `Last Name`. Click **Submit**.
 
 1. Click on Eclipse Che in **Red Hat Solution Explorer** .
 
-    
+
 1. Click on **Create Workspace**.
 
     ![00-create-workspace.png](images/00-create-workspace.png "Create Workspace")
@@ -84,14 +84,14 @@ Enter dummy values for `First Name` and `Last Name`. Click **Submit**.
 1. Open a browser window and navigate to:
 
     ```bash
-    https://apps.newton-46c9.openshiftworkshop.com/console
+    https://master.newton-46c9.openshiftworkshop.com/console
     ```
 
 1. Click on your unique namespace to enter your workspace e.g. `user39`.
 
     ![00-create-ocp-project.png](images/00-create-ocp-project.png "Create Project")
 
-1. Click on **Browse Catalog**, then navigate to the **Databases** menu and select **Postgres**.  From there, select the **PostgreSQL** (Ephemeral) template.
+1. Click on **Add to Project ** then select **Browse Catalog**, then navigate to the **Databases** menu and select **Postgres**.  From there, select the **PostgreSQL** (Ephemeral) template.
 
     ![00-select-postgres.png](images/00-select-postgres.png "Select Postgres")
 
@@ -140,7 +140,7 @@ Once you've received the swagger specification (API contract) from your friendly
 
 1. Copy the contents of this [file](https://raw.githubusercontent.com/RedHatWorkshops/dayinthelife-integration/master/docs/labs/developer-track/resources/Locations.yaml) to your newly created `location.yaml` file.  The file will auto-save so no need to click **Save**.
 
-1. Open the `pom.xml` file, and examine and update the plugin entry for `camel-restdsl-swagger-plugin` located at the bottom of the file.  Take a look at the location of the yaml file, make sure it maps to the one you created. 
+1. Open the `pom.xml` file, and examine and update the plugin entry for `camel-restdsl-swagger-plugin` located at the bottom of the file.  Take a look at the location of the yaml file, make sure it maps to the one you created.
 
     ```xml
 	  <plugin>
@@ -172,11 +172,11 @@ Once you've received the swagger specification (API contract) from your friendly
 
     ```java
     package com.redhat;
-    
+
     import javax.annotation.Generated;
     import org.apache.camel.builder.RouteBuilder;
     import org.apache.camel.model.rest.RestParamType;
-    
+
     /**
      * Generated from Swagger specification by Camel REST DSL generator.
      */
@@ -209,7 +209,7 @@ Once you've received the swagger specification (API contract) from your friendly
                     .to("direct:rest4");
         }
     }
-    
+
     ```
 
 
@@ -228,9 +228,9 @@ Once you've received the swagger specification (API contract) from your friendly
 
     ```java
 	...
-	/**	
-	* Generated from Swagger specification by Camel REST DSL generator.	
-	*/	
+	/**
+	* Generated from Swagger specification by Camel REST DSL generator.
+	*/
 	@Generated("org.apache.camel.generator.swagger.PathGenerator")
 	@Component
 	public class CamelRoutes extends RouteBuilder {
@@ -243,7 +243,7 @@ Once you've received the swagger specification (API contract) from your friendly
 	...
 	@Override
 	public void configure() throws Exception {		
-		
+
 		ContactInfoResultProcessor ciResultProcessor = new ContactInfoResultProcessor();
 		LocationResultProcessor locationResultProcessor = new LocationResultProcessor();
 	...
@@ -267,7 +267,7 @@ Once you've received the swagger specification (API contract) from your friendly
 	...
     ```
 
-    If the IDE has any issues compiling the code and you receive errors, then navigate to **Project > Configure Classpath** then click **Done**.  This will trigger the compiler to run in the background and should eliminate any errors. 
+    If the IDE has any issues compiling the code and you receive errors, then navigate to **Project > Configure Classpath** then click **Done**.  This will trigger the compiler to run in the background and should eliminate any errors.
 
     Notice that we now have both ResultProcessor's instantiated, and we've stood-up an Servlet HTTP listener for our RESTful endpoint, together with some basic self-documenting API docs that describe our new service.
 
@@ -280,7 +280,7 @@ Once you've received the swagger specification (API contract) from your friendly
 			.process(locationResultProcessor)
 			.log("${body}")
 	;
-		
+
 	from("direct:getlocation")
 			.to("sql:select * from locations where id=cast(:#id as int)?dataSource=dataSource")
 			.process(locationResultProcessor)
@@ -291,12 +291,12 @@ Once you've received the swagger specification (API contract) from your friendly
 					.setHeader("HTTP_RESPONSE_CODE",constant("404"))
 			.log("${body}")
 	;
-		
+
         from("direct:addlocation")
             		.log("Creating new location")
 			.to("sql:INSERT INTO locations (id,name,lat,lng,location_type,status) VALUES (:#${body.id},:#${body.name},:#${body.location.lat},:#${body.location.lng},:#${body.type},:#${body.status});?dataSource=dataSource")
 		;
-		
+
         from("direct:getlocationdetail")
 			.to("sql:select * from location_detail where id=cast(:#id as int)?dataSource=dataSource")
 			.process(ciResultProcessor)
@@ -342,17 +342,17 @@ Once you've received the swagger specification (API contract) from your friendly
 
 1. Now we are ready to test our new Camel route locally. To do this, navigate back to the **Manage commands** screen, double-click the **run:spring-boot** script and hit **Run**.  The script will run locally in Eclipse Che.
 
-    ![00-run-locally.png](images/00-run-locally.png "Maven Deploy") 
+    ![00-run-locally.png](images/00-run-locally.png "Maven Deploy")
 
 1. Once SpringBoot has started-up, right-click the dev-machine (under **Machines**) and select **Servers**.  Click the link corresponding to port 8080.  A new tab should open.
 
-    ![00-open-servers.png](images/00-open-servers.png "Open Servers") 
+    ![00-open-servers.png](images/00-open-servers.png "Open Servers")
 
 1. Click on the route link above the location-service pod and append `/locations` to the URI.  As a result, you should receive a list of all locations
 
     ![00-location-list.png](images/00-location-list.png "Location List")
 
-1. Now that we've tested our API service implementation locally, we can deploy it to our running OpenShift environment.  First we need to login to OpenShift via the Terminal.  Navigate back to the OpenShift web UI and click the **Copy Login Command** link.  If you aren't logged-in to OpenShift, open a new tab and navigate to `https://apps.newton-46c9.openshiftworkshop.com/console`.
+1. Now that we've tested our API service implementation locally, we can deploy it to our running OpenShift environment.  First we need to login to OpenShift via the Terminal.  Navigate back to the OpenShift web UI and click the **Copy Login Command** link.  If you aren't logged-in to OpenShift, open a new tab and navigate to `https://master.newton-46c9.openshiftworkshop.com/console`.
 
     ![00-location-list.png](images/00-login-ocp-cli.png "OCP CLI Login")
 
@@ -368,13 +368,13 @@ Once you've received the swagger specification (API contract) from your friendly
 
     ![00-verify-location-service.png](images/00-verify-location-service.png "Location Service")
 
-1. Click on the route link above the location-service pod and append `locations` to the URI.  Initially, you may receive a `404` error when opening the route URL, but once you append `locations` and refresh you should receive a list of all locations
+1. Click on the route link above the location-service pod and append `locations` to the URI.  Initially, you may receive a `404` error when opening the route URL, but once you append `/locations` and refresh you should receive a list of all locations
 
     ![00-location-list.png](images/00-location-list.png "Location List")
 
 1. You can also search for individual locations by adjusting the URI to `/locations/{id}` e.g. `/locations/100`.
 
-    
+
 1. Lastly, via the Eclipse Che terminal, test the HTTP POST using curl.  You can use the following command:
 
     ```bash
@@ -392,4 +392,3 @@ Once you've received the swagger specification (API contract) from your friendly
 You have now successfully created a contract-first API using a Swagger contract together with generated Camel RESTdsl, incorporating both HTTP GET and POST requests that perform select and inserts on a Postgres database table.
 
 You can now proceed to [Lab 4](../lab04/#lab-4)
-
