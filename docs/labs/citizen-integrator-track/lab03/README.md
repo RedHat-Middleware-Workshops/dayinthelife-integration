@@ -1,18 +1,27 @@
 # Lab 3
 
-## Fuse Online
+## Managing API Endpoints
 
-* Duration: 20 mins
-* Audience: Developers and Architects
+### Take control of your APIs
+
+* Duration: 15 mins
+* Audience: API Owners, Product Managers, Developers, Architects
 
 ## Overview
 
-When it comes to quick API development, you need both the integration experts as well as application developers to easily develop, deploy the APIs. Here is how to create a simple API with Fuse online.
+Once you have APIs deployed in your environment, it becomes critically important to manage who may use them, and for what purpose. You also need to begin to track usage of these different users to know who is or is not succeeding in their usage. For this reason, in this lab, you will be adding management capabilities to the API to give you control and visibility of it's usage.
 
 ### Why Red Hat?
 
-Red Hat Fuse integration solution empowers integration experts, application developers, and business users to engage in enterprise-wide collaboration and high-productivity self-service.
+Red Hat provides one the leading API Management tools that provides API management services. The [3scale API Management](https://www.3scale.net/) solution enables you to quickly and easily protect and manage your APIs.
 
+### Skipping The Lab
+
+If you are planning to skip to the next lab, there is an already running API proxy for the Location API Service in this endpoint:
+
+```bash
+https://location-service-api.amp.apps.newton-46c9.openshiftworkshop.com
+```
 
 ### Environment
 
@@ -28,7 +37,7 @@ Please ask your instructor for your password.
 
 **URLs:**
 
-If you haven't done so already, you need to login to the **Red Hat Solution Explorer** webpage so that a unique lab environment can be provisioned on-demand for your exclusive use.  You should open a web browser and navigate to:
+If you haven't done so already, you need to login to the **Red Hat Solution Explorer** webpage so that a unique lab environment can be provisioned on-demand for your exclusive use. You should open a web browser and navigate to:
 
 ```bash
 https://tutorial-web-app-webapp.apps.newton-46c9.openshiftworkshop.com
@@ -48,265 +57,199 @@ Once the environment is provisioned, you will be presented with a page that pres
 
 ## Lab Instructions
 
-### Step 1: Create database connection
+### Step 1: Define your API Proxy
 
-1. Via the **Red Hat Solution Explorer** webpage, click the **Red Hat Fuse** link:
+Your 3scale Admin Portal provides access to a number of configuration features.
 
-   ![00-design-53.png](images/design-53.png "Login to Fuse Online")
+1. Click on the `3scale Admin Dashboard` from the Red Hat Solution Explorer. The URL should look like
 
-1. The first time that you hit the Fuse Online URL, you will be presented with an *Authorize Access* page.  Click the **Allow selected permissions** button to accept the defaults.
-
-   ![00-design-54.png](images/design-54.png "Accept permissions")
-
-1. Click on **Connections > Create Connection**
-
-   ![00-create-connection.png](images/00-create-connection.png "Create Connection")
-
-1. Select **Database**
-
-   ![01-select-database.png](images/01-select-database.png "Select Database")
-
-1. Enter below values for Database Configuration
-
-    ```
-    Connection URL: jdbc:postgresql://postgresql.international.svc:5432/sampledb
-    Username      : dbuser
-    Password      : password
-    Schema        : <blank>
+    ```bash
+    https://userX-admin.apps.newton-46c9.openshiftworkshop.com/p/login
     ```
 
-1. Click **Validate** and verify if the connection is successful. Click **Next** to proceed.
+    *Remember the `X` variable in the URL with your assigned user number.*
 
-  ![02-click-validate.png](images/02-click-validate.png "Validate")
+1. Accept the self-signed certificate if you haven't.
 
-6. Add `Connection details`. `Connection Name: LocationDB` and `Description: Location Database`. Click **Create**.
+1. Log into 3scale using your designated [user and password](#environment). Click on **Sign In**.
 
-   ![03-connection-details.png](images/03-connection-details.png "Add Connection Details")
+    ![01-login.png](images/01-login.png)
 
-7. Verify that the `Location Database` is successfully created.
+1. The first page you will land is the *API Management Dashboard*. Click on the **API** menu link.
 
-### Step 2: No CODE API developement
+    ![01a-dashboard.png](images/01a-dashboard.png)
 
-Description goes here
+1. Click on the **edit integration settings** to edit the API settings for the gateway.
 
-1. Click on **Integrations > Create Integration**
+    ![03-edit-settings.png](images/03-edit-settings.png)
 
-  ![04-create-integration.png](images/04-create-integration.png "Create Integration")
+1. Keep select the **APIcast** deployment option in the *Gateway* section.
 
-2. Choose **API Provider**
+    ![04-apicast.png](images/04-apicast.png)
 
-   ![02-api-provider.png](images/n02-api-provider.png "Add Choose API Provider")
+1. Scroll down and keep the **API Key (user_key)** Authentication.
 
-3. Select **Create from scratch**
+    ![05-authentication.png](images/05-authentication.png)
 
-  ![n03-api-from-scratch](images/n03-api-from-scratch.png "Add Choose API Provider")
+1. Click on **Update Service**.
 
-4. Change the name of the API to `Location` and click on the Add a path link under the Paths section.
-![n04-api-name](images/n04-api-name.png "Set the name of the API")
+1. Click on the **add the Base URL of your API and save the configuration** button.
 
-5. Fill in the new resource path with the following information:
- - Path: /locations 	
-![n05-api-path](images/n05-api-path.png "Set the path of the API")
+    ![04-base-url](images/04-base-url.png)
 
-6. Click on the Add a datatype link under the Data Types.
-![n06-data-type](images/n06-data-type.png "Select Data Type")
+1. Leave the settings for `Private Base URL`, `Staging Public Base URL`, and `Production Public Base URL` as it is. We will come back to the screen to update the correct values in later step.
 
-7. Fill in the Name field with the value location. Expand the Enter the JSON Example to paste the following example, then click Save:
- - Name: locationinput
- - JSON Example:
+1. Scroll down and expand the **MAPPING RULES** section to define the allowed methods on our exposed API.
 
- ``
- {
-	  "id": 1,
-	  "name": "Kamarhati",
-	  "type": "Regional Branch",
-	  "status": "1",
-	  "location": {
-	    "lat": "-28.32555",
-	    "lng": "-5.91531"
-	  }
-	}
- ``
+    *The default mapping is the root ("/") of our API resources, and this example application will not use that mapping. The following actions will redefine that default root ("/") mapping.*
 
- ![n07-location-input-datatype](images/n07-location-input-datatype.png "Select Data Type")
- ![n08-location-input-datatype-save](images/n08-location-input-datatype-save.png "Select Data Type")
+    ![07b-mapping-rules.png](images/07b-mapping-rules.png)
 
+1. Click on the **Metric or Method (Define)**  link.
 
-8. Create another datatype, this time with the following config and click save.
- - Name: location
- - JSON Example:
+    ![07b-mapping-rules-define.png](images/07b-mapping-rules-define.png)
 
- ``
- {
-    "id": 1,
-    "name": "International Inc Corporate Office",
-    "location": {
-        "lat": 51.5013673,
-        "lng": -0.1440787
-    },
-    "type": "headquarter",
-    "status": "1"
- }
- ``
- ![n09-location-datatype](images/n09-location-datatype.png "Select Data Type")
+1. Click on the **New Method** link in the *Methods* section.
 
-9. You will be able to see the two datatypes created.
-![n10-datatype-all](images/n10-datatype-all.png "Data Type All")
+    ![07b-new-method.png](images/07b-new-method.png)
 
-10. Click on the Create Operation link under POST to create a new POST operation.
-![n11-post-method](images/n11-post-method.png "POST Method")
+1. Fill in the information for your Fuse Method.
 
-11. Edit the description of the post method to *Add Location* and click the orange POST button to edit the operation
-![n12-post-description](images/n12-post-description.png "POST Method")
+    * Friendly name: **Get Locations**
 
-12. Click on **Add a request Body**
-![n13-request](images/n13-request.png "Request Body")
+    * System name: **locations_all**
 
-13. Choose **locationinput** as the *Request Body Type*
-![n14-post-requst-location-input](images/n14-post-requst-location-input.png "Request Body as locationinput")
+    * Description: **Method to return all locations**
 
-14. Click the Add a response link.
-![n13-response](images/n13-response.png "Response Body")
+    ![07b-new-method-data.png](images/07b-new-method-data.png)
 
-15. Set the Response Status Code value to 201. Click Add.
-![n15-post-response](images/n15-post-response.png "Response Body")
+1. Click on **Create Method**.
 
-16. Click on **No Description* and place *Location added* in Description box. Click on the tick to save the changes
-![n16-post-description](images/n16-post-description.png "Post Description")
+1. Click on the **Add mapping rule** link.
 
-17. Click on the Type dropdown and select location.
-![n17-post-response-type](images/n17-post-response-type.png "Post Response Type")!
+    ![07b-add-mapping-rule.png](images/07b-add-mapping-rule.png)
 
-18. On the top section, under operation id, name it **addLocation** and click on tick to save the changes. On the very top of the page, click on Save button to return to Fuse Online in order for us to start the API implementation.
-![n18-post-operation-id](images/n18-post-operation-id.png "Response Body")
+1. Click on the edit icon next to the GET mapping rule.
 
-19. Click Next.
-![n19-start-of-integration](images/n19-start-of-integration.png "Response Body")
+    ![07b-edit-mapping-rule.png](images/07b-edit-mapping-rule.png)
 
-20. Set `Integration Name: addLocation` and `Description: add Location`
+1. Type in the *Pattern* text box the following:
 
-  ![n20-integration-name](images/n20-integration-name.png "Webhook Configuration")
+    ```bash
+    /locations
+    ```
 
-21. Click on Add Location operation.
+1. Select **locations_all** as Method from the combo box.
 
-  ![n21-choose-operation](images/n21-choose-operation.png "Webhook Configuration")
+    ![07b-getall-rule.png](images/07b-getall-rule.png)
 
+### Step 2: Define your API Policies
 
-22. Since we are adding incoming data into the database, click on the plus sign in between API entry point and return endpoint, select `Add connection`
+Red Hat 3scale API Management provides units of functionality that modify the behavior of the API Gateway without the need to implement code. These management components are know in 3scale as policies.
 
- ![n22-add-db-connection](images/n22-add-db-connection.png "Add DB Connection")
+The order in which the policies are executed, known as the “policy chain”, can be configured to introduce differing behavior based on the position of the policy in the chain. Adding custom headers, perform URL rewriting, enable CORS, and configurable caching are some of the most common API gateway capabilities implemented as policies.
 
-23. Click on `LocationDB` from the catalog and then select `Invoke SQL`
+1. Scroll down and expand the **POLICIES** section to define the allowed methods on our exposed API.
 
- ![n24-invoke-sql](images/n24-invoke-sql.png "Invoke SQL")
+    ![01-policies](images/policies-01.png "Policies")
 
-24. Enter the SQL statement and click **Done**.
+    *The default policy in the Policy Chain is APIcast. This is the main policy and most of the times you want to keep it*.
 
- ```
-   INSERT INTO locations (id,name,lat,lng,location_type,status) VALUES (:#id,:#name,:#lat,:#lng,:#location_type,:#status )
- ```
+1. Click the **Add Policy** link to add a new policy to the chain.
 
- ![n25-sql-statement.png](images/n25-sql-statement.png "Invoke SQL 2")
+    ![02-add-policy](images/policies-02.png)
 
-25. In between top API endpoint and the Database connection, click on the plus sign and select `Add step` and select `Data mapper`
+    _Out-of-the-box 3scale includes a set of policies you can use to modify the way your API gateway behaves. For this lab, we will focus on the **Cross Origin Resource Sharing (CORS)** one as we will use it in the consumption lab_.
 
- ![n26-input-data-mapping](images/n26-input-data-mapping.png "Data Mapper")
- ![n27-choose-data-mapping](images/n27-choose-data-mapping.png "Data Mapper")
+1. Click in the **CORS** link to add the policy.
 
+    ![03-cors-policy](images/policies-03.png "CORS")
 
-26. Drag and drop the matching **Source** Data types to all their corresponding **Targets** as per the following screenshot. When finished, click **Done**.
+1. Put your mouse over the right side of the policy name to enable the reorder of the chain. Drag and drop the CORS policy to the top of the chain.
 
- ![n28-data-map-db.png](images/n28-data-map-db.png "Configure Mapper")
+    ![04-chain-order](images/policies-04.png "Chain Order")
 
-27. In between the Database connection and the endpoint, click on the plus sign and select `Add step` and select `Data mapper`
+1. Now **CORS** policy will be executed before the **APIcast**. Click the **CORS** link to edit the policy.
 
- ![n29-output-data-mapping](images/n29-output-data-mapping.png "Data Mapper")
- ![n30-choose-data-mapping](images/n30-choose-data-mapping.png "Data Mapper")
+    ![05-cors-configuration](images/policies-05.png "Cors Configuration")
 
+1. In the *Edit Policy* section, click the green **+** button to add the allowed headers.
 
-26. Drag and drop the matching **Source** Data types to all their corresponding **Targets** as per the following screenshot. When finished, click **Done**.
+    ![06-add-headers](images/policies-06.png "Add Allow Headers")
 
- ![n31-data-map-response](images/n31-data-map-response.png "Configure Mapper")
+1. Type **Authorization** in the *Allowed headers* field.
 
-27. Click **Publish** on the next screen.
+    ![07-authorization-header](images/policies-07.png "Add Authorization Header")
 
- ![n32-publish](images/n32-publish.png "Publish Integration")
+1. Tick the **allow_credentials** checkbox and fill in with a star (**\***) the *allow_origin* text box.
 
-*Congratulations*. You successfully published the integration. (Wait for few minutes to build and publish the integration)
+    ![08-allow-origin](images/policies-08.png "Allow Origin")
 
-### Step 3: Create a POST request
+1. Click twice the green **+** button under *ALLOW_METHODS* to enable two combo boxes for the CORS allowed methods.
 
-We will use an online cURL tool to create the `101th` record field in database.
+1. Select **GET** from the first box and **OPTIONS** from the second box.
 
-1. Copy the `External URL` per the below screenshot
+    ![09-allow-methods](images/policies-09.png "Allow Methods")
 
-   ![14-copy-URL.png](images/14-copy-URL.png "Copy URL")
+1. Click the **Update Policy** button to save the policy configuration.
 
-1. Open a browser window and navigate to:
+### Step 3: Configure the Upstream Endpoint
 
-   ```
-     https://onlinecurl.com/
-   ```
+1. Scroll back to the top of the page. Fill in the information for accessing your API:
 
-1. Below are the values for the request. Note: `id:101` in the payload as we are creating `101th` record in the database.
+    * Private Base URL: **http://location-service.international.svc:8080**
 
-   ```
-     URL: http://i-addlocation-demo.apps.55b9.openshift.opentlc.com/locations
+    * Staging Public Base URL: **https://location-userX-api-staging.amp.apps.newton-46c9.openshiftworkshop.com:443**
 
-     --header (-H):  Content-Type: application/json
+    * Production Public Base URL: **https://location-userX-api.amp.apps.newton-46c9.openshiftworkshop.com:443**
 
-     --data (-d): {"id": 101, "name": "Kamarhati", "type": "Regional Branch", "status": "1", "location": { "lat": "-28.32555", "lng": "-5.91531" }}
+    *Remember to replace the X with your user number*.
 
-     --request (-X): POST
-   ```
+    *We are using the internal API service, as we are deploying our services inside the same OpenShift cluster*.
 
-   ![15-online-curl.png](images/15-online-curl.png "Online URL")
+    ![07-baseurl-configuration.png](images/07-baseurl-configuration.png)
 
-1. The page will load the `204` response information from the service which means the request was successfully fulfilled.
+1. Scroll down to the **API Test GET request**.
 
-   ![16-response-header.png](images/16-response-header.png "Response Header")
+1. Type in the textbox:
 
+    ```bash
+    /locations
+    ```
 
-1. Click on **Activity > Refresh** and verify if the newly record is created.
+1. Click on the **Update the Staging Environment** to save the changes and check the connection between client, gateway and API.
 
-   ![17-activity-refresh.png](images/17-activity-refresh.png "Activity Refresh")
+    ![08-update-staging.png](images/08-update-staging.png)
 
-<<<<<<< HEAD
-1. _(Optional)_ Visit the application URL in the browser and verify if the record can be fetched.
-=======
-1. _(Optional)_ Visit the application URL in browser and verify if the record can be fetched.
->>>>>>> 1a3996b4b04f4a7a4997ae47d9c36f2cfa8178e2
+    *If everything works, you will get a green message on the left*.
 
-  **REQUEST**
-  ```
-   http://location-service-international.apps.newton-46c9.openshiftworkshop.com/locations/101
+1. Click on **Back to Integration &amp; Configuration** link to return to your API overview.
 
-  ```
+    ![08aa-back-to-integration.png](images/08aa-back-to-integration.png)
 
-  **RESPONSE**
-  ```
-    {
-      "id" : 101,
-      "name" : "Kamarhati",
-      "type" : "Regional Branch",
-      "status" : "1",
-      "location" : {
-        "lat" : "-28.32555",
-        "lng" : "-5.91531"
-      }
-    }
-  ```
+1. Click on the **Promote v.1 to Production** button to promote your configuration from staging to production.
+
+    ![08a-promote-production.png](images/08a-promote-production.png)
+
+*Congratulations!* You have configured 3scale access control layer as a proxy to only allow authenticated calls to your backend API. 3scale is also now:
+
+* Authenticating (If you test with an incorrect API key it will fail)
+* Recording calls (Visit the Analytics tab to check who is calling your API).
+
+## Steps Beyond
+
+In this lab we just covered the basics of creating a proxy for our API service. Red Hat 3scale API Management also allows us to keep track of  security (as you will see in the next lab) as well as the usage of our API. If getting money for your APIs is also important to you, 3scale  allows you to monetize your APIs with its embedded billing system.
+
+Try to navigate through the rest of the tabs of your Administration Portal. Did you notice that there are application plans associated to your API? Application Plans allow you to take actions based on the usage of your API, like doing rate limiting or charging by hit (API call) or monthly usage.
 
 ## Summary
 
-In this lab you discovered how to create an adhoc API service using Fuse Online.
+You set up an API management service and API proxies to control traffic into your API. From now on you will be able to issue keys and rights to users wishing to access the API.
 
 You can now proceed to [Lab 4](../lab04/#lab-4)
 
-
 ## Notes and Further Reading
 
-* Fuse Online
-  * [Webpage](https://www.redhat.com/en/technologies/jboss-middleware/fuse-online)
-  * [Sample tutorials](https://access.redhat.com/documentation/en-us/red_hat_fuse/7.1/html-single/fuse_online_sample_integration_tutorials/index)
-  * [Blog](https://developers.redhat.com/blog/2017/11/02/work-done-less-code-fuse-online-tech-preview-today/)
+* [Red Hat 3scale API Management](https://www.3scale.net/)
+* [Developers All-in-one 3scale install](https://developers.redhat.com/blog/2017/05/22/how-to-setup-a-3scale-amp-on-premise-all-in-one-install/)
+* [ThoughtWorks Technology Radar - Overambitious API gateways](https://www.thoughtworks.com/radar/platforms/overambitious-api-gateways)

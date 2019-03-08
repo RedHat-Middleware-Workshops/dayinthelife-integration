@@ -27,7 +27,7 @@ http://location-service-international.apps.newton-46c9.openshiftworkshop.com
 
 **Credentials:**
 
-Your username is your assigned user number. For example, if you are assigned user number **1**, your username is: 
+Your username is your assigned user number. For example, if you are assigned user number **1**, your username is:
 
 ```bash
 user1
@@ -37,7 +37,7 @@ Please ask your instructor for your password.
 
 **URLs:**
 
-If you haven't done so already, you need to login to the **Red Hat Solution Explorer** webpage so that a unique lab environment can be provisioned on-demand for your exclusive use.  You should open a web browser and navigate to: 
+If you haven't done so already, you need to login to the **Red Hat Solution Explorer** webpage so that a unique lab environment can be provisioned on-demand for your exclusive use.  You should open a web browser and navigate to:
 
 ```bash
 https://tutorial-web-app-webapp.apps.newton-46c9.openshiftworkshop.com
@@ -82,20 +82,20 @@ Your 3scale Admin Portal provides access to a number of configuration features. 
 
 1. Click  **Add Access Token** link to create a new management token.
 	![06-menu.png](images/06-menu.png)
-	
-	
+
+
 1. Create a new token that has the Read & Writeable rights to your management platform. Enter Name as **securetoken**, check the **Account management API** checkbox and **READ & WRITE** for Permission.
 
 	![04-setuptoken.png](images/04-setuptoken.png)
 
-1. Please make sure you copy the **Token** to somewhere safe, and don't forget it. Click on **I have copied the token** to finish off. 
+1. Please make sure you copy the **Token** to somewhere safe, and don't forget it. Click on **I have copied the token** to finish off.
 
 	![05-token.png](images/05-token.png)
 
 
 ### Step 2: Start managing your APIs
 
-By running the command lines, it will automatically setup the 3scale API configuration and start managing the API you have exposed! 
+By running the command lines, it will automatically setup the 3scale API configuration and start managing the API you have exposed!
 In you command line terminal or in your Che terminal enter the following CURL command:
 
 *Replace USERX as your user id, such as user1, user26, and OPENSHIFT_APP_URL, if you are not sure, check with your instructor*
@@ -104,7 +104,7 @@ In you command line terminal or in your Che terminal enter the following CURL co
 curl -X POST http://threescale-automate-international.apps.newton-46c9.openshiftworkshop.com/threescale/automate/{YOUR_API_TOKEN}/{USERX}/{OPENSHIFT_APP_URL}
 ```
 
-For example: 
+For example:
 
 ```bash
 curl -X POST http://threescale-automate-international.apps.newton-46c9.openshiftworkshop.com/threescale/automate/829405ec3d2dd0f91aa8435347827135c323c69757dd2dfb49ed41aa8ceb13ef/user26/apps.newton-46c9.openshiftworkshop.com
@@ -115,17 +115,17 @@ String **API automated, DONE!** should be returned as the result.
 
 *Congratulations!* You have configured 3scale access control layer as a proxy to only allow authenticated calls to your backend API. 3scale is also now:
 
-* Authenticating (If you test with an incorrect API key it will fail) 
+* Authenticating (If you test with an incorrect API key it will fail)
 * Recording calls (Visit the Analytics tab to check who is calling your API).
 
 #### Common Gotcha
 If your encountered error:
-```org.apache.camel.http.common.HttpOperationFailedException: HTTP operation failed invoking https://{USERX}-admin.dil1.opentry.me/admin/api/services.xml with statusCode: 422```
+```org.apache.camel.http.common.HttpOperationFailedException: HTTP operation failed invoking https://{USERX}-admin.apps.newton-46c9.openshiftworkshop.com/admin/api/services.xml with statusCode: 422```
 
 This may be due to a failed build. Troubleshoot by deleting SSO Location API.
 SSO Location API can be located here:
 
-* In your browser, `https://{USERX}-admin.dil1.opentry.me/config/services`
+* In your browser, `https://{USERX}-admin.apps.newton-46c9.openshiftworkshop.com`
 * In the tab menu, click **APIs**
 * Click SSO Location API - **Definition**
 * Click **edit**
