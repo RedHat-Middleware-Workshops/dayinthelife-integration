@@ -254,11 +254,29 @@ We will use 3scale to secure our newly deployed Fuse Online integration.  We int
 
 1. The first page you will land is the *API Management Dashboard*. Click on the **API** menu link.
 
-    ![01a-dashboard.png](images/01a-dashboard.png)
+1. Click on the **New API**.
+
+    ![secure-04.png](images/secure-04.png)
+
+1. Click on **Authenticate to enable this option** so we can import our new API from OpenShift.  Enter your userX credentials and click **Login**.
+
+    ![secure-05.png](images/secure-05.png)
+
+1.  Click on **Allow selected permissions** to Authorize access.
+
+    ![secure-06.png](images/secure-06.png)
+
+1.  Select the **Import from OpenShift**.  If all goes well, you should see your fuse namespace appear and a default **Name**.  Click the ** Create Service** button.
+
+    ![secure-07.png](images/secure-07.png)
+
+1.  The page should return to the dashboard.  Refresh the page.  Notice that the *I-ADDLOCATION API* has been added to the list.  Click **Integrate this API**.
+
+        ![secure-08.png](images/secure-08.png)
 
 1. Click on the **edit integration settings** to edit the API settings for the gateway.
 
-    ![03-edit-settings.png](images/03-edit-settings.png)
+            ![03-edit-settings.png](images/03-edit-settings.png)
 
 1. Keep select the **APIcast** deployment option in the *Gateway* section.
 

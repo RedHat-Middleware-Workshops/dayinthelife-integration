@@ -8,4 +8,4 @@
 4. [API Security](lab04/#lab-4)
 5. [API Developer Portal](lab05/#lab-5)
 6. [Testing the International Inc. Locations webpage](lab06/#lab-6)
-7. [Fuse Online](lab07/#lab-7) 
+7. [Fuse Online Bonus Lab](lab07/#lab-7)
