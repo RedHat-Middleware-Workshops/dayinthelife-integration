@@ -1,14 +1,14 @@
 :walkthrough: Contract-first API development with a database interface, implemented using Eclipse Che
 :user-password: openshift
 
-[id='api-design']
+[id='swagger-rest']
 = Developer Lab 3 - Swagger to REST
 
 In this lab, we will use Contract-first API development with a database interface, implemented using Eclipse Che
 
 Audience: API Owner, Product Manager, Developers, Architects
 
-[time=2]
+[time=3]
 [id="overview"]
 == Overview
 
@@ -58,8 +58,8 @@ Enter dummy values for `First Name` and `Last Name`. Click *Submit*.
 
 image::images/00-integr8ly-che-update-acc.png[00-integr8ly-che-update-acc.png, role="integr8ly-img-responsive"]
 
-[time=2]
-[id="instructions"]
+[time=20]
+[id="Che setup"]
 == Lab Instructions
 
 === Step 1: Create an Eclipse Che environment for your personal use
@@ -375,6 +375,8 @@ Remember to replace OCPPROJECT with your username.
 
 _Congratulations!_ You have now an application to test your Swagger to RESTdsl integration.
 
+[time=2]
+[id="summary"]
 == Summary
 
 You have now successfully created a contract-first API using a Swagger contract together with generated Camel RESTdsl, incorporating both HTTP GET and POST requests that perform select and inserts on a Postgres database table.
