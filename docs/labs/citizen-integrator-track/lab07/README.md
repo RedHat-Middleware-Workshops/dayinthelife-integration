@@ -77,17 +77,15 @@ Once the environment is provisioned, you will be presented with a page that pres
 
 1. Click **Validate** and verify if the connection is successful. Click **Next** to proceed.
 
-  ![02-click-validate.png](images/02-click-validate.png "Validate")
+   ![02-click-validate.png](images/02-click-validate.png "Validate")
 
-6. Add `Connection details`. `Connection Name: LocationDB` and `Description: Location Database`. Click **Create**.
+1. Add `Connection details`. `Connection Name: LocationDB` and `Description: Location Database`. Click **Create**.
 
    ![03-connection-details.png](images/03-connection-details.png "Add Connection Details")
 
-7. Verify that the `Location Database` is successfully created.
+1. Verify that the `Location Database` is successfully created.
 
 ### Step 2: No CODE API developement
-
-Description goes here
 
 1. Click on **Integrations > Create Integration**
 
@@ -102,14 +100,14 @@ Description goes here
   ![n03-api-from-scratch](images/n03-api-from-scratch.png "Add Choose API Provider")
 
 4. Change the name of the API to `Location` and click on the Add a path link under the Paths section.
-![n04-api-name](images/n04-api-name.png "Set the name of the API")
+   ![n04-api-name](images/n04-api-name.png "Set the name of the API")
 
 5. Fill in the new resource path with the following information:
  - Path: /locations 	
-![n05-api-path](images/n05-api-path.png "Set the path of the API")
+   ![n05-api-path](images/n05-api-path.png "Set the path of the API")
 
 6. Click on the Add a datatype link under the Data Types.
-![n06-data-type](images/n06-data-type.png "Select Data Type")
+   ![n06-data-type](images/n06-data-type.png "Select Data Type")
 
 7. Fill in the Name field with the value location. Expand the Enter the JSON Example to paste the following example, then click Save:
  - Name: locationinput
@@ -128,8 +126,8 @@ Description goes here
 	}
  ``
 
- ![n07-location-input-datatype](images/n07-location-input-datatype.png "Select Data Type")
- ![n08-location-input-datatype-save](images/n08-location-input-datatype-save.png "Select Data Type")
+   ![n07-location-input-datatype](images/n07-location-input-datatype.png "Select Data Type")
+    ![n08-location-input-datatype-save](images/n08-location-input-datatype-save.png "Select Data Type")
 
 
 8. Create another datatype, this time with the following config and click save.
