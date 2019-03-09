@@ -29,7 +29,7 @@ If you are planning to follow to the next lab or are having trouble with this la
 Your username is: `{user-username}` +
 Your password is: `{user-password}`
 
-[time=20]
+[time=21]
 [id="instructions"]
 == Lab Instructions
 
@@ -167,6 +167,7 @@ _Congratulations!_ You have created a SOAP to REST transformation API.
 
 [time=2]
 [id="summary"]
+== Overview
 
 You have now successfully created a contract-first API using a SOAP WSDL contract together with generated Camel RESTdsl.
 
