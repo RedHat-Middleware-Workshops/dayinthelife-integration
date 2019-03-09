@@ -288,11 +288,13 @@ We will use 3scale to secure our newly deployed Fuse Online integration.  We int
 
 1. Click on **Update Service**.
 
-1. Click on the **add the Base URL of your API and save the configuration** button.
+1. Click on the **edit APIcast configuration** link.
 
-    ![04-base-url](images/04-base-url.png)
+    ![secure-09.png](images/secure-09.png)
 
-1. Leave the settings for `Private Base URL`, `Staging Public Base URL`, and `Production Public Base URL` as it is. We will come back to the screen to update the correct values in later step.
+1. Leave the settings for `Private Base URL`as it is. Update the `Staging Public Base URL` and `Production Public Base URL` fields, by removing the **fuse-<blah>** information in the URL.  If you have done this correctly, your page should look similar to below:
+
+![secure-10.png](images/secure-10.png)
 
 1. Scroll down and expand the **MAPPING RULES** section to define the allowed methods on our exposed API.
 
@@ -428,7 +430,7 @@ The order in which the policies are executed, known as the “policy chain”, c
 
 ### Step 4: Create a POST request
 
-We will use an online cURL tool to create the `101th` record field in database.
+We will use an API Tester tool to create a record field in database.
 
 1. Copy the `External URL` per the below screenshot
 
@@ -437,24 +439,20 @@ We will use an online cURL tool to create the `101th` record field in database.
 1. Open a browser window and navigate to:
 
    ```
-     https://onlinecurl.com/
+     https://apitester.com/
    ```
 
 1. Below are the values for the request. Note: `id:101` in the payload as we are creating `101th` record in the database.
 
-   ```
-     URL: http://i-addlocation-demo.apps.55b9.openshift.opentlc.com/locations
+* Method: **POST**
 
-     --header (-H):  Content-Type: application/json
+* URL: **https://i-addlocation-userX-apicast-staging.amp.apps.newton-46c9.openshiftworkshop.com:443/locations?user_key=XXX [copy the URL from 3scale]**
 
-     --data (-d): {"id": 101, "name": "Kamarhati", "type": "Regional Branch", "status": "1", "location": { "lat": "-28.32555", "lng": "-5.91531" }}
+* Request Header: **Content-Type** **application/json**
 
-     --request (-X): POST
-   ```
+   ![15-apitester.png](images/15-apitester.png "API Tester")
 
-   ![15-online-curl.png](images/15-online-curl.png "Online URL")
-
-1. The page will load the `204` response information from the service which means the request was successfully fulfilled.
+1. The page will load the `201` response information from the service which means the request was successfully fulfilled.
 
    ![16-response-header.png](images/16-response-header.png "Response Header")
 
@@ -466,7 +464,7 @@ We will use an online cURL tool to create the `101th` record field in database.
 <<<<<<< HEAD
 1. _(Optional)_ Visit the application URL in the browser and verify if the record can be fetched.
 =======
-1. _(Optional)_ Visit the application URL in browser and verify if the record can be fetched.
+1. _(Optional)_ Visit the application URL in browser and verify if the record can be fetched.  **Don't forget to append your username to the record ID e.g user6 = 106**
 >>>>>>> 1a3996b4b04f4a7a4997ae47d9c36f2cfa8178e2
 
   **REQUEST**
