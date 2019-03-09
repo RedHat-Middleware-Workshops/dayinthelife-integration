@@ -5,7 +5,7 @@
 [id='mocking']
 = Developer Lab 2 - API Mocking
 
-In this lab you will use Microcks to configure a REST mock service for the API definition you created in the previous lab. REST mock services allows you to simulate a REST API service when you are in a prototyping stage of your API program journey.
+In this lab you will use Microcks to configure a REST mock service for the API definition you created in the previous lab.
 
 Audience: API Owner, Product Manager, Developers, Architects
 
