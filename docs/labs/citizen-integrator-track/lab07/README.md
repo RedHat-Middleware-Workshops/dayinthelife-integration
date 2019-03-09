@@ -294,7 +294,7 @@ We will use 3scale to secure our newly deployed Fuse Online integration.  We int
 
 1. Leave the settings for `Private Base URL`as it is. Update the `Staging Public Base URL` and `Production Public Base URL` fields, by removing the **fuse-<blah>** information in the URL.  If you have done this correctly, your page should look similar to below:
 
-![secure-10.png](images/secure-10.png)
+    ![secure-10.png](images/secure-10.png)
 
 1. Scroll down and expand the **MAPPING RULES** section to define the allowed methods on our exposed API.
 
