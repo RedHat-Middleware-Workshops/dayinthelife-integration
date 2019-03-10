@@ -110,8 +110,13 @@ For example:
 curl -X POST http://threescale-automate-international.apps.newton-46c9.openshiftworkshop.com/threescale/automate/829405ec3d2dd0f91aa8435347827135c323c69757dd2dfb49ed41aa8ceb13ef/user26/apps.newton-46c9.openshiftworkshop.com
 ```
 
-String **API automated, DONE!** should be returned as the result.
+The following should be returned as the result:
 
+    ```
+    API automated, DONE! REMEBER THIS ADDRESS FOR NEXT LAB: PLAN_URL :[ https://userx.apps.newton-46c9.openshiftworkshop.com/signup?plan_ids[]=XXX ]
+    ```
+
+    *Be sure to copy this text to a text editor for your next lab*
 
 *Congratulations!* You have configured 3scale access control layer as a proxy to only allow authenticated calls to your backend API. 3scale is also now:
 

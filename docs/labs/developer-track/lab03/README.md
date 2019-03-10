@@ -66,13 +66,11 @@ Enter dummy values for `First Name` and `Last Name`. Click **Submit**.
 1. Click on Eclipse Che in **Red Hat Solution Explorer** .
 
 
-1. Click on **Create Workspace**.
-
-    ![00-create-workspace.png](images/00-create-workspace.png "Create Workspace")
-
 1. Use your unique username as your workspace name e.g. userX.  Select "day in the life workshop" stack, increase the RAM to 4GB and then click **Create**.
 
     ![00-new-workspace.png](images/00-new-workspace.png "New Workspace")
+
+1. Click on **Create**.
 
 1. Click on **Open** to generate and open the workspace.
 
@@ -91,7 +89,7 @@ Enter dummy values for `First Name` and `Last Name`. Click **Submit**.
 
     ![00-create-ocp-project.png](images/00-create-ocp-project.png "Create Project")
 
-1. Click on **Add to Project ** then select **Browse Catalog**, then navigate to the **Databases** menu and select **Postgres**.  From there, select the **PostgreSQL** (Ephemeral) template.
+1. Click on **Add to Project** then select **Browse Catalog**, then navigate to the **Databases** menu and select **Postgres**.  From there, select the **PostgreSQL** (Ephemeral) template.
 
     ![00-select-postgres.png](images/00-select-postgres.png "Select Postgres")
 
