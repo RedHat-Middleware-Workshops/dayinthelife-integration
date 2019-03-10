@@ -361,7 +361,7 @@ We will use 3scale to secure our newly deployed Fuse Online integration.  We int
 
 1.  Click **Create Application Plan** link again.
 
-    ![04-create-app-plan](images/04-click-create-app-plan)
+    ![04-create-app-plan](images/04-click-create-app-plan.png)
 
 1.  Enter the Application Plan details, then click **Create Application Plan**.
 
@@ -381,28 +381,28 @@ We will use 3scale to secure our newly deployed Fuse Online integration.  We int
 
 1. An Account configuration page should appear.  Click on the *1 Application* link at the top of the page.
 
-    [04-click-applications](images/04-click-applications.png)
+    ![04-click-applications](images/04-click-applications.png)
 
 1. Click on **Create Application**
 
-    [04-click-create-app](images/04-click-create-app.png)
+    ![04-click-create-app](images/04-click-create-app.png)
 
 1. Select *basic-integration* as the **Application Plan**.  Select *Default* as the **Service Plan**.  Enter **i-integration** as the Name.  Click *Create Application*.  An Application page should appear.  It will contain a newly created API User Key for use with your new `i-integration` application.
 
-    [04-enter-app-details](images/04-enter-app-details.png)
+    ![04-enter-app-details](images/04-enter-app-details.png)
 
 1.  Next, click on the Integration > Configuration side-menu.
 
-    [04-integration-configuration](images/04-integration-configuration.png)
+    ![04-integration-configuration](images/04-integration-configuration.png)
 
 1. Next, click on *edit APIcast configuration**.
 
-    [04-edit-api-config](images/04-edit-api-config.png)
+    ![04-edit-api-config](images/04-edit-api-config.png)
 
 
 1. Click on the **Update the Staging Environment** to save the changes and check the connection between client, gateway and API.
 
-        ![08-update-staging.png](images/08-update-staging.png)
+    ![08-update-staging.png](images/08-update-staging.png)
 
         *If everything works, you will get a green message on the left*.
 
