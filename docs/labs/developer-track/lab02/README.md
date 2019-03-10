@@ -148,8 +148,6 @@ Follow this instructions to set up the repository.
 
 1. Review the details and click on **Create** to create the job.
 
-   ![mock-job-details](images/mock-14.png "Create Job")
-
 1. After your job is created, click on the **Activate** option.
 
     ![mock-job-activate](images/mock-15.png "Activate Job")
