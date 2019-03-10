@@ -154,7 +154,9 @@ Redirect URLs are a critical part of the OAuth flow. After a user successfully a
 
 ## Steps Beyond
 
-So, you want more? You can explore in detail the documentation on the Javascript Adapter to check what other things can you get from your authenticated user.
+So, you want more? If you have time, you can try our bonus lab.  This lab focuses demonstrates Fuse Online, showcasing Apicurito to define your API contract, autogenerate an integration, deploy it, then secure your newly created API using 3scale Smart Discovery.
+
+If you'd like to try this out, you can proceed to [Lab 8](../lab08/#lab-8)
 
 ## Summary
 
