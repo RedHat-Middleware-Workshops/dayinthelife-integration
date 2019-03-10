@@ -357,11 +357,11 @@ We will use 3scale to secure our newly deployed Fuse Online integration.  We int
 
 1.  Our integration update is in error because we haven't yet created an application plan.  To do this, click on the link inside of the the error message
 
-    ![04-create-application-plan](images/04-click-create-app-plan.png)
+    ![04-create-application-plan](images/04-create-application-plan.png)
 
 1.  Click **Create Application Plan** link again.
 
-    ![04-create-application-plan](images/04-create-app-plan.png)
+    ![04-create-app-plan](images/04-click-create-app-plan)
 
 1.  Enter the Application Plan details, then click **Create Application Plan**.
 
