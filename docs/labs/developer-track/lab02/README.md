@@ -76,7 +76,7 @@ Follow this instructions to set up the repository.
 1. Fill in the information of the repository migration with the following values:
 
     * Clone Address: **https://github.com/RedHatWorkshops/dayinthelife-openapi.git**
-    * Owner: **UserX**
+    * Owner: **userX**
     * Repository Name: **locations-api**
 
     ![mock-gogs-migration](images/mock-03.png "New Migration Repository")
@@ -110,7 +110,7 @@ Follow this instructions to set up the repository.
 1. Copy the browser tab URL. Store that URL address as you will use it in the next steps of the lab. The URL should look like the following:
 
     ```bash
-     http://gogs.apps.newton-46c9.openshiftworkshop.com/userX/locations-api/raw/dev-track-lab-02/locations-api/Locations-UserX.json
+     http://gogs.apps.newton-46c9.openshiftworkshop.com/userX/locations-api/raw/dev-track-lab-02/locations-api/Locations-userX.json
     ```
 
     *If you feel more comfortable, you can also copy and paste the RAW button link from the previous step.  Also, don't forget to update the X variable with your user number*.
@@ -137,8 +137,8 @@ Follow this instructions to set up the repository.
 
 1. In the `Create a New Job` dialog, type in the following information replacing **X** with your user number. Click **Next**.
 
-    * Name: **Locations-UserX**
-    * Repository URL: **http://gogs.apps.newton-46c9.openshiftworkshop.com/userX/locations-api/raw/dev-track-lab-02/locations-api/Locations-UserX.json**
+    * Name: **Locations-userX**
+    * Repository URL: **http://gogs.apps.newton-46c9.openshiftworkshop.com/userX/locations-api/raw/dev-track-lab-02/locations-api/Locations-userX.json**
 
     *You can also copy and paste the raw url you saved from the Gogs repository (Step 0)*.
 
@@ -160,24 +160,23 @@ Follow this instructions to set up the repository.
 
 1. Refresh your window to get it to the latest state.
 
+    ![mock-15a](images/mock-15a.png "Start Job")
+
 1. You will see 3 labels next to your Job. Click the **Services** label.
 
-    ![mock-job-services](images/mock-17.png "Job Services")
+    ![mock-15b](images/mock-15b.png "Job Services")
 
 1. In the dialog you will see your service listed. Click on the **Locations-UserX - 1.0.0.** link.
-
-    ![mock-job-service](images/mock-18.png "Job Service")
 
 1. Click **Close** to dismiss the dialog.
 
 1. This is your new REST mock service based on the OpenAPI definition you just loaded to Microcks. Click on the arrow to expand the **GET /locations** operation.
 
-    ![mock-mock-service](images/mock-19.png "Mock Service")
+    ![mock-16.png](images/mock-16.png "Job Services")
 
 1. You can check that the example we added to the definition in [Lab 1](lab01.md) will be used to return the mock values. Scroll down, copy and save the **Mocks URL**, we will use that endpoint to test the REST mock service.
 
-    ![mock-mock-operation](images/mock-20.png "Mock Operation")
-
+    ![mock-17.png](images/mock-17.png "Job Service")
 
 ### Step 2: Test the REST Mock Service
 
@@ -189,21 +188,21 @@ We now have a working REST mock service listening for requests. We will use an o
     https://onlinecurl.com/
     ```
 
-1. Copy and paste the Mock URL from earlier step. It should look like.
+1. Copy and paste the Mock URL from earlier step. It should look like this:
+
+    ![mock-mock-service](images/mock-18.png "Mock Service")
 
    *Remember to replace X with your user number*.
 
     ```bash
-    http://microcks.apps.newton-46c9.openshiftworkshop.com/rest/Locations-UserX/1.0.0/locations
+    http://microcks.apps.newton-46c9.openshiftworkshop.com/rest/Locations-userX/1.0.0/locations
     ```
 
 1. Click the **START YOUR CURL** button.
 
-    ![mock-curl-service](images/mock-21.png "cURL Service")
-
 1. The page will load the response information from the service. You will be able to see the *RESPONSE HEADERS* and the actual *RESPONSE_BODY*. This last part contains the examples we add during the design phase.
 
-    ![mock-curl-response](images/mock-22.png "cURL Response")
+    ![mock-mock-service](images/mock-19.png "Mock Service")
 
 *Congratulations!* You have successfully configure a Microcks Job to create a REST mock service to test your API.
 

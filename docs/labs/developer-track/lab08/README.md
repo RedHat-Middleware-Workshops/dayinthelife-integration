@@ -1,4 +1,4 @@
-# Lab 7
+# Lab 8
 
 ## Fuse Online & 3Scale Smart Discovery Bonus Lab
 
