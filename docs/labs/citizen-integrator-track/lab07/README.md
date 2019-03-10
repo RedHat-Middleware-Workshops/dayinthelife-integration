@@ -395,16 +395,19 @@ We will use 3scale to secure our newly deployed Fuse Online integration.  We int
 
     ![04-integration-configuration](images/04-integration-configuration.png)
 
-1. Next, click on *edit APIcast configuration**.
+1. Next, click on *edit APIcast configuration*.
 
     ![04-edit-api-config](images/04-edit-api-config.png)
 
+1. Scroll down to the *Client* section.  Copy the full *curl* URL in the box.  Paste it into a text editor as will need it shortly.
+
+    ![04-copy-curl](images/04-copy-curl.png)
 
 1. Click on the **Update the Staging Environment** to save the changes and check the connection between client, gateway and API.
 
     ![08-update-staging.png](images/08-update-staging.png)
 
-        *If everything works, you will get a green message on the left*.
+    *If everything works, you will get a green message on the left.*
 
 1. Click on **Back to Integration &amp; Configuration** link to return to your API overview.
 
@@ -418,23 +421,27 @@ We will use 3scale to secure our newly deployed Fuse Online integration.  We int
 
 We will use an API Tester tool to create a record field in database.
 
-1. Copy the `External URL` per the below screenshot
-
-   ![14-copy-URL.png](images/14-copy-URL.png "Copy URL")
-
 1. Open a browser window and navigate to:
 
    ```
      https://apitester.com/
    ```
 
-1. Below are the values for the request. Note: `id:101` in the payload as we are creating `101th` record in the database.
+1. Below are the values for the request. Note: `id:101` in the payload as we are creating `101th` record in the database.  You will change this record number based on your user number shortly.
 
 * Method: **POST**
 
-* URL: **https://i-addlocation-userX-apicast-staging.amp.apps.newton-46c9.openshiftworkshop.com:443/locations?user_key=XXX [copy the URL from 3scale]**
+* URL: **`https://i-addlocation-userX-apicast-staging.amp.apps.newton-46c9.openshiftworkshop.com:443/locations?user_key=XXX` [copy the information you need from the 3scale curl command you copied earlier]**
 
-* Request Header: **Content-Type** **application/json**
+* Request Header: **Content-Type** and **application/json**
+
+* Post Data:
+
+  ```
+  {"id": 102, "name": "Kamarhati", "type": "Regional Branch", "status": "1", "location": { "lat": "-28.32555", "lng": "-5.91531" }}
+  ```
+
+  *Don't forget to update the id field to end with your user number e.g. 102 if you are user2.*
 
    ![15-apitester.png](images/15-apitester.png "API Tester")
 
@@ -447,16 +454,11 @@ We will use an API Tester tool to create a record field in database.
 
    ![17-activity-refresh.png](images/17-activity-refresh.png "Activity Refresh")
 
-<<<<<<< HEAD
-1. _(Optional)_ Visit the application URL in the browser and verify if the record can be fetched.
-=======
 1. _(Optional)_ Visit the application URL in browser and verify if the record can be fetched.  **Don't forget to append your username to the record ID e.g user6 = 106**
->>>>>>> 1a3996b4b04f4a7a4997ae47d9c36f2cfa8178e2
 
   **REQUEST**
   ```
    http://location-service-international.apps.newton-46c9.openshiftworkshop.com/locations/101
-
   ```
 
   **RESPONSE**
@@ -475,9 +477,7 @@ We will use an API Tester tool to create a record field in database.
 
 ## Summary
 
-In this lab you discovered how to create an adhoc API service using Fuse Online.
-
-You can now proceed to [Lab 4](../lab04/#lab-4)
+In this lab you discovered how to create an adhoc API service using Fuse Online, then managing it with 3scale using the new *Smart Discovery* feature.
 
 This is the last lab of this workshop.
 
