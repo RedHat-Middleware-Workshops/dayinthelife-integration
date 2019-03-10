@@ -290,7 +290,7 @@ We will use 3scale to secure our newly deployed Fuse Online integration.  We int
 
     ![secure-09.png](images/secure-09.png)
 
-1. Leave the settings for `Private Base URL`as it is. Update the `Staging Public Base URL` and `Production Public Base URL` fields, by removing the **fuse-<blah>** information in the URL.  The new urls should look similar to this (*remember to update your user number*):
+1. Leave the settings for `Private Base URL`as it is. Update the `Staging Public Base URL` and `Production Public Base URL` fields to the following:
 
     * Staging Public Base: `https://i-addlocation-userX-apicast-staging.amp.apps.newton-46c9.openshiftworkshop.com:443`
     * Production Public Base URL: `https://i-addlocation-user5-apicast-production.amp.apps.newton-46c9.openshiftworkshop.com:443`
@@ -357,7 +357,7 @@ We will use 3scale to secure our newly deployed Fuse Online integration.  We int
 
 1.  Our integration update is in error because we haven't yet created an application plan.  To do this, click on the link inside of the the error message
 
-    ![04-create-application-plan](images/04-create-application-plan.png)
+    ![04-create-application-plan](images/04-click-create-app-plan.png)
 
 1.  Click **Create Application Plan** link again.
 
@@ -381,11 +381,11 @@ We will use 3scale to secure our newly deployed Fuse Online integration.  We int
 
 1. An Account configuration page should appear.  Click on the *1 Application* link at the top of the page.
 
-    [04-click-application](images/04-click-application.png)
+    [04-click-applications](images/04-click-applications.png)
 
 1. Click on **Create Application**
 
-    [04-click-create-app](images/04-click-create_app.png)
+    [04-click-create-app](images/04-click-create-app.png)
 
 1. Select *basic-integration* as the **Application Plan**.  Select *Default* as the **Service Plan**.  Enter **i-integration** as the Name.  Click *Create Application*.  An Application page should appear.  It will contain a newly created API User Key for use with your new `i-integration` application.
 
