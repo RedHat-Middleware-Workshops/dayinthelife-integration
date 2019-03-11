@@ -165,7 +165,7 @@ Once the environment is provisioned, you will be presented with a page that pres
     https://3scale-admin:CLIENT_SECRET@sso-sso.apps.boston-a12a.openshiftworkshop.com/auth/realms/userX
     ```
 
-    *Remember to replace the X with user number*
+    *Remember to replace the X with user number, and don't forget to replace the CLIENT_SECRET from Step 1.6*
 
     ![06-openid-issuer.png](images/06-openid-issuer.png "OpenID Connect Issuer")
 
