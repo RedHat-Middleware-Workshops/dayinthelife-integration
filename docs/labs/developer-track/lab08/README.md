@@ -266,7 +266,7 @@ We will use 3scale to secure our newly deployed Fuse Online integration.  We int
 
     ![secure-06.png](images/secure-06.png)
 
-1.  Select the **Import from OpenShift**.  If all goes well, you should see your fuse namespace appear and a default **Name**.  Click the ** Create Service** button.
+1.  Select the **Import from OpenShift**.  If all goes well, you should see your fuse namespace appear and a default **Name**.  Click the **Create Service** button.
 
     ![secure-07.png](images/secure-07.png)
 
@@ -292,10 +292,10 @@ We will use 3scale to secure our newly deployed Fuse Online integration.  We int
 
     ![secure-09.png](images/secure-09.png)
 
-1. Leave the settings for `Private Base URL`as it is. Update the `Staging Public Base URL` and `Production Public Base URL` fields to the following:
+1. Leave the settings for `Private Base URL`as it is. Update the `Staging Public Base URL` and `Production Public Base URL` fields to the following, making sure you change `userX` to your personal userid:
 
     * Staging Public Base: `https://i-addlocation-userX-apicast-staging.amp.apps.boston-a12a.openshiftworkshop.com:443`
-    * Production Public Base URL: `https://i-addlocation-user5-apicast-production.amp.apps.boston-a12a.openshiftworkshop.com:443`
+    * Production Public Base URL: `https://i-addlocation-userX-apicast-production.amp.apps.boston-a12a.openshiftworkshop.com:443`
 
     ![secure-10.png](images/secure-10.png)
 
@@ -410,6 +410,7 @@ We will use 3scale to secure our newly deployed Fuse Online integration.  We int
     ![08-update-staging.png](images/08-update-staging.png)
 
     *If everything works, you will get a green message on the left.*
+    **COMMON GOTCHA: If this step returns an error, verify the URL's (staging & production) in Step 3.18.**
 
 1. Click on **Back to Integration &amp; Configuration** link to return to your API overview.
 
@@ -460,7 +461,7 @@ We will use an API Tester tool to create a record field in database.
 
   **REQUEST**
   ```
-   http://location-service-international.apps.boston-a12a.openshiftworkshop.com/locations/101
+   http://location-service-userX.apps.boston-a12a.openshiftworkshop.com/locations/102
   ```
 
   **RESPONSE**
