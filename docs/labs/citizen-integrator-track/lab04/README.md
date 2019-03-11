@@ -183,7 +183,7 @@ Once the environment is provisioned, you will be presented with a page that pres
 
 ### Step 4: Create a Test App
 
-1. Go to the *Developers* tab and click on **Developer**.
+1. Go to the *Audience* tab and click on **Developer**.
 
     ![09-developers.png](images/09-developers.png "Developers")
 

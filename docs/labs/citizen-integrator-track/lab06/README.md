@@ -71,7 +71,7 @@ OpenShift let you automatically redeploy your changes when you setup a Continuou
 
    ![02-client-id](images/deploy-11.png "Change Client ID")
 
-1. Make sure the SSO_URL is set to begin with 'https'.  If it isn't, then update it to.
+1. Make sure the **SSO_URL** is set to begin with `https`.  If it isn't, then replace the `http` with an `https`.
 
 1. Click Save button to persist the changes. A green pop up will show you that the changes were saved.
 
@@ -83,7 +83,7 @@ OpenShift let you automatically redeploy your changes when you setup a Continuou
 
    ![04-view-build](images/deploy-13.png "View Build")
 
-*The build process checks out the code from the git repo, runs a source-to-image container image build, and redeploys the container with the new image using a rolling upgrade strategy.*
+   *The build process checks out the code from the git repo, runs a source-to-image container image build, and redeploys the container with the new image using a rolling upgrade strategy.*
 
 1. Wait for until the new Build to complete and the rolling upgrade to finish to test your new deployment.
 
