@@ -115,7 +115,7 @@ Redirect URLs are a critical part of the OAuth flow. After a user successfully a
 
     *Remember to select CLIENT_ID with the one you got in the [API Security Lab](../lab04/#step-4-create-a-test-app). It will easily identifiable as its and hexadecimal name.*
 
-    *If you do not find the CLIENT_ID, make sure you correctly executed the sync between 3scale and RHSSO in [Step 3.12 Lab04](../lab04/#step-3-configure-3scale-integration).  You should also check Step 1.4 in this lab to ensure that the SSO_URL correctly begins with `https://`*
+    *If you do not find the CLIENT_ID, make sure you correctly executed the sync between 3scale and RHSSO in [Step 3.11 Lab04](../lab04/#step-3-configure-3scale-integration).  You should also check Step 1.4 in this lab to ensure that the SSO_URL correctly begins with `https://`*
 
    ![24-client-application](images/consume-24.png "Client Application")
 
@@ -141,7 +141,7 @@ International Inc web development create a Node.js application for the company h
 
 1. Open a browser tab and navigate to `http://www-userX.apps.boston-a12a.openshiftworkshop.com`.
 
-*Remember to replace the `X` variable in the URL with your assigned user number.*
+    *Remember to replace the `X` variable in the URL with your assigned user number.*
 
 1. You should now see what the development team created for International Inc. Click **LOCATIONS** to check the locations page.
 
