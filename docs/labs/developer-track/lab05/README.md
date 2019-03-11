@@ -20,7 +20,7 @@ Red Hat provides one the leading API Management tools which provide management s
 If you are planning to follow to the next lab, there is an already running API proxy for the Location API Service in this endpoint:
 
 ```bash
-http://location-service-international.apps.newton-46c9.openshiftworkshop.com
+http://location-service-international.apps.boston-a12a.openshiftworkshop.com
 ```
 
 ### Environment
@@ -40,7 +40,7 @@ Please ask your instructor for your password.
 If you haven't done so already, you need to login to the **Red Hat Solution Explorer** webpage so that a unique lab environment can be provisioned on-demand for your exclusive use.  You should open a web browser and navigate to:
 
 ```bash
-https://tutorial-web-app-webapp.apps.newton-46c9.openshiftworkshop.com
+https://tutorial-web-app-webapp.apps.boston-a12a.openshiftworkshop.com
 ```
 
 You will be presented with a login page where you can enter your unique credentials:
@@ -64,7 +64,7 @@ Your 3scale Admin Portal provides access to a number of configuration features. 
 1. Open a browser window and navigate to:
 
     ```bash
-    https://userX-admin.apps.newton-46c9.openshiftworkshop.com/p/login
+    https://userX-admin.apps.boston-a12a.openshiftworkshop.com/p/login
     ```
 
 1. Accept the self-signed certificate if you haven't.
@@ -101,19 +101,19 @@ In you command line terminal or in your Che terminal enter the following CURL co
 *Replace USERX as your user id, such as user1, user26, and OPENSHIFT_APP_URL, if you are not sure, check with your instructor*
 
 ```bash
-curl -X POST http://threescale-automate-international.apps.newton-46c9.openshiftworkshop.com/threescale/automate/{YOUR_API_TOKEN}/{USERX}/{OPENSHIFT_APP_URL}
+curl -X POST http://threescale-automate-international.apps.boston-a12a.openshiftworkshop.com/threescale/automate/{YOUR_API_TOKEN}/{USERX}/{OPENSHIFT_APP_URL}
 ```
 
 For example:
 
 ```bash
-curl -X POST http://threescale-automate-international.apps.newton-46c9.openshiftworkshop.com/threescale/automate/829405ec3d2dd0f91aa8435347827135c323c69757dd2dfb49ed41aa8ceb13ef/user26/apps.newton-46c9.openshiftworkshop.com
+curl -X POST http://threescale-automate-international.apps.boston-a12a.openshiftworkshop.com/threescale/automate/829405ec3d2dd0f91aa8435347827135c323c69757dd2dfb49ed41aa8ceb13ef/user26/apps.boston-a12a.openshiftworkshop.com
 ```
 
 The following should be returned as the result:
 
     ```
-    API automated, DONE! REMEBER THIS ADDRESS FOR NEXT LAB: PLAN_URL :[ https://userx.apps.newton-46c9.openshiftworkshop.com/signup?plan_ids[]=XXX ]
+    API automated, DONE! REMEBER THIS ADDRESS FOR NEXT LAB: PLAN_URL :[ https://userx.apps.boston-a12a.openshiftworkshop.com/signup?plan_ids[]=XXX ]
     ```
 
     *Be sure to copy this text to a text editor for your next lab*
@@ -125,19 +125,19 @@ The following should be returned as the result:
 
 #### Common Gotcha
 If your encountered error:
-```org.apache.camel.http.common.HttpOperationFailedException: HTTP operation failed invoking https://{USERX}-admin.apps.newton-46c9.openshiftworkshop.com/admin/api/services.xml with statusCode: 422```
+```org.apache.camel.http.common.HttpOperationFailedException: HTTP operation failed invoking https://{USERX}-admin.apps.boston-a12a.openshiftworkshop.com/admin/api/services.xml with statusCode: 422```
 
 This may be due to a failed build. Troubleshoot by deleting SSO Location API.
 SSO Location API can be located here:
 
-* In your browser, `https://{USERX}-admin.apps.newton-46c9.openshiftworkshop.com`
+* In your browser, `https://{USERX}-admin.apps.boston-a12a.openshiftworkshop.com`
 * In the tab menu, click **APIs**
 * Click SSO Location API - **Definition**
 * Click **edit**
 * Click **I understand the consequences, proceed to delete 'SSO Location API' service.**
 
 Try running this command again in the terminal:
-```curl -X POST http://threescale-automate-international.apps.newton-46c9.openshiftworkshop.com/threescale/automate/{YOUR_API_TOKEN}/{USERX}/{OPENSHIFT_APP_URL}```
+```curl -X POST http://threescale-automate-international.apps.boston-a12a.openshiftworkshop.com/threescale/automate/{YOUR_API_TOKEN}/{USERX}/{OPENSHIFT_APP_URL}```
 
 ## Steps Beyond
 

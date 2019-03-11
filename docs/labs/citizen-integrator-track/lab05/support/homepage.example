@@ -188,7 +188,7 @@
     <div class="row">
 
       <div class="col-md-12">
-        <h4><code style="display:block">$ curl -k -v "https://location-api.amp.apps.newton-46c9.openshiftworkshop.com:443/locations"</code></h4>
+        <h4><code style="display:block">$ curl -k -v "https://location-api.amp.apps.boston-a12a.openshiftworkshop.com:443/locations"</code></h4>
         <br/>
         <div class="row">
           <div class="col-md-6">

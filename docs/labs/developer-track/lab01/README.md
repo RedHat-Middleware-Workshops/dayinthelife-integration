@@ -38,7 +38,7 @@ Please ask your instructor for your password.
 If you haven't done so already, you need to login to the **Red Hat Solution Explorer** webpage so that a unique lab environment can be provisioned on-demand for your exclusive use.  You should open a web browser and navigate to:
 
 ```bash
-https://tutorial-web-app-webapp.apps.newton-46c9.openshiftworkshop.com
+https://tutorial-web-app-webapp.apps.boston-a12a.openshiftworkshop.com
 ```
 
 You will be presented with a login page where you can enter your unique credentials:
@@ -60,7 +60,7 @@ Once the environment is provisioned, you will be presented with a page that pres
 1. Open a browser window and navigate to:
 
     ```bash
-    http://apicurio-studio.apps.newton-46c9.openshiftworkshop.com
+    http://apicurio-studio.apps.boston-a12a.openshiftworkshop.com
     ```
 
 1. Log in using your designated [user and password](#environment).

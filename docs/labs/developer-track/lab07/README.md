@@ -20,7 +20,7 @@ Applications can be built from many technologies. In this case we use a simple w
 If you decide to skip the lab you can check how a SSO enabled web applications looks like:
 
 ```bash
-http://www-international.apps.newton-46c9.openshiftworkshop.com/
+http://www-international.apps.boston-a12a.openshiftworkshop.com/
 ```
 
 ### Environment
@@ -40,7 +40,7 @@ Please ask your instructor for your password.
 If you haven't done so already, you need to login to the **Red Hat Solution Explorer** webpage so that a unique lab environment can be provisioned on-demand for your exclusive use.  You should open a web browser and navigate to:
 
 ```bash
-https://tutorial-web-app-webapp.apps.newton-46c9.openshiftworkshop.com
+https://tutorial-web-app-webapp.apps.boston-a12a.openshiftworkshop.com
 ```
 
 You will be presented with a login page where you can enter your unique credentials:
@@ -94,7 +94,7 @@ Redirect URLs are a critical part of the OAuth flow. After a user successfully a
 1. Open a browser window and navigate to:
 
     ```bash
-    http://sso-sso.apps.newton-46c9.openshiftworkshop.com/auth/admin/userX/console/
+    http://sso-sso.apps.boston-a12a.openshiftworkshop.com/auth/admin/userX/console/
     ```
 
     *Remember to replace the X with your user number.*
@@ -122,7 +122,7 @@ Redirect URLs are a critical part of the OAuth flow. After a user successfully a
     | Access Type | Public |
     | Standard Flow Enabled | ON |
     | Implicit Flow Enabled | OFF |
-    | Valid Redirect URIs | http://www-userX.apps.newton-46c9.openshiftworkshop.com/* |
+    | Valid Redirect URIs | http://www-userX.apps.boston-a12a.openshiftworkshop.com/* |
     | Web Origins | \* |
 
     *Remember to replace the X with your user number.*
@@ -133,7 +133,7 @@ Redirect URLs are a critical part of the OAuth flow. After a user successfully a
 
 ### Step 5: Test the Single Sign On Integration
 
-1. Open a browser tab and navigate to `http://www-userX.apps.newton-46c9.openshiftworkshop.com`.
+1. Open a browser tab and navigate to `http://www-userX.apps.boston-a12a.openshiftworkshop.com`.
 
 *Remember to replace the X your user number.*
 

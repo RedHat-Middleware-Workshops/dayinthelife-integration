@@ -36,7 +36,7 @@ Please ask your instructor for your password.
 If you haven't done so already, you need to login to the **Red Hat Solution Explorer** webpage so that a unique lab environment can be provisioned on-demand for your exclusive use.  You should open a web browser and navigate to:
 
 ```bash
-https://tutorial-web-app-webapp.apps.newton-46c9.openshiftworkshop.com
+https://tutorial-web-app-webapp.apps.boston-a12a.openshiftworkshop.com
 ```
 
 You will be presented with a login page where you can enter your unique credentials:
@@ -82,7 +82,7 @@ Enter dummy values for `First Name` and `Last Name`. Click **Submit**.
 1. Open a browser window and navigate to:
 
     ```bash
-    https://master.newton-46c9.openshiftworkshop.com/console
+    https://master.boston-a12a.openshiftworkshop.com/console
     ```
 
 1. Click on your unique namespace to enter your workspace e.g. `user39`.
@@ -107,7 +107,7 @@ Enter dummy values for `First Name` and `Last Name`. Click **Submit**.
 
     ![00-import-project.png](images/00-import-project.png "Import Project")
 
-1. Enter `http://gogs.apps.newton-46c9.openshiftworkshop.com/userX/dayintheliferepo` as the git URL, making sure to update `userX` with your unique username.  Select **Import Recursively** and then click **Import**.
+1. Enter `http://gogs.apps.boston-a12a.openshiftworkshop.com/userX/dayintheliferepo` as the git URL, making sure to update `userX` with your unique username.  Select **Import Recursively** and then click **Import**.
 
 1. When the "Save" pop-up appears, click the "X" to close the pop-up.
 
@@ -350,7 +350,7 @@ Once you've received the swagger specification (API contract) from your friendly
 
     ![00-location-list.png](images/00-location-list.png "Location List")
 
-1. Now that we've tested our API service implementation locally, we can deploy it to our running OpenShift environment.  First we need to login to OpenShift via the Terminal.  Navigate back to the OpenShift web UI and click the **Copy Login Command** link.  If you aren't logged-in to OpenShift, open a new tab and navigate to `https://master.newton-46c9.openshiftworkshop.com/console`.
+1. Now that we've tested our API service implementation locally, we can deploy it to our running OpenShift environment.  First we need to login to OpenShift via the Terminal.  Navigate back to the OpenShift web UI and click the **Copy Login Command** link.  If you aren't logged-in to OpenShift, open a new tab and navigate to `https://master.boston-a12a.openshiftworkshop.com/console`.
 
     ![00-location-list.png](images/00-login-ocp-cli.png "OCP CLI Login")
 
@@ -376,7 +376,7 @@ Once you've received the swagger specification (API contract) from your friendly
 1. Lastly, via the Eclipse Che terminal, test the HTTP POST using curl.  You can use the following command:
 
     ```bash
-	curl --header "Content-Type: application/json" --request POST --data '{"id": 101,"name": "Kakadu","type": "HQ","status": "1","location": {"lat": "78.88436","lng": "99.05295"}}' http://location-service-OCPPROJECT.apps.newton-46c9.openshiftworkshop.com/locations
+	curl --header "Content-Type: application/json" --request POST --data '{"id": 101,"name": "Kakadu","type": "HQ","status": "1","location": {"lat": "78.88436","lng": "99.05295"}}' http://location-service-OCPPROJECT.apps.boston-a12a.openshiftworkshop.com/locations
     ```
 
     Remember to replace OCPPROJECT with your username.
