@@ -69,11 +69,13 @@ Once the environment is provisioned, you will be presented with a page that pres
 1. Enter below values for Database Configuration
 
     ```
-    Connection URL: jdbc:postgresql://postgresql.international.svc:5432/sampledb
+    Connection URL: jdbc:postgresql://postgresql.OCPPROJECT.svc:5432/sampledb
     Username      : dbuser
     Password      : password
     Schema        : <leave blank>
     ```
+
+    *Replace OCPPROJECT with your userid*
 
 1. Click **Validate** and verify if the connection is successful. Click **Next** to proceed.
 
