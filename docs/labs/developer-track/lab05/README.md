@@ -105,12 +105,12 @@ By running the command lines, it will automatically setup the 3scale API configu
 	curl -X POST http://threescale-automate-international.apps.boston-a12a.openshiftworkshop.com/threescale/automate/{YOUR_API_TOKEN}/{USERX}/{OPENSHIFT_APP_URL}
 	```
 
-For example:
+	For example:
 
 	```bash
 	curl -X POST http://threescale-automate-international.apps.boston-a12a.openshiftworkshop.com/threescale/automate/829405ec3d2dd0f91aa8435347827135c323c69757dd2dfb49ed41aa8ceb13ef/userX/apps.boston-a12a.openshiftworkshop.com
 	```
-
+  
 1. The following should be returned as the result:
 
     ```bash
