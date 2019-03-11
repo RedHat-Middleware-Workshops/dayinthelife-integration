@@ -87,7 +87,11 @@ Once the environment is provisioned, you will be presented with a page that pres
 
     ![00-create-ocp-project.png](images/00-create-ocp-project.png "Create Project")
 
-1. Click on **Add to Project** then select **Browse Catalog**, then navigate to the **Databases** menu and select **Postgres**.  From there, select the **PostgreSQL** (Ephemeral) template.
+1. Click on **Add to Project** then select **Browse Catalog**.
+
+    ![00-create-ocp-browse-catalog.png](images/00-create-ocp-browse-catalog.png "Browse Catalog")
+
+1. Navigate to the **Databases** menu and select **Postgres**.  From there, select the **PostgreSQL** (Ephemeral) template.
 
     ![00-select-postgres.png](images/00-select-postgres.png "Select Postgres")
 
