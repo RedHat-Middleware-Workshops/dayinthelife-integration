@@ -162,13 +162,11 @@ This may be due to a failed build. Troubleshoot by deleting SSO Location API.
 SSO Location API can be located here:
 
 * In your browser, `https://{USERX}-admin.apps.boston-a12a.openshiftworkshop.com`
-* In the tab menu, click **APIs**
-* Click SSO Location API - **Definition**
+* In the tab menu, click **Dashboard**
+* Scroll down to the bottom and click *OVERVIEW* next to the *SSO LOCATION API*
 * Click **edit**
 * Click **I understand the consequences, proceed to delete 'SSO Location API' service.**
-
-Try running this command again in the terminal:
-```curl -X POST http://threescale-automate-international.apps.boston-a12a.openshiftworkshop.com/threescale/automate/{YOUR_API_TOKEN}/{USERX}/{OPENSHIFT_APP_URL}```
+* Delete the *securetoken* you created in Step 1, then run through this entire lab again.
 
 ## Steps Beyond
 
