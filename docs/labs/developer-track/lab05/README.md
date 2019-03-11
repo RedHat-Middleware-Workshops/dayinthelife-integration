@@ -96,27 +96,58 @@ Your 3scale Admin Portal provides access to a number of configuration features. 
 ### Step 2: Start managing your APIs
 
 By running the command lines, it will automatically setup the 3scale API configuration and start managing the API you have exposed!
-In you command line terminal or in your Che terminal enter the following CURL command:
 
-*Replace USERX as your user id, such as user1, user26, and OPENSHIFT_APP_URL, if you are not sure, check with your instructor*
+1. In you command line terminal or in your Che terminal enter the following CURL command:
 
-```bash
-curl -X POST http://threescale-automate-international.apps.boston-a12a.openshiftworkshop.com/threescale/automate/{YOUR_API_TOKEN}/{USERX}/{OPENSHIFT_APP_URL}
-```
+	*Replace USERX as your user id, such as user1, user26, and OPENSHIFT_APP_URL, if you are not sure, check with your instructor*
+
+	```bash
+	curl -X POST http://threescale-automate-international.apps.boston-a12a.openshiftworkshop.com/threescale/automate/{YOUR_API_TOKEN}/{USERX}/{OPENSHIFT_APP_URL}
+	```
 
 For example:
 
-```bash
-curl -X POST http://threescale-automate-international.apps.boston-a12a.openshiftworkshop.com/threescale/automate/829405ec3d2dd0f91aa8435347827135c323c69757dd2dfb49ed41aa8ceb13ef/user26/apps.boston-a12a.openshiftworkshop.com
-```
+	```bash
+	curl -X POST http://threescale-automate-international.apps.boston-a12a.openshiftworkshop.com/threescale/automate/829405ec3d2dd0f91aa8435347827135c323c69757dd2dfb49ed41aa8ceb13ef/userX/apps.boston-a12a.openshiftworkshop.com
+	```
 
-The following should be returned as the result:
+1. The following should be returned as the result:
 
-    ```
+    ```bash
     API automated, DONE! REMEBER THIS ADDRESS FOR NEXT LAB: PLAN_URL :[ https://userx.apps.boston-a12a.openshiftworkshop.com/signup?plan_ids[]=XXX ]
     ```
 
     *Be sure to copy this text to a text editor for your next lab*
+
+1. Return to the 3scale Admin Web Console, and select *Dashboard > SSO Location API* from the top menu
+
+	   ![02-select-sso-api](images/step02-select-sso-api.png)
+
+1. On the Overview page, click *Configuration*
+
+	   ![02-configuration](images/step02-configuration.png)
+
+1. On the Configuration page, click *edit APIcast configuration*.
+
+	   ![02-edit-apicast](images/step02-edit-apicast.png)
+
+1. Now that we are on the *Integration* page, we need to update the *Authentication Settings* to the correct value.  Update the *OpenID Connect Issuer* entry to ensure that it starts with **https**.  Also verify it has your correct userID in the URL:
+
+	   ![02-edit-auth](images/step02-edit-auth.png)
+
+	   The URL should look similar to this:
+
+	   ```bash
+	   https://3scale-admin:82c0dfa9-4adb-41a7-9ac9-a03159d585c0@sso-sso.apps.boston-a12a.openshiftworkshop.com/auth/realms/user50
+	   ```
+
+1. Scroll down to the bottom of the page, and click *Update the Staging Environment*.  Now click the *Back to Integration & Configuration* link.
+
+	   ![02-update-staging](images/step02-update-staging.png)
+
+1. Now click the *Promote to Production* link.
+
+      ![02-promote-prod](images/step02-promote-prod.png)
 
 *Congratulations!* You have configured 3scale access control layer as a proxy to only allow authenticated calls to your backend API. 3scale is also now:
 
@@ -124,7 +155,7 @@ The following should be returned as the result:
 * Recording calls (Visit the Analytics tab to check who is calling your API).
 
 #### Common Gotcha
-If your encountered error:
+If you encountered error:
 ```org.apache.camel.http.common.HttpOperationFailedException: HTTP operation failed invoking https://{USERX}-admin.apps.boston-a12a.openshiftworkshop.com/admin/api/services.xml with statusCode: 422```
 
 This may be due to a failed build. Troubleshoot by deleting SSO Location API.
