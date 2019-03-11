@@ -72,7 +72,7 @@ Once the environment is provisioned, you will be presented with a page that pres
     ![10-developer-portal.png](images/10-developer-portal.png)
 
 
-1. On the left menu select **Home Page**, and replace the entire content with what's in the example link: [example](https://raw.githubusercontent.com/RedHatWorkshops/dayinthelife-integration/master/docs/labs/developer-track/lab06/support/homepage.example)
+1. On the left menu select **Home Page**, and replace the entire content with what's in the example link: [example](https://raw.githubusercontent.com/sigreen/dayinthelife-integration/v2-boston/docs/labs/developer-track/lab06/support/homepage.example)
 
 	![15-homepage-devportal.png](images/15-homepage-devportal.png)
 
