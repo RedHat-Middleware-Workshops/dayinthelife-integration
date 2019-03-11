@@ -89,7 +89,7 @@ Once the environment is provisioned, you will be presented with a page that pres
 
 1. Click on **Add to Project** then select **Browse Catalog**.
 
-    ![00-create-ocp-browse-catalog.png](images/00-create-ocp-browse-catalog.png "Browse Catalog")
+    ![00-create-ocp-browse-catalog.png](images/00-ocp-browse-catalog.png "Browse Catalog")
 
 1. Navigate to the **Databases** menu and select **Postgres**.  From there, select the **PostgreSQL** (Ephemeral) template.
 
