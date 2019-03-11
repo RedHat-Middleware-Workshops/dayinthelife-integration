@@ -67,7 +67,7 @@ OpenShift let you automatically redeploy your changes when you setup a Continuou
 
    ![01-scroll-down](images/deploy-10.png "Scroll Down")
 
-1. In the build configuration page, replace the `CLIENT_ID` from `CHANGE_ME`to the one generated from [Lab 06 Step 2.8](https://github.com/sigreen/dayinthelife-integration/tree/v2-boston/docs/labs/developer-track/lab06#step-2-register-new-accounts-using-developer-portal)
+1. In the build configuration page, replace the `CLIENT_ID` from `CHANGE_ME`to the one generated from [Lab 06 Step 2.8](https://github.com/sigreen/dayinthelife-integration/tree/v2-boston/docs/labs/developer-track/lab06#step-2-register-new-accounts-using-developer-portal).  Also ensure that the `SSO_URL` starts with an `https`.   If it does not, then correct it.  It should look like this: `https://sso-sso.apps.boston-a12a.openshiftworkshop.com`.
 
    ![02-client-id](images/deploy-11.png "Change Client ID")
 
