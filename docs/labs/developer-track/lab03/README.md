@@ -51,19 +51,17 @@ Once the environment is provisioned, you will be presented with a page that pres
 
 ![design-login](images/design-52.png "Applications")
 
-Login to the Red Hat Solution Explorer, here you will find the link to Che.
-
-![00-integr8ly-che.png](images/00-integr8ly-che.png "Integr8ly CHE")
-
-Enter dummy values for `First Name` and `Last Name`. Click **Submit**.
-
-![00-integr8ly-che-update-acc.png](images/00-integr8ly-che-update-acc.png "Integr8ly CHE update")
-
 ## Lab Instructions
 
 ### Step 1: Create an Eclipse Che environment for your personal use
 
-1. Click on Eclipse Che in **Red Hat Solution Explorer** .
+1. Login to the Red Hat Solution Explorer, here you will find the link to Che.
+
+    ![00-integr8ly-che.png](images/00-integr8ly-che.png "Integr8ly CHE")
+
+1. Enter dummy values for `First Name` and `Last Name`. Click **Submit**.
+
+    ![00-integr8ly-che-update-acc.png](images/00-integr8ly-che-update-acc.png "Integr8ly CHE update")
 
 
 1. Use your unique username as your workspace name e.g. userX.  Select "day in the life workshop" stack, increase the RAM to 4GB and then click **Create**.
