@@ -399,6 +399,11 @@ We will use 3scale to secure our newly deployed Fuse Online integration.  We int
 
     ![04-edit-api-config](images/04-edit-api-config.png)
 
+1. Update the `Staging Public Base URL` and `Production Public Base URL` fields to the following:
+
+    * Staging Public Base: `https://i-addlocation-userX-apicast-staging.amp.apps.boston-a12a.openshiftworkshop.com:443`
+    * Production Public Base URL: `https://i-addlocation-user5-apicast-production.amp.apps.boston-a12a.openshiftworkshop.com:443`
+
 1. Scroll down to the *Client* section.  Copy the full *curl* URL in the box.  Paste it into a text editor as will need it shortly.
 
     ![04-copy-curl](images/04-copy-curl.png)
