@@ -19,6 +19,7 @@ Goto a new Terminal and go to
 /home/user/.m2 and vi settings.xml
 
 Add the following content to reset the timeout time:
+```
 <settings>
   ....
   
@@ -33,5 +34,5 @@ Add the following content to reset the timeout time:
 
  ....
 </settings>
-
+```
 save and exit. 
