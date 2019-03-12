@@ -10,3 +10,28 @@
 6. [API Developer Portal](lab06/#lab-6)
 7. [Securing Node.js endpoint development](lab07/#lab-7)
 8. [Fuse Online Bonus Lab](lab08/#lab-8)
+
+RESOLVE timeout
+
+CLOSE THE CURRENT DOWNLOAD PROCESS,
+
+Goto a new Terminal and go to 
+/home/user/.m2 and vi settings.xml
+
+Add the following content to reset the timeout time:
+<settings>
+  ....
+  
+  <servers>
+    <server>
+      <id>central</id>
+      <configuration>
+            <timeout>120000</timeout>
+      </configuration>
+    </server>
+  </servers>
+
+ ....
+</settings>
+
+save and exit. 
