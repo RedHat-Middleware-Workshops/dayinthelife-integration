@@ -27,7 +27,7 @@ Add the following content to reset the timeout time:
     <server>
       <id>central</id>
       <configuration>
-            <timeout>120000</timeout>
+            <timeout>1000</timeout>
       </configuration>
     </server>
   </servers>
