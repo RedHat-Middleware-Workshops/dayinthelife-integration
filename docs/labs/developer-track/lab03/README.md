@@ -2,7 +2,7 @@
 
 ## Swagger to REST
 
-### Contract-first API development with a database interface, implemented using Eclipse Che
+### Contract-first API development with a database interface, implemented using CodeReady Workspaces
 
 * Duration: 20 mins
 * Audience: Developers and Architects
@@ -13,7 +13,7 @@ In the context of defining API's, it's common for a Business Analyst (or Citizen
 
 ### Why Red Hat?
 
-Eclipse Che, our online IDE, provides important functionality for implementing API services. In this lab you can see how our API tooling fits together with 3scale, Fuse and OpenShift to create a scalable API.
+CodeReady Workspaces, our online IDE, provides important functionality for implementing API services. In this lab you can see how our API tooling fits together with 3scale, Fuse and OpenShift to create a scalable API.
 
 ### Skipping The Lab
 
@@ -53,9 +53,9 @@ Once the environment is provisioned, you will be presented with a page that pres
 
 ## Lab Instructions
 
-### Step 1: Create an Eclipse Che environment for your personal use
+### Step 1: Create an CodeReady Workspaces environment for your personal use
 
-1. Login to the Red Hat Solution Explorer, here you will find the link to Che.
+1. Login to the Red Hat Solution Explorer, here you will find the link to CodeReady Workspaces.
 
     ![00-integr8ly-che.png](images/00-integr8ly-che.png "Integr8ly CHE")
 
@@ -64,16 +64,11 @@ Once the environment is provisioned, you will be presented with a page that pres
     ![00-integr8ly-che-update-acc.png](images/00-integr8ly-che-update-acc.png "Integr8ly CHE update")
 
 
-1. Use your unique username as your workspace name e.g. userX.  Select "day in the life workshop" stack, increase the RAM to 4GB and then click **Create**.
+1. Use your unique username as your workspace name e.g. userX.  Select "Red Hat Fuse" stack, increase the RAM to 4GB and then click **Create**.
 
     ![00-new-workspace.png](images/00-new-workspace.png "New Workspace")
 
-1. Click on **Create**.
-
-1. Click on **Open** to generate and open the workspace.
-
-    ![00-open-workspace.png](images/00-open-workspace.png "Open Workspace")
-
+1. Click on **Create & Open**.
 
 ### Step 2: Create your own personal Openshift project and setup a sample database
 
@@ -105,7 +100,7 @@ Once the environment is provisioned, you will be presented with a page that pres
 
 ### Step 3: Import the skeleton projects from Git and convert them to Maven projects.
 
-1. In Eclipse Che, click on Workspace > Import Project from the main menu.  A pop-up will appear.
+1. In CodeReady Workspaces, click on Workspace > Import Project from the main menu.  A pop-up will appear.
 
     ![00-import-project.png](images/00-import-project.png "Import Project")
 
@@ -340,7 +335,7 @@ Once you've received the swagger specification (API contract) from your friendly
 
     ![00-update-properties.png](images/00-update-properties.png "Update Properties")
 
-1. Now we are ready to test our new Camel route locally. To do this, navigate back to the **Manage commands** screen, double-click the **run:spring-boot** script and hit **Run**.  The script will run locally in Eclipse Che.
+1. Now we are ready to test our new Camel route locally. To do this, navigate back to the **Manage commands** screen, double-click the **run:spring-boot** script and hit **Run**.  The script will run locally in CodeReady Workspaces.
 
     ![00-run-locally.png](images/00-run-locally.png "Maven Deploy")
 
@@ -356,7 +351,7 @@ Once you've received the swagger specification (API contract) from your friendly
 
     ![00-location-list.png](images/00-login-ocp-cli.png "OCP CLI Login")
 
-1.  Navigate back to Eclipse Che, open the terminal, and paste the login command from your clipboard.  Once you've logged-in, select the OpenShift project you created earlier using `oc project userX` (replacing userX with your username).
+1.  Navigate back to CodeReady Workspaces, open the terminal, and paste the login command from your clipboard.  Once you've logged-in, select the OpenShift project you created earlier using `oc project userX` (replacing userX with your username).
 
     ![00-location-list.png](images/00-login-terminal.png "OCP Terminal Login")
 
@@ -375,7 +370,7 @@ Once you've received the swagger specification (API contract) from your friendly
 1. You can also search for individual locations by adjusting the URI to `/locations/{id}` e.g. `/locations/100`.
 
 
-1. Lastly, via the Eclipse Che terminal, test the HTTP POST using curl.  You can use the following command:
+1. Lastly, via the CodeReady Workspaces' terminal, test the HTTP POST using curl.  You can use the following command:
 
     ```bash
 	curl --header "Content-Type: application/json" --request POST --data '{"id": 101,"name": "Kakadu","type": "HQ","status": "1","location": {"lat": "78.88436","lng": "99.05295"}}' http://location-service-OCPPROJECT.apps.boston-a12a.openshiftworkshop.com/locations

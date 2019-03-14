@@ -4,7 +4,7 @@
 
 1. [Review Apicurio API Designer](lab01/#lab-1)
 2. [Microcks API Mocking](lab02/#lab-2)
-3. [Swagger to Rest and DB (with Che)](lab03/#lab-3)
+3. [Swagger to Rest and DB (with CodeReady Workspaces)](lab03/#lab-3)
 4. [SOAP to Rest](lab04/#lab-4)
 5. [Setup 3scale API management](lab05/#lab-5)
 6. [API Developer Portal](lab06/#lab-6)
@@ -15,14 +15,14 @@ RESOLVE timeout
 
 CLOSE THE CURRENT DOWNLOAD PROCESS,
 
-Goto a new Terminal and go to 
+Goto a new Terminal and go to
 /home/user/.m2 and vi settings.xml
 
 Add the following content to reset the timeout time:
 ```
 <settings>
   ....
-  
+
   <servers>
     <server>
       <id>central</id>
@@ -35,4 +35,4 @@ Add the following content to reset the timeout time:
  ....
 </settings>
 ```
-save and exit. 
+save and exit.
