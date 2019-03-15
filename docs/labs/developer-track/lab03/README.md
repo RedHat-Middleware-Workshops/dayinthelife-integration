@@ -349,7 +349,17 @@ Once you've received the swagger specification (API contract) from your friendly
 
     ![00-update-properties.png](images/00-update-properties.png "Update Properties")
 
-1. Now we are ready to test our new Camel route locally. To do this, navigate back to the **Manage commands** screen, double-click the **run:spring-boot** script and hit **Run**.  The script will run locally in CodeReady Workspaces.
+1. Now we are ready to test our new Camel route locally. To do this, navigate back to the **Manage commands** screen.
+
+1. Click the **+** button next to the *Run* folder, then select **Maven**.
+
+    ![00-run-spring-boot.png](images/00-run-spring-boot.png)
+
+1. Enter `run spring-boot` as the *Name*, and for the Command type `mvn spring-boot:run -f ${current.project.path}`.  Click **Save**.
+
+    ![00-final-spring-boot.png](images/00-final-spring-boot.png)
+
+1. Double-click the **run:spring-boot** script and hit **Run**.  The script will run locally in CodeReady Workspaces.
 
     ![00-run-locally.png](images/00-run-locally.png "Maven Deploy")
 
