@@ -159,7 +159,7 @@ Once you've received the swagger specification (API contract) from your friendly
 
 1.  Click the **+** button next to the *Build* folder, then select *Maven*
 
-![00-build-mvn.png](images/00-build-mvn.png)
+  ![00-build-mvn.png](images/00-build-mvn.png)
 
 1. Give the script the name `Generate REST DSL from Swagger`, and replace the Maven command with `mvn camel-restdsl-swagger:generate -f ${current.project.path}`.
 
