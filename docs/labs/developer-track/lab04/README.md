@@ -2,7 +2,7 @@
 
 ## SOAP to REST
 
-### Contract-first API development wrapping an existing SOAP service, implemented using Eclipse Che
+### Contract-first API development wrapping an existing SOAP service, implemented using CodeReady Workspaces
 
 * Duration: 20 mins
 * Audience: Developers and Architects
@@ -13,7 +13,7 @@ Another important use case in developing API's is to take an existing legacy SOA
 
 ### Why Red Hat?
 
-Eclipse Che, our online IDE, provides important functionality for implementing API services. In this lab you can see how our Eclipse Che and Fuse can help with SOAP to REST transformation on OpenShift.
+CodeReady Workspaces, our online IDE, provides important functionality for implementing API services. In this lab you can see how our CodeReady Workspaces and Fuse can help with SOAP to REST transformation on OpenShift.
 
 ### Skipping The Lab
 
@@ -22,7 +22,7 @@ If you are planning to follow to the next lab or are having trouble with this la
 ### Environment
 
 
-Login to the Red Hat Solution Explorer, here you will find the link to Che.
+Login to the Red Hat Solution Explorer, here you will find the link to CodeReady Workspaces.
 
 ![00-integr8ly-che.png](images/00-integr8ly-che.png "Integr8ly CHE")
 
@@ -40,11 +40,11 @@ Please ask your instructor for your password.
 
 ### Step 1: Import the sample SOAP project into your Openshift project
 
-1. Navigate back to your Eclipse Che workspace and open the terminal window.
+1. Navigate back to your CodeReady Workspaces workspace and open the terminal window.
 
     ![00-open-terminal.png](images/00-open-terminal.png "Open Terminal")
 
-1. In Openshift console (https://master.boston-a12a.openshiftworkshop.com). 
+1. In Openshift console (https://master.boston-a12a.openshiftworkshop.com).
 
 	![00-openshift-loginpage.png](images/00-openshift-loginpage.png "Commend Login")
 
