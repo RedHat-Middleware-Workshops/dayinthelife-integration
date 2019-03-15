@@ -157,7 +157,13 @@ Once you've received the swagger specification (API contract) from your friendly
 
     ![00-select-mvn.png](images/00-select-mvn.png)
 
-1. Double-click the **Generate REST DSL from..** script to open the command window.  Click **Run** to execute the script. If everything completes successfully, it should generate a new file under `src/main/java/com/redhat` called `CamelRoutes.java`.  If the Maven script fails, it's probably because you forgot to first highlight the `location-service` project in the previous step.  Be sure to do this and re-run the command to fix the error.
+1.  Click the **+** button next to the *Build* folder, then select *Maven*
+
+![00-build-mvn.png](images/00-build-mvn.png)
+
+1. Give the script the name `Generate REST DSL from Swagger`, and replace the Maven command with `mvn camel-restdsl-swagger:generate -f ${current.project.path}`.
+
+1. Click **Run** to execute the script. If everything completes successfully, it should generate a new file under `src/main/java/com/redhat` called `CamelRoutes.java`.  If the Maven script fails, it's probably because you forgot to first highlight the `location-service` project in the previous step.  Be sure to do this and re-run the command to fix the error.
 
     ![00-run-mvn.png](images/00-run-mvn.png)
 
