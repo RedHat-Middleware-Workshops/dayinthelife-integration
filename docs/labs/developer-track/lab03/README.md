@@ -161,7 +161,15 @@ Once you've received the swagger specification (API contract) from your friendly
 
   ![00-build-mvn.png](images/00-build-mvn.png)
 
-1. Give the script the name `Generate REST DSL from Swagger`, and replace the Maven command with `mvn camel-restdsl-swagger:generate -f ${current.project.path}`.
+1. Give the script the name `Generate REST DSL from Swagger`, and replace the Maven command with `mvn camel-restdsl-swagger:generate -f ${current.project.path}`.  Click the **Save** button.
+
+1. To run the script,we need to login to OpenShift via the Terminal.  Navigate back to the OpenShift web UI and click the **Copy Login Command** link.  If you aren't logged-in to OpenShift, open a new tab and navigate to `https://master.boston-a12a.openshiftworkshop.com/console`.
+
+    ![00-location-list.png](images/00-login-ocp-cli.png "OCP CLI Login")
+
+1.  Navigate back to CodeReady Workspaces, open the terminal, and paste the login command from your clipboard.  Once you've logged-in, select the OpenShift project you created earlier using `oc project userX` (replacing userX with your username).
+
+    ![00-location-list.png](images/00-login-terminal.png "OCP Terminal Login")
 
 1. Click **Run** to execute the script. If everything completes successfully, it should generate a new file under `src/main/java/com/redhat` called `CamelRoutes.java`.  If the Maven script fails, it's probably because you forgot to first highlight the `location-service` project in the previous step.  Be sure to do this and re-run the command to fix the error.
 
@@ -353,15 +361,7 @@ Once you've received the swagger specification (API contract) from your friendly
 
     ![00-location-list.png](images/00-location-list.png "Location List")
 
-1. Now that we've tested our API service implementation locally, we can deploy it to our running OpenShift environment.  First we need to login to OpenShift via the Terminal.  Navigate back to the OpenShift web UI and click the **Copy Login Command** link.  If you aren't logged-in to OpenShift, open a new tab and navigate to `https://master.boston-a12a.openshiftworkshop.com/console`.
-
-    ![00-location-list.png](images/00-login-ocp-cli.png "OCP CLI Login")
-
-1.  Navigate back to CodeReady Workspaces, open the terminal, and paste the login command from your clipboard.  Once you've logged-in, select the OpenShift project you created earlier using `oc project userX` (replacing userX with your username).
-
-    ![00-location-list.png](images/00-login-terminal.png "OCP Terminal Login")
-
-1. To run the fabric8 Maven command to deploy our project, navigate back to the **Manage commands** screen, double-click the **fabric8:deploy** script and hit **Run**.  The script will run and deploy to your OCPPROJECT.
+1. Now that we've tested our API service implementation locally, we can deploy it to our running OpenShift environment. To run the fabric8 Maven command to deploy our project, navigate back to the **Manage commands** screen, double-click the **fabric8:deploy** script and hit **Run**.  The script will run and deploy to your OCPPROJECT.
 
     ![00-mvn-deploy.png](images/00-mvn-deploy.png "Maven Deploy")
 
