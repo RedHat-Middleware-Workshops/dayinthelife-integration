@@ -355,7 +355,7 @@ Once you've received the swagger specification (API contract) from your friendly
 
     ![00-run-spring-boot.png](images/00-run-spring-boot.png)
 
-1. Enter `run spring-boot` as the *Name*, and for the Command type `mvn spring-boot:run -f ${current.project.path}`.  Click **Save**.
+1. Enter `run spring-boot` as the *Name*, and for the *Command* type `mvn spring-boot:run -f ${current.project.path}`.  Click **Save**.
 
     ![00-final-spring-boot.png](images/00-final-spring-boot.png)
 
@@ -371,7 +371,15 @@ Once you've received the swagger specification (API contract) from your friendly
 
     ![00-location-list.png](images/00-location-list.png "Location List")
 
-1. Now that we've tested our API service implementation locally, we can deploy it to our running OpenShift environment. To run the fabric8 Maven command to deploy our project, navigate back to the **Manage commands** screen, double-click the **fabric8:deploy** script and hit **Run**.  The script will run and deploy to your OCPPROJECT.
+1. Now that we've tested our API service implementation locally, we can deploy it to our running OpenShift environment.  First of all, stop the *spring:boot* process by closing the window. Click on the **+** button next to the *Deploy* folder, then select *Maven*.
+
+    ![00-deploy-mvn.png](images/00-deploy-mvn.png)
+
+1.  Enter `fabric8:deploy` as the *Name*, then enter `cd ${explorer.current.file.path} && mvn fabric8:deploy` for the *Command*.  Click *Save*.
+
+    ![00-save-fabric-deploy.png](images/00-save-fabric-deploy.png)
+
+1. Click **Run**.  The script will run and deploy to your OCPPROJECT.
 
     ![00-mvn-deploy.png](images/00-mvn-deploy.png "Maven Deploy")
 
