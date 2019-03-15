@@ -79,11 +79,17 @@ Please ask your instructor for your password.
 
     ![00-verify-wsdl.png](images/00-verify-wsdl.png "Verify WSDL")
 
-1. Return to your Eclipse Che workspace and open the `dayintelife-import/location-soap2rest` project.  Open the `pom.xml` file and scroll to the bottom.  Uncomment out the `cxf-codegen-plugin` entry at the bottom.  Update the `<wsdl>` entry with your fully qualified WSDL URL e.g. `http://location-soap-userX.apps.boston-a12a.openshiftworkshop.com/ws/location?wsdl`. *Be sure to replace userX with your username.*
+1. Return to your CodeReady workspace and open the `dayintelife-import/location-soap2rest` project.  Open the `pom.xml` file and scroll to the bottom.  Uncomment out the `cxf-codegen-plugin` entry at the bottom.  Update the `<wsdl>` entry with your fully qualified WSDL URL e.g. `http://location-soap-userX.apps.boston-a12a.openshiftworkshop.com/ws/location?wsdl`. *Be sure to replace userX with your username.*
 
     ![00-uncomment-codegen.png](images/00-uncomment-codegen.png "Uncomment codegen plugin")
 
-1. We now need to generate the POJO objects from the WSDL contract.  To do this, change to the **Manage commands** view and double-click the `run generate-sources` script.  Click **Run** to execute the script.
+1. We now need to generate the POJO objects from the WSDL contract.  To do this, change to the **Manage commands** view.
+
+1.  Click the **+** button next to the *Build* folder.  Click **Maven**.  Enter `run generate-sources` for the *Name*, then enter `mvn generate-sources -f ${current.project.path}` for the *Command*.  Click **Save**.
+
+    ![00-save-run-soap.png](images/00-save-run-soap.png)
+
+1. Double-click the `run generate-sources` script.  Click **Run** to execute the script.
 
     ![00-generate-sources.png](images/00-generate-sources.png "Generate Sources")
 
