@@ -355,7 +355,7 @@ Once you've received the swagger specification (API contract) from your friendly
 
     ![00-run-spring-boot.png](images/00-run-spring-boot.png)
 
-1. Enter `run spring-boot` as the *Name*, and for the *Command* type `mvn spring-boot:run -f ${current.project.path}`.  Click **Save**.
+1. Enter `run spring-boot` as the *Name*, and for the *Command* type `mvn spring-boot:run -f ${current.project.path}/pom.xml`.  Click **Save**.
 
     ![00-final-spring-boot.png](images/00-final-spring-boot.png)
 
