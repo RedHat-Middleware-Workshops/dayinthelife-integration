@@ -161,7 +161,7 @@ Once you've received the swagger specification (API contract) from your friendly
 
     ![00-build-mvn.png](images/00-build-mvn.png)
 
-1. Give the script the name `Generate REST DSL from Swagger`, and replace the Maven command with `mvn camel-restdsl-swagger:generate -f ${current.project.path}`.  Click the **Save** button.
+1. Give the script the name `Generate REST DSL from Swagger`, and replace the Maven command with `mvn camel-restdsl-swagger:generate -f ${current.project.path}/pom.xml`.  Click the **Save** button.
 
 1. To run the script,we need to login to OpenShift via the Terminal.  Navigate back to the OpenShift web UI and click the **Copy Login Command** link.  If you aren't logged-in to OpenShift, open a new tab and navigate to `https://master.boston-a12a.openshiftworkshop.com/console`.
 
