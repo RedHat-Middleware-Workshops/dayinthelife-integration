@@ -26,6 +26,9 @@
   register: pause_dc
   failed_when: pause_dc.stderr != '' and 'is already paused' not in pause_dc.stderr
 
+- name: Change webapp container image #use v2.6.0
+  shell: oc patch dc tutorial-web-app --patch='{"spec":{"template":{"spec":{"containers":[{"name":"tutorial-web-app","image":"quay.io/integreatly/tutorial-web-app:v2.6.0"}]}}}}' -n {{ configmap_namespace }}
+
 - name: Change webapp operator container image #use Aiden's patch v0.0.8
   shell: oc patch deployment tutorial-web-app-operator --patch='{"spec":{"template":{"spec":{"containers":[{"name":"tutorial-web-app-operator","image":"quay.io/integreatly/tutorial-web-app-operator:v0.0.8"}]}}}}' -n {{ configmap_namespace }}
 
