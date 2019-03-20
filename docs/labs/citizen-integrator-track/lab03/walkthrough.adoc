@@ -199,9 +199,11 @@ image::images/08aa-back-to-integration.png[back-to-integration, role="integr8ly-
 +
 image::images/08a-promote-production.png[promote-to-production, role="integr8ly-img-responsive"]
 +
-_Congratulations! You have configured 3scale access control layer as a proxy to only allow authenticated calls to your backend API. 3scale is also now:
+_Congratulations! You have configured 3scale access control layer as a proxy to only allow authenticated calls to your backend API._
++
+* 3scale is also now:
 ** Authenticating (If you test with an incorrect API key it will fail)
-** Recording calls (Visit the Analytics tab to check who is calling your API)._
+** Recording calls (Visit the Analytics tab to check who is calling your API).
 
 [time=1]
 [id="summary"]
