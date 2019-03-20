@@ -167,8 +167,8 @@ image::images/policies-09.png[policies-09, role="integr8ly-img-responsive"]
 
 . Scroll back to the top of the page. Fill in the information for accessing your API.
 ** Private Base URL: *`http://location-service.international.svc:8080`*
-** Staging Public Base URL: *`https://location-userX-api-staging.amp.apps.boston-a12a.openshiftworkshop.com:443`*
-** Production Public Base URL: *`https://location-userX-api.amp.apps.boston-a12a.openshiftworkshop.com:443`*
+** Staging Public Base URL: *`https://location-{user-username}-api-staging.amp.{openshift-app-host}:443`*
+** Production Public Base URL: *`https://location-{user-username}-api.amp.{openshift-app-host}443`*
 +
 _Remember to replace the X with your user number._
 +
