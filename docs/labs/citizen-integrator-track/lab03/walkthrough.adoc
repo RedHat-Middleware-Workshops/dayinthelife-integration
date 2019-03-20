@@ -62,29 +62,61 @@ image::images/04-base-url.png[base-url, role="integr8ly-img-responsive"]
 
 [time=10]
 [id="update-integration-settings"]
-== Step 2: Update Integration settings
+== Update Integration settings
 
-Leave the settings for Private Base URL, Staging Public Base URL, and Production Public Base URL as it is. We will come back to the screen to update the correct values in later step.
+Leave the settings for `Private Base URL`, `Staging Public Base URL`, and `Production Public Base URL` as it is. We will come back to the screen to update the correct values in later step.
 
-. Click on menu:Integrations[Create Integration]
-
-image::images/04-create-integration.png[04-create-integration.png, role="integr8ly-img-responsive"]
-
-. Choose *API Provider*
+. Scroll down and expand the **MAPPING RULES** section to define the allowed methods on our exposed API.
 +
-image::images/n02-api-provider.png[02-api-provider.png, role="integr8ly-img-responsive"]
+_The default mapping is the root ("/") of our API resources, and this example application will not use that mapping. The following actions will redefine that default root ("/") mapping_.
++
+image::images/07b-mapping-rules.png[mapping-rules, role="integr8ly-img-responsive"]
 
-. Select *Create from scratch*
+. Click on the **Metric or Method (Define)** link.
++
+image::images/07b-mapping-rules-define.png[mapping-rules-define, role="integr8ly-img-responsive"]
 
-image::images/n03-api-from-scratch.png[n03-api-from-scratch, role="integr8ly-img-responsive"]
+. Click on the **New Method** link in the *Methods* section.
++
+image::images/07b-new-method.png[new-method, role="integr8ly-img-responsive"]
 
-. Change the name of the API to `Location` and click on the Add a path link under the Paths section.
-image:images/n04-api-name.png[n04-api-name]
-. Fill in the new resource path with the following information:
- ** Path: /locations
-image:images/n05-api-path.png[n05-api-path]
-. Click on the Add a datatype link under the Data Types.
-image:images/n06-data-type.png[n06-data-type]
+. Fill in the information for your Fuse Method.
+** Friendly name: *Get Locations*
+** System name: *locations_all*
+** Description: *Method to return all locations*
+
++
+image::images/07b-new-method-data.png[new-method-data, role="integr8ly-img-responsive"]
+
+. Click on **Create Method**.
+
+. Click on the **Add mapping rule** link.
++
+image::images/07b-add-mapping-rule.png[add-mapping-rule, role="integr8ly-img-responsive"]
+
+. Click on the edit icon next to the `GET` mapping rule.
++
+image::images/07b-edit-mapping-rule.png[edit-mapping-rule, role="integr8ly-img-responsive"]
+
+. Type in the *Pattern* text box the following:
++
+[source,bash,subs="attributes+"]
+----
+/locations
+----
+
+. Select **locations_all** as Method from the combo box.
++
+image::images/07b-getall-rule.png[getall-rule, role="integr8ly-img-responsive"]
+
+[time=5]
+[id="define-api-policies"]
+== Define your API Policies
+
+Red Hat 3scale API Management provides units of functionality that modify the behavior of the API Gateway without the need to implement code. These management components are know in 3scale as policies.
++
+The order in which the policies are executed, known as the “policy chain”, can be configured to introduce differing behavior based on the position of the policy in the chain. Adding custom headers, perform URL rewriting, enable CORS, and configurable caching are some of the most common API gateway capabilities implemented as policies.
+
 . Fill in the Name field with the value location. Expand the Enter the JSON Example to paste the following example, then click Save:
  ** Name: locationinput
  ** JSON Example:

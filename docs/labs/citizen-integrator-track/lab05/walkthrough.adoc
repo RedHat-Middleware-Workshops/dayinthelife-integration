@@ -1,30 +1,25 @@
-= Integrator Lab 5 - API Security
-:walkthrough: Set up the widely used OpenID connect pattern for Authentication.
+= Integrator Lab 6 - API Developer Portal
+:walkthrough: Create and customize the API Developer Portal
+
+:experimental:
 
 [time=20]
-== API Security
+== API Developer Portal
 
-=== Securing APIs with OpenID Connect and Red Hat Single Sign On
+=== Publishing APIs to Developer Portal
 
 * Duration: 20 mins
 * Audience: API Owners, Product Managers, Developers, Architects
 
 == Overview
 
-Once you have APIs in your organization and have applications being written, you also want to be sure in many cases that the various types of users of the APIs are correctly authenticated. In this lab you will discover how to set up the widely used OpenID connect pattern for Authentication.
+The focal point of your developers experience is the API developer portal, and the level of effort you put into it will directly correlate to the level of success of your API program, and API developer engagement.
 
 === Why Red Hat?
 
-The Red Hat SSO product provides important functionality for managing identities at scale. In this lab you will see how it fits together with 3scale and OpenShift.
+https://www.3scale.net/[Red Hat 3scale API Management] Solution provides a built-in, state-of-the-art CMS portal, making it very easy to create your own branded hub with a custom domain to manage developer interactions, and help increase API adoption.
 
-=== Skipping The Lab
-
-If you are planning to skip to the next lab, there is an already running OpenID Connect secured API proxy for the Location API Service in this endpoint:
-
-[source,bash]
-----
-https://location-sso.amp.{openshift-app-host}:443
-----
+You can customize the look and feel of the entire Developer Portal to match your own branding. You have complete control over every element of the portal, so you can make it as easy as possible for developers to learn how to use your API.
 
 === Environment
 
@@ -62,169 +57,138 @@ image::images/design-52.png[design-login, role="integr8ly-img-responsive"]
 
 == Lab Instructions
 
-=== Step 1: Get Red Hat Single Sign On Service Account Credentials
+=== Step 1: Customizing Developer Portal
 
-. Open a browser window and navigate to:
-+
-[source,bash]
-----
- https://sso-sso.{openshift-app-host}/auth/admin/userX/console
-----
-+
-_Remember to replace the `X` variable in the URL with your assigned user number._
-
-. Log into Red Hat Single Sign On using your designated <<environment,user and password>>. Click on *Sign In*.
-+
-image::images/00-login-sso.png[00-login-sso.png, role="integr8ly-img-responsive"]
-
-. Select *Clients* from the left menu.
-+
-image::images/00-clients.png[00-clients.png, role="integr8ly-img-responsive"]
-+
-_A 3scale-admin client and service account was already created for you_.
-
-. Click on the *3scale-admin* link to view the details.
-+
-image::images/00-3scale-admin.png[00-3scale-admin.png, role="integr8ly-img-responsive"]
-
-. Click the *Credentials* tab.
-+
-image::images/00-sa-credentials.png[00-sa-credentials.png, role="integr8ly-img-responsive"]
-
-. Take notice of the service account *Secret*. Copy and save it or write it down as you will use it to configure 3scale.
-+
-image::images/00-sa-secret.png[00-sa-secret.png, role="integr8ly-img-responsive"]
-
-=== Step 2: Add User to Realm
-
-. Click on the Users menu on the left side of the screen.
-+
-image::images/00-users.png[00-users.png, role="integr8ly-img-responsive"]
-
-. Click the *Add user* button.
-+
-image::images/00-add-user.png[00-add-user.png, role="integr8ly-img-responsive"]
-
-. Type *apiuser* as the Username.
-+
-image::images/00-username.png[00-username.png, role="integr8ly-img-responsive"]
-
-. Click on the *Save* button.
-. Click on the *Credentials* tab to reset the password. Type *apipassword* as the _New Password_ and _Password Confirmation_. Turn OFF the *Temporary* to avoid the password reset at the next login.
-+
-image::images/00-user-credentials.png[00-user-credentials.png, role="integr8ly-img-responsive"]
-
-. Click on *Reset Password*.
-. Click on the *Change password* button in the pop-up dialog.
-+
-image::images/00-change-password.png[00-change-password.png, role="integr8ly-img-responsive"]
-+
-_Now you have a user to test your integration._
-
-=== Step 3: Configure 3scale Integration
-
-. Open a browser window and navigate to:
+. Click on the `3scale Admin Dashboard` from the Red Hat Solution Explorer. The URL should look like
 +
 [source,bash]
 ----
  https://userX-admin.{openshift-app-host}/p/login
 ----
 +
-_Remember to replace the X with your user number._
+_Remember the `X` variable in the URL is your assigned user number._
 
 . Log into 3scale using your designated <<environment,user and password>>. Click on *Sign In*.
 +
 image::images/01-login.png[01-login.png, role="integr8ly-img-responsive"]
 
-. The first page you will land is the _API Management Dashboard_. Click on the *INTEGRATION* menu link.
+. Click on the *Developer Portal* tab to access the developer portal settings.
 +
-image::images/01a-dashboard.png[01a-dashboard.png, role="integr8ly-img-responsive"]
+image::images/10-developer-portal.png[10-developer-portal.png, role="integr8ly-img-responsive"]
 
-. Click on the *edit integration settings* to edit the API settings for the gateway.
+. Click on the *Visit Developer Portal* to take a look of how your developer portal looks like.
 +
-image::images/03-edit-settings.png[03-edit-settings.png, role="integr8ly-img-responsive"]
+image::images/11-visit-devportal.png[11-visit-devportal.png, role="integr8ly-img-responsive"]
 
-. Scrolll down the page, under the _Authentication_ deployment options, select *OpenID Connect*.
+. You can see there is a default portal with information on your API, and how to signup. Unfortunately the API information is incorrect.
 +
-image::images/04-authentication.png[04-authentication.png, role="integr8ly-img-responsive"]
-
-. Click on the *Update Service* button.
-. Dismiss the warning about changing the Authentication mode by clicking *OK*.
+image::images/12-devportal-overview.png[12-devportal-overview.png, role="integr8ly-img-responsive"]
 +
-image::images/04b-authentication-warning.png[04b-authentication-warning.png, role="integr8ly-img-responsive"]
+_We will edit our portal to update it with the correct information, and we will add the cool shadowman logo_.
 
-. Back in the service integration page, click on the *edit APIcast configuration*.
+. Go back to your admin portal browser tab and scroll down to the content sub-sections for the *Layouts* and select the *Main layout* menu option.
 +
-image::images/05-edit-apicast.png[05-edit-apicast.png, role="integr8ly-img-responsive"]
+image::images/12-main-layout.png[12-main-layout.png, role="integr8ly-img-responsive"]
 
-. Scroll down the page and expand the authentication options by clicking the *Authentication Settings* link.
+. First look for the *navbar* section of the main HTML. Replace the *{{ provider.name }}* for the shadowman image link:
 +
-image::images/05-authentication-settings.png[05-authentication-settings.png, role="integr8ly-img-responsive"]
+`+<img src="https://www.redhat.com/profiles/rh/themes/redhatdotcom/img/logo.png" alt="{{ provider.name }}">+`
++
+image::images/13-custom-logo.png[13-custom-logo.png, role="integr8ly-img-responsive"]
 
-. In the *OpenID Connect Issuer* field, type in your previously noted client credentials with the URL of your Red Hat Single Sing On instance:
+. Click the _Publish_ button at the bottom of the editor to save the changes and made them available in the site.
++
+image::images/14-publish-devportal.png[14-publish-devportal.png, role="integr8ly-img-responsive"]
+
+. Go back to browse the top of the content sub-sections and find the *Homepage* section.
++
+image::images/15-homepage-devportal.png[15-homepage-devportal.png, role="integr8ly-img-responsive"]
+
+. Change all the code *Echo* references in the homepage code for *Office Locations*.
+. Click the *Publish* button.
+. Refresh your Developer Portal's browser tab to check the changes. Your Developer Portal should now look like this:
++
+image::images/16-updated-devportal.png[16-updated-devportal.png, role="integr8ly-img-responsive"]
+
+=== Step 2: Register New Accounts Using Developer Portal
+
+. Take the place of one of your developers and signup for the *Basic* plan.
++
+image::images/16a-signup-limited.png[16a-signup-limited.png, role="integr8ly-img-responsive"]
+
+. Fill in your information and an email to register as a developer. Click on the *Sign up* button.
++
+image::images/16b-signup-form.png[16b-signup-form.png, role="integr8ly-img-responsive"]
+
+. The system will try to send a message with an activation link.
++
+image::images/16bb-signup-thankyou.png[16bb-signup-thankyou.png, role="integr8ly-img-responsive"]
++
+_Currently the lab environment doesn't have a configured email server, so we won't be able to receive the email_.
+
+. Go back to your _Accounts > Listing_  and navigate to *Developers* to activate the new account.
++
+image::images/16bc-developers-tab.png[16bc-developers-tab.png, role="integr8ly-img-responsive"]
+
+. Find your user under the _Accounts_ and click the *Activate* link.
++
+image::images/16cc-activate-account.png[16cc-activate-account.png, role="integr8ly-img-responsive"]
++
+_Your user is now active and can log into the portal_.
+
+=== Step 3: Login to Developer Portal
+
+. As your portal is not currently public, you will need your portal code to login. You can get the code in your admin portal navigating to: menu:Audience[Developer Portal > Domains & Access].
++
+image::images/16d-access-portal.png[16d-access-portal.png, role="integr8ly-img-responsive"]
+
+. Open a new _Incognito/Private_ browser window to test the Developer Portal login. Navigate to:
 +
 [source,bash]
 ----
- https://3scale-admin:CLIENT_SECRET@sso-sso.{openshift-app-host}/auth/realms/userX
+ https://userX.{openshift-app-host}/
 ----
+
+. Type your portal code to finish the login.
 +
-_Remember to replace the X with user number_
+image::images/16e-ingress-code.png[16e-ingress-code.png, role="integr8ly-img-responsive"]
+
+. Sign in to the portal.
 +
-image::images/06-openid-issuer.png[06-openid-issuer.png, role="integr8ly-img-responsive"]
+image::images/16f-dev-signin.png[16f-dev-signin.png, role="integr8ly-img-responsive"]
 
-. Scroll down the page and click on the *Update Staging Environment* button.
+. You will land in the developers homepage, where you will be able to check your developers settings and retrieve your newly created *Client ID* and *Client Secret*.
 +
-image::images/08-back-integration.png[08-back-integration.png, role="integr8ly-img-responsive"]
+image::images/16g-user-credentials.png[16g-user-credentials.png, role="integr8ly-img-responsive"]
 
-. After the reload, scroll down again and click the *Back to Integration & Configuration* link.
-+
-image::images/07-update-environment.png[07-update-environment.png, role="integr8ly-img-responsive"]
-
-. Promote to Production by clicking the *Promote to Production* button.
-+
-image::images/08a-promote-production.png[08a-promote-production.png, role="integr8ly-img-responsive"]
-
-=== Step 4: Create a Test App
-
-. Go to the _Audience_ dropdown and click on *Developers*.
-+
-image::images/09-developers.png[09-developers.png, role="integr8ly-img-responsive"]
-
-. Click on the *Applications* link.
-+
-image::images/10-applications.png[10-applications.png, role="integr8ly-img-responsive"]
-
-. Click on *Create Application* link.
-+
-image::images/11-create-application.png[11-create-application.png, role="integr8ly-img-responsive"]
-
-. Select *Basic* plan from the combo box. Type the following information:
- ** Name: *Secure App*
- ** Description: *OpenID Connect Secured Application*
-
-. Finally, scroll down the page and click on the *Create Application* button.
-+
-image::images/13-create-app.png[13-create-app.png, role="integr8ly-img-responsive"]
-
-. Update the *Redirect URL* to _http://www-user2.apps.mountainview-0a62.openshiftworkshop.com/*_. And note the *API Credentials_. Write them down as you will need the *Client ID* and the *Client Secret* to test your integration.
- image:images/14-app-credentials.png[14-app-credentials.png]
-
-_Congratulations!_ You have now an application to test your OpenID Connect Integration.
+_Congratulations!_ You have successfully customized your Developer Portal and completed a Sign Up process.
 
 == Steps Beyond
 
-So, you want more? Login to the Red Hat Single Sign On admin console for your realm if you are not there already. Click on the Clients menu. Now you can check that 3scale zync component creates a new Client in SSO. This new Client has the same ID as the Client ID and Secret from the 3scale admin portal.
+So, you want more? Click the *Documentation* link. Where does it takes you? _API Docs_ is where you can add your interactive documentation for your APIs. Is based on the known _Swagger UI_ interface.
+
+You can add from the Admin Portal under _API Docs_ the API definition to generate the live testing.
 
 == Summary
 
-Now that you can secure your API using three-leg authentication with Red Hat Single Sign-On, you can leverage the current assets of your organization like current LDAP identities or even federate the authentication using other IdP services.
+In this lab you discovered how to add a developer facing experience to your APIs. Developers in your organization or outside of it can now register, gain access to API keys and develop sample applications.
 
-For more information about Single Sign-On, you can check its https://access.redhat.com/products/red-hat-single-sign-on[page].
-
-You can now proceed to link:../lab06/#lab-6[Lab 6]
+You can now proceed to link:../lab07/#lab-7[Lab 7]
 
 == Notes and Further Reading
 
-* http://3scale.net[Red Hat 3scale API Management]
-* https://access.redhat.com/products/red-hat-single-sign-on[Red Hat Single Sign On]
-* https://developers.redhat.com/blog/2017/11/21/setup-3scale-openid-connect-oidc-integration-rh-sso/[Setup OIDC with 3scale]
+Red Hat 3scale Developer Portal's CMS consists of a few elements:
+
+* Horizontal menu in the Admin Portal with access to content, redirects, and changes
+* The main area containing details of the sections above
+* CMS mode, accessible through the preview option
+
+image::images/09-developer-portal.png[09-developer-portal.png, role="integr8ly-img-responsive"]
+
+https://github.com/Shopify/liquid[Liquid] is a simple programming language used for displaying and processing most of the data from the 3scale system available for API providers. In 3scale, it is used to expose server-side data to your API developers, greatly extending the usefulness of the CMS while maintaining a high level of security.
+
+=== Links
+
+* https://access.redhat.com/documentation/en-us/red_hat_3scale/2.2/html/developer_portal/[Developer Portal Documentation]
+* https://github.com/Shopify/liquid[Liquid markup language]
+* https://www.shopify.com/partners/blog/115244038-an-overview-of-liquid-shopifys-templating-language[And Overview of Liquid]
