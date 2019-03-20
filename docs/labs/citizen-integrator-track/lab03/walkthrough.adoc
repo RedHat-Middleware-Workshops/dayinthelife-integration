@@ -38,43 +38,33 @@ Your password is: `{user-password}`
 +
 image::images/01-login.png[3scale-admin-login, role="integr8ly-img-responsive"]
 
-. Click on menu:Connections[Create Connection]
+. The first page you will land is the *API Management Dashboard*. Click on the **INTEGRATE THIS API** menu link.
 +
-image::images/00-create-connection.png[00-create-connection.png, role="integr8ly-img-responsive"]
+image::images/01a-dashboard.png[integrate-api-link, role="integr8ly-img-responsive"]
 
-. Select *Database*
+. Click on the **edit integration settings** to edit the API settings for the gateway.
 +
-image::images/01-select-database.png[01-select-database.png, role="integr8ly-img-responsive"]
+image::images/03-edit-settings.png[edit-integration-settings, role="integr8ly-img-responsive"]
 
-. Enter below values for Database Configuration:
-
-** Connection URL: +
-[source,bash]
-----
-jdbc:postgresql://postgresql.international.svc:5432/sampledb
-----
-
-** Username: *dbuser*
-** Password: *password*
-** Schema: *<leave blank>*
-
-_Remember to replace the OCPPROJECT with the OpenShift project(NameSpace) you created in last lab._
-
-. Click *Validate* and verify if the connection is successful. Click *Next* to proceed.
-
-image::images/02-click-validate.png[02-click-validate.png, role="integr8ly-img-responsive"]
-
-. Add `Connection details`. `Connection Name: LocationDB` and `Description: Location Database`. Click *Create*.
+. Keep the **APIcast** deployment option in the Gateway section.
 +
-image::images/03-connection-details.png[03-connection-details.png, role="integr8ly-img-responsive"]
+image::images/04-apicast.png[apicast-selection, role="integr8ly-img-responsive"]
 
-. Verify that the `Location Database` is successfully created.
+. Scroll down and keep the **API Key (user_key)** Authentication.
++
+image::images/05-authentication.png[user-key-autentication, role="integr8ly-img-responsive"]
 
-[time=15]
-[id="no-code-api"]
-== Step 2: No CODE API developement
+. Click on **Update Service**.
 
-Description goes here
+. Click on the **add the Base URL of your API and save the configuration** button.
++
+image::images/04-base-url.png[base-url, role="integr8ly-img-responsive"]
+
+[time=10]
+[id="update-integration-settings"]
+== Step 2: Update Integration settings
+
+Leave the settings for Private Base URL, Staging Public Base URL, and Production Public Base URL as it is. We will come back to the screen to update the correct values in later step.
 
 . Click on menu:Integrations[Create Integration]
 
