@@ -114,7 +114,7 @@ image::images/07b-getall-rule.png[getall-rule, role="integr8ly-img-responsive"]
 == Define your API Policies
 
 Red Hat 3scale API Management provides units of functionality that modify the behavior of the API Gateway without the need to implement code. These management components are know in 3scale as policies.
-+
+
 The order in which the policies are executed, known as the “policy chain”, can be configured to introduce differing behavior based on the position of the policy in the chain. Adding custom headers, perform URL rewriting, enable CORS, and configurable caching are some of the most common API gateway capabilities implemented as policies.
 
 . Fill in the Name field with the value location. Expand the Enter the JSON Example to paste the following example, then click Save:

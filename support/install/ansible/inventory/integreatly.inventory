@@ -11,7 +11,7 @@ master
 ansible_user=ec2-user
 
 [master]
-master.akeating.openshiftworkshop.com
+master1.CITY-GUID.internal
 
 [workshop]
 localhost ansible_connection=local
@@ -27,8 +27,8 @@ apicurio_project=apicurio
 namespace=threescale
 backend_project=international
 configure_only=false
-ocp_domain=dayinlife.openshiftworkshop.com
-ocp_apps_domain=apps.dayinlife.openshiftworkshop.com
+ocp_domain=CITY-GUID.openshiftworkshop.com
+ocp_apps_domain=apps.CITY-GUID.openshiftworkshop.com
 usersno=50
 che=false
 fuse=false
@@ -44,4 +44,4 @@ create_tenants=true
 create_realms=true
 create_ides=true
 create_fuses=true
-is_on_RHPDS=false
+is_on_RHPDS=true
