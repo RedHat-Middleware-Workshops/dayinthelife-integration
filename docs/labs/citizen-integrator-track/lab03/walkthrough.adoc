@@ -165,183 +165,61 @@ image::images/policies-09.png[policies-09, role="integr8ly-img-responsive"]
 [id="configure-upstream-endpoint"]
 == Configure the Upstream Endpoint
 
-. Create another datatype, this time with the following config and click save.
- ** Name: location
- ** JSON Example:
-
-`
- {
-    "id": 1,
-    "name": "International Inc Corporate Office",
-    "location": {
-        "lat": 51.5013673,
-        "lng": -0.1440787
-    },
-    "type": "headquarter",
-    "status": "1"
- }
-`
- image:images/n09-location-datatype.png[n09-location-datatype]
-
-. You will be able to see the two datatypes created.
-image:images/n10-datatype-all.png[n10-datatype-all]
-. Click on the Create Operation link under POST to create a new POST operation.
-image:images/n11-post-method.png[n11-post-method]
-. Edit the description of the post method to _Add Location_ and click the orange POST button to edit the operation
-image:images/n12-post-description.png[n12-post-description]
-. Click on *Add a request Body*
-image:images/n13-request.png[n13-request]
-. Choose *locationinput* as the _Request Body Type_
-image:images/n14-post-requst-location-input.png[n14-post-requst-location-input]
-. Click the Add a response link.
-image:images/n13-response.png[n13-response]
-. Set the Response Status Code value to 201. Click Add.
-image:images/n15-post-response.png[n15-post-response]
-. Click on _*No Description_ and place _Location added_ in Description box. Click on the tick to save the changes
-image:images/n16-post-description.png[n16-post-description]
-. Click on the Type dropdown and select location.
-image:images/n17-post-response-type.png[n17-post-response-type]!
-. On the top section, under operation id, name it *addLocation* and click on tick to save the changes. On the very top of the page, click on Save button to return to Fuse Online in order for us to start the API implementation.
-image:images/n18-post-operation-id.png[n18-post-operation-id]
-. Click Next.
-image:images/n19-start-of-integration.png[n19-start-of-integration]
-. Set `Integration Name: addLocation` and `Description: add Location`
-
-image::images/n20-integration-name.png[n20-integration-name, role="integr8ly-img-responsive"]
-
-. Click on Add Location operation.
-
-image::images/n21-choose-operation.png[n21-choose-operation, role="integr8ly-img-responsive"]
-
-. Since we are adding incoming data into the database, click on the plus sign in between API entry point and return endpoint, select `Add connection`
-
-image::images/n22-add-db-connection.png[n22-add-db-connection, role="integr8ly-img-responsive"]
-
-. Click on `LocationDB` from the catalog and then select `Invoke SQL`
-
-image::images/n24-invoke-sql.png[n24-invoke-sql, role="integr8ly-img-responsive"]
-
-. Enter the SQL statement and click *Done*.
-
-----
-   INSERT INTO locations (id,name,lat,lng,location_type,status) VALUES (:#id,:#name,:#lat,:#lng,:#location_type,:#status )
-----
-
-image::images/n25-sql-statement.png[n25-sql-statement.png, role="integr8ly-img-responsive"]
-
-. In between top API endpoint and the Database connection, click on the plus sign and select `Add step` and select `Data mapper`
-
-image:images/n26-input-data-mapping.png[n26-input-data-mapping]
- image:images/n27-choose-data-mapping.png[n27-choose-data-mapping]
-
-. Drag and drop the matching *Source* Data types to all their corresponding *Targets* as per the following screenshot. When finished, click *Done*.
-
-image::images/n28-data-map-db.png[n28-data-map-db.png, role="integr8ly-img-responsive"]
-
-. In between the Database connection and the endpoint, click on the plus sign and select `Add step` and select `Data mapper`
-
-image:images/n29-output-data-mapping.png[n29-output-data-mapping]
- image:images/n30-choose-data-mapping.png[n30-choose-data-mapping]
-
-. Drag and drop the matching *Source* Data types to all their corresponding *Targets* as per the following screenshot. When finished, click *Done*.
-
-image::images/n31-data-map-response.png[n31-data-map-response, role="integr8ly-img-responsive"]
-
-. Click *Publish* on the next screen.
-
-image::images/n32-publish.png[n32-publish, role="integr8ly-img-responsive"]
-
-_Congratulations_. You successfully published the integration. (Wait for few minutes to build and publish the integration)
-
-=== Step 3: Create a POST request
-
-We will use an online cURL tool to create the `101th` record field in database.
-
-. Copy the `External URL` per the below screenshot
+. Scroll back to the top of the page. Fill in the information for accessing your API.
+** Private Base URL: *`http://location-service.international.svc:8080`*
+** Staging Public Base URL: *`https://location-userX-api-staging.amp.apps.boston-a12a.openshiftworkshop.com:443`*
+** Production Public Base URL: *`https://location-userX-api.amp.apps.boston-a12a.openshiftworkshop.com:443`*
 +
-image::images/14-copy-URL.png[14-copy-URL.png, role="integr8ly-img-responsive"]
-
-. Open a browser window and navigate to:
+_Remember to replace the X with your user number._
 +
-----
-  https://onlinecurl.com/
-----
-
-. Below are the values for the request. Note: `id:101` in the payload as we are creating `101th` record in the database.
+_We are using the internal API service, as we are deploying our services inside the same OpenShift cluster._
 +
-----
-  URL: http://i-addlocation-demo.apps.55b9.openshift.opentlc.com/locations
+image::images/07-baseurl-configuration.png[baseurl-configuration, role="integr8ly-img-responsive"]
 
-  --header (-H):  Content-Type: application/json
+. Scroll down to the **API Test GET request**.
 
-  --data (-d): {"id": 101, "name": "Kamarhati", "type": "Regional Branch", "status": "1", "location": { "lat": "-28.32555", "lng": "-5.91531" }}
-
-  --request (-X): POST
-----
+. Type in the textbox:
 +
-image::images/15-online-curl.png[15-online-curl.png, role="integr8ly-img-responsive"]
-
-. The page will load the `204` response information from the service which means the request was successfully fulfilled.
-+
-image::images/16-response-header.png[16-response-header.png, role="integr8ly-img-responsive"]
-
-. Click on menu:Activity[Refresh] and verify if the newly record is created.
-+
-image::images/17-activity-refresh.png[17-activity-refresh.png, role="integr8ly-img-responsive"]
-
-<<<<<<< HEAD
-
-. {blank}
-+
-= _(Optional)_ Visit the application URL in the browser and verify if the record can be fetched.
-. _(Optional)_ Visit the application URL in browser and verify if the record can be fetched.
-+
-____
-______
-________
-__________
-____________
-______________
-________________
-1a3996b4b04f4a7a4997ae47d9c36f2cfa8178e2
-________________
-______________
-____________
-__________
-________
-______
-____
-
-*REQUEST*
-
+[source,bash,subs="attributes+"]
 ----
-   http://location-service-international.{openshift-app-host}/locations/101
+/locations
 ----
 
-*RESPONSE*
+. Click on the **Update the Staging Environment** to save the changes and check the connection between client, gateway and API.
++
+image::images/08-update-staging.png[update-staging, role="integr8ly-img-responsive"]
++
+_If everything works, you will get a green message on the left._
 
-----
-    {
-      "id" : 101,
-      "name" : "Kamarhati",
-      "type" : "Regional Branch",
-      "status" : "1",
-      "location" : {
-        "lat" : "-28.32555",
-        "lng" : "-5.91531"
-      }
-    }
-----
+. Click on **Back to Integration & Configuration** link to return to your API overview.
++
+image::images/08aa-back-to-integration.png[back-to-integration, role="integr8ly-img-responsive"]
 
+. Click on the **Promote v.1 to Production** button to promote your configuration from staging to production.
++
+image::images/08a-promote-production.png[promote-to-production, role="integr8ly-img-responsive"]
++
+_Congratulations! You have configured 3scale access control layer as a proxy to only allow authenticated calls to your backend API. 3scale is also now:
+** Authenticating (If you test with an incorrect API key it will fail)
+** Recording calls (Visit the Analytics tab to check who is calling your API)._
+
+[time=1]
+[id="summary"]
 == Summary
 
-In this lab you discovered how to create an adhoc API service using Fuse Online.
+In this lab we just covered the basics of creating a proxy for our API service. Red Hat 3scale API Management also allows us to keep track of security (as you will see in the next lab) as well as the usage of our API. If getting money for your APIs is also important to you, 3scale allows you to monetize your APIs with its embedded billing system.
 
-You can now proceed to link:../lab04/#lab-4[Lab 4]
+Try to navigate through the rest of the tabs of your Administration Portal. Did you notice that there are application plans associated to your API? Application Plans allow you to take actions based on the usage of your API, like doing rate limiting or charging by hit (API call) or monthly usage.
 
+You set up an API management service and API proxies to control traffic into your API. From now on you will be able to issue keys and rights to users wishing to access the API.
+
+You can now proceed to link:{next-lab-url}[Lab 4].
+
+[time=1]
+[id="further-reading"]
 == Notes and Further Reading
 
-* Fuse Online
- ** https://www.redhat.com/en/technologies/jboss-middleware/fuse-online[Webpage]
- ** https://access.redhat.com/documentation/en-us/red_hat_fuse/7.1/html-single/fuse_online_sample_integration_tutorials/index[Sample tutorials]
- ** https://developers.redhat.com/blog/2017/11/02/work-done-less-code-fuse-online-tech-preview-today/[Blog]
+* API Management
+ ** https://www.3scale.net/[Red Hat 3scale API Management]
+ ** https://developers.redhat.com/blog/2017/05/22/how-to-setup-a-3scale-amp-on-premise-all-in-one-install/[Developers All-in-one 3scale install]
+ ** https://www.thoughtworks.com/radar/platforms/overambitious-api-gateways[ThoughtWorks Technology Radar - Overambitious API gateways]
