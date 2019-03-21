@@ -1,27 +1,21 @@
-# Lab 5
+# Lab 6
 
-## API Security
+## API Developer Portal
 
-### Securing APIs with OpenID Connect and Red Hat Single Sign On
+### Publishing APIs to Developer Portal
 
 * Duration: 20 mins
 * Audience: API Owners, Product Managers, Developers, Architects
 
 ## Overview
 
-Once you have APIs in your organization and have applications being written, you also want to be sure in many cases that the various types of users of the APIs are correctly authenticated. In this lab you will discover how to set up the widely used OpenID connect pattern for Authentication.
+The focal point of your developers experience is the API developer portal, and the level of effort you put into it will directly correlate to the level of success of your API program, and API developer engagement.
 
 ### Why Red Hat?
 
-The Red Hat SSO product provides important functionality for managing identities at scale. In this lab you will see how it fits together with 3scale and OpenShift.
+[Red Hat 3scale API Management](https://www.3scale.net/) Solution provides a built-in, state-of-the-art CMS portal, making it very easy to create your own branded hub with a custom domain to manage developer interactions, and help increase API adoption.
 
-### Skipping The Lab
-
-If you are planning to skip to the next lab, there is an already running OpenID Connect secured API proxy for the Location API Service in this endpoint:
-
-```bash
-https://location-sso.amp.dil.opentry.me:443
-```
+You can customize the look and feel of the entire Developer Portal to match your own branding. You have complete control over every element of the portal, so you can make it as easy as possible for developers to learn how to use your API.
 
 ### Environment
 
@@ -57,75 +51,15 @@ Once the environment is provisioned, you will be presented with a page that pres
 
 ## Lab Instructions
 
-### Step 1: Get Red Hat Single Sign On Service Account Credentials
+### Step 1: Customizing Developer Portal
 
-1. Open a browser window and navigate to:
-
-    ```bash
-    https://secure-sso-sso.dil.opentry.me/auth/admin/userX/console
-    ```
-
-    *Remember to replace the `X` variable in the URL with your assigned user number.*
-
-1. Log into Red Hat Single Sign On using your designated [user and password](#environment). Click on **Sign In**.
-
-    ![00-login-sso.png](images/00-login-sso.png "RH SSO Login")
-
-1. Select **Clients** from the left menu.
-
-    ![00-clients.png](images/00-clients.png "Clients")
-
-    *A 3scale-admin client and service account was already created for you*.
-
-1. Click on the **3scale-admin** link to view the details.
-
-    ![00-3scale-admin.png](images/00-3scale-admin.png "3scale admin account")
-
-1. Click the **Credentials** tab.
-
-    ![00-sa-credentials.png](images/00-sa-credentials.png "Service Account Credentials")
-
-1. Take notice of the service account **Secret**. Copy and save it or write it down as you will use it to configure 3scale.
-
-    ![00-sa-secret.png](images/00-sa-secret.png "Service Account Secret")
-
-### Step 2: Add User to Realm
-
-1. Click on the Users menu on the left side of the screen.
-
-    ![00-users.png](images/00-users.png "Users Menu")
-
-1. Click the **Add user** button.
-
-    ![00-add-user.png](images/00-add-user.png "Add User")
-
-1. Type **apiuser** as the Username.
-
-    ![00-username.png](images/00-username.png "User Details")
-
-1. Click on the **Save** button.
-
-1. Click on the **Credentials** tab to reset the password. Type **apipassword** as the *New Password* and *Password Confirmation*. Turn OFF the **Temporary** to avoid the password reset at the next login.
-
-    ![00-user-credentials.png](images/00-user-credentials.png "User Credentials")
-
-1. Click on **Reset Password**.
-
-1. Click on the **Change password** button in the pop-up dialog.
-
-    ![00-change-password.png](images/00-change-password.png "Change Password Dialog")
-
-    *Now you have a user to test your integration.*
-
-### Step 3: Configure 3scale Integration
-
-1. Open a browser window and navigate to:
+1. Click on the `3scale Admin Dashboard` from the Red Hat Solution Explorer. The URL should look like
 
     ```bash
     https://userX-admin.dil.opentry.me/p/login
     ```
 
-    *Remember to replace the X with your user number.*
+    *Remember the `X` variable in the URL is your assigned user number.*
 
 1. Accept the self-signed certificate if you haven't.
 
@@ -133,102 +67,124 @@ Once the environment is provisioned, you will be presented with a page that pres
 
     ![01-login.png](images/01-login.png)
 
-1. The first page you will land is the *API Management Dashboard*. Click on the **API** menu link.
+1. Click on the **Developer Portal** tab to access the developer portal settings.
 
-    ![01a-dashboard.png](images/01a-dashboard.png)
+    ![10-developer-portal.png](images/10-developer-portal.png)
 
-1. This is the *API Overview* page. Here you can take an overview of all your services. Click on the **Integration** link.
+1. Click on the **Visit Developer Portal** to take a look of how your developer portal looks like.
 
-    ![02-api-integration.png](images/02-api-integration.png)
+    ![11-visit-devportal.png](images/11-visit-devportal.png)
 
-1. Click on the **edit integration settings** to edit the API settings for the gateway.
+1. You can see there is a default portal with information on your API, and how to signup. Unfortunately the API information is incorrect.
 
-    ![03-edit-settings.png](images/03-edit-settings.png)
+    ![12-devportal-overview.png](images/12-devportal-overview.png)
 
-1. Scrolll down the page, under the *Authentication* deployment options, select **OpenID Connect**. 
+    *We will edit our portal to update it with the correct information, and we will add the cool shadowman logo*.
 
-    ![04-authentication.png](images/04-authentication.png)
+1. Go back to your admin portal browser tab and scroll down to the content sub-sections for the **Layouts** and select the **Main layout** menu option.
 
-1. Click on the **Update Service** button.
+    ![12-main-layout.png](images/12-main-layout.png)
 
-1. Dismiss the warning about changing the Authentication mode by clicking **OK**.
+1. First look for the **navbar** section of the main HTML. Replace the **{{ provider.name }}** for the shadowman image link:
 
-    ![04b-authentication-warning.png](images/04b-authentication-warning.png)
-    
-1. Back in the service integration page, click on the **edit APIcast configuration**.
+    `<img src="https://www.redhat.com/profiles/rh/themes/redhatdotcom/img/logo.png" alt="{{ provider.name }}">`
 
-    ![05-edit-apicast.png](images/05-edit-apicast.png)
+    ![13-custom-logo.png](images/13-custom-logo.png)
 
-1. Scroll down the page and expand the authentication options by clicking the **Authentication Settings** link.
+1. Click the *Publish* button at the bottom of the editor to save the changes and made them available in the site.
 
-    ![05-authentication-settings.png](images/05-authentication-settings.png)
+    ![14-publish-devportal.png](images/14-publish-devportal.png)
 
-1. In the **OpenID Connect Issuer** field, type in your previously noted client credentials with the URL of your Red Hat Single Sing On instance:
+1. Go back to browse the top of the content sub-sections and find the **Homepage** section.
+
+    ![15-homepage-devportal.png](images/15-homepage-devportal.png)
+
+1. Change all the code **Echo** references in the homepage code for **Office Locations**.
+
+1. Click the **Publish** button.
+
+1. Refresh your Developer Portal's browser tab to check the changes. Your Developer Portal should now look like this:
+
+    ![16-updated-devportal.png](images/16-updated-devportal.png)
+
+### Step 2: Register New Accounts Using Developer Portal
+
+1. Take the place of one of your developers and signup for the **Basic** plan.
+
+    ![16a-signup-limited.png](images/16a-signup-limited.png)
+
+1. Fill in your information and an email to register as a developer. Click on the **Sign up** button.
+
+    ![16b-signup-form.png](images/16b-signup-form.png)
+
+1. The system will try to send a message with an activation link.
+
+    ![16bb-signup-thankyou.png](images/16bb-signup-thankyou.png)
+
+    *Currently the lab environment doesn't have a configured email server, so we won't be able to receive the email*.
+
+1. Go back to your *Admin Portal* tab and navigate to **Developers** to activate the new account.
+
+    ![16bc-developers-tab.png](images/16bc-developers-tab.png)
+
+1. Find your user under the *Accounts* and click the **Activate** link.
+
+    ![16cc-activate-account.png](images/16cc-activate-account.png)
+
+    *Your user is now active and can log into the portal*.
+
+### Step 3: Login to Developer Portal
+
+1. As your portal is not currently public, you will need your portal code to login. You can get the code in your admin portal navigating to: **Settings > Developer Portal > Domains &amp; Access**.
+
+    ![16d-access-portal.png](images/16d-access-portal.png)
+
+1. Open a new *Incognito/Private* browser window to test the Developer Portal login. Navigate to:
 
     ```bash
-    http://3scale-admin:CLIENT_SECRET@sso-sso.dil.opentry.me/auth/realms/userX
+    https://userX.dil.opentry.me/
     ```
 
-    *Remember to replace the X with user number*
+1. Type your portal code to finish the login.
 
-    ![06-openid-issuer.png](images/06-openid-issuer.png "OpenID Connect Issuer")
+    ![16e-ingress-code.png](images/16e-ingress-code.png)
 
-1. Scroll down the page and click on the **Update Staging Environment** button.
+1. Sign in to the portal.
 
-    ![08-back-integration.png](images/08-back-integration.png "Back Integration")
+    ![16f-dev-signin.png](images/16f-dev-signin.png)
 
-1. After the reload, scroll down again and click the **Back to Integration &amp; Configuration** link.
+1. You will land in the developers homepage, where you will be able to check your developers settings and retrieve your newly created **Client ID** and **Client Secret**.
 
-    ![07-update-environment.png](images/07-update-environment.png "Update Environment")
+    ![16g-user-credentials.png](images/16g-user-credentials.png "Application Credentials")
 
-1. Promote to Production by clicking the **Promote to Production** button.
-
-    ![08a-promote-production.png](images/08a-promote-production.png "Update Environment")
-
-### Step 4: Create a Test App
-
-1. Go to the *Developers* tab and click on **Developers**.
-
-    ![09-developers.png](images/09-developers.png "Developers")
-
-1. Click on the **Applications** link.
-
-    ![10-applications.png](images/10-applications.png "Applications")
-
-1. Click on **Create Application** link.
-
-    ![11-create-application.png](images/11-create-application.png "Create Application")
-
-1. Select **Basic** plan from the combo box. Type the following information:
-
-    * Name: **Secure App**
-    * Description: **OpenID Connect Secured Application**
-
-    ![12-application-details.png](images/12-application-details.png "Application Details")
-
-1. Finally, scroll down the page and click on the **Create Application** button.
-
-    ![13-create-app.png](images/13-create-app.png "Create App")
-
-1. Update the **Redirect URL** to http://www-userX.dil.opentry.me/*. And note the *API Credentials*. Write them down as you will need the **Client ID** and the **Client Secret** to test your integration. 
-    ![14-app-credentials.png](images/14-app-credentials.png "App Credentials")
-
-*Congratulations!* You have now an application to test your OpenID Connect Integration.
+*Congratulations!* You have successfully customized your Developer Portal and completed a Sign Up process.
 
 ## Steps Beyond
 
-So, you want more? Login to the Red Hat Single Sign On admin console for your realm if you are not there already. Click on the Clients menu. Now you can check that 3scale zync component creates a new Client in SSO. This new Client has the same ID as the Client ID and Secret from the 3scale admin portal.
+So, you want more? Click the **Documentation** link. Where does it takes you? *API Docs* is where you can add your interactive documentation for your APIs. Is based on the known *Swagger UI* interface.
+
+You can add from the Admin Portal under *API Docs* the API definition to generate the live testing.
 
 ## Summary
 
-Now that you can secure your API using three-leg authentication with Red Hat Single Sign-On, you can leverage the current assets of your organization like current LDAP identities or even federate the authentication using other IdP services.
+In this lab you discovered how to add a developer facing experience to your APIs. Developers in your organization or outside of it can now register, gain access to API keys and develop sample applications.
 
-For more information about Single Sign-On, you can check its [page](https://access.redhat.com/products/red-hat-single-sign-on).
-
-You can now proceed to [Lab 6](../lab06/#lab-6)
+You can now proceed to [Lab 7](../lab07/#lab-7)
 
 ## Notes and Further Reading
 
-* [Red Hat 3scale API Management](http://3scale.net)
-* [Red Hat Single Sign On](https://access.redhat.com/products/red-hat-single-sign-on)
-* [Setup OIDC with 3scale](https://developers.redhat.com/blog/2017/11/21/setup-3scale-openid-connect-oidc-integration-rh-sso/)
+Red Hat 3scale Developer Portal's CMS consists of a few elements:
+
+* Horizontal menu in the Admin Portal with access to content, redirects, and changes
+* The main area containing details of the sections above
+* CMS mode, accessible through the preview option
+
+![09-developer-portal.png](images/09-developer-portal.png)
+
+[Liquid](https://github.com/Shopify/liquid) is a simple programming language used for displaying and processing most of the data from the 3scale system available for API providers. In 3scale, it is used to expose server-side data to your API developers, greatly extending the usefulness of the CMS while maintaining a high level of security.
+
+### Links
+
+* [Developer Portal Documentation](https://access.redhat.com/documentation/en-us/red_hat_3scale/2.2/html/developer_portal/)
+* [Liquid markup language](https://github.com/Shopify/liquid)
+* [And Overview of Liquid](https://www.shopify.com/partners/blog/115244038-an-overview-of-liquid-shopifys-templating-language)

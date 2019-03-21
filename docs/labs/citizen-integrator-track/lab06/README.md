@@ -1,21 +1,27 @@
-# Lab 6
+# Lab 7
 
-## API Developer Portal
+## Testing the International Inc. Locations webpage
 
-### Publishing APIs to Developer Portal
+### Testing your web application
 
-* Duration: 20 mins
-* Audience: API Owners, Product Managers, Developers, Architects
+* Duration: 10 mins
+* Audience: API Consumers, Developers, Architects
 
-## Overview
+### Overview
 
-The focal point of your developers experience is the API developer portal, and the level of effort you put into it will directly correlate to the level of success of your API program, and API developer engagement.
+This lab demonstrates the International Inc. Locations page using our newly authenticated locations API.  
 
 ### Why Red Hat?
 
-[Red Hat 3scale API Management](https://www.3scale.net/) Solution provides a built-in, state-of-the-art CMS portal, making it very easy to create your own branded hub with a custom domain to manage developer interactions, and help increase API adoption.
+Applications can be built from many technologies. In this case we use a simple web application, but a wide range of Red Hat and non-Red Hat technologies could be used.
 
-You can customize the look and feel of the entire Developer Portal to match your own branding. You have complete control over every element of the portal, so you can make it as easy as possible for developers to learn how to use your API.
+### Skipping The Lab
+
+If you decide to skip the lab you can check how a SSO enabled web applications looks like:
+
+```bash
+http://www-international.dil.opentry.me/
+```
 
 ### Environment
 
@@ -51,140 +57,145 @@ Once the environment is provisioned, you will be presented with a page that pres
 
 ## Lab Instructions
 
-### Step 1: Customizing Developer Portal
+### Step 1: Update OpenShift Deployment
 
-1. Click on the `3scale Admin Dashboard` from the Red Hat Solution Explorer. The URL should look like
+OpenShift let you automatically redeploy your changes when you setup a Continuous Integration / Continuous Deployment (CI/CD) pipeline through the use of webhook. For this lab we will trigger the new build and deployment manually through the OpenShift Console.
 
-    ```bash
-    https://userX-admin.dil.opentry.me/p/login
-    ```
+1. Go back to your OpenShift web console. Navigate to your project's overview page.
 
-    *Remember the `X` variable in the URL is your assigned user number.*
+1. Scroll down and click in the www link in the BUILDS section.
 
-1. Accept the self-signed certificate if you haven't.
+   ![01-scroll-down](images/deploy-10.png "Scroll Down")
 
-1. Log into 3scale using your designated [user and password](#environment). Click on **Sign In**.
+1. In the build configuration page, replace the `CLIENT_ID` from `CHANGE_ME`to the one generated from [Lab 05 Step 4.6](../lab05##step-4-create-a-test-app)
 
-    ![01-login.png](images/01-login.png)
+   ![02-client-id](images/deploy-11.png "Change Client ID")
 
-1. Click on the **Developer Portal** tab to access the developer portal settings.
+1. Click Save button to persist the changes. A green pop up will show you that the changes were saved.
 
-    ![10-developer-portal.png](images/10-developer-portal.png)
+1. Click the Start Build button to trigger a new build using the new environment variables pointing to your service.
 
-1. Click on the **Visit Developer Portal** to take a look of how your developer portal looks like.
+   ![03-start-build](images/deploy-12.png "Start Build")
 
-    ![11-visit-devportal.png](images/11-visit-devportal.png)
+1. A new build will be triggered. Expand the row by clicking the Builds Icon.
 
-1. You can see there is a default portal with information on your API, and how to signup. Unfortunately the API information is incorrect.
+   ![04-view-build](images/deploy-13.png "View Build")
 
-    ![12-devportal-overview.png](images/12-devportal-overview.png)
+*The build process checks out the code from the git repo, runs a source-to-image container image build, and redeploys the container with the new image using a rolling upgrade strategy.*
 
-    *We will edit our portal to update it with the correct information, and we will add the cool shadowman logo*.
+1. Wait for until the new Build to complete and the rolling upgrade to finish to test your new deployment.
 
-1. Go back to your admin portal browser tab and scroll down to the content sub-sections for the **Layouts** and select the **Main layout** menu option.
+   ![22-updated-app](images/consume-22.png "Updated App")
 
-    ![12-main-layout.png](images/12-main-layout.png)
+### Step 2: Update Secured Service with Red Hat Single Sign On Application Callback
 
-1. First look for the **navbar** section of the main HTML. Replace the **{{ provider.name }}** for the shadowman image link:
+Redirect URLs are a critical part of the OAuth flow. After a user successfully authorizes an application, the authorization server will redirect the user back to the application with either an authorization code or access token in the URL. Because the redirect URL will contain sensitive information, it is critical that the service doesn’t redirect the user to arbitrary locations.
 
-    `<img src="https://www.redhat.com/profiles/rh/themes/redhatdotcom/img/logo.png" alt="{{ provider.name }}">`
-
-    ![13-custom-logo.png](images/13-custom-logo.png)
-
-1. Click the *Publish* button at the bottom of the editor to save the changes and made them available in the site.
-
-    ![14-publish-devportal.png](images/14-publish-devportal.png)
-
-1. Go back to browse the top of the content sub-sections and find the **Homepage** section.
-
-    ![15-homepage-devportal.png](images/15-homepage-devportal.png)
-
-1. Change all the code **Echo** references in the homepage code for **Office Locations**.
-
-1. Click the **Publish** button.
-
-1. Refresh your Developer Portal's browser tab to check the changes. Your Developer Portal should now look like this:
-
-    ![16-updated-devportal.png](images/16-updated-devportal.png)
-
-### Step 2: Register New Accounts Using Developer Portal
-
-1. Take the place of one of your developers and signup for the **Basic** plan.
-
-    ![16a-signup-limited.png](images/16a-signup-limited.png)
-
-1. Fill in your information and an email to register as a developer. Click on the **Sign up** button.
-
-    ![16b-signup-form.png](images/16b-signup-form.png)
-
-1. The system will try to send a message with an activation link.
-
-    ![16bb-signup-thankyou.png](images/16bb-signup-thankyou.png)
-
-    *Currently the lab environment doesn't have a configured email server, so we won't be able to receive the email*.
-
-1. Go back to your *Admin Portal* tab and navigate to **Developers** to activate the new account.
-
-    ![16bc-developers-tab.png](images/16bc-developers-tab.png)
-
-1. Find your user under the *Accounts* and click the **Activate** link.
-
-    ![16cc-activate-account.png](images/16cc-activate-account.png)
-
-    *Your user is now active and can log into the portal*.
-
-### Step 3: Login to Developer Portal
-
-1. As your portal is not currently public, you will need your portal code to login. You can get the code in your admin portal navigating to: **Settings > Developer Portal > Domains &amp; Access**.
-
-    ![16d-access-portal.png](images/16d-access-portal.png)
-
-1. Open a new *Incognito/Private* browser window to test the Developer Portal login. Navigate to:
+1. Open a browser window and navigate to:
 
     ```bash
-    https://userX.dil.opentry.me/
+    http://sso-sso.dil.opentry.me/auth/admin/userX/console/
     ```
 
-1. Type your portal code to finish the login.
+    *Remember to replace the X with your user number.*
 
-    ![16e-ingress-code.png](images/16e-ingress-code.png)
+1. Log into Red Hat Single Sign On using your designated [user and password](#environment). Click on **Sign In**.
 
-1. Sign in to the portal.
+    ![00-login-sso.png](images/00-login-sso.png "RH SSO Login")
 
-    ![16f-dev-signin.png](images/16f-dev-signin.png)
+1. Select **Clients** from the left menu.
 
-1. You will land in the developers homepage, where you will be able to check your developers settings and retrieve your newly created **Client ID** and **Client Secret**.
+    ![00-clients.png](images/00-clients.png "Clients")
 
-    ![16g-user-credentials.png](images/16g-user-credentials.png "Application Credentials")
+    *3scale, through it's [zync](https://github.com/3scale/zync/) component, already synchronized the application information into the Red Hat SSO security realm*.
 
-*Congratulations!* You have successfully customized your Developer Portal and completed a Sign Up process.
+1. Click on the **CLIENT_ID** link to view the details. 
+
+    *Remember to select CLIENT_ID with the one you got in the [API Security Lab](../lab05/#step-4-create-a-test-app). It will easily identifiable as its and hexadecimal name*.
+
+    *If you do not find the CLIENT_ID, make sure you correctly executed the sync between 3scale and RHSSO in [Step 3.12 Lab05](../lab05/#step-3-configure-3scale-integration)*
+
+   ![24-client-application](images/consume-24.png "Client Application")
+
+1. Scroll down, type in and select the following options in the application configuration:
+
+    | Field | Value |
+    | --- | --- |
+    | Access Type | Public |
+    | Standard Flow Enabled | ON |
+    | Implicit Flow Enabled | OFF |
+    | Valid Redirect URIs | http://www-userX.dil.opentry.me/* |
+    | Web Origins | \* |
+
+    *Remember to replace the X with your user number.*
+
+    ![25-client-config](images/consume-25.png "Client Configuration")
+
+1. Finally, click **Save** button to persist the changes.
+
+### Step 3: Opening International Inc Web Page
+
+International Inc web development create a Node.js application for the company home page. They added a map service to locate the offices around the world. In this step you will deploy that application.
+
+1. Open a browser tab and navigate to `http://www-userX.dil.opentry.me`.
+
+*Remember to replace the `X` variable in the URL with your assigned user number.*
+
+1. You should now see what the development team created for International Inc. Click **LOCATIONS** to check the locations page.
+
+    ![10-application-page](images/consume-13.png "Webpage")
+
+1. You can notice now the **Sign In** button in the page.
+
+    ![11-Sign-in](images/consume-222.png "Sign-In")
+
+
+### Step 4: Test the Single Sign On Integration
+
+1. Let's test the integration. Click the **Sign In** button.
+
+1. You are being redirected to Red Hat Single Sign On **Login Page**. Login using the user credentials you created in the [API Security Lab](../lab05/#step-2-add-user-to-realm)
+
+    * Username: **apiuser**
+    * Password: **apipassword**
+
+    ![23-realm-login](images/consume-23.png "Login Realm")
+
+1. You will be redirected again to the **LOCATIONS** page where now you will be able to see the map with the International Inc Offices.
+
+    ![11-locations-page](images/consume-14.png "Locations Page")
+
+### Step 5: Troubleshooting the Locations Page
+
+1. In most cases, the Locations web page will **NOT** show the locations because of a self-signed certificate issue in your web-browser.  See the below example with missing locations:
+
+    ![00-missing-locations](images/00-missing-locations.png "Missing Locations")
+
+1. To resolve this issue in Chrome, navigate to *View > Developer > Developer Tools* menu.  A Developer Tools console should appear.
+
+    ![00-developer-console](images/00-developer-console.png "Developer Console")
+
+1. In the developer console, a red error should appear indicating a cert issue. Click on the link and accept the certificate. 
+
+*Example link: `https://location-userX-api-staging.amp.dil.opentry.me/locations`*
+
+1. Refresh the page, and the locations should appear.
+
+    ![11-locations-page](images/consume-14.png "Locations Page")
+
+ *Congratulations!* You have successfully tested the International Inc. Locations webpage using a full SSO authenticated API.
 
 ## Steps Beyond
 
-So, you want more? Click the **Documentation** link. Where does it takes you? *API Docs* is where you can add your interactive documentation for your APIs. Is based on the known *Swagger UI* interface.
-
-You can add from the Admin Portal under *API Docs* the API definition to generate the live testing.
+So, you want more? You can explore in detail the documentation on the Javascript Adapter to check what other things can you get from your authenticated user.
 
 ## Summary
 
-In this lab you discovered how to add a developer facing experience to your APIs. Developers in your organization or outside of it can now register, gain access to API keys and develop sample applications.
+In total you should now have been able to follow all the steps from designing and API, deploying it's code, issuing keys, connecting OpenID connect and calling it from an application. This gives you a brief overview of the creation and deployment of an API. There are many variations and extensions of these general principles to explore!
 
-You can now proceed to [Lab 7](../lab07/#lab-7)
+This is the last lab of this workshop.
 
 ## Notes and Further Reading
 
-Red Hat 3scale Developer Portal's CMS consists of a few elements:
-
-* Horizontal menu in the Admin Portal with access to content, redirects, and changes
-* The main area containing details of the sections above
-* CMS mode, accessible through the preview option
-
-![09-developer-portal.png](images/09-developer-portal.png)
-
-[Liquid](https://github.com/Shopify/liquid) is a simple programming language used for displaying and processing most of the data from the 3scale system available for API providers. In 3scale, it is used to expose server-side data to your API developers, greatly extending the usefulness of the CMS while maintaining a high level of security.
-
-### Links
-
-* [Developer Portal Documentation](https://access.redhat.com/documentation/en-us/red_hat_3scale/2.2/html/developer_portal/)
-* [Liquid markup language](https://github.com/Shopify/liquid)
-* [And Overview of Liquid](https://www.shopify.com/partners/blog/115244038-an-overview-of-liquid-shopifys-templating-language)
+* [Red Hat 3scale API Management](http://microcks.github.io/)
+* [Setup OIDC with 3scale](https://developers.redhat.com/blog/2017/11/21/setup-3scale-openid-connect-oidc-integration-rh-sso/)

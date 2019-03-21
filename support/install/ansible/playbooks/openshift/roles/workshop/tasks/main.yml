@@ -6,10 +6,6 @@
   when: user_projects
 
 - import_role:
-    name: provision_che
-  when: che
-
-- import_role:
     name: provision_fuse
   when: fuse
 

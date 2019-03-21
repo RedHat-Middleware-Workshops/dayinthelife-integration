@@ -49,3 +49,21 @@
     threescale_master_token: "{{threescale_master_token}}"
     threescale_admin_token: "{{threescale_admin_token}}"
     rhsso_namespace: "{{rhsso_namespace}}"
+
+# Fix Codeready Workspaces
+- name: Patch Che Configmap Java options
+  shell: oc patch configmap che -n codeready --patch='{"data":{"CHE_WORKSPACE_JAVA__OPTIONS":"-XX:MaxRAM=300m -XX:MaxRAMFraction=2 -XX:+UseParallelGC -XX:MinHeapFreeRatio=10 -XX:MaxHeapFreeRatio=20 -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xms20m -Djava.security.egd=file:/dev/./urandom "}}'
+
+- name: Patch Che Configmap Mvn options
+  shell: oc patch configmap che -n codeready --patch='{"data":{"CHE_WORKSPACE_MAVEN__OPTIONS":"-XX:MaxRAM=300m -XX:MaxRAMFraction=2 -XX:+UseParallelGC -XX:MinHeapFreeRatio=10 -XX:MaxHeapFreeRatio=20 -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xms20m -Djava.security.egd=file:/dev/./urandom "}}'
+
+- name: Patch Che Configmap Workspace options
+  shell: oc patch configmap che -n codeready --type json --patch='[{"op":"remove","path":"/data/CHE_WORKSPACE_JAVA_OPTIONS"}]'
+  ignore_errors: true
+
+- name: Scale 0 replicas
+  shell: oc scale deploy/codeready -n codeready --replicas=0
+  delay: "5"
+
+- name: Scale 1 replicas
+  shell: oc scale deploy/codeready -n codeready --replicas=1

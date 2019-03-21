@@ -1,194 +1,201 @@
-= Integrator Lab 6 - API Developer Portal
-:walkthrough: Create and customize the API Developer Portal
+:walkthrough: Testing the International Inc. Locations page using our newly authenticated locations API
+:next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}/tutorial/dayinthelife-integration.git-citizen-integrator-track-lab07/
+:3scale-url: https://www.3scale.net/
+:3scale-admin-url: https://{user-username}-admin.{openshift-app-host}/p/login
+:3scale-dev-portal-url: https://{user-username}.{openshift-app-host}/
+:sso-url:  http://sso-sso.{openshift-app-host}/auth/admin/{user-username}/console/
+:openshift-url: {openshift-host}/console
+:user-password: openshift
 
-:experimental:
+[id='testing-web-app']
+= Integrator Lab 6 - Testing the web application
 
-[time=20]
-== API Developer Portal
+In this lab you will test the security enhancements for the International Inc. Locations web application.
 
-=== Publishing APIs to Developer Portal
+Audience: API Consumers, Developers, Architects
 
-* Duration: 20 mins
-* Audience: API Owners, Product Managers, Developers, Architects
+*Overview*
 
-== Overview
+This lab demonstrates the International Inc. Locations page using our newly authenticated locations API.
 
-The focal point of your developers experience is the API developer portal, and the level of effort you put into it will directly correlate to the level of success of your API program, and API developer engagement.
+*Why Red Hat?*
 
-=== Why Red Hat?
-
-https://www.3scale.net/[Red Hat 3scale API Management] Solution provides a built-in, state-of-the-art CMS portal, making it very easy to create your own branded hub with a custom domain to manage developer interactions, and help increase API adoption.
-
-You can customize the look and feel of the entire Developer Portal to match your own branding. You have complete control over every element of the portal, so you can make it as easy as possible for developers to learn how to use your API.
-
-=== Environment
+Applications can be built from many technologies. In this case we use a simple web application, but a wide range of Red Hat and non-Red Hat technologies could be used.
 
 *Credentials:*
 
-Your username is your assigned user number. For example, if you are assigned user number *1*, your username is:
+Your username is: `{user-username}` +
+Your password is: `{user-password}`
 
-[source,bash]
-----
-user1
-----
+[type=walkthroughResource]
+.Openshift Console
+****
+* link:{openshift-url}[Console, window="_blank"]
+****
 
-Please ask your instructor for your password.
+[type=walkthroughResource]
+.Red Hat SSO Console
+****
+* link:{sso-url}[Console, window="_blank"]
+****
 
-*URLs:*
+[time=5]
+[id="update-openshift"]
+== Update OpenShift Deployment
 
-If you haven't done so already, you need to login to the *Red Hat Solution Explorer* webpage so that a unique lab environment can be provisioned on-demand for your exclusive use.  You should open a web browser and navigate to:
+Openshift allows you to automatically redeploy your changes when you setup a Continuous Integration / Continuous Deployment (CI/CD) pipeline through the use of a webhook. For this lab we will trigger the new build and deployment manually through the OpenShift Console.
 
-[source,bash]
-----
-https://tutorial-web-app-webapp.{openshift-app-host}
-----
+. Open your link:{openshift-url}[Openshift Console, window="_blank"]. Navigate to your project's overview page. It will be called `{user-username} Project`.
+. Scroll down and click in the www link in the BUILDS section.
++
+image::images/deploy-10.png[01-scroll-down, role="integr8ly-img-responsive"]
 
-You will be presented with a login page where you can enter your unique credentials:
+. In the build configuration page, replace the `CLIENT_ID` from ``CHANGE_ME``to the one generated from Integrator Lab 4 (Task 4.6).
++
+image::images/deploy-11.png[02-client-id, role="integr8ly-img-responsive"]
 
-image::images/design-50.png[design-login, role="integr8ly-img-responsive"]
+. Click Save button to persist the changes. A green pop up will show you that the changes were saved.
 
-Enter your credentials and click *Log in*.  You'll notice a web-page appear which explains that a _unique environment_ is being provisioned.
+. Click the Start Build button to trigger a new build using the new environment variables pointing to your service.
++
+image::images/deploy-12.png[03-start-build, role="integr8ly-img-responsive"]
 
-image::images/design-51.png[design-login, role="integr8ly-img-responsive"]
+. A new build will be triggered. Expand the row by clicking the Builds Icon.
++
+image::images/deploy-13.png[04-view-build, role="integr8ly-img-responsive"]
++
+_The build process checks out the code from the git repo, runs a source-to-image container image build, and redeploys the container with the new image using a rolling upgrade strategy._
 
-Once the environment is provisioned, you will be presented with a page that presents all the available applications which you'll need in order to complete the labs:
+. Wait for until the new Build to complete and the rolling upgrade to finish to test your new deployment.
++
+image::images/consume-22.png[22-updated-app, role="integr8ly-img-responsive"]
 
-image::images/design-52.png[design-login, role="integr8ly-img-responsive"]
+[time=5]
+[id="update-sso"]
+== Update SSO On Application Callback
 
-== Lab Instructions
+Redirect URLs are a critical part of the OAuth flow. After a user successfully authorizes an application, the authorization server will redirect the user back to the application with either an authorization code or access token in the URL. Because the redirect URL will contain sensitive information, it is critical that the service doesn't redirect the user to arbitrary locations.
 
-=== Step 1: Customizing Developer Portal
-
-. Click on the `3scale Admin Dashboard` from the Red Hat Solution Explorer. The URL should look like
+. Open a browser window and navigate to:
 +
 [source,bash]
 ----
- https://userX-admin.{openshift-app-host}/p/login
-----
-+
-_Remember the `X` variable in the URL is your assigned user number._
-
-. Log into 3scale using your designated <<environment,user and password>>. Click on *Sign In*.
-+
-image::images/01-login.png[01-login.png, role="integr8ly-img-responsive"]
-
-. Click on the *Developer Portal* tab to access the developer portal settings.
-+
-image::images/10-developer-portal.png[10-developer-portal.png, role="integr8ly-img-responsive"]
-
-. Click on the *Visit Developer Portal* to take a look of how your developer portal looks like.
-+
-image::images/11-visit-devportal.png[11-visit-devportal.png, role="integr8ly-img-responsive"]
-
-. You can see there is a default portal with information on your API, and how to signup. Unfortunately the API information is incorrect.
-+
-image::images/12-devportal-overview.png[12-devportal-overview.png, role="integr8ly-img-responsive"]
-+
-_We will edit our portal to update it with the correct information, and we will add the cool shadowman logo_.
-
-. Go back to your admin portal browser tab and scroll down to the content sub-sections for the *Layouts* and select the *Main layout* menu option.
-+
-image::images/12-main-layout.png[12-main-layout.png, role="integr8ly-img-responsive"]
-
-. First look for the *navbar* section of the main HTML. Replace the *{{ provider.name }}* for the shadowman image link:
-+
-`+<img src="https://www.redhat.com/profiles/rh/themes/redhatdotcom/img/logo.png" alt="{{ provider.name }}">+`
-+
-image::images/13-custom-logo.png[13-custom-logo.png, role="integr8ly-img-responsive"]
-
-. Click the _Publish_ button at the bottom of the editor to save the changes and made them available in the site.
-+
-image::images/14-publish-devportal.png[14-publish-devportal.png, role="integr8ly-img-responsive"]
-
-. Go back to browse the top of the content sub-sections and find the *Homepage* section.
-+
-image::images/15-homepage-devportal.png[15-homepage-devportal.png, role="integr8ly-img-responsive"]
-
-. Change all the code *Echo* references in the homepage code for *Office Locations*.
-. Click the *Publish* button.
-. Refresh your Developer Portal's browser tab to check the changes. Your Developer Portal should now look like this:
-+
-image::images/16-updated-devportal.png[16-updated-devportal.png, role="integr8ly-img-responsive"]
-
-=== Step 2: Register New Accounts Using Developer Portal
-
-. Take the place of one of your developers and signup for the *Basic* plan.
-+
-image::images/16a-signup-limited.png[16a-signup-limited.png, role="integr8ly-img-responsive"]
-
-. Fill in your information and an email to register as a developer. Click on the *Sign up* button.
-+
-image::images/16b-signup-form.png[16b-signup-form.png, role="integr8ly-img-responsive"]
-
-. The system will try to send a message with an activation link.
-+
-image::images/16bb-signup-thankyou.png[16bb-signup-thankyou.png, role="integr8ly-img-responsive"]
-+
-_Currently the lab environment doesn't have a configured email server, so we won't be able to receive the email_.
-
-. Go back to your _Accounts > Listing_  and navigate to *Developers* to activate the new account.
-+
-image::images/16bc-developers-tab.png[16bc-developers-tab.png, role="integr8ly-img-responsive"]
-
-. Find your user under the _Accounts_ and click the *Activate* link.
-+
-image::images/16cc-activate-account.png[16cc-activate-account.png, role="integr8ly-img-responsive"]
-+
-_Your user is now active and can log into the portal_.
-
-=== Step 3: Login to Developer Portal
-
-. As your portal is not currently public, you will need your portal code to login. You can get the code in your admin portal navigating to: menu:Audience[Developer Portal > Domains & Access].
-+
-image::images/16d-access-portal.png[16d-access-portal.png, role="integr8ly-img-responsive"]
-
-. Open a new _Incognito/Private_ browser window to test the Developer Portal login. Navigate to:
-+
-[source,bash]
-----
- https://userX.{openshift-app-host}/
+ http://sso-sso.{openshift-app-host}/auth/admin/{user-username}/console/
 ----
 
-. Type your portal code to finish the login.
+. Log into Red Hat Single Sign On using your credentials. Click on *Sign In*.
 +
-image::images/16e-ingress-code.png[16e-ingress-code.png, role="integr8ly-img-responsive"]
+image::images/00-login-sso.png[00-login-sso.png, role="integr8ly-img-responsive"]
 
-. Sign in to the portal.
+. Select *Clients* from the left menu.
 +
-image::images/16f-dev-signin.png[16f-dev-signin.png, role="integr8ly-img-responsive"]
-
-. You will land in the developers homepage, where you will be able to check your developers settings and retrieve your newly created *Client ID* and *Client Secret*.
+image::images/00-clients.png[00-clients.png, role="integr8ly-img-responsive"]
 +
-image::images/16g-user-credentials.png[16g-user-credentials.png, role="integr8ly-img-responsive"]
+_3scale, through it's https://github.com/3scale/zync/[zync] component, already synchronized the application information into the Red Hat SSO security realm_.
 
-_Congratulations!_ You have successfully customized your Developer Portal and completed a Sign Up process.
+. Click on the *CLIENT_ID* link to view the details.
++
+_Remember to select CLIENT_ID with the one you got in the **Integrator Lab 4 API Security Lab**. It will easily identifiable as its and hexadecimal name_.
++
+_If you do not find the CLIENT_ID, make sure you correctly executed the sync between 3scale and RHSSO in Lab 4, Task 3.11_
++
+image::images/consume-24.png[24-client-application, role="integr8ly-img-responsive"]
 
-== Steps Beyond
+. Scroll down, type in and select the following options in the application configuration:
++
+|===
+| Field | Value
 
-So, you want more? Click the *Documentation* link. Where does it takes you? _API Docs_ is where you can add your interactive documentation for your APIs. Is based on the known _Swagger UI_ interface.
+| Access Type
+| Public
 
-You can add from the Admin Portal under _API Docs_ the API definition to generate the live testing.
+| Standard Flow Enabled
+| ON
 
+| Implicit Flow Enabled
+| OFF
+
+| Valid Redirect URIs
+| http://www-{user-username}.{openshift-app-host}/*
+
+| Web Origins
+| *
+|===
++
+image::images/consume-25.png[25-client-config, role="integr8ly-img-responsive"]
+
+. Finally, click *Save* button to persist the changes.
+
+[time=5]
+[id="test-webpage"]
+== Opening International Inc Web Page
+
+International Inc web development create a Node.js application for the company home page. They added a map service to locate the offices around the world. In this step you will deploy that application.
+
+. Open a browser tab and navigate to `+http://www-{user-username}.{openshift-app-host}+`.
+
+. You should now see what the development team created for International Inc. Click *LOCATIONS* to check the locations page.
++
+image::images/consume-13.png[10-application-page, role="integr8ly-img-responsive"]
+
+. You can notice now the *Sign In* button in the page.
++
+image::images/consume-222.png[11-Sign-in, role="integr8ly-img-responsive"]
+
+[time=5]
+[id="test-SSO-integration"]
+== Test the Single Sign On Integration
+
+. Let's test the integration. Click the *Sign In* button.
+
+. You are being redirected to Red Hat Single Sign On *Login Page*. Login using the user credentials you created in the link:../lab05/#step-2-add-user-to-realm[API Security Lab]
+ ** Username: *apiuser*
+ ** Password: *apipassword*
++
+image::images/consume-23.png[23-realm-login, role="integr8ly-img-responsive"]
+
+. You will be redirected again to the *LOCATIONS* page where now you will be able to see the map with the International Inc Offices.
++
+image::images/consume-14.png[11-locations-page, role="integr8ly-img-responsive"]
+
+[time=10]
+[id="troubleshoot-webpage"]
+== Troubleshooting the Locations Page
+
+. In most cases, the Locations web page will *NOT* show the locations because of a self-signed certificate issue in your web-browser.  See the below example with missing locations:
++
+image::images/00-missing-locations.png[00-missing-locations, role="integr8ly-img-responsive"]
+
+. To resolve this issue in Chrome, navigate to _View > Developer > Developer Tools_ menu.  A Developer Tools console should appear.
++
+image::images/00-developer-console.png[00-developer-console, role="integr8ly-img-responsive"]
+
+. In the developer console, a red error should appear indicating a cert issue. Click on the link and accept the certificate.
+
+_Example link: `+https://location-userX-api-staging.amp.{openshift-app-host}/locations+`_
+
+. Refresh the page, and the locations should appear.
++
+image::images/consume-14.png[11-locations-page, role="integr8ly-img-responsive"]
++
+_Congratulations!_ You have successfully tested the International Inc. Locations webpage using a full SSO authenticated API.
+
+[time=1]
+[id="summary"]
 == Summary
 
-In this lab you discovered how to add a developer facing experience to your APIs. Developers in your organization or outside of it can now register, gain access to API keys and develop sample applications.
+In total you should now have been able to follow all the steps from designing and API, deploying it's code, issuing keys, connecting OpenID connect and calling it from an application. This gives you a brief overview of the creation and deployment of an API. There are many variations and extensions of these general principles to explore!
 
-You can now proceed to link:../lab07/#lab-7[Lab 7]
+[time=1]
+[id="steps-beyond"]
+== Steps Beyond
+So, you want more? If you have time, you can try our bonus lab. This lab focuses demonstrates Fuse Online, showcasing Apicurito to define your API contract, autogenerate an integration, deploy it, then secure your newly created API using 3scale Smart Discovery.
 
+If you'd like to try this out, you can now proceed to link:{next-lab-url}[Lab 7]
+
+[time=1]
+[id="further-reading"]
 == Notes and Further Reading
 
-Red Hat 3scale Developer Portal's CMS consists of a few elements:
-
-* Horizontal menu in the Admin Portal with access to content, redirects, and changes
-* The main area containing details of the sections above
-* CMS mode, accessible through the preview option
-
-image::images/09-developer-portal.png[09-developer-portal.png, role="integr8ly-img-responsive"]
-
-https://github.com/Shopify/liquid[Liquid] is a simple programming language used for displaying and processing most of the data from the 3scale system available for API providers. In 3scale, it is used to expose server-side data to your API developers, greatly extending the usefulness of the CMS while maintaining a high level of security.
-
-=== Links
-
-* https://access.redhat.com/documentation/en-us/red_hat_3scale/2.2/html/developer_portal/[Developer Portal Documentation]
-* https://github.com/Shopify/liquid[Liquid markup language]
-* https://www.shopify.com/partners/blog/115244038-an-overview-of-liquid-shopifys-templating-language[And Overview of Liquid]
+* http://microcks.github.io/[Red Hat 3scale API Management]
+* https://developers.redhat.com/blog/2017/11/21/setup-3scale-openid-connect-oidc-integration-rh-sso/[Setup OIDC with 3scale]

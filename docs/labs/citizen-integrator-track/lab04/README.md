@@ -1,26 +1,26 @@
-# Lab 4
+# Lab 5
 
-## Managing API Endpoints
+## API Security
 
-### Take control of your APIs
+### Securing APIs with OpenID Connect and Red Hat Single Sign On
 
-* Duration: 15 mins
+* Duration: 20 mins
 * Audience: API Owners, Product Managers, Developers, Architects
 
 ## Overview
 
-Once you have APIs deployed in your environment, it becomes critically important to manage who may use them, and for what purpose. You also need to begin to track usage of these different users to know who is or is not succeeding in their usage. For this reason, in this lab, you will be adding management capabilities to the API to give you control and visibility of it's usage.
+Once you have APIs in your organization and have applications being written, you also want to be sure in many cases that the various types of users of the APIs are correctly authenticated. In this lab you will discover how to set up the widely used OpenID connect pattern for Authentication.
 
 ### Why Red Hat?
 
-Red Hat provides one the leading API Management tools that provides API management services. The [3scale API Management](https://www.3scale.net/) solution enables you to quickly and easily protect and manage your APIs.
+The Red Hat SSO product provides important functionality for managing identities at scale. In this lab you will see how it fits together with 3scale and OpenShift.
 
 ### Skipping The Lab
 
-If you are planning to skip to the next lab, there is an already running API proxy for the Location API Service in this endpoint:
+If you are planning to skip to the next lab, there is an already running OpenID Connect secured API proxy for the Location API Service in this endpoint:
 
 ```bash
-https://location-service-api.amp.dil.opentry.me
+https://location-sso.amp.dil.opentry.me:443
 ```
 
 ### Environment
@@ -37,7 +37,7 @@ Please ask your instructor for your password.
 
 **URLs:**
 
-If you haven't done so already, you need to login to the **Red Hat Solution Explorer** webpage so that a unique lab environment can be provisioned on-demand for your exclusive use. You should open a web browser and navigate to: 
+If you haven't done so already, you need to login to the **Red Hat Solution Explorer** webpage so that a unique lab environment can be provisioned on-demand for your exclusive use.  You should open a web browser and navigate to: 
 
 ```bash
 https://tutorial-web-app-webapp.dil.opentry.me
@@ -57,17 +57,75 @@ Once the environment is provisioned, you will be presented with a page that pres
 
 ## Lab Instructions
 
-### Step 1: Define your API Proxy
+### Step 1: Get Red Hat Single Sign On Service Account Credentials
 
-Your 3scale Admin Portal provides access to a number of configuration features.
+1. Open a browser window and navigate to:
 
-1. Click on the `3scale Admin Dashboard` from the Red Hat Solution Explorer. The URL should look like
+    ```bash
+    https://secure-sso-sso.dil.opentry.me/auth/admin/userX/console
+    ```
+
+    *Remember to replace the `X` variable in the URL with your assigned user number.*
+
+1. Log into Red Hat Single Sign On using your designated [user and password](#environment). Click on **Sign In**.
+
+    ![00-login-sso.png](images/00-login-sso.png "RH SSO Login")
+
+1. Select **Clients** from the left menu.
+
+    ![00-clients.png](images/00-clients.png "Clients")
+
+    *A 3scale-admin client and service account was already created for you*.
+
+1. Click on the **3scale-admin** link to view the details.
+
+    ![00-3scale-admin.png](images/00-3scale-admin.png "3scale admin account")
+
+1. Click the **Credentials** tab.
+
+    ![00-sa-credentials.png](images/00-sa-credentials.png "Service Account Credentials")
+
+1. Take notice of the service account **Secret**. Copy and save it or write it down as you will use it to configure 3scale.
+
+    ![00-sa-secret.png](images/00-sa-secret.png "Service Account Secret")
+
+### Step 2: Add User to Realm
+
+1. Click on the Users menu on the left side of the screen.
+
+    ![00-users.png](images/00-users.png "Users Menu")
+
+1. Click the **Add user** button.
+
+    ![00-add-user.png](images/00-add-user.png "Add User")
+
+1. Type **apiuser** as the Username.
+
+    ![00-username.png](images/00-username.png "User Details")
+
+1. Click on the **Save** button.
+
+1. Click on the **Credentials** tab to reset the password. Type **apipassword** as the *New Password* and *Password Confirmation*. Turn OFF the **Temporary** to avoid the password reset at the next login.
+
+    ![00-user-credentials.png](images/00-user-credentials.png "User Credentials")
+
+1. Click on **Reset Password**.
+
+1. Click on the **Change password** button in the pop-up dialog.
+
+    ![00-change-password.png](images/00-change-password.png "Change Password Dialog")
+
+    *Now you have a user to test your integration.*
+
+### Step 3: Configure 3scale Integration
+
+1. Open a browser window and navigate to:
 
     ```bash
     https://userX-admin.dil.opentry.me/p/login
     ```
 
-    *Remember the `X` variable in the URL with your assigned user number.*
+    *Remember to replace the X with your user number.*
 
 1. Accept the self-signed certificate if you haven't.
 
@@ -87,173 +145,90 @@ Your 3scale Admin Portal provides access to a number of configuration features.
 
     ![03-edit-settings.png](images/03-edit-settings.png)
 
-1. Keep select the **APIcast** deployment option in the *Gateway* section.
+1. Scrolll down the page, under the *Authentication* deployment options, select **OpenID Connect**. 
 
-    ![04-apicast.png](images/04-apicast.png)
+    ![04-authentication.png](images/04-authentication.png)
 
-1. Scroll down and keep the **API Key (user_key)** Authentication.
+1. Click on the **Update Service** button.
 
-    ![05-authentication.png](images/05-authentication.png)
+1. Dismiss the warning about changing the Authentication mode by clicking **OK**.
 
-1. Click on **Update Service**.
+    ![04b-authentication-warning.png](images/04b-authentication-warning.png)
+    
+1. Back in the service integration page, click on the **edit APIcast configuration**.
 
-1. Click on the **add the Base URL of your API and save the configuration** button.
+    ![05-edit-apicast.png](images/05-edit-apicast.png)
 
-    ![04-base-url](images/04-base-url.png)
+1. Scroll down the page and expand the authentication options by clicking the **Authentication Settings** link.
 
-1. Leave the settings for `Private Base URL`, `Staging Public Base URL`, and `Production Public Base URL` as it is. We will come back to the screen to update the correct values in later step.
+    ![05-authentication-settings.png](images/05-authentication-settings.png)
 
-1. Scroll down and expand the **MAPPING RULES** section to define the allowed methods on our exposed API.
-
-    *The default mapping is the root ("/") of our API resources, and this example application will not use that mapping. The following actions will redefine that default root ("/") mapping.*
-
-    ![07b-mapping-rules.png](images/07b-mapping-rules.png)
-
-1. Click on the **Metric or Method (Define)**  link.
-
-    ![07b-mapping-rules-define.png](images/07b-mapping-rules-define.png)
-
-1. Click on the **New Method** link in the *Methods* section.
-
-    ![07b-new-method.png](images/07b-new-method.png)
-
-1. Fill in the information for your Fuse Method.
-
-    * Friendly name: **Get Locations**
-
-    * System name: **locations_all**
-
-    * Description: **Method to return all locations**
-
-    ![07b-new-method-data.png](images/07b-new-method-data.png)
-
-1. Click on **Create Method**.
-
-1. Click on the **Add mapping rule** link.
-
-    ![07b-add-mapping-rule.png](images/07b-add-mapping-rule.png)
-
-1. Click on the edit icon next to the GET mapping rule.
-
-    ![07b-edit-mapping-rule.png](images/07b-edit-mapping-rule.png)
-
-1. Type in the *Pattern* text box the following: 
+1. In the **OpenID Connect Issuer** field, type in your previously noted client credentials with the URL of your Red Hat Single Sing On instance:
 
     ```bash
-    /locations
+    http://3scale-admin:CLIENT_SECRET@sso-sso.dil.opentry.me/auth/realms/userX
     ```
 
-1. Select **locations_all** as Method from the combo box.
+    *Remember to replace the X with user number*
 
-    ![07b-getall-rule.png](images/07b-getall-rule.png)
+    ![06-openid-issuer.png](images/06-openid-issuer.png "OpenID Connect Issuer")
 
-### Step 2: Define your API Policies
+1. Scroll down the page and click on the **Update Staging Environment** button.
 
-Red Hat 3scale API Management provides units of functionality that modify the behavior of the API Gateway without the need to implement code. These management components are know in 3scale as policies.
+    ![08-back-integration.png](images/08-back-integration.png "Back Integration")
 
-The order in which the policies are executed, known as the “policy chain”, can be configured to introduce differing behavior based on the position of the policy in the chain. Adding custom headers, perform URL rewriting, enable CORS, and configurable caching are some of the most common API gateway capabilities implemented as policies.
+1. After the reload, scroll down again and click the **Back to Integration &amp; Configuration** link.
 
-1. Scroll down and expand the **POLICIES** section to define the allowed methods on our exposed API.
+    ![07-update-environment.png](images/07-update-environment.png "Update Environment")
 
-    ![01-policies](images/policies-01.png "Policies")
+1. Promote to Production by clicking the **Promote to Production** button.
 
-    *The default policy in the Policy Chain is APIcast. This is the main policy and most of the times you want to keep it*.
+    ![08a-promote-production.png](images/08a-promote-production.png "Update Environment")
 
-1. Click the **Add Policy** link to add a new policy to the chain.
+### Step 4: Create a Test App
 
-    ![02-add-policy](images/policies-02.png)
+1. Go to the *Developers* tab and click on **Developers**.
 
-    _Out-of-the-box 3scale includes a set of policies you can use to modify the way your API gateway behaves. For this lab, we will focus on the **Cross Origin Resource Sharing (CORS)** one as we will use it in the consumption lab_.
+    ![09-developers.png](images/09-developers.png "Developers")
 
-1. Click in the **CORS** link to add the policy.
+1. Click on the **Applications** link.
 
-    ![03-cors-policy](images/policies-03.png "CORS")
+    ![10-applications.png](images/10-applications.png "Applications")
 
-1. Put your mouse over the right side of the policy name to enable the reorder of the chain. Drag and drop the CORS policy to the top of the chain.
+1. Click on **Create Application** link.
 
-    ![04-chain-order](images/policies-04.png "Chain Order")
+    ![11-create-application.png](images/11-create-application.png "Create Application")
 
-1. Now **CORS** policy will be executed before the **APIcast**. Click the **CORS** link to edit the policy.
+1. Select **Basic** plan from the combo box. Type the following information:
 
-    ![05-cors-configuration](images/policies-05.png "Cors Configuration")
+    * Name: **Secure App**
+    * Description: **OpenID Connect Secured Application**
 
-1. In the *Edit Policy* section, click the green **+** button to add the allowed headers.
+    ![12-application-details.png](images/12-application-details.png "Application Details")
 
-    ![06-add-headers](images/policies-06.png "Add Allow Headers")
+1. Finally, scroll down the page and click on the **Create Application** button.
 
-1. Type **Authorization** in the *Allowed headers* field. 
+    ![13-create-app.png](images/13-create-app.png "Create App")
 
-    ![07-authorization-header](images/policies-07.png "Add Authorization Header")
+1. Update the **Redirect URL** to http://www-userX.dil.opentry.me/*. And note the *API Credentials*. Write them down as you will need the **Client ID** and the **Client Secret** to test your integration. 
+    ![14-app-credentials.png](images/14-app-credentials.png "App Credentials")
 
-1. Tick the **allow_credentials** checkbox and fill in with a star (**\***) the *allow_origin* text box.
-
-    ![08-allow-origin](images/policies-08.png "Allow Origin")
-
-1. Click twice the green **+** button under *ALLOW_METHODS* to enable two combo boxes for the CORS allowed methods.
-
-1. Select **GET** from the first box and **OPTIONS** from the second box.
-
-    ![09-allow-methods](images/policies-09.png "Allow Methods")
-
-1. Click the **Submit** button to save the policy configuration.
-
-### Step 3: Configure the Upstream Endpoint
-
-1. Scroll back to the top of the page. Fill in the information for accessing your API:
-
-    * Private Base URL: **http://location-service.international.svc:8080**
-
-    * Staging Public Base URL: **https://location-userX-api-staging.amp.dil.opentry.me:443**
-
-    * Production Public Base URL: **https://location-userX-api.amp.dil.opentry.me:443**
-
-    *Remember to replace the X with your user number*.
-
-    *We are using the internal API service, as we are deploying our services inside the same OpenShift cluster*.
-
-    ![07-baseurl-configuration.png](images/07-baseurl-configuration.png)
-
-1. Scroll down to the **API Test GET request**.
-
-1. Type in the textbox:
-
-    ```bash
-    /locations
-    ```
-
-1. Click on the **Update the Staging Environment** to save the changes and check the connection between client, gateway and API.
-
-    ![08-update-staging.png](images/08-update-staging.png)
-
-    *If everything works, you will get a green message on the left*.
-
-1. Click on **Back to Integration &amp; Configuration** link to return to your API overview.
-
-    ![08aa-back-to-integration.png](images/08aa-back-to-integration.png)
-
-1. Click on the **Promote v.1 to Production** button to promote your configuration from staging to production.
-
-    ![08a-promote-production.png](images/08a-promote-production.png)
-
-*Congratulations!* You have configured 3scale access control layer as a proxy to only allow authenticated calls to your backend API. 3scale is also now:
-
-* Authenticating (If you test with an incorrect API key it will fail) 
-* Recording calls (Visit the Analytics tab to check who is calling your API).
+*Congratulations!* You have now an application to test your OpenID Connect Integration.
 
 ## Steps Beyond
 
-In this lab we just covered the basics of creating a proxy for our API service. Red Hat 3scale API Management also allows us to keep track of  security (as you will see in the next lab) as well as the usage of our API. If getting money for your APIs is also important to you, 3scale  allows you to monetize your APIs with its embedded billing system.
-
-Try to navigate through the rest of the tabs of your Administration Portal. Did you notice that there are application plans associated to your API? Application Plans allow you to take actions based on the usage of your API, like doing rate limiting or charging by hit (API call) or monthly usage.
+So, you want more? Login to the Red Hat Single Sign On admin console for your realm if you are not there already. Click on the Clients menu. Now you can check that 3scale zync component creates a new Client in SSO. This new Client has the same ID as the Client ID and Secret from the 3scale admin portal.
 
 ## Summary
 
-You set up an API management service and API proxies to control traffic into your API. From now on you will be able to issue keys and rights to users wishing to access the API.
+Now that you can secure your API using three-leg authentication with Red Hat Single Sign-On, you can leverage the current assets of your organization like current LDAP identities or even federate the authentication using other IdP services.
 
-You can now proceed to [Lab 5](../lab05/#lab-5)
+For more information about Single Sign-On, you can check its [page](https://access.redhat.com/products/red-hat-single-sign-on).
+
+You can now proceed to [Lab 6](../lab06/#lab-6)
 
 ## Notes and Further Reading
 
-* [Red Hat 3scale API Management](https://www.3scale.net/)
-* [Developers All-in-one 3scale install](https://developers.redhat.com/blog/2017/05/22/how-to-setup-a-3scale-amp-on-premise-all-in-one-install/)
-* [ThoughtWorks Technology Radar - Overambitious API gateways](https://www.thoughtworks.com/radar/platforms/overambitious-api-gateways)
+* [Red Hat 3scale API Management](http://3scale.net)
+* [Red Hat Single Sign On](https://access.redhat.com/products/red-hat-single-sign-on)
+* [Setup OIDC with 3scale](https://developers.redhat.com/blog/2017/11/21/setup-3scale-openid-connect-oidc-integration-rh-sso/)

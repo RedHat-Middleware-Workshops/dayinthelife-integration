@@ -6,6 +6,8 @@
   shell: "oc new-app -f {{ apicurio_template_url }} \
   -p UI_ROUTE=apicurio-studio.{{ ocp_apps_domain }} -p API_ROUTE=apicurio-studio-api.{{ ocp_apps_domain }} \
   -p WS_ROUTE=apicurio-studio-ws.{{ ocp_apps_domain }} -p AUTH_ROUTE=sso-{{sso_project}}.{{ocp_apps_domain}} {{ apicurio_template_params }} -n {{ apicurio_project }}"
+  register: apicurio_create
+  failed_when: apicurio_create.stderr != '' and 'already exists' not in apicurio_create.stderr
   when: configure_only == 'false'
 
 - name: Get SSO token

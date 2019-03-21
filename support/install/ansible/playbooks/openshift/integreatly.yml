@@ -14,7 +14,7 @@
       vars:
         eval_rhsso_admin_username: "{{ hostvars['SHARED_VARS']['rhsso_admin_username'] }}"
         eval_rhsso_admin_password: "{{ hostvars['SHARED_VARS']['rhsso_admin_password'] }}"
-        ocp_apps_domain: "{{ hostvars['SHARED_VARS']['oc_apps_domain'] }}"        
+        ocp_apps_domain: "{{ hostvars['SHARED_VARS']['oc_apps_domain'] }}"
         configure_only: "true"
         sso_project: "sso"
       tags: sso
@@ -26,17 +26,8 @@
         ocp_apps_domain: "{{ hostvars['SHARED_VARS']['oc_apps_domain'] }}"
       tags: microcks
     - include_role:
-        name: setup_che_multi
-      vars:
-        item: che
-        eval_rhsso_admin_username: "{{ hostvars['SHARED_VARS']['rhsso_admin_username'] }}"
-        eval_rhsso_admin_password: "{{ hostvars['SHARED_VARS']['rhsso_admin_password'] }}"
-        ocp_apps_domain: "{{ hostvars['SHARED_VARS']['oc_apps_domain'] }}"
-        openshift_oauth_token: ""
-      tags: che
-    - include_role:
         name: provision_gogs
-      vars:   
+      vars:
         ocp_apps_domain: "{{ hostvars['SHARED_VARS']['oc_apps_domain'] }}"
         configure_only: "false"
       tags: gogs

@@ -1,21 +1,24 @@
-= Developer Lab 4 - SOAP to REST
 :walkthrough: Contract-first API development wrapping an existing SOAP service, implemented using Eclipse Che
+:user-password: openshift
 
-[time=20]
-== SOAP to REST
+[id='soap-to-rest']
+= Developer Lab 4 - SOAP to REST
+
+In this lab, we will be using existing legacy SOAP service and wrap it with a new RESTful endpoint
 
 === Contract-first API development wrapping an existing SOAP service, implemented using Eclipse Che
 
-* Duration: 20 mins
-* Audience: Developers and Architects
+Audience: Developers, Architects
 
+[time=2]
+[id="overview"]
 == Overview
 
 Another important use case in developing API's is to take an existing legacy SOAP service and wrap it with a new RESTful endpoint.  This SOAP to REST transformation is implemented in the API service layer (Fuse).  This lab will walk you through taking an existing SOAP contract (WSDL), converting it to Java POJO's and exposing it using Camel REST DSL.
 
 === Why Red Hat?
 
-Eclipse Che, our online IDE, provides important functionality for implementing API services. In this lab you can see how our Eclipse Che and Fuse can help with SOAP to REST transformation on OpenShift.
+CodeReady Workspaces, our online IDE, provides important functionality for implementing API services. In this lab you can see how our Eclipse Che and Fuse can help with SOAP to REST transformation on OpenShift.
 
 === Skipping The Lab
 
@@ -23,30 +26,22 @@ If you are planning to follow to the next lab or are having trouble with this la
 
 === Environment
 
-Login to the Red Hat Solution Explorer, here you will find the link to Che.
-
-image::images/00-integr8ly-che.png[00-integr8ly-che.png, role="integr8ly-img-responsive"]
-
 *Credentials:*
 
-Your username is your assigned user number. For example, if you are assigned user number *1*, your username is:
+Your username is: `{user-username}` +
+Your password is: `{user-password}`
 
-[source,bash]
-----
-user1
-----
-
-Please ask your instructor for your password.
-
+[time=21]
+[id="instructions"]
 == Lab Instructions
 
 === Step 1: Import the sample SOAP project into your Openshift project
 
-. Navigate back to your Eclipse Che workspace and open the terminal window.
+. Navigate back to your CodeReady Workspaces workspace and open the terminal window.
 +
 image::images/00-open-terminal.png[00-open-terminal.png, role="integr8ly-img-responsive"]
 
-. In Openshift console (https://{openshift-app-host}).
+. In Openshift console ({openshift-host}).
 +
 image::images/00-openshift-loginpage.png[00-openshift-loginpage.png, role="integr8ly-img-responsive"]
 
@@ -54,22 +49,19 @@ image::images/00-openshift-loginpage.png[00-openshift-loginpage.png, role="integ
 +
 image::images/00-commend-login.png[00-commend-login.png, role="integr8ly-img-responsive"]
 
-. Login to Openshift via the Terminal window and paste the commend to the terminal:
+. Login to Openshift via the Terminal window and paste the command to the terminal:
 +
-[source,bash]
+[source,bash,subs="attributes+"]
 ----
- oc login https://{openshift-app-host} --token=XXXXX
+ oc login {openshift-host} --token=XXXXX
 ----
 
 . Build and deploy the SOAP application using source to image(S2i) template. Paste the commend to the terminal.
 +
-[source,bash]
+[source,bash,subs="attributes+"]
 ----
-
- oc new-app s2i-fuse71-spring-boot-camel -p GIT_REPO=https://github.com/RedHatWorkshops/dayinthelife-integration -p CONTEXT_DIR=/projects/location-soap -p APP_NAME=location-soap -p GIT_REF=master -n OCPPROJECT
+ oc new-app s2i-fuse71-spring-boot-camel -p GIT_REPO=https://github.com/RedHatWorkshops/dayinthelife-integration -p CONTEXT_DIR=/projects/location-soap -p APP_NAME=location-soap -p GIT_REF=master -n {user-username}
 ----
-+
-_Remember to replace the OCPPROJECT with the OpenShift project(NameSpace) you created in last lab.  OCPPROJECT should be your username_
 
 . Once the build and deploy is complete, navigate back to your Openshift web console and verify the project is running.
 +
@@ -81,25 +73,30 @@ image::images/00-verify-location-soap.png[00-verify-location-soap.png, role="int
 +
 image::images/00-verify-wsdl.png[00-verify-wsdl.png, role="integr8ly-img-responsive"]
 
-. Return to your Eclipse Che workspace and open the `dayintelife-import/location-soap2rest` project.  Open the `pom.xml` file and scroll to the bottom.  Uncomment out the `cxf-codegen-plugin` entry at the bottom.  Update the `<wsdl>` entry with your fully qualified WSDL URL e.g. `+http://location-soap-userX.{openshift-app-host}/ws/location?wsdl+`. _Be sure to replace userX with your username._
+. Return to your Eclipse Che workspace and open the `dayintelife-import/location-soap2rest` project.  Open the `pom.xml` file and scroll to the bottom.  Uncomment out the `cxf-codegen-plugin` entry at the bottom.  Update the `<wsdl>` entry with your fully qualified WSDL URL e.g. `http://location-soap-{user-username}.{openshift-app-host}/ws/location?wsdl`. 
 +
 image::images/00-uncomment-codegen.png[00-uncomment-codegen.png, role="integr8ly-img-responsive"]
 
-. We now need to generate the POJO objects from the WSDL contract.  To do this, change to the *Manage commands* view and double-click the `run generate-sources` script.  Click *Run* to execute the script.
+. We now need to generate the POJO objects from the WSDL contract. To do this, change to the *Manage commands* view.
+
+. Click the *+* button next to the *Build* folder. Click *Maven*. Enter `run generate-sources` for the Name, then enter `mvn generate-sources -f ${current.project.path}` for the Command. Click *Save*.
++
+image::images/00-save-run-soap.png[00-save-run-soap.png, role="integr8ly-img-responsive"]
+
+. Double-click the `run generate-sources` script. Click *Run* to execute the script.
 +
 image::images/00-generate-sources.png[00-generate-sources.png, role="integr8ly-img-responsive"]
 
 . Once the script has completed, navigate back to the *Workspace* view and open the `src/main/java/com/redhat` folder.  Notice that there are a bunch of new POJO classes that were created by the Maven script.
 
++
 Common gotcha: If build fails due to used port, check if you are running with many instances of `run spring-boot`. You should only have 1 instance of `run-spring-boot`.
 
 image::images/00-verify-pojos.png[00-verify-pojos.png, role="integr8ly-img-responsive"]
 
-. Open up the `CamelRoutes.java` file.  Notice that the existing implementation is barebones. First of all, we need to enter the SOAP service address and WSDL location for our CXF client to call.  Secondly, we need to create our Camel route implementation and create the RESTful endpoint.  To do this, include the following code (making sure to update the *\{YOUR_NAME_SPACE}*,  *\{OPENSHIFT_APP_URL}* and username values in the `to("cxf://` URL):
+. Open up the `CamelRoutes.java` file.  Notice that the existing implementation is barebones. First of all, we need to enter the SOAP service address and WSDL location for our CXF client to call.  Secondly, we need to create our Camel route implementation and create the RESTful endpoint. Make sure the values to ("cxf://` URL): are correct
 +
-In this case *YOUR_NAME_SPACE* should be _userX_ and *\{OPENSHIFT_APP_URL}* would be _{openshift-app-host}_. Check with your instructor if you are not sure.
-+
-[source,java]
+[source,java,subs="attributes+"]
 ----
  ...
 
@@ -125,7 +122,7 @@ In this case *YOUR_NAME_SPACE* should be _userX_ and *\{OPENSHIFT_APP_URL}* woul
      from("direct:getalllocationphone")
          .setBody().simple("${headers.id}")
          .unmarshal().json(JsonLibrary.Jackson)
-         .to("cxf://http://location-soap-{YOUR_NAME_SPACE}.{OPENSHIFT_APP_URL}/ws/location?serviceClass=com.redhat.LocationDetailServicePortType&defaultOperationName=contact")
+         .to("cxf://http://location-soap-{user-username}.{openshift-app-host}/ws/location?serviceClass=com.redhat.LocationDetailServicePortType&defaultOperationName=contact")
 			
          .process(
                  new Processor(){
@@ -173,7 +170,9 @@ image::images/00-verify-pod.png[00-verify-pod.png, role="integr8ly-img-responsiv
 
 _Congratulations!_ You have created a SOAP to REST transformation API.
 
-== Summary
+[time=2]
+[id="summary"]
+== Overview
 
 You have now successfully created a contract-first API using a SOAP WSDL contract together with generated Camel RESTdsl.
 

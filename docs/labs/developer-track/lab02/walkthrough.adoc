@@ -1,20 +1,19 @@
 :walkthrough: API Mocking
+:microcks-url: http://microcks.{openshift-app-host}
+:user-password: openshift
 
+[id='mocking']
 = Developer Lab 2 - API Mocking
 
-TODO
+In this lab you will use Microcks to configure a REST mock service for the API definition you created in the previous lab.
 
-[time=10]
-== API Mocking
+Audience: API Owner, Product Manager, Developers, Architects
 
-=== TODO
-
-* Duration: 10 mins
-* Audience: Developers, Architects
-
+[time=2]
+[id="overview"]
 == Overview
 
-When building and working with APIs, you often need to simulate the responses of the system before it has been fully completed. This is what we explore in this workshop - mocking up API structures quickly so they can be subjected to testing withouth having to create all the final service code.
+When building and working with APIs, you often need to simulate the responses of the system before it has been fully completed. This is what we explore in this workshop - mocking up API structures quickly so they can be subjected to testing without having to create all the final service code.
 
 === Why Red Hat?
 
@@ -28,39 +27,18 @@ If you are planning to follow the next lab, here is a link:wip-link[link] to the
 
 *Credentials:*
 
-Your username is your assigned user number. For example, if you are assigned user number *1*, your username is:
+Your username is: `{user-username}` +
+Your password is: `{user-password}`
 
-[source,bash]
-----
-user1
-----
+[type=walkthroughResource]
+.Microcks
+****
+* link:{microcks-url}[Microcks, window="_blank"]
+****
 
-Please ask your instructor for your password.
-
-*URLs:*
-
-If you haven't done so already, you need to login to the *Red Hat Solution Explorer* webpage so that a unique lab environment can be provisioned on-demand for your exclusive use.  You should open a web browser and navigate to:
-
-[source,bash]
-----
-https://tutorial-web-app-webapp.dil.opentry.me
-----
-
-You will be presented with a login page where you can enter your unique credentials:
-
-image::images/design-50.png[design-login]
-
-Enter your credentials and click *Log in*.  You'll notice a web-page appear which explains that a _unique environment_ is being provisioned.
-
-image::images/design-51.png[design-login]
-
-Once the environment is provisioned, you will be presented with a page that presents all the available applications which you'll need in order to complete the labs:
-
-image::images/design-52.png[design-login]
-
-== Lab Instructions
-
-=== Prerequisite: Setup the collaboration environment using Git (Gogs)
+[time=5]
+[id="Prerequisite"]
+== Prerequisite: Setup the collaboration environment using Git (Gogs)
 
 For the Developer track, we require a collaboration environment based on Git. For this purpose, we  decided to use Gogs which is a hosted, lighter-weight version of Gitlab. This lab environment has created a user for you in Gogs.
 
@@ -68,12 +46,12 @@ Follow this instructions to set up the repository.
 
 . Open a browser window and navigate to:
 +
-[source,bash]
+[source,bash,subs="attributes+"]
 ----
- http://gogs.dil.opentry.me/
+ http://gogs.{openshift-app-host}
 ----
 
-. Log into Gogs using your designated <<environment,user and password>>. Click on *Sign In*.
+. Log into Gogs using `{user-username}` and `{user-password}`. Click on *Sign In*.
 +
 image::images/mock-01.png[mock-sign-in]
 
@@ -83,7 +61,7 @@ image::images/mock-02.png[mock-gogs-new]
 
 . Fill in the information of the repository migration with the following values:
  ** Clone Address: *https://github.com/RedHatWorkshops/dayinthelife-openapi.git*
- ** Owner: *UserX*
+ ** Owner: *`{user-username}`*
  ** Repository Name: *locations-api*
 +
 image::images/mock-03.png[mock-gogs-file]
@@ -93,7 +71,7 @@ image::images/mock-03.png[mock-gogs-file]
 +
 image::images/mock-04.png[mock-gogs-upload]
 
-. Open the `locations-api` folder and click on the filename link *Locations-UserX.json* to open and review the file.
+. Open the `locations-api` folder and click on the filename link *Locations-userX.json* to open and review the file.
 +
 image::images/mock-06.png[mock-gogs-file]
 
@@ -101,7 +79,7 @@ image::images/mock-06.png[mock-gogs-file]
 +
 image::images/mock-05.png[mock-gogs-file]
 
-. Replace *UserX* with your user number.
+. Replace *userX* with your user number i.e ``{user-username}``.
 +
 image::images/mock-07.png[mock-gogs-file]
 
@@ -115,23 +93,26 @@ image::images/mock-09.png[mock-gogs-file]
 
 . Copy the browser tab URL. Store that URL address as you will use it in the next steps of the lab. The URL should look like the following:
 +
-[source,bash]
+[source,bash,subs="attributes+"]
 ----
-  http://gogs.dil.opentry.me/userX/locations-api/raw/dev-track-lab-02/locations-api/Locations-UserX.json
+http://gogs.{openshift-app-host}/{user-username}/locations-api/raw/dev-track-lab-02/locations-api/Locations-{user-username}.json
 ----
-+
-_If you feel more comfortable, you can also copy and paste the RAW button link from the previous step.  Also, don't forget to update the X variable with your user number_.
+
+
+[time=6]
+[id="Microcks setup"]
+== Microcks setup
 
 === Step 1: Create a Microcks Job
 
 . Open a browser window and navigate to:
 +
-[source,bash]
+[source,bash,subs="attributes+"]
 ----
- http://microcks.dil.opentry.me/
+ http://microcks.{openshift-app-host}
 ----
 
-. Log in into Microcks using your designated <<environment,user and password>>.
+. Log in into Microcks using your credentials `{user-username}` and `{user-password}`.
 +
 image::images/mock-10.png[mock-openshift-login]
 
@@ -143,14 +124,12 @@ image::images/mock-11.png[mock-jobs]
 +
 image::images/mock-12.png[mock-jobs]
 
-. In the `Create a New Job` dialog, type in the following information replacing *X* with your user number. Click *Next*.
- ** Name: *Locations-UserX*
- ** Repository URL: *http://gogs.dil.opentry.me/userX/locations-api/raw/dev-track-lab-02/locations-api/Locations-UserX.json*
+. In the `Create a New Job` dialog, type in the following information. Click *Next*.
++
+[source,bash,subs="attributes+"]
+ ** Name: *Locations-{user-username}*
+ ** Repository URL: *http://gogs.{openshift-app-host}/{user-username}/locations-api/raw/dev-track-lab-02/locations-api/Locations-{user-username}.json*
 
-+
-_You can also copy and paste the raw url you saved from the Gogs repository (Step 0)_.
-+
-image::images/mock-13.png[mock-job-details]
 . Click *Next* for the Authentication options.
 . Review the details and click on *Create* to create the job.
 +
@@ -169,7 +148,7 @@ image::images/mock-16.png[mock-job-start]
 +
 image::images/mock-17.png[mock-job-services]
 
-. In the dialog you will see your service listed. Click on the *Locations-UserX - 1.0.0.* link.
+. In the dialog you will see your service listed. Click on the *Locations-{user-username} - 1.0.0.* link.
 +
 image::images/mock-18.png[mock-job-service]
 
@@ -188,18 +167,16 @@ We now have a working REST mock service listening for requests. We will use an o
 
 . Open a browser window and navigate to:
 +
-[source,bash]
+[source,bash,subs="attributes+"]
 ----
  https://onlinecurl.com/
 ----
 
 . Copy and paste the Mock URL from earlier step. It should look like.
 +
-_Remember to replace X with your user number_.
-+
-[source,bash]
+[source,bash,subs="attributes+"]
 ----
- http://microcks.dil.opentry.me/rest/Locations-UserX/1.0.0/locations
+ http://microcks.{openshift-app-host}/rest/Locations-{user-username}/1.0.0/locations
 ----
 
 . Click the *START YOUR CURL* button.
@@ -212,12 +189,8 @@ image::images/mock-22.png[mock-curl-response]
 
 _Congratulations!_ You have successfully configure a Microcks Job to create a REST mock service to test your API.
 
-== Steps Beyond
-
-____
-So, you want more? ...
-____
-
+[time=1]
+[id="Summary"]
 == Summary
 
 In this lab you used Microcks to configure a REST mock service for the API definition you created in the previous lab. REST mock services allows you to simulate a REST API service when you are in a prototyping stage of your API program journey.
@@ -226,6 +199,8 @@ Microcks allows you to test a number of various responses for client application
 
 You can now proceed to link:../lab03/#lab-3[Lab 3]
 
+[time=1]
+[id="Reading"]
 == Notes and Further Reading
 
 * Microcks

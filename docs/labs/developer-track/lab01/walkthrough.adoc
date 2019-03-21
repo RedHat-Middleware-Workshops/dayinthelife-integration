@@ -1,17 +1,16 @@
 :walkthrough: Import an OpenAPI Specification using Apicurio Studio
+:apicurio-studio-url: http://apicurio-studio.{openshift-app-host}
+:user-password: openshift
 
+[id='api-design']
 = Developer Lab 1 - API Design
 
-TODO
+In this lab you will use Apicurio Studio to Import a simple OpenAPI definition in APIcurio Studio.
 
-[time=10]
-== API Design
+Audience: API Owner, Product Manager, Developers, Architects
 
-=== Import an OpenAPI Specification using Apicurio Studio
-
-* Duration: 10 mins
-* Audience: Developers, Architects
-
+[time=2]
+[id="overview"]
 == Overview
 
 As APIs become more widespread in the enterprise, consistent design and usage is critically important to improve reusability. The more reusable APIs are, the less friction there is for other internal or external teams to make progress. Having design standards and tools baked into the API development and maintenance process is a very powerful way to enable this consistency.
@@ -30,48 +29,20 @@ If you are planning to skip this lab and follow the next one, here is a https://
 
 *Credentials:*
 
-Your username is your assigned user number. For example, if you are assigned user number *1*, your username is:
+Your username is: `{user-username}` +
+Your password is: `{user-password}`
 
-[source,bash]
-----
-user1
-----
+[type=walkthroughResource]
+.Apicurio
+****
+* link:{apicurio-studio-url}[Apicurio Studio, window="_blank"]
+****
 
-Please ask your instructor for your password.
+[time=10]
+[id="importing-apis-with-apicurio-studio"]
+== Importing APIs with Apicurio Studio
 
-*URLs:*
-
-If you haven't done so already, you need to login to the *Red Hat Solution Explorer* webpage so that a unique lab environment can be provisioned on-demand for your exclusive use.  You should open a web browser and navigate to:
-
-[source,bash]
-----
-https://tutorial-web-app-webapp.{openshift-app-host}
-----
-
-You will be presented with a login page where you can enter your unique credentials:
-
-image::images/design-50.png[design-login, role="integr8ly-img-responsive"]
-
-Enter your credentials and click *Log in*.  You'll notice a web-page appear which explains that a _unique environment_ is being provisioned.
-
-image::images/design-51.png[design-login, role="integr8ly-img-responsive"]
-
-Once the environment is provisioned, you will be presented with a page that presents all the available applications which you'll need in order to complete the labs:
-
-image::images/design-52.png[design-login, role="integr8ly-img-responsive"]
-
-== Lab Instructions
-
-=== Step 1: Importing APIs with Apicurio Studio
-
-. Open a browser window and navigate to:
-+
-[source,bash]
-----
- http://apicurio-studio.{openshift-app-host}
-----
-
-. Log in using your designated <<environment,user and password>>.
+. Log in to link:{apicurio-studio-url}[Apicurio Studio, window="_blank"] web console using `{user-username}` and `{user-password}`.
 +
 image::images/design-01.png[design-login, role="integr8ly-img-responsive"]
 
@@ -130,16 +101,21 @@ image::images/design-23.png[design-locations-api, role="integr8ly-img-responsive
 
 _Congratulations!_ You have imported your first API definition based on the OpenAPI Specification  using Red Hat's Apicurio.
 
+[time=1]
+[id="step-beyond"]
 == Steps Beyond
 
 So, you want more? Did you notice the link *source* when editing the _Paths_ or the _Definitions_? Get back to the API editor and follow the link. What do you see? Apicurio lets you follow the form-based editor or go one step beyond and also lets you direct edit the source of your API definition.
-
+[time=1]
+[id="summary"]
 == Summary
 
 In this lab you used Apicurio Studio to import a simple API definition using the OpenAPI Specification (Swagger 2.0). You learned how to author and download a standards compliant API Specification using Red Hat's APICurio.
 
 You can now proceed to link:../lab02/#lab-2[Lab 2]
 
+[time=1]
+[id="further-reading"]
 == Notes and Further Reading
 
 * Apicurio
