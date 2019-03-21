@@ -6,7 +6,7 @@ RHPDS requires the installation playbook to be run within the bastion server:
 
 1. SSH into the bastion server;
 2. Switch to root user: `sudo -i`;
-3. Clone the `V2` branch of the installer repo `git clone https://github.com/RedHatWorkshops/dayinthelife-integration.git`;
+3. Clone the installer repo `git clone https://github.com/RedHatWorkshops/dayinthelife-integration.git`;
 4. Get the master node url: `oc get nodes -o jsonpath='{.items[?(@.metadata.labels.node-role\.kubernetes\.io/master == "true")].metadata.name}'`;
 5. Change the master host in the inventory file (`support/install/ansible/inventory/integreatly.inventory`) to use the internal master node hostname retrieved in the previous step;
 6. Replace `dayinlife` substring by your cluster guid for both `ocp_domain` and `ocp_apps_domain` vars;
