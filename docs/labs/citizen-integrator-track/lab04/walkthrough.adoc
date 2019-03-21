@@ -41,7 +41,7 @@ Your password is: `{user-password}`
 [id="sso-sign-on"]
 == Sign-in to Red Hat SSO
 
-. Log in to link:{sso-url}[SSO Admin, window="_blank"] web console using `{user-username}` and password: `{user-password}`. Click on *Sign In*.
+. Log in to link:{sso-url}[SSO Admin, window="_blank"] web console using `{user-username}` and password: `{user-password}`. Click on *Log in*.
 +
 image::images/00-login-sso.png[00-login-sso.png, role="integr8ly-img-responsive"]
 
@@ -67,7 +67,7 @@ image::images/00-sa-secret.png[00-sa-secret.png, role="integr8ly-img-responsive"
 [id="add-user-realm"]
 == Add User to Realm
 
-. Click on the Users menu on the left side of the screen.
+. Click on the *Users* menu on the left side of the screen.
 +
 image::images/00-users.png[00-users.png, role="integr8ly-img-responsive"]
 
@@ -132,6 +132,8 @@ image::images/05-authentication-settings.png[05-authentication-settings.png, rol
  https://3scale-admin:CLIENT_SECRET@sso-sso.{openshift-app-host}/auth/realms/{user-username}
 ----
 +
+_Don't forget to replace the `CLIENT_SECRET` in the URL with the secret copied from Task 1.5 (`3scale_admin` client secret)_
++
 image::images/06-openid-issuer.png[06-openid-issuer.png, role="integr8ly-img-responsive"]
 
 . Scroll down the page and click on the **Update Staging Environment** button.
@@ -172,9 +174,9 @@ image::images/13-create-app.png[13-create-app.png, role="integr8ly-img-responsiv
 
 . Update the **Redirect URL** to `http://www-{user-username}.{openshift-app-host}/*`. And note the **API Credentials**. Write them down as you will need the **Client ID** and the **Client Secret** to test your integration.
 +
- image:images/14-app-credentials.png[14-app-credentials.png]
+image::images/14-app-credentials.png[14-app-credentials.png]
 +
-_Congratulations! You have now an application to test your OpenID Connect Integration._
+_Congratulations! You have now created an application to test your OpenID Connect Integration._
 
 [time=1]
 [id="summary"]

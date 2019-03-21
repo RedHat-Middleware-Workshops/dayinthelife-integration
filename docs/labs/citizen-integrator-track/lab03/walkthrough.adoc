@@ -170,8 +170,6 @@ image::images/policies-09.png[policies-09, role="integr8ly-img-responsive"]
 ** Staging Public Base URL: *`https://location-{user-username}-api-staging.amp.{openshift-app-host}:443`*
 ** Production Public Base URL: *`https://location-{user-username}-api.amp.{openshift-app-host}443`*
 +
-_Remember to replace the X with your user number._
-+
 _We are using the internal API service, as we are deploying our services inside the same OpenShift cluster._
 +
 image::images/07-baseurl-configuration.png[baseurl-configuration, role="integr8ly-img-responsive"]
