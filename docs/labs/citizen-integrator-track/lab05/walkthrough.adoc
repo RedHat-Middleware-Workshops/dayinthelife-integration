@@ -1,21 +1,21 @@
-= Integrator Lab 6 - API Developer Portal
 :walkthrough: Create and customize the API Developer Portal
+:next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}/tutorial/dayinthelife-integration.git-citizen-integrator-track-lab06/
+:3scale-url: https://www.3scale.net/
+:3scale-admin-url: https://{user-username}-admin.{openshift-app-host}/p/login
+:user-password: openshift
 
-:experimental:
+[id='api-security']
+= Integrator Lab 5 - API Developer Portal
 
-[time=20]
-== API Developer Portal
+In this lab you will discover how to customize and configure 3scale's Developer Portal.
 
-=== Publishing APIs to Developer Portal
-
-* Duration: 20 mins
 * Audience: API Owners, Product Managers, Developers, Architects
 
-== Overview
+* Overview*
 
 The focal point of your developers experience is the API developer portal, and the level of effort you put into it will directly correlate to the level of success of your API program, and API developer engagement.
 
-=== Why Red Hat?
+* Why Red Hat?
 
 https://www.3scale.net/[Red Hat 3scale API Management] Solution provides a built-in, state-of-the-art CMS portal, making it very easy to create your own branded hub with a custom domain to manage developer interactions, and help increase API adoption.
 
