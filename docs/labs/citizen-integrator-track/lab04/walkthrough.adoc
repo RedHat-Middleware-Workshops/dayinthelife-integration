@@ -31,6 +31,12 @@ Your password is: `{user-password}`
 * link:{sso-url}[Console, window="_blank"]
 ****
 
+[type=walkthroughResource]
+.3scale Admin Console
+****
+* link:{3scale-admin-url}[Console, window="_blank"]
+****
+
 [time=2]
 [id="sso-sign-on"]
 == Sign-in to Red Hat SSO
@@ -69,124 +75,119 @@ image::images/00-users.png[00-users.png, role="integr8ly-img-responsive"]
 +
 image::images/00-add-user.png[00-add-user.png, role="integr8ly-img-responsive"]
 
-. Type *apiuser* as the Username.
+. Type `apiuser` as the **Username**.
 +
 image::images/00-username.png[00-username.png, role="integr8ly-img-responsive"]
 
 . Click on the *Save* button.
-. Click on the *Credentials* tab to reset the password. Type *apipassword* as the _New Password_ and _Password Confirmation_. Turn OFF the *Temporary* to avoid the password reset at the next login.
+. Click on the *Credentials* tab to reset the password. Type `apipassword` as the **New Password** and **Password Confirmation**. Turn OFF the **Temporary** to avoid the password reset at the next login.
 +
 image::images/00-user-credentials.png[00-user-credentials.png, role="integr8ly-img-responsive"]
 
-. Click on *Reset Password*.
-. Click on the *Change password* button in the pop-up dialog.
+. Click on **Reset Password**.
+. Click on the **Change password** button in the pop-up dialog.
 +
 image::images/00-change-password.png[00-change-password.png, role="integr8ly-img-responsive"]
 +
 _Now you have a user to test your integration._
 
-=== Step 3: Configure 3scale Integration
+[time=10]
+[id="configure-3scale-integration]
+== Configure 3scale Integration
 
-. Open a browser window and navigate to:
-+
-[source,bash]
-----
- https://userX-admin.{openshift-app-host}/p/login
-----
-+
-_Remember to replace the X with your user number._
-
-. Log into 3scale using your designated <<environment,user and password>>. Click on *Sign In*.
+. Log in to link:{3scale-admin-url}[3scale Admin, window="_blank"] web console using `{user-username}` and password: `{user-password}`.
 +
 image::images/01-login.png[01-login.png, role="integr8ly-img-responsive"]
 
-. The first page you will land is the _API Management Dashboard_. Click on the *INTEGRATION* menu link.
+. The first page you will land is the _API Management Dashboard_. Click on the **INTEGRATION** menu link.
 +
 image::images/01a-dashboard.png[01a-dashboard.png, role="integr8ly-img-responsive"]
 
-. Click on the *edit integration settings* to edit the API settings for the gateway.
+. Click on the **edit integration settings** to edit the API settings for the gateway.
 +
 image::images/03-edit-settings.png[03-edit-settings.png, role="integr8ly-img-responsive"]
 
-. Scrolll down the page, under the _Authentication_ deployment options, select *OpenID Connect*.
+. Scroll down the page, under the _Authentication_ deployment options, select **OpenID Connect**.
 +
 image::images/04-authentication.png[04-authentication.png, role="integr8ly-img-responsive"]
 
-. Click on the *Update Service* button.
+. Click on the **Update Service** button.
+
 . Dismiss the warning about changing the Authentication mode by clicking *OK*.
 +
 image::images/04b-authentication-warning.png[04b-authentication-warning.png, role="integr8ly-img-responsive"]
 
-. Back in the service integration page, click on the *edit APIcast configuration*.
+. Back in the service integration page, click on the **edit APIcast configuration**.
 +
 image::images/05-edit-apicast.png[05-edit-apicast.png, role="integr8ly-img-responsive"]
 
-. Scroll down the page and expand the authentication options by clicking the *Authentication Settings* link.
+. Scroll down the page and expand the authentication options by clicking the **Authentication Settings** link.
 +
 image::images/05-authentication-settings.png[05-authentication-settings.png, role="integr8ly-img-responsive"]
 
-. In the *OpenID Connect Issuer* field, type in your previously noted client credentials with the URL of your Red Hat Single Sing On instance:
+. In the **OpenID Connect Issuer** field, type in your previously noted client credentials with the URL of your Red Hat Single Sing On instance:
 +
 [source,bash]
 ----
- https://3scale-admin:CLIENT_SECRET@sso-sso.{openshift-app-host}/auth/realms/userX
+ https://3scale-admin:CLIENT_SECRET@sso-sso.{openshift-app-host}/auth/realms/{user-username}
 ----
-+
-_Remember to replace the X with user number_
 +
 image::images/06-openid-issuer.png[06-openid-issuer.png, role="integr8ly-img-responsive"]
 
-. Scroll down the page and click on the *Update Staging Environment* button.
+. Scroll down the page and click on the **Update Staging Environment** button.
 +
 image::images/08-back-integration.png[08-back-integration.png, role="integr8ly-img-responsive"]
 
-. After the reload, scroll down again and click the *Back to Integration & Configuration* link.
+. After the reload, scroll down again and click the **Back to Integration & Configuration** link.
 +
 image::images/07-update-environment.png[07-update-environment.png, role="integr8ly-img-responsive"]
 
-. Promote to Production by clicking the *Promote to Production* button.
+. Promote to Production by clicking the **Promote to Production** button.
 +
 image::images/08a-promote-production.png[08a-promote-production.png, role="integr8ly-img-responsive"]
 
-=== Step 4: Create a Test App
+[time=5]
+[id="create-test-app]
+== Create a Test App
 
-. Go to the _Audience_ dropdown and click on *Developers*.
+. Go to the _Audience_ dropdown and click on **Developers**.
 +
 image::images/09-developers.png[09-developers.png, role="integr8ly-img-responsive"]
 
-. Click on the *Applications* link.
+. Click on the **Applications** link.
 +
 image::images/10-applications.png[10-applications.png, role="integr8ly-img-responsive"]
 
-. Click on *Create Application* link.
+. Click on **Create Application** link.
 +
 image::images/11-create-application.png[11-create-application.png, role="integr8ly-img-responsive"]
 
-. Select *Basic* plan from the combo box. Type the following information:
+. Select **Basic** plan from the combo box. Type the following information:
  ** Name: *Secure App*
  ** Description: *OpenID Connect Secured Application*
 
-. Finally, scroll down the page and click on the *Create Application* button.
+. Finally, scroll down the page and click on the **Create Application** button.
 +
 image::images/13-create-app.png[13-create-app.png, role="integr8ly-img-responsive"]
 
-. Update the *Redirect URL* to _http://www-user2.apps.mountainview-0a62.openshiftworkshop.com/*_. And note the *API Credentials_. Write them down as you will need the *Client ID* and the *Client Secret* to test your integration.
+. Update the **Redirect URL** to `http://www-{user-username}.{openshift-app-host}/*`. And note the **API Credentials**. Write them down as you will need the **Client ID** and the **Client Secret** to test your integration.
++
  image:images/14-app-credentials.png[14-app-credentials.png]
++
+_Congratulations! You have now an application to test your OpenID Connect Integration._
 
-_Congratulations!_ You have now an application to test your OpenID Connect Integration.
-
-== Steps Beyond
-
-So, you want more? Login to the Red Hat Single Sign On admin console for your realm if you are not there already. Click on the Clients menu. Now you can check that 3scale zync component creates a new Client in SSO. This new Client has the same ID as the Client ID and Secret from the 3scale admin portal.
-
+[time=1]
+[id="summary"]
 == Summary
 
 Now that you can secure your API using three-leg authentication with Red Hat Single Sign-On, you can leverage the current assets of your organization like current LDAP identities or even federate the authentication using other IdP services.
 
 For more information about Single Sign-On, you can check its https://access.redhat.com/products/red-hat-single-sign-on[page].
 
-You can now proceed to link:../lab06/#lab-6[Lab 6]
+You can now proceed to link:{next-lab-url}[Lab 5]
 
+[time=1]
+[id="further-reading"]
 == Notes and Further Reading
 
 * http://3scale.net[Red Hat 3scale API Management]
