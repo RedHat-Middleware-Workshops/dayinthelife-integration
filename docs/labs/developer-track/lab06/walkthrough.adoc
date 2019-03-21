@@ -104,6 +104,9 @@ In you command line terminal or in your Che terminal enter the following CURL co
 curl -X POST http://threescale-automate-international.{openshift-app-host}/threescale/automate/{YOUR_API_TOKEN}/{user-username}/{openshift-app-host}
 ----
 
+_Remember to replace *YOUR_API_TOKEN* with your generated *token*_.
+
+
 String *API automated, DONE!* should be returned as the result.
 
 _Congratulations!_ You have configured 3scale access control layer as a proxy to only allow authenticated calls to your backend API. 3scale is also now:
@@ -126,8 +129,6 @@ SSO Location API can be located here:
 
 Try running this command again in the terminal:
 `curl -X POST http://threescale-automate-international.{openshift-app-host}/threescale/automate/{YOUR_API_TOKEN}/{user-username}/{openshift-app-host}`
-
-_Remember to replace *YOUR_API_TOKEN* with your generated *token*_.
 
 [time=2]
 [id="Steps-beyond"]
