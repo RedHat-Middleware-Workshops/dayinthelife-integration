@@ -8,9 +8,6 @@
 [id='api-security']
 = Integrator Lab 4 - API Security
 
-[time=20]
-== API Security
-
 In this lab you will discover how to set up the widely used OpenID connect pattern for Authentication.
 
 * Audience: API Owners, Product Managers, Developers, Architects
