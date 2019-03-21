@@ -53,6 +53,8 @@ image::images/deploy-10.png[01-scroll-down, role="integr8ly-img-responsive"]
 . In the build configuration page, replace the `CLIENT_ID` from ``CHANGE_ME``to the one generated from Integrator Lab 4 (Task 4.6).
 +
 image::images/deploy-11.png[02-client-id, role="integr8ly-img-responsive"]
++
+_Make sure the **`SSO_URL`** is set to begin with **`https`**. If it isn't, then replace the `http` with an `https`._
 
 . Click Save button to persist the changes. A green pop up will show you that the changes were saved.
 
