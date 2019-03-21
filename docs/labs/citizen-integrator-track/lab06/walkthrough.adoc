@@ -78,12 +78,7 @@ image::images/consume-22.png[22-updated-app, role="integr8ly-img-responsive"]
 
 Redirect URLs are a critical part of the OAuth flow. After a user successfully authorizes an application, the authorization server will redirect the user back to the application with either an authorization code or access token in the URL. Because the redirect URL will contain sensitive information, it is critical that the service doesn't redirect the user to arbitrary locations.
 
-. Open a browser window and navigate to:
-+
-[source,bash]
-----
- http://sso-sso.{openshift-app-host}/auth/admin/{user-username}/console/
-----
+. Open a browser window and navigate to `http://sso-sso.{openshift-app-host}/auth/admin/{user-username}/console/`.
 
 . Log into Red Hat Single Sign On using your credentials. Click on *Sign In*.
 +
@@ -99,7 +94,7 @@ _3scale, through it's https://github.com/3scale/zync/[zync] component, already s
 +
 _Remember to select CLIENT_ID with the one you got in the **Integrator Lab 4 API Security Lab**. It will easily identifiable as its and hexadecimal name_.
 +
-_If you do not find the CLIENT_ID, make sure you correctly executed the sync between 3scale and RHSSO in Lab 4, Task 3.11_
+_If you do not find the CLIENT_ID, make sure you correctly executed the sync between 3scale and RHSSO in Lab 4, Task 3.11.  You should also check Step 1.4 in this lab to ensure that the **SSO_URL** correctly begins with `https://`_
 +
 image::images/consume-24.png[24-client-application, role="integr8ly-img-responsive"]
 
@@ -134,7 +129,7 @@ image::images/consume-25.png[25-client-config, role="integr8ly-img-responsive"]
 
 International Inc web development create a Node.js application for the company home page. They added a map service to locate the offices around the world. In this step you will deploy that application.
 
-. Open a browser tab and navigate to `+http://www-{user-username}.{openshift-app-host}+`.
+. Open a browser tab and navigate to `http://www-{user-username}.{openshift-app-host}`.
 
 . You should now see what the development team created for International Inc. Click *LOCATIONS* to check the locations page.
 +
