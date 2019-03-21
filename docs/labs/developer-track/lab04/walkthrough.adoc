@@ -1,4 +1,5 @@
 :walkthrough: Contract-first API development wrapping an existing SOAP service, implemented using Eclipse Che
+:codeready-url: https://codeready-codeready.{openshift-app-host}
 :user-password: openshift
 
 [id='soap-to-rest']
@@ -30,6 +31,12 @@ If you are planning to follow to the next lab or are having trouble with this la
 
 Your username is: `{user-username}` +
 Your password is: `{user-password}`
+
+[type=walkthroughResource]
+.CodeReady
+****
+* link:{codeready-url}[CodeReady, window="_blank"]
+****
 
 [time=21]
 [id="instructions"]
