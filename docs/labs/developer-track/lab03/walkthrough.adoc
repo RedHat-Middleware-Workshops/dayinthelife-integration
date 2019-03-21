@@ -1,4 +1,5 @@
 :walkthrough: Contract-first API development with a database interface, implemented using CodeReady Workspaces
+:codeready-url: https://codeready-codeready.{openshift-app-host}
 :user-password: openshift
 
 [id='swagger-rest']
@@ -28,27 +29,6 @@ If you are planning to follow to the next lab or are having trouble with this la
 
 Your username is: `{user-username}` +
 Your password is: `{user-password}`
-
-*URLs:*
-
-If you haven't done so already, you need to login to the *Red Hat Solution Explorer* webpage so that a unique lab environment can be provisioned on-demand for your exclusive use.  You should open a web browser and navigate to:
-
-[source,bash,subs="attributes+"]
-----
-https://tutorial-web-app-webapp.{openshift-app-host}
-----
-
-You will be presented with a login page where you can enter your unique credentials:
-
-image::images/design-50.png[design-login, role="integr8ly-img-responsive"]
-
-Enter your credentials and click *Log in*.  You'll notice a web-page appear which explains that a _unique environment_ is being provisioned.
-
-image::images/design-51.png[design-login, role="integr8ly-img-responsive"]
-
-Once the environment is provisioned, you will be presented with a page that presents all the available applications which you'll need in order to complete the labs:
-
-image::images/design-52.png[design-login, role="integr8ly-img-responsive"]
 
 [time=20]
 [id="Che setup"]
@@ -389,7 +369,8 @@ image::images/00-location-list.png[00-location-list.png, role="integr8ly-img-res
 
 . If the HTTP POST is successful, you should be able to view it by repeating the HTTP GET /locations test.
 
-. _Congratulations!_ You have now an application to test your Swagger to RESTdsl integration.
++
+_Congratulations!_ You have now an application to test your Swagger to RESTdsl integration.
 
 [time=2]
 [id="summary"]
