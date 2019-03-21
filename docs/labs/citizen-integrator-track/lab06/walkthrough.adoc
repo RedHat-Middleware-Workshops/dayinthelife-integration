@@ -53,6 +53,8 @@ image::images/deploy-10.png[01-scroll-down, role="integr8ly-img-responsive"]
 . In the build configuration page, replace the `CLIENT_ID` from ``CHANGE_ME``to the one generated from Integrator Lab 4 (Task 4.6).
 +
 image::images/deploy-11.png[02-client-id, role="integr8ly-img-responsive"]
++
+_Make sure the **`SSO_URL`** is set to begin with **`https`**. If it isn't, then replace the `http` with an `https`._
 
 . Click Save button to persist the changes. A green pop up will show you that the changes were saved.
 
@@ -76,12 +78,7 @@ image::images/consume-22.png[22-updated-app, role="integr8ly-img-responsive"]
 
 Redirect URLs are a critical part of the OAuth flow. After a user successfully authorizes an application, the authorization server will redirect the user back to the application with either an authorization code or access token in the URL. Because the redirect URL will contain sensitive information, it is critical that the service doesn't redirect the user to arbitrary locations.
 
-. Open a browser window and navigate to:
-+
-[source,bash]
-----
- http://sso-sso.{openshift-app-host}/auth/admin/{user-username}/console/
-----
+. Open a browser window and navigate to `http://sso-sso.{openshift-app-host}/auth/admin/{user-username}/console/`.
 
 . Log into Red Hat Single Sign On using your credentials. Click on *Sign In*.
 +
@@ -97,7 +94,7 @@ _3scale, through it's https://github.com/3scale/zync/[zync] component, already s
 +
 _Remember to select CLIENT_ID with the one you got in the **Integrator Lab 4 API Security Lab**. It will easily identifiable as its and hexadecimal name_.
 +
-_If you do not find the CLIENT_ID, make sure you correctly executed the sync between 3scale and RHSSO in Lab 4, Task 3.11_
+_If you do not find the CLIENT_ID, make sure you correctly executed the sync between 3scale and RHSSO in Lab 4, Task 3.11.  You should also check Step 1.4 in this lab to ensure that the **SSO_URL** correctly begins with `https://`_
 +
 image::images/consume-24.png[24-client-application, role="integr8ly-img-responsive"]
 
@@ -132,7 +129,7 @@ image::images/consume-25.png[25-client-config, role="integr8ly-img-responsive"]
 
 International Inc web development create a Node.js application for the company home page. They added a map service to locate the offices around the world. In this step you will deploy that application.
 
-. Open a browser tab and navigate to `+http://www-{user-username}.{openshift-app-host}+`.
+. Open a browser tab and navigate to `http://www-{user-username}.{openshift-app-host}`.
 
 . You should now see what the development team created for International Inc. Click *LOCATIONS* to check the locations page.
 +
@@ -171,8 +168,8 @@ image::images/00-missing-locations.png[00-missing-locations, role="integr8ly-img
 image::images/00-developer-console.png[00-developer-console, role="integr8ly-img-responsive"]
 
 . In the developer console, a red error should appear indicating a cert issue. Click on the link and accept the certificate.
-
-_Example link: `+https://location-userX-api-staging.amp.{openshift-app-host}/locations+`_
++
+_Example link: `https://location-{user-username}-api-staging.amp.{openshift-app-host}/locations`_
 
 . Refresh the page, and the locations should appear.
 +
