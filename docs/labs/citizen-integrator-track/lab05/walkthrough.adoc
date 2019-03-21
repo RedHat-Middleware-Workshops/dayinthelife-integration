@@ -9,66 +9,34 @@
 
 In this lab you will discover how to customize and configure 3scale's Developer Portal.
 
-* Audience: API Owners, Product Managers, Developers, Architects
+Audience: API Owners, Product Managers, Developers, Architects
 
-* Overview*
+*Overview*
 
 The focal point of your developers experience is the API developer portal, and the level of effort you put into it will directly correlate to the level of success of your API program, and API developer engagement.
 
-* Why Red Hat?
+*Why Red Hat?*
 
 https://www.3scale.net/[Red Hat 3scale API Management] Solution provides a built-in, state-of-the-art CMS portal, making it very easy to create your own branded hub with a custom domain to manage developer interactions, and help increase API adoption.
 
 You can customize the look and feel of the entire Developer Portal to match your own branding. You have complete control over every element of the portal, so you can make it as easy as possible for developers to learn how to use your API.
 
-=== Environment
-
 *Credentials:*
 
-Your username is your assigned user number. For example, if you are assigned user number *1*, your username is:
+Your username is: `{user-username}` +
+Your password is: `{user-password}`
 
-[source,bash]
-----
-user1
-----
+[type=walkthroughResource]
+.3scale Admin Console
+****
+* link:{3scale-admin-url}[Console, window="_blank"]
+****
 
-Please ask your instructor for your password.
+[time=2]
+[id="custom-dev-portal"]
+== Customizing Developer Portal
 
-*URLs:*
-
-If you haven't done so already, you need to login to the *Red Hat Solution Explorer* webpage so that a unique lab environment can be provisioned on-demand for your exclusive use.  You should open a web browser and navigate to:
-
-[source,bash]
-----
-https://tutorial-web-app-webapp.{openshift-app-host}
-----
-
-You will be presented with a login page where you can enter your unique credentials:
-
-image::images/design-50.png[design-login, role="integr8ly-img-responsive"]
-
-Enter your credentials and click *Log in*.  You'll notice a web-page appear which explains that a _unique environment_ is being provisioned.
-
-image::images/design-51.png[design-login, role="integr8ly-img-responsive"]
-
-Once the environment is provisioned, you will be presented with a page that presents all the available applications which you'll need in order to complete the labs:
-
-image::images/design-52.png[design-login, role="integr8ly-img-responsive"]
-
-== Lab Instructions
-
-=== Step 1: Customizing Developer Portal
-
-. Click on the `3scale Admin Dashboard` from the Red Hat Solution Explorer. The URL should look like
-+
-[source,bash]
-----
- https://userX-admin.{openshift-app-host}/p/login
-----
-+
-_Remember the `X` variable in the URL is your assigned user number._
-
-. Log into 3scale using your designated <<environment,user and password>>. Click on *Sign In*.
+. Log in to link:{3scale-admin-url}[3scale Admin, window="_blank"] web console using `{user-username}` and password: `{user-password}`. Click on *Log in*.
 +
 image::images/01-login.png[01-login.png, role="integr8ly-img-responsive"]
 
