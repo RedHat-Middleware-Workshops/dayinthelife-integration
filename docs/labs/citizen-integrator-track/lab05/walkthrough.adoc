@@ -2,6 +2,7 @@
 :next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}/tutorial/dayinthelife-integration.git-citizen-integrator-track-lab06/
 :3scale-url: https://www.3scale.net/
 :3scale-admin-url: https://{user-username}-admin.{openshift-app-host}/p/login
+:3scale-dev-portal-url: https://{user-username}.{openshift-app-host}/
 :user-password: openshift
 
 [id='api-security']
@@ -30,6 +31,12 @@ Your password is: `{user-password}`
 .3scale Admin Console
 ****
 * link:{3scale-admin-url}[Console, window="_blank"]
+****
+
+[type=walkthroughResource]
+.3scale Developer Portal
+****
+* link:{3scale-dev-portal-url}[Console, window="_blank"]
 ****
 
 [time=5]
@@ -99,7 +106,7 @@ image::images/16bb-signup-thankyou.png[16bb-signup-thankyou.png, role="integr8ly
 +
 _Currently the lab environment doesn't have a configured email server, so we won't be able to receive the email_.
 
-. Go back to your _Accounts > Listing_  and navigate to *Developers* to activate the new account.
+. Go back to your **Accounts > Listing** menu and navigate to *Developers* to activate the new account.
 +
 image::images/16bc-developers-tab.png[16bc-developers-tab.png, role="integr8ly-img-responsive"]
 
@@ -109,7 +116,9 @@ image::images/16cc-activate-account.png[16cc-activate-account.png, role="integr8
 +
 _Your user is now active and can log into the portal_.
 
-=== Step 3: Login to Developer Portal
+[time=5]
+[id="login-dev-portal"]
+== Login to the Developer Portal
 
 . As your portal is not currently public, you will need your portal code to login. You can get the code in your admin portal navigating to: menu:Audience[Developer Portal > Domains & Access].
 +
@@ -119,7 +128,7 @@ image::images/16d-access-portal.png[16d-access-portal.png, role="integr8ly-img-r
 +
 [source,bash]
 ----
- https://userX.{openshift-app-host}/
+ https://{user-username}.{openshift-app-host}/
 ----
 
 . Type your portal code to finish the login.
@@ -133,21 +142,19 @@ image::images/16f-dev-signin.png[16f-dev-signin.png, role="integr8ly-img-respons
 . You will land in the developers homepage, where you will be able to check your developers settings and retrieve your newly created *Client ID* and *Client Secret*.
 +
 image::images/16g-user-credentials.png[16g-user-credentials.png, role="integr8ly-img-responsive"]
++
+_Congratulations! You have successfully customized your Developer Portal and completed a Sign Up process._
 
-_Congratulations!_ You have successfully customized your Developer Portal and completed a Sign Up process.
-
-== Steps Beyond
-
-So, you want more? Click the *Documentation* link. Where does it takes you? _API Docs_ is where you can add your interactive documentation for your APIs. Is based on the known _Swagger UI_ interface.
-
-You can add from the Admin Portal under _API Docs_ the API definition to generate the live testing.
-
+[time=1]
+[id="summary"]
 == Summary
 
 In this lab you discovered how to add a developer facing experience to your APIs. Developers in your organization or outside of it can now register, gain access to API keys and develop sample applications.
 
-You can now proceed to link:../lab07/#lab-7[Lab 7]
+You can now proceed to link:{next-lab-url}[Lab 6]
 
+[time=1]
+[id="further-reading"]
 == Notes and Further Reading
 
 Red Hat 3scale Developer Portal's CMS consists of a few elements:
@@ -160,7 +167,9 @@ image::images/09-developer-portal.png[09-developer-portal.png, role="integr8ly-i
 
 https://github.com/Shopify/liquid[Liquid] is a simple programming language used for displaying and processing most of the data from the 3scale system available for API providers. In 3scale, it is used to expose server-side data to your API developers, greatly extending the usefulness of the CMS while maintaining a high level of security.
 
-=== Links
+[time=1]
+[id="links"]
+== Links
 
 * https://access.redhat.com/documentation/en-us/red_hat_3scale/2.2/html/developer_portal/[Developer Portal Documentation]
 * https://github.com/Shopify/liquid[Liquid markup language]
