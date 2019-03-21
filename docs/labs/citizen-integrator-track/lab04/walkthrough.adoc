@@ -10,7 +10,7 @@
 
 In this lab you will discover how to set up the widely used OpenID connect pattern for Authentication.
 
-* Audience: API Owners, Product Managers, Developers, Architects
+Audience: API Owners, Product Managers, Developers, Architects
 
 *Overview*
 
@@ -31,9 +31,9 @@ Your password is: `{user-password}`
 * link:{sso-url}[Console, window="_blank"]
 ****
 
-[time=5]
+[time=2]
 [id="sso-sign-on"]
-== Get Red Hat Single Sign On Service Account Credentials
+== Sign-in to Red Hat SSO
 
 . Log in to link:{sso-url}[SSO Admin, window="_blank"] web console using `{user-username}` and password: `{user-password}`. Click on *Sign In*.
 +
@@ -57,7 +57,9 @@ image::images/00-sa-credentials.png[00-sa-credentials.png, role="integr8ly-img-r
 +
 image::images/00-sa-secret.png[00-sa-secret.png, role="integr8ly-img-responsive"]
 
-=== Step 2: Add User to Realm
+[time=5]
+[id="add-user-realm"]
+== Add User to Realm
 
 . Click on the Users menu on the left side of the screen.
 +
