@@ -1,4 +1,4 @@
-:walkthrough: Fuse Online & 3Scale Smart Discovery Bonus Lab
+:walkthrough: Fuse Online and 3Scale Smart Discovery Bonus Lab
 :3scale-url: https://www.3scale.net/
 :3scale-admin-url: https://{user-username}-admin.{openshift-app-host}/p/login
 :3scale-dev-portal-url: https://{user-username}.{openshift-app-host}/
@@ -6,7 +6,7 @@
 :user-password: openshift
 
 [id='fuse-bonus-lab']
-= Fuse Online & 3Scale Smart Discovery Bonus Lab
+= Fuse Online and 3Scale Smart Discovery Bonus Lab
 
 In this lab you will implement a simple API with Fuse Online and expose it using 3scale.
 
@@ -25,40 +25,51 @@ Red Hat Fuse integration solution empowers integration experts, application deve
 Your username is: `{user-username}` +
 Your password is: `{user-password}`
 
-[time=5]
+[type=walkthroughResource]
+.Fuse Online Console
+****
+* link:{fuse-url}[Console, window="_blank"]
+****
+
+[time=10]
 [id="create-database-connection"]
 == Create database connection
 
-. Open your link:{fuse-url}[Fuse Online Console, window="_blank"]. Navigate to your project's overview page. It will be called `{user-username} Project`.
-. Scroll down and click in the www link in the BUILDS section.
-+
-image::images/deploy-10.png[01-scroll-down, role="integr8ly-img-responsive"]
+. Open your link:{fuse-url}[Fuse Online Console, window="_blank"].
 
-. In the build configuration page, replace the `CLIENT_ID` from ``CHANGE_ME``to the one generated from Integrator Lab 4 (Task 4.6).
+. The first time that you hit the Fuse Online URL, you will be presented with an _Authorize Access_ page. Click the *Allow selected permissions* button to accept the defaults.
 +
-image::images/deploy-11.png[02-client-id, role="integr8ly-img-responsive"]
-+
-_Make sure the **`SSO_URL`** is set to begin with **`https`**. If it isn't, then replace the `http` with an `https`._
+image::images/design-54.png[design-54, role="integr8ly-img-responsive"]
 
-. Click Save button to persist the changes. A green pop up will show you that the changes were saved.
-
-. Click the Start Build button to trigger a new build using the new environment variables pointing to your service.
+. Click on *Connections > Create Connection*
 +
-image::images/deploy-12.png[03-start-build, role="integr8ly-img-responsive"]
+image::images/00-create-connection.png[00-create-connection, role="integr8ly-img-responsive"]
 
-. A new build will be triggered. Expand the row by clicking the Builds Icon.
+. Select *Database*
 +
-image::images/deploy-13.png[04-view-build, role="integr8ly-img-responsive"]
-+
-_The build process checks out the code from the git repo, runs a source-to-image container image build, and redeploys the container with the new image using a rolling upgrade strategy._
+image::images/01-select-database.png[01-select-database, role="integr8ly-img-responsive"]
 
-. Wait for until the new Build to complete and the rolling upgrade to finish to test your new deployment.
-+
-image::images/consume-22.png[22-updated-app, role="integr8ly-img-responsive"]
+. Enter below values for Database Configuration
+** Connection URL: *`jdbc:postgresql://postgresql.international.svc:5432/sampledb`*
+** Username: *`dbuser`*
+** Password: *`password`*
+** Schema: *<leave blank>*
 
-[time=5]
-[id="update-sso"]
-== Update SSO On Application Callback
+. Click Validate and verify if the connection is successful. Click Next to proceed.
++
+image::images/02-click-validate.png[02-click-validate, role="integr8ly-img-responsive"]
+
+. Add the following details, then click **Create**:
+** Connection Name: *`LocationDB`*
+** Description: *`Location Database`*
++
+image::images/03-connection-details.png[03-connection-details, role="integr8ly-img-responsive"]
+
+. Verify that the *`Location Database`* is successfully created.
+
+[time=15]
+[id="no-code-api"]
+== No CODE API developement
 
 Redirect URLs are a critical part of the OAuth flow. After a user successfully authorizes an application, the authorization server will redirect the user back to the application with either an authorization code or access token in the URL. Because the redirect URL will contain sensitive information, it is critical that the service doesn't redirect the user to arbitrary locations.
 
