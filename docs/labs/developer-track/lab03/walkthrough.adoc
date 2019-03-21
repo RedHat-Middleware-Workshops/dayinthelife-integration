@@ -16,7 +16,7 @@ In the context of defining API's, it's common for a Business Analyst (or Citizen
 
 === Why Red Hat?
 
-Eclipse Che, our online IDE, provides important functionality for implementing API services. In this lab you can see how our API tooling fits together with 3scale, Fuse and OpenShift to create a scalable API.
+CodeReady Workspaces, our online IDE, provides important functionality for implementing API services. In this lab you can see how our API tooling fits together with 3scale, Fuse and OpenShift to create a scalable API.
 
 === Skipping The Lab
 

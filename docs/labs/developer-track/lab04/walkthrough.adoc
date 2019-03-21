@@ -18,7 +18,7 @@ Another important use case in developing API's is to take an existing legacy SOA
 
 === Why Red Hat?
 
-Eclipse Che, our online IDE, provides important functionality for implementing API services. In this lab you can see how our Eclipse Che and Fuse can help with SOAP to REST transformation on OpenShift.
+CodeReady Workspaces, our online IDE, provides important functionality for implementing API services. In this lab you can see how our Eclipse Che and Fuse can help with SOAP to REST transformation on OpenShift.
 
 === Skipping The Lab
 
@@ -37,7 +37,7 @@ Your password is: `{user-password}`
 
 === Step 1: Import the sample SOAP project into your Openshift project
 
-. Navigate back to your Eclipse Che workspace and open the terminal window.
+. Navigate back to your CodeReady Workspaces workspace and open the terminal window.
 +
 image::images/00-open-terminal.png[00-open-terminal.png, role="integr8ly-img-responsive"]
 
@@ -61,7 +61,7 @@ image::images/00-commend-login.png[00-commend-login.png, role="integr8ly-img-res
 [source,bash]
 ----
 
- oc new-app s2i-fuse71-spring-boot-camel -p GIT_REPO=https://github.com/RedHatWorkshops/dayinthelife-integration -p CONTEXT_DIR=/projects/location-soap -p APP_NAME=location-soap -p GIT_REF=master -n OCPPROJECT
+ oc new-app s2i-fuse71-spring-boot-camel -p GIT_REPO=https://github.com/RedHatWorkshops/dayinthelife-integration -p CONTEXT_DIR=/projects/location-soap -p APP_NAME=location-soap -p GIT_REF=master -n {user-username}
 ----
 +
 _Remember to replace the OCPPROJECT with the OpenShift project(NameSpace) you created in last lab.  OCPPROJECT should be your username_ i.e {user-username}
@@ -76,11 +76,17 @@ image::images/00-verify-location-soap.png[00-verify-location-soap.png, role="int
 +
 image::images/00-verify-wsdl.png[00-verify-wsdl.png, role="integr8ly-img-responsive"]
 
-. Return to your Eclipse Che workspace and open the `dayintelife-import/location-soap2rest` project.  Open the `pom.xml` file and scroll to the bottom.  Uncomment out the `cxf-codegen-plugin` entry at the bottom.  Update the `<wsdl>` entry with your fully qualified WSDL URL e.g. `+http://location-soap-{user-username}.{openshift-app-host}/ws/location?wsdl+`. 
+. Return to your Eclipse Che workspace and open the `dayintelife-import/location-soap2rest` project.  Open the `pom.xml` file and scroll to the bottom.  Uncomment out the `cxf-codegen-plugin` entry at the bottom.  Update the `<wsdl>` entry with your fully qualified WSDL URL e.g. `http://location-soap-{user-username}.{openshift-app-host}/ws/location?wsdl`. 
 +
 image::images/00-uncomment-codegen.png[00-uncomment-codegen.png, role="integr8ly-img-responsive"]
 
-. We now need to generate the POJO objects from the WSDL contract.  To do this, change to the *Manage commands* view and double-click the `run generate-sources` script.  Click *Run* to execute the script.
+. We now need to generate the POJO objects from the WSDL contract. To do this, change to the *Manage commands* view.
+
+. Click the *+* button next to the *Build* folder. Click *Maven*. Enter `run generate-sources` for the Name, then enter `mvn generate-sources -f ${current.project.path}` for the Command. Click *Save*.
++
+image::images/00-save-run-soap.png[00-save-run-soap.png, role="integr8ly-img-responsive"]
+
+. Double-click the `run generate-sources` script. Click *Run* to execute the script.
 +
 image::images/00-generate-sources.png[00-generate-sources.png, role="integr8ly-img-responsive"]
 
@@ -90,7 +96,7 @@ Common gotcha: If build fails due to used port, check if you are running with ma
 
 image::images/00-verify-pojos.png[00-verify-pojos.png, role="integr8ly-img-responsive"]
 
-. Open up the `CamelRoutes.java` file.  Notice that the existing implementation is barebones. First of all, we need to enter the SOAP service address and WSDL location for our CXF client to call.  Secondly, we need to create our Camel route implementation and create the RESTful endpoint.  To do this, include the following code (make sure to verify if the *\{YOUR_NAME_SPACE}*,  *\{OPENSHIFT_APP_URL}* and username values are correct in the `to("cxf://` URL):
+. Open up the `CamelRoutes.java` file.  Notice that the existing implementation is barebones. First of all, we need to enter the SOAP service address and WSDL location for our CXF client to call.  Secondly, we need to create our Camel route implementation and create the RESTful endpoint. Make sure the values to ("cxf://` URL): are correct
 +
 [source,java,subs="attributes+"]
 ----
