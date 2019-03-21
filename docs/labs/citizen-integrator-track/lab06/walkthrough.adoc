@@ -168,8 +168,8 @@ image::images/00-missing-locations.png[00-missing-locations, role="integr8ly-img
 image::images/00-developer-console.png[00-developer-console, role="integr8ly-img-responsive"]
 
 . In the developer console, a red error should appear indicating a cert issue. Click on the link and accept the certificate.
-
-_Example link: `+https://location-userX-api-staging.amp.{openshift-app-host}/locations+`_
++
+_Example link: `https://location-userX-api-staging.amp.{openshift-app-host}/locations`_
 
 . Refresh the page, and the locations should appear.
 +
