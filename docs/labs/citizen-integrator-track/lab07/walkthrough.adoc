@@ -26,9 +26,9 @@ Your username is: `{user-username}` +
 Your password is: `{user-password}`
 
 [type=walkthroughResource]
-.Fuse Online Console
+.Fuse Online
 ****
-* link:{fuse-url}[Console, window="_blank"]
+* link:{fuse-url}[Fuse Online Console, window="_blank"]
 ****
 
 [time=10]
@@ -81,6 +81,10 @@ image::images/n02-api-provider.png[n02-api-provider.png, role="integr8ly-img-res
 
 . Select *Create from scratch*
 +
+image::images/n03-api-from-scratch.png[n03-api-from-scratch, role="integr8ly-img-responsive"]
+
+. Change the name of the API to *Location* and click on the _Add a path_ link under the _Paths_ section.
++
 image::images/n04-api-name.png[n04-api-name, role="integr8ly-img-responsive"]
 
 . Enter *`/locations`* in the _Path_ field:
@@ -121,7 +125,7 @@ image::images/n10-datatype-all.png[n10-datatype-all, role="integr8ly-img-respons
 +
 image::images/n11-post-method.png[n11-post-method, role="integr8ly-img-responsive"]
 
-. Edit the description of the post method to *Add Location* and click the orange _POST_ button to edit the operation
+. Edit the description of the post method to *`Add Location`* and click the orange _POST_ button to edit the operation
 +
 image::images/n12-post-description.png[n12-post-description, role="integr8ly-img-responsive"]
 
@@ -152,27 +156,73 @@ image::images/n17-post-response-type.png[n17-post-response-type, role="integr8ly
 . On the top section, under _Operation ID_, name it *addLocation* and click on tick to save the changes. On the very top of the page, click on the *Save* button to return to Fuse Online in order for us to start the API implementation.
 +
 image::images/n18-post-operation-id.png[n18-post-operation-id, role="integr8ly-img-responsive"]
-+_Congratulations! You've created an API Contract.  Next up is the API implementation_
++
+_Congratulations! You've created an API Contract.  Next up is the API implementation_
 
 [time=15]
 [id="implement-api"]
 == Implement the API
 
-International Inc web development create a Node.js application for the company home page. They added a map service to locate the offices around the world. In this step you will deploy that application.
-
-. Open a browser tab and navigate to `http://www-{user-username}.{openshift-app-host}`.
-
-. You should now see what the development team created for International Inc. Click *LOCATIONS* to check the locations page.
+. On the _Start integration with an API call_ page, click the *Next* button.
 +
-image::images/consume-13.png[10-application-page, role="integr8ly-img-responsive"]
+image::images/n19-start-of-integration.png[n19-start-of-integration, role="integr8ly-img-responsive"]
 
-. You can notice now the *Sign In* button in the page.
+. Set the following values:
+** Integration Name: *`addLocation`*
+** Description: *`Add Location`*
 +
-image::images/consume-222.png[11-Sign-in, role="integr8ly-img-responsive"]
+image::images/n20-integration-name.png[n20-integration-name, role="integr8ly-img-responsive"]
 
-[time=5]
-[id="test-SSO-integration"]
-== Test the Single Sign On Integration
+. Click on *Add Location* operation.
++
+image::images/n21-choose-operation.png[n21-choose-operation, role="integr8ly-img-responsive"]
+
+. Since we are adding incoming data into the database, click on the plus sign in between API entry point and return endpoint, then select *Add connection*.
++
+image::images/n22-add-db-connection.png[n22-add-db-connection, role="integr8ly-img-responsive"]
+
+. Click on *LocationDB* from the catalog and then select *Invoke SQL*
++
+image::images/n24-invoke-sql.png[n24-invoke-sql, role="integr8ly-img-responsive"]
+
+. Enter the SQL statement and click *Done*.
++
+[source,bash]
+----
+INSERT INTO locations (id,name,lat,lng,location_type,status) VALUES (:#id,:#name,:#lat,:#lng,:#location_type,:#status )
+----
++
+image::images/n25-sql-statement.png[n25-sql-statement, role="integr8ly-img-responsive"]
+
+. In between top API endpoint and the Database connection, click on the plus sign and select _Add step_ and select _Data Mapper_
++
+image::images/n26-input-data-mapping.png[n26-input-data-mapping, role="integr8ly-img-responsive"]
++
+image::images/n27-choose-data-mapping.png[n27-choose-data-mapping, role="integr8ly-img-responsive"]
+
+. Drag and drop the matching _Source_ Data types to all their corresponding _Targets_ as per the following screenshot. When finished, click *Done*.
++
+image::images/n28-data-map-db.png[n28-data-map-db, role="integr8ly-img-responsive"]
+
+. In between the Database connection and the endpoint, click on the plus sign and select _Add step_ and select _Data Mapper_
++
+image::images/n29-output-data-mapping.png[n29-output-data-mapping, role="integr8ly-img-responsive"]
++
+image::images/n30-choose-data-mapping.png[n30-choose-data-mapping, role="integr8ly-img-responsive"]
+
+. Drag and drop the matching _Source_ Data types to all their corresponding _Targets_ as per the following screenshot. When finished, click *Done*.
++
+image::images/n31-data-map-response.png[n31-data-map-response, role="integr8ly-img-responsive"]
+
+. Click *Publish* on the next screen.
++
+image::images/n32-publish.png[n32-publish, role="integr8ly-img-responsive"]
++
+_Congratulations. You successfully published the integration. (Wait for few minutes to build and publish the integration)_
+
+[time=15]
+[id="secure-api-smart-discovery"]
+== Secure the API in 3scale using Smart Discovery
 
 . Let's test the integration. Click the *Sign In* button.
 
