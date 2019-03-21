@@ -1,0 +1,182 @@
+:walkthrough: Fuse Online & 3Scale Smart Discovery Bonus Lab
+:3scale-url: https://www.3scale.net/
+:3scale-admin-url: https://{user-username}-admin.{openshift-app-host}/p/login
+:3scale-dev-portal-url: https://{user-username}.{openshift-app-host}/
+:openshift-url: {openshift-host}/console
+:user-password: openshift
+
+[id='fuse-bonus-lab']
+= Fuse Online & 3Scale Smart Discovery Bonus Lab
+
+In this lab you will implement a simple API with Fuse Online and expose it using 3scale.
+
+Audience: Integrators, Developers and Architects
+
+*Overview*
+
+When it comes to quick API development, you need both the integration experts as well as application developers to easily develop and deploy the APIs. This lab demonstrates how to implement a simple API with Fuse Online. Instead of using APICurio to create the API contract, we use Apicurito (an embedded version of Apicurio) to define our contract directly in Fuse Online. We then implement our API with Fuse, then manage and secure it using 3scale. This flow gives us an easy end-to-end walkthrough of defining, implementing, managing and securing an API.
+
+*Why Red Hat?*
+
+Red Hat Fuse integration solution empowers integration experts, application developers, and business users to engage in enterprise-wide collaboration and high-productivity self-service.
+
+*Credentials:*
+
+Your username is: `{user-username}` +
+Your password is: `{user-password}`
+
+[time=5]
+[id="create-database-connection"]
+== Create database connection
+
+. Open your link:{fuse-url}[Fuse Online Console, window="_blank"]. Navigate to your project's overview page. It will be called `{user-username} Project`.
+. Scroll down and click in the www link in the BUILDS section.
++
+image::images/deploy-10.png[01-scroll-down, role="integr8ly-img-responsive"]
+
+. In the build configuration page, replace the `CLIENT_ID` from ``CHANGE_ME``to the one generated from Integrator Lab 4 (Task 4.6).
++
+image::images/deploy-11.png[02-client-id, role="integr8ly-img-responsive"]
++
+_Make sure the **`SSO_URL`** is set to begin with **`https`**. If it isn't, then replace the `http` with an `https`._
+
+. Click Save button to persist the changes. A green pop up will show you that the changes were saved.
+
+. Click the Start Build button to trigger a new build using the new environment variables pointing to your service.
++
+image::images/deploy-12.png[03-start-build, role="integr8ly-img-responsive"]
+
+. A new build will be triggered. Expand the row by clicking the Builds Icon.
++
+image::images/deploy-13.png[04-view-build, role="integr8ly-img-responsive"]
++
+_The build process checks out the code from the git repo, runs a source-to-image container image build, and redeploys the container with the new image using a rolling upgrade strategy._
+
+. Wait for until the new Build to complete and the rolling upgrade to finish to test your new deployment.
++
+image::images/consume-22.png[22-updated-app, role="integr8ly-img-responsive"]
+
+[time=5]
+[id="update-sso"]
+== Update SSO On Application Callback
+
+Redirect URLs are a critical part of the OAuth flow. After a user successfully authorizes an application, the authorization server will redirect the user back to the application with either an authorization code or access token in the URL. Because the redirect URL will contain sensitive information, it is critical that the service doesn't redirect the user to arbitrary locations.
+
+. Open a browser window and navigate to `http://sso-sso.{openshift-app-host}/auth/admin/{user-username}/console/`.
+
+. Log into Red Hat Single Sign On using your credentials. Click on *Sign In*.
++
+image::images/00-login-sso.png[00-login-sso.png, role="integr8ly-img-responsive"]
+
+. Select *Clients* from the left menu.
++
+image::images/00-clients.png[00-clients.png, role="integr8ly-img-responsive"]
++
+_3scale, through it's https://github.com/3scale/zync/[zync] component, already synchronized the application information into the Red Hat SSO security realm_.
+
+. Click on the *CLIENT_ID* link to view the details.
++
+_Remember to select CLIENT_ID with the one you got in the **Integrator Lab 4 API Security Lab**. It will easily identifiable as its and hexadecimal name_.
++
+_If you do not find the CLIENT_ID, make sure you correctly executed the sync between 3scale and RHSSO in Lab 4, Task 3.11.  You should also check Step 1.4 in this lab to ensure that the **SSO_URL** correctly begins with `https://`_
++
+image::images/consume-24.png[24-client-application, role="integr8ly-img-responsive"]
+
+. Scroll down, type in and select the following options in the application configuration:
++
+|===
+| Field | Value
+
+| Access Type
+| Public
+
+| Standard Flow Enabled
+| ON
+
+| Implicit Flow Enabled
+| OFF
+
+| Valid Redirect URIs
+| http://www-{user-username}.{openshift-app-host}/*
+
+| Web Origins
+| *
+|===
++
+image::images/consume-25.png[25-client-config, role="integr8ly-img-responsive"]
+
+. Finally, click *Save* button to persist the changes.
+
+[time=5]
+[id="test-webpage"]
+== Opening International Inc Web Page
+
+International Inc web development create a Node.js application for the company home page. They added a map service to locate the offices around the world. In this step you will deploy that application.
+
+. Open a browser tab and navigate to `http://www-{user-username}.{openshift-app-host}`.
+
+. You should now see what the development team created for International Inc. Click *LOCATIONS* to check the locations page.
++
+image::images/consume-13.png[10-application-page, role="integr8ly-img-responsive"]
+
+. You can notice now the *Sign In* button in the page.
++
+image::images/consume-222.png[11-Sign-in, role="integr8ly-img-responsive"]
+
+[time=5]
+[id="test-SSO-integration"]
+== Test the Single Sign On Integration
+
+. Let's test the integration. Click the *Sign In* button.
+
+. You are being redirected to Red Hat Single Sign On *Login Page*. Login using the user credentials you created in the link:../lab05/#step-2-add-user-to-realm[API Security Lab]
+ ** Username: *apiuser*
+ ** Password: *apipassword*
++
+image::images/consume-23.png[23-realm-login, role="integr8ly-img-responsive"]
+
+. You will be redirected again to the *LOCATIONS* page where now you will be able to see the map with the International Inc Offices.
++
+image::images/consume-14.png[11-locations-page, role="integr8ly-img-responsive"]
+
+[time=10]
+[id="troubleshoot-webpage"]
+== Troubleshooting the Locations Page
+
+. In most cases, the Locations web page will *NOT* show the locations because of a self-signed certificate issue in your web-browser.  See the below example with missing locations:
++
+image::images/00-missing-locations.png[00-missing-locations, role="integr8ly-img-responsive"]
+
+. To resolve this issue in Chrome, navigate to _View > Developer > Developer Tools_ menu.  A Developer Tools console should appear.
++
+image::images/00-developer-console.png[00-developer-console, role="integr8ly-img-responsive"]
+
+. In the developer console, a red error should appear indicating a cert issue. Click on the link and accept the certificate.
++
+_Example link: `https://location-{user-username}-api-staging.amp.{openshift-app-host}/locations`_
+
+. Refresh the page, and the locations should appear.
++
+image::images/consume-14.png[11-locations-page, role="integr8ly-img-responsive"]
++
+_Congratulations!_ You have successfully tested the International Inc. Locations webpage using a full SSO authenticated API.
+
+[time=1]
+[id="summary"]
+== Summary
+
+In total you should now have been able to follow all the steps from designing and API, deploying it's code, issuing keys, connecting OpenID connect and calling it from an application. This gives you a brief overview of the creation and deployment of an API. There are many variations and extensions of these general principles to explore!
+
+[time=1]
+[id="steps-beyond"]
+== Steps Beyond
+So, you want more? If you have time, you can try our bonus lab. This lab focuses demonstrates Fuse Online, showcasing Apicurito to define your API contract, autogenerate an integration, deploy it, then secure your newly created API using 3scale Smart Discovery.
+
+If you'd like to try this out, you can now proceed to link:{next-lab-url}[Lab 7]
+
+[time=1]
+[id="further-reading"]
+== Notes and Further Reading
+
+* http://microcks.github.io/[Red Hat 3scale API Management]
+* https://developers.redhat.com/blog/2017/11/21/setup-3scale-openid-connect-oidc-integration-rh-sso/[Setup OIDC with 3scale]
