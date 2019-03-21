@@ -54,7 +54,7 @@ image::images/design-52.png[design-login, role="integr8ly-img-responsive"]
 [id="Che setup"]
 == Lab Instructions
 
-=== Step 1: Create an Eclipse Che environment for your personal use
+=== Step 1: Create an CodeReady Workspaces environment for your personal use
 
 Login to the Red Hat Solution Explorer, here you will find the link to CodeReady Workspaces.
 
@@ -64,13 +64,11 @@ Enter dummy values for `First Name` and `Last Name`. Click *Submit*.
 
 image::images/00-integr8ly-che-update-acc.png[00-integr8ly-che-update-acc.png, role="integr8ly-img-responsive"]
 
-. Use your unique username as your workspace name e.g. {user-username}.  Select "day in the life workshop" stack, increase the RAM to 4GB and then click *Create*.
+. Use your unique username as your workspace name e.g. `{user-username}`.  Select "day in the life workshop" stack, increase the RAM to 4GB and then click *Create*.
 +
 image::images/00-new-workspace.png[00-new-workspace.png, role="integr8ly-img-responsive"]
 
 . Click on **Create & Open**.
-+
-image::images/00-open-workspace.png[00-open-workspace.png, role="integr8ly-img-responsive"]
 
 === Step 2: Create your own personal Openshift project and setup a sample database
 
@@ -85,13 +83,13 @@ https://tutorial-web-app-webapp.{openshift-app-host}
 +
 image::images/000-open-openshift.png[000-open-openshift.png, role="integr8ly-img-responsive"]
 
-. Enter your credentials: {user-username} and {user-password}
+. Enter your credentials: `{user-username}` and `{user-password}`
 
 . Click on your unique namespace to enter your workspace e.g. `{user-username} Project`.
 +
 image::images/00-create-ocp-project.png[00-create-ocp-project.png, role="integr8ly-img-responsive"]
 
-. Click on *Browse Catalog*, then navigate to the *Databases* menu and select *Postgres*.  From there, select the *PostgreSQL* (Ephemeral) template.
+. Click on *Catalog* on left side menu, then navigate to the *Databases* menu and select *Postgres*.  From there, select the *PostgreSQL* (Ephemeral) template.
 +
 image::images/00-select-postgres.png[00-select-postgres.png, role="integr8ly-img-responsive"]
 
@@ -136,7 +134,7 @@ image::images/00-location-yaml.png[00-location-yaml.png, role="integr8ly-img-res
 
 . Copy the contents of this https://raw.githubusercontent.com/RedHatWorkshops/dayinthelife-integration/master/docs/labs/developer-track/resources/Locations.yaml[file] to your newly created `location.yaml` file.  The file will auto-save so no need to click *Save*.
 
-. After you've updated the `pom.xml` file, we need to run a Maven command to generate the Camel RESTdsl from our specification.  To do this, first highlight the `location-service` project then click the *Manage Commands* button.
+. Run the Maven command to generate the Camel RESTdsl from our specification.  To do this, first highlight the `location-service` project then click the *Manage Commands* button.
 +
 image::images/00-select-mvn.png[00-select-mvn.png, role="integr8ly-img-responsive"]
 
@@ -146,13 +144,13 @@ image::images/00-build-mvn.png[00-build-mvn.png, role="integr8ly-img-responsive"
 
 . Give the script the name `Generate REST DSL from Swagger`, and replace the Maven command with `mvn camel-restdsl-swagger:generate -f ${current.project.path}/pom.xml`.  Click the **Save** button.
 
-. To run the script,we need to login to OpenShift via the Terminal.  Navigate back to the OpenShift web UI and click the **Copy Login Command** link.  If you aren't logged-in to OpenShift, open a new tab and navigate to `https://master.{openshift_url}/console`.
+. To run the script,we need to login to OpenShift via the Terminal.  Navigate back to the OpenShift web UI and click the **Copy Login Command** link.  If you aren't logged-in to OpenShift, open a new tab and navigate to `https://master.{openshift-host}/console`.
 +
-image::images/00-location-list.png[00-login-ocp-cli.png, role="integr8ly-img-responsive"]
+image::images/00-login-ocp-cli.png[00-login-ocp-cli.png, role="integr8ly-img-responsive"]
 
-. Navigate back to CodeReady Workspaces, open the terminal, and paste the login command from your clipboard.  Once you've logged-in, select the OpenShift project you created earlier using `oc project userX` (replacing userX with your username).
+. Navigate back to CodeReady Workspaces, open the terminal, and paste the login command from your clipboard.  Once you've logged-in, select the OpenShift project you created earlier using `oc project {user-username}`.
 +
-image::images/00-location-list.png[00-login-terminal.png, role="integr8ly-img-responsive"]
+image::images/00-login-terminal.png[00-login-terminal.png, role="integr8ly-img-responsive"]
 
 . Click **Run** to execute the script. If everything completes successfully, it should generate a new file under `src/main/java/com/redhat` called `CamelRoutes.java`.  If the Maven script fails, it's probably because you forgot to first highlight the `location-service` project in the previous step.  Be sure to do this and re-run the command to fix the error.
 +
@@ -359,7 +357,6 @@ image::images/00-open-servers.png[00-open-servers.png, role="integr8ly-img-respo
 +
 image::images/00-location-list.png[00-location-list.png, role="integr8ly-img-responsive"]
 
-[source,bash,subs="attributes+"]
 . Now that we've tested our API service implementation locally, we can deploy it to our running OpenShift environment.  First of all, stop the *spring:boot* process by closing the window. Click on the **+** button next to the *Deploy* folder, then select *Maven*.
 +
 image::images/00-deploy-mvn.png[00-deploy-mvn.png, role="integr8ly-img-responsive"]
@@ -375,7 +372,7 @@ image::images/00-mvn-deploy.png[00-mvn-deploy.png, role="integr8ly-img-responsiv
 
 . If the deployment script completes successfully, navigate back to your OCPPROJECT web console and verify the pod is running
 +
-image::images/00-verify-location-service[00-verify-location-service, role="integr8ly-img-responsive"]
+image::images/00-verify-location-service.png[00-verify-location-service.png, role="integr8ly-img-responsive"]
 
 . Click on the route link above the location-service pod and append `locations` to the URI.  Initially, you may receive a `404` error when opening the route URL, but once you append `locations` and refresh you should receive a list of all locations
 +
@@ -392,7 +389,7 @@ image::images/00-location-list.png[00-location-list.png, role="integr8ly-img-res
 
 . If the HTTP POST is successful, you should be able to view it by repeating the HTTP GET /locations test.
 
-_Congratulations!_ You have now an application to test your Swagger to RESTdsl integration.
+. _Congratulations!_ You have now an application to test your Swagger to RESTdsl integration.
 
 [time=2]
 [id="summary"]
