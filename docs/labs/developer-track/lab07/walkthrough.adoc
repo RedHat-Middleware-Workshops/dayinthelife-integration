@@ -1,15 +1,15 @@
-= Developer Lab 7 - API Developer Portal
 :walkthrough: Create and customize the API Developer Portal
+:user-password: openshift
 
-:experimental:
-[time=20]
-== API Developer Portal
+[id='dev-portal']
+= Developer Lab 7 - API Developer Portal
 
-=== Publishing APIs to Developer Portal
+In this lab, you will customize the API developer portal 
 
-* Duration: 20 mins
-* Audience: API Owners, Product Managers, Developers, Architects
+Audience: API Owners, Product Managers, Developers, Architects
 
+[time=2]
+[id="overview"]
 == Overview
 
 The focal point of your developers`' experience is the API developer portal, and the level of effort you put into it will determine the level of decreased support costs and increased developer engagement.
@@ -24,35 +24,11 @@ You can customize the look and feel of the entire Developer Portal to match your
 
 *Credentials:*
 
-Your username is your assigned user number. For example, if you are assigned user number *1*, your username is:
+Your username is: `{user-username}` +
+Your password is: `{user-password}`
 
-[source,bash]
-----
-user1
-----
-
-Please ask your instructor for your password.
-
-*URLs:*
-
-If you haven't done so already, you need to login to the *Red Hat Solution Explorer* webpage so that a unique lab environment can be provisioned on-demand for your exclusive use.  You should open a web browser and navigate to:
-
-[source,bash]
-----
-https://tutorial-web-app-webapp.{openshift-app-host}
-----
-
-You will be presented with a login page where you can enter your unique credentials:
-
-image::images/design-50.png[design-login, role="integr8ly-img-responsive"]
-
-Enter your credentials and click *Log in*.  You'll notice a web-page appear which explains that a _unique environment_ is being provisioned.
-
-image::images/design-51.png[design-login, role="integr8ly-img-responsive"]
-
-Once the environment is provisioned, you will be presented with a page that presents all the available applications which you'll need in order to complete the labs:
-
-image::images/design-52.png[design-login, role="integr8ly-img-responsive"]
+[time=16]
+[id="lab-instructions"]
 
 == Lab Instructions
 
@@ -60,12 +36,10 @@ image::images/design-52.png[design-login, role="integr8ly-img-responsive"]
 
 . Open a browser window and navigate to:
 +
-[source,bash]
+[source,bash,subs="attributes+"]
 ----
- https://userX-admin.{openshift-app-host}/p/login
+ https://{user-username}-admin.{openshift-app-host}/p/login
 ----
-+
-_Remember to replace `X` with your user number._
 
 . Log into 3scale using your designated <<environment,user and password>>. Click on *Sign In*.
 +
@@ -137,7 +111,7 @@ image::images/20a-select-applications.png[20a-select-applications.png, role="int
 +
 image::images/21-select-application.png[21-select-application.png, role="integr8ly-img-responsive"]
 
-. Update redirect link to `http://www-userX.{openshift-app-host}/*`
+. Update redirect link to `http://www-{user-username}.{openshift-app-host}/*`
 +
 image::images/22-updare-redirect-link.png[22-updare-redirect-link.png, role="integr8ly-img-responsive"]
 
@@ -149,9 +123,9 @@ image::images/16d-access-portal.png[16d-access-portal.png, role="integr8ly-img-r
 
 . Open a new _Incognito/Private_ browser window to test the Developer Portal login. Navigate to:
 +
-[source,bash]
+[source,bash,subs="attributes+"]
 ----
- https://userX.{openshift-app-host}/
+ https://{user-username}.{openshift-app-host}/
 ----
 
 . Type your portal code to finish the login.
@@ -170,18 +144,24 @@ _Copy down this credentials as it you will use them to authenticate yourself to 
 
 _Congratulations!_ You have successfully customized your Developer Portal and completed a Sign Up process.
 
+[time=1]
+[id="step-beyond"]
 == Steps Beyond
 
 So, you want more? Click the *Documentation* link. Where does it takes you? _API Docs_ is where you can add your interactive documentation for your APIs. Is based on the known _Swagger UI_ interface.
 
 You can add from the Admin Portal under _API Docs_ the API definition to generate the live testing.
 
+[time=1]
+[id="summary"]
 == Summary
 
 In this lab you discovered how to add a developer facing experience to your APIs. Developers in your organization or outside of it can now register, gain access to API keys and develop sample applications.
 
 You can now proceed to link:../lab08/#lab-8[Lab 8]
 
+[time=1]
+[id="further-reading"]
 == Notes and Further Reading
 
 Red Hat 3scale Developer Portal's CMS consists of a few elements:
