@@ -32,11 +32,11 @@ Your password is: `{user-password}`
 * link:{3scale-admin-url}[Console, window="_blank"]
 ****
 
-[time=2]
+[time=5]
 [id="custom-dev-portal"]
 == Customizing Developer Portal
 
-. Log in to link:{3scale-admin-url}[3scale Admin, window="_blank"] web console using `{user-username}` and password: `{user-password}`. Click on *Log in*.
+. Log in to link:{3scale-admin-url}[3scale Admin, window="_blank"] web console using `{user-username}` and password: `{user-password}`. Click on *Sign in*.
 +
 image::images/01-login.png[01-login.png, role="integr8ly-img-responsive"]
 
@@ -60,7 +60,10 @@ image::images/12-main-layout.png[12-main-layout.png, role="integr8ly-img-respons
 
 . First look for the *navbar* section of the main HTML. Replace the *{{ provider.name }}* for the shadowman image link:
 +
-`+<img src="https://www.redhat.com/profiles/rh/themes/redhatdotcom/img/logo.png" alt="{{ provider.name }}">+`
+[source,bash]
+----
+<img src="https://www.redhat.com/profiles/rh/themes/redhatdotcom/img/logo.png" alt="{{ provider.name }}">
+----
 +
 image::images/13-custom-logo.png[13-custom-logo.png, role="integr8ly-img-responsive"]
 
@@ -78,7 +81,9 @@ image::images/15-homepage-devportal.png[15-homepage-devportal.png, role="integr8
 +
 image::images/16-updated-devportal.png[16-updated-devportal.png, role="integr8ly-img-responsive"]
 
-=== Step 2: Register New Accounts Using Developer Portal
+[time=5]
+[id="register-new-accounts"]
+== Register New Accounts Using Developer Portal
 
 . Take the place of one of your developers and signup for the *Basic* plan.
 +
