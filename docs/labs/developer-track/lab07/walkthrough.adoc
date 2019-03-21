@@ -41,7 +41,7 @@ Your password is: `{user-password}`
  https://{user-username}-admin.{openshift-app-host}/p/login
 ----
 
-. Log into 3scale using your designated <<environment,user and password>>. Click on *Sign In*.
+. Log into 3scale using your designated credentials: `{user-username}` and `{user-password}`. Click on *Sign In*.
 +
 image::images/01-login.png[01-login.png, role="integr8ly-img-responsive"]
 
@@ -53,7 +53,7 @@ image::images/10-developer-portal.png[10-developer-portal.png, role="integr8ly-i
 +
 image::images/15-homepage-devportal.png[15-homepage-devportal.png, role="integr8ly-img-responsive"]
 
-. Replace the CHANGE_ME_URL to the PLAN_URL you get from last lab.
+. Replace the `CHANGE_ME_URL` to the `PLAN_URL` you get from last lab.
 +
 image::images/16-replace.png[16-replace.png, role="integr8ly-img-responsive"]
 
@@ -61,7 +61,7 @@ image::images/16-replace.png[16-replace.png, role="integr8ly-img-responsive"]
 +
 image::images/14-publish-devportal.png[14-publish-devportal.png, role="integr8ly-img-responsive"]
 
-. Select the * SSO Location API * from the dropdown to edit to application plan settings.
+. Select the *SSO Location API* from the dropdown to edit to application plan settings.
 +
 image::images/14a-select-sso-api.png[14a-select-sso-api.png, role="integr8ly-img-responsive"]
 
