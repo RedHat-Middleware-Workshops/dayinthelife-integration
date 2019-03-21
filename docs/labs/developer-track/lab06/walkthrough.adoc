@@ -119,14 +119,15 @@ If your encountered error:
 This may be due to a failed build. Troubleshoot by deleting SSO Location API.
 SSO Location API can be located here:
 
-* In your browser, `https://{user-username}-admin.{openshift-app-host}/config/services`
-* In the tab menu, click *APIs*
+* In your browser, `https://{user-username}-admin.{openshift-app-host}`
 * Click SSO Location API - *Definition*
 * Click *edit*
 * Click *I understand the consequences, proceed to delete 'SSO Location API' service.*
 
 Try running this command again in the terminal:
 `curl -X POST http://threescale-automate-international.{openshift-app-host}/threescale/automate/{YOUR_API_TOKEN}/{user-username}/{openshift-app-host}`
+
+_Remember to replace *YOUR_API_TOKEN* with your generated *token*_.
 
 [time=2]
 [id="Steps-beyond"]
