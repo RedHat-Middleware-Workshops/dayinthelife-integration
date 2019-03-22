@@ -33,7 +33,7 @@ Your password is: `{user-password}`
 * link:{apicurio-studio-url}[Apicurio Studio, window="_blank"]
 ****
 
-[time=5]
+[time=2]
 [id="creating-apis-with-apicurio-studio"]
 == Creating APIs with Apicurio Studio
 
@@ -51,8 +51,8 @@ image::images/design-03.png[design-new-api, role="integr8ly-img-responsive"]
 
 . Create a brand new API by completing the following information:
  ** Type: *Open API 3.0.2*
- ** Name: *Locations-{user-username}*
- ** Description: *Locations API*
+ ** Name: *`Locations-{user-username}`*
+ ** Description: *`Locations API`*
 
 +
 image::images/design-04.png[design-create-api, role="integr8ly-img-responsive"]
@@ -61,7 +61,7 @@ image::images/design-04.png[design-create-api, role="integr8ly-img-responsive"]
 +
 image::images/design-05.png[design-edit-api, role="integr8ly-img-responsive"]
 
-[time=10]
+[time=2]
 [id="editing-apis"]
 == Editing APIs
 
@@ -74,7 +74,7 @@ Let's start crafting your API.
 image::images/design-15.png[design-add-datatype, role="integr8ly-img-responsive"]
 
 . Fill in the _Name_ field with the value *location*. Expand the _Enter the JSON Example (optional)_ to paste the following example, then click *Save*:
- ** Name: *location*
+ ** Name: *`location`*
  ** JSON Example:
 +
 [source,bash]
@@ -101,7 +101,7 @@ image::images/design-17.png[design-definition-types, role="integr8ly-img-respons
 +
 _Time to start creating some paths_.
 
-[time=15]
+[time=2]
 [id="adding-paths"]
 == Adding Paths
 
@@ -200,7 +200,7 @@ image::images/design-19.png[design-add-example, role="integr8ly-img-responsive"]
 
 +
 image::images/design-20.png[design-response-example, role="integr8ly-img-responsive"]
-. Click on the drop-down next to the `No description` message, and enter `Returns an array of location records` as the description.  Click the check-mark button to accept the description.
+. Click on the drop-down next to the _No description_ message, and enter `Returns an array of location records` as the description.  Click the check-mark button to accept the description.
 +
 image::images/design-54.png[design-response-example, role="integr8ly-img-responsive"]
 
@@ -248,12 +248,12 @@ image::images/design-18.png[design-location-type, role="integr8ly-img-responsive
 +
 image::images/design-40.png[design-location-type, role="integr8ly-img-responsive"]
 
-. Click on the drop-down next to the `No description` message, and enter `Returns a single location record` as the description.  Click the check-mark button to accept the description.
+. Click on the drop-down next to the _No description_ message, and enter `Returns a single location record` as the description.  Click the check-mark button to accept the description.
 +
 image::images/design-56.png[design-response-example, role="integr8ly-img-responsive"]
 
 
-[time=5]
+[time=2]
 [id="download-api-definition"]
 == Download the API definition
 
@@ -265,7 +265,7 @@ image::images/design-22.png[design-locations-api, role="integr8ly-img-responsive
 +
 image::images/design-23.png[design-download-yaml, role="integr8ly-img-responsive"]
 
-. This will start the download of your API definition file. It could take a few seconds to start the download. *Save* it to your local disk drive.
+. This will start the download of your API definition file. _It could take a few seconds to start the download_. *Save* it to your local disk drive.
 . You can open the file with any text editor. Take a look at the source file. Everything is there.
 +
 image::images/design-24.png[design-api-source, role="integr8ly-img-responsive"]
@@ -286,7 +286,7 @@ In this lab you used Apicurio Studio to create a simple API definition using the
 
 You can now proceed to link:{next-lab-url}[Lab 2].
 
-[time=1]
+[time=5]
 [id="further-reading"]
 == Notes and Further Reading
 
