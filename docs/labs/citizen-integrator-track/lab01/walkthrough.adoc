@@ -37,7 +37,7 @@ Your password is: `{user-password}`
 [id="creating-apis-with-apicurio-studio"]
 == Creating APIs with Apicurio Studio
 
-. Log in to link:{apicurio-studio-url}[Apicurio Studio, window="_blank"] web console using `{user-username}` and password.
+. Log in to link:{apicurio-studio-url}[Apicurio Studio, window="_blank"] web console using `{user-username}` and {user-password}.
 +
 image::images/design-01.png[design-login, role="integr8ly-img-responsive"]
 
