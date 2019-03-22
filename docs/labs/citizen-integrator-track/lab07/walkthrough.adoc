@@ -333,6 +333,10 @@ _You should expect to get an error message._
 +
 image::images/04-create-application-plan.png[04-create-application-plan, role="integr8ly-img-responsive"]
 
+. Click *Create Application Plan* link again.
++
+image::images/04-click-create-app-plan.png[04-click-create-app-plan, role="integr8ly-img-responsive"]
+
 . Enter the Application Plan details, then click *Create Application Plan*.
 **Name: *`basic-integration`*
 **System name: *`basic-integration`*
