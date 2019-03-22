@@ -30,7 +30,7 @@ Your password is: `{user-password}`
 [type=walkthroughResource]
 .3scale
 ****
-* link:{3scale-admin-url}[3scale, window="_blank"]
+* link:{3scale-admin-url}[3scale Admin Console, window="_blank"]
 ****
 
 [time=10]
@@ -67,26 +67,21 @@ image::images/05-token.png[05-token.png, role="integr8ly-img-responsive"]
 [id="lab-instructions"]
 == Start managing your APIs
 
-By running the command lines, it will automatically setup the 3scale API configuration and start managing the API you have exposed!
-In you command line terminal or in your Che terminal enter the following CURL command:
+By running the command lines, it will automatically setup the 3scale API configuration and start managing the API you have exposed.
 
-[source,bash,subs="attributes+"]
-----
-curl -X POST http://threescale-automate-international.{openshift-app-host}/threescale/automate/{YOUR_API_TOKEN}/{user-username}/{openshift-app-host}
-----
+. In you command line terminal or in your Che terminal enter the following CURL command: *`curl -X POST http://threescale-automate-international.{openshift-app-host}/threescale/automate/{YOUR_API_TOKEN}/{user-username}/{openshift-app-host}`*
 +
 _Remember to replace *YOUR_API_TOKEN* with your generated *token*_.
 +
-String *API automated, DONE!* should be returned as the result.
+. The *API automated, DONE!* string should be returned as the result.
 +
 _Congratulations!_ You have configured 3scale access control layer as a proxy to only allow authenticated calls to your backend API. 3scale is also now:
+** Authenticating: (If you test with an incorrect API key it will fail)
+** Recording calls (Visit the Analytics tab to check who is calling your API).
 
-* Authenticating (If you test with an incorrect API key it will fail)
-* Recording calls (Visit the Analytics tab to check who is calling your API).
+*Common Gotcha*
 
-==== Common Gotcha
-
-If your encountered error:
+If you encountered the following error:
 `+org.apache.camel.http.common.HttpOperationFailedException: HTTP operation failed invoking https://{user-username}-admin.{openshift-app-host}/admin/api/services.xml with statusCode: 422+`
 
 This may be due to a failed build. Troubleshoot by deleting SSO Location API.
@@ -96,8 +91,9 @@ SSO Location API can be located here:
 * Click SSO Location API - *Definition*
 * Click *edit*
 * Click *I understand the consequences, proceed to delete 'SSO Location API' service.*
-
++
 Try running this command again in the terminal:
++
 `curl -X POST http://threescale-automate-international.{openshift-app-host}/threescale/automate/{YOUR_API_TOKEN}/{user-username}/{openshift-app-host}`
 
 [time=2]
