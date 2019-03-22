@@ -50,7 +50,7 @@ Your password is: `{user-password}`
 +
 image::images/00-integr8ly-che-update-acc.png[00-integr8ly-che-update-acc.png, role="integr8ly-img-responsive"]
 
-. Use your unique username as your workspace name e.g. `{user-username}`.  Select "day in the life workshop" stack, increase the RAM to 4GB and then click *Create*.
+. Use your unique username as your workspace name e.g. `{user-username}`.  Select the _Red Hat Fuse_ stack and increase the RAM to 4GB.
 +
 image::images/00-new-workspace.png[00-new-workspace.png, role="integr8ly-img-responsive"]
 
@@ -82,7 +82,7 @@ image::images/00-postgres-credentials.png[00-postgres-credentials.png, role="int
 [id="git-import"]
 == Import the skeleton projects from Git and convert them to Maven projects.
 
-. In CodeReady Workspaces, click on Workspace > Import Project from the main menu.  A pop-up will appear.
+. In CodeReady Workspaces, click on _Workspace > Import Project_ from the main menu.  A pop-up will appear.
 +
 image::images/00-import-project.png[00-import-project.png, role="integr8ly-img-responsive"]
 
@@ -121,13 +121,13 @@ image::images/00-location-yaml.png[00-location-yaml.png, role="integr8ly-img-res
 +
 image::images/00-select-mvn.png[00-select-mvn.png, role="integr8ly-img-responsive"]
 
-. Click the **+** button next to the *Build* folder, then select *Maven*
+. Click the **+** button next to the *Build* folder, then double-click *Maven*
 +
 image::images/00-build-mvn.png[00-build-mvn.png, role="integr8ly-img-responsive"]
 
 . Give the script the name `Generate REST DSL from Swagger`, and replace the Maven command with `mvn camel-restdsl-swagger:generate -f ${current.project.path}/pom.xml`.  Click the **Save** button.
 
-. To run the script,we need to login to OpenShift via the Terminal.  Navigate back to the OpenShift web UI and click the **Copy Login Command** link.  If you aren't logged-in to OpenShift, open a new tab and navigate to `https://master.{openshift-host}/console`.
+. To run the script, we need to login to OpenShift via the Terminal.  Navigate back to the OpenShift web UI and click the **Copy Login Command** link.
 +
 image::images/00-login-ocp-cli.png[00-login-ocp-cli.png, role="integr8ly-img-responsive"]
 
@@ -138,6 +138,10 @@ image::images/00-login-terminal.png[00-login-terminal.png, role="integr8ly-img-r
 . Click **Run** to execute the script. If everything completes successfully, it should generate a new file under `src/main/java/com/redhat` called `CamelRoutes.java`.  If the Maven script fails, it's probably because you forgot to first highlight the `location-service` project in the previous step.  Be sure to do this and re-run the command to fix the error.
 +
 image::images/00-run-mvn.png[00-run-mvn.png, role="integr8ly-img-responsive"]
+
+[time=10]
+[id="Camel Route Update"]
+== Update the Camel Routes
 
 . Click on the workspace button (located next to the **Manage Commands** button).  Open the `CamelRoutes.java` file under `src/main/java/com/redhat`.  Notice that the `camel-restdsl-swagger-plugin` maven plugin has generated Camel RESTdsl code for the various HTTP GET and POST operations.  What is missing though are the underlying Camel routes, which will form our API service implementations. If the `CamelRoutes.java` hasn't appeared, please right-click on the `location-service` project and click **Refresh** to manually refresh the project tree.
 +
