@@ -278,7 +278,7 @@ image::images/secure-09.png[secure-09, role="integr8ly-img-responsive"]
 
 . Leave the settings for _Private Base URL_ as it is. Update the _Staging Public Base URL_ and _Production Public Base URL_ fields to the following:
 ** Staging Public Base: *`https://i-addlocation-{user-username}-apicast-staging.amp.{openshift-app-host}:443`*
-** Production Public Base URL: *`https://i-addlocation-{user-username}-apicast-production.amp.{openshift-app-host}:443
+** Production Public Base URL: *`https://i-addlocation-{user-username}-apicast-production.amp.{openshift-app-host}:443`*
 +
 image::images/secure-10.png[secure-10, role="integr8ly-img-responsive"]
 
@@ -369,7 +369,7 @@ image::images/04-edit-api-config.png[04-edit-api-config, role="integr8ly-img-res
 
 . Update the _Staging Public Base URL_ and _Production Public Base URL_ fields to the following:
 ** Staging Public Base: *`https://i-addlocation-{user-username}-apicast-staging.amp.{openshift-app-host}:443`*
-** Production Public Base URL: *`https://i-addlocation-{user-username}-apicast-production.amp.{openshift-app-host}:443
+** Production Public Base URL: *`https://i-addlocation-{user-username}-apicast-production.amp.{openshift-app-host}:443`*
 
 . Scroll down to the _Client_ section. Copy the full _curl_ URL in the box. Paste it into a text editor as will need it shortly.
 +
