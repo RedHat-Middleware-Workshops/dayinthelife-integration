@@ -316,15 +316,15 @@ Notice that we now have both ResultProcessor's instantiated, and we've stood-up 
      ;
 ----
 +
-_Sample https://gist.githubusercontent.com/VinayBhalerao/af845d8992a206630265cfd0bf0410bd/raw/68c2282fa3c1cfc748666f30df3e8a26b08a6935/CamelRoutes.java[CamelRoutes.java] for reference, just incase if you miss any step earlier._
+_Sample https://gist.githubusercontent.com/VinayBhalerao/af845d8992a206630265cfd0bf0410bd/raw/68c2282fa3c1cfc748666f30df3e8a26b08a6935/CamelRoutes.java[CamelRoutes.java] for reference, just in case if you miss any step earlier._
 
-. Before we test our newly created Camel Routes, we need to update `src/main/resources/application.properties` to point to our Postgres database.  Set the `postgresql.service.name` property to `postgresql.OCPPROJECT.svc` so that it points to our OpenShift service. Replace `OCPPROJECT` with the OpenShift project name you created in Step 2 to host Postgres Database (this should be your unique username).
+. Before we test our newly created Camel Routes, we need to update `src/main/resources/application.properties` to point to our Postgres database.  Set the `postgresql.service.name` property to `postgresql.{user-username}.svc` so that it points to our OpenShift service.
 +
 image::images/00-update-properties.png[00-update-properties.png, role="integr8ly-img-responsive"]
 
 . Now we are ready to test our new Camel route locally. To do this, navigate back to the *Manage commands* screen.
 
-. Click the **+** button next to the *Run* folder, then select **Maven**.
+. Click the **+** button next to the *Run* folder, then double-click **Maven**.
 +
 image::images/00-run-spring-boot.png[00-run-spring-boot.png, role="integr8ly-img-responsive"]
 
@@ -336,6 +336,10 @@ image::images/00-final-spring-boot.png[00-final-spring-boot.png, role="integr8ly
 +
 image::images/00-run-locally.png[00-run-locally.png, role="integr8ly-img-responsive"]
 
+[time=5]
+[id="test-springboot"]
+== Test local spring:boot service
+
 . Once SpringBoot has started-up, right-click the dev-machine (under *Machines*) and select *Servers*.  Click the link corresponding to port 8080.  A new tab should open.
 +
 image::images/00-open-servers.png[00-open-servers.png, role="integr8ly-img-responsive"]
@@ -343,6 +347,10 @@ image::images/00-open-servers.png[00-open-servers.png, role="integr8ly-img-respo
 . Click on the route link above the location-service pod and append `/locations` to the URI.  As a result, you should receive a list of all locations
 +
 image::images/00-location-list.png[00-location-list.png, role="integr8ly-img-responsive"]
+
+[time=5]
+[id="deploy-location-service"]
+== Deploy location service to Openshift
 
 . Now that we've tested our API service implementation locally, we can deploy it to our running OpenShift environment.  First of all, stop the *spring:boot* process by closing the window. Click on the **+** button next to the *Deploy* folder, then select *Maven*.
 +
@@ -353,11 +361,11 @@ image::images/00-deploy-mvn.png[00-deploy-mvn.png, role="integr8ly-img-responsiv
 image::images/00-save-fabric-deploy.png[00-save-fabric-deploy.png, role="integr8ly-img-responsive"]
 
 
-. Click **Run**.  The script will run and deploy to your OCPPROJECT.
+. Click **Run**.  The script will run and deploy to your {user-username} Openshift project.
 +
 image::images/00-mvn-deploy.png[00-mvn-deploy.png, role="integr8ly-img-responsive"]
 
-. If the deployment script completes successfully, navigate back to your OCPPROJECT web console and verify the pod is running
+. If the deployment script completes successfully, navigate back to your {user-username} Openshift web console and verify the pod is running
 +
 image::images/00-verify-location-service.png[00-verify-location-service.png, role="integr8ly-img-responsive"]
 
