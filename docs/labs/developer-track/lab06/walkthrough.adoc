@@ -1,11 +1,10 @@
-:walkthrough: Managed API using 3scale API Management tools
-:3scale-admin-url: http://{user-username}-admin.{openshift-app-host}
+:walkthrough: Create and customize the API Developer Portal
 :user-password: openshift
 
-[id='manage-endpoint']
-= Developer Lab 6 - Managed API Endpoints
+[id='dev-portal']
+= Developer Lab 6 - API Developer Portal
 
-In this lab, you will protect the Restful endpoints using Red Hat 3scale API Management
+In this lab, you will customize the API developer portal
 
 Audience: API Owners, Product Managers, Developers, Architects
 
@@ -13,20 +12,13 @@ Audience: API Owners, Product Managers, Developers, Architects
 [id="overview"]
 == Overview
 
-Once you have APIs deployed in your environment, it becomes critically important to manage who may use them and for what purpose. You also need to begin to track usage of these different users to know who is/is not succeeding in their usage. For this reason in this lab you will be adding management capabilities to the API to give you control and visibility of it's usage.
+The focal point of your developers`' experience is the API developer portal, and the level of effort you put into it will determine the level of decreased support costs and increased developer engagement.
 
 === Why Red Hat?
 
-Red Hat provides one the leading API Management tools which provide management services. The 3scale API Management solution enables you to quickly and easy protect and manage your APIs.
+3scale provides a built-in, state-of-the-art CMS portal, making it very easy to create your own branded hub with a custom domain to manage developer interactions and increase API adoption.
 
-=== Skipping The Lab
-
-If you are planning to follow to the next lab, there is an already running API proxy for the Location API Service in this endpoint:
-
-[source,bash,subs="attributes+"]
-----
-http://location-service-international.{openshift-app-host}
-----
+You can customize the look and feel of the entire Developer Portal to match your own branding. You have complete control over every element of the portal, so you can make it as easy as possible for developers to learn how to use your API.
 
 === Environment
 
@@ -35,19 +27,12 @@ http://location-service-international.{openshift-app-host}
 Your username is: `{user-username}` +
 Your password is: `{user-password}`
 
-[type=walkthroughResource]
-.3scale
-****
-* link:{3scale-admin-url}[3scale, window="_blank"]
-****
-
-[time=10]
+[time=16]
 [id="lab-instructions"]
+
 == Lab Instructions
 
-=== Step 1: Get API Token for Automation
-
-Your 3scale Admin Portal provides access to a number of configuration features. An administration token is needed when automating setups for your API. This step will let you create a new token for setup.
+=== Step 1: Customizing Developer Portal
 
 . Open a browser window and navigate to:
 +
@@ -56,84 +41,141 @@ Your 3scale Admin Portal provides access to a number of configuration features. 
  https://{user-username}-admin.{openshift-app-host}/p/login
 ----
 
-. Log into 3scale using your designated <<environment,user and password>>. Click on *Sign In*.
+. Log into 3scale using your designated credentials: `{user-username}` and `{user-password}`. Click on *Sign In*.
 +
 image::images/01-login.png[01-login.png, role="integr8ly-img-responsive"]
 
-. The first page you will land is the _API Management Dashboard_. Click on the *Gear Icon* on the top.
+. Click on the *Developer Portal* tab to access the developer portal settings.
 +
-image::images/02-personalsettings.png[02-personalsettings.png, role="integr8ly-img-responsive"]
+image::images/10-developer-portal.png[10-developer-portal.png, role="integr8ly-img-responsive"]
 
-. Click onto  *Personal*. On the dropdown, Click on *Tokens*.
+. On the left menu select *Home Page*, and replace the entire content with what's in the example link: https://raw.githubusercontent.com/RedHatWorkshops/dayinthelife-integration/master/docs/labs/developer-track/lab07/support/homepage.example[example]
 +
-image::images/03-tokentab.png[03-tokentab.png, role="integr8ly-img-responsive"]
+image::images/15-homepage-devportal.png[15-homepage-devportal.png, role="integr8ly-img-responsive"]
 
-. Click  *Add Access Token* link to create a new management token.
+. Replace the `CHANGE_ME_URL` to the `PLAN_URL` you get from last lab.
 +
-image::images/06-menu.png[06-menu.png, role="integr8ly-img-responsive"]
+image::images/16-replace.png[16-replace.png, role="integr8ly-img-responsive"]
 
-. Create a new token that has the `Read & Write` rights to your management platform. Enter Name as *securetoken*, check the *Account management API* checkbox and *READ & WRITE* for Permission.
+. Click the _Publish_ button at the bottom of the editor to save the changes and made them available in the site.
 +
-image::images/04-setuptoken.png[04-setuptoken.png, role="integr8ly-img-responsive"]
+image::images/14-publish-devportal.png[14-publish-devportal.png, role="integr8ly-img-responsive"]
 
-. Please make sure you copy the *Token* to somewhere safe, and don't forget it. Click on *I have copied the token* to finish off.
+. Select the *SSO Location API* from the dropdown to edit to application plan settings.
 +
-image::images/05-token.png[05-token.png, role="integr8ly-img-responsive"]
+image::images/14a-select-sso-api.png[14a-select-sso-api.png, role="integr8ly-img-responsive"]
 
-=== Step 2: Start managing your APIs
+. Click on the *Applications* on the left menu. Select *Application plans* from the listed dropdown. And publish your application plan by clicking in on the *Publish* option on the page.
++
+image::images/17-publishplan.png[17-publishplan.png, role="integr8ly-img-responsive"]
 
-By running the command lines, it will automatically setup the 3scale API configuration and start managing the API you have exposed!
-In you command line terminal or in your Che terminal enter the following CURL command:
+. Go back to your *Audience*. Click on the *Visit Developer Portal* to take a look of how your developer portal looks like.
++
+image::images/11-visit-devportal.png[11-visit-devportal.png, role="integr8ly-img-responsive"]
 
+=== Step 2: Register New Accounts Using Developer Portal
+
+. Take the place of one of your developers and signup for the *Secure* plan.
++
+image::images/16a-signup-limited.png[16a-signup-limited.png, role="integr8ly-img-responsive"]
+
+. Fill in your information and an email to register as a developer. Click on the *Sign up* button.
++
+image::images/16b-signup-form.png[16b-signup-form.png, role="integr8ly-img-responsive"]
+
+. The system will try to send a message with an activation link.
++
+image::images/16bb-signup-thankyou.png[16bb-signup-thankyou.png, role="integr8ly-img-responsive"]
++
+_Currently the lab environment doesn't have a configured email server, so we won't be able to receive the email_.
+
+. Go back to your _Admin Portal_ tab and navigate to *Audience* to activate the new account.
++
+image::images/16bc-developers-tab.png[16bc-developers-tab.png, role="integr8ly-img-responsive"]
+
+. Find your user under the _Accounts_ and click the *Activate* link.
++
+image::images/16cc-activate-account.png[16cc-activate-account.png, role="integr8ly-img-responsive"]
++
+_Your user is now active and can log into the portal_.
+
+. Now we need to make sure the the application will redirect the user to the correct page after successful login. Go to the Developer tab and click on the user you have create in the previous steps.
++
+image::images/20-developers.png[20-developers.png, role="integr8ly-img-responsive"]
+
+. Click on *Applications*.
++
+image::images/20a-select-applications.png[20a-select-applications.png, role="integr8ly-img-responsive"]
+
+. Select the application for the `SSO Location API` service
++
+image::images/21-select-application.png[21-select-application.png, role="integr8ly-img-responsive"]
+
+. Update redirect link to `http://www-{user-username}.{openshift-app-host}/*`
++
+image::images/22-updare-redirect-link.png[22-updare-redirect-link.png, role="integr8ly-img-responsive"]
+
+=== Step 3: Login to Developer Portal
+
+. As your portal is not currently public, you will need your portal code to login. You can get the code in your admin portal navigating to: menu:Audience[Developer Portal > Domains & Access].
++
+image::images/16d-access-portal.png[16d-access-portal.png, role="integr8ly-img-responsive"]
+
+. Open a new _Incognito/Private_ browser window to test the Developer Portal login. Navigate to:
++
 [source,bash,subs="attributes+"]
 ----
-curl -X POST http://threescale-automate-international.{openshift-app-host}/threescale/automate/{YOUR_API_TOKEN}/{user-username}/{openshift-app-host}
+ https://{user-username}.{openshift-app-host}/
 ----
 
-_Remember to replace *YOUR_API_TOKEN* with your generated *token*_.
+. Type your portal code to finish the login.
++
+image::images/16e-ingress-code.png[16e-ingress-code.png, role="integr8ly-img-responsive"]
 
+. Sign in to the portal.
++
+image::images/16f-dev-signin.png[16f-dev-signin.png, role="integr8ly-img-responsive"]
 
-String *API automated, DONE!* should be returned as the result.
+. You will land in the developers homepage, where you will be able to check your developers settings and retrieve your newly created *Client ID* and *Client Secret* for the *SSO Location API* service.
++
+image::images/16g-user-credentials.png[16g-user-credentials.png, role="integr8ly-img-responsive"]
++
+_Copy down this credentials as it you will use them to authenticate yourself to the managed API_.
 
-_Congratulations!_ You have configured 3scale access control layer as a proxy to only allow authenticated calls to your backend API. 3scale is also now:
+_Congratulations!_ You have successfully customized your Developer Portal and completed a Sign Up process.
 
-* Authenticating (If you test with an incorrect API key it will fail)
-* Recording calls (Visit the Analytics tab to check who is calling your API).
-
-==== Common Gotcha
-
-If your encountered error:
-`+org.apache.camel.http.common.HttpOperationFailedException: HTTP operation failed invoking https://{user-username}-admin.{openshift-app-host}/admin/api/services.xml with statusCode: 422+`
-
-This may be due to a failed build. Troubleshoot by deleting SSO Location API.
-SSO Location API can be located here:
-
-* In your browser, `https://{user-username}-admin.{openshift-app-host}`
-* Click SSO Location API - *Definition*
-* Click *edit*
-* Click *I understand the consequences, proceed to delete 'SSO Location API' service.*
-
-Try running this command again in the terminal:
-`curl -X POST http://threescale-automate-international.{openshift-app-host}/threescale/automate/{YOUR_API_TOKEN}/{user-username}/{openshift-app-host}`
-
-[time=2]
-[id="Steps-beyond"]
+[time=1]
+[id="step-beyond"]
 == Steps Beyond
 
-In this lab we just covered the basic creating of a proxy for our API service. Red Hat 3scale API Management also allows us to get a track of the security (as you can see in the next lab) as well as the usage of our API. If getting value from APIs is also important to you, 3scale allows you to monetize your APIs with it's embedded billing system.
+So, you want more? Click the *Documentation* link. Where does it takes you? _API Docs_ is where you can add your interactive documentation for your APIs. Is based on the known _Swagger UI_ interface.
 
-Try to navigate through the rest of the tabs of your Administration Portal. Did you notice that there are application plans associated to your API? Application Plans allow you to take actions based on the usage of your API, like doing rate limiting or charging by hit or monthly usage.
+You can add from the Admin Portal under _API Docs_ the API definition to generate the live testing.
 
-[time=2]
-[id="Summary"]
+[time=1]
+[id="summary"]
 == Summary
 
-You set up an API management service and API proxies to control traffic into your API. From now on you will be able to issue keys and rights to users wishing to access the API.
+In this lab you discovered how to add a developer facing experience to your APIs. Developers in your organization or outside of it can now register, gain access to API keys and develop sample applications.
 
-You can now proceed to link:../lab07/#lab-7[Lab 7]
+You can now proceed to link:../lab08/#lab-8[Lab 8]
 
+[time=1]
+[id="further-reading"]
 == Notes and Further Reading
 
-* http://microcks.github.io/[Red Hat 3scale API Management]
-* https://developers.redhat.com/blog/2017/05/22/how-to-setup-a-3scale-amp-on-premise-all-in-one-install/[Developers All-in-one 3scale install]
-* https://www.thoughtworks.com/radar/platforms/overambitious-api-gateways[ThoughtWorks Technology Radar - Overambitious API gateways]
+Red Hat 3scale Developer Portal's CMS consists of a few elements:
+
+* Horizontal menu in the Admin Portal with access to content, redirects, and changes
+* The main area containing details of the sections above
+* CMS mode, accessible through the preview option
+
+image::images/09-developer-portal.png[09-developer-portal.png, role="integr8ly-img-responsive"]
+
+https://github.com/Shopify/liquid[Liquid] is a simple programming language used for displaying and processing most of the data from the 3scale system available for API providers. In 3scale, it is used to expose server-side data to your API developers, greatly extending the usefulness of the CMS while maintaining a high level of security.
+
+=== Links
+
+* https://access.redhat.com/documentation/en-us/red_hat_3scale/2.2/html/developer_portal/[Developer Portal Documentation]
+* https://github.com/Shopify/liquid[Liquid markup language]
+* https://www.shopify.com/partners/blog/115244038-an-overview-of-liquid-shopifys-templating-language[And Overview of Liquid]

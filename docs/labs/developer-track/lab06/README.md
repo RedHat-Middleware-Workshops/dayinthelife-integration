@@ -1,27 +1,21 @@
-# Lab 6
+# Lab 7
 
-## Managed API Endpoints
+## API Developer Portal
 
-### Take control of your APIs
+### Publishing APIs to Developer Portal
 
-* Duration: 5 mins
+* Duration: 20 mins
 * Audience: API Owners, Product Managers, Developers, Architects
 
 ## Overview
 
-Once you have APIs deployed in your environment, it becomes critically important to manage who may use them and for what purpose. You also need to begin to track usage of these different users to know who is/is not succeeding in their usage. For this reason in this lab you will be adding management capabilities to the API to give you control and visibility of it's usage.
+The focal point of your developers’ experience is the API developer portal, and the level of effort you put into it will determine the level of decreased support costs and increased developer engagement.
 
 ### Why Red Hat?
 
-Red Hat provides one the leading API Management tools which provide management services. The 3scale API Management solution enables you to quickly and easy protect and manage your APIs.
+3scale provides a built-in, state-of-the-art CMS portal, making it very easy to create your own branded hub with a custom domain to manage developer interactions and increase API adoption.
 
-### Skipping The Lab
-
-If you are planning to follow to the next lab, there is an already running API proxy for the Location API Service in this endpoint:
-
-```bash
-http://location-service-international.dil.opentry.me
-```
+You can customize the look and feel of the entire Developer Portal to match your own branding. You have complete control over every element of the portal, so you can make it as easy as possible for developers to learn how to use your API.
 
 ### Environment
 
@@ -57,9 +51,7 @@ Once the environment is provisioned, you will be presented with a page that pres
 
 ## Lab Instructions
 
-### Step 1: Get API Token for Automation
-
-Your 3scale Admin Portal provides access to a number of configuration features. An administration token is needed when automating setups for your API. This step will let you create a new token for setup.
+### Step 1: Customizing Developer Portal
 
 1. Open a browser window and navigate to:
 
@@ -67,87 +59,134 @@ Your 3scale Admin Portal provides access to a number of configuration features. 
     https://userX-admin.dil.opentry.me/p/login
     ```
 
+    *Remember to replace `X` with your user number.*
+
 1. Accept the self-signed certificate if you haven't.
 
 1. Log into 3scale using your designated [user and password](#environment). Click on **Sign In**.
 
     ![01-login.png](images/01-login.png)
 
-1. The first page you will land is the *API Management Dashboard*. Click on the **Gear Icon** on the top right-hand corner.
+1. Click on the **Developer Portal** tab to access the developer portal settings.
 
-    ![02-personalsettings.png](images/02-personalsettings.png)
+    ![10-developer-portal.png](images/10-developer-portal.png)
 
-1. Click onto  **Tokens** Tab.
-	![03-tokentab.png](images/03-tokentab.png)
 
-1. Click  **Add Access Token** link to create a new management token.
-	![06-menu.png](images/06-menu.png)
+1. On the left menu select **Home Page**, and replace the entire content with what's in the example link: [example](https://raw.githubusercontent.com/RedHatWorkshops/dayinthelife-integration/master/docs/labs/developer-track/lab07/support/homepage.example)
+
+	![15-homepage-devportal.png](images/15-homepage-devportal.png)
+
+1. Replace the CHANGE_ME_URL to the PLAN_URL you get from last lab.
+
+	![16-replace.png](images/16-replace.png)
 	
 	
-1. Create a new token that has the Read & Writeable rights to your management platform. Enter Name as **securetoken**, check the **Account management API** checkbox and **READ & WRITE** for Permission.
+1. Click the *Publish* button at the bottom of the editor to save the changes and made them available in the site.
 
-	![04-setuptoken.png](images/04-setuptoken.png)
+    ![14-publish-devportal.png](images/14-publish-devportal.png)
 
-1. Please make sure you copy the **Token** to somewhere safe, and don't forget it. Click on **I have copied the token** to finish off. 
+1. Click on the **API** Tab, select the **Integration** link under **SSO Location API**, and click on the **Application Plans** on the left menu when it shows up. And publish your application plan by clicking in on the **Publish** option on the page.  
 
-	![05-token.png](images/05-token.png)
+	![17-publishplan.png](images/17-publishplan.png)
+	
+	
 
+1. Go back to your **Developer Portal** tab. Click on the **Visit Developer Portal** to take a look of how your developer portal looks like.
 
-### Step 2: Start managing your APIs
+    ![11-visit-devportal.png](images/11-visit-devportal.png)
 
-By running the command lines, it will automatically setup the 3scale API configuration and start managing the API you have exposed! 
-In you command line terminal or in your Che terminal enter the following CURL command:
+### Step 2: Register New Accounts Using Developer Portal
 
-*Replace USERX as your user id, such as user1, user26, and OPENSHIFT_APP_URL, if you are not sure, check with your instructor*
+1. Take the place of one of your developers and signup for the **Secure** plan.
 
-```bash
-curl -X POST http://threescale-automate-international.dil.opentry.me/threescale/automate/{YOUR_API_TOKEN}/{USERX}/{OPENSHIFT_APP_URL}
-```
+    ![16a-signup-limited.png](images/16a-signup-limited.png)
 
-For example: 
+1. Fill in your information and an email to register as a developer. Click on the **Sign up** button.
 
-```bash
-curl -X POST http://threescale-automate-international.dil.opentry.me/threescale/automate/829405ec3d2dd0f91aa8435347827135c323c69757dd2dfb49ed41aa8ceb13ef/user26/dil.opentry.me
-```
+    ![16b-signup-form.png](images/16b-signup-form.png)
 
-String **API automated, DONE!** should be returned as the result.
+1. The system will try to send a message with an activation link.
 
+    ![16bb-signup-thankyou.png](images/16bb-signup-thankyou.png)
 
-*Congratulations!* You have configured 3scale access control layer as a proxy to only allow authenticated calls to your backend API. 3scale is also now:
+    *Currently the lab environment doesn't have a configured email server, so we won't be able to receive the email*.
 
-* Authenticating (If you test with an incorrect API key it will fail) 
-* Recording calls (Visit the Analytics tab to check who is calling your API).
+1. Go back to your *Admin Portal* tab and navigate to **Developers** to activate the new account.
 
-#### Common Gotcha
-If your encountered error:
-```org.apache.camel.http.common.HttpOperationFailedException: HTTP operation failed invoking https://{USERX}-admin.dil1.opentry.me/admin/api/services.xml with statusCode: 422```
+    ![16bc-developers-tab.png](images/16bc-developers-tab.png)
 
-This may be due to a failed build. Troubleshoot by deleting SSO Location API.
-SSO Location API can be located here:
+1. Find your user under the *Accounts* and click the **Activate** link.
 
-* In your browser, `https://{USERX}-admin.dil1.opentry.me/config/services`
-* In the tab menu, click **APIs**
-* Click SSO Location API - **Definition**
-* Click **edit**
-* Click **I understand the consequences, proceed to delete 'SSO Location API' service.**
+    ![16cc-activate-account.png](images/16cc-activate-account.png)
 
-Try running this command again in the terminal:
-```curl -X POST http://threescale-automate-international.dil.opentry.me/threescale/automate/{YOUR_API_TOKEN}/{USERX}/{OPENSHIFT_APP_URL}```
+    *Your user is now active and can log into the portal*.
+    
+1. Now we need to make sure the the application will redirect the user to the correct page after successful login. Go to the Developer tab and click on the user you have create in the previous steps.
+
+	![20-developers.png](images/20-developers.png)
+
+1. Select the application for the `SSO Location API` service
+
+	![21-select-application.png](images/21-select-application.png)
+
+1. Update redirect link to http://www-userX.dil.opentry.me/*
+
+	![22-updare-redirect-link.png](images/22-updare-redirect-link.png)
+
+### Step 3: Login to Developer Portal
+
+1. As your portal is not currently public, you will need your portal code to login. You can get the code in your admin portal navigating to: **Settings > Developer Portal > Domains &amp; Access**.
+
+    ![16d-access-portal.png](images/16d-access-portal.png)
+
+1. Open a new *Incognito/Private* browser window to test the Developer Portal login. Navigate to:
+
+    ```bash
+    https://userX.dil.opentry.me/
+    ```
+
+1. Type your portal code to finish the login.
+
+    ![16e-ingress-code.png](images/16e-ingress-code.png)
+
+1. Sign in to the portal.
+
+    ![16f-dev-signin.png](images/16f-dev-signin.png)
+
+1. You will land in the developers homepage, where you will be able to check your developers settings and retrieve your newly created **Client ID** and **Client Secret**.
+
+    ![16g-user-credentials.png](images/16g-user-credentials.png "Application Credentials")
+
+    *Copy down this credentials as it you will use them to authenticate yourself to the managed API*.
+
+*Congratulations!* You have successfully customized your Developer Portal and completed a Sign Up process.
 
 ## Steps Beyond
 
-In this lab we just covered the basic creating of a proxy for our API service. Red Hat 3scale API Management also allows us to get a track of the security (as you can see in the next lab) as well as the usage of our API. If getting value from APIs is also important to you, 3scale allows you to monetize your APIs with it's embedded billing system.
+So, you want more? Click the **Documentation** link. Where does it takes you? *API Docs* is where you can add your interactive documentation for your APIs. Is based on the known *Swagger UI* interface.
 
-Try to navigate through the rest of the tabs of your Administration Portal. Did you notice that there are application plans associated to your API? Application Plans allow you to take actions based on the usage of your API, like doing rate limiting or charging by hit or monthly usage.
+You can add from the Admin Portal under *API Docs* the API definition to generate the live testing.
 
 ## Summary
 
-You set up an API management service and API proxies to control traffic into your API. From now on you will be able to issue keys and rights to users wishing to access the API.
+In this lab you discovered how to add a developer facing experience to your APIs. Developers in your organization or outside of it can now register, gain access to API keys and develop sample applications.
 
-You can now proceed to [Lab 7](../lab07/#lab-7)
+You can now proceed to [Lab 8](../lab08/#lab-8)
 
 ## Notes and Further Reading
 
-* [Red Hat 3scale API Management](http://microcks.github.io/)
-* [Developers All-in-one 3scale install](https://developers.redhat.com/blog/2017/05/22/how-to-setup-a-3scale-amp-on-premise-all-in-one-install/)
-* [ThoughtWorks Technology Radar - Overambitious API gateways](https://www.thoughtworks.com/radar/platforms/overambitious-api-gateways)
+Red Hat 3scale Developer Portal's CMS consists of a few elements:
+
+* Horizontal menu in the Admin Portal with access to content, redirects, and changes
+* The main area containing details of the sections above
+* CMS mode, accessible through the preview option
+
+![09-developer-portal.png](images/09-developer-portal.png)
+
+[Liquid](https://github.com/Shopify/liquid) is a simple programming language used for displaying and processing most of the data from the 3scale system available for API providers. In 3scale, it is used to expose server-side data to your API developers, greatly extending the usefulness of the CMS while maintaining a high level of security.
+
+### Links
+
+* [Developer Portal Documentation](https://access.redhat.com/documentation/en-us/red_hat_3scale/2.2/html/developer_portal/)
+* [Liquid markup language](https://github.com/Shopify/liquid)
+* [And Overview of Liquid](https://www.shopify.com/partners/blog/115244038-an-overview-of-liquid-shopifys-templating-language)
