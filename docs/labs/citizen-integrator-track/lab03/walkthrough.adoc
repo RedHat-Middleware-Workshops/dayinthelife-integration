@@ -30,7 +30,7 @@ Your password is: `{user-password}`
 * link:{3scale-admin-url}[Console, window="_blank"]
 ****
 
-[time=5]
+[time=3]
 [id="define-api-proxy"]
 == Define your API Proxy
 
@@ -60,7 +60,7 @@ image::images/05-authentication.png[user-key-autentication, role="integr8ly-img-
 +
 image::images/04-base-url.png[base-url, role="integr8ly-img-responsive"]
 
-[time=10]
+[time=4]
 [id="update-integration-settings"]
 == Update Integration settings
 
@@ -81,9 +81,9 @@ image::images/07b-mapping-rules-define.png[mapping-rules-define, role="integr8ly
 image::images/07b-new-method.png[new-method, role="integr8ly-img-responsive"]
 
 . Fill in the information for your Fuse Method.
-** Friendly name: *Get Locations*
-** System name: *locations_all*
-** Description: *Method to return all locations*
+** Friendly name: *`Get Locations`*
+** System name: *`locations_all`*
+** Description: *`Method to return all locations`*
 
 +
 image::images/07b-new-method-data.png[new-method-data, role="integr8ly-img-responsive"]
@@ -109,7 +109,7 @@ image::images/07b-edit-mapping-rule.png[edit-mapping-rule, role="integr8ly-img-r
 +
 image::images/07b-getall-rule.png[getall-rule, role="integr8ly-img-responsive"]
 
-[time=10]
+[time=3]
 [id="define-api-policies"]
 == Define your API Policies
 
@@ -145,7 +145,7 @@ image::images/policies-05.png[policies-05, role="integr8ly-img-responsive"]
 +
 image::images/policies-06.png[policies-06, role="integr8ly-img-responsive"]
 
-. Type **Authorization** in the *Allowed headers* field.
+. Type **`Authorization`** in the *Allowed headers* field.
 +
 image::images/policies-07.png[policies-07, role="integr8ly-img-responsive"]
 
@@ -161,14 +161,14 @@ image::images/policies-09.png[policies-09, role="integr8ly-img-responsive"]
 
 . Click the **Update Policy** button to save the policy configuration.
 
-[time=10]
+[time=2]
 [id="configure-upstream-endpoint"]
 == Configure the Upstream Endpoint
 
 . Scroll back to the top of the page. Fill in the information for accessing your API.
 ** Private Base URL: *`http://location-service.international.svc:8080`*
 ** Staging Public Base URL: *`https://location-{user-username}-api-staging.amp.{openshift-app-host}:443`*
-** Production Public Base URL: *`https://location-{user-username}-api.amp.{openshift-app-host}443`*
+** Production Public Base URL: *`https://location-{user-username}-api.amp.{openshift-app-host}:443`*
 +
 _We are using the internal API service, as we are deploying our services inside the same OpenShift cluster._
 +
@@ -203,11 +203,11 @@ _Congratulations! You have configured 3scale access control layer as a proxy to 
 ** Authenticating (If you test with an incorrect API key it will fail)
 ** Recording calls (Visit the Analytics tab to check who is calling your API).
 
-[time=1]
+[time=2]
 [id="summary"]
 == Summary
 
-In this lab we just covered the basics of creating a proxy for our API service. Red Hat 3scale API Management also allows us to keep track of security (as you will see in the next lab) as well as the usage of our API. If getting money for your APIs is also important to you, 3scale allows you to monetize your APIs with its embedded billing system.
+In this lab we just covered the basics of creating a proxy for our API service. Red Hat 3scale API Management also allows us to keep track of security (as you will see in the next lab) as well as the usage of our API. If getting money from your API's is also important to you, 3scale allows you to monetize your API's with its embedded billing system.
 
 Try to navigate through the rest of the tabs of your Administration Portal. Did you notice that there are application plans associated to your API? Application Plans allow you to take actions based on the usage of your API, like doing rate limiting or charging by hit (API call) or monthly usage.
 
