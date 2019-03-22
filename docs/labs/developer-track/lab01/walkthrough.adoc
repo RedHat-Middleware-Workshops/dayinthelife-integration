@@ -10,23 +10,19 @@ In this lab you will use Apicurio Studio to Import a simple OpenAPI definition i
 
 Audience: API Owner, Product Manager, Developers, Architects
 
-[time=2]
-[id="overview"]
-== Overview
+*Overview*
 
 As APIs become more widespread in the enterprise, consistent design and usage is critically important to improve reusability. The more reusable APIs are, the less friction there is for other internal or external teams to make progress. Having design standards and tools baked into the API development and maintenance process is a very powerful way to enable this consistency.
 
 As a developer, we need to be familiar with API Design even though it's not our core capability.  Therefore, in this lab we will review Red Hat's API Designer product, Apicurio, so that we're familiar with it's capabilities only.
 
-=== Why Red Hat?
+*Why Red Hat?*
 
 Red Hat is one of the founding members of the Linux Foundation Open API Initiative (OAI) which produces the leading standard for REST API specifications. Red Hat consistently uses this standard throughout its tooling, starting with the Apicurio Studio API Design editor.
 
-=== Skipping The Lab
+*Skipping The Lab*
 
 If you are planning to skip this lab and follow the next one, here is a https://github.com/hguerrero/3scaleworkshop-openapi/blob/Lab-01/locations-api/Locations-UserX.yaml[link] to the specification generated in this lab.
-
-=== Environment
 
 *Credentials:*
 
