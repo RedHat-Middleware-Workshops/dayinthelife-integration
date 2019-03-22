@@ -37,7 +37,7 @@ Your password is: `{user-password}`
 * link:{3scale-admin-url}[Console, window="_blank"]
 ****
 
-[time=2]
+[time=3]
 [id="sso-sign-on"]
 == Sign-in to Red Hat SSO
 
@@ -63,7 +63,7 @@ image::images/00-sa-credentials.png[00-sa-credentials.png, role="integr8ly-img-r
 +
 image::images/00-sa-secret.png[00-sa-secret.png, role="integr8ly-img-responsive"]
 
-[time=5]
+[time=3]
 [id="add-user-realm"]
 == Add User to Realm
 
@@ -91,7 +91,7 @@ image::images/00-change-password.png[00-change-password.png, role="integr8ly-img
 +
 _Now you have a user to test your integration._
 
-[time=10]
+[time=4]
 [id="configure-3scale-integration]
 == Configure 3scale Integration
 
@@ -125,14 +125,9 @@ image::images/05-edit-apicast.png[05-edit-apicast.png, role="integr8ly-img-respo
 +
 image::images/05-authentication-settings.png[05-authentication-settings.png, role="integr8ly-img-responsive"]
 
-. In the **OpenID Connect Issuer** field, type in your previously noted client credentials with the URL of your Red Hat Single Sing On instance:
+. In the **OpenID Connect Issuer** field, type in your previously noted client credentials with the URL of your Red Hat Single Sing On instance: *`https://3scale-admin:CLIENT_SECRET@sso-sso.{openshift-app-host}/auth/realms/{user-username}`*
 +
-[source,bash]
-----
- https://3scale-admin:CLIENT_SECRET@sso-sso.{openshift-app-host}/auth/realms/{user-username}
-----
-+
-_Don't forget to replace the `CLIENT_SECRET` in the URL with the secret copied from Task 1.5 (`3scale_admin` client secret)_
+_Don't forget to replace the `CLIENT_SECRET` in the URL with the secret copied from Lab 4 Task 1.5 (`3scale_admin` client secret)_
 +
 image::images/06-openid-issuer.png[06-openid-issuer.png, role="integr8ly-img-responsive"]
 
@@ -148,7 +143,7 @@ image::images/07-update-environment.png[07-update-environment.png, role="integr8
 +
 image::images/08a-promote-production.png[08a-promote-production.png, role="integr8ly-img-responsive"]
 
-[time=5]
+[time=3]
 [id="create-test-app]
 == Create a Test App
 
@@ -165,8 +160,8 @@ image::images/10-applications.png[10-applications.png, role="integr8ly-img-respo
 image::images/11-create-application.png[11-create-application.png, role="integr8ly-img-responsive"]
 
 . Select **Basic** plan from the combo box. Type the following information:
- ** Name: *Secure App*
- ** Description: *OpenID Connect Secured Application*
+ ** Name: *`Secure App`*
+ ** Description: *`OpenID Connect Secured Application`*
 
 . Finally, scroll down the page and click on the **Create Application** button.
 +
@@ -178,7 +173,7 @@ image::images/14-app-credentials.png[14-app-credentials.png]
 +
 _Congratulations! You have now created an application to test your OpenID Connect Integration._
 
-[time=1]
+[time=4]
 [id="summary"]
 == Summary
 
@@ -188,7 +183,7 @@ For more information about Single Sign-On, you can check its https://access.redh
 
 You can now proceed to link:{next-lab-url}[Lab 5]
 
-[time=1]
+[time=3]
 [id="further-reading"]
 == Notes and Further Reading
 
