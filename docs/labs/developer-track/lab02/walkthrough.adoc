@@ -2,6 +2,8 @@
 :microcks-url: http://microcks.{openshift-app-host}
 :next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}/tutorial/dayinthelife-integration.git-developer-track-lab03/
 :user-password: openshift
+:wip-link: http://location-service-international.{openshift-app-host}/locations
+
 
 [id='mocking']
 = Developer Lab 2 - API Mocking
@@ -10,21 +12,17 @@ In this lab you will use Microcks to configure a REST mock service for the API d
 
 Audience: API Owner, Product Manager, Developers, Architects
 
-[time=2]
-[id="overview"]
-== Overview
+*Overview*
 
 When building and working with APIs, you often need to simulate the responses of the system before it has been fully completed. This is what we explore in this workshop - mocking up API structures quickly so they can be subjected to testing without having to create all the final service code.
 
-=== Why Red Hat?
+*Why Red Hat?*
 
 Red hat combines and number of commercial and Open Source tools to cover each part of the API Design lifecycle. In this lab we'll be using the http://microcks.github.io/[Microcks] open source tool.
 
-=== Skipping The Lab
+*Skipping The Lab*
 
 If you are planning to follow the next lab, here is a link:wip-link[link] to the REST mock service running the Location API.
-
-=== Environment
 
 *Credentials:*
 
