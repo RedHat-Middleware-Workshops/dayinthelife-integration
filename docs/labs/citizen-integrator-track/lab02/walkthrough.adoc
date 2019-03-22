@@ -22,7 +22,7 @@ Red Hat combines a number of commercial and Open Source tools to cover each part
 
 *Skipping The Lab*
 
-If you are planning to follow the next lab, here is a link:wip-link[link] to the REST mock service running the Location API.
+If you are planning to follow the next lab, here is a link:{wip-link}[link] to the REST mock service running the Location API.
 
 *Credentials:*
 
