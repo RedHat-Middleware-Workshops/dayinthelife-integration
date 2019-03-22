@@ -272,6 +272,10 @@ image::images/05-authentication.png[05-authentication, role="integr8ly-img-respo
 
 . Click on *Update Service*.
 
+[time=15]
+[id="update-apicast-config"]
+== Update the APIcast configuration
+
 . Click on the *edit APIcast configuration* link..
 +
 image::images/secure-09.png[secure-09, role="integr8ly-img-responsive"]
@@ -329,6 +333,10 @@ image::images/08-update-staging.png[08-update-staging, role="integr8ly-img-respo
 +
 _You should expect to get an error message._
 
+[time=15]
+[id="create-application-plan"]
+== Create the Application Plan
+
 . Our integration update is in error because we haven't yet created an application plan. To do this, click on the link inside of the the error message.
 +
 image::images/04-create-application-plan.png[04-create-application-plan, role="integr8ly-img-responsive"]
@@ -362,6 +370,10 @@ image::images/04-click-create-app.png[04-click-create-app, role="integr8ly-img-r
 . Select *basic-integration* as the _Application Plan_. Select *Default* as the _Service Plan_. Enter *i-integration* as the _Name_. Click *Create Applicatio*n. An Application page should appear. It will contain a newly created API User Key for use with your new `i-integration` application.
 +
 image::images/04-enter-app-details.png[04-enter-app-details, role="integr8ly-img-responsive"]
+
+[time=15]
+[id="complete-apicast-config"]
+== Complete APIcast configuration
 
 . Next, click on the _Integration > Configuration_ side-menu.
 +
