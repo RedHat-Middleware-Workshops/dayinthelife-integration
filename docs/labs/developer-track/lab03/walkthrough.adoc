@@ -40,9 +40,9 @@ Your password is: `{user-password}`
 * link:{openshift-url}[Console, window="_blank"]
 ****
 
-[time=10]
+[time=3]
 [id="Che setup"]
-== Create n CodeReady Workspaces environment for your personal use
+== Create a CodeReady Workspaces environment
 
 . Open your link:{codeready-url}[CodeReady Console, window="_blank"].
 
@@ -56,7 +56,7 @@ image::images/00-new-workspace.png[00-new-workspace.png, role="integr8ly-img-res
 
 . Click on **Create & Open**.
 
-[time=5]
+[time=2]
 [id="DB setup"]
 == Setup a sample database
 
@@ -78,7 +78,7 @@ image::images/00-postgres-credentials.png[00-postgres-credentials.png, role="int
 
 . Click *Next* and ensure _Do not Bind at this time_ is selected.  Click *Create* to generate the service.
 
-[time=10]
+[time=3]
 [id="git-import"]
 == Import the skeleton projects from Git and convert them to Maven projects.
 
@@ -101,7 +101,7 @@ image::images/00-select-maven.png[00-select-maven.png, role="integr8ly-img-respo
 
 . Convert the remaining projects to Maven, by repeating steps 4 & 5 for the *location-service* and *location-gateway* projects.
 
-[time=10]
+[time=2]
 [id="open-api-import"]
 == Import the OpenAPI specification
 
@@ -336,7 +336,7 @@ image::images/00-final-spring-boot.png[00-final-spring-boot.png, role="integr8ly
 +
 image::images/00-run-locally.png[00-run-locally.png, role="integr8ly-img-responsive"]
 
-[time=5]
+[time=2]
 [id="test-springboot"]
 == Test local spring:boot service
 
@@ -348,7 +348,7 @@ image::images/00-open-servers.png[00-open-servers.png, role="integr8ly-img-respo
 +
 image::images/00-location-list.png[00-location-list.png, role="integr8ly-img-responsive"]
 
-[time=5]
+[time=3]
 [id="deploy-location-service"]
 == Deploy location service to Openshift
 

@@ -4,29 +4,23 @@
 :user-password: openshift
 
 [id='soap-to-rest']
-= Developer Lab 4 - SOAP to REST
+= Developer Lab 4 - SOAP to REST Transformation
 
 In this lab, we will be using existing legacy SOAP service and wrap it with a new RESTful endpoint
 
-=== Contract-first API development wrapping an existing SOAP service, implemented using Eclipse Che
-
 Audience: Developers, Architects
 
-[time=2]
-[id="overview"]
-== Overview
+*Overview*
 
 Another important use case in developing API's is to take an existing legacy SOAP service and wrap it with a new RESTful endpoint.  This SOAP to REST transformation is implemented in the API service layer (Fuse).  This lab will walk you through taking an existing SOAP contract (WSDL), converting it to Java POJO's and exposing it using Camel REST DSL.
 
-=== Why Red Hat?
+*Why Red Hat?*
 
 CodeReady Workspaces, our online IDE, provides important functionality for implementing API services. In this lab you can see how our Eclipse Che and Fuse can help with SOAP to REST transformation on OpenShift.
 
-=== Skipping The Lab
+*Skipping The Lab*
 
-If you are planning to follow to the next lab or are having trouble with this lab, you can reference the working project https://github.com/RedHatWorkshops/dayinthelife-integration/tree/master/projects/location-soap2rest[here]
-
-=== Environment
+If you are planning to follow to the next lab or are having trouble with this lab, you can reference the working project link:{https://github.com/RedHatWorkshops/dayinthelife-integration/tree/master/projects/location-soap2rest}[here]
 
 *Credentials:*
 
@@ -39,11 +33,9 @@ Your password is: `{user-password}`
 * link:{codeready-url}[CodeReady, window="_blank"]
 ****
 
-[time=21]
+[time=5]
 [id="instructions"]
-== Lab Instructions
-
-=== Step 1: Import the sample SOAP project into your Openshift project
+== Import the sample SOAP project into your Openshift project
 
 . Navigate back to your CodeReady Workspaces workspace and open the terminal window.
 +
@@ -75,7 +67,9 @@ image::images/00-commend-login.png[00-commend-login.png, role="integr8ly-img-res
 +
 image::images/00-verify-location-soap.png[00-verify-location-soap.png, role="integr8ly-img-responsive"]
 
-=== Step 2: Modify the skeleton location-soap2rest project
+[time=5]
+[id="instructions"]
+== Modify the skeleton location-soap2rest project
 
 . In the OpenShift console, click on the route associated with the `location-soap` deployment.  A pop-up will appear.  Append the `/ws/location?wsdl` path to the URI and verify the WSDL appears. Copy the link to the clipboard.
 +
