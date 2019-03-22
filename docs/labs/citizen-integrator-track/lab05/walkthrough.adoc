@@ -82,8 +82,10 @@ image::images/14-publish-devportal.png[14-publish-devportal.png, role="integr8ly
 +
 image::images/15-homepage-devportal.png[15-homepage-devportal.png, role="integr8ly-img-responsive"]
 
-. Change all the code *Echo* references in the homepage code for *Office Locations*.
+. Change all the code *Echo* references in the homepage code for *Office Locations*, using your browsers Find+Replace functionality.  Don't bother changing the echo URL's though.
+
 . Click the *Publish* button.
+
 . Refresh your Developer Portal's browser tab to check the changes. Your Developer Portal should now look like this:
 +
 image::images/16-updated-devportal.png[16-updated-devportal.png, role="integr8ly-img-responsive"]
@@ -120,16 +122,13 @@ _Your user is now active and can log into the portal_.
 [id="login-dev-portal"]
 == Login to the Developer Portal
 
-. As your portal is not currently public, you will need your portal code to login. You can get the code in your admin portal navigating to: menu:Audience[Developer Portal > Domains & Access].
+. As your portal is not currently public, you will need your portal code to login. You can get the code in your admin portal by navigating to: _Audience > Developer Portal > Domains & Access_.  Copy the _Developer Portal Access Code_ value.
 +
 image::images/16d-access-portal.png[16d-access-portal.png, role="integr8ly-img-responsive"]
 
 . Open a new _Incognito/Private_ browser window to test the Developer Portal login. Navigate to:
 +
-[source,bash]
-----
- https://{user-username}.{openshift-app-host}/
-----
+*`https://{user-username}.{openshift-app-host}/`*`
 
 . Type your portal code to finish the login.
 +
@@ -167,7 +166,7 @@ image::images/09-developer-portal.png[09-developer-portal.png, role="integr8ly-i
 
 https://github.com/Shopify/liquid[Liquid] is a simple programming language used for displaying and processing most of the data from the 3scale system available for API providers. In 3scale, it is used to expose server-side data to your API developers, greatly extending the usefulness of the CMS while maintaining a high level of security.
 
-[time=1]
+[time=3]
 [id="links"]
 == Links
 
