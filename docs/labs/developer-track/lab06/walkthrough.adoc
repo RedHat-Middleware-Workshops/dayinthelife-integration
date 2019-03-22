@@ -1,5 +1,7 @@
 :walkthrough: Create and customize the API Developer Portal
 :user-password: openshift
+:next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}/tutorial/dayinthelife-integration.git-developer-track-lab07/
+
 
 [id='dev-portal']
 = Developer Lab 6 - API Developer Portal
@@ -158,7 +160,7 @@ You can add from the Admin Portal under _API Docs_ the API definition to generat
 
 In this lab you discovered how to add a developer facing experience to your APIs. Developers in your organization or outside of it can now register, gain access to API keys and develop sample applications.
 
-You can now proceed to link:../lab08/#lab-8[Lab 8]
+You can now proceed to link:{next-lab-url}[Lab 7].
 
 [time=1]
 [id="further-reading"]

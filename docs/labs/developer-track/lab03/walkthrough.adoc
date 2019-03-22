@@ -1,5 +1,6 @@
 :walkthrough: Contract-first API development with a database interface, implemented using CodeReady Workspaces
 :codeready-url: https://codeready-codeready.{openshift-app-host}
+:next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}/tutorial/dayinthelife-integration.git-developer-track-lab04/
 :user-password: openshift
 
 [id='swagger-rest']
@@ -199,9 +200,9 @@ image::images/00-camel-routes.png[00-camel-routes.png, role="integr8ly-img-respo
 [source,java,subs="attributes+"]
 ----
  ...
- /**    
- * Generated from Swagger specification by Camel REST DSL generator.    
- */ 
+ /**
+ * Generated from Swagger specification by Camel REST DSL generator.
+ */
  @Generated("org.apache.camel.generator.swagger.PathGenerator")
  @Component
  public class CamelRoutes extends RouteBuilder {
@@ -214,8 +215,8 @@ image::images/00-camel-routes.png[00-camel-routes.png, role="integr8ly-img-respo
 ----
  ...
  @Override
- public void configure() throws Exception {     
-        
+ public void configure() throws Exception {
+
      ContactInfoResultProcessor ciResultProcessor = new ContactInfoResultProcessor();
      LocationResultProcessor locationResultProcessor = new LocationResultProcessor();
  ...
@@ -254,7 +255,7 @@ Notice that we now have both ResultProcessor's instantiated, and we've stood-up 
          .process(locationResultProcessor)
          .log("${body}")
  ;
-        
+
  from("direct:getlocation")
          .to("sql:select * from locations where id=cast(:#id as int)?dataSource=dataSource")
          .process(locationResultProcessor)
@@ -265,12 +266,12 @@ Notice that we now have both ResultProcessor's instantiated, and we've stood-up 
                  .setHeader("HTTP_RESPONSE_CODE",constant("404"))
          .log("${body}")
  ;
-        
+
      from("direct:addlocation")
                 .log("Creating new location")
          .to("sql:INSERT INTO locations (id,name,lat,lng,location_type,status) VALUES (:#${body.id},:#${body.name},:#${body.location.lat},:#${body.location.lng},:#${body.type},:#${body.status});?dataSource=dataSource")
      ;
-        
+
      from("direct:getlocationdetail")
          .to("sql:select * from location_detail where id=cast(:#id as int)?dataSource=dataSource")
          .process(ciResultProcessor)
@@ -317,7 +318,7 @@ image::images/00-update-properties.png[00-update-properties.png, role="integr8ly
 
 . Now we are ready to test our new Camel route locally. To do this, navigate back to the *Manage commands* screen.
 
-. Click the **+** button next to the *Run* folder, then select **Maven**. 
+. Click the **+** button next to the *Run* folder, then select **Maven**.
 +
 image::images/00-run-spring-boot.png[00-run-spring-boot.png, role="integr8ly-img-responsive"]
 
@@ -378,4 +379,4 @@ _Congratulations!_ You have now an application to test your Swagger to RESTdsl i
 
 You have now successfully created a contract-first API using a Swagger contract together with generated Camel RESTdsl, incorporating both HTTP GET and POST requests that perform select and inserts on a Postgres database table.
 
-You can now proceed to link:../lab04/#lab-4[Lab 4]
+You can now proceed to link:{next-lab-url}[Lab 4].

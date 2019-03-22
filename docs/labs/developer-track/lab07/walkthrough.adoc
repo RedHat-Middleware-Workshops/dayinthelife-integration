@@ -144,12 +144,12 @@ _Congratulations!_ You have successfully used the Keycloak Javascript Adapter to
 
 In total you should now have been able to follow all the steps from designing and API, deploying it's code, issuing keys, connecting OpenID connect and calling it from an application. This gives you a brief overview of the creation and deployment of an API. There are many variations and extensions of these general principles to explore!
 
-time=1]
+[time=1]
 [id="steps-beyond"]
 == Steps Beyond
 So, you want more? If you have time, you can try our bonus lab. This lab focuses demonstrates Fuse Online, showcasing Apicurito to define your API contract, autogenerate an integration, deploy it, then secure your newly created API using 3scale Smart Discovery.
 
-If you'd like to try this out, you can now proceed to link:{next-lab-url}[Lab 7]
+If you'd like to try this out, you can now proceed to link:{next-lab-url}[Lab 8]
 
 [time=1]
 [id="further-reading"]

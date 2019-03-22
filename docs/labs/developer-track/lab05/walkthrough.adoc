@@ -1,6 +1,7 @@
 :walkthrough: Managed API using 3scale API Management tools
 :3scale-admin-url: http://{user-username}-admin.{openshift-app-host}
 :user-password: openshift
+:next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}/tutorial/dayinthelife-integration.git-developer-track-lab06/
 
 [id='manage-endpoint']
 = Developer Lab 5 - Managed API Endpoints
@@ -130,7 +131,7 @@ Try to navigate through the rest of the tabs of your Administration Portal. Did 
 
 You set up an API management service and API proxies to control traffic into your API. From now on you will be able to issue keys and rights to users wishing to access the API.
 
-You can now proceed to link:../lab07/#lab-7[Lab 7]
+You can now proceed to link:{next-lab-url}[Lab 6].
 
 == Notes and Further Reading
 

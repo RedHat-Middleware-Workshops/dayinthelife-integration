@@ -1,5 +1,6 @@
 :walkthrough: API Mocking
 :microcks-url: http://microcks.{openshift-app-host}
+:next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}/tutorial/dayinthelife-integration.git-developer-track-lab03/
 :user-password: openshift
 
 [id='mocking']
@@ -197,7 +198,7 @@ In this lab you used Microcks to configure a REST mock service for the API defin
 
 Microcks allows you to test a number of various responses for client application requests. When deploying API, micro-services or SOA practices at large scale, Microcks solves the problems of providing and sharing consistent documentation and mocks to the involved teams. It acts as a central repository and server that can be used for browsing but also by your Continuous Integration builds or pipelines.
 
-You can now proceed to link:../lab03/#lab-3[Lab 3]
+You can now proceed to link:{next-lab-url}[Lab 3].
 
 [time=1]
 [id="Reading"]

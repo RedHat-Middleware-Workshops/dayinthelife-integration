@@ -1,5 +1,6 @@
 :walkthrough: Contract-first API development wrapping an existing SOAP service, implemented using Eclipse Che
 :codeready-url: https://codeready-codeready.{openshift-app-host}
+:next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}/tutorial/dayinthelife-integration.git-developer-track-lab05/
 :user-password: openshift
 
 [id='soap-to-rest']
@@ -80,7 +81,7 @@ image::images/00-verify-location-soap.png[00-verify-location-soap.png, role="int
 +
 image::images/00-verify-wsdl.png[00-verify-wsdl.png, role="integr8ly-img-responsive"]
 
-. Return to your Eclipse Che workspace and open the `dayintelife-import/location-soap2rest` project.  Open the `pom.xml` file and scroll to the bottom.  Uncomment out the `cxf-codegen-plugin` entry at the bottom.  Update the `<wsdl>` entry with your fully qualified WSDL URL e.g. `http://location-soap-{user-username}.{openshift-app-host}/ws/location?wsdl`. 
+. Return to your Eclipse Che workspace and open the `dayintelife-import/location-soap2rest` project.  Open the `pom.xml` file and scroll to the bottom.  Uncomment out the `cxf-codegen-plugin` entry at the bottom.  Update the `<wsdl>` entry with your fully qualified WSDL URL e.g. `http://location-soap-{user-username}.{openshift-app-host}/ws/location?wsdl`.
 +
 image::images/00-uncomment-codegen.png[00-uncomment-codegen.png, role="integr8ly-img-responsive"]
 
@@ -109,28 +110,28 @@ image::images/00-verify-pojos.png[00-verify-pojos.png, role="integr8ly-img-respo
 
  @Autowired
  private CamelContext camelContext;
-	
+
  private static final String SERVICE_ADDRESS = "http://localhost:8080/ws/location";
  private static final String WSDL_URL = "http://localhost:8080/ws/location?wsdl";
 
  @Override
  public void configure() throws Exception {
-	
- ...	
-	
+
+ ...
+
      rest("/location").description("Location information")
          .produces("application/json")
          .get("/contact/{id}").description("Location Contact Info")
              .responseMessage().code(200).message("Data successfully returned").endResponseMessage()
              .to("direct:getalllocationphone")
-			
+
      ;
-		
+
      from("direct:getalllocationphone")
          .setBody().simple("${headers.id}")
          .unmarshal().json(JsonLibrary.Jackson)
          .to("cxf://http://location-soap-{user-username}.{openshift-app-host}/ws/location?serviceClass=com.redhat.LocationDetailServicePortType&defaultOperationName=contact")
-			
+
          .process(
                  new Processor(){
 
@@ -138,16 +139,16 @@ image::images/00-verify-pojos.png[00-verify-pojos.png, role="integr8ly-img-respo
                      public void process(Exchange exchange) throws Exception {
                          //LocationDetail locationDetail = new LocationDetail();
                          //locationDetail.setId(Integer.valueOf((String)exchange.getIn().getHeader("id")));
-							
+
                          MessageContentsList list = (MessageContentsList)exchange.getIn().getBody();
-							
+
                          exchange.getOut().setBody((ContactInfo)list.get(0));
                      }
                  }
          )
-			
+
      ;
-	
+
      }
  }
 ----
@@ -183,4 +184,4 @@ _Congratulations!_ You have created a SOAP to REST transformation API.
 
 You have now successfully created a contract-first API using a SOAP WSDL contract together with generated Camel RESTdsl.
 
-You can now proceed to link:../lab05/#lab-5[Lab 5]
+You can now proceed to link:{next-lab-url}[Lab 5].

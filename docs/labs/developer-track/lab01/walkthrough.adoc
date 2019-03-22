@@ -1,5 +1,6 @@
 :walkthrough: Import an OpenAPI Specification using Apicurio Studio
 :apicurio-studio-url: http://apicurio-studio.{openshift-app-host}
+:next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}/tutorial/dayinthelife-integration.git-developer-track-lab02/
 :user-password: openshift
 
 [id='api-design']
@@ -112,7 +113,7 @@ So, you want more? Did you notice the link *source* when editing the _Paths_ or 
 
 In this lab you used Apicurio Studio to import a simple API definition using the OpenAPI Specification (Swagger 2.0). You learned how to author and download a standards compliant API Specification using Red Hat's APICurio.
 
-You can now proceed to link:../lab02/#lab-2[Lab 2]
+You can now proceed to link:{next-lab-url}[Lab 2].
 
 [time=1]
 [id="further-reading"]
