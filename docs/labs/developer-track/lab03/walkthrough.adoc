@@ -1,5 +1,6 @@
 :walkthrough: Contract-first API development with a database interface, implemented using CodeReady Workspaces
 :codeready-url: https://codeready-codeready.{openshift-app-host}
+:openshift-url: {openshift-host}/console
 :next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}/tutorial/dayinthelife-integration.git-developer-track-lab04/
 :user-password: openshift
 
@@ -10,39 +11,43 @@ In this lab, we will use Contract-first API development with a database interfac
 
 Audience: API Owner, Product Manager, Developers, Architects
 
-[time=3]
-[id="overview"]
-== Overview
+*Overview*
 
 In the context of defining API's, it's common for a Business Analyst (or Citizen Integrator) to first create an API specification or contract.  By beginning the process with a clearly defined contract, a Developer can easily take the contract and auto-generate the underlying service to implement that API.  This _separation of concern_, whereby a Citizen Integrator and Developer can independently collaborate and contribute to create an end-to-end API implementation, is a powerful method for defining API's.
 
-=== Why Red Hat?
+*Why Red Hat?*
 
 CodeReady Workspaces, our online IDE, provides important functionality for implementing API services. In this lab you can see how our API tooling fits together with 3scale, Fuse and OpenShift to create a scalable API.
 
-=== Skipping The Lab
+*Skipping The Lab*
 
-If you are planning to follow to the next lab or are having trouble with this lab, you can reference the working project https://github.com/RedHatWorkshops/dayinthelife-integration/tree/master/projects/location-service[here]
-
-=== Environment
+If you are planning to follow to the next lab or are having trouble with this lab, you can reference the working project link:https://github.com/RedHatWorkshops/dayinthelife-integration/tree/master/projects/location-service[here]
 
 *Credentials:*
 
 Your username is: `{user-username}` +
 Your password is: `{user-password}`
 
-[time=20]
+[type=walkthroughResource]
+.CodeReady Workspaces
+****
+* link:{codeready-url}[Console, window="_blank"]
+****
+
+[type=walkthroughResource]
+.Openshift Console
+****
+* link:{openshift-url}[Console, window="_blank"]
+****
+
+[time=10]
 [id="Che setup"]
-== Lab Instructions
+== Create an CodeReady Workspaces environment for your personal use
 
-=== Step 1: Create an CodeReady Workspaces environment for your personal use
+. Open your link:{codeready-url}[CodeReady Console, window="_blank"].
 
-Login to the Red Hat Solution Explorer, here you will find the link to CodeReady Workspaces.
-
-image::images/00-integr8ly-che.png[00-integr8ly-che.png, role="integr8ly-img-responsive"]
-
-Enter dummy values for `First Name` and `Last Name`. Click *Submit*.
-
+. Enter dummy values for `First Name` and `Last Name`. Click *Submit*.
++
 image::images/00-integr8ly-che-update-acc.png[00-integr8ly-che-update-acc.png, role="integr8ly-img-responsive"]
 
 . Use your unique username as your workspace name e.g. `{user-username}`.  Select "day in the life workshop" stack, increase the RAM to 4GB and then click *Create*.
@@ -51,18 +56,11 @@ image::images/00-new-workspace.png[00-new-workspace.png, role="integr8ly-img-res
 
 . Click on **Create & Open**.
 
-=== Step 2: Create your own personal Openshift project and setup a sample database
+[time=20]
+[id="DB setup"]
+== Setup a sample database
 
-. Open a browser window and navigate to:
-+
-[source,bash,subs="attributes+"]
-----
-https://tutorial-web-app-webapp.{openshift-app-host}
-----
-
-. Click on `Red Hat Openshift`
-+
-image::images/000-open-openshift.png[000-open-openshift.png, role="integr8ly-img-responsive"]
+. Open your link:{openshift-url}[Openshift Console, window="_blank"]. Navigate to your project's overview page. It will be called `{user-username} Project`.
 
 . Enter your credentials: `{user-username}` and `{user-password}`
 

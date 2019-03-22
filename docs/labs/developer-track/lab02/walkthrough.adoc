@@ -125,7 +125,7 @@ image::images/mock-11.png[mock-jobs]
 +
 image::images/mock-12.png[mock-jobs]
 
-. In the `Create a New Job` dialog, type in the following information. Click *Next*.
+. In the _Create a New Job_ dialog, type in the following information. Click *Next*.
  ** Name: *`Locations-{user-username}`*
  ** Repository URL: *`http://gogs.{openshift-app-host}/{user-username}/locations-api/raw/dev-track-lab-02/locations-api/Locations-{user-username}.json`*
 
@@ -156,7 +156,7 @@ image::images/mock-18.png[mock-job-service]
 +
 image::images/mock-19.png[mock-mock-service]
 
-. You can check that the example we added to the definition in xref:lab01.adoc[Lab 1] will be used to return the mock values. Scroll down, copy and save the *Mocks URL*, we will use that endpoint to test the REST mock service.
+. You can check that the example we added to the definition in Lab 1 will be used to return the mock values. Scroll down, copy and save the *Mocks URL*, we will use that endpoint to test the REST mock service.
 +
 image::images/mock-20.png[mock-mock-operation]
 
