@@ -46,19 +46,20 @@ Your password is: `{user-password}`
 Openshift allows you to automatically redeploy your changes when you setup a Continuous Integration / Continuous Deployment (CI/CD) pipeline through the use of a webhook. For this lab we will trigger the new build and deployment manually through the OpenShift Console.
 
 . Open your link:{openshift-url}[Openshift Console, window="_blank"]. Navigate to your project's overview page. It will be called `{user-username} Project`.
-. Scroll down and click in the www link in the BUILDS section.
+
+. Scroll down and click in the *www* link in the BUILDS section.
 +
 image::images/deploy-10.png[01-scroll-down, role="integr8ly-img-responsive"]
 
-. In the build configuration page, replace the `CLIENT_ID` from ``CHANGE_ME``to the one generated from Integrator Lab 4 (Task 4.6).
+. In the build configuration page, replace the *CLIENT_ID* from `CHANGE_ME` to the one generated from Integrator Lab 4 (Task 4.6).
 +
 image::images/deploy-11.png[02-client-id, role="integr8ly-img-responsive"]
 +
 _Make sure the **`SSO_URL`** is set to begin with **`https`**. If it isn't, then replace the `http` with an `https`._
 
-. Click Save button to persist the changes. A green pop up will show you that the changes were saved.
+. Click the *Save* button to persist the changes. A green pop up will show you that the changes were saved.
 
-. Click the Start Build button to trigger a new build using the new environment variables pointing to your service.
+. Click the *Start Build* button to trigger a new build using the new environment variables pointing to your service.
 +
 image::images/deploy-12.png[03-start-build, role="integr8ly-img-responsive"]
 

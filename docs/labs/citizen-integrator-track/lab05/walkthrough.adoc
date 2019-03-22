@@ -128,7 +128,7 @@ image::images/16d-access-portal.png[16d-access-portal.png, role="integr8ly-img-r
 
 . Open a new _Incognito/Private_ browser window to test the Developer Portal login. Navigate to:
 +
-*`https://{user-username}.{openshift-app-host}/`*`
+*`https://{user-username}.{openshift-app-host}/`*
 
 . Type your portal code to finish the login.
 +
