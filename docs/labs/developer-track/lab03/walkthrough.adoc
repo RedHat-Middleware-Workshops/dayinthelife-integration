@@ -42,7 +42,7 @@ Your password is: `{user-password}`
 
 [time=10]
 [id="Che setup"]
-== Create an CodeReady Workspaces environment for your personal use
+== Create n CodeReady Workspaces environment for your personal use
 
 . Open your link:{codeready-url}[CodeReady Console, window="_blank"].
 
@@ -56,11 +56,11 @@ image::images/00-new-workspace.png[00-new-workspace.png, role="integr8ly-img-res
 
 . Click on **Create & Open**.
 
-[time=20]
+[time=5]
 [id="DB setup"]
 == Setup a sample database
 
-. Open your link:{openshift-url}[Openshift Console, window="_blank"]. Navigate to your project's overview page. It will be called `{user-username} Project`.
+. Open your link:{openshift-url}[Openshift Console, window="_blank"].
 
 . Enter your credentials: `{user-username}` and `{user-password}`
 
@@ -78,7 +78,9 @@ image::images/00-postgres-credentials.png[00-postgres-credentials.png, role="int
 
 . Click *Next* and ensure _Do not Bind at this time_ is selected.  Click *Create* to generate the service.
 
-=== Step 3: Import the skeleton projects from Git and convert them to Maven projects.
+[time=10]
+[id="git-import"]
+== Import the skeleton projects from Git and convert them to Maven projects.
 
 . In CodeReady Workspaces, click on Workspace > Import Project from the main menu.  A pop-up will appear.
 +
@@ -99,9 +101,11 @@ image::images/00-select-maven.png[00-select-maven.png, role="integr8ly-img-respo
 
 . Convert the remaining projects to Maven, by repeating steps 4 & 5 for the *location-service* and *location-gateway* projects.
 
-=== Step 4: Import the Swagger specification
+[time=10]
+[id="open-api-import"]
+== Import the OpenAPI specification
 
-Once you've received the swagger specification (API contract) from your friendly Citizen Integrator, we need to import it into our skeleton Maven project (`location-service`).  Follow these steps:
+Once you've received the OpenAPI specification (API contract) from your friendly Citizen Integrator, we need to import it into our skeleton Maven project (`location-service`).  Follow these steps:
 
 . Expand the `location-service` project and right-click on the `src` folder, selecting New > Folder.  Give the folder the name `spec`.
 +
