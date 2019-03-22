@@ -3,6 +3,7 @@
 :microcks-url: http://microcks.{openshift-app-host}
 :next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}/tutorial/dayinthelife-integration.git-citizen-integrator-track-lab03/
 :user-password: openshift
+:wip-link: http://location-service-international.{openshift-app-host}/locations
 
 [id='api-mocking']
 = Integrator Lab 2 - API Mocking
@@ -34,7 +35,7 @@ Your password is: `{user-password}`
 * link:{microcks-url}[Console, window="_blank"]
 ****
 
-[time=5]
+[time=2]
 [id="create-microcks-job"]
 == Create a Microcks Job
 
@@ -50,7 +51,7 @@ image::images/mock-11.png[mock-jobs, role="integr8ly-img-responsive"]
 +
 image::images/mock-12.png[mock-jobs, role="integr8ly-img-responsive"]
 
-. Click on *Upload*.
+. Click on _Choose File_ to select the file you created in Lab 1. Click on *Upload*.  Then click on *Close*.
 +
 image::images/mock-13.png[mock-jobs, role="integr8ly-img-responsive"]
 +
@@ -72,7 +73,7 @@ image::images/mock-16.png[mock-mock-service, role="integr8ly-img-responsive"]
 +
 image::images/mock-17.png[mock-mock-operation, role="integr8ly-img-responsive"]
 
-[time=5]
+[time=2]
 [id="test-mock-service"]
 == Test the REST Mock Service
 
@@ -103,25 +104,17 @@ image::images/mock-19.png[mock-curl-response, role="integr8ly-img-responsive"]
 
 _Congratulations!_ You have successfully configure a Microcks Job to create a REST mock service to test your API.
 
-// [time=1]
-// [id="step-beyond"]
-// == Steps Beyond
-
-// ____
-// So, you want more? ...
-// ____
-
-[time=1]
+[time=2]
 [id="summary"]
 == Summary
 
 In this lab you used Microcks to configure a REST mock service for the API definition you created in the previous lab. REST mock services allows you to simulate a REST API service when you are in a prototyping stage of your API program journey.
 
-Microcks allows you to test a number of various responses for client application requests. When deploying API, micro-services or SOA practices at large scale, Microcks solves the problems of providing and sharing consistent documentation and mocks to the involved teams. It acts as a central repository and server that can be used for browsing but also by your Continuous Integration builds or pipelines.
+Microcks allows you to test a number of various responses for client application requests. When deploying API, Microservices or SOA practices at large scale, Microcks solves the problems of providing and sharing consistent documentation and mocks to the involved teams. It acts as a central repository and server that can be used for browsing but also by your Continuous Integration builds or pipelines.
 
 You can now proceed to link:{next-lab-url}[Lab 3].
 
-[time=1]
+[time=4]
 [id="further-reading"]
 == Notes and Further Reading
 

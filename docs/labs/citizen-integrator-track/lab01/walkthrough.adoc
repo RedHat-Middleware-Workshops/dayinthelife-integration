@@ -159,7 +159,7 @@ _This will be useful to mock your API in the next lab_.
 image::images/design-19.png[design-add-example, role="integr8ly-img-responsive"]
 
 . Fill in the information for your response example:
- ** Name: *all*
+ ** Name: *`all`*
  ** Example:
 +
 [source,bash]
