@@ -57,10 +57,12 @@ Once the environment is provisioned, you will be presented with a page that pres
 
 ### Step 1: Importing APIs with Apicurio Studio
 
-1. Open a browser window and navigate to:
+1. From the Solution Explorer page, under the Applications menu, select "Apicuro".
+
+Or, directly open Apicuro in a browser window and navigate to:
 
     ```bash
-    http://apicurio-studio.dil.opentry.me
+	https://apicurito-app.apps.<UNIQUE_SUBDOMAIN>.openshiftworkshop.com
     ```
 
 1. Log in using your designated [user and password](#environment).
