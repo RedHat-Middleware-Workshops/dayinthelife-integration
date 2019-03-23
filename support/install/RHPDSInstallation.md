@@ -21,6 +21,7 @@ export MASTER_INTERNAL=`oc get nodes -o jsonpath='{.items[?(@.metadata.labels.no
 export INTERNAL_DOMAIN=`echo $MASTER_INTERNAL | sed -r 's/master1\.|\.internal//g'`
 sed -i -e "s/ocp_domain=.*$/ocp_domain=${INTERNAL_DOMAIN}.openshiftworkshop.com/g" *.inventory
 sed -i -e "s/ocp_apps_domain=.*$/ocp_apps_domain=apps.${INTERNAL_DOMAIN}.openshiftworkshop.com/g" *.inventory
+sed -i -e "s/usersno=.*/usersno=5/g" *.inventory
 ```
 11. Run Ansible playbooks: `cd ~/dayinthelife-integration/support/install/ansible`, and run the integreatly playbook: `ansible-playbook -i inventory/integreatly.inventory playbooks/openshift/integreatly.yml`.
 
