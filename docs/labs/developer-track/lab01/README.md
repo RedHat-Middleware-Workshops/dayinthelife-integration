@@ -1,4 +1,4 @@
-# Lab 1
+
 
 ## API Design
 
@@ -35,10 +35,10 @@ Please ask your instructor for your password.
 
 **URLs:**
 
-If you haven't done so already, you need to login to the **Red Hat Solution Explorer** webpage so that a unique lab environment can be provisioned on-demand for your exclusive use.  You should open a web browser and navigate to: 
+If you haven't done so already, you need to login to the **Red Hat Solution Explorer** webpage so that a unique lab environment can be provisioned on-demand for your exclusive use.  You should open a web browser and navigate to the URL provided by your Instructor, or send from the RHPDS system in email: 
 
 ```bash
-https://tutorial-web-app-webapp.dil.opentry.me
+https://tutorial-web-app-webapp.apps.<UNIQUE_SUBDOMAIN>.openshiftworkshop.com
 ```
 
 You will be presented with a login page where you can enter your unique credentials:
