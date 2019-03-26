@@ -1,7 +1,7 @@
 :walkthrough: Create and customize the API Developer Portal
+:3scale-admin-url: http://{user-username}-admin.{openshift-app-host}
 :user-password: openshift
 :next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}/tutorial/dayinthelife-integration.git-developer-track-lab07/
-
 
 [id='dev-portal']
 = Developer Lab 6 - API Developer Portal
@@ -10,31 +10,30 @@ In this lab, you will customize the API developer portal
 
 Audience: API Owners, Product Managers, Developers, Architects
 
-[time=2]
-[id="overview"]
-== Overview
+*Overview*
 
 The focal point of your developers`' experience is the API developer portal, and the level of effort you put into it will determine the level of decreased support costs and increased developer engagement.
 
-=== Why Red Hat?
+*Why Red Hat?*
 
 3scale provides a built-in, state-of-the-art CMS portal, making it very easy to create your own branded hub with a custom domain to manage developer interactions and increase API adoption.
 
 You can customize the look and feel of the entire Developer Portal to match your own branding. You have complete control over every element of the portal, so you can make it as easy as possible for developers to learn how to use your API.
-
-=== Environment
 
 *Credentials:*
 
 Your username is: `{user-username}` +
 Your password is: `{user-password}`
 
-[time=16]
-[id="lab-instructions"]
+[type=walkthroughResource]
+.3scale
+****
+* link:{3scale-admin-url}[3scale Admin Console, window="_blank"]
+****
 
-== Lab Instructions
-
-=== Step 1: Customizing Developer Portal
+[time=10]
+[id="customize-dev-portal"]
+== Customizing Developer Portal
 
 . Open a browser window and navigate to:
 +
@@ -43,7 +42,7 @@ Your password is: `{user-password}`
  https://{user-username}-admin.{openshift-app-host}/p/login
 ----
 
-. Log into 3scale using your designated credentials: `{user-username}` and `{user-password}`. Click on *Sign In*.
+. Log in to link:{3scale-admin-url}[3scale Admin, window="_blank"] web console using `{user-username}` and password: `{user-password}`. Click on *Sign in*.
 +
 image::images/01-login.png[01-login.png, role="integr8ly-img-responsive"]
 
@@ -75,7 +74,9 @@ image::images/17-publishplan.png[17-publishplan.png, role="integr8ly-img-respons
 +
 image::images/11-visit-devportal.png[11-visit-devportal.png, role="integr8ly-img-responsive"]
 
-=== Step 2: Register New Accounts Using Developer Portal
+[time=10]
+[id="register-dev-portal"]
+== Register New Accounts Using Developer Portal
 
 . Take the place of one of your developers and signup for the *Secure* plan.
 +
@@ -117,18 +118,15 @@ image::images/21-select-application.png[21-select-application.png, role="integr8
 +
 image::images/22-updare-redirect-link.png[22-updare-redirect-link.png, role="integr8ly-img-responsive"]
 
-=== Step 3: Login to Developer Portal
+[time=10]
+[id="login-dev-portal"]
+== Login to Developer Portal
 
 . As your portal is not currently public, you will need your portal code to login. You can get the code in your admin portal navigating to: menu:Audience[Developer Portal > Domains & Access].
 +
 image::images/16d-access-portal.png[16d-access-portal.png, role="integr8ly-img-responsive"]
 
-. Open a new _Incognito/Private_ browser window to test the Developer Portal login. Navigate to:
-+
-[source,bash,subs="attributes+"]
-----
- https://{user-username}.{openshift-app-host}/
-----
+. Open a new _Incognito/Private_ browser window to test the Developer Portal login. Navigate to: `https://{user-username}.{openshift-app-host}/`
 
 . Type your portal code to finish the login.
 +
@@ -143,7 +141,7 @@ image::images/16f-dev-signin.png[16f-dev-signin.png, role="integr8ly-img-respons
 image::images/16g-user-credentials.png[16g-user-credentials.png, role="integr8ly-img-responsive"]
 +
 _Copy down this credentials as it you will use them to authenticate yourself to the managed API_.
-
++
 _Congratulations!_ You have successfully customized your Developer Portal and completed a Sign Up process.
 
 [time=1]
