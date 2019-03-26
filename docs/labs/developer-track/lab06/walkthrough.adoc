@@ -1,5 +1,6 @@
 :walkthrough: Create and customize the API Developer Portal
 :3scale-admin-url: http://{user-username}-admin.{openshift-app-host}
+:3scale-dev-portal-url: http://{user-username}.{openshift-app-host}
 :user-password: openshift
 :next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}/tutorial/dayinthelife-integration.git-developer-track-lab07/
 
@@ -31,16 +32,15 @@ Your password is: `{user-password}`
 * link:{3scale-admin-url}[3scale Admin Console, window="_blank"]
 ****
 
+[type=walkthroughResource]
+.3scale
+****
+* link:{3scale-dev-portal-url}[3scale Dev Portal, window="_blank"]
+****
+
 [time=10]
 [id="customize-dev-portal"]
 == Customizing Developer Portal
-
-. Open a browser window and navigate to:
-+
-[source,bash,subs="attributes+"]
-----
- https://{user-username}-admin.{openshift-app-host}/p/login
-----
 
 . Log in to link:{3scale-admin-url}[3scale Admin, window="_blank"] web console using `{user-username}` and password: `{user-password}`. Click on *Sign in*.
 +
