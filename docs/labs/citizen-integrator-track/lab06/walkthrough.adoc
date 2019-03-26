@@ -156,8 +156,6 @@ image::images/consume-23.png[23-realm-login, role="integr8ly-img-responsive"]
 +
 image::images/consume-14.png[11-locations-page, role="integr8ly-img-responsive"]
 
-[time=10]
-[id="troubleshoot-webpage"]
 == Troubleshooting the Locations Page
 
 . In most cases, the Locations web page will *NOT* show the locations because of a self-signed certificate issue in your web-browser.  See the below example with missing locations:
