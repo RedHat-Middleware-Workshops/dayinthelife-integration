@@ -36,7 +36,7 @@ Your password is: `{user-password}`
 [type=walkthroughResource]
 .Openshift Console
 ****
-* link:{openshift-url}[Console, window="_blank"]
+* link:{openshift-host}[Console, window="_blank"]
 ****
 
 [time=5]
