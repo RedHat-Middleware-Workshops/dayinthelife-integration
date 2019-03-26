@@ -75,7 +75,7 @@ image::images/consume-22.png[22-updated-app, role="integr8ly-img-responsive"]
 
 Redirect URLs are a critical part of the OAuth flow. After a user successfully authorizes an application, the authorization server will redirect the user back to the application with either an authorization code or access token in the URL. Because the redirect URL will contain sensitive information, it is critical that the service doesn't redirect the user to arbitrary locations.
 
-. Open a browser window and navigate to the link{http://sso-sso.{openshift-app-host}/auth/admin/{user-username}/console/}[SSO console].
+. Open a browser window and navigate to the link:{http://sso-sso.{openshift-app-host}/auth/admin/{user-username}/console/}[SSO console].
 
 . Log into Red Hat Single Sign On using your designated credentials: `{user-username}` and `{user-password}`. Click on *Sign In*.
 +
