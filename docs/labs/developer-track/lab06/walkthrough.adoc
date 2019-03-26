@@ -35,7 +35,7 @@ Your password is: `{user-password}`
 [type=walkthroughResource]
 .3scale
 ****
-* link:{3scale-dev-portal-url}[3scale Dev Portal, window="_blank"]
+* link:{3scale-dev-portal-url}[3scale Developer Portal, window="_blank"]
 ****
 
 [time=10]
