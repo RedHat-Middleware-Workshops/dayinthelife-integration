@@ -125,7 +125,7 @@ public class CamelRoutes extends RouteBuilder {
 			//Setup Proxies
 				.setHeader(Exchange.HTTP_METHOD, constant("PATCH"))
 				.setHeader(Exchange.CONTENT_TYPE, constant(MediaType.APPLICATION_FORM_URLENCODED_VALUE))
-				.setBody(simple("access_token=${headers.apiToken}&endpoint=https%3A%2F%2Flocation-${headers.userid}-api.amp.${headers.openshiftappurl}%3A443&api_backend=http%3A%2F%2Flocation-service.${headers.userid}.svc%3A8080&sandbox_endpoint=https%3A%2F%2Flocation-${headers.userid}-api-staging.amp.${headers.openshiftappurl}%3A443&oidc_issuer_endpoint=http%3A%2F%2F3scale-admin%3A${headers.secret}%40sso-sso.${headers.openshiftappurl}%2Fauth%2Frealms%2F${headers.userid}"))
+				.setBody(simple("access_token=${headers.apiToken}&endpoint=https%3A%2F%2Flocation-${headers.userid}-api.amp.${headers.openshiftappurl}%3A443&api_backend=http%3A%2F%2Flocation-service.${headers.userid}.svc%3A8080&sandbox_endpoint=https%3A%2F%2Flocation-${headers.userid}-api-staging.amp.${headers.openshiftappurl}%3A443&oidc_issuer_endpoint=https%3A%2F%2F3scale-admin%3A${headers.secret}%40sso-sso.${headers.openshiftappurl}%2Fauth%2Frealms%2F${headers.userid}"))
 			.toD("https4://${headers.userid}-admin.${headers.openshiftappurl}/admin/api/services/${headers.serviceid}/proxy.xml?sslContextParameters=#ssl&bridgeEndpoint=true")
 			
 			.removeHeaders("CamelHttp*")
