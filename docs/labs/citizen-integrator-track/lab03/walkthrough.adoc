@@ -149,7 +149,7 @@ image::images/policies-06.png[policies-06, role="integr8ly-img-responsive"]
 +
 image::images/policies-07.png[policies-07, role="integr8ly-img-responsive"]
 
-. Tick the **allow_credentials** checkbox and fill in with a star `(\*)` in the *allow_origin* text box.
+. Tick the **allow_credentials** checkbox and fill in with a star `\*` in the _allow_origin_ text box.
 +
 image::images/policies-08.png[policies-08, role="integr8ly-img-responsive"]
 
