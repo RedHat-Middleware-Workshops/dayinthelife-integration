@@ -50,7 +50,7 @@ image::images/01-login.png[01-login.png, role="integr8ly-img-responsive"]
 +
 image::images/10-developer-portal.png[10-developer-portal.png, role="integr8ly-img-responsive"]
 
-. On the left menu select *Home Page*, and replace the entire content with what's in the example link: https://raw.githubusercontent.com/RedHatWorkshops/dayinthelife-integration/master/docs/labs/developer-track/lab07/support/homepage.example[example]
+. On the left menu select *Home Page*, and replace the entire content with what's in the example link: https://raw.githubusercontent.com/RedHatWorkshops/dayinthelife-integration/master/docs/labs/developer-track/lab06/support/homepage.example[example]
 +
 image::images/15-homepage-devportal.png[15-homepage-devportal.png, role="integr8ly-img-responsive"]
 
