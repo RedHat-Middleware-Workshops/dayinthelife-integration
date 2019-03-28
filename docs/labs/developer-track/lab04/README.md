@@ -160,7 +160,7 @@ Common gotcha: If build fails due to used port, check if you are running with ma
 1. Now that we've successfully tested our new SOAP to REST service locally, we can deploy it to OpenShift.  Stop the running application by clicking **Cancel**.  
 
 
-1. Open the `fabic8:deploy` script and hit the **Run** button to deploy it to OpenShift.
+1. Open the `fabric8:deploy` script and hit the **Run** button to deploy it to OpenShift.
 
     ![00-mvn-f8-deploy.png](images/00-mvn-f8-deploy.png "Maven Fabric8 Deploy")
 
