@@ -3,6 +3,10 @@
 :user-password: openshift
 :next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}/tutorial/dayinthelife-integration.git-developer-track-lab06/
 
+ifdef::env-github[]
+:next-lab-url: ../lab06/walkthrough.adoc
+endif::[]
+
 [id='manage-endpoint']
 = Developer Lab 5 - Managed API Endpoints
 

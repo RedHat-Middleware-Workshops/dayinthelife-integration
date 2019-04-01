@@ -3,6 +3,10 @@
 :next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}/tutorial/dayinthelife-integration.git-developer-track-lab02/
 :user-password: openshift
 
+ifdef::env-github[]
+:next-lab-url: ../lab02/walkthrough.adoc
+endif::[]
+
 [id='api-design']
 = Developer Lab 1 - API Design
 

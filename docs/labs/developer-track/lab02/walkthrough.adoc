@@ -5,6 +5,10 @@
 :wip-link: http://location-service-international.{openshift-app-host}/locations
 :gogs-url: http://gogs.{openshift-app-host}
 
+ifdef::env-github[]
+:next-lab-url: ../lab03/walkthrough.adoc
+endif::[]
+
 
 [id='mocking']
 = Developer Lab 2 - API Mocking
