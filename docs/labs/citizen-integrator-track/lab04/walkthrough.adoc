@@ -5,6 +5,10 @@
 :sso-url:  https://sso-sso.{openshift-app-host}/auth/admin/{user-username}/console
 :user-password: openshift
 
+ifdef::env-github[]
+:next-lab-url: ../lab05/walkthrough.adoc
+endif::[]
+
 [id='api-security']
 = Integrator Lab 4 - API Security
 

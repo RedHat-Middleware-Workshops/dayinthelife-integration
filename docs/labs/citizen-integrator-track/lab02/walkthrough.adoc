@@ -5,6 +5,10 @@
 :user-password: openshift
 :wip-link: http://location-service-international.{openshift-app-host}/locations
 
+ifdef::env-github[]
+:next-lab-url: ../lab03/walkthrough.adoc
+endif::[]
+
 [id='api-mocking']
 = Integrator Lab 2 - API Mocking
 
