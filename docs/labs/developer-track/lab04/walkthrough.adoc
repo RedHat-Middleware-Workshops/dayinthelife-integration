@@ -172,7 +172,7 @@ image::images/00-select-servers.png[00-select-servers.png, role="integr8ly-img-r
 image::images/00-hit-contact-local.png[00-hit-contact-local.png, role="integr8ly-img-responsive"]
 
 . Now that we've successfully tested our new SOAP to REST service locally, we can deploy it to OpenShift.  Stop the running application by clicking *Cancel*.
-. Open the `fabic8:deploy` script and hit the *Run* button to deploy it to OpenShift.
+. Open the `fabric8:deploy` script and hit the *Run* button to deploy it to OpenShift.
 +
 image::images/00-mvn-f8-deploy.png[00-mvn-f8-deploy.png, role="integr8ly-img-responsive"]
 
