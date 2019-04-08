@@ -72,7 +72,7 @@ You are now in the main screen to edit your APIs. Different from other API edito
 
 Let's start verifying your API.
 
-. Time to verify our data definitions for the API. Click on the `+location/phone{id}+` link under the _Paths_.
+. Time to verify our data definitions for the API. Click on the `+location/phone/{id}+` link under the _Paths_.
 +
 image::images/design-15.png[design-add-definition, role="integr8ly-img-responsive"]
 
