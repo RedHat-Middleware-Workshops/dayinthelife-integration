@@ -151,7 +151,7 @@ public class CamelRoutes extends RouteBuilder {
 			//Create Application
 				.setHeader(Exchange.HTTP_METHOD, constant("POST"))
 				.setHeader(Exchange.CONTENT_TYPE, constant(MediaType.APPLICATION_FORM_URLENCODED_VALUE))
-				.setBody(simple("access_token=${headers.apiToken}&plan_id=${header.planid}&name=Secured+App&description=SSO+Secured+App&redirect_url=http%3A%2F%2Fwww-${headers.userid}.apps.${headers.openshiftappurl}%2F*"))
+				.setBody(simple("access_token=${headers.apiToken}&plan_id=${header.planid}&name=Secured+App&description=SSO+Secured+App&redirect_url=http%3A%2F%2Fwww-${headers.userid}.${headers.openshiftappurl}%2F*"))
 			.toD("https4://${headers.userid}-admin.${headers.openshiftappurl}/admin/api/accounts/${header.accountid}/applications.xml?sslContextParameters=#ssl&bridgeEndpoint=true")
 			.setHeader("applicationid").xpath("/application/id", String.class) 
 			
