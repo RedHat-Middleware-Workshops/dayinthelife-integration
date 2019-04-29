@@ -33,7 +33,7 @@
   shell: oc patch deployment tutorial-web-app-operator --patch='{"spec":{"template":{"spec":{"containers":[{"name":"tutorial-web-app-operator","image":"quay.io/integreatly/tutorial-web-app-operator:v0.0.8"}]}}}}' -n {{ configmap_namespace }}
 
 - name: Change webapp operator CR #override with V2 DIL walkthroughs
-  shell: oc patch webapp tutorial-web-app-operator -n webapp --type=merge  -p '{"spec":{"template":{"parameters":{"WALKTHROUGH_LOCATIONS":"https://github.com/RedHatWorkshops/dayinthelife-integration.git?walkthroughsFolder=/docs/labs/citizen-integrator-track&walkthroughsFolder=/docs/labs/developer-track&walkthroughsFolder=/docs/labs/operations-track"}}}}'
+  shell: oc patch webapp tutorial-web-app-operator -n webapp --type=merge  -p '{"spec":{"template":{"parameters":{"WALKTHROUGH_LOCATIONS":"https://github.com/gpe-mw-training/integr8ly-walkthroughs"}}}}'
 
 - name: Resume deployment
   shell: oc rollout resume dc/tutorial-web-app -n {{ configmap_namespace }}
