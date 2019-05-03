@@ -2,8 +2,8 @@
 localhost ansible_connection=local
 
 [workshop:vars]
-ocp_domain=demo2.opentry.me
-ocp_apps_domain=integreatly-demo2.opentry.me
+ocp_domain=CITY-GUID.openshiftworkshop.com
+ocp_apps_domain=apps.CITY-GUID.openshiftworkshop.com
 usersno=3
 che=false
 fuse=false
