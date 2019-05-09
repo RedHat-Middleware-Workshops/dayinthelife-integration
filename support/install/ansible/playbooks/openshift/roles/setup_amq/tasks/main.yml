@@ -9,22 +9,26 @@
   shell: "oc replace --force -f https://raw.githubusercontent.com/jboss-container-images/jboss-amq-7-broker-openshift-image/72-1.1.GA/amq-broker-7-scaledown-controller-image-streams.yaml"
 
 - name: Import AMQ Broker Image
-  shell: "oc import-image amq-broker-72-openshift:1.1"
+  shell: "oc import-image amq-broker-72-openshift:1.1 --confirm"
 
 - name: Import AMQ Broker Scaledown Controller
-  shell: "oc import-image amq-broker-72-scaledown-controller-openshift:1.0"
+  shell: "oc import-image amq-broker-72-scaledown-controller-openshift:1.0 --confirm"
 
 - name: Import AMQ Templates
-  shell: for template in \
-    amq-broker-72-basic.yaml \
-    amq-broker-72-ssl.yaml \
-    amq-broker-72-custom.yaml \
-    amq-broker-72-persistence.yaml \
-    amq-broker-72-persistence-ssl.yaml \
-    amq-broker-72-persistence-clustered.yaml \
-    amq-broker-72-persistence-clustered-ssl.yaml; \
-    do oc replace --force -f https://raw.githubusercontent.com/jboss-container-images/jboss-amq-7-broker-openshift-image/72-1.1.GA/templates/${template} \
+  shell: | 
+    for template in 
+      amq-broker-72-basic.yaml 
+      amq-broker-72-ssl.yaml 
+      amq-broker-72-custom.yaml 
+      amq-broker-72-persistence.yaml 
+      amq-broker-72-persistence-ssl.yaml 
+      amq-broker-72-persistence-clustered.yaml 
+      amq-broker-72-persistence-clustered-ssl.yaml; do 
+      oc replace --force -f https://raw.githubusercontent.com/jboss-container-images/jboss-amq-7-broker-openshift-image/72-1.1.GA/templates/${template} 
     done
+  args:
+    executable: /bin/bash
+
 - name: Make sure we go back to default project
   shell: "oc project default"
 
