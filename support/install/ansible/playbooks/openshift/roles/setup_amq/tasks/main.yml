@@ -15,8 +15,16 @@
   shell: "oc import-image amq-broker-72-scaledown-controller-openshift:1.0"
 
 - name: Import AMQ Templates
-  shell: "for template in amq-broker-72-basic.yaml amq-broker-72-ssl.yaml amq-broker-72-custom.yaml amq-broker-72-persistence.yaml amq-broker-72-persistence-ssl.yaml amq-broker-72-persistence-clustered.yaml amq-broker-72-persistence-clustered-ssl.yaml; do oc replace --force -f https://raw.githubusercontent.com/jboss-container-images/jboss-amq-7-broker-openshift-image/72-1.1.GA/templates/${template} done"
-
+  shell: for template in \
+    amq-broker-72-basic.yaml \
+    amq-broker-72-ssl.yaml \
+    amq-broker-72-custom.yaml \
+    amq-broker-72-persistence.yaml \
+    amq-broker-72-persistence-ssl.yaml \
+    amq-broker-72-persistence-clustered.yaml \
+    amq-broker-72-persistence-clustered-ssl.yaml; \
+    do oc replace --force -f https://raw.githubusercontent.com/jboss-container-images/jboss-amq-7-broker-openshift-image/72-1.1.GA/templates/${template} \
+    done
 - name: Make sure we go back to default project
   shell: "oc project default"
 
