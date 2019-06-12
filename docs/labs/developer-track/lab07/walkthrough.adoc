@@ -1,7 +1,7 @@
 :walkthrough: Create a simple web application which consumes the API you built earlier in the exercises
 :user-password: openshift
 :next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}/tutorial/dayinthelife-integration.git-citizen-integrator-track-lab07/
-:sso-url:  http://sso-sso.{openshift-app-host}/auth/admin/{user-username}/console/
+:sso-url: http://sso-sso.{openshift-app-host}/auth/admin/{user-username}/console/
 
 ifdef::env-github[]
 :next-lab-url: ../../citizen-integrator-track/lab07/walkthrough.adoc
