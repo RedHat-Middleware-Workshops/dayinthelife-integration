@@ -3,7 +3,7 @@
 :3scale-url: https://www.3scale.net/
 :3scale-admin-url: https://{user-username}-admin.{openshift-app-host}/p/login
 :3scale-dev-portal-url: https://{user-username}.{openshift-app-host}/
-:sso-url:  http://sso-sso.{openshift-app-host}/auth/admin/{user-username}/console/
+:sso-url: https://sso-sso.{openshift-app-host}/auth/admin/{user-username}/console
 :openshift-url: {openshift-host}/console
 :user-password: openshift
 
