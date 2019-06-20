@@ -2,7 +2,7 @@
 :next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}/tutorial/dayinthelife-integration.git-citizen-integrator-track-lab05/
 :3scale-url: https://www.3scale.net/
 :3scale-admin-url: https://{user-username}-admin.{openshift-app-host}/p/login
-:sso-url:  https://sso-sso.{openshift-app-host}/auth/admin/{user-username}/console
+:sso-url: https://sso-sso.{openshift-app-host}/auth/admin/{user-username}/console
 :user-password: openshift
 
 ifdef::env-github[]

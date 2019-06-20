@@ -73,7 +73,7 @@ image::images/12-main-layout.png[12-main-layout.png, role="integr8ly-img-respons
 +
 [source,bash]
 ----
-<img src="https://www.redhat.com/profiles/rh/themes/redhatdotcom/img/logo.png" alt="{{ provider.name }}">
+<img src="https://www.redhat.com/profiles/rh/themes/redhatdotcom/img/logo.png" style=“width:150px;height:30px;border:0;” alt="{{ provider.name }}">
 ----
 +
 image::images/13-custom-logo.png[13-custom-logo.png, role="integr8ly-img-responsive"]
