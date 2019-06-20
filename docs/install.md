@@ -96,7 +96,7 @@ The recommended way to install the workshop is running the ansible playbook from
 1. Change to the project *install* folder:
 
     ```bash
-    cd 3scale-api-workshop/support/install
+    cd dayinthelife-integration/support/install
     ```
 
 1. Run the Ansible playbook.
