@@ -2,9 +2,9 @@
 localhost ansible_connection=local
 
 [workshop:vars]
-ocp_domain=CITY-GUID.openshiftworkshop.com
-ocp_apps_domain=apps.CITY-GUID.openshiftworkshop.com
-usersno=20
+ocp_domain=6dff.openshift.opentlc.com
+ocp_apps_domain=apps.6dff.openshift.opentlc.com
+usersno=10
 che=false
 fuse=false
 threescale=false
