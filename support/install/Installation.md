@@ -79,36 +79,37 @@ This is the fastest way to install, as the playbook runs in the cluster closest 
 
 1. Login to the bastion machine following the email instructions.
 
-1. SSH into the Bastion server:
+2. SSH into the Bastion server:
 ```
 bash
 ssh -i /path/to/ocp_workshop.pem ec2-user@bastion.GUID.openshiftworkshop.com
 ```
 *Remember to update the GUID with your cluster environment variable (documented in the RHPDS environment system generated email) and the path to the downloaded PEM file.*
 
-1. Switch to root user:
+3. Switch to root user:
 ```
 sudo -i
 ```
 
-1. Clone the installer repo:
+4. Clone the installer repo:
 ```
 git clone https://github.com/RedHatWorkshops/dayinthelife-integration.git
 ```
 
-1. Change to the *install* folder:
+5. Change to the *install* folder:
 ```
 cd dayinthelife-integration/support/install
 ```
 
-1. Set the master node URL and number of users.  Be sure to replace *XX* with the number of users provisioned for your cluster:
+6. Set the master node URL and number of users.  Be sure to replace *XX* with the number of users provisioned for your cluster:
 ```
 export MASTER_INTERNAL=`oc get nodes -o jsonpath='{.items[?(@.metadata.labels.node-role\.kubernetes\.io/master == "true")].metadata.name}'`
 export NUM_USERS=XX
 ```
-1. Change to the local git directory: `cd dayinthelife-integration/support/install/ansible/inventory/`
 
-1. Run the following command to update the `master`, `ocp_domain`, `ocp_apps_domain`, and `usersno` parameters in the `backend.inventory`, `gogs.inventory`, `userproject.inventory`, `workshop.inventory` and `integreatly.inventory` files:
+7. Change to the local git directory: `cd dayinthelife-integration/support/install/ansible/inventory/`
+
+8. Run the following command to update the `master`, `ocp_domain`, `ocp_apps_domain`, and `usersno` parameters in the `backend.inventory`, `gogs.inventory`, `userproject.inventory`, `workshop.inventory` and `integreatly.inventory` files:
 ```
 export INTERNAL_DOMAIN=`echo $MASTER_INTERNAL | sed -r 's/master1\.|\.internal//g'`
 sed -i -e "s/master1.CITY-GUID.internal.*$/${MASTER_INTERNAL}/g" integreatly.inventory
@@ -116,22 +117,26 @@ sed -i -e "s/ocp_domain=.*$/ocp_domain=${INTERNAL_DOMAIN}.openshiftworkshop.com/
 sed -i -e "s/ocp_apps_domain=.*$/ocp_apps_domain=apps.${INTERNAL_DOMAIN}.openshiftworkshop.com/g" *.inventory
 sed -i -e "s/usersno=.*/usersno=${NUM_USERS}/g" *.inventory
 ```
-1. Run the Ansible playbook script:
+
+9. Run the Ansible playbook script:
 ```
 ansible-playbook -i /root/dayinthelife-integration/support/install/ansible/inventory/integreatly.inventory /root/dayinthelife-integration/support/install/ansible/playbooks/openshift/integreatly.yml
 ```
 *NOTE*: This Ansible playbook is idempotent, meaning you can run it as many times as you like.  If there are any failures the first time around, just run the script again and it should resolve the issue.
 
-1. Update the tutorial-web-app-operator to use WALKTHROUGH_LOCATION=https://github.com/RedHatWorkshops/dayinthelife-integration.git?walkthroughsFolder=/docs/labs/citizen-integrator-track&walkthroughsFolder=/docs/labs/developer-track&walkthroughsFolder=/docs/labs/operations-track,https://github.com/gpe-mw-training/integr8ly-walkthroughs
+10. Update the tutorial-web-app-operator to use WALKTHROUGH_LOCATION=https://github.com/RedHatWorkshops/dayinthelife-integration.git?walkthroughsFolder=/docs/labs/citizen-integrator-track&walkthroughsFolder=/docs/labs/developer-track&walkthroughsFolder=/docs/labs/operations-track,https://github.com/gpe-mw-training/integr8ly-walkthroughs
 ```
 oc patch webapp tutorial-web-app-operator -n webapp --type=merge -p '{ "spec": { "template": { "parameters": { "WALKTHROUGH_LOCATIONS": "https://github.com/RedHatWorkshops/dayinthelife-integration.git?walkthroughsFolder=/docs/labs/citizen-integrator-track&walkthroughsFolder=/docs/labs/developer-track&walkthroughsFolder=/docs/labs/operations-track,https://github.com/gpe-mw-training/integr8ly-walkthroughs" }}}}'
 ```
 
-1. Login to the tutorial web app as a new user, using these credentials:
+11. Login to the tutorial web app as a new user, using these credentials:
 ```
     dayinthelife-integration
     dayinthelife-integration
     github.com
 ```
 
-1. Perform a Sanity Check: Ensure the tutorial-web-app-operator is using the image version `0.17.0` and tutorial-web-app image version is `2.10.3`. Most problems with Integreatly are related to the App version
+12. Perform a Sanity Check: Ensure the tutorial-web-app-operator is using the image version `0.17.0` and tutorial-web-app image version is `2.10.3`. Most problems with Integreatly are related to the App version
+
+
+### INSTALLATION IS COMPLETE!
