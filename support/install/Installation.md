@@ -131,10 +131,10 @@ oc patch webapp tutorial-web-app-operator -n webapp --type=merge -p '{ "spec": {
 
 11. Login to the tutorial web app as a new user, using these credentials:
 ```
-    dayinthelife-integration
-    dayinthelife-integration
-    github.com
+Username or email: userXY
+Password: openshift
 ```
+*Remember to update the variable XY, seen in the example above, with the numeric digits for your assigned Username*
 
 12. Perform a Sanity Check: Ensure the tutorial-web-app-operator is using the image version `0.17.0` and tutorial-web-app image version is `2.10.3`. Most problems with Integreatly are related to the App version
 
