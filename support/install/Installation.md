@@ -124,19 +124,15 @@ ansible-playbook -i /root/dayinthelife-integration/support/install/ansible/inven
 ```
 *NOTE*: This Ansible playbook is idempotent, meaning you can run it as many times as you like.  If there are any failures the first time around, just run the script again and it should resolve the issue.
 
-10. Update the tutorial-web-app-operator to use WALKTHROUGH_LOCATION=https://github.com/RedHatWorkshops/dayinthelife-integration.git?walkthroughsFolder=/docs/labs/citizen-integrator-track&walkthroughsFolder=/docs/labs/developer-track&walkthroughsFolder=/docs/labs/operations-track,https://github.com/gpe-mw-training/integr8ly-walkthroughs
-```
-oc patch webapp tutorial-web-app-operator -n webapp --type=merge -p '{ "spec": { "template": { "parameters": { "WALKTHROUGH_LOCATIONS": "https://github.com/RedHatWorkshops/dayinthelife-integration.git?walkthroughsFolder=/docs/labs/citizen-integrator-track&walkthroughsFolder=/docs/labs/developer-track&walkthroughsFolder=/docs/labs/operations-track,https://github.com/gpe-mw-training/integr8ly-walkthroughs" }}}}'
-```
 
-11. Login to the tutorial web app as a new user, using these credentials:
+10. Login to the tutorial web app as a new user, using these credentials:
 ```
 Username or email: userXY
 Password: openshift
 ```
 *Remember to update the variable XY, seen in the example above, with the numeric digits for your assigned Username*
 
-12. Perform a Sanity Check: Ensure the tutorial-web-app-operator is using the image version `0.17.0` and tutorial-web-app image version is `2.10.3`. Most problems with Integreatly are related to the App version
+11. Perform a Sanity Check: Ensure the tutorial-web-app-operator is using the image version `0.17.0` and tutorial-web-app image version is `2.10.3`. Most problems with Integreatly are related to the web app version
 
 
 ### INSTALLATION IS COMPLETE!
