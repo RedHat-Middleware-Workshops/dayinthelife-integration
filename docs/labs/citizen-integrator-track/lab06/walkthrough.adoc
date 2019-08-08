@@ -150,7 +150,7 @@ image::images/consume-222.png[11-Sign-in, role="integr8ly-img-responsive"]
 
 . Let's test the integration. Click the *Sign In* button.
 
-. You are being redirected to Red Hat Single Sign On *Login Page*. Login using the user credentials you created in the link:../lab05/#step-2-add-user-to-realm[API Security Lab]
+. You are being redirected to Red Hat Single Sign On *Login Page*. Login using the user credentials you created in the link:../lab05/#add-user-to-realm[API Security Lab]
  ** Username: *apiuser*
  ** Password: *apipassword*
 +

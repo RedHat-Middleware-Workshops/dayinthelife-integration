@@ -95,7 +95,7 @@ _3scale, through it's https://github.com/3scale/zync/[zync] component, already s
 
 . Click on the *CLIENT_ID* link to view the details.
 +
-_Remember to select correct CLIENT_ID with the one you got in the link:https://tutorial-web-app-webapp.apps.{openshift-app-host}/tutorial/dayinthelife-integration.git-developer-track-lab07/task/1[API Security Lab]. It will easily identifiable as its and hexadecimal name_.
+_Remember to select correct CLIENT_ID with the one you got in the link:../lab05/#sso-sign-on[API Security Lab]. It will easily identifiable as its and hexadecimal name_.
 +
 image::images/consume-24.png[24-client-application, role="integr8ly-img-responsive"]
 
