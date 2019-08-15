@@ -54,9 +54,11 @@ For the Developer track, we require a collaboration environment based on Git. Fo
 
 Follow this instructions to set up the repository.
 
-. Open a browser window and navigate to link:{gogs-url}[Gogs, window="_blank"] web console
+. Launch a new tab on your web browser.
+. Navigate to the Solution Explorer on that tab.
+. Click on the *Gogs* link.
 
-. Log into Gogs using `{user-username}` and `{user-password}`. Click on *Sign In*.
+. Log into the link:{gogs-url}[Gogs, window="_blank"] web console using `{user-username}` and `{user-password}`. Click on *Sign In*.
 +
 image::images/mock-01.png[mock-sign-in]
 

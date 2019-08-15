@@ -47,6 +47,8 @@ Your password is: `{user-password}`
 [id="custom-dev-portal"]
 == Customizing Developer Portal
 
+. Switch to the web browser windown, displaying the console for the *Red Hat 3scale API Management Platform*.
+
 . Log in to link:{3scale-admin-url}[3scale Admin, window="_blank"] web console using `{user-username}` and password: `{user-password}`. Click on *Sign in*.
 +
 image::images/01-login.png[01-login.png, role="integr8ly-img-responsive"]

@@ -48,7 +48,7 @@ Your password is: `{user-password}`
 
 OpenShift let you automatically redeploy your changes when you setup a Continuous Integration / Continuous Deployment (CI/CD) pipeline through the use of webhook. For this lab we will trigger the new build and deployment manually through the OpenShift Console.
 
-. Navigate to your OpenShift link:{openshift-host}[web console]. Go to your project's overview page.
+. Navigate to the link:{openshift-host}[OpenShift Console]. Go to your project's overview page.
 
 . Scroll down and click in the www link in the BUILDS section.
 +

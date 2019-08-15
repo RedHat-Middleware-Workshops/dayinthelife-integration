@@ -51,9 +51,11 @@ Your password is: `{user-password}`
 +
 image::images/00-open-terminal.png[00-open-terminal.png, role="integr8ly-img-responsive"]
 
-. Open your link:{openshift-url}[Openshift Console, window="_blank"].
+. Launch a new tab on your web browser.
+. Navigate to the Solution Explorer on that tab.
+. Click on the *Red Hat OpenShift* link.
 
-. Enter your credentials: `{user-username}` and `{user-password}`
+. Logon to the link:{openshift-url}[OpenShift Console, window="_blank"] using your credentials: `{user-username}` and `{user-password}`
 +
 image::images/00-openshift-loginpage.png[00-openshift-loginpage.png, role="integr8ly-img-responsive"]
 

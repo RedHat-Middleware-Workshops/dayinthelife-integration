@@ -43,8 +43,9 @@ Your password is: `{user-password}`
 [id="create-microcks-job"]
 == Create a Microcks Job
 
-. Navigate to the Solution Explorer on your web browser.
-. Click on the Microcks link.
+. Launch a new tab on your web browser.
+. Navigate to the Solution Explorer on that tab.
+. Click on the *Microcks* link.
 +
 image::images/mock-20.png[mock-openshift-login, role="integr8ly-img-responsive"]
 

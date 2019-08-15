@@ -48,9 +48,11 @@ Your password is: `{user-password}`
 [id="Che setup"]
 == Create a CodeReady Workspaces environment
 
-. Open your link:{codeready-url}[CodeReady Console, window="_blank"].
+. Launch a new tab on your web browser.
+. Navigate to the Solution Explorer on that tab.
+. Click on the *Red Hat CodeReady Workspaces* link.
 
-. Enter dummy values for `First Name` and `Last Name`. Click *Submit*.
+. Logon to link:{codeready-url}[CodeReady Workspaces, window="_blank"] using dummy values for `First Name` and `Last Name`. Click *Submit*.
 +
 image::images/00-integr8ly-che-update-acc.png[00-integr8ly-che-update-acc.png, role="integr8ly-img-responsive"]
 
