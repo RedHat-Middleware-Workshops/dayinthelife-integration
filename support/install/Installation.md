@@ -25,7 +25,7 @@ There are two options to installing Integreatly, you may choose only one.
 1. Login to [OPENTLC LABS](https://labs.opentlc.com) and provision an OpenShift Container Platform cluster using the *OpenShift Workshop Deployer* catalog item:
 ![alt text](images/owd.png "OpenShift Workshop Deployer")
 
-2. Follow the instructions on this [installation guide](https://github.com/integr8ly/installation) to complete the Integreatly installation:
+2. Follow the instructions on this [installation guide](https://github.com/integr8ly/installation) to complete the Integreatly installation.
 
 
 #### OPTION 2:
