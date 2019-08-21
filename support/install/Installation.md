@@ -1,22 +1,41 @@
 # Day In The Life Workshop Installation Guide
 
-## How to Install
+## How to Install the Workshop Content
 
-This page describes the installation of the Day In Life Workshop from the latest sources from GitHub.
+This page describes the installation of the Day In Life Workshop Content from the latest tagged release on GitHub.
 
 ### Pre-requisites
 
-You will need an OpenShift Container Platform environment, that hosts the Integreatly (RHMI) system, to install this workshop on. You can order a vanilla provisioning from the Red Hat Product Demo System (RHPDS) following this [instructions](https://mojo.redhat.com/docs/DOC-1175640).
+* You will need an OpenShift Container Platform environment, that will host the Integreatly (RHMI) system, to install this workshop on. You can order a vanilla provisioning from the Red Hat Product Demo System (RHPDS) following this [instructions](https://mojo.redhat.com/docs/DOC-1175640).
 
-To install the Day In Life Workshop, you need to have a host machine with the latest stable release version of the OpenShift client tools.
+* To install the Day In Life Workshop, you need to a personal workstation (PC) with the latest stable release version of the OpenShift client tools.
 
-You can download the OpenShift Client Tools from [Red Hat Developers Portal Site](https://developers.redhat.com/products/openshift/download/) or follow the instructions on how to [Install the CLI](https://docs.openshift.com/container-platform/3.9/cli_reference/get_started_cli.html#installing-the-cli) from the openshift.com webpage.
+* You can download the OpenShift Client Tools from [Red Hat Developers Portal Site](https://developers.redhat.com/products/openshift/download/) or follow the instructions on how to [Install the CLI](https://docs.openshift.com/container-platform/3.9/cli_reference/get_started_cli.html#installing-the-cli) from the openshift.com webpage.
 
-You'll want to know how to [fork](https://help.github.com/articles/fork-a-repo/) and [clone](https://help.github.com/articles/cloning-a-repository/) a Git repository, and how to [check out a branch](https://git-scm.com/docs/git-checkout#git-checkout-emgitcheckoutemltbranchgt).
+* You'll want to know how to [fork](https://help.github.com/articles/fork-a-repo/) and [clone](https://help.github.com/articles/cloning-a-repository/) a Git repository, and how to [check out a branch](https://git-scm.com/docs/git-checkout#git-checkout-emgitcheckoutemltbranchgt).
 
-Day In Life Workshop can be installed using automated Ansible playbooks or following the manual steps.
+* Day In Life Workshop has to be installed using Ansible playbooks.
 
-### Installing using Ansible
+### Installing Integreatly
+
+There are two options to installing Integreatly, you may choose only one.
+
+#### OPTION 1:
+
+1. Login to [OPENTLC LABS](https://labs.opentlc.com) and provision an OpenShift Container Platform cluster using the *OpenShift Workshop Deployer* catalog item:
+![alt text](images/owd.png "OpenShift Workshop Deployer")
+
+2. Follow the instructions on this [installation guide](https://github.com/integr8ly/installation) to complete the Integreatly installation:
+
+
+#### OPTION 2:
+
+1. Optionally, login to [RHPDS](https://rhpds.redhat.com) and provision an Integreatly cluster:
+![alt text](images/iw.png "Integreatly Workshop")
+
+2. Login and validate that the Integreatly Environment is functional, using user login information sent to you in an email, upon completion of the provisioning.
+
+### Preparing for an Ansible playbook execution
 
 You are provided with an Ansible playbook to install all the required components and software for this workshop.
 
@@ -71,9 +90,9 @@ create_realms=true
 
 ### Installation Instructions
 
-This section describes how to install this workshop in an Integreatly cluster provisioned from RHDPS.
+This section describes how to install this workshop on the OpenShift Container Platform cluster hosting Integreatly, which you have setup previously.
 
-RHPDS requires the installation Ansible playbook to be executed from within the Bastion node of the OCP cluster running Integreatly.
+The installation is performed using an Ansible playbook, executed from within the Bastion node of the OCP cluster running Integreatly.
 
 This is the fastest way to install, as the playbook runs in the cluster closest to the Master node.
 
