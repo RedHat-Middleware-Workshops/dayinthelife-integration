@@ -50,8 +50,8 @@ gogs_project | Namespace where Gogs will be installed. | gogs | Yes, if *gogs* 
 microcks_project | Namespace where Microcks will be installed | microcks | Yes, if *microcks* is enabled
 backend_project | Namespace where Backend will be installed | international | Yes, if *backend* is enabled
 sso_version | The version tag used for getting the RH SSO templates. | ose-v1.4.9 | No
-ocp_domain | Root domain of the OpenShift cluster. For example: `GUID.openshiftworkshop.com` | | Yes
-ocp\_apps\_domain | Root domain fpr the applications. For example: `apps.GUID.openshiftworkshop.com`  | | Yes
+ocp_domain | Root domain of the OpenShift cluster. For example: `GUID.example.com` | | Yes
+ocp\_apps\_domain | Root domain fpr the applications. For example: `apps.GUID.example.com`  | | Yes
 usersno | Number of user tenants that will be created. | | Yes
 threescale | Enable Red Hat Day In Life Management. | true | No
 apicurio | Enable Apicurio Studio. | true | No
@@ -73,8 +73,8 @@ An [example inventory](../support/ansible/inventory/workshop.inventory.example) 
 localhost ansible_connection=local
 
 [workshop:vars]
-ocp_domain=GUID.openshiftworkshop.com
-ocp_apps_domain=apps.GUID.openshiftworkshop.com
+ocp_domain=GUID.WORKSHOPROOTDOMAIN
+ocp_apps_domain=apps.GUID.WORKSHOPROOTDOMAIN
 usersno=20
 threescale=true
 apicurio=true
@@ -101,7 +101,7 @@ This is the fastest way to install, as the playbook runs in the cluster closest 
 2. SSH into the Bastion server:
 ```
 bash
-ssh -i /path/to/ocp_workshop.pem ec2-user@bastion.GUID.openshiftworkshop.com
+ssh -i /path/to/ocp_workshop.pem ec2-user@bastion.GUID.WORKSHOPROOTDOMAIN
 ```
 *Remember to update the GUID with your cluster environment variable (documented in the RHPDS environment system generated email) and the path to the downloaded PEM file.*
 
@@ -123,7 +123,8 @@ cd dayinthelife-integration/support/install
 6. Set the master node URL and number of users.  Be sure to replace *XX* with the number of users provisioned for your cluster:
 ```
 export MASTER_INTERNAL=`oc get nodes -o jsonpath='{.items[?(@.metadata.labels.node-role\.kubernetes\.io/master == "true")].metadata.name}'`
-export NUM_USERS=XX
+export WORKSHOP_ROOT_DOMAIN = <replace with workshop root domain e.g., example.com>
+export NUM_USERS=<replace with number of user e.g., 15>
 ```
 
 7. Change to the local git directory: `cd dayinthelife-integration/support/install/ansible/inventory/`
@@ -132,8 +133,8 @@ export NUM_USERS=XX
 ```
 export INTERNAL_DOMAIN=`echo $MASTER_INTERNAL | sed -r 's/master1\.|\.internal//g'`
 sed -i -e "s/master1.CITY-GUID.internal.*$/${MASTER_INTERNAL}/g" integreatly.inventory
-sed -i -e "s/ocp_domain=.*$/ocp_domain=${INTERNAL_DOMAIN}.openshiftworkshop.com/g" *.inventory
-sed -i -e "s/ocp_apps_domain=.*$/ocp_apps_domain=apps.${INTERNAL_DOMAIN}.openshiftworkshop.com/g" *.inventory
+sed -i -e "s/ocp_domain=.*$/ocp_domain=${INTERNAL_DOMAIN}.${WORKSHOP_ROOT_DOMAIN}/g" *.inventory
+sed -i -e "s/ocp_apps_domain=.*$/ocp_apps_domain=apps.${INTERNAL_DOMAIN}.${WORKSHOP_ROOT_DOMAIN}/g" *.inventory
 sed -i -e "s/usersno=.*/usersno=${NUM_USERS}/g" *.inventory
 ```
 
