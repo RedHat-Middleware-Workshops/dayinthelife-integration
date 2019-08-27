@@ -50,13 +50,8 @@ gogs_project | Namespace where Gogs will be installed. | gogs | Yes, if *gogs* 
 microcks_project | Namespace where Microcks will be installed | microcks | Yes, if *microcks* is enabled
 backend_project | Namespace where Backend will be installed | international | Yes, if *backend* is enabled
 sso_version | The version tag used for getting the RH SSO templates. | ose-v1.4.9 | No
-<<<<<<< HEAD
 ocp_domain | Root domain of the OpenShift cluster. For example: `GUID.open.redhat..com` | | Yes
 ocp\_apps\_domain | Root domain fpr the applications. For example: `apps.GUID.open.redhat.com`  | | Yes
-=======
-ocp_domain | Root domain of the OpenShift cluster. For example: `GUID.example.com` | | Yes
-ocp\_apps\_domain | Root domain fpr the applications. For example: `apps.GUID.example.com`  | | Yes
->>>>>>> 930a365d35023474df24431e3feca6e65b60b305
 usersno | Number of user tenants that will be created. | | Yes
 threescale | Enable Red Hat Day In Life Management. | true | No
 apicurio | Enable Apicurio Studio. | true | No
