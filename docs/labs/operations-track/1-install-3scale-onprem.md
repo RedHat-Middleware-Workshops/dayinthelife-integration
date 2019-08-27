@@ -33,7 +33,7 @@ cat /tmp/3scale_amp_provision_details.txt
      ---------
      3scale API Management main system
 
-     Login on https://3scale-user1-admin.apps.boston.openshiftworkshop.com as admin/pnxw6h76
+     Login on https://3scale-user1-admin.apps.boston.open.redhat.com as admin/pnxw6h76
 
      * With parameters:
         * PostgreSQL Connection Password=nfr8GSShoKQmke60 # generated
@@ -44,7 +44,7 @@ cat /tmp/3scale_amp_provision_details.txt
         * ADMIN_USERNAME=admin
         * APICAST_ACCESS_TOKEN=tlmvxmj7 # generated
         * ADMIN_ACCESS_TOKEN=ax3s1h46kywsjhbg # generated
-        * WILDCARD_DOMAIN=apps.boston.openshiftworkshop.com
+        * WILDCARD_DOMAIN=apps.boston.open.redhat.com
         * WILDCARD_POLICY=None
         * TENANT_NAME=3scale-user1
         * MySQL User=mysql

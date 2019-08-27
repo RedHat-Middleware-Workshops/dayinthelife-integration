@@ -322,7 +322,7 @@
   "users" : [ {
     "username" : "user",
     "enabled" : true,
-    "email" : "user@openshiftworkshop.com",
+    "email" : "user@open.redhat.com",
     "credentials" : [ {
       "type" : "password",
       "value" : "password"
