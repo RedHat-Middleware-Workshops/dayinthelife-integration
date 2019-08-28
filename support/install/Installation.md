@@ -20,20 +20,31 @@ This page describes the installation of the Day In Life Workshop Content from th
 
 There are two options to installing Integreatly, you may choose only one.
 
-#### OPTION 1:
+#### OPTION 1 (FOR RED HAT STAFF)
 
 1. Login to [OPENTLC LABS](https://labs.opentlc.com) and provision an OpenShift Container Platform cluster using the *OpenShift Workshop Deployer* catalog item:
 ![alt text](images/owd.png "OpenShift Workshop Deployer")
 
-2. Follow the instructions on this [installation guide](https://github.com/integr8ly/installation) to complete the Integreatly installation.
+2. Populate the required fields on the order form, with the latest OpenShift version selected.
+
+3. Follow the instructions on this [installation guide](https://github.com/integr8ly/installation) to complete the Integreatly installation.
 
 
-#### OPTION 2:
+#### OPTION 2 (FOR RED HAT PARTNERS AND IBM STAFF)
 
 1. Optionally, login to [RHPDS](https://rhpds.redhat.com) and provision an Integreatly cluster:
 ![alt text](images/iw.png "Integreatly Workshop")
 
 2. Login and validate that the Integreatly Environment is functional, using user login information sent to you in an email, upon completion of the provisioning.
+
+
+#### OPTION 3 (FOR RED HAT PARTNERS AND IBM STAFF)
+
+1. Login to [RHPDS](https://rhpds.redhat.com) and provision an OpenShift Container Platform cluster using the *OpenShift Workshop* catalog item:
+![alt text](images/ocp_wrkshp.png "OpenShift Workshop")
+
+2. Follow the instructions on this [installation guide](https://github.com/integr8ly/installation) to complete the Integreatly installation.
+
 
 ### Preparing for an Ansible playbook execution
 
