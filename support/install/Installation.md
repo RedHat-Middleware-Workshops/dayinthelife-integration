@@ -168,3 +168,5 @@ Password: openshift
 
 
 ### INSTALLATION IS COMPLETE!
+
+[Click to return to Landing Page](https://agileintegration.ga)
