@@ -30,7 +30,7 @@ There are two options to installing Integreatly, you may choose only one.
 3. Follow the instructions on this [installation guide](https://github.com/integr8ly/installation) to complete the Integreatly installation.
 
 
-#### OPTION 2 (FOR RED HAT PARTNERS AND IBM STAFF)
+#### OPTION 2 (FOR RED HAT STAFF, PARTNERS AND IBM STAFF)
 
 1. Optionally, login to [RHPDS](https://rhpds.redhat.com) and provision an Integreatly cluster:
 ![alt text](images/iw.png "Integreatly Workshop")
@@ -38,7 +38,7 @@ There are two options to installing Integreatly, you may choose only one.
 2. Login and validate that the Integreatly Environment is functional, using user login information sent to you in an email, upon completion of the provisioning.
 
 
-#### OPTION 3 (FOR RED HAT PARTNERS AND IBM STAFF)
+#### OPTION 3 (FOR RED HAT STAFF, PARTNERS AND IBM STAFF)
 
 1. Login to [RHPDS](https://rhpds.redhat.com) and provision an OpenShift Container Platform cluster using the *OpenShift Workshop* catalog item:
 ![alt text](images/ocp_wrkshp.png "OpenShift Workshop")
