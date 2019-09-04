@@ -135,7 +135,7 @@ cd dayinthelife-integration/support/install
 6. Set the master node URL and number of users.  Be sure to replace *XX* with the number of users provisioned for your cluster:
 ```
 export MASTER_INTERNAL=`oc get nodes -o jsonpath='{.items[?(@.metadata.labels.node-role\.kubernetes\.io/master == "true")].metadata.name}'`
-export WORKSHOP_ROOT_DOMAIN = <replace with workshop root domain e.g., example.com>
+export WORKSHOP_ROOT_DOMAIN=<replace with workshop root domain e.g., example.com>
 export NUM_USERS=<replace with number of user e.g., 15>
 ```
 
