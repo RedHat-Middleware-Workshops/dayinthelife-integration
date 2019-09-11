@@ -135,7 +135,7 @@ cd dayinthelife-integration/support/install
 6. Set the master node URL and number of users.  Be sure to replace *XX* with the number of users provisioned for your cluster:
 ```
 export MASTER_INTERNAL=`oc get nodes -o jsonpath='{.items[?(@.metadata.labels.node-role\.kubernetes\.io/master == "true")].metadata.name}'`
-export WORKSHOP_ROOT_DOMAIN=<replace with workshop root domain e.g., example.com>
+export WORKSHOP_ROOT_DOMAIN=<replace with workshop root domain e.g., open.redhat.com>
 export NUM_USERS=<replace with number of user e.g., 15>
 ```
 
@@ -145,8 +145,8 @@ export NUM_USERS=<replace with number of user e.g., 15>
 ```
 export INTERNAL_DOMAIN=`echo $MASTER_INTERNAL | sed -r 's/master1\.|\.internal//g'`
 sed -i -e "s/master1.CITY-GUID.internal.*$/${MASTER_INTERNAL}/g" integreatly.inventory
-sed -i -e "s/ocp_domain=.*$/ocp_domain=${INTERNAL_DOMAIN}.open.redhat.com/g" *.inventory
-sed -i -e "s/ocp_apps_domain=.*$/ocp_apps_domain=apps.${INTERNAL_DOMAIN}.open.redhat.com/g" *.inventory
+sed -i -e "s/ocp_domain=.*$/ocp_domain=${INTERNAL_DOMAIN}.${WORKSHOP_ROOT_DOMAIN}/g" *.inventory
+sed -i -e "s/ocp_apps_domain=.*$/ocp_apps_domain=apps.${INTERNAL_DOMAIN}.${WORKSHOP_ROOT_DOMAIN}/g" *.inventory
 sed -i -e "s/usersno=.*/usersno=${NUM_USERS}/g" *.inventory
 ```
 
