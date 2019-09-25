@@ -127,45 +127,51 @@ sudo -i
 git clone https://github.com/RedHatWorkshops/dayinthelife-integration.git
 ```
 
-5. Change to the *install* folder:
+5. Set the master node URL and number of users.  Be sure to replace *XX* with the number of users provisioned for your cluster:
 ```
-cd dayinthelife-integration/support/install
+echo "export MASTER_INTERNAL=`oc get nodes -o jsonpath='{.items[?(@.metadata.labels.node-role\.kubernetes\.io/master == "true")].metadata.name}'`" >> ~/.bashrc
+echo "export WORKSHOP_ROOT_DOMAIN=`oc whoami --show-server | cut -d'.' -f 3,4,5 | cut -d':' -f 1`" >> ~/.bashrc
+echo "export NUM_USERS=50" >> ~/.bashrc
+source ~/.bashrc
 ```
+*Assign the number of attendees in the workshop - as the value for NUM_USERS*
 
-6. Set the master node URL and number of users.  Be sure to replace *XX* with the number of users provisioned for your cluster:
-```
-export MASTER_INTERNAL=`oc get nodes -o jsonpath='{.items[?(@.metadata.labels.node-role\.kubernetes\.io/master == "true")].metadata.name}'`
-export WORKSHOP_ROOT_DOMAIN=<replace with workshop root domain e.g., open.redhat.com>
-export NUM_USERS=<replace with number of user e.g., 15>
-```
+6. Change to the local git directory: `cd dayinthelife-integration/support/install/ansible/inventory/`
 
-7. Change to the local git directory: `cd dayinthelife-integration/support/install/ansible/inventory/`
-
-8. Run the following command to update the `master`, `ocp_domain`, `ocp_apps_domain`, and `usersno` parameters in the `backend.inventory`, `gogs.inventory`, `userproject.inventory`, `workshop.inventory` and `integreatly.inventory` files:
+7. Run the following command to update the `master`, `ocp_domain`, `ocp_apps_domain`, and `usersno` parameters in the `backend.inventory`, `gogs.inventory`, `userproject.inventory`, `workshop.inventory` and `integreatly.inventory` files:
 ```
-export INTERNAL_DOMAIN=`echo $MASTER_INTERNAL | sed -r 's/master1\.|\.internal//g'`
+echo "export INTERNAL_DOMAIN=`echo $MASTER_INTERNAL | sed -r 's/master1\.|\.internal//g'`" >> ~/.bashrc
+source ~/.bashrc
 sed -i -e "s/master1.CITY-GUID.internal.*$/${MASTER_INTERNAL}/g" integreatly.inventory
 sed -i -e "s/ocp_domain=.*$/ocp_domain=${INTERNAL_DOMAIN}.${WORKSHOP_ROOT_DOMAIN}/g" *.inventory
 sed -i -e "s/ocp_apps_domain=.*$/ocp_apps_domain=apps.${INTERNAL_DOMAIN}.${WORKSHOP_ROOT_DOMAIN}/g" *.inventory
 sed -i -e "s/usersno=.*/usersno=${NUM_USERS}/g" *.inventory
 ```
 
-9. Run the Ansible playbook script:
+8. Run the Ansible playbook script:
 ```
 ansible-playbook -i /root/dayinthelife-integration/support/install/ansible/inventory/integreatly.inventory /root/dayinthelife-integration/support/install/ansible/playbooks/openshift/integreatly.yml
 ```
-*NOTE*: This Ansible playbook is idempotent, meaning you can run it as many times as you like.  If there are any failures the first time around, just run the script again and it should resolve the issue.
+*NOTE*: This Ansible playbook is idempotent, meaning you can run it as many times as you like.  If there are any failures the first time around, just run the script again and it should resolve the issue. Since the key environment variables are now set in the root user profile on the bastion node, you can logon on to the bastion node anytime to (re)install the Day-In-The-Life workshop assets.
 
+9. Once the similar log entries appear, the installation process concludes successfully.
+```
+PLAY RECAP ****************************************************************
+localhost                  : ok=1480 changed=329  unreachable=0    failed=1   
+master1.demo-k5io.internal : ok=18   changed=10   unreachable=0    failed=0   
+```
 
-10. Login to the tutorial web app as a new user, using these credentials:
+10. Access the tutorial web app. You can locate the URL using this command:
+```
+oc get routes -n webapp
+```
+
+11. Login to the tutorial web app as a new user, using these credentials:
 ```
 Username or email: userXY
 Password: openshift
 ```
 *Remember to update the variable XY, seen in the example above, with the numeric digits for your assigned Username*
-
-11. Perform a Sanity Check: Ensure the tutorial-web-app-operator is using the image version `0.17.0` and tutorial-web-app image version is `2.10.3`. Most problems with Integreatly are related to the web app version
-
 
 ### INSTALLATION IS COMPLETE!
 
