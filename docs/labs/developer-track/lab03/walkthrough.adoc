@@ -74,11 +74,11 @@ image::images/00-new-workspace.png[00-new-workspace.png, role="integr8ly-img-res
 +
 image::images/00-create-ocp-project.png[00-create-ocp-project.png, role="integr8ly-img-responsive"]
 
-. Click on *Catalog* on left side menu, then navigate to the *Databases* menu and select *Postgres*.  From there, select the *PostgreSQL* (Ephemeral) template.
+. Click on *Service Catalogue* in the top menu, then navigate to the *Databases* menu and select *Postgres*.  From there, select the *PostgreSQL* (Ephemeral) template.
 +
 image::images/00-select-postgres.png[00-select-postgres.png, role="integr8ly-img-responsive"]
 
-. In the pop-up window that appears, click the *Next* button to reach the *Configuration* page.  Update *PostgreSQL Connection Username* to `dbuser` and *PostgreSQL Connection Password* to `password`.
+. In the pop-up window that appears, make sure the {user-username} Project is chosen in *Add to project* field. Then click *Next* button to reach the *Configuration* page.  Update *PostgreSQL Connection Username* to `dbuser` and *PostgreSQL Connection Password* to `password`.
 +
 image::images/00-postgres-credentials.png[00-postgres-credentials.png, role="integr8ly-img-responsive"]
 
