@@ -161,16 +161,22 @@ localhost                  : ok=1480 changed=329  unreachable=0    failed=1
 master1.demo-k5io.internal : ok=18   changed=10   unreachable=0    failed=0   
 ```
 
-10. Access the tutorial web app. You can locate the URL using this command:
+10. Update the Customer Resource *webapp* with the URLs for the Day-In-The-Life walkthroughs:
+```
+oc patch webapp tutorial-web-app-operator -n webapp --type=merge -p '{ "spec": { "template": { "parameters": { "WALKTHROUGH_LOCATIONS": "https://github.com/RedHatWorkshops/dayinthelife-integration.git?walkthroughsFolder=/docs/labs/citizen-integrator-track&walkthroughsFolder=/docs/labs/developer-track&walkthroughsFolder=/docs/labs/operations-track" }}}}'
+```
+
+11. Access the tutorial web app. You can locate the URL using this command:
 ```
 oc get routes -n webapp
 ```
 
-11. Login to the tutorial web app as a new user, using these credentials:
+12. Login to the tutorial web app as a new user, using these credentials:
 ```
 Username or email: userXY
 Password: openshift
 ```
+
 *Remember to update the variable XY, seen in the example above, with the numeric digits for your assigned Username*
 
 ### INSTALLATION IS COMPLETE!
