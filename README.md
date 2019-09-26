@@ -32,3 +32,5 @@ Each track will offer hands-on lab experience relevant to the audience.  Labs an
 [Developer track](docs/labs/developer-track)
 
 [Uninstallation Procedure](uninstall/ansible/RHPDS-uninstallation.md)
+
+[Troubleshooting Procedure](docs/Troubleshooting.md)

@@ -177,7 +177,7 @@ Username or email: userXY
 Password: openshift
 ```
 
-*Remember to update the variable XY, seen in the example above, with the numeric digits for your assigned Username*
+*Remember to update the variable XY (unpadded digits, range from 1-100), seen in the example above, with the numeric digits for your assigned Username*
 
 ### INSTALLATION IS COMPLETE!
 
