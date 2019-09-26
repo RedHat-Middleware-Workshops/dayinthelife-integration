@@ -38,10 +38,6 @@ Your password is: `{user-password}`
 [id="define-api-proxy"]
 == Define your API Proxy
 
-. Launch a new tab on your web browser.
-. Navigate to the Solution Explorer on that tab.
-. Click on the *Red Hat 3scale API Management Platform* link.
-
 . Log in to link:{3scale-admin-url}[3scale Admin, window="_blank"] web console using `{user-username}` and password: `{user-password}`.
 +
 image::images/01-login.png[3scale-admin-login, role="integr8ly-img-responsive"]
