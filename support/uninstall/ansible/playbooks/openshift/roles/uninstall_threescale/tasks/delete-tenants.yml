@@ -20,6 +20,7 @@
     validate_certs: no
     status_code: 200
   when: find_result.status == 200
+  ignore_errors: true 
 
 - name: Delete Admin Tenant {{ item }} Router
   shell: "oc delete route system-provider-{{ userno }}-admin-route -n {{ namespace }}"
