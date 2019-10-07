@@ -30,3 +30,4 @@
     status_code: 200
   with_items: '{{ ServiceIds }}'
   when: ServiceIds | length != 0
+  ignore_errors: true
