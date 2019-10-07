@@ -139,6 +139,7 @@ image::images/n11-post-method.png[n11-post-method, role="integr8ly-img-responsiv
 +
 image::images/n12-post-description.png[n12-post-description, role="integr8ly-img-responsive"]
 
+
 . Click on *Add a request body*
 +
 image::images/n13-request.png[n13-request, role="integr8ly-img-responsive"]
@@ -177,19 +178,23 @@ _Congratulations! You've created an API Contract.  Next up is the API implementa
 +
 image::images/n19-start-of-integration.png[n19-start-of-integration, role="integr8ly-img-responsive"]
 
+. Save the integration 
++image::images/n19b-save.png[n19b-save.png, role="integr8ly-img-responsive"]
+
+
 . Set the following values:
 ** Integration Name: *`addLocation`*
 ** Description: *`Add Location`*
+Click *`save`*
 +
 image::images/n20-integration-name.png[n20-integration-name, role="integr8ly-img-responsive"]
 
-. Click on *Add Location* operation.
-+
-image::images/n21-choose-operation.png[n21-choose-operation, role="integr8ly-img-responsive"]
+. Click on *Create flow*
++image::images/n19a-create-flow.png[n19a-create, role="integr8ly-img-responsive"]
+
 
 . Since we are adding incoming data into the database, click on the plus sign in between API entry point and return endpoint, then select *Add connection*.
-+
-image::images/n22-add-db-connection.png[n22-add-db-connection, role="integr8ly-img-responsive"]
++image::images/n22-add-db-connection.png[n22-add-db-connection, role="integr8ly-img-responsive"]
 
 . Click on *LocationDB* from the catalog and then select *Invoke SQL*
 +
@@ -224,7 +229,7 @@ image::images/n30-choose-data-mapping.png[n30-choose-data-mapping, role="integr8
 +
 image::images/n31-data-map-response.png[n31-data-map-response, role="integr8ly-img-responsive"]
 
-. Click *Publish* on the next screen.
+. Click *Publish* on the next screen and *Save and Publish* in the next page.
 +
 image::images/n32-publish.png[n32-publish, role="integr8ly-img-responsive"]
 +
