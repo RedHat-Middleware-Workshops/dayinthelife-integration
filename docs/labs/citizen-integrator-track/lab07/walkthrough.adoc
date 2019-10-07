@@ -41,6 +41,10 @@ Your password is: `{user-password}`
 [id="create-database-connection"]
 == Create database connection
 
+. Launch a new tab on your web browser.
+. Navigate to the Solution Explorer on that tab.
+. Click on the *Red Hat Fuse Online (Shared)* link.
+
 . Open your link:{fuse-url}[Fuse Online Console, window="_blank"].
 
 . The first time that you hit the Fuse Online URL, you will be presented with an _Authorize Access_ page. Click the *Allow selected permissions* button to accept the defaults.

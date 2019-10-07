@@ -7,7 +7,7 @@
     "users" : [ {
       "username" : "userx",
       "enabled" : true,
-      "email" : "userx@openshiftworkshop.com",
+      "email" : "userx@open.redhat.com",
       "credentials" : [ {
         "type" : "password",
         "value" : "openshift"

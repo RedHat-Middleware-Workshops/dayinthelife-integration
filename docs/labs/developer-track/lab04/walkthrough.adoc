@@ -51,9 +51,11 @@ Your password is: `{user-password}`
 +
 image::images/00-open-terminal.png[00-open-terminal.png, role="integr8ly-img-responsive"]
 
-. Open your link:{openshift-url}[Openshift Console, window="_blank"].
+. Launch a new tab on your web browser.
+. Navigate to the Solution Explorer on that tab.
+. Click on the *Red Hat OpenShift* link.
 
-. Enter your credentials: `{user-username}` and `{user-password}`
+. Logon to the link:{openshift-url}[OpenShift Console, window="_blank"] using your credentials: `{user-username}` and `{user-password}`
 +
 image::images/00-openshift-loginpage.png[00-openshift-loginpage.png, role="integr8ly-img-responsive"]
 
@@ -108,7 +110,7 @@ image::images/00-verify-pojos.png[00-verify-pojos.png, role="integr8ly-img-respo
 [id="instructions"]
 == Update the Camel Route
 
-. Open up the `CamelRoutes.java` file.  Notice that the existing implementation is barebones. First of all, we need to enter the SOAP service address and WSDL location for our CXF client to call.  Secondly, we need to create our Camel route implementation and create the RESTful endpoint. Make sure the values to ("cxf://` URL): are correct
+. Open up the `CamelRoutes.java` file.  Notice that the existing implementation is barebones. First of all, we need to enter the SOAP service address and WSDL location for our CXF client to call.
 +
 [source,java,subs="attributes+"]
 ----
@@ -122,6 +124,15 @@ image::images/00-verify-pojos.png[00-verify-pojos.png, role="integr8ly-img-respo
 
  @Override
  public void configure() throws Exception {
+
+ ...
+
+----
+
+. Secondly, we need to create our Camel route implementation and create the RESTful endpoint(still in the `CamelRoutes.java` file). Make sure the values to (`cxf://` URL): are correct
++
+[source,java,subs="attributes+"]
+----
 
  ...
 

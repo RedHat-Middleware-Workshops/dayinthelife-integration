@@ -49,7 +49,7 @@ public class CamelRoutes extends RouteBuilder {
 	    ;
 		
 		//String apiToken= "2dca460318d6e2af6b564210a169aa2c132cc2ca1a83bc23f7dd9740baa23048";
-		//String openshiftappurl="apps.dayinlife.openshiftworkshop.com";
+		//String openshiftappurl="apps.dayinlife.open.redhat.com";
 		//String userid="user11";
 	
 		rest("/threescale").description("Location information")

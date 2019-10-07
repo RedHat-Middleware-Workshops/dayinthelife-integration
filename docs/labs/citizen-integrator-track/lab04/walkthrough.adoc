@@ -45,6 +45,10 @@ Your password is: `{user-password}`
 [id="sso-sign-on"]
 == Sign-in to Red Hat SSO
 
+. Launch a new tab on your web browser.
+. Navigate to the Solution Explorer on that tab.
+. Click on the *Red Hat Single Sign-On* link.
+
 . Log in to link:{sso-url}[SSO Admin, window="_blank"] web console using `{user-username}` and password: `{user-password}`. Click on *Log in*.
 +
 image::images/00-login-sso.png[00-login-sso.png, role="integr8ly-img-responsive"]

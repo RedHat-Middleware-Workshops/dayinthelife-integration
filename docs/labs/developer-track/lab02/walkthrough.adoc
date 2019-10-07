@@ -54,9 +54,9 @@ For the Developer track, we require a collaboration environment based on Git. Fo
 
 Follow this instructions to set up the repository.
 
-. Open a browser window and navigate to link:{gogs-url}[Gogs, window="_blank"] web console
+. Click on the *Gogs Console* link, located on the right of this walkthrough.
 
-. Log into Gogs using `{user-username}` and `{user-password}`. Click on *Sign In*.
+. Log into the link:{gogs-url}[Gogs, window="_blank"] web console using `{user-username}` and `{user-password}`. Click on *Sign In*.
 +
 image::images/mock-01.png[mock-sign-in]
 
@@ -138,11 +138,7 @@ image::images/mock-12.png[mock-jobs]
 +
 image::images/mock-14.png[mock-job-details]
 
-. After your job is created, click on the *Activate* option.
-+
-image::images/mock-15.png[mock-job-activate]
-
-. Repeat the last step, but now select the *Force Import* option. This will start the synchronization job.
+. Click on the *Force Import* option. This will start the synchronization job.
 +
 image::images/mock-16.png[mock-job-start]
 

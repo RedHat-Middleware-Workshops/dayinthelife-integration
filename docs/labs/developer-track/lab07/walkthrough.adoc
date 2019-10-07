@@ -48,7 +48,7 @@ Your password is: `{user-password}`
 
 OpenShift let you automatically redeploy your changes when you setup a Continuous Integration / Continuous Deployment (CI/CD) pipeline through the use of webhook. For this lab we will trigger the new build and deployment manually through the OpenShift Console.
 
-. Navigate to your OpenShift link:{openshift-host}[web console]. Go to your project's overview page.
+. Navigate to the link:{openshift-host}[OpenShift Console]. Go to your project's overview page.
 
 . Scroll down and click in the www link in the BUILDS section.
 +
@@ -95,7 +95,7 @@ _3scale, through it's https://github.com/3scale/zync/[zync] component, already s
 
 . Click on the *CLIENT_ID* link to view the details.
 +
-_Remember to select correct CLIENT_ID with the one you got in the link:https://tutorial-web-app-webapp.apps.{openshift-app-host}/tutorial/dayinthelife-integration.git-developer-track-lab07/task/1[API Security Lab]. It will easily identifiable as its and hexadecimal name_.
+_Remember to select correct CLIENT_ID with the one you got in the link:../lab05/#sso-sign-on[API Security Lab]. It will easily identifiable as its and hexadecimal name_.
 +
 image::images/consume-24.png[24-client-application, role="integr8ly-img-responsive"]
 
