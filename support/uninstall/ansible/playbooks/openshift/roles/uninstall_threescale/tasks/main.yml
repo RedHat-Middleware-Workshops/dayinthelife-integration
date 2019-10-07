@@ -28,6 +28,6 @@
     body: "access_token={{threescale_admin_access_token}}"
     validate_certs: no
     status_code: 200
+  ignore_errors: true    
   with_items: '{{ ServiceIds }}'
   when: ServiceIds | length != 0
-  ignore_errors: true
