@@ -1,5 +1,24 @@
 # Day In The Life Workshop Troubleshooting Guide
 
+## Failed installation of Integreatly
+
+* Fix for Integreatly installation process that fails
+
+1. Check installation log for entries like this:
+````
+FAILED - RETRYING: Verify Fuse deployment succeeded (2 retries left).
+FAILED - RETRYING: Verify Fuse deployment succeeded (1 retries left).
+fatal: [127.0.0.1]: FAILED! => {"attempts": 50, "changed": false, "cmd": "oc get pods -n fuse --selector=\"app=syndesis\" -o jsonpath='{.items[*].status.containerStatuses[?(@.ready==true)].ready}' | wc -w", "delta": "0:00:00.207837", "end": "2019-11-22 11:25:30.946582", "rc": 0, "start": "2019-11-22 11:25:30.738745", "stderr": "", "stderr_lines": [], "stdout": "6", "stdout_lines": ["6"]}
+````
+
+2. Delete impacted project
+````
+# oc delete project <project_name>
+````
+
+3. Restart installation of Integreatly
+
+
 ## Inaccessible consoles
 
 * Fix for issue where certain administrative consoles become inaccessible (after Integreatly cluster shutdown and restart):
