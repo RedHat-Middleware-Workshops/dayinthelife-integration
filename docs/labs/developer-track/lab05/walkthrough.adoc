@@ -120,6 +120,6 @@ You can now proceed to link:{next-lab-url}[Lab 6].
 [id="lab-instructions"]
 == Notes and Further Reading
 
-* http://microcks.github.io/[Red Hat 3scale API Management]
+* https://www.3scale.net/[Red Hat 3scale API Management]
 * https://developers.redhat.com/blog/2017/05/22/how-to-setup-a-3scale-amp-on-premise-all-in-one-install/[Developers All-in-one 3scale install]
 * https://www.thoughtworks.com/radar/platforms/overambitious-api-gateways[ThoughtWorks Technology Radar - Overambitious API gateways]
