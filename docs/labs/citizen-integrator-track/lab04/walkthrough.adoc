@@ -133,7 +133,7 @@ image::images/05-edit-apicast.png[05-edit-apicast.png, role="integr8ly-img-respo
 +
 image::images/05-authentication-settings.png[05-authentication-settings.png, role="integr8ly-img-responsive"]
 
-. In the **OpenID Connect Issuer** field, type in your previously noted client credentials with the URL of your Red Hat Single Sing On instance: *`https://3scale-admin:CLIENT_SECRET@sso-sso.{openshift-app-host}/auth/realms/{user-username}`*
+. In the **OpenID Connect Issuer** field, type in your previously noted client credentials with the URL of your Red Hat Single Sign On instance: *`https://3scale-admin:CLIENT_SECRET@sso-sso.{openshift-app-host}/auth/realms/{user-username}`*
 +
 _Don't forget to replace the `CLIENT_SECRET` in the URL with the secret copied from Lab 4 Task 1.5 (`3scale_admin` client secret)_
 +
