@@ -81,6 +81,12 @@ _The build process checks out the code from the git repo, runs a source-to-image
 +
 image::images/consume-22.png[22-updated-app, role="integr8ly-img-responsive"]
 
+[type=verification]
+Was the build successful?
+
+[type=verificationFail]
+Try to redo this section, if any problem persists have your instructor check the build.
+
 [time=5]
 [id="update-sso"]
 == Update SSO On Application Callback
@@ -132,6 +138,13 @@ image::images/consume-25.png[25-client-config, role="integr8ly-img-responsive"]
 
 . Finally, click *Save* button to persist the changes.
 
+[type=verification]
+Were you able to make and save the changes?
+
+[type=verificationFail]
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the RH SSO application.
+
+
 [time=5]
 [id="test-webpage"]
 == Opening International Inc Web Page
@@ -147,6 +160,12 @@ image::images/consume-13.png[10-application-page, role="integr8ly-img-responsive
 . You can notice now the *Sign In* button in the page.
 +
 image::images/consume-222.png[11-Sign-in, role="integr8ly-img-responsive"]
+
+[type=verification]
+Does the *Sign In* button appear?
+
+[type=verificationFail]
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the web application.
 
 [time=5]
 [id="test-SSO-integration"]
@@ -181,7 +200,13 @@ _Example link: `https://location-{user-username}-api-staging.amp.{openshift-app-
 . Refresh the page, and the locations should appear.
 +
 image::images/consume-14.png[11-locations-page, role="integr8ly-img-responsive"]
-+
+
+[type=verification]
+Are you able to observe the new locations?
+
+[type=verificationFail]
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the web application.
+
 _Congratulations!_ You have successfully tested the International Inc. Locations webpage using a full SSO authenticated API.
 
 [time=1]

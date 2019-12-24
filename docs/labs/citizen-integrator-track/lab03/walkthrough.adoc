@@ -64,6 +64,13 @@ image::images/05-authentication.png[user-key-autentication, role="integr8ly-img-
 +
 image::images/04-base-url.png[base-url, role="integr8ly-img-responsive"]
 
+[type=verification]
+Was the service updated successfully?
+
+[type=verificationFail]
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the 3scale API Management application.
+
+
 [time=4]
 [id="update-integration-settings"]
 == Update Integration settings
@@ -112,6 +119,13 @@ image::images/07b-edit-mapping-rule.png[edit-mapping-rule, role="integr8ly-img-r
 . Select **locations_all** as Method from the combo box.
 +
 image::images/07b-getall-rule.png[getall-rule, role="integr8ly-img-responsive"]
+
+[type=verification]
+Was the setup of the settings successful?
+
+[type=verificationFail]
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the 3scale API Management application.
+
 
 [time=3]
 [id="define-api-policies"]
@@ -165,6 +179,12 @@ image::images/policies-09.png[policies-09, role="integr8ly-img-responsive"]
 
 . Click the **Update Policy** button to save the policy configuration.
 
+[type=verification]
+Was the setup of the API successful?
+
+[type=verificationFail]
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the 3scale API Management application.
+
 [time=2]
 [id="configure-upstream-endpoint"]
 == Configure the Upstream Endpoint
@@ -200,9 +220,15 @@ image::images/08aa-back-to-integration.png[back-to-integration, role="integr8ly-
 . Click on the **Promote v.1 to Production** button to promote your configuration from staging to production.
 +
 image::images/08a-promote-production.png[promote-to-production, role="integr8ly-img-responsive"]
-+
+
+[type=verification]
+Was the API promotion successful?
+
+[type=verificationFail]
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the 3scale API Management application.
+
 _Congratulations! You have configured 3scale access control layer as a proxy to only allow authenticated calls to your backend API._
-+
+
 * 3scale is also now:
 ** Authenticating (If you test with an incorrect API key it will fail)
 ** Recording calls (Visit the Analytics tab to check who is calling your API).

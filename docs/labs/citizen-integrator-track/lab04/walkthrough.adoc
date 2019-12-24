@@ -67,9 +67,15 @@ image::images/00-3scale-admin.png[00-3scale-admin.png, role="integr8ly-img-respo
 +
 image::images/00-sa-credentials.png[00-sa-credentials.png, role="integr8ly-img-responsive"]
 
-. Take notice of the service account *Secret*. Copy and save it or write it down as you will use it to configure 3scale.
+. Take note of the service account *Secret*. Copy and save it or write it down as you will use it to configure 3scale.
 +
 image::images/00-sa-secret.png[00-sa-secret.png, role="integr8ly-img-responsive"]
+
+[type=verification]
+Were you able copy the details of the service account?
+
+[type=verificationFail]
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the RH-SSO application.
 
 [time=3]
 [id="add-user-realm"]
@@ -96,7 +102,13 @@ image::images/00-user-credentials.png[00-user-credentials.png, role="integr8ly-i
 . Click on the **Change password** button in the pop-up dialog.
 +
 image::images/00-change-password.png[00-change-password.png, role="integr8ly-img-responsive"]
-+
+
+[type=verification]
+Were you able to add a user?
+
+[type=verificationFail]
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the RH-SSO application.
+
 _Now you have a user to test your integration._
 
 [time=4]
@@ -151,6 +163,14 @@ image::images/07-update-environment.png[07-update-environment.png, role="integr8
 +
 image::images/08a-promote-production.png[08a-promote-production.png, role="integr8ly-img-responsive"]
 
+[type=verification]
+Were you able to reconfigure APIcast?
+
+[type=verificationFail]
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the 3scale API Management application.
+
+
+
 [time=3]
 [id="create-test-app]
 == Create a Test App
@@ -178,7 +198,13 @@ image::images/13-create-app.png[13-create-app.png, role="integr8ly-img-responsiv
 . Update the **Redirect URL** to `http://www-{user-username}.{openshift-app-host}/*`. And note the **API Credentials**. Write them down as you will need the **Client ID** and the **Client Secret** to test your integration.
 +
 image::images/14-app-credentials.png[14-app-credentials.png]
-+
+
+[type=verification]
+Were you able to create an application?
+
+[type=verificationFail]
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the 3scale API Management application.
+
 _Congratulations! You have now created an application to test your OpenID Connect Integration._
 
 [time=4]
