@@ -61,7 +61,6 @@ image::images/design-03.png[design-new-api, role="integr8ly-img-responsive"]
  ** Type: *Open API 3.0.2*
  ** Name: *`Locations-{user-username}`*
  ** Description: *`Locations API`*
-
 +
 image::images/design-04.png[design-create-api, role="integr8ly-img-responsive"]
 . Click on *Create API*.
@@ -74,7 +73,6 @@ Did the API successfully get created?
 
 [type=verificationFail]
 Have your instructor check the Kubernetes pod that contains the Apicurio Studio application.
-
 
 [time=2]
 [id="editing-apis"]
@@ -121,7 +119,6 @@ Were the data types successfully detected?
 
 [type=verificationFail]
 Have your instructor check the Kubernetes pod that contains the Apicurio Studio application.
-
 
 [time=2]
 [id="adding-paths"]

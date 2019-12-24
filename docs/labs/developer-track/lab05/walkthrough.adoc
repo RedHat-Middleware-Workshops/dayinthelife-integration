@@ -67,6 +67,13 @@ image::images/04-setuptoken.png[04-setuptoken.png, role="integr8ly-img-responsiv
 +
 image::images/05-token.png[05-token.png, role="integr8ly-img-responsive"]
 
+[type=verification]
+Were you able to create and copy the token?
+
+[type=verificationFail]
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the 3scale API Management application.
+
+
 [time=10]
 [id="lab-instructions"]
 == Start managing your APIs
@@ -78,7 +85,14 @@ By running the command lines, it will automatically setup the 3scale API configu
 _Remember to replace *YOUR_API_TOKEN* with your generated *token*_.
 +
 . The *API automated, DONE!* string should be returned as the result.
-+
+
+[type=verification]
+Was the string returned?
+
+[type=verificationFail]
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the 3scale API Management application.
+
+
 _Congratulations!_ You have configured 3scale access control layer as a proxy to only allow authenticated calls to your backend API. 3scale is also now:
 ** Authenticating: (If you test with an incorrect API key it will fail)
 ** Recording calls (Visit the Analytics tab to check who is calling your API).

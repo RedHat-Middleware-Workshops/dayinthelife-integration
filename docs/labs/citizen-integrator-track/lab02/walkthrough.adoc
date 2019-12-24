@@ -119,13 +119,11 @@ image::images/mock-18.png[mock-curl-service, role="integr8ly-img-responsive"]
 +
 image::images/mock-19.png[mock-curl-response, role="integr8ly-img-responsive"]
 
-
 [type=verification]
 Were the _RESPONSE HEADERS_ and the _RESPONSE_BODY_ created successfully?
 
 [type=verificationFail]
 Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the Microcks application.
-
 
 _Congratulations!_ You have successfully configure a Microcks Job to create a REST mock service to test your API.
 

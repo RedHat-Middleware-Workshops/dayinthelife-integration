@@ -80,6 +80,13 @@ image::images/17-publishplan.png[17-publishplan.png, role="integr8ly-img-respons
 +
 image::images/11-visit-devportal.png[11-visit-devportal.png, role="integr8ly-img-responsive"]
 
+[type=verification]
+Were you able to customize the developer portal?
+
+[type=verificationFail]
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the 3scale API Management application.
+
+
 [time=10]
 [id="register-dev-portal"]
 == Register New Accounts Using Developer Portal
@@ -124,6 +131,12 @@ image::images/21-select-application.png[21-select-application.png, role="integr8
 +
 image::images/22-updare-redirect-link.png[22-updare-redirect-link.png, role="integr8ly-img-responsive"]
 
+[type=verification]
+Were you able to activate your user account?
+
+[type=verificationFail]
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the 3scale API Management application.
+
 [time=10]
 [id="login-dev-portal"]
 == Login to Developer Portal
@@ -147,7 +160,13 @@ image::images/16f-dev-signin.png[16f-dev-signin.png, role="integr8ly-img-respons
 image::images/16g-user-credentials.png[16g-user-credentials.png, role="integr8ly-img-responsive"]
 +
 _Copy down this credentials as it you will use them to authenticate yourself to the managed API_.
-+
+
+[type=verification]
+Were you able to customize the developer portal?
+
+[type=verificationFail]
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the 3scale API Management application.
+
 _Congratulations!_ You have successfully customized your Developer Portal and completed a Sign Up process.
 
 [time=1]

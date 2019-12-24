@@ -9,7 +9,6 @@ ifdef::env-github[]
 :next-lab-url: ../lab03/walkthrough.adoc
 endif::[]
 
-
 [id='mocking']
 = Developer Lab 2 - API Mocking
 
@@ -103,6 +102,11 @@ image::images/mock-09.png[mock-gogs-file]
 http://gogs.{openshift-app-host}/{user-username}/locations-api/raw/dev-track-lab-02/locations-api/Locations-{user-username}.json
 ----
 
+[type=verification]
+Was the valid URL address created successfully?
+
+[type=verificationFail]
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the Gogs application.
 
 [time=6]
 [id="Microcks setup"]
@@ -160,6 +164,12 @@ image::images/mock-19.png[mock-mock-service]
 +
 image::images/mock-20.png[mock-mock-operation]
 
+[type=verification]
+Was the *Mocks URL* created successfully?
+
+[type=verificationFail]
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the Microcks application.
+
 === Step 2: Test the REST Mock Service
 
 We now have a working REST mock service listening for requests. We will use an online cURL tool to test it.
@@ -185,6 +195,12 @@ image::images/mock-21.png[mock-curl-service]
 . The page will load the response information from the service. You will be able to see the _RESPONSE HEADERS_ and the actual _RESPONSE_BODY_. This last part contains the examples we add during the design phase.
 +
 image::images/mock-22.png[mock-curl-response]
+
+[type=verification]
+Were the _RESPONSE HEADERS_ and the _RESPONSE_BODY_ created successfully?
+
+[type=verificationFail]
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the Microcks application.
 
 _Congratulations!_ You have successfully configure a Microcks Job to create a REST mock service to test your API.
 

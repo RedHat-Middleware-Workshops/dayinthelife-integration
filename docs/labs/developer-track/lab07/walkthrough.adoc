@@ -7,7 +7,6 @@ ifdef::env-github[]
 :next-lab-url: ../../citizen-integrator-track/lab07/walkthrough.adoc
 endif::[]
 
-
 [id='api-consumption']
 = Developer Lab 7 - API Consumption
 
@@ -74,6 +73,12 @@ _The build process checks out the code from the git repo, runs a source-to-image
 +
 image::images/consume-22.png[22-updated-app, role="integr8ly-img-responsive"]
 
+[type=verification]
+Was the build successful?
+
+[type=verificationFail]
+Try to redo this section, if any problem persists have your instructor check the build.
+
 [time=10]
 [id="update-secure-service"]
 == Update Secured Service with Red Hat Single Sign On Application Callback
@@ -125,6 +130,13 @@ image::images/consume-25.png[25-client-config, role="integr8ly-img-responsive"]
 
 . Finally, click *Save* button to persist the changes.
 
+[type=verification]
+Were you able to make and save the changes?
+
+[type=verificationFail]
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the RH SSO application.
+
+
 [time=10]
 [id="update-secure-service"]
 == Test the Single Sign On Integration
@@ -142,7 +154,15 @@ image::images/consume-23.png[23-realm-login, role="integr8ly-img-responsive"]
 . You will be redirected again to the *LOCATIONS* page where now you will be able to see the map with the International Inc Offices.
 +
 image::images/consume-14.png[11-locations-page, role="integr8ly-img-responsive"]
-+
+
+[type=verification]
+Are you able to see the map?
+
+[type=verificationFail]
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the web application.
+
+
+
 _Congratulations!_ You have successfully used the Keycloak Javascript Adapter to protect International Inc's Locations Service with Single Sign On.
 
 [time=1]

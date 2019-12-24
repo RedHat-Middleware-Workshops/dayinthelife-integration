@@ -11,7 +11,7 @@ endif::[]
 [id='swagger-rest']
 = Developer Lab 3 - Swagger to REST
 
-In this lab, we will use Contract-first API development with a database interface, implemented using Eclipse Che
+In this lab, we will use Contract-first API development with a database interface, implemented using CodeReady Workspaces
 
 Audience: API Owner, Product Manager, Developers, Architects
 
@@ -62,6 +62,12 @@ image::images/00-new-workspace.png[00-new-workspace.png, role="integr8ly-img-res
 
 . Click on **Create & Open**.
 
+[type=verification]
+Were you able to complete those steps?
+
+[type=verificationFail]
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the CodeReady Workspaces application.
+
 [time=2]
 [id="DB setup"]
 == Setup a sample database
@@ -83,6 +89,12 @@ image::images/00-select-postgres.png[00-select-postgres.png, role="integr8ly-img
 image::images/00-postgres-credentials.png[00-postgres-credentials.png, role="integr8ly-img-responsive"]
 
 . Click *Next* and ensure _Do not Bind at this time_ is selected.  Click *Create* to generate the service.
+
+[type=verification]
+Were you able to generate the service?
+
+[type=verificationFail]
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the CodeReady Workspaces application.
 
 [time=3]
 [id="git-import"]
@@ -106,6 +118,12 @@ image::images/00-convert-project.png[00-convert-project.png, role="integr8ly-img
 image::images/00-select-maven.png[00-select-maven.png, role="integr8ly-img-responsive"]
 
 . Convert the remaining projects to Maven, by repeating steps 4 & 5 for the *location-service* and *location-gateway* projects.
+
+[type=verification]
+Were you able to convert the projects?
+
+[type=verificationFail]
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the CodeReady Workspaces application.
 
 [time=2]
 [id="open-api-import"]
@@ -144,6 +162,12 @@ image::images/00-login-terminal.png[00-login-terminal.png, role="integr8ly-img-r
 . Click **Run** to execute the script. If everything completes successfully, it should generate a new file under `src/main/java/com/redhat` called `CamelRoutes.java`.  If the Maven script fails, it's probably because you forgot to first highlight the `location-service` project in the previous step.  Be sure to do this and re-run the command to fix the error.
 +
 image::images/00-run-mvn.png[00-run-mvn.png, role="integr8ly-img-responsive"]
+
+[type=verification]
+Were you able to generate the `CamelRoutes.java` file?
+
+[type=verificationFail]
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the CodeReady Workspaces application.
 
 [time=10]
 [id="Camel Route Update"]
@@ -342,6 +366,12 @@ image::images/00-final-spring-boot.png[00-final-spring-boot.png, role="integr8ly
 +
 image::images/00-run-locally.png[00-run-locally.png, role="integr8ly-img-responsive"]
 
+[type=verification]
+Were you able to run the script?
+
+[type=verificationFail]
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the CodeReady Workspaces application.
+
 [time=2]
 [id="test-springboot"]
 == Test local spring:boot service
@@ -350,9 +380,15 @@ image::images/00-run-locally.png[00-run-locally.png, role="integr8ly-img-respons
 +
 image::images/00-open-servers.png[00-open-servers.png, role="integr8ly-img-responsive"]
 
-. Click on the route link above the location-service pod and append `/locations` to the URI.  As a result, you should receive a list of all locations
+. Click on the route link above the location-service pod and append `/locations` to the URI.  As a result, you should receive a list of all locations.
 +
 image::images/00-location-list.png[00-location-list.png, role="integr8ly-img-responsive"]
+
+[type=verification]
+Were you able to retrieve a list of locations?
+
+[type=verificationFail]
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the CodeReady Workspaces application.
 
 [time=3]
 [id="deploy-location-service"]
@@ -365,7 +401,6 @@ image::images/00-deploy-mvn.png[00-deploy-mvn.png, role="integr8ly-img-responsiv
 . Enter `fabric8:deploy` as the *Name*, then enter `cd ${explorer.current.file.path} && mvn fabric8:deploy` for the *Command*.  Click *Save*.
 +
 image::images/00-save-fabric-deploy.png[00-save-fabric-deploy.png, role="integr8ly-img-responsive"]
-
 
 . Click **Run**.  The script will run and deploy to your {user-username} Openshift project.
 +
@@ -380,17 +415,21 @@ image::images/00-verify-location-service.png[00-verify-location-service.png, rol
 image::images/00-location-list.png[00-location-list.png, role="integr8ly-img-responsive"]
 
 . You can also search for individual locations by adjusting the URI to `+/locations/{id}+` e.g. `/locations/100`.
-. Lastly, via the Eclipse Che terminal, test the HTTP POST using curl.  You can use the following command:
+. Lastly, via the CodeReady Workspaces terminal, test the HTTP POST using curl.  You can use the following command:
 +
 [source,bash,subs="attributes+"]
 ----
  curl --header "Content-Type: application/json" --request POST --data '{"id": 101,"name": "Kakadu","type": "HQ","status": "1","location": {"lat": "78.88436","lng": "99.05295"}}' http://location-service-{user-username}.{openshift-app-host}/locations
 ----
 +
+. If the HTTP POST operation is successful, you should be able to view it by repeating the HTTP GET /locations test.
 
-. If the HTTP POST is successful, you should be able to view it by repeating the HTTP GET /locations test.
+[type=verification]
+Were all the HTTP POST operations successful?
 
-+
+[type=verificationFail]
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the web service application.
+
 _Congratulations!_ You have now an application to test your Swagger to RESTdsl integration.
 
 [time=2]
