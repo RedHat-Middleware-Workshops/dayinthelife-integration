@@ -85,6 +85,8 @@ image::images/00-create-ocp-project.png[00-create-ocp-project.png, role="integr8
 . Navigate your mouse pointer to the *Add to Project* drop-down list.
 
 . Click on the list and select *Browse Catalogue*.
++
+image::images/00-ocp-browse-catalog.png[00-ocp-browse-catalog.png, role="integr8ly-img-responsive"]
 
 . Navigate to the *Databases* menu and select *Postgres*.  From there, select the *PostgreSQL* (Ephemeral) template.
 +
