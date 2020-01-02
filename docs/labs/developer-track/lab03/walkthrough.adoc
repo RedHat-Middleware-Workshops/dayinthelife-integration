@@ -76,11 +76,17 @@ Try to redo this section, if any problem persists have your instructor check the
 
 . Enter your credentials: `{user-username}` and `{user-password}`
 
-. Click on your unique namespace to enter your workspace e.g. `{user-username} Project`.
+. On the *My Projects* panel, click the *View All* link.
+
+. Click on your unique project namespace (e.g. `{user-username} Project`). Your assigned project is now displayed.
 +
 image::images/00-create-ocp-project.png[00-create-ocp-project.png, role="integr8ly-img-responsive"]
 
-. Click on *Service Catalogue* in the top menu, then navigate to the *Databases* menu and select *Postgres*.  From there, select the *PostgreSQL* (Ephemeral) template.
+. Navigate your mouse pointer to the *Add to Project* drop-down list.
+
+. Click on the list and select *Browse Catalogue*.
+
+. Navigate to the *Databases* menu and select *Postgres*.  From there, select the *PostgreSQL* (Ephemeral) template.
 +
 image::images/00-select-postgres.png[00-select-postgres.png, role="integr8ly-img-responsive"]
 
