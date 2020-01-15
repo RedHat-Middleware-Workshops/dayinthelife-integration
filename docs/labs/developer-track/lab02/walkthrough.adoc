@@ -220,5 +220,5 @@ You can now proceed to link:{next-lab-url}[Lab 3].
 
 * Microcks
  ** http://microcks.github.io/[Webpage]
- ** http://microcks.github.io/automating/jenkins/[Jenkins Plugin]
- ** http://microcks.github.io/installing/openshift/[Installing on OpenShift]
+ ** http://microcks.github.io/documentation/automating/jenkins/[Jenkins Plugin]
+ ** http://microcks.github.io/documentation/installing/openshift/[Installing on OpenShift]
