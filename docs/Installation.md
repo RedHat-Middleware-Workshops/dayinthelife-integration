@@ -2,7 +2,8 @@
 
 ## How to Install the Workshop Content
 
-This page describes the installation of the Day In Life Workshop Content from the latest tagged release on GitHub.
+#This page describes the installation of the Day In Life Workshop Content from the latest tagged release on GitHub.
+IMPORTANT!!!!! THE CURRENT SUPPORTED VERSION of RHMI WORKSHOP is ***1.5.2*** !! PLEASE INSTALL THE CORRECT VERSION!
 
 ### Pre-requisites
 
