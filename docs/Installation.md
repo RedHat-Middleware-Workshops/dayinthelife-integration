@@ -183,3 +183,50 @@ Password: openshift
 ### INSTALLATION IS COMPLETE!
 
 [Click to return to Landing Page](https://agileintegration.ga)
+
+### ATTENTION!!! Code Ready Workspace starting up issue in Integreatly 1.5.2 TEMP FIX
+
+Step 1:
+Go to CodeReady workspace, scale down CodeReady Operator to ***0*** 
+
+Step 2: 
+In the same workspace, Resource -> ConfigMap, edit the *che*
+update the 
+
+**CHE_WORKSPACE_JAVA__OPTIONS** and **CHE_WORKSPACE_MAVEN__OPTIONS** to aleast 500M
+example
+```
+  CHE_WORKSPACE_JAVA__OPTIONS: >-
+    -XX:MaxRAM=2048m -XX:MaxRAMFraction=2 -XX:+UseParallelGC
+    -XX:MinHeapFreeRatio=10 -XX:MaxHeapFreeRatio=20 -XX:GCTimeRatio=4
+    -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xms20m
+    -Djava.security.egd=file:/dev/./urandom 
+  CHE_WORKSPACE_MAVEN__OPTIONS: >-
+    -XX:MaxRAM=1024m -XX:MaxRAMFraction=2 -XX:+UseParallelGC
+    -XX:MinHeapFreeRatio=10 -XX:MaxHeapFreeRatio=20 -XX:GCTimeRatio=4
+    -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xms20m
+    -Djava.security.egd=file:/dev/./urandom 
+```
+
+Step 3: Redeploy "codeready" 
+
+Step 4: Login to Code Ready using admin, in Stacks click on ***Red Hat Fuse***, 
+Click on *Raw Configuration* and you will see the stack configuration in JSON format, under "installers"
+remove ***com.redhat.bayesian.lsp***
+so it looks like following:
+
+```
+   "installers": [
+              "org.eclipse.che.exec",
+              "org.eclipse.che.terminal",
+              "org.eclipse.che.ws-agent",
+              "org.eclipse.che.ls.camel",
+              "org.eclipse.che.ls.java"
+            ],
+```
+
+Save and you are good to go. 
+              
+
+
+
