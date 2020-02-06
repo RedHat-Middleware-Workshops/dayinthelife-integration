@@ -201,11 +201,13 @@ Click *`save`*
 image::images/n20-integration-name.png[n20-integration-name, role="integr8ly-img-responsive"]
 
 . Click on *Create flow*
-+image::images/n19a-create-flow.png[n19a-create, role="integr8ly-img-responsive"]
++
+image::images/n19a-create-flow.png[n19a-create, role="integr8ly-img-responsive"]
 
 
 . Since we are adding incoming data into the database, click on the plus sign in between API entry point and return endpoint, then select *Add connection*.
-+image::images/n22-add-db-connection.png[n22-add-db-connection, role="integr8ly-img-responsive"]
++
+image::images/n22-add-db-connection.png[n22-add-db-connection, role="integr8ly-img-responsive"]
 
 . Click on *LocationDB* from the catalog and then select *Invoke SQL*
 +

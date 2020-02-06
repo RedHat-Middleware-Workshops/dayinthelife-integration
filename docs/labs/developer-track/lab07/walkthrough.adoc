@@ -141,9 +141,9 @@ Try to redo this section, if any problem persists have your instructor check the
 [id="update-secure-service"]
 == Test the Single Sign On Integration
 
-. Open a browser tab and navigate to `http://www-{user-username}.{openshift-app-host}`.
+. Open a browser tab and navigate to `http://www-{user-username}.{openshift-app-host}/locations.html`.
 
-. Click the *Sign In* button.
+. Click the *Sign In to access the Location API Service* button.
 
 . You are being redirected to Red Hat Single Sign On *Login Page*. Login using
  ** Username: *`{user-username}`*
@@ -152,6 +152,7 @@ Try to redo this section, if any problem persists have your instructor check the
 image::images/consume-23.png[23-realm-login, role="integr8ly-img-responsive"]
 
 . You will be redirected again to the *LOCATIONS* page where now you will be able to see the map with the International Inc Offices.
+If you can not see any locations on the map, it may be because the API endpoint uses a self-signed certificate. If this is the case, visit `https://location-{user-username}-api-staging.amp.{openshift-app-host}/locations` and accept the certificate. Reload the *LOCATIONS* page and the locations should be on the map.
 +
 image::images/consume-14.png[11-locations-page, role="integr8ly-img-responsive"]
 

@@ -141,7 +141,8 @@ Try to redo this section, if any problem persists have your instructor check the
 [id="login-dev-portal"]
 == Login to Developer Portal
 
-. As your portal is not currently public, you will need your portal code to login. You can get the code in your admin portal navigating to: menu:Audience[Developer Portal > Domains & Access].
+. As your portal is not currently public, you will need your portal code to
+login. You can get the code in your admin portal navigating to: menu:Audience[Developer Portal > Domains & Access] (You may need to scroll down in the menu).
 +
 image::images/16d-access-portal.png[16d-access-portal.png, role="integr8ly-img-responsive"]
 
