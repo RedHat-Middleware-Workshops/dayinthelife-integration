@@ -35,34 +35,33 @@ Your password is: `{user-password}`
 ****
 
 [time=3]
-[id="define-api-proxy"]
-== Define your API Proxy
+[id="define-api-backend"]
+== Define your API Backend Services
 
 . Log in to link:{3scale-admin-url}[3scale Admin, window="_blank"] web console using `{user-username}` and password: `{user-password}`.
 +
 image::images/01-login.png[3scale-admin-login, role="integr8ly-img-responsive"]
 
-. The first page you will land is the *API Management Dashboard*. Click on the **INTEGRATE THIS API** menu link.
+. The first page you will land is the *API Management Dashboard*. Click on the **BACKENDS** tab.
 +
 image::images/01a-dashboard.png[integrate-api-link, role="integr8ly-img-responsive"]
 
-. Click on the **edit integration settings** to edit the API settings for the gateway.
+. Click in the **API Backend** link to edit the backend service information.
 +
-image::images/03-edit-settings.png[edit-integration-settings, role="integr8ly-img-responsive"]
+image::images/01b-dashboard.png[integrate-api-link, role="integr8ly-img-responsive"]
 
-. Keep the **APIcast** deployment option in the Gateway section.
+. Click in the **edit** link in the right side of the Backend Overview to edit the backend service private endpoint.
 +
-image::images/04-apicast.png[apicast-selection, role="integr8ly-img-responsive"]
+image::images/03-edit-backends.png[edit-backends-settings, role="integr8ly-img-responsive"]
 
-. Scroll down and keep the **API Key (user_key)** Authentication.
+. Scroll down to the `API` section and edit the **Private endpoint** with the following value:
+** Private endpoint: *`http://location-service.international.svc:8080`*
 +
-image::images/05-authentication.png[user-key-autentication, role="integr8ly-img-responsive"]
-
-. Click on **Update Service**.
-
-. Click on the **add the Base URL of your API and save the configuration** button.
+_We are using the internal API service, as we are deploying our services inside the same OpenShift cluster._
 +
-image::images/04-base-url.png[base-url, role="integr8ly-img-responsive"]
+image::images/04-backend-url.png[backend-api-endpoint, role="integr8ly-img-responsive"]
+
+. Click on **Update Backend** button to save the configuration.
 
 [type=verification]
 Was the service updated successfully?
@@ -70,22 +69,17 @@ Was the service updated successfully?
 [type=verificationFail]
 Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the 3scale API Management application.
 
-
 [time=4]
-[id="update-integration-settings"]
-== Update Integration settings
+[id="manage-access-control"]
+== Manage API access control settings
 
-Leave the settings for `Private Base URL`, `Staging Public Base URL`, and `Production Public Base URL` as it is. We will come back to the screen to update the correct values in later step.
+. From the current `Backend Overview` page, click the **API** link under the **Products Using this Backend** section.
++
+image::images/07a-api-product.png[api-product-link, role="integr8ly-img-responsive"]
 
-. Scroll down and expand the **MAPPING RULES** section to define the allowed methods on our exposed API.
+. Expand the **Integration** menu and click in the **Methods and Metrics** option to get data on the individual method usage on our exposed API.
 +
-_The default mapping is the root ("/") of our API resources, and this example application will not use that mapping. The following actions will redefine that default root ("/") mapping_.
-+
-image::images/07b-mapping-rules.png[mapping-rules, role="integr8ly-img-responsive"]
-
-. Click on the **Metric or Method (Define)** link.
-+
-image::images/07b-mapping-rules-define.png[mapping-rules-define, role="integr8ly-img-responsive"]
+image::images/07b-methods-metrics.png[mapping-rules, role="integr8ly-img-responsive"]
 
 . Click on the **New Method** link in the *Methods* section.
 +
@@ -95,15 +89,16 @@ image::images/07b-new-method.png[new-method, role="integr8ly-img-responsive"]
 ** Friendly name: *`Get Locations`*
 ** System name: *`locations_all`*
 ** Description: *`Method to return all locations`*
-
 +
 image::images/07b-new-method-data.png[new-method-data, role="integr8ly-img-responsive"]
 
 . Click on **Create Method**.
 
-. Click on the **Add mapping rule** link.
+. In the right side menu bar, click on the **Mapping Rules** link under the **Integration** menu.
 +
-image::images/07b-add-mapping-rule.png[add-mapping-rule, role="integr8ly-img-responsive"]
+image::images/07b-mapping-rules.png[mapping-rules, role="integr8ly-img-responsive"]
++
+_The default mapping is the root ("/") of our API resources, and this example application will not use that mapping. The following actions will redefine that default root ("/") mapping_.
 
 . Click on the edit icon next to the `GET` mapping rule.
 +
@@ -120,6 +115,8 @@ image::images/07b-edit-mapping-rule.png[edit-mapping-rule, role="integr8ly-img-r
 +
 image::images/07b-getall-rule.png[getall-rule, role="integr8ly-img-responsive"]
 
+. Click on **Update Mapping Rule** button to save your changes.
+
 [type=verification]
 Was the setup of the settings successful?
 
@@ -135,7 +132,7 @@ Red Hat 3scale API Management provides units of functionality that modify the be
 
 The order in which the policies are executed, known as the “policy chain”, can be configured to introduce differing behavior based on the position of the policy in the chain. Adding custom headers, perform URL rewriting, enable CORS, and configurable caching are some of the most common API gateway capabilities implemented as policies.
 
-. Scroll down and expand the **POLICIES** section to define the allowed methods on our exposed API.
+. In the right side menu bar, click on the **Policies** link under the **Integration**.
 +
 image::images/policies-01.png[policies, role="integr8ly-img-responsive"]
 +
@@ -173,11 +170,13 @@ image::images/policies-08.png[policies-08, role="integr8ly-img-responsive"]
 
 . Click twice the green **+** button under *ALLOW_METHODS* to enable two combo boxes for the CORS allowed methods.
 
-. Select **GET** from the first box and **OPTIONS** from the second box.
+. Select **GET** from the first box and **OPTIONS** from the second box. Click the **Update Policy** button to save the policy configuration.
 +
 image::images/policies-09.png[policies-09, role="integr8ly-img-responsive"]
 
-. Click the **Update Policy** button to save the policy configuration.
+. Save the changes to the policy chain by clicking the **Update Policy Chain** button.
++
+image::images/policies-10-policy-chain.png[policies-09, role="integr8ly-img-responsive"]
 
 [type=verification]
 Was the setup of the API successful?
@@ -186,43 +185,70 @@ Was the setup of the API successful?
 Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the 3scale API Management application.
 
 [time=2]
-[id="configure-upstream-endpoint"]
-== Configure the Upstream Endpoint
+[id="configure-public-endpoint"]
+== Configure the Public Endpoint
 
-. Scroll back to the top of the page. Fill in the information for accessing your API.
-** Private Base URL: *`http://location-service.international.svc:8080`*
-** Staging Public Base URL: *`https://location-{user-username}-api-staging.amp.{openshift-app-host}:443`*
-** Production Public Base URL: *`https://location-{user-username}-api.amp.{openshift-app-host}:443`*
+. In the right side menu bar, click on the **Settings** link under the **Integration** menu.
 +
-_We are using the internal API service, as we are deploying our services inside the same OpenShift cluster._
-+
-image::images/07-baseurl-configuration.png[baseurl-configuration, role="integr8ly-img-responsive"]
+image::images/03-edit-settings.png[edit-settings, role="integr8ly-img-responsive"]
 
-. Scroll down to the **API Test GET request**.
+. Keep the **APIcast 3scale managed** option in the `DEPLOYMENT` section.
 
-. Type in the textbox:
+. In the `API GATEWAY` subsection, fill in the information for accessing your API:
+** Staging Public Base URL: *`https://location-{user-username}-api-staging.{openshift-app-host}:443`*
+** Production Public Base URL: *`https://location-{user-username}-api.{openshift-app-host}:443`*
 +
-[source,bash,subs="attributes+"]
-----
-/locations
-----
+image::images/07-baseurl-configuration.png[public-baseurl-configuration, role="integr8ly-img-responsive"]
 
-. Click on the **Update the Staging Environment** to save the changes and check the connection between client, gateway and API.
+. Scroll down to the `AUTHENTICATION` section. Leave the **API Key (user_key)** option selected and same with the **As query parameters (GET)** from the `CREDENTIALS LOCATION` section.
 +
-image::images/08-update-staging.png[update-staging, role="integr8ly-img-responsive"]
-+
-_If everything works, you will get a green message on the left._
+image::images/08-authentication.png[authentication-settings, role="integr8ly-img-responsive"]
 
-. Click on **Back to Integration & Configuration** link to return to your API overview.
+. Scroll down to the end of the page and click the **Update Product** button to save the configurations.
 +
-image::images/08aa-back-to-integration.png[back-to-integration, role="integr8ly-img-responsive"]
+image::images/09-update-product.png[update-product, role="integr8ly-img-responsive"]
+
+[type=verification]
+Was the setup of the API Product successful?
+
+[type=verificationFail]
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the 3scale API Management application.
+
+[time=2]
+[id="promot-configuration-production"]
+== Promote Configuration to Production
+
+. In the right side menu bar, click on the **Configuration** link under the **Integration** menu.
++
+image::images/10-product-configuration.png[product-configuration, role="integr8ly-img-responsive"]
+
+. Click on the **Promote v. 1 to Staging** button to promote your configuration to staging.
++
+image::images/08-update-staging.png[promote-to-staging, role="integr8ly-img-responsive"]
 
 . Click on the **Promote v.1 to Production** button to promote your configuration from staging to production.
 +
 image::images/08a-promote-production.png[promote-to-production, role="integr8ly-img-responsive"]
 
+. Test your API by opening a new browser tab and navigating to the following url:
++
+[source,bash,subs="attributes+"]
+----
+https://location-{user-username}-api-staging.{openshift-app-host}/locations
+----
++
+_You should see an error message telling you `Authentication parameters missing`. This is because we are not sending any user_key to authenticate our API call._
+
+. Go back to the 3scale console and copy the full url with the `user_key` from the **Example curl for testing** in the integration configuration page for your API product.
++
+image::images/11-test-api.png[test-api, role="integr8ly-img-responsive"]
++
+_DO NOT copy the `curl` word neither the quotation marks `"`._
+
+. Test back your API navigating to the url you just copied.
+
 [type=verification]
-Was the API promotion successful?
+Are you able to see the json payload with the branch locations?
 
 [type=verificationFail]
 Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the 3scale API Management application.
