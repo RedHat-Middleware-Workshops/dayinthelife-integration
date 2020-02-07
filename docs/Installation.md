@@ -115,6 +115,8 @@ This is the fastest way to install, as the playbook runs in the cluster closest 
 bash
 ssh -i ~/.ssh/<your_opentlc_private_key> <your_opentlc_id>@bastion.GUID.open.redhat.com
 ```
+*Alternatively, you can also ssh into the bastion using ID `ec2-user`
+
 *Remember to update the GUID with your cluster environment variable (documented in the RHPDS environment system generated email) and the path to your private key.*
 * Refer to the [OPENTLC Account Management webpage](https://www.opentlc.com/account/) for instructions on creating your OPENTLC ID, private and public keys
 
@@ -123,10 +125,12 @@ ssh -i ~/.ssh/<your_opentlc_private_key> <your_opentlc_id>@bastion.GUID.open.red
 sudo -i
 ```
 
-4. Clone the installer repo:
+4. Download the latest release of the tutorials:
 ```
-git clone https://github.com/RedHatWorkshops/dayinthelife-integration.git
+wget https://github.com/integr8ly/installation/archive/release-<release_ID>.zip
 ```
+
+*It is not advisable to clone the installer repo using `git clone https://github.com/RedHatWorkshops/dayinthelife-integration.git` as the master branch is constantly under upgrade
 
 5. Set the master node URL and number of users.  Be sure to replace *XX* with the number of users provisioned for your cluster:
 ```
@@ -187,11 +191,11 @@ Password: openshift
 ### ATTENTION!!! Code Ready Workspace starting up issue in Integreatly 1.5.2 TEMP FIX
 
 Step 1:
-Go to CodeReady workspace, scale down CodeReady Operator to ***0*** 
+Go to CodeReady workspace, scale down CodeReady Operator to ***0***
 
-Step 2: 
+Step 2:
 In the same workspace, Resource -> ConfigMap, edit the *che*
-update the 
+update the
 
 **CHE_WORKSPACE_JAVA__OPTIONS** and **CHE_WORKSPACE_MAVEN__OPTIONS** to aleast 500M
 example
@@ -200,17 +204,17 @@ example
     -XX:MaxRAM=2048m -XX:MaxRAMFraction=2 -XX:+UseParallelGC
     -XX:MinHeapFreeRatio=10 -XX:MaxHeapFreeRatio=20 -XX:GCTimeRatio=4
     -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xms20m
-    -Djava.security.egd=file:/dev/./urandom 
+    -Djava.security.egd=file:/dev/./urandom
   CHE_WORKSPACE_MAVEN__OPTIONS: >-
     -XX:MaxRAM=1024m -XX:MaxRAMFraction=2 -XX:+UseParallelGC
     -XX:MinHeapFreeRatio=10 -XX:MaxHeapFreeRatio=20 -XX:GCTimeRatio=4
     -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xms20m
-    -Djava.security.egd=file:/dev/./urandom 
+    -Djava.security.egd=file:/dev/./urandom
 ```
 
-Step 3: Redeploy "codeready" 
+Step 3: Redeploy "codeready"
 
-Step 4: Login to Code Ready using admin, in Stacks click on ***Red Hat Fuse***, 
+Step 4: Login to Code Ready using admin, in Stacks click on ***Red Hat Fuse***,
 Click on *Raw Configuration* and you will see the stack configuration in JSON format, under "installers"
 remove ***com.redhat.bayesian.lsp***
 so it looks like following:
@@ -225,8 +229,4 @@ so it looks like following:
             ],
 ```
 
-Save and you are good to go. 
-              
-
-
-
+Save and you are good to go.
