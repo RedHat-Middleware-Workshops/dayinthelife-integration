@@ -1,6 +1,6 @@
 :walkthrough: Create and customize the API Developer Portal
 :3scale-admin-url: http://{user-username}-admin.{openshift-app-host}
-:3scale-dev-portal-url: http://{user-username}.{openshift-app-host}
+:3scale-dev-portal-url: http://{user-username}.{openshift-app-host}/p/admin/cms
 :user-password: openshift
 :next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}/tutorial/dayinthelife-integration.git-developer-track-lab07/
 

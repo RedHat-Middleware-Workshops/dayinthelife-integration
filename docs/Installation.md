@@ -118,6 +118,7 @@ ssh -i ~/.ssh/<your_opentlc_private_key> <your_opentlc_id>@bastion.GUID.open.red
 *Alternatively, you can also ssh into the bastion using ID `ec2-user`
 
 *Remember to update the GUID with your cluster environment variable (documented in the RHPDS environment system generated email) and the path to your private key.*
+
 * Refer to the [OPENTLC Account Management webpage](https://www.opentlc.com/account/) for instructions on creating your OPENTLC ID, private and public keys
 
 3. Switch to root user:
