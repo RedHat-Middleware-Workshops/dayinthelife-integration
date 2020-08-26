@@ -1,68 +1,90 @@
 package com.redhat;
 
+import javax.annotation.Generated;
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.model.rest.RestBindingMode;
+import org.apache.camel.model.rest.RestParamType;
 import org.springframework.stereotype.Component;
+import com.redhat.processor.*;
+import com.redhat.model.*;
+import org.springframework.stereotype.Component;
+import org.apache.camel.model.rest.RestBindingMode;
 
-import com.redhat.processor.ResultProcessor;
-
+/**
+ * Generated from Swagger specification by Camel REST DSL generator.
+ */
+@Generated("org.apache.camel.generator.swagger.PathGenerator")
 @Component
-public class CamelRoutes extends RouteBuilder {
-	
+public final class CamelRoutes extends RouteBuilder {
+    /**
+     * Defines Apache Camel routes using REST DSL fluent API.
+     */
+    public void configure() {
 
-	@Override
-	public void configure() throws Exception {
-		
-		
-		
-		ResultProcessor resultProcessor = new ResultProcessor();
-		
-		restConfiguration()
-			.component("servlet")
-        	.port(8080)
-        	.bindingMode(RestBindingMode.json)
-			.contextPath("/")
-        	.dataFormatProperty("prettyPrint", "true")
-        	.enableCORS(true)
-        	.apiContextPath("/api-doc")
-        	.apiProperty("api.title", "Location API")
-        	.apiProperty("api.version", "1.0.0")
+        ContactInfoResultProcessor ciResultProcessor = new ContactInfoResultProcessor();
+        LocationResultProcessor locationResultProcessor = new LocationResultProcessor();
+
+        restConfiguration()
+            .component("servlet")
+            .port(8080)
+            .bindingMode(RestBindingMode.json)
+            .contextPath("/")
+            .dataFormatProperty("prettyPrint", "true")
+            .enableCORS(true)
+            .apiContextPath("/api-doc")
+            .apiProperty("api.title", "Location and Contact Info API")
+            .apiProperty("api.version", "1.0.0")
         ;
-		
-		
 
-		rest("/locations").description("Location information")
-			.produces("application/json")
-			.get("/").description("Retrieve all locations data")
-				.responseMessage().code(200).message("Data successfully returned").endResponseMessage()
-				.to("direct:getalllocations")
-			.get("/{id}")
-				.responseMessage().code(200).message("Data successfully returned").endResponseMessage()
-				.to("direct:getlocation")
-		;
+        rest()
+         .get("/locations")
+             .to("direct:getalllocations")
+         .post("/locations")
+             .type(Location.class)
+             .to("direct:addlocation")
+         .get("/locations/{id}")
+             .param()
+                 .name("id")
+                 .type(RestParamType.path)
+                 .dataType("integer")
+                 .required(true)
+             .endParam()
+             .to("direct:getlocation")
+         .get("/location/phone/{id}")
+             .param()
+                 .name("id")
+                 .type(RestParamType.path)
+                 .dataType("integer")
+                 .required(true)
+             .endParam()
+             .outType(ContactInfo.class)
+             .to("direct:getlocationdetail")
+        ;
 
-		from("direct:getalllocations")
-			.to("sql:select * from locations?dataSource=dataSource")
-			.process(resultProcessor)
-			.log("${body}")
-		;
-		
-		from("direct:getlocation")
-			.to("sql:select * from locations where id=cast(:#id as int)?dataSource=dataSource")
-			.process(resultProcessor)
-			.choice()
-				.when(simple("${body.size} > 0"))
-					.setBody(simple("${body[0]}"))
-				.otherwise()
-					.setHeader("HTTP_RESPONSE_CODE",constant("404"))
-			.log("${body}")
-		;
-		
-		
+        from("direct:getalllocations")
+         .to("sql:select * from locations?dataSource=dataSource")
+         .process(locationResultProcessor)
+         .log("${body}")
+        ;
 
-	
-	}
-	
-	
+        from("direct:getlocation")
+                .to("sql:select * from locations where id=cast(:#id as int)?dataSource=dataSource")
+                .process(locationResultProcessor)
+                .choice()
+                    .when(simple("${body.size} > 0"))
+                        .setBody(simple("${body[0]}"))
+                    .otherwise()
+                        .setHeader("HTTP_RESPONSE_CODE",constant("404"))
+                .log("${body}")
+        ;
 
+            from("direct:addlocation")
+                        .log("Creating new location")
+                .to("sql:INSERT INTO locations (id,name,lat,lng,location_type,status) VALUES (:#${body.id},:#${body.name},:#${body.location.lat},:#${body.location.lng},:#${body.type},:#${body.status});?dataSource=dataSource")
+            ;
+
+            from("direct:getlocationdetail")
+                .to("sql:select * from location_detail where id=cast(:#id as int)?dataSource=dataSource")
+                .process(ciResultProcessor)
+        ;
+    }
 }
