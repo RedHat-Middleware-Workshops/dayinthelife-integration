@@ -3,7 +3,7 @@
 :3scale-url: https://www.3scale.net/
 :3scale-admin-url: https://{user-username}-admin.{openshift-app-host}/p/login
 :3scale-dev-portal-url: https://{user-username}.{openshift-app-host}/
-:sso-url:  http://sso-sso.{openshift-app-host}/auth/admin/{user-username}/console/
+:sso-url: https://sso-sso.{openshift-app-host}/auth/admin/{user-username}/console
 :openshift-url: {openshift-host}/console
 :user-password: openshift
 
@@ -47,7 +47,11 @@ Your password is: `{user-password}`
 [id="update-openshift"]
 == Update OpenShift Deployment
 
-Openshift allows you to automatically redeploy your changes when you setup a Continuous Integration / Continuous Deployment (CI/CD) pipeline through the use of a webhook. For this lab we will trigger the new build and deployment manually through the OpenShift Console.
+OpenShift allows you to automatically redeploy your changes when you setup a Continuous Integration / Continuous Deployment (CI/CD) pipeline through the use of a webhook. For this lab we will trigger the new build and deployment manually through the OpenShift Console.
+
+. Launch a new tab on your web browser.
+. Navigate to the Solution Explorer on that tab.
+. Click on the *Red Hat OpenShift* link.
 
 . Open your link:{openshift-url}[Openshift Console, window="_blank"]. Navigate to your project's overview page. It will be called `{user-username} Project`.
 
@@ -76,6 +80,12 @@ _The build process checks out the code from the git repo, runs a source-to-image
 . Wait for until the new Build to complete and the rolling upgrade to finish to test your new deployment.
 +
 image::images/consume-22.png[22-updated-app, role="integr8ly-img-responsive"]
+
+[type=verification]
+Was the build successful?
+
+[type=verificationFail]
+Try to redo this section, if any problem persists have your instructor check the build.
 
 [time=5]
 [id="update-sso"]
@@ -128,6 +138,13 @@ image::images/consume-25.png[25-client-config, role="integr8ly-img-responsive"]
 
 . Finally, click *Save* button to persist the changes.
 
+[type=verification]
+Were you able to make and save the changes?
+
+[type=verificationFail]
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the RH SSO application.
+
+
 [time=5]
 [id="test-webpage"]
 == Opening International Inc Web Page
@@ -144,13 +161,19 @@ image::images/consume-13.png[10-application-page, role="integr8ly-img-responsive
 +
 image::images/consume-222.png[11-Sign-in, role="integr8ly-img-responsive"]
 
+[type=verification]
+Does the *Sign In* button appear?
+
+[type=verificationFail]
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the web application.
+
 [time=5]
 [id="test-SSO-integration"]
 == Test the Single Sign On Integration
 
 . Let's test the integration. Click the *Sign In* button.
 
-. You are being redirected to Red Hat Single Sign On *Login Page*. Login using the user credentials you created in the link:../lab05/#step-2-add-user-to-realm[API Security Lab]
+. You are being redirected to Red Hat Single Sign On *Login Page*. Login using the user credentials you created in the link:../lab05/#add-user-to-realm[API Security Lab]
  ** Username: *apiuser*
  ** Password: *apipassword*
 +
@@ -177,7 +200,13 @@ _Example link: `https://location-{user-username}-api-staging.amp.{openshift-app-
 . Refresh the page, and the locations should appear.
 +
 image::images/consume-14.png[11-locations-page, role="integr8ly-img-responsive"]
-+
+
+[type=verification]
+Are you able to observe the new locations?
+
+[type=verificationFail]
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the web application.
+
 _Congratulations!_ You have successfully tested the International Inc. Locations webpage using a full SSO authenticated API.
 
 [time=1]

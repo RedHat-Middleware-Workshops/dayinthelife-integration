@@ -41,6 +41,10 @@ Your password is: `{user-password}`
 [id="creating-apis-with-apicurio-studio"]
 == Creating APIs with Apicurio Studio
 
+. Launch a new tab on your web browser.
+. Navigate to the Solution Explorer on that tab.
+. Click on the *Apicurio* link.
+
 . Log in to link:{apicurio-studio-url}[Apicurio Studio, window="_blank"] web console using `{user-username}` and `{user-password}`.
 +
 image::images/design-01.png[design-login, role="integr8ly-img-responsive"]
@@ -57,13 +61,18 @@ image::images/design-03.png[design-new-api, role="integr8ly-img-responsive"]
  ** Type: *Open API 3.0.2*
  ** Name: *`Locations-{user-username}`*
  ** Description: *`Locations API`*
-
 +
 image::images/design-04.png[design-create-api, role="integr8ly-img-responsive"]
 . Click on *Create API*.
 . Finally, click on *Edit API* to start editing your newly created API.
 +
 image::images/design-05.png[design-edit-api, role="integr8ly-img-responsive"]
+
+[type=verification]
+Did the API successfully get created?
+
+[type=verificationFail]
+Have your instructor check the Kubernetes pod that contains the Apicurio Studio application.
 
 [time=2]
 [id="editing-apis"]
@@ -104,6 +113,12 @@ image::images/design-16.png[design-JSON-Example, role="integr8ly-img-responsive"
 image::images/design-17.png[design-definition-types, role="integr8ly-img-responsive"]
 +
 _Time to start creating some paths_.
+
+[type=verification]
+Were the data types successfully detected?
+
+[type=verificationFail]
+Have your instructor check the Kubernetes pod that contains the Apicurio Studio application.
 
 [time=2]
 [id="adding-paths"]
@@ -212,6 +227,14 @@ image::images/design-54.png[design-response-example, role="integr8ly-img-respons
 +
 image::images/design-31.png[design-get-operation, role="integr8ly-img-responsive"]
 
+[type=verification]
+Were the HTTP Response, `path` parameter and `GET` operation created successfully?
+
+[type=verificationFail]
+Have your instructor check the Kubernetes pod that contains the Apicurio Studio application.
+
+
+
 === 3b: Add /locations/{id} path with GET method
 
 The `+/locations/{id}+` path will return a single location record based on a single `id` parameter, passed via the URL.
@@ -256,6 +279,12 @@ image::images/design-40.png[design-location-type, role="integr8ly-img-responsive
 +
 image::images/design-56.png[design-response-example, role="integr8ly-img-responsive"]
 
+[type=verification]
+Was the path created successfully?
+
+[type=verificationFail]
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the Apicurio Studio application.
+
 
 [time=2]
 [id="download-api-definition"]
@@ -273,6 +302,13 @@ image::images/design-23.png[design-download-yaml, role="integr8ly-img-responsive
 . You can open the file with any text editor. Take a look at the source file. Everything is there.
 +
 image::images/design-24.png[design-api-source, role="integr8ly-img-responsive"]
+
+[type=verification]
+Was the source file created successfully?
+
+[type=verificationFail]
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the Apicurio Studio application.
+
 
 _Congratulations!_ You have created your first API definition based on the OpenAPI Specification  using Red Hat's Apicurio. Don't lose track of the file, you will use this definition for your next lab.
 

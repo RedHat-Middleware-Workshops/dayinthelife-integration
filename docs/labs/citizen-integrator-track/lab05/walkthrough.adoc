@@ -47,6 +47,8 @@ Your password is: `{user-password}`
 [id="custom-dev-portal"]
 == Customizing Developer Portal
 
+. Switch to the web browser windown, displaying the console for the *Red Hat 3scale API Management Platform*.
+
 . Log in to link:{3scale-admin-url}[3scale Admin, window="_blank"] web console using `{user-username}` and password: `{user-password}`. Click on *Sign in*.
 +
 image::images/01-login.png[01-login.png, role="integr8ly-img-responsive"]
@@ -73,7 +75,7 @@ image::images/12-main-layout.png[12-main-layout.png, role="integr8ly-img-respons
 +
 [source,bash]
 ----
-<img src="https://www.redhat.com/profiles/rh/themes/redhatdotcom/img/logo.png" alt="{{ provider.name }}">
+<img src="https://www.redhat.com/profiles/rh/themes/redhatdotcom/img/logo.png" style=“width:150px;height:30px;border:0;” alt="{{ provider.name }}">
 ----
 +
 image::images/13-custom-logo.png[13-custom-logo.png, role="integr8ly-img-responsive"]
@@ -93,6 +95,13 @@ image::images/15-homepage-devportal.png[15-homepage-devportal.png, role="integr8
 . Refresh your Developer Portal's browser tab to check the changes. Your Developer Portal should now look like this:
 +
 image::images/16-updated-devportal.png[16-updated-devportal.png, role="integr8ly-img-responsive"]
+
+[type=verification]
+Were you able to customize the developer portal?
+
+[type=verificationFail]
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the 3scale API Management application.
+
 
 [time=5]
 [id="register-new-accounts"]
@@ -119,7 +128,13 @@ image::images/16bc-developers-tab.png[16bc-developers-tab.png, role="integr8ly-i
 . Find your user under the _Accounts_ and click the *Activate* link.
 +
 image::images/16cc-activate-account.png[16cc-activate-account.png, role="integr8ly-img-responsive"]
-+
+
+[type=verification]
+Were you able to activate your user account?
+
+[type=verificationFail]
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the 3scale API Management application.
+
 _Your user is now active and can log into the portal_.
 
 [time=5]
@@ -145,7 +160,13 @@ image::images/16f-dev-signin.png[16f-dev-signin.png, role="integr8ly-img-respons
 . You will land in the developers homepage, where you will be able to check your developers settings and retrieve your newly created *Client ID* and *Client Secret*.
 +
 image::images/16g-user-credentials.png[16g-user-credentials.png, role="integr8ly-img-responsive"]
-+
+
+[type=verification]
+Were you able to customize the developer portal?
+
+[type=verificationFail]
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the 3scale API Management application.
+
 _Congratulations! You have successfully customized your Developer Portal and completed a Sign Up process._
 
 [time=1]

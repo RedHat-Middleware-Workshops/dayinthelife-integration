@@ -1,4 +1,4 @@
-:walkthrough: Contract-first API development wrapping an existing SOAP service, implemented using Eclipse Che
+:walkthrough: Contract-first API development wrapping an existing SOAP service, implemented using CodeReady Workspaces
 :codeready-url: https://codeready-codeready.{openshift-app-host}
 :next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}/tutorial/dayinthelife-integration.git-developer-track-lab05/
 :user-password: openshift
@@ -20,7 +20,7 @@ Another important use case in developing API's is to take an existing legacy SOA
 
 *Why Red Hat?*
 
-CodeReady Workspaces, our online IDE, provides important functionality for implementing API services. In this lab you can see how our Eclipse Che and Fuse can help with SOAP to REST transformation on OpenShift.
+CodeReady Workspaces, our online IDE, provides important functionality for implementing API services. In this lab you can see how our CodeReady Workspaces and Fuse can help with SOAP to REST transformation on OpenShift.
 
 *Skipping The Lab*
 
@@ -51,9 +51,11 @@ Your password is: `{user-password}`
 +
 image::images/00-open-terminal.png[00-open-terminal.png, role="integr8ly-img-responsive"]
 
-. Open your link:{openshift-url}[Openshift Console, window="_blank"].
+. Launch a new tab on your web browser.
+. Navigate to the Solution Explorer on that tab.
+. Click on the *Red Hat OpenShift* link.
 
-. Enter your credentials: `{user-username}` and `{user-password}`
+. Logon to the link:{openshift-url}[OpenShift Console, window="_blank"] using your credentials: `{user-username}` and `{user-password}`
 +
 image::images/00-openshift-loginpage.png[00-openshift-loginpage.png, role="integr8ly-img-responsive"]
 
@@ -76,6 +78,13 @@ image::images/00-login-terminal.png[00-login-terminal.png, role="integr8ly-img-r
 +
 image::images/00-verify-location-soap.png[00-verify-location-soap.png, role="integr8ly-img-responsive"]
 
+[type=verification]
+Were you able to build and deploy the SOAP application?
+
+[type=verificationFail]
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the SOAP application.
+
+
 [time=5]
 [id="instructions"]
 == Modify the skeleton project
@@ -84,7 +93,7 @@ image::images/00-verify-location-soap.png[00-verify-location-soap.png, role="int
 +
 image::images/00-verify-wsdl.png[00-verify-wsdl.png, role="integr8ly-img-responsive"]
 
-. Return to your Eclipse Che workspace and open the `dayintelife-import/location-soap2rest` project.  Open the `pom.xml` file and scroll to the bottom.  Uncomment out the `cxf-codegen-plugin` entry at the bottom.  Update the `<wsdl>` entry with your fully qualified WSDL URL e.g. `http://location-soap-{user-username}.{openshift-app-host}/ws/location?wsdl`.
+. Return to your CodeReady Workspaces workspace and open the `dayintelife-import/location-soap2rest` project.  Open the `pom.xml` file and scroll to the bottom.  Uncomment out the `cxf-codegen-plugin` entry at the bottom.  Update the `<wsdl>` entry with your fully qualified WSDL URL e.g. `http://location-soap-{user-username}.{openshift-app-host}/ws/location?wsdl`.
 +
 image::images/00-uncomment-codegen.png[00-uncomment-codegen.png, role="integr8ly-img-responsive"]
 
@@ -104,11 +113,18 @@ _Common gotcha: If build fails due to used port, check if you are running with m
 +
 image::images/00-verify-pojos.png[00-verify-pojos.png, role="integr8ly-img-responsive"]
 
+[type=verification]
+Were you able to generate the POJO classes?
+
+[type=verificationFail]
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the CodeReady Workspaces application.
+
+
 [time=10]
 [id="instructions"]
 == Update the Camel Route
 
-. Open up the `CamelRoutes.java` file.  Notice that the existing implementation is barebones. First of all, we need to enter the SOAP service address and WSDL location for our CXF client to call.  Secondly, we need to create our Camel route implementation and create the RESTful endpoint. Make sure the values to ("cxf://` URL): are correct
+. Open up the `CamelRoutes.java` file.  Notice that the existing implementation is barebones. First of all, we need to enter the SOAP service address and WSDL location for our CXF client to call.
 +
 [source,java,subs="attributes+"]
 ----
@@ -122,6 +138,15 @@ image::images/00-verify-pojos.png[00-verify-pojos.png, role="integr8ly-img-respo
 
  @Override
  public void configure() throws Exception {
+
+ ...
+
+----
+
+. Secondly, we need to create our Camel route implementation and create the RESTful endpoint(still in the `CamelRoutes.java` file). Make sure the values to (`cxf://` URL): are correct
++
+[source,java,subs="attributes+"]
+----
 
  ...
 
@@ -181,6 +206,14 @@ image::images/00-mvn-f8-deploy.png[00-mvn-f8-deploy.png, role="integr8ly-img-res
 image::images/00-verify-pod.png[00-verify-pod.png, role="integr8ly-img-responsive"]
 
 . Click on the route link above the location-soap2rest pod and append `/location/contact/2` to the URI.  As a result, you should get a contact back.
+
+[type=verification]
+Were you able to retrieve a contact?
+
+[type=verificationFail]
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the CodeReady Workspaces application.
+
+
 
 _Congratulations!_ You have created a SOAP to REST transformation API.
 

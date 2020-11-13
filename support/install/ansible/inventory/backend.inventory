@@ -2,9 +2,9 @@
 localhost ansible_connection=local
 
 [workshop:vars]
-ocp_domain=demo2.opentry.me
-ocp_apps_domain=integreatly-demo2.opentry.me
-usersno=3
+ocp_domain=CITY-GUID.open.redhat.com
+ocp_apps_domain=CITY-GUID.open.redhat.com
+usersno=10
 che=false
 fuse=false
 threescale=false

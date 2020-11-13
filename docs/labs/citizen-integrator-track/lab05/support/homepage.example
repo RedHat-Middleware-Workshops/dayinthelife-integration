@@ -199,7 +199,7 @@
               <div class="panel-body panel-footer">
                 <pre>
 &gt; GET /locations?user_key=87275aa6d90b0ae033deb235d86fb181 HTTP/1.1
-&gt; Host: location-api.amp.apps.GUID.openshiftworkshop.com
+&gt; Host: location-api.amp.apps.GUID.open.redhat.com
 &gt; User-Agent: curl/7.54.0
 &gt; Accept: */*
 &gt;

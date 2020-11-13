@@ -41,6 +41,10 @@ Your password is: `{user-password}`
 [id="create-database-connection"]
 == Create database connection
 
+. Launch a new tab on your web browser.
+. Navigate to the Solution Explorer on that tab.
+. Click on the *Red Hat Fuse Online (Shared)* link.
+
 . Open your link:{fuse-url}[Fuse Online Console, window="_blank"].
 
 . The first time that you hit the Fuse Online URL, you will be presented with an _Authorize Access_ page. Click the *Allow selected permissions* button to accept the defaults.
@@ -72,6 +76,12 @@ image::images/02-click-validate.png[02-click-validate, role="integr8ly-img-respo
 image::images/03-connection-details.png[03-connection-details, role="integr8ly-img-responsive"]
 
 . Verify that the *`Location Database`* is successfully created.
+
+[type=verification]
+Were you able to add the Database connection?
+
+[type=verificationFail]
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the Fuse Online application.
 
 [time=15]
 [id="no-code-api"]
@@ -105,13 +115,13 @@ image::images/n06-data-type.png[n06-data-type, role="integr8ly-img-responsive"]
 ** Name: *locationinput*
 ** JSON Example:
 +
+image::images/n07-location-input-datatype.png[n07-location-input-datatype, role="integr8ly-img-responsive"]
++
 [source,bash]
 ----
 { "id": 1, "name": "Kamarhati", "type": "Regional Branch", "status": "1", "location": { "lat": "-28.32555", "lng": "-5.91531" } }
 ----
 +
-image::images/n07-location-input-datatype.png[n07-location-input-datatype, role="integr8ly-img-responsive"]
-
 . Create another datatype, this time with the following config and click *Save*.
 ** Name: *location*
 ** JSON Example:
@@ -162,7 +172,13 @@ image::images/n17-post-response-type.png[n17-post-response-type, role="integr8ly
 . On the top section, under _Operation ID_, name it *addLocation* and click on tick to save the changes. On the very top of the page, click on the *Save* button to return to Fuse Online in order for us to start the API implementation.
 +
 image::images/n18-post-operation-id.png[n18-post-operation-id, role="integr8ly-img-responsive"]
-+
+
+[type=verification]
+Were you able to create the API Contract?
+
+[type=verificationFail]
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the Fuse Online application.
+
 _Congratulations! You've created an API Contract.  Next up is the API implementation_
 
 [time=15]
@@ -173,15 +189,21 @@ _Congratulations! You've created an API Contract.  Next up is the API implementa
 +
 image::images/n19-start-of-integration.png[n19-start-of-integration, role="integr8ly-img-responsive"]
 
+. Save the integration
++image::images/n19b-save.png[n19b-save.png, role="integr8ly-img-responsive"]
+
+
 . Set the following values:
 ** Integration Name: *`addLocation`*
 ** Description: *`Add Location`*
+Click *`save`*
 +
 image::images/n20-integration-name.png[n20-integration-name, role="integr8ly-img-responsive"]
 
-. Click on *Add Location* operation.
+. Click on *Create flow*
 +
-image::images/n21-choose-operation.png[n21-choose-operation, role="integr8ly-img-responsive"]
+image::images/n19a-create-flow.png[n19a-create, role="integr8ly-img-responsive"]
+
 
 . Since we are adding incoming data into the database, click on the plus sign in between API entry point and return endpoint, then select *Add connection*.
 +
@@ -220,10 +242,16 @@ image::images/n30-choose-data-mapping.png[n30-choose-data-mapping, role="integr8
 +
 image::images/n31-data-map-response.png[n31-data-map-response, role="integr8ly-img-responsive"]
 
-. Click *Publish* on the next screen.
+. Click *Publish* on the next screen and *Save and Publish* in the next page.
 +
 image::images/n32-publish.png[n32-publish, role="integr8ly-img-responsive"]
-+
+
+[type=verification]
+Were you able to publish the Integration?
+
+[type=verificationFail]
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the Fuse Online application.
+
 _Congratulations. You successfully published the integration. (Wait for few minutes to build and publish the integration)_
 
 [time=15]
@@ -271,6 +299,13 @@ image::images/04-apicast.png[04-apicast, role="integr8ly-img-responsive"]
 image::images/05-authentication.png[05-authentication, role="integr8ly-img-responsive"]
 
 . Click on *Update Service*.
+
+[type=verification]
+Were you able to update the service?
+
+[type=verificationFail]
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the Fuse Online application.
+
 
 [time=15]
 [id="update-apicast-config"]
@@ -333,6 +368,13 @@ image::images/08-update-staging.png[08-update-staging, role="integr8ly-img-respo
 +
 _You should expect to get an error message._
 
+[type=verification]
+Were you able to update the staging environment?
+
+[type=verificationFail]
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the 3scale API Management application.
+
+
 [time=15]
 [id="create-application-plan"]
 == Create the Application Plan
@@ -367,9 +409,19 @@ image::images/04-click-applications.png[04-click-applications, role="integr8ly-i
 +
 image::images/04-click-create-app.png[04-click-create-app, role="integr8ly-img-responsive"]
 
-. Select *basic-integration* as the _Application Plan_. Select *Default* as the _Service Plan_. Enter *i-integration* as the _Name_. Click *Create Applicatio*n. An Application page should appear. It will contain a newly created API User Key for use with your new `i-integration` application.
+. Select *basic-integration* as the _Application Plan_.
+. Select *Default* as the _Service Plan_.
+. Enter *i-integration* as the _Name_.
+. Click *Create Application*. An Application page should appear. It will contain a newly created API User Key for use with your new `i-integration` application.
 +
 image::images/04-enter-app-details.png[04-enter-app-details, role="integr8ly-img-responsive"]
+
+[type=verification]
+Were you able to create the application?
+
+[type=verificationFail]
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the 3scale API Management application.
+
 
 [time=15]
 [id="complete-apicast-config"]
@@ -404,6 +456,13 @@ image::images/08aa-back-to-integration.png[08aa-back-to-integration, role="integ
 . Click on the *Promote v.1 to Production* button to promote your configuration from staging to production.
 +
 image::images/08a-promote-production.png[08a-promote-production, role="integr8ly-img-responsive"]
+
+[type=verification]
+Were you able to promote your configuration?
+
+[type=verificationFail]
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the 3scale API Management application.
+
 
 [time=15]
 [id="secure-api-smart-discovery"]
@@ -452,6 +511,12 @@ image::images/17-activity-refresh.png[17-activity-refresh, role="integr8ly-img-r
       "lng" : "-5.91531"
     }
   }`
+
+[type=verification]
+Were you able to receive the correct response?
+
+[type=verificationFail]
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pods involved.
 
 [time=1]
 [id="summary"]

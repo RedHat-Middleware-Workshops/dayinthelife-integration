@@ -1,0 +1,18 @@
+---
+- name: "Get master config"
+  hosts: master
+  gather_facts: no
+  tasks:
+  - include_role:
+      name: master_config
+
+- name: "Install API Workshop"
+  hosts: workshop
+  tasks:
+    - include_role:
+        name: setup_webapp
+      vars:
+        configmap_name: extra-services
+        configmap_namespace: webapp
+        ocp_apps_domain: "{{ hostvars['SHARED_VARS']['oc_apps_domain'] }}"
+      tags: webapp

@@ -43,6 +43,12 @@ Your password is: `{user-password}`
 [id="create-microcks-job"]
 == Create a Microcks Job
 
+. Launch a new tab on your web browser.
+. Navigate to the Solution Explorer on that tab.
+. Click on the *Microcks* link.
++
+image::images/mock-20.png[mock-openshift-login, role="integr8ly-img-responsive"]
+
 . Log in to link:{microcks-url}[Microcks, window="_blank"] web console using `{user-username}` and password: `{user-password}`.
 +
 image::images/mock-09.png[mock-openshift-login, role="integr8ly-img-responsive"]
@@ -77,6 +83,13 @@ image::images/mock-16.png[mock-mock-service, role="integr8ly-img-responsive"]
 +
 image::images/mock-17.png[mock-mock-operation, role="integr8ly-img-responsive"]
 
+[type=verification]
+Was the *Mocks URL* created successfully?
+
+[type=verificationFail]
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the Microcks application.
+
+
 [time=2]
 [id="test-mock-service"]
 == Test the REST Mock Service
@@ -105,6 +118,12 @@ image::images/mock-18.png[mock-curl-service, role="integr8ly-img-responsive"]
 . The page will load the response information from the service. You will be able to see the _RESPONSE HEADERS_ and the actual _RESPONSE_BODY_. This last part contains the examples we add during the design phase.
 +
 image::images/mock-19.png[mock-curl-response, role="integr8ly-img-responsive"]
+
+[type=verification]
+Were the _RESPONSE HEADERS_ and the _RESPONSE_BODY_ created successfully?
+
+[type=verificationFail]
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the Microcks application.
 
 _Congratulations!_ You have successfully configure a Microcks Job to create a REST mock service to test your API.
 

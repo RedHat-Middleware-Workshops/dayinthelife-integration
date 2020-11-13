@@ -43,6 +43,10 @@ Your password is: `{user-password}`
 [id="importing-apis-with-apicurio-studio"]
 == Importing APIs with Apicurio Studio
 
+. Launch a new tab on your web browser.
+. Navigate to the Solution Explorer on that tab.
+. Click on the *Apicurio* link.
+
 . Log in to link:{apicurio-studio-url}[Apicurio Studio, window="_blank"] web console using `{user-username}` and `{user-password}`.
 +
 image::images/design-01.png[design-login, role="integr8ly-img-responsive"]
@@ -66,6 +70,12 @@ image::images/design-04.png[design-import-api, role="integr8ly-img-responsive"]
 +
 image::images/design-05.png[design-edit-api, role="integr8ly-img-responsive"]
 
+[type=verification]
+Did the API successfully get created?
+
+[type=verificationFail]
+Have your instructor check the Kubernetes pod that contains the Apicurio Studio application.
+
 === Step 2: Verifying APIs
 
 You are now in the main screen to edit your APIs. Different from other API editor products, Apicurio's Editor is a graphical, form-based editor. With Apicurio you don't need master in and out all the details of the *OpenAPI Specification*. It allows you to design beautiful, functionals APIs with zero coding.
@@ -84,6 +94,12 @@ image::images/design-16.png[design-definition-name, role="integr8ly-img-responsi
 +
 image::images/design-17.png[design-definition-types, role="integr8ly-img-responsive"]
 
+[type=verification]
+Were the correct HTTP Response received?
+
+[type=verificationFail]
+Have your instructor check the Kubernetes pod that contains the Apicurio Studio application.
+
 === Step 3: Verify the location object
 
 . Click on the `</> location` object link under the _Data Types_ section.  Notice that the object has a bunch of properties defined which make up the object.
@@ -99,6 +115,12 @@ image::images/design-07.png[design-path, role="integr8ly-img-responsive"]
 . Click the */locations* path.  Then click on the source tab.  Notice that we have both a GET and POST request defined, together with a couple of example requests.  Using a POST method, we can insert a new record into our sample database with Fuse.
 +
 image::images/design-23.png[design-locations-api, role="integr8ly-img-responsive"]
+
+[type=verification]
+Were the location object successfully created?
+
+[type=verificationFail]
+Have your instructor check the Kubernetes pod that contains the Apicurio Studio application.
 
 _Congratulations!_ You have imported your first API definition based on the OpenAPI Specification  using Red Hat's Apicurio.
 

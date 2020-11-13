@@ -1,12 +1,11 @@
 :walkthrough: Create a simple web application which consumes the API you built earlier in the exercises
 :user-password: openshift
 :next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}/tutorial/dayinthelife-integration.git-citizen-integrator-track-lab07/
-:sso-url:  http://sso-sso.{openshift-app-host}/auth/admin/{user-username}/console/
+:sso-url: https://sso-sso.{openshift-app-host}/auth/admin/{user-username}/console
 
 ifdef::env-github[]
 :next-lab-url: ../../citizen-integrator-track/lab07/walkthrough.adoc
 endif::[]
-
 
 [id='api-consumption']
 = Developer Lab 7 - API Consumption
@@ -48,7 +47,7 @@ Your password is: `{user-password}`
 
 OpenShift let you automatically redeploy your changes when you setup a Continuous Integration / Continuous Deployment (CI/CD) pipeline through the use of webhook. For this lab we will trigger the new build and deployment manually through the OpenShift Console.
 
-. Navigate to your OpenShift link:{openshift-host}[web console]. Go to your project's overview page.
+. Navigate to the link:{openshift-host}[OpenShift Console]. Go to your project's overview page.
 
 . Scroll down and click in the www link in the BUILDS section.
 +
@@ -74,13 +73,19 @@ _The build process checks out the code from the git repo, runs a source-to-image
 +
 image::images/consume-22.png[22-updated-app, role="integr8ly-img-responsive"]
 
+[type=verification]
+Was the build successful?
+
+[type=verificationFail]
+Try to redo this section, if any problem persists have your instructor check the build.
+
 [time=10]
 [id="update-secure-service"]
 == Update Secured Service with Red Hat Single Sign On Application Callback
 
 Redirect URLs are a critical part of the OAuth flow. After a user successfully authorizes an application, the authorization server will redirect the user back to the application with either an authorization code or access token in the URL. Because the redirect URL will contain sensitive information, it is critical that the service doesn't redirect the user to arbitrary locations.
 
-. Open a browser window and navigate to the link:{http://sso-sso.{openshift-app-host}/auth/admin/{user-username}/console/}[SSO console].
+. Open a browser window and navigate to the link:{sso-url}[RHSSO console].
 
 . Log into Red Hat Single Sign On using your designated credentials: `{user-username}` and `{user-password}`. Click on *Sign In*.
 +
@@ -95,7 +100,7 @@ _3scale, through it's https://github.com/3scale/zync/[zync] component, already s
 
 . Click on the *CLIENT_ID* link to view the details.
 +
-_Remember to select correct CLIENT_ID with the one you got in the link:https://tutorial-web-app-webapp.apps.{openshift-app-host}/tutorial/dayinthelife-integration.git-developer-track-lab07/task/1[API Security Lab]. It will easily identifiable as its and hexadecimal name_.
+_Remember to select correct CLIENT_ID with the one you got in the link:../lab05/#sso-sign-on[API Security Lab]. It will easily identifiable as its and hexadecimal name_.
 +
 image::images/consume-24.png[24-client-application, role="integr8ly-img-responsive"]
 
@@ -125,13 +130,20 @@ image::images/consume-25.png[25-client-config, role="integr8ly-img-responsive"]
 
 . Finally, click *Save* button to persist the changes.
 
+[type=verification]
+Were you able to make and save the changes?
+
+[type=verificationFail]
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the RH SSO application.
+
+
 [time=10]
 [id="update-secure-service"]
 == Test the Single Sign On Integration
 
-. Open a browser tab and navigate to `http://www-{user-username}.{openshift-app-host}`.
+. Open a browser tab and navigate to `http://www-{user-username}.{openshift-app-host}/locations.html`.
 
-. Click the *Sign In* button.
+. Click the *Sign In to access the Location API Service* button.
 
 . You are being redirected to Red Hat Single Sign On *Login Page*. Login using
  ** Username: *`{user-username}`*
@@ -140,9 +152,18 @@ image::images/consume-25.png[25-client-config, role="integr8ly-img-responsive"]
 image::images/consume-23.png[23-realm-login, role="integr8ly-img-responsive"]
 
 . You will be redirected again to the *LOCATIONS* page where now you will be able to see the map with the International Inc Offices.
+If you can not see any locations on the map, it may be because the API endpoint uses a self-signed certificate. If this is the case, visit `https://location-{user-username}-api-staging.amp.{openshift-app-host}/locations` and accept the certificate. Reload the *LOCATIONS* page and the locations should be on the map.
 +
 image::images/consume-14.png[11-locations-page, role="integr8ly-img-responsive"]
-+
+
+[type=verification]
+Are you able to see the map?
+
+[type=verificationFail]
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the web application.
+
+
+
 _Congratulations!_ You have successfully used the Keycloak Javascript Adapter to protect International Inc's Locations Service with Single Sign On.
 
 [time=1]
