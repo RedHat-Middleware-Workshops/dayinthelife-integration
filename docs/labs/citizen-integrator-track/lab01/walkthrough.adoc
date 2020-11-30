@@ -1,5 +1,5 @@
 :walkthrough: Create an OpenAPI Specification using Apicurio Studio
-:apicurio-studio-url: http://apicurio-studio.{openshift-app-host}
+:apicurio-studio-url: https://apicurito-ui-apicurito.{openshift-app-host}
 :next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}/tutorial/dayinthelife-integration.git-citizen-integrator-track-lab02/
 :user-password: openshift
 
@@ -10,7 +10,7 @@ endif::[]
 [id='api-design']
 = Integrator Lab 1 - API Design
 
-In this lab you will use Apicurio Studio to create a simple API definition using the OpenAPI Specification. You will learn how to author and download a standards compliant API Specification using Red Hat's Apicurio.
+In this lab you will use API Designer to create a simple API definition using the OpenAPI Specification. You will learn how to author and download a standards compliant API Specification using Red Hat's API Designer.
 
 Audience: API Owner, Product Manager, Developers, Architects
 
@@ -20,7 +20,7 @@ As APIs become more widespread in the enterprise, consistent design and usage is
 
 *Why Red Hat?*
 
-Red Hat is one of the founding members of the Linux Foundation OpenAPI Initiative (OAI) which produces the leading standard for REST API specifications. Red Hat consistently uses this standard throughout its tooling, starting with the Apicurio Studio API Designer editor.
+Red Hat is one of the founding members of the Linux Foundation OpenAPI Initiative (OAI) which produces the leading standard for REST API specifications. Red Hat consistently uses this standard throughout its tooling, starting with the Red Hat API Designer editor.
 
 *Skipping The Lab*
 
@@ -32,61 +32,50 @@ Your username is: `{user-username}` +
 Your password is: `{user-password}`
 
 [type=walkthroughResource]
-.Apicurio
+.API Designer
 ****
-* link:{apicurio-studio-url}[Apicurio Studio, window="_blank"]
+* link:{apicurio-studio-url}[API Designer, window="_blank"]
 ****
 
 [time=2]
 [id="creating-apis-with-apicurio-studio"]
-== Creating APIs with Apicurio Studio
+== Creating APIs with API Designer
 
 . Launch a new tab on your web browser.
 . Navigate to the Solution Explorer on that tab.
-. Click on the *Apicurio* link.
+. Click on the *API Designer* link.
 
-. Log in to link:{apicurio-studio-url}[Apicurio Studio, window="_blank"] web console using `{user-username}` and `{user-password}`.
-+
-image::images/design-01.png[design-login, role="integr8ly-img-responsive"]
 
-. Click on *APIs* in the left side navigation menu from the Dashboard page.
+. Click on *New API*, and select *New (OpenAPI 3)*
 +
-image::images/design-02.png[design-apis, role="integr8ly-img-responsive"]
-
-. Click on *Create New API*.
-+
-image::images/design-03.png[design-new-api, role="integr8ly-img-responsive"]
-
-. Create a brand new API by completing the following information:
- ** Type: *Open API 3.0.2*
- ** Name: *`Locations-{user-username}`*
- ** Description: *`Locations API`*
-+
-image::images/design-04.png[design-create-api, role="integr8ly-img-responsive"]
-. Click on *Create API*.
-. Finally, click on *Edit API* to start editing your newly created API.
-+
-image::images/design-05.png[design-edit-api, role="integr8ly-img-responsive"]
+image::images/new-design-01.png[design-new-api, role="integr8ly-img-responsive"]
 
 [type=verification]
 Did the API successfully get created?
 
 [type=verificationFail]
-Have your instructor check the Kubernetes pod that contains the Apicurio Studio application.
+Have your instructor check the Kubernetes pod that contains the API Designer application.
 
 [time=2]
 [id="editing-apis"]
-== Editing APIs
+== Creating API
 
-You are now in the main screen to edit your APIs. Apicurio is a graphical, form-based API editor. With Apicurio you don't need master in and out all the details of the *OpenAPI Specification*. It allows you to design beautiful, functionals APIs with zero coding.
+You are now in the main screen to edit your APIs. Red Hat API Designer is a graphical, form-based API editor. With API Designr, you don't need master in and out all the details of the *OpenAPI Specification*. It allows you to design beautiful, functionals APIs with zero coding.
 
 Let's start crafting your API.
 
-. Time to prepare our data definitions for the API. Click on the *Add a datatype* link under the _Data Types_.
+. Create a brand new API by completing the following information:
+ ** Name: *`Locations-{user-username}`*
+ ** Description: *`Locations API`*
 +
-image::images/design-15.png[design-add-datatype, role="integr8ly-img-responsive"]
+image::images/new-design-02.png[design-edit-api, role="integr8ly-img-responsive"]
 
-. Fill in the _Name_ field with the value *location*. Expand the _Enter the JSON Example (optional)_ to paste the following example, then click *Save*:
+
+. Time to prepare our data definitions for the API. Click on the *Add a data type* link under the _Data Types_.
++
+image::images/new-design-03.png[design-add-datatype, role="integr8ly-img-responsive"]
+
+. Fill in the _Name_ field with the value *location*.Scroll down to _Enter the JSON Example (optional)_ to paste the following example, then click *Save*:
  ** Name: *`location`*
  ** JSON Example:
 +
@@ -107,10 +96,12 @@ image::images/design-15.png[design-add-datatype, role="integr8ly-img-responsive"
  ** Choose to create a REST Resource with the Data Type: *No Resource*
 
 +
-image::images/design-16.png[design-JSON-Example, role="integr8ly-img-responsive"]
-. Apicurio automatically tries to detect the data types from the provided example.
+image::images/new-design-04.png[design-JSON-Example, role="integr8ly-img-responsive"]
+image::images/new-design-05.png[design-REST-resource, role="integr8ly-img-responsive"]
+
+. API Designer automatically tries to detect the data types from the provided example.
 +
-image::images/design-17.png[design-definition-types, role="integr8ly-img-responsive"]
+image::images/new-design-06.png[design-definition-types, role="integr8ly-img-responsive"]
 +
 _Time to start creating some paths_.
 
@@ -118,7 +109,7 @@ _Time to start creating some paths_.
 Were the data types successfully detected?
 
 [type=verificationFail]
-Have your instructor check the Kubernetes pod that contains the Apicurio Studio application.
+Have your instructor check the Kubernetes pod that contains the API Designer application.
 
 [time=2]
 [id="adding-paths"]
@@ -130,52 +121,48 @@ The `/locations` path with an HTTP GET method will return a complete set of all 
 
 . Click on the *Add a path* link under the _Paths_ section. APIs need at least one path.
 +
-image::images/design-06.png[design-add-path, role="integr8ly-img-responsive"]
+image::images/new-design-07.png[design-add-path, role="integr8ly-img-responsive"]
 
 . Fill in the new resource path with the following information:
  ** Path: */locations*
 
 +
-image::images/design-07.png[design-path, role="integr8ly-img-responsive"]
+image::images/new-design-08.png[design-path, role="integr8ly-img-responsive"]
 . Click *Add*.
 +
-_By default, Apicurio suggest a series of available operations for your new path_.
+_By default, API Designer suggest a series of available operations for your new path_.
 
-. Click *Create Operation* under the _GET_ operation.
+. Click *Add Operation* under the _GET_ operation.
 +
-image::images/design-08.png[design-create-operation, role="integr8ly-img-responsive"]
-
-. Click on the green *GET* operation button to edit the operation information.
+image::images/new-design-09.png[design-create-operation, role="integr8ly-img-responsive"]
 +
-image::images/design-09.png[design-get-operation, role="integr8ly-img-responsive"]
-+
-_As you can notice, Apicurio Editor guides you with warning for the elements missing in your design_.
+_As you can notice, API Designer Editor guides you with warning for the elements missing in your design_.
 
 . Click on the *Add a response* link under _Responses_ to edit the response for this operation.
 +
-image::images/design-58.png[design-add-response, role="integr8ly-img-responsive"]
+image::images/new-design-10.png[design-add-response, role="integr8ly-img-responsive"]
 
 . Leave the *200* option selected in the  _Response Status Code_ combo box and click on *Add*.
 +
-image::images/design-11.png[design-add-response-code, role="integr8ly-img-responsive"]
+image::images/new-design-11.png[design-add-response-code, role="integr8ly-img-responsive"]
 
-. Scroll down to the bottom of the page. Move your mouse over the *200 OK* response to enable the options. Click the _No response media types defined_ drop-down. Now click on the *Add Media Type* button.
+. Click the *Add Media Type* button.
 +
-image::images/design-59.png[design-edit-response, role="integr8ly-img-responsive"]
+image::images/new-design-12.png[design-edit-response, role="integr8ly-img-responsive"]
 
 . Click on the _Add_ button to accept *application/json* as the Media Type.
 +
-image::images/design-18.png[design-location-type, role="integr8ly-img-responsive"]
+image::images/new-design-13.png[design-location-type, role="integr8ly-img-responsive"]
 
 . Click on the _Type_ dropdown and select *Array* and *location*.
 +
-image::images/design-18a.png[design-location-type, role="integr8ly-img-responsive"]
+image::images/new-design-14.png[design-location-type, role="integr8ly-img-responsive"]
 
-. Click the *Add an example* link to add a Response Example.
+. Click on the *No Examples defined* tab and click on *Add an example* link to add a Response Example.
 +
 _This will be useful to mock your API in the next lab_.
 +
-image::images/design-19.png[design-add-example, role="integr8ly-img-responsive"]
+image::images/new-design-15.png[design-add-example, role="integr8ly-img-responsive"]
 
 . Fill in the information for your response example:
  ** Name: *`all`*
@@ -218,21 +205,17 @@ image::images/design-19.png[design-add-example, role="integr8ly-img-responsive"]
 ----
 
 +
-image::images/design-20.png[design-response-example, role="integr8ly-img-responsive"]
-. Click on the drop-down next to the _No description_ message, and enter `Returns an array of location records` as the description.  Click the check-mark button to accept the description.
+image::images/new-design-16.png[design-response-example, role="integr8ly-img-responsive"]
+. Click on edit button for _Description_ message, and enter `Returns an array of location records` as the description.  Click the check-mark button to accept the description.
 +
-image::images/design-54.png[design-response-example, role="integr8ly-img-responsive"]
+image::images/new-design-17.png[design-response-example, role="integr8ly-img-responsive"]
 
-. Click on the green *GET* operation button to highlight the list of operations.
-+
-image::images/design-31.png[design-get-operation, role="integr8ly-img-responsive"]
 
 [type=verification]
 Were the HTTP Response, `path` parameter and `GET` operation created successfully?
 
 [type=verificationFail]
-Have your instructor check the Kubernetes pod that contains the Apicurio Studio application.
-
+Have your instructor check the Kubernetes pod that contains the API Designer application.
 
 
 === 3b: Add /locations/{id} path with GET method
@@ -241,88 +224,84 @@ The `+/locations/{id}+` path will return a single location record based on a sin
 
 . Now we need to create another path.  Click on the `+` symbol to add a new path, then enter `+/locations/{id}+` for the *Path* property.  Click *Add*.
 +
-image::images/design-37.png[design-location-type, role="integr8ly-img-responsive"]
+image::images/new-design-18.png[design-location-type, role="integr8ly-img-responsive"]
 
 . Scroll over the `id` _Path Parameter_ value, then click the *Create* button.
 +
-image::images/design-37a.png[design-location-type, role="integr8ly-img-responsive"]
+image::images/new-design-19.png[design-location-type, role="integr8ly-img-responsive"]
 
 . Click the drop-down arrow, then update the `id` Path Parameter by selecting `Integer` as the *Type* and `32-Bit Integer` as the sub-type.
 +
-image::images/design-38.png[design-location-type, role="integr8ly-img-responsive"]
+image::images/new-design-20.png[design-location-type, role="integr8ly-img-responsive"]
 
 . Click on the `Create Operation` button underneath *GET*, then click the green *GET* button.
 +
-image::images/design-39.png[design-location-type, role="integr8ly-img-responsive"]
+image::images/new-design-21.png[design-location-type, role="integr8ly-img-responsive"]
 
 . Click on the *Add a response* link under _Responses_ to edit the response for this operation.
 +
-image::images/design-10.png[design-add-response, role="integr8ly-img-responsive"]
+image::images/new-design-22.png[design-add-response, role="integr8ly-img-responsive"]
 
 . Leave the *200* option selected in the  _Response Status Code_ combo box and click on *Add*.
 +
-image::images/design-11.png[design-add-response-code, role="integr8ly-img-responsive"]
+image::images/new-design-11.png[design-add-response-code, role="integr8ly-img-responsive"]
 
-. Scroll down to the bottom of the page. Move your mouse over the *200 OK* response to enable the options. Click the _No response media types defined_ drop-down. Now click on the *Add Media Type* button.
+. Click the *Add Media Type* button.
 +
-image::images/design-12.png[design-edit-response, role="integr8ly-img-responsive"]
+image::images/new-design-23.png[design-edit-response, role="integr8ly-img-responsive"]
 
 . Click on the _Add_ button to accept *application/json* as the Media Type.
 +
-image::images/design-18.png[design-location-type, role="integr8ly-img-responsive"]
+image::images/new-design-13.png[design-location-type, role="integr8ly-img-responsive"]
 
 . Click on the _Type_ dropdown and select *location*.
 +
-image::images/design-40.png[design-location-type, role="integr8ly-img-responsive"]
+image::images/new-design-24.png[design-location-type, role="integr8ly-img-responsive"]
 
-. Click on the drop-down next to the _No description_ message, and enter `Returns a single location record` as the description.  Click the check-mark button to accept the description.
+. Click on edit next to _No description_ message, and enter `Returns a single location record` as the description.  Click the check-mark button to accept the description.
 +
-image::images/design-56.png[design-response-example, role="integr8ly-img-responsive"]
+image::images/new-design-25.png[design-response-example, role="integr8ly-img-responsive"]
 
 [type=verification]
 Was the path created successfully?
 
 [type=verificationFail]
-Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the Apicurio Studio application.
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the API Designer application.
 
 
 [time=2]
 [id="download-api-definition"]
 == Download the API definition
 
-. Click the *Locations-{user-username}* link to return to the API admin page.
+. Click the *Locations-{user-username}* *Save As YAML* link to download the API spcification.
 +
-image::images/design-22.png[design-locations-api, role="integr8ly-img-responsive"]
-
-. To start using your new API definition, display the API menu from the kebab link. Click the *Download (YAML)* option from the menu.
-+
-image::images/design-23.png[design-download-yaml, role="integr8ly-img-responsive"]
+image::images/new-design-26.png[design-download-yaml, role="integr8ly-img-responsive"]
 
 . This will start the download of your API definition file. _It could take a few seconds to start the download_. *Save* it to your local disk drive.
 . You can open the file with any text editor. Take a look at the source file. Everything is there.
 +
-image::images/design-24.png[design-api-source, role="integr8ly-img-responsive"]
+image::images/new-design-27.png[design-api-source, role="integr8ly-img-responsive"]
 
 [type=verification]
 Was the source file created successfully?
 
 [type=verificationFail]
-Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the Apicurio Studio application.
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the API Designer application.
 
 
-_Congratulations!_ You have created your first API definition based on the OpenAPI Specification  using Red Hat's Apicurio. Don't lose track of the file, you will use this definition for your next lab.
+_Congratulations!_ You have created your first API definition based on the OpenAPI Specification  using Red Hat's API Designer. Don't lose track of the file, you will use this definition for your next lab.
 
 [time=1]
 [id="step-beyond"]
 == Steps Beyond
 
-So, you want more? Did you notice the link *source* when editing the _Paths_ or the _Definitions_? Get back to the API editor and follow the link. What do you see? Apicurio lets you follow the form-based editor or go one step beyond and also lets you direct edit the source of your API definition.
+So, you want more? Did you notice the link *source* when editing the _Paths_ or the _Definitions_? Get back to the API editor and follow the link. What do you see? API Designer lets you follow the form-based editor or go one step beyond and also lets you direct edit the source of your API definition.
 
 [time=1]
 [id="summary"]
 == Summary
 
-In this lab you used Apicurio Studio to create a simple API definition using the OpenAPI Specification. You learned how to author and download a standards compliant API Specification using Red Hat's Apicurio.
+In this lab you used API Designer to create a simple API definition using the OpenAPI Specification. You learned how to author and download a standards compliant API Specification using Red Hat's API Designer.
 
 You can now proceed to link:{next-lab-url}[Lab 2].
 
@@ -330,6 +309,8 @@ You can now proceed to link:{next-lab-url}[Lab 2].
 [id="further-reading"]
 == Notes and Further Reading
 
+* API Designer
+** https://access.redhat.com/documentation/en-us/red_hat_integration/2020-q2/html/getting_started_with_apis_in_red_hat_integration/index[API Designer]
 * Apicurio
  ** https://www.apicur.io[Webpage]
  ** https://www.apicur.io/roadmap/[Roadmap]

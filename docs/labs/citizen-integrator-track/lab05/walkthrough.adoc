@@ -53,23 +53,21 @@ Your password is: `{user-password}`
 +
 image::images/01-login.png[01-login.png, role="integr8ly-img-responsive"]
 
-. Click on the *Developer Portal* tab to access the developer portal settings.
+. Click on the **Audience** drop down and expand the **Developer Portal** menu. 
 +
-image::images/10-developer-portal.png[10-developer-portal.png, role="integr8ly-img-responsive"]
+image::images/3scale-dev-portal-content.png[3scale-dev-portal-content.png, role="integr8ly-img-responsive"]
 
 . Click on the *Visit Developer Portal* to take a look of how your developer portal looks like.
-+
-image::images/11-visit-devportal.png[11-visit-devportal.png, role="integr8ly-img-responsive"]
 
 . You can see there is a default portal with information on your API, and how to signup. Unfortunately the API information is incorrect.
 +
-image::images/12-devportal-overview.png[12-devportal-overview.png, role="integr8ly-img-responsive"]
+image::images/3scale-dev-portal-default-page.png[12-devportal-overview.png, role="integr8ly-img-responsive"]
 +
 _We will edit our portal to update it with the correct information, and we will add the cool shadowman logo_.
 
-. Go back to your admin portal browser tab and scroll down to the content sub-sections for the *Layouts* and select the *Main layout* menu option.
+. Go back to your admin portal browser tab and scroll down to the content sub-sections and select the *Main layout* menu option.
 +
-image::images/12-main-layout.png[12-main-layout.png, role="integr8ly-img-responsive"]
+image::images/3scale-dev-portal-main-layout.png[12-main-layout.png, role="integr8ly-img-responsive"]
 
 . First look for the *navbar* section of the main HTML. Replace the *{{ provider.name }}* for the shadowman image link:
 +
@@ -78,23 +76,27 @@ image::images/12-main-layout.png[12-main-layout.png, role="integr8ly-img-respons
 <img src="https://www.redhat.com/profiles/rh/themes/redhatdotcom/img/logo.png" style=“width:150px;height:30px;border:0;” alt="{{ provider.name }}">
 ----
 +
-image::images/13-custom-logo.png[13-custom-logo.png, role="integr8ly-img-responsive"]
+image::images/3scale-dev-portal-navbar.png[13-custom-logo.png, role="integr8ly-img-responsive"]
 
 . Click the _Publish_ button at the bottom of the editor to save the changes and made them available in the site.
 +
-image::images/14-publish-devportal.png[14-publish-devportal.png, role="integr8ly-img-responsive"]
+image::images/3scale-dev-portal-mainpage-publish.png[14-publish-devportal.png, role="integr8ly-img-responsive"]
 
 . Go back to browse the top of the content sub-sections and find the *Homepage* section.
 +
-image::images/15-homepage-devportal.png[15-homepage-devportal.png, role="integr8ly-img-responsive"]
+image::images/3scale-dev-portal-homepage.png[15-homepage-devportal.png, role="integr8ly-img-responsive"]
 
-. Change all the code *Echo* references in the homepage code for *Office Locations*, using your browsers Find+Replace functionality.  Don't bother changing the echo URL's though.
+. Change all the code *Echo* references in the homepage code for *Office Locations*, using your browser's Find+Replace functionality.  Don't bother changing the echo URL's though.
+
+. In line 124, change *provider.services.api.application_plans* to *provider.services.location.application_plans*
++
+image::images/3scale-dev-portal-provider.png[15-homepage-devportal.png, role="integr8ly-img-responsive"]
 
 . Click the *Publish* button.
 
 . Refresh your Developer Portal's browser tab to check the changes. Your Developer Portal should now look like this:
 +
-image::images/16-updated-devportal.png[16-updated-devportal.png, role="integr8ly-img-responsive"]
+image::images/3scale-dev-portal-updated.png[16-updated-devportal.png, role="integr8ly-img-responsive"]
 
 [type=verification]
 Were you able to customize the developer portal?
@@ -107,27 +109,21 @@ Try to redo this section, if any problem persists have your instructor check the
 [id="register-new-accounts"]
 == Register New Accounts Using Developer Portal
 
-. Take the place of one of your developers and signup for the *Basic* plan.
+. Take the place of one of your developers and signup for the *Location Basic* plan.
 +
-image::images/16a-signup-limited.png[16a-signup-limited.png, role="integr8ly-img-responsive"]
+image::images/3scale-dev-signup-form.png[16a-signup-limited.png, role="integr8ly-img-responsive"]
 
 . Fill in your information and an email to register as a developer. Click on the *Sign up* button.
-+
-image::images/16b-signup-form.png[16b-signup-form.png, role="integr8ly-img-responsive"]
 
 . The system will try to send a message with an activation link.
 +
-image::images/16bb-signup-thankyou.png[16bb-signup-thankyou.png, role="integr8ly-img-responsive"]
+image::images/3scale-dev-signup-thanks.png[16bb-signup-thankyou.png, role="integr8ly-img-responsive"]
 +
 _Currently the lab environment doesn't have a configured email server, so we won't be able to receive the email_.
 
-. Go back to your **Accounts > Listing** menu and navigate to *Developers* to activate the new account.
+. Go back to your **Accounts > Listing** menu and navigate to *Developers* to activate the new account. Find your user under the _Accounts_ and click the *Activate* link.
 +
-image::images/16bc-developers-tab.png[16bc-developers-tab.png, role="integr8ly-img-responsive"]
-
-. Find your user under the _Accounts_ and click the *Activate* link.
-+
-image::images/16cc-activate-account.png[16cc-activate-account.png, role="integr8ly-img-responsive"]
+image::images/3scale-user-activate-account.png[16cc-activate-account.png, role="integr8ly-img-responsive"]
 
 [type=verification]
 Were you able to activate your user account?
@@ -143,7 +139,7 @@ _Your user is now active and can log into the portal_.
 
 . As your portal is not currently public, you will need your portal code to login. You can get the code in your admin portal by navigating to: _Audience > Developer Portal > Domains & Access_.  Copy the _Developer Portal Access Code_ value.
 +
-image::images/16d-access-portal.png[16d-access-portal.png, role="integr8ly-img-responsive"]
+image::images/3scale-dev-portal-access.png[16d-access-portal.png, role="integr8ly-img-responsive"]
 
 . Open a new _Incognito/Private_ browser window to test the Developer Portal login. Navigate to:
 +
@@ -151,15 +147,21 @@ image::images/16d-access-portal.png[16d-access-portal.png, role="integr8ly-img-r
 
 . Type your portal code to finish the login.
 +
-image::images/16e-ingress-code.png[16e-ingress-code.png, role="integr8ly-img-responsive"]
+image::images/3scale-dev-portal-new.png[16e-ingress-code.png, role="integr8ly-img-responsive"]
 
-. Sign in to the portal.
+. Sign in to the portal with the username & password created in the previous section.
 +
-image::images/16f-dev-signin.png[16f-dev-signin.png, role="integr8ly-img-responsive"]
+image::images/3scale-dev-portal-signin.png[16f-dev-signin.png, role="integr8ly-img-responsive"]
 
-. You will land in the developers homepage, where you will be able to check your developers settings and retrieve your newly created *Client ID* and *Client Secret*.
+. You will land in the developers homepage, where you can click on *See your applications & other credentials* link.
 +
-image::images/16g-user-credentials.png[16g-user-credentials.png, role="integr8ly-img-responsive"]
+image::images/3scale-dev-portal-see-app.png[16f-dev-signin.png, role="integr8ly-img-responsive"]
+
+. Retrieve your newly created *Client ID* and *Client Secret*.
++
+image::images/3scale-dev-portal-clientinfo.png[16g-user-credentials.png, role="integr8ly-img-responsive"]
+
+. _Edit_ the _Redirect URL_ and enter the value **`http://www-{user-username}.{openshift-app-host}/`**
 
 [type=verification]
 Were you able to customize the developer portal?

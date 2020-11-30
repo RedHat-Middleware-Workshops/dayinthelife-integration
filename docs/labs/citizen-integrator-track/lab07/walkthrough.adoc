@@ -2,6 +2,7 @@
 :3scale-url: https://www.3scale.net/
 :3scale-admin-url: https://{user-username}-admin.{openshift-app-host}/p/login
 :3scale-dev-portal-url: https://{user-username}.{openshift-app-host}/
+:fuse-url: https://syndesis-{user-username}-fuse.{openshift-app-host}/
 :openshift-url: {openshift-host}/console
 :user-password: openshift
 
@@ -43,37 +44,39 @@ Your password is: `{user-password}`
 
 . Launch a new tab on your web browser.
 . Navigate to the Solution Explorer on that tab.
-. Click on the *Red Hat Fuse Online (Shared)* link.
+. Click on the *Red Hat Fuse Online* link.
 
 . Open your link:{fuse-url}[Fuse Online Console, window="_blank"].
 
 . The first time that you hit the Fuse Online URL, you will be presented with an _Authorize Access_ page. Click the *Allow selected permissions* button to accept the defaults.
 +
-image::images/design-54.png[design-54, role="integr8ly-img-responsive"]
+image::images/fuse-online-auth-form.png[design-54, role="integr8ly-img-responsive"]
 
 . Click on *Connections > Create Connection*
 +
-image::images/00-create-connection.png[00-create-connection, role="integr8ly-img-responsive"]
+image::images/fuse-online-create-connection.png[00-create-connection, role="integr8ly-img-responsive"]
 
 . Select *Database*
 +
-image::images/01-select-database.png[01-select-database, role="integr8ly-img-responsive"]
+image::images/fuse-online-select-database.png[01-select-database, role="integr8ly-img-responsive"]
 
 . Enter below values for Database Configuration
 ** Connection URL: *`jdbc:postgresql://postgresql.international.svc:5432/sampledb`*
 ** Username: *`dbuser`*
 ** Password: *`password`*
 ** Schema: *<leave blank>*
-
-. Click Validate and verify if the connection is successful. Click Next to proceed.
 +
-image::images/02-click-validate.png[02-click-validate, role="integr8ly-img-responsive"]
+image::images/fuse-online-database-config.png[02-click-validate, role="integr8ly-img-responsive"]
 
-. Add the following details, then click **Create**:
+. Click *Validate* and verify if the connection is successful. Click *Next* to proceed.
++
+image::images/fuse-online-db-config-next.png[02-click-validate, role="integr8ly-img-responsive"]
+
+. Add the following details, then click **Save**:
 ** Connection Name: *`LocationDB`*
 ** Description: *`Location Database`*
 +
-image::images/03-connection-details.png[03-connection-details, role="integr8ly-img-responsive"]
+image::images/fuse-online-db-config-save.png[03-connection-details, role="integr8ly-img-responsive"]
 
 . Verify that the *`Location Database`* is successfully created.
 
@@ -89,33 +92,33 @@ Try to redo this section, if any problem persists have your instructor check the
 
 . Click on *Integrations > Create Integration*
 +
-image::images/04-create-integration.png[04-create-integration.png, role="integr8ly-img-responsive"]
+image::images/fuse-online-create-integration.png[04-create-integration.png, role="integr8ly-img-responsive"]
 
 . Choose *API Provider*
 +
-image::images/n02-api-provider.png[n02-api-provider.png, role="integr8ly-img-responsive"]
+image::images/fuse-online-int-api-provider.png[n02-api-provider.png, role="integr8ly-img-responsive"]
 
-. Select *Create from scratch*
+. Select *Create a new OpenAPI 3.x document*
 +
-image::images/n03-api-from-scratch.png[n03-api-from-scratch, role="integr8ly-img-responsive"]
+image::images/fuse-online-int-create-api.png[n03-api-from-scratch, role="integr8ly-img-responsive"]
 
 . Change the name of the API to *Location* and click on the _Add a path_ link under the _Paths_ section.
 +
-image::images/n04-api-name.png[n04-api-name, role="integr8ly-img-responsive"]
+image::images/fuse-online-int-add-path.png[n04-api-name, role="integr8ly-img-responsive"]
 
 . Enter *`/locations`* in the _Path_ field:
 +
-image::images/n05-api-path.png[n05-api-path, role="integr8ly-img-responsive"]
+image::images/fuse-online-int-path-add.png[n05-api-path, role="integr8ly-img-responsive"]
 
 . Click on the *Add a datatype* link under the _Data Types_.
 +
-image::images/n06-data-type.png[n06-data-type, role="integr8ly-img-responsive"]
+image::images/fuse-online-int-datatype-add.png[n06-data-type, role="integr8ly-img-responsive"]
 
-. Fill in the _Name_ field with the value *`locationinput`*. Expand the _Enter JSON Example_ to paste the following example, then click *Save*:
+. Fill in the _Name_ field with the value *`locationinput`*. Scroll down to  _Enter JSON Example_ to paste the following example, then click *Save*:
 ** Name: *locationinput*
 ** JSON Example:
 +
-image::images/n07-location-input-datatype.png[n07-location-input-datatype, role="integr8ly-img-responsive"]
+image::images/fuse-online-int-define-datatype.png[n07-location-input-datatype, role="integr8ly-img-responsive"]
 +
 [source,bash]
 ----
@@ -131,47 +134,45 @@ image::images/n07-location-input-datatype.png[n07-location-input-datatype, role=
 { "id": 1, "name": "International Inc Corporate Office", "location": { "lat": 51.5013673, "lng": -0.1440787 }, "type": "headquarter", "status": "1" }
 ----
 +
-image::images/n09-location-datatype.png[n09-location-datatype, role="integr8ly-img-responsive"]
+image::images/fuse-online-int-location-datatype.png[n09-location-datatype, role="integr8ly-img-responsive"]
 
 . You will be able to see the two datatypes created.
 +
-image::images/n10-datatype-all.png[n10-datatype-all, role="integr8ly-img-responsive"]
+image::images/fuse-online-int-datatypes-2.png[n10-datatype-all, role="integr8ly-img-responsive"]
 
-. Click on the _Create Operation_ link under _POST_ to create a new POST operation.
+. Click on the _Add Operation_ link under _POST_ to create a new POST operation.
 +
-image::images/n11-post-method.png[n11-post-method, role="integr8ly-img-responsive"]
+image::images/fuse-online-int-operation-post.png[n11-post-method, role="integr8ly-img-responsive"]
 
-. Edit the description of the post method to *`Add Location`* and click the orange _POST_ button to edit the operation
-+
-image::images/n12-post-description.png[n12-post-description, role="integr8ly-img-responsive"]
+. Edit the description of the post method to *`Add Location`* and click the orange _POST_ button to edit the operation.
 
 . Click on *Add a request body*
 +
-image::images/n13-request.png[n13-request, role="integr8ly-img-responsive"]
+image::images/fuse-online-int-request-body.png[n13-request, role="integr8ly-img-responsive"]
 
 . Choose *locationinput* as the _Request Body Type_
 +
-image::images/n14-post-request-location-input.png[n14-post-request-location-input, role="integr8ly-img-responsive"]
+image::images/fuse-online-int-request-body-complete.png[n14-post-request-location-input, role="integr8ly-img-responsive"]
 
 . Click the *Add a response* link.
-+
-image::images/n13-response.png[n13-response, role="integr8ly-img-responsive"]
 
 . Set the _Response Status Code_ value to *201*. Click *Add*.
 +
-image::images/n15-post-response.png[n15-post-response, role="integr8ly-img-responsive"]
+image::images/fuse-online-int-response-code.png[n15-post-response, role="integr8ly-img-responsive"]
 
 . Click on _No Description_ and place *Location Added* in _Description_ box. Click on the tick to save the changes
-+
-image::images/n16-post-description.png[n16-post-description, role="integr8ly-img-responsive"]
 
 . Click on the _Type_ dropdown and select *location*.
 +
-image::images/n17-post-response-type.png[n17-post-response-type, role="integr8ly-img-responsive"]
+image::images/fuse-online-int-response-complete.png[n17-post-response-type, role="integr8ly-img-responsive"]
 
 . On the top section, under _Operation ID_, name it *addLocation* and click on tick to save the changes. On the very top of the page, click on the *Save* button to return to Fuse Online in order for us to start the API implementation.
 +
-image::images/n18-post-operation-id.png[n18-post-operation-id, role="integr8ly-img-responsive"]
+image::images/fuse-online-int-api-save.png[n18-post-operation-id, role="integr8ly-img-responsive"]
+
+. On the _Review Actions_ page, click on **Next**.
++
+image::images/fuse-online-int-review-action.png[fuse-online-int-review-action.png, role="integr8ly-img-responsive"]
 
 [type=verification]
 Were you able to create the API Contract?
@@ -185,66 +186,75 @@ _Congratulations! You've created an API Contract.  Next up is the API implementa
 [id="implement-api"]
 == Implement the API
 
-. On the _Start integration with an API call_ page, click the *Next* button.
-+
-image::images/n19-start-of-integration.png[n19-start-of-integration, role="integr8ly-img-responsive"]
-
 . Save the integration
-+image::images/n19b-save.png[n19b-save.png, role="integr8ly-img-responsive"]
-
++image::images/fuse-online-int-save.png[n19b-save.png, role="integr8ly-img-responsive"]
 
 . Set the following values:
 ** Integration Name: *`addLocation`*
 ** Description: *`Add Location`*
 Click *`save`*
 +
-image::images/n20-integration-name.png[n20-integration-name, role="integr8ly-img-responsive"]
+image::images/fuse-online-int-save-form.png[n20-integration-name, role="integr8ly-img-responsive"]
 
 . Click on *Create flow*
 +
-image::images/n19a-create-flow.png[n19a-create, role="integr8ly-img-responsive"]
+image::images/fuse-online-int-create-flow.png[n19a-create, role="integr8ly-img-responsive"]
 
-
-. Since we are adding incoming data into the database, click on the plus sign in between API entry point and return endpoint, then select *Add connection*.
+. Click on the _plus sign_ between API entry and return endpoint.
 +
-image::images/n22-add-db-connection.png[n22-add-db-connection, role="integr8ly-img-responsive"]
-
-. Click on *LocationDB* from the catalog and then select *Invoke SQL*
 +
-image::images/n24-invoke-sql.png[n24-invoke-sql, role="integr8ly-img-responsive"]
+image::images/fuse-online-int-add-step.png[n22-add-db-connection, role="integr8ly-img-responsive"]
 
-. Enter the SQL statement and click *Done*.
+. Since we are adding incoming data into the database, select *LocationDB* from the catalog.
++
+image::images/fuse-online-int-add-db.png[n24-invoke-sql, role="integr8ly-img-responsive"]
+
+. Select *Invoke SQL* and Enter the SQL statement and click *Next*.
 +
 [source,bash]
 ----
 INSERT INTO locations (id,name,lat,lng,location_type,status) VALUES (:#id,:#name,:#lat,:#lng,:#location_type,:#status )
 ----
 +
-image::images/n25-sql-statement.png[n25-sql-statement, role="integr8ly-img-responsive"]
+image::images/fuse-online-int-sql-invoke.png[n25-sql-statement, role="integr8ly-img-responsive"]
 
-. In between top API endpoint and the Database connection, click on the plus sign and select _Add step_ and select _Data Mapper_
+. Click on the warning sign near the _Invoke SQL_ and select _Add a data mapping step_ in the pop-up.
 +
-image::images/n26-input-data-mapping.png[n26-input-data-mapping, role="integr8ly-img-responsive"]
-+
-image::images/n27-choose-data-mapping.png[n27-choose-data-mapping, role="integr8ly-img-responsive"]
+image::images/fuse-online-int-add-data-mapping.png[n26-input-data-mapping, role="integr8ly-img-responsive"]
 
 . Drag and drop the matching _Source_ Data types to all their corresponding _Targets_ as per the following screenshot. When finished, click *Done*.
 +
-image::images/n28-data-map-db.png[n28-data-map-db, role="integr8ly-img-responsive"]
+image::images/fuse-online-int-data-mapper-match.png[n28-data-map-db, role="integr8ly-img-responsive"]
 
-. In between the Database connection and the endpoint, click on the plus sign and select _Add step_ and select _Data Mapper_
+. In the _Provided API return path_ step, click on warning sign and select _Add a data mapping step_ in the pop-up.
 +
-image::images/n29-output-data-mapping.png[n29-output-data-mapping, role="integr8ly-img-responsive"]
+image::images/fuse-online-int-api-return-step.png[n29-output-data-mapping, role="integr8ly-img-responsive"]
 +
 image::images/n30-choose-data-mapping.png[n30-choose-data-mapping, role="integr8ly-img-responsive"]
 
 . Drag and drop the matching _Source_ Data types to all their corresponding _Targets_ as per the following screenshot. When finished, click *Done*.
 +
-image::images/n31-data-map-response.png[n31-data-map-response, role="integr8ly-img-responsive"]
+image::images/fuse-online-api-datamapper-done.png[n31-data-map-response, role="integr8ly-img-responsive"]
 
-. Click *Publish* on the next screen and *Save and Publish* in the next page.
+. Click *Publish* on the next screen. 
 +
-image::images/n32-publish.png[n32-publish, role="integr8ly-img-responsive"]
+image::images/fuse-online-int-publish.png[n32-publish, role="integr8ly-img-responsive"]
+
+. Click *Save and Publish* in the next page.
++
+image::images/fuse-online-int-save-publish.png[n32-publish, role="integr8ly-img-responsive"]
+
+. Wait for a couple of minutes until the API is published. 
++
+image::images/fuse-online-int-published.png[fuse-online-int-published.png, role="integr8ly-img-responsive"]
++
+_This step generates the Integration code, builds it on KuberNetes and deploys it to your `{user-username}-fuse` namespace._
+
+. Click the *Enable Discovery* button to allow the API to be directly imported to 3scale. Click *Yes* in the confirmation pop-up.
++
+image::images/fuse-online-int-enable-discovery.png[fuse-online-int-enable-discovery.png, role="integr8ly-img-responsive"]
+
+_The Integration will be re-published. Wait for the Integration to be in a Published state before proceeding to next section._
 
 [type=verification]
 Were you able to publish the Integration?
@@ -252,7 +262,7 @@ Were you able to publish the Integration?
 [type=verificationFail]
 Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the Fuse Online application.
 
-_Congratulations. You successfully published the integration. (Wait for few minutes to build and publish the integration)_
+_Congratulations. You successfully published the integration._
 
 [time=15]
 [id="secure-api-smart-discovery"]
@@ -266,9 +276,9 @@ image::images/01-login.png[01-login, role="integr8ly-img-responsive"]
 
 . The first page you will land is the _API Management Dashboard_. Click on the *API* menu link.
 
-. Click on the *New API*.
+. Click on the *New Proeuct*.
 +
-image::images/secure-04.png[secure-04, role="integr8ly-img-responsive"]
+image::images/3scale-new-product-link.png[3scale-new-product-link, role="integr8ly-img-responsive"]
 
 . Click on _Authenticate to enable this option_ so we can import our new API from OpenShift.
 +
@@ -278,30 +288,21 @@ image::images/secure-05.png[secure-05, role="integr8ly-img-responsive"]
 +
 image::images/secure-06.png[secure-06, role="integr8ly-img-responsive"]
 
-. Select the *Import from OpenShift* option. If all goes well, you should see your fuse namespace appear and a default *Name*. Click the **Create Service** button.
+. Select the *Import from OpenShift* option. If all goes well, you should see your fuse namespace appear and a default *Name*. Click the **Create Product** button.
 +
-image::images/secure-07.png[secure-07, role="integr8ly-img-responsive"]
+image::images/3scale-import-ocp-fuse.png[3scale-import-ocp-fuse, role="integr8ly-img-responsive"]
 
-. The page should return to the dashboard. Refresh the page. Notice that the _I-ADDLOCATION API_ has been added to the list. Click *Integrate this API*.
+. The page should return to the dashboard. Refresh the page. Notice that the _I-ADDLOCATION API_ has been added to the list. Click *INTEGRATION*.
 +
-image::images/secure-08.png[secure-08, role="integr8ly-img-responsive"]
+image::images/3scale-addlocation-integrate.png[3scale-addlocation-integrate, role="integr8ly-img-responsive"]
 
-. Click on the *edit integration settings* to edit the API settings for the gateway.
+_Notice that the Staging Gateway URL is already provided and configuration of the backend is set up correctly._
 +
-image::images/03-edit-settings.png[03-edit-settings, role="integr8ly-img-responsive"]
+image::images/3scale-int-staging-url.png[3scale-int-staging-url, role="integr8ly-img-responsive"]
 
-. Keep the *APIcast* deployment option selected in the _Gateway_ section.
-+
-image::images/04-apicast.png[04-apicast, role="integr8ly-img-responsive"]
-
-. Scroll down and keep the *API Key (user_key)* Authentication.
-+
-image::images/05-authentication.png[05-authentication, role="integr8ly-img-responsive"]
-
-. Click on *Update Service*.
 
 [type=verification]
-Were you able to update the service?
+Were you able to import the service to 3scale?
 
 [type=verificationFail]
 Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the Fuse Online application.
@@ -311,62 +312,39 @@ Try to redo this section, if any problem persists have your instructor check the
 [id="update-apicast-config"]
 == Update the APIcast configuration
 
-. Click on the *edit APIcast configuration* link..
+. Click on *Methods and Metrics* to define the methods for the API.
 +
-image::images/secure-09.png[secure-09, role="integr8ly-img-responsive"]
-
-. Leave the settings for _Private Base URL_ as it is. Update the _Staging Public Base URL_ and _Production Public Base URL_ fields to the following:
-** Staging Public Base: *`https://i-addlocation-{user-username}-apicast-staging.amp.{openshift-app-host}:443`*
-** Production Public Base URL: *`https://i-addlocation-{user-username}-apicast-production.amp.{openshift-app-host}:443`*
-+
-image::images/secure-10.png[secure-10, role="integr8ly-img-responsive"]
-
-. Scroll down and expand the *MAPPING RULES* section to define the allowed methods on our exposed API.
-+
-_The default mapping is the root ("/") of our API resources, and this example application will not use that mapping. The following actions will redefine that default root ("/") mapping._
-+
-image::images/07b-mapping-rules.png[07b-mapping-rules, role="integr8ly-img-responsive"]
-
-. Click on the *Metric or Method (Define)* link.
-+
-image::images/07b-mapping-rules-define.png[07b-mapping-rules-define, role="integr8ly-img-responsive"]
+image::images/3scale-int-methods.png[3scale-int-methods, role="integr8ly-img-responsive"]
 
 . Click on the *New Method* link in the _Methods_ section.
-+
-image::images/07b-new-method.png[07b-new-method, role="integr8ly-img-responsive"]
 
 . Fill in the information for your Fuse Method.
 ** Friendly name: *`Add Locations`*
 ** System name: *`add_location`*
 ** Description: *`Method to add a new location`*
 +
-image::images/07b-new-method-data.png[07b-new-method-data, role="integr8ly-img-responsive"]
+image::images/3scale-int-new-method.png[3scale-int-new-method, role="integr8ly-img-responsive"]
 
 . Click on Create Method.
 
-. Click on the *Add mapping rule* link.
+. Click on the *Mapping Rules* link to define the allowed methods exposed by the API.
 +
-image::images/07b-add-mapping-rule.png[07b-add-mapping-rule, role="integr8ly-img-responsive"]
+_The default mapping is the root ("/") of our API resources, and this application will not use that mapping. The following actions will redefine that default root ("/") mapping._
++
+image::images/3scale-int-mapping-rules.png[3scale-int-mapping-rules, role="integr8ly-img-responsive"]
 
-. Click on the *Add Mapping Rule* link.
-+
-image::images/07b-edit-mapping-rule.png[07b-edit-mapping-rule, role="integr8ly-img-responsive"]
+. Click on the *Edit* next to the default mapping rule.
 
 . Select *POST* as the Verb. Type in the _Pattern_ text box the following: `/locations`.
 
-. Select *add_location* as Method from the combo box.
+. Select *add_location* as Method from the combo box. Click on *Update Mapping Rule*.
 +
-image::images/07b-getall-rule.png[07b-getall-rule, role="integr8ly-img-responsive"]
+image::images/3scale-int-mapping-rule-edit.png[3scale-int-mapping-rule-edit, role="integr8ly-img-responsive"]
 
-. Scroll down to the *API Test GET request*.
-
-. Type in the textbox: `/openapi.json`
-
-. Click on the *Update the Staging Environment* to save the changes and check the connection between client, gateway and API.
+. Click on *Configuration* and *Promote v.2 to Staging APIcast* to promote the changes to the staging gateway.
 +
-image::images/08-update-staging.png[08-update-staging, role="integr8ly-img-responsive"]
-+
-_You should expect to get an error message._
+image::images/3scale-int-promote-staging.png[3scale-int-promote-staging, role="integr8ly-img-responsive"]
+
 
 [type=verification]
 Were you able to update the staging environment?
@@ -379,42 +357,43 @@ Try to redo this section, if any problem persists have your instructor check the
 [id="create-application-plan"]
 == Create the Application Plan
 
-. Our integration update is in error because we haven't yet created an application plan. To do this, click on the link inside of the the error message.
+. Our integration update is in error because we haven't yet created an application plan. To do this, click on *Start by creating an application plan* link in the staging section.
 +
-image::images/04-create-application-plan.png[04-create-application-plan, role="integr8ly-img-responsive"]
+image::images/3scale-int-create-app-plan.png[3scale-int-create-app-plan, role="integr8ly-img-responsive"]
 
 . Click *Create Application Plan* link again.
 +
-image::images/04-click-create-app-plan.png[04-click-create-app-plan, role="integr8ly-img-responsive"]
+image::images/3scale-int-create-app-plan-link.png[3scale-int-create-app-plan-link, role="integr8ly-img-responsive"]
 
 . Enter the Application Plan details, then click *Create Application Plan*.
 **Name: *`basic-integration`*
 **System name: *`basic-integration`*
 +
-image::images/04-app-plan-details.png[04-app-plan-details, role="integr8ly-img-responsive"]
+image::images/3scale-int-app-plan-form.png[3scale-int-app-plan-form, role="integr8ly-img-responsive"]
 
 . Click on *Publish* to publish your newly minted plan.
 +
-image::images/04-click-publish.png[04-click-publish, role="integr8ly-img-responsive"]
+image::images/3scale-int-app-plan-publish.png[3scale-int-app-plan-publish, role="integr8ly-img-responsive"]
 
-. Click on the *API: i-addlocation* dropdown menu, then select *Audience*. Next click *Listing* on the side menu. A listing of _Accounts_ should appear. Next click the *Developer* Account.
+. Click on the *API: i-addlocation* dropdown menu, then select *Audience*. Next click *Listing* on the side menu. A listing of _Accounts_ should appear. Next click the link under *Apps* for *Developer* Account as shown below.
 +
-image::images/04-setup-account.png[04-setup-account, role="integr8ly-img-responsive"]
+image::images/3scale-int-app-create.png[04-setup-account, role="integr8ly-img-responsive"]
 
-. An Account configuration page should appear. Click on the _1 Application_ link at the top of the page.
-+
-image::images/04-click-applications.png[04-click-applications, role="integr8ly-img-responsive"]
 
 . Click on *Create Application*.
 +
-image::images/04-click-create-app.png[04-click-create-app, role="integr8ly-img-responsive"]
+image::images/3scale-int-create-app-link.png[3scale-int-create-app-link.png, role="integr8ly-img-responsive"]
 
 . Select *basic-integration* as the _Application Plan_.
 . Select *Default* as the _Service Plan_.
 . Enter *i-integration* as the _Name_.
-. Click *Create Application*. An Application page should appear. It will contain a newly created API User Key for use with your new `i-integration` application.
+. Click *Create Application*. 
 +
-image::images/04-enter-app-details.png[04-enter-app-details, role="integr8ly-img-responsive"]
+image::images/3scale-int-create-app-form.png[3scale-int-create-app-form.png, role="integr8ly-img-responsive"]
+
+. An Application page should appear. It will contain a newly created API User Key for use with your new `i-integration` application.
++
+image::images/3scale-int-app-page.png[3scale-int-app-page.png, role="integr8ly-img-responsive"]
 
 [type=verification]
 Were you able to create the application?
@@ -428,34 +407,13 @@ Try to redo this section, if any problem persists have your instructor check the
 == Complete APIcast configuration
 
 . Next, click on the _Integration > Configuration_ side-menu.
-+
-image::images/04-integration-configuration.png[04-integration-configuration, role="integr8ly-img-responsive"]
 
-. Next, click on _edit APIcast configuration._
+. Scroll down to the _Staging APIcast_ section. Copy the full _curl_ URL in the box. Paste it into a text editor as will need it shortly.
 +
-image::images/04-edit-api-config.png[04-edit-api-config, role="integr8ly-img-responsive"]
+image::images/3scale-int-curl-command.png[3scale-int-curl-command, role="integr8ly-img-responsive"]
 
-. Update the _Staging Public Base URL_ and _Production Public Base URL_ fields to the following:
-** Staging Public Base: *`https://i-addlocation-{user-username}-apicast-staging.amp.{openshift-app-host}:443`*
-** Production Public Base URL: *`https://i-addlocation-{user-username}-apicast-production.amp.{openshift-app-host}:443`*
 
-. Scroll down to the _Client_ section. Copy the full _curl_ URL in the box. Paste it into a text editor as will need it shortly.
-+
-image::images/04-copy-curl.png[04-copy-curl, role="integr8ly-img-responsive"]
-
-. Click on the *Update the Staging Environment* button to save the changes and check the connection between client, gateway and API.
-+
-image::images/08-update-staging.png[08-update-staging, role="integr8ly-img-responsive"]
-+
-_If everything works, you will get a green message on the left._
-
-. Click on *Back to Integration & Configuration* link to return to your API overview.
-+
-image::images/08aa-back-to-integration.png[08aa-back-to-integration, role="integr8ly-img-responsive"]
-
-. Click on the *Promote v.1 to Production* button to promote your configuration from staging to production.
-+
-image::images/08a-promote-production.png[08a-promote-production, role="integr8ly-img-responsive"]
+. Click on the *Promote v.2 to Production APIcast* button to promote your configuration from staging to production.
 
 [type=verification]
 Were you able to promote your configuration?
@@ -493,7 +451,7 @@ image::images/16-response-header.png[16-response-header, role="integr8ly-img-res
 
 . Click on _Activity > Refresh_ and verify if the newly record is created.
 +
-image::images/17-activity-refresh.png[17-activity-refresh, role="integr8ly-img-responsive"]
+image::images/fuse-online-int-activity.png[fuse-online-int-activity, role="integr8ly-img-responsive"]
 
 . _(Optional)_ Visit the application URL in browser and verify if the record can be fetched. *Don't forget to append your username to the record ID e.g user6 = 106*
 
@@ -533,5 +491,5 @@ This is the last lab of this workshop.
 *Fuse Online*
 
 * https://www.redhat.com/en/technologies/jboss-middleware/fuse-online[Webpage]
-* https://access.redhat.com/documentation/en-us/red_hat_fuse/7.1/html-single/fuse_online_sample_integration_tutorials/index[Sample tutorials]
+* https://access.redhat.com/documentation/en-us/red_hat_fuse/7.7/html/fuse_online_sample_integration_tutorials/index[Sample tutorials]
 * https://developers.redhat.com/blog/2017/11/02/work-done-less-code-fuse-online-tech-preview-today/[Blog]
