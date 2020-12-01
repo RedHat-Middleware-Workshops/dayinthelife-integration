@@ -2,7 +2,7 @@
 :3scale-url: https://www.3scale.net/
 :3scale-admin-url: https://{user-username}-admin.{openshift-app-host}/p/login
 :3scale-dev-portal-url: https://{user-username}.{openshift-app-host}/
-:fuse-url: https://syndesis-{user-username}-fuse.{openshift-app-host}
+:fuse-online-url: https://syndesis-{user-username}-fuse.{openshift-app-host}
 :openshift-url: {openshift-host}/console
 :user-password: openshift
 
@@ -29,7 +29,7 @@ Your password is: `{user-password}`
 [type=walkthroughResource]
 .Fuse Online
 ****
-* link:{fuse-url}[Fuse Online Console, window="_blank"]
+* link:{fuse-online-url}[Fuse Online Console, window="_blank"]
 ****
 
 [type=walkthroughResource]
@@ -46,7 +46,7 @@ Your password is: `{user-password}`
 . Navigate to the Solution Explorer on that tab.
 . Click on the *Red Hat Fuse Online* link.
 
-. Open your link:{fuse-url}[Fuse Online Console, window="_blank"].
+. Open your link:{fuse-online-url}[Fuse Online Console, window="_blank"].
 
 . The first time that you hit the Fuse Online URL, you will be presented with an _Authorize Access_ page. Click the *Allow selected permissions* button to accept the defaults.
 +
