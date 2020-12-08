@@ -66,6 +66,14 @@ public class CamelRoutes extends RouteBuilder {
 		//This is important to make your cert skip CN/Hostname checks
 		httpComponent.setX509HostnameVerifier((s, sslSession) -> true);
 
+		String body = new String();
+		body.append("username=");
+		body.append(env.SSO_USERNAME);
+		body.append("&password=");
+		body.append(env.SSO_PASSWORD);
+		body.append("&grant_type=password&client_id=admin-cli&");
+
+
 		from("direct:threescalesetup")
 			.log("starts")
 			.log("USERNAME {{env:SSO_USERNAME}}")
@@ -76,9 +84,10 @@ public class CamelRoutes extends RouteBuilder {
 			//Get TKN from SSO
 				.setHeader(Exchange.HTTP_METHOD, constant("POST"))
 				.setHeader(Exchange.CONTENT_TYPE, constant(MediaType.APPLICATION_FORM_URLENCODED_VALUE))
-				.setBody(simple("username={{env:SSO_USERNAME}}&grant_type=password&client_id=admin-cli&password={{env:SSO_PASSWORD}}", String.class))
+				.setBody(body)
+				.convertBodyTo(byte[].class)
 				.log("${body}")
-			.toD("https4://keycloak-sso.${headers.openshiftappurl}/auth/realms/master/protocol/openid-connect/token?sslContextParameters=#ssl&bridgeEndpoint=true&authenticationPreemptive=true")
+			.toD("https4://keycloak-sso.${headers.openshiftappurl}/auth/realms/master/protocol/openid-connect/token?sslContextParameters=#ssl&bridgeEndpoint=true")
 			.setHeader("tkn").jsonpath("access_token")
 			//.log("return---->  ${header.tkn}")	
 		
