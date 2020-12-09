@@ -10,7 +10,7 @@ import org.apache.camel.Processor;
 import com.redhat.model.Location;
 import com.redhat.model.Location.LatLong;
 
-public class ResultProcessor implements Processor {
+public class LocationResultProcessor implements Processor {
 
 	@Override
 	public void process(Exchange exchange) throws Exception {
