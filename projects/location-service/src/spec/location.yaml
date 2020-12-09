@@ -1,0 +1,120 @@
+---
+swagger: "2.0"
+info:
+  title: Locations
+  description: Locations API
+  version: 1.0.0
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+  /locations:
+    get:
+      responses:
+        200:
+          description: Successful response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/location'
+          examples:
+            application/json: |-
+              [
+                {
+                  "id": 1,
+                  "name": "Kamarhati",
+                  "type": "Regional Branch",
+                  "status": "1",
+                  "location": {
+                    "lat": "-28.32555",
+                    "lng": "-5.91531"
+                  }
+                },
+                {
+                  "id": 2,
+                  "name": "Otranto",
+                  "type": "Local Office",
+                  "status": "1",
+                  "location": {
+                    "lat": "-8.01254",
+                    "lng": "101.47364"
+                  }
+                },
+                {
+                  "id": 3,
+                  "name": "Millesimo",
+                  "type": "Headquarter",
+                  "status": "1",
+                  "location": {
+                    "lat": "78.88435",
+                    "lng": "99.05294"
+                  }
+                }
+              ]
+    post:
+      responses:
+        201:
+          description: Successfully created
+          schema:
+            $ref: '#/definitions/location'
+  /locations/{id}:
+    get:
+      parameters:
+      - name: id
+        in: path
+        required: true
+        type: integer
+        format: int32
+      responses:
+        200:
+          description: Successful response
+          schema:
+            $ref: '#/definitions/location'
+  /location/phone/{id}:
+    get:
+      responses:
+        200:
+          description: Successful response
+          schema:
+            $ref: '#/definitions/location'
+    parameters:
+    - name: id
+      in: path
+      required: true
+      type: integer
+      format: int32
+definitions:
+  location:
+    title: Root Type for location
+    description: The root of the location type's schema.
+    type: object
+    properties:
+      id:
+        format: int32
+        type: integer
+      name:
+        type: string
+      type:
+        type: string
+      status:
+        format: int32
+        type: integer
+      location:
+        type: object
+        properties:
+          lat:
+            type: string
+          lng:
+            type: string
+    example: |-
+      {
+        "id": 1,
+        "name": "Kamarhati",
+        "type": "Regional Branch",
+        "status": "1",
+        "location": {
+          "lat": "-28.32555",
+          "lng": "-5.91531"
+        }
+      }

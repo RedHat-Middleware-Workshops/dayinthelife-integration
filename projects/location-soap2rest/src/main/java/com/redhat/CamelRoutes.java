@@ -15,10 +15,8 @@ public class CamelRoutes extends RouteBuilder {
 	
 	@Autowired
     private CamelContext camelContext;
-	
-	//private static final String SERVICE_ADDRESS = "http://localhost:8080/ws/location";
-	//private static final String WSDL_URL = "http://localhost:8080/ws/location?wsdl";
-
+    
+    
 	@Override
 	public void configure() throws Exception {
 		
@@ -35,41 +33,45 @@ public class CamelRoutes extends RouteBuilder {
 	    	.apiProperty("api.title", "Location API")
 	    	.apiProperty("api.version", "1.0.0")
 	    ;
-		
-		
-	
-		rest("/location").description("Location information")
-			.produces("application/json")
-			.get("/contact/{id}").description("Location Contact Info")
-				.responseMessage().code(200).message("Data successfully returned").endResponseMessage()
-				.to("direct:getalllocationphone")
-			
-		;
-		
-		from("direct:getalllocationphone")
-			.setBody().simple("${headers.id}")
-			.unmarshal().json(JsonLibrary.Jackson)
-			.to("cxf://http://location-soap:8080/ws/location?serviceClass=com.redhat.LocationDetailServicePortType&defaultOperationName=contact")
-			
-			.process(
-					new Processor(){
+        
+        rest("/location").description("Location information")
+         .produces("application/json")
+         .get("/contact/{id}").description("Location Contact Info")
+             .responseMessage().code(200).message("Data successfully returned").endResponseMessage()
+             .to("direct:getalllocationphone")
 
-						@Override
-						public void process(Exchange exchange) throws Exception {
-							//LocationDetail locationDetail = new LocationDetail();
-							//locationDetail.setId(Integer.valueOf((String)exchange.getIn().getHeader("id")));
-							
-							MessageContentsList list = (MessageContentsList)exchange.getIn().getBody();
-							
-							exchange.getOut().setBody((ContactInfo)list.get(0));
-						}
-					}
-			)
-			
-		;
-	
-	}
-	
-	
+        ;
 
+        from("direct:getalllocationphone")
+            .setBody().simple("${headers.id}")
+            .unmarshal().json(JsonLibrary.Jackson)
+            .to("cxf://http://location-soap-user1.apps.cluster-5e28.5e28.example.opentlc.com/ws/location?serviceClass=com.redhat.LocationDetailServicePortType&defaultOperationName=contact")
+
+            .process(
+                    new Processor(){
+
+                        @Override
+                        public void process(Exchange exchange) throws Exception {
+                            //LocationDetail locationDetail = new LocationDetail();
+                            //locationDetail.setId(Integer.valueOf((String)exchange.getIn().getHeader("id")));
+
+                            MessageContentsList list = (MessageContentsList)exchange.getIn().getBody();
+
+                            exchange.getOut().setBody((ContactInfo)list.get(0));
+                        }
+                    }
+            )
+
+        ;
+
+     }
+
+		
+	
+		
+	
 }
+	
+	
+
+
