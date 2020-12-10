@@ -46,7 +46,7 @@ Your password is: `{user-password}`
 [id="customize-dev-portal"]
 == Customizing Developer Portal
 
-. Switch to the web browser windown, displaying the console for the *Red Hat 3scale API Management Platform*.
+. Switch to the web browser window, displaying the console for the *Red Hat 3scale API Management Platform*.
 
 . Log in to link:{3scale-admin-url}[3scale Admin, window="_blank"] web console using `{user-username}` and password: `{user-password}`. Click on *Sign in*.
 +
@@ -54,9 +54,9 @@ image::images/01-login.png[01-login.png, role="integr8ly-img-responsive"]
 
 . Click on the *Developer Portal* tab to access the developer portal settings.
 +
-image::images/10-developer-portal.png[10-developer-portal.png, role="integr8ly-img-responsive"]
+image::images/3scale-dev-portal-link.pngg[3scale-dev-portal-link, role="integr8ly-img-responsive"]
 
-. On the left menu select *Home Page*, and replace the entire content with what's in the example link: https://raw.githubusercontent.com/RedHatWorkshops/dayinthelife-integration/master/docs/labs/developer-track/lab06/support/homepage.example[example]
+. On the left menu select *Home Page*, and replace the entire content with what's in the example link: https://raw.githubusercontent.com/RedHat-Middleware-Workshops/dayinthelife-integration/master/docs/labs/developer-track/lab06/support/homepage.example[example]
 +
 image::images/15-homepage-devportal.png[15-homepage-devportal.png, role="integr8ly-img-responsive"]
 

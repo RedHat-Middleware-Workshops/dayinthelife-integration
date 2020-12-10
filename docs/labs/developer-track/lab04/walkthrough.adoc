@@ -1,5 +1,5 @@
 :walkthrough: Contract-first API development wrapping an existing SOAP service, implemented using CodeReady Workspaces
-:codeready-url: https://codeready-codeready.{openshift-app-host}
+:codeready-url: https://che-che.{openshift-app-host}
 :next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}/tutorial/dayinthelife-integration.git-developer-track-lab05/
 :user-password: openshift
 
@@ -24,7 +24,7 @@ CodeReady Workspaces, our online IDE, provides important functionality for imple
 
 *Skipping The Lab*
 
-If you are planning to follow to the next lab or are having trouble with this lab, you can reference the working project link:{https://github.com/RedHatWorkshops/dayinthelife-integration/tree/master/projects/location-soap2rest}[here]
+If you are planning to follow to the next lab or are having trouble with this lab, you can reference the working project link:{https://github.com/RedHat-Middleware-Workshops/dayinthelife-integration/tree/master/projects/location-soap2rest}[here]
 
 *Credentials:*
 
@@ -48,35 +48,24 @@ Your password is: `{user-password}`
 == Import the sample SOAP project into your Openshift project
 
 . Navigate back to your CodeReady Workspaces workspace and open the terminal window.
+. Ensure you are using the *OpenShift tools* terminal and are logged in to your OpenShift console as in the last lab.
+. Ensure you are in the `{user-username}` project in openshift:
 +
-image::images/00-open-terminal.png[00-open-terminal.png, role="integr8ly-img-responsive"]
-
-. Launch a new tab on your web browser.
-. Navigate to the Solution Explorer on that tab.
-. Click on the *Red Hat OpenShift* link.
-
-. Logon to the link:{openshift-url}[OpenShift Console, window="_blank"] using your credentials: `{user-username}` and `{user-password}`
-+
-image::images/00-openshift-loginpage.png[00-openshift-loginpage.png, role="integr8ly-img-responsive"]
-
-. Obtain your user login command by clicking on your username on the top right hand corner and select *Copy Login Command*
-+
-image::images/00-commend-login.png[00-commend-login.png, role="integr8ly-img-responsive"]
-
-. Navigate back to CodeReady Workspaces, open the terminal, and paste the login command from your clipboard.  Once you've logged-in, select the OpenShift project you created earlier using `oc project {user-username}`.
-+
-image::images/00-login-terminal.png[00-login-terminal.png, role="integr8ly-img-responsive"]
+[source,bash,subs="attributes+"]
+----
+ oc project {user-username}
+----
 
 . Build and deploy the SOAP application using source to image(S2i) template. Paste the commend to the terminal.
 +
 [source,bash,subs="attributes+"]
 ----
- oc new-app s2i-fuse71-spring-boot-camel -p GIT_REPO=https://github.com/RedHatWorkshops/dayinthelife-integration -p CONTEXT_DIR=/projects/location-soap -p APP_NAME=location-soap -p GIT_REF=master -n {user-username}
+ oc new-app s2i-fuse71-spring-boot-camel -p GIT_REPO=https://github.com/RedHat-Middleware-Workshops/dayinthelife-integration -p CONTEXT_DIR=/projects/location-soap -p APP_NAME=location-soap -p GIT_REF=master -n {user-username}
 ----
 
 . Once the build and deploy is complete, navigate back to your Openshift web console and verify the project is running.
 +
-image::images/00-verify-location-soap.png[00-verify-location-soap.png, role="integr8ly-img-responsive"]
+image::images/ocp-location-soap-deploy.png[ocp-location-soap-deploy, role="integr8ly-img-responsive"]
 
 [type=verification]
 Were you able to build and deploy the SOAP application?
@@ -91,27 +80,32 @@ Try to redo this section, if any problem persists have your instructor check the
 
 . In the OpenShift console, click on the route associated with the `location-soap` deployment.  A pop-up will appear.  Append the `/ws/location?wsdl` path to the URI and verify the WSDL appears. Copy the link to the clipboard.
 +
-image::images/00-verify-wsdl.png[00-verify-wsdl.png, role="integr8ly-img-responsive"]
+image::images/ocp-location-soap-wsdl-url.png[ocp-location-soap-wsdl-url, role="integr8ly-img-responsive"]
 
 . Return to your CodeReady Workspaces workspace and open the `dayintelife-import/location-soap2rest` project.  Open the `pom.xml` file and scroll to the bottom.  Uncomment out the `cxf-codegen-plugin` entry at the bottom.  Update the `<wsdl>` entry with your fully qualified WSDL URL e.g. `http://location-soap-{user-username}.{openshift-app-host}/ws/location?wsdl`.
 +
-image::images/00-uncomment-codegen.png[00-uncomment-codegen.png, role="integr8ly-img-responsive"]
+image::images/che-location-soap2rest-pom-edit.png[che-location-soap2rest-pom-edit, role="integr8ly-img-responsive"]
 
-. We now need to generate the POJO objects from the WSDL contract. To do this, change to the *Manage commands* view.
+. We now need to generate the POJO objects from the WSDL contract. 
+. Navigate to the following project in the Terminal:
+ +
+[source,bash,subs="attributes+"]
+----
+cd /projects/DILAgileIntegration/location-soap2rest
+----
 
-. Click the *+* button next to the *Build* folder. Click *Maven*. Enter `run generate-sources` for the Name, then enter `mvn generate-sources -f ${current.project.path}/pom.xml` for the Command. Click *Save*.
-+
-image::images/00-save-run-soap.png[00-save-run-soap.png, role="integr8ly-img-responsive"]
-
-. Double-click the `run generate-sources` script. Click *Run* to execute the script.
-+
-image::images/00-generate-sources.png[00-generate-sources.png, role="integr8ly-img-responsive"]
+. Run the following maven command from the Terminal:
+ +
+[source,bash,subs="attributes+"]
+----
+mvn generate-sources
+----
 
 . Once the script has completed, navigate back to the *Workspace* view and open the `src/main/java/com/redhat` folder.  Notice that there are a bunch of new POJO classes that were created by the Maven script.
 +
 _Common gotcha: If build fails due to used port, check if you are running with many instances of `run spring-boot`. You should only have 1 instance of `run-spring-boot`._
 +
-image::images/00-verify-pojos.png[00-verify-pojos.png, role="integr8ly-img-responsive"]
+image::images/che-soap-generate-sources.png[che-soap-generate-sources.png, role="integr8ly-img-responsive"]
 
 [type=verification]
 Were you able to generate the POJO classes?
@@ -184,26 +178,34 @@ Try to redo this section, if any problem persists have your instructor check the
  }
 ----
 
-. Now that we have our API service implementation, we can try to test this locally.  Navigate back to the *Manage commands* view and execute the `run spring-boot` script.  Click the *Run* button.
+. Now that we have our API service implementation, we can try to test this locally.  Navigate back to the Terminal and execute the following command:
+ +
+[source,bash,subs="attributes+"]
+----
+mvn spring-boot:run
+----
 +
-image::images/00-local-testing.png[00-local-testing.png, role="integr8ly-img-responsive"]
+image::images/che-location-soap-url-link.png[che-location-soap-url-link, role="integr8ly-img-responsive"]
 
-. Once the application starts, navigate to the Servers window and click on the URL corresponding to port 8080.  A new tab should appear:
-+
-image::images/00-select-servers.png[00-select-servers.png, role="integr8ly-img-responsive"]
+. Once the application starts, navigate to the Servers window and click on the URL corresponding to port 8080.  A new tab should appear.
 
 . In the new tab, append the URL with the following URI: `/location/contact/2`.  A contact should be returned:
 +
-image::images/00-hit-contact-local.png[00-hit-contact-local.png, role="integr8ly-img-responsive"]
+image::images/che-location-soap-sample-request.png[che-location-soap-sample-request, role="integr8ly-img-responsive"]
 
-. Now that we've successfully tested our new SOAP to REST service locally, we can deploy it to OpenShift.  Stop the running application by clicking *Cancel*.
-. Open the `fabric8:deploy` script and hit the *Run* button to deploy it to OpenShift.
+. Now that we've successfully tested our new SOAP to REST service locally, we can deploy it to OpenShift.  Stop the running application by clicking *Ctrl + C*.
+. Run the following command in the terminal to deploy the application to OpenShift:
+ +
+[source,bash,subs="attributes+"]
+----
+mvn fabric8:deploy
+----
 +
-image::images/00-mvn-f8-deploy.png[00-mvn-f8-deploy.png, role="integr8ly-img-responsive"]
+image::images/che-location-soap-build-success.png[che-location-soap-build-success, role="integr8ly-img-responsive"]
 
 . If the deployment script completes successfully, navigate back to your Openshift web console and verify the pod is running
 +
-image::images/00-verify-pod.png[00-verify-pod.png, role="integr8ly-img-responsive"]
+image::images/ocp-location-soap2rest-deploy.png[ocp-location-soap2rest-deploy, role="integr8ly-img-responsive"]
 
 . Click on the route link above the location-soap2rest pod and append `/location/contact/2` to the URI.  As a result, you should get a contact back.
 

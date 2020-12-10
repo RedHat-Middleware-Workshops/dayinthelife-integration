@@ -49,23 +49,23 @@ image::images/01-login.png[01-login.png, role="integr8ly-img-responsive"]
 
 . The first page you will land is the _API Management Dashboard_. Click on the *Gear Icon* on the top.
 +
-image::images/02-personalsettings.png[02-personalsettings.png, role="integr8ly-img-responsive"]
+image::images/3scale-access-token-link.png[3scale-access-token-link, role="integr8ly-img-responsive"]
 
 . Click onto  *Personal*. On the dropdown, Click on *Tokens*.
-+
-image::images/03-tokentab.png[03-tokentab.png, role="integr8ly-img-responsive"]
 
-. Click  *Add Access Token* link to create a new management token.
+. Click  Access Token* link .
+
+. Click on *New Access Token* to create a new token.
 +
-image::images/06-menu.png[06-menu.png, role="integr8ly-img-responsive"]
+image::images/3scale-add-access-token-link.png[3scale-add-access-token-link, role="integr8ly-img-responsive"]
 
 . Create a new token that has the `Read & Write` rights to your management platform. Enter Name as *securetoken*, check the *Account management API* checkbox and *READ & WRITE* for Permission.
 +
-image::images/04-setuptoken.png[04-setuptoken.png, role="integr8ly-img-responsive"]
+image::images/3scale-add-access-token-form.png[3scale-add-access-token-form, role="integr8ly-img-responsive"]
 
 . Please make sure you copy the *Token* to somewhere safe, and don't forget it. Click on *I have copied the token* to finish off.
 +
-image::images/05-token.png[05-token.png, role="integr8ly-img-responsive"]
+image::images/3scale-copy-access-token.png[3scale-copy-access-token, role="integr8ly-img-responsive"]
 
 [type=verification]
 Were you able to create and copy the token?
@@ -78,11 +78,11 @@ Try to redo this section, if any problem persists have your instructor check the
 [id="lab-instructions"]
 == Start managing your APIs
 
-By running the command lines, it will automatically setup the 3scale API configuration and start managing the API you have exposed.
+By running the following commmands, the application will automatically setup the 3scale API configuration and start managing the API you have exposed.
 
 . In you command line terminal or in your Che terminal enter the following CURL command: *`curl -X POST http://threescale-automate-international.{openshift-app-host}/threescale/automate/{YOUR_API_TOKEN}/{user-username}/{openshift-app-host}`*
 +
-_Remember to replace *YOUR_API_TOKEN* with your generated *token*_.
+_Remember to replace *YOUR_API_TOKEN* with your generated *token*_
 +
 . The *API automated, DONE!* string should be returned as the result.
 
