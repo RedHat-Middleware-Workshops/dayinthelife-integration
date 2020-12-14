@@ -66,7 +66,6 @@ public class CamelRoutes extends RouteBuilder {
 		//This is important to make your cert skip CN/Hostname checks
 		httpComponent.setX509HostnameVerifier((s, sslSession) -> true);
 
-
 		from("direct:threescalesetup")
 			.log("starts")
 			.log("USERNAME {{env:SSO_USERNAME}}")
@@ -74,20 +73,25 @@ public class CamelRoutes extends RouteBuilder {
 			//SSO and TOKENS
 			
 			.removeHeaders("CamelHttp*")
+			.removeHeaders("X-forwarded*")
+			.removeHeaders("x-forwarded*")
 			//Get TKN from SSO
 				.setHeader(Exchange.HTTP_METHOD, constant("POST"))
 				.setHeader(Exchange.CONTENT_TYPE, constant(MediaType.APPLICATION_FORM_URLENCODED_VALUE))
-				.setBody(simple("username={{env:SSO_USERNAME}}&password={{env:SSO_PASSWORD}}&grant_type=password&client_id=admin-cli", byte[].class))
-				.log("${body}")
+				.setHeader(Exchange.CONTENT_ENCODING, constant("UTF-8"))
+				.setBody(constant("username={{env:SSO_USERNAME}}&grant_type=password&client_id=admin-cli&password={{env:SSO_PASSWORD}}"))
+				.to("log:DEBUG?showBody=true&showHeaders=true")
 			.toD("https4://keycloak-sso.${headers.openshiftappurl}/auth/realms/master/protocol/openid-connect/token?sslContextParameters=#ssl&bridgeEndpoint=true")
 			.setHeader("tkn").jsonpath("access_token")
-			//.log("return---->  ${header.tkn}")	
+			.log("return---->  ${header.tkn}")
 		
 			.removeHeaders("CamelHttp*")
+			.removeHeaders("X-forwarded*")
+			.removeHeaders("x-forwarded*")
 			//GET Client ID
 				.setHeader(Exchange.HTTP_METHOD, constant("GET"))
 				.setHeader("Authorization").simple("Bearer ${headers.tkn}")
-			.toD("https4://keycloak-sso.${headers.openshiftappurl}/auth/admin/realms/${headers.userid}/clients?sslContextParameters=#ssl&bridgeEndpoint=true")
+			.toD("https4://keycloak-sso.${headers.openshiftappurl}/auth/admin/realms/${headers.userid}-realm/clients?sslContextParameters=#ssl&bridgeEndpoint=true")
 			.setHeader("idClientAdmin").jsonpath("$..[?(@.clientId == '3scale-admin')].id")
 			//.log("return---->  ${headers.idClientAdmin}")	
 			
@@ -95,7 +99,7 @@ public class CamelRoutes extends RouteBuilder {
 			//GET Client Secret
 				.setHeader(Exchange.HTTP_METHOD, constant("GET"))
 				.setHeader("Authorization").simple("Bearer ${headers.tkn}")
-			.toD("https4://keycloak-sso.${headers.openshiftappurl}/auth/admin/realms/${headers.userid}/clients/${headers.idClientAdmin}/client-secret?sslContextParameters=#ssl&bridgeEndpoint=true")
+			.toD("https4://keycloak-sso.${headers.openshiftappurl}/auth/admin/realms/${headers.userid}-realm/clients/${headers.idClientAdmin}/client-secret?sslContextParameters=#ssl&bridgeEndpoint=true")
 			.setHeader("secret").jsonpath("value")
 			.log("return---->  ${headers.secret}")	
 		
@@ -104,6 +108,8 @@ public class CamelRoutes extends RouteBuilder {
 			//3scale Setups
 			
 			.removeHeaders("CamelHttp*")
+			.removeHeaders("X-forwarded*")
+			.removeHeaders("x-forwarded*")
 			//Create Service
 				//.setHeader("apiToken", constant(apiToken))
 				//.setHeader("userid", constant(userid))
