@@ -121,7 +121,7 @@
       <h1>Pick your plan</h1>
       <br/>
       <div class="row">
-        {% for plan in provider.services.api.application_plans %}
+        {% for plan in provider.services.sso_location_api.application_plans %}
           <div class="col-md-6">
             <article class="panel panel-default">
               <div class="panel-heading">
@@ -178,54 +178,6 @@
           </div>
         {% endfor %}
       </div>
-      <div class="col-md-6">
-            <article class="panel panel-default">
-              <div class="panel-heading">
-                <strong>Secured</strong>
-              </div>
-              <div class="panel-body">
-                <div class="row">
-
-                  
-                    <div class="col-md-6">
-                      <h5>Features</h5>
-                      <ul class="features list-unstyled">
-                        
-                          <li>
-                            <i class="fa fa-check"></i>
-                            Unlimited Greetings
-                          </li>
-                        
-                      </ul>
-                    </div>
-                  
-
-                  <div class="col-md-6">
-                    <h5>Limits</h5>
-                    <ul class="limits list-unstyled">
-                      
-                        <li>
-                          <i class="fa fa-signal"></i>
-                          No limits
-                        </li>
-                      
-                    </ul>
-                  </div>
-
-                </div>
-              </div>
-                <div class="panel-footer">
-                <div class="row">
-                  <div class="col-md-12">
-
-                    <a class="btn btn-success pull-right" href="CHANGE_ME_URL">Signup to plan Secure</a>
-                  </div>
-                </div>
-
-              </div>
-            </article>
-          </div>
-    </div>
   </section>
 {% endif %}
 
