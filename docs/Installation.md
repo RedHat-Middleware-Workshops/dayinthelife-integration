@@ -5,7 +5,7 @@
 
 ### Pre-requisites
 
-* You will need an OpenShift Container Platform environment, that will host the Integreatly (RHMI) system, to install this workshop on. You can order a vanilla provisioning from the Red Hat Product Demo System (RHPDS) following this [instructions](https://mojo.redhat.com/docs/DOC-1175640).
+* You will need an OpenShift Container Platform environment, to install this workshop on. 
 
 * To install the Day In Life Workshop, you need to a personal workstation (PC) with the latest stable release version of the OpenShift client tools.
 
@@ -21,13 +21,15 @@ There are two options to installing, either use the pre-provisioned environemnt 
 
 #### OPTION 1 (FOR RED HAT STAFF, PARTNERS AND IBM STAFF)
 
-1. Login to [RHPDS ](https://rhpds.opentlc.com) and provision the *Day In the Life - Agile Integration* catalog item.
+1. Login to [RHPDS ](https://rhpds.opentlc.com) and provision the *Day In the Life - Agile Integration* catalog item under *Workshops*.
    
-2. Populate the required fields on the order form, particularly the *Number of users* field with the required no of attendees for the workshop.
+2. Populate the required fields on the order form, the SFDC opportunity, Purpose & City/customer information is required for running the customer workshops. 
+    
+3. Provide the *Number of users* field with the required no of attendees for the workshop.
 
-3. Login and validate that the environment is functional, using user login information sent to you in an email, upon completion of the provisioning.
+4. Login and validate that the environment is functional, using user login information sent to you in an email, upon completion of the provisioning.
 
-Watch this video to understand the complete process: https://youtu.be/PJ8RWVhpfcw
+NOTE: Watch this video to understand the complete process: https://youtu.be/PJ8RWVhpfcw
 
 #### OPTION 2 (TO INSTALL ON YOUR OWN OPENSHIFT CONTAINER PLATFORM)
 
@@ -60,20 +62,24 @@ sudo dnf install ansible
 git clone https://github.com/redhat-cop/agnosticd.git
 ```
 
-4. Login to OCP cluster as admin.
+4. Login to OCP cluster as admin from the bastion terminal.
+```
+oc login <<your_ocp_host>> -u <<ocp_admin>> -p <<ocp_admin_password>>
+```
+
+NOTE: Provide correct values for *<<your_ocp_host>>*, *<<ocp_admin>>* and *<<ocp_password>>.
 
 5. Set the following environment.  Be sure to replace *XX* with the number of users provisioned for your cluster:
 ```
 echo "export WORKLOAD=ocp4-workload-dil-agile-integration" >> ~/.bashrc
-echo "export NUM_USERS=xx" >> ~/.bashrc
+echo "export NUM_USERS=XX" >> ~/.bashrc
 echo "export OCP_USERNAME=<your_ocp_admin>" >> ~/.bashrc
 source ~/.bashrc
 ```
 *Assign the number of attendees in the workshop - as the value for NUM_USERS*
 *Assign your OpenShift admin userid to OCP_USERNAME*
 
-6. Change to the local git directory: `cd agnosticD/ansible`
-
+6. Change to the local git directory: `cd agnosticd/ansible`
 
 7. Run the Ansible playbook script:
 ```
