@@ -2,8 +2,6 @@
 
 ## How to Install the Workshop Content
 
-#This page describes the installation of the Day In Life Workshop Content from the latest tagged release on GitHub.
-IMPORTANT!!!!! THE CURRENT SUPPORTED VERSION of RHMI WORKSHOP is ***1.5.2*** !! PLEASE INSTALL THE CORRECT VERSION!
 
 ### Pre-requisites
 
@@ -11,222 +9,88 @@ IMPORTANT!!!!! THE CURRENT SUPPORTED VERSION of RHMI WORKSHOP is ***1.5.2*** !! 
 
 * To install the Day In Life Workshop, you need to a personal workstation (PC) with the latest stable release version of the OpenShift client tools.
 
-* You can download the OpenShift Client Tools from [Red Hat Developers Portal Site](https://developers.redhat.com/products/openshift/download/) or follow the instructions on how to [Install the CLI](https://docs.openshift.com/container-platform/3.9/cli_reference/get_started_cli.html#installing-the-cli) from the openshift.com webpage.
+* You can download the OpenShift Client Tools from [Red Hat Developers Portal Site](https://developers.redhat.com/products/openshift/download/) or follow the instructions on how to [Install the CLI](hhttps://docs.openshift.com/container-platform/4.6/cli_reference/openshift_cli/getting-started-cli.html) from the openshift.com webpage.
 
 * You'll want to know how to [fork](https://help.github.com/articles/fork-a-repo/) and [clone](https://help.github.com/articles/cloning-a-repository/) a Git repository, and how to [check out a branch](https://git-scm.com/docs/git-checkout#git-checkout-emgitcheckoutemltbranchgt).
 
 * Day In Life Workshop has to be installed using Ansible playbooks.
 
-### Installing Integreatly
+### Installing DIL Workshop
 
-There are two options to installing Integreatly, you may choose only one.
+There are two options to installing, either use the pre-provisioned environemnt provided by RHPDS, or you may choose to install on your own OpenShift Container Platform.
 
-#### OPTION 1 (FOR RED HAT STAFF)
+#### OPTION 1 (FOR RED HAT STAFF, PARTNERS AND IBM STAFF)
 
-1. Login to [OPENTLC LABS](https://labs.opentlc.com) and provision an OpenShift Container Platform cluster using the *OpenShift Workshop Deployer* catalog item:
-![alt text](images/owd.png "OpenShift Workshop Deployer")
+1. Login to [RHPDS ](https://rhpds.opentlc.com) and provision the *Day In the Life - Agile Integration* catalog item.
+   
+2. Populate the required fields on the order form, particularly the *Number of users* field with the required no of attendees for the workshop.
 
-2. Populate the required fields on the order form, with the latest OpenShift version selected.
+3. Login and validate that the environment is functional, using user login information sent to you in an email, upon completion of the provisioning.
 
-3. Follow the instructions on this [installation guide](https://github.com/integr8ly/installation) to complete the Integreatly installation.
+Watch this video to understand the complete process: https://youtu.be/PJ8RWVhpfcw
 
-
-#### OPTION 2 (FOR RED HAT STAFF, PARTNERS AND IBM STAFF)
-
-1. Optionally, login to [RHPDS](https://rhpds.redhat.com) and provision an Integreatly cluster:
-![alt text](images/iw.png "Integreatly Workshop")
-
-2. Login and validate that the Integreatly Environment is functional, using user login information sent to you in an email, upon completion of the provisioning.
-
-
-#### OPTION 3 (FOR RED HAT STAFF, PARTNERS AND IBM STAFF)
-
-1. Login to [RHPDS](https://rhpds.redhat.com) and provision an OpenShift Container Platform cluster using the *OpenShift Workshop* catalog item:
-![alt text](images/ocp_wrkshp.png "OpenShift Workshop")
-
-2. Follow the instructions on this [installation guide](https://github.com/integr8ly/installation) to complete the Integreatly installation.
-
+#### OPTION 2 (TO INSTALL ON YOUR OWN OPENSHIFT CONTAINER PLATFORM)
 
 ### Preparing for an Ansible playbook execution
 
-You are provided with an Ansible playbook to install all the required components and software for this workshop.
-
-Installing with Ansible requires creating an inventory file with the variables for configuring the system. Example inventory files can be found in the ansible/inventory folder. The following options are supported:
-
-Name | Description | Default | Required
---- | --- | --- | ---
-namespace | Namespace where Day In Life Management will be installed. | threescale | Yes, if *threescale* is enabled
-sso_project | Namespace where Red Hat Single Sign On will be installed. | rh-sso | Yes, if *sso* is enabled
-apicurio_project | Namespace where Apicurio will be installed. | apicurio | Yes, if *apicurio* is enabled
-gogs_project | Namespace where Gogs will be installed. | gogs | Yes, if *gogs* is enabled
-microcks_project | Namespace where Microcks will be installed | microcks | Yes, if *microcks* is enabled
-backend_project | Namespace where Backend will be installed | international | Yes, if *backend* is enabled
-sso_version | The version tag used for getting the RH SSO templates. | ose-v1.4.9 | No
-ocp_domain | Root domain of the OpenShift cluster. For example: `GUID.open.redhat..com` | | Yes
-ocp\_apps\_domain | Root domain fpr the applications. For example: `apps.GUID.open.redhat.com`  | | Yes
-usersno | Number of user tenants that will be created. | | Yes
-threescale | Enable Red Hat Day In Life Management. | true | No
-apicurio | Enable Apicurio Studio. | true | No
-gogs | Enable Gogs Git Service. |  true | No
-microcks | Enable Microcks. | true | No
-sso | Enable Red Hat Single Sign On. | true | No
-che | Eclipse Che IDE. | true | No
-backend | Enable App Backend Service | true | No
-user_projects | | true | No
-configure_only | Do not install the software, just configure existing installations. The software should be running in the same namespaces defined in the above vars. | false | No
-create_tenants | Whether the workshop  should be installed in a multitenant mode or not. 3scale admin domains and developer portals for each of the users created during installation will be created. | true | Yes, if *threescale* is enabled
-create_realms | If installing in multitenant mode, this will enable the creation of a RH SSO security realm for each one of the users created during installation. | true | No
-create_ides | If installing in multitenant mode, this will enable the creation of a Eclipse Che IDE in each of the user projects. | true | No
-
-An [example inventory](../support/ansible/inventory/workshop.inventory.example) that installs all the components in multitenant mode from the *bastion* machine looks like this:
-
-```
-[workshop]
-localhost ansible_connection=local
-
-[workshop:vars]
-ocp_domain=GUID.open.redhat.com
-ocp_apps_domain=apps.GUID.open.redhat.com
-usersno=20
-threescale=true
-apicurio=true
-gogs=true
-microcks=true
-sso=true
-backend=true
-user_projects=true
-configure_only=false
-create_tenants=true
-create_realms=true
-```
+Provision the OpenShift Container Platform version 4.6 on the cloud provider of your choice and ensure you have admin credentials to the cluster. A rule of thumb is to provision 1 worker node for 3 users, so ensure you have sufficient number of worker nodes for the required users.
 
 ### Installation Instructions
 
-This section describes how to install this workshop on the OpenShift Container Platform cluster hosting Integreatly, which you have setup previously.
+This section describes how to install this workshop on the OpenShift Container Platform cluster which you have setup previously.
 
-The installation is performed using an Ansible playbook, executed from within the Bastion node of the OCP cluster running Integreatly.
+The installation is performed using an Ansible playbook, executed from within the Bastion node of the OCP cluster.
 
 This is the fastest way to install, as the playbook runs in the cluster closest to the Master node.
 
-1. Login to the bastion machine following the email instructions.
 
-2. SSH into the Bastion server:
+1. SSH into the Bastion server:
 ```
 bash
-ssh -i ~/.ssh/<your_opentlc_private_key> <your_opentlc_id>@bastion.GUID.open.redhat.com
+ssh <your_user_id>@bastion.<your_domain>
 ```
-*Remember to update the GUID with your cluster environment variable (documented in the RHPDS environment system generated email) and the path to your private key.*
-* Refer to the [OPENTLC Account Management webpage](https://www.opentlc.com/account/) for instructions on creating your OPENTLC ID, private and public keys
+2. Ensure the *Ansible* CLI is installed. You can install it using the following command:
 
-3. Switch to root user:
 ```
-sudo -i
+sudo dnf install ansible
 ```
 
-4. Clone the installer repo:
+3. Clone the installer repo:
 ```
-git clone https://github.com/RedHatWorkshops/dayinthelife-integration.git
+git clone https://github.com/redhat-cop/agnosticd.git
 ```
 
-5. Set the master node URL and number of users.  Be sure to replace *XX* with the number of users provisioned for your cluster:
+4. Login to OCP cluster as admin.
+
+5. Set the following environment.  Be sure to replace *XX* with the number of users provisioned for your cluster:
 ```
-echo "export MASTER_INTERNAL=`oc get nodes -o jsonpath='{.items[?(@.metadata.labels.node-role\.kubernetes\.io/master == "true")].metadata.name}'`" >> ~/.bashrc
-echo "export WORKSHOP_ROOT_DOMAIN=`oc whoami --show-server | cut -d'.' -f 3,4,5 | cut -d':' -f 1`" >> ~/.bashrc
-echo "export NUM_USERS=50" >> ~/.bashrc
+echo "export WORKLOAD=ocp4-workload-dil-agile-integration" >> ~/.bashrc
+echo "export NUM_USERS=xx" >> ~/.bashrc
+echo "export OCP_USERNAME=<your_ocp_admin>" >> ~/.bashrc
 source ~/.bashrc
 ```
 *Assign the number of attendees in the workshop - as the value for NUM_USERS*
+*Assign your OpenShift admin userid to OCP_USERNAME*
 
-6. Change to the local git directory: `cd dayinthelife-integration/support/install/ansible/inventory/`
+6. Change to the local git directory: `cd agnosticD/ansible`
 
-7. Run the following command to update the `master`, `ocp_domain`, `ocp_apps_domain`, and `usersno` parameters in the `backend.inventory`, `gogs.inventory`, `userproject.inventory`, `workshop.inventory` and `integreatly.inventory` files:
-```
-echo "export INTERNAL_DOMAIN=`echo $MASTER_INTERNAL | sed -r 's/master1\.|\.internal//g'`" >> ~/.bashrc
-source ~/.bashrc
-sed -i -e "s/master1.CITY-GUID.internal.*$/${MASTER_INTERNAL}/g" integreatly.inventory
-sed -i -e "s/ocp_domain=.*$/ocp_domain=${INTERNAL_DOMAIN}.${WORKSHOP_ROOT_DOMAIN}/g" *.inventory
-sed -i -e "s/ocp_apps_domain=.*$/ocp_apps_domain=apps.${INTERNAL_DOMAIN}.${WORKSHOP_ROOT_DOMAIN}/g" *.inventory
-sed -i -e "s/usersno=.*/usersno=${NUM_USERS}/g" *.inventory
-```
 
-8. Run the Ansible playbook script:
+7. Run the Ansible playbook script:
 ```
-ansible-playbook -i /root/dayinthelife-integration/support/install/ansible/inventory/integreatly.inventory /root/dayinthelife-integration/support/install/ansible/playbooks/openshift/integreatly.yml
+ansible-playbook -i localhost, -c local  ./configs/ocp-workloads/ocp-workload.yml \
+                    -e"ocp_username=${OCP_USERNAME}" \
+                    -e"ocp_workload=${WORKLOAD}" \
+                    -e"num_users=${USER_COUNT}" \
+                    -e"ACTION=create"
 ```
-*NOTE*: This Ansible playbook is idempotent, meaning you can run it as many times as you like.  If there are any failures the first time around, just run the script again and it should resolve the issue. Since the key environment variables are now set in the root user profile on the bastion node, you can logon on to the bastion node anytime to (re)install the Day-In-The-Life workshop assets.
+*NOTE*: This Ansible playbook is idempotent, meaning you can run it as many times as you like.  If there are any failures the first time around, just run the script again and it should resolve the issue. 
 
-9. Once the similar log entries appear, the installation process concludes successfully.
-```
-PLAY RECAP ****************************************************************
-localhost                  : ok=1480 changed=329  unreachable=0    failed=1   
-master1.demo-k5io.internal : ok=18   changed=10   unreachable=0    failed=0   
-```
+8. Login to OpenShift console after successful installation and ensure all pods are running, and projects created.
 
-10. Update the Customer Resource *webapp* with the URLs for the Day-In-The-Life walkthroughs:
-```
-oc patch webapp tutorial-web-app-operator -n webapp --type=merge -p '{ "spec": { "template": { "parameters": { "WALKTHROUGH_LOCATIONS": "https://github.com/RedHatWorkshops/dayinthelife-integration.git?walkthroughsFolder=/docs/labs/citizen-integrator-track&walkthroughsFolder=/docs/labs/developer-track&walkthroughsFolder=/docs/labs/operations-track" }}}}'
-```
-
-11. Access the tutorial web app. You can locate the URL using this command:
-```
-oc get routes -n webapp
-```
-
-12. Login to the tutorial web app as a new user, using these credentials:
-```
-Username or email: userXY
-Password: openshift
-```
-
-*Remember to update the variable XY (unpadded digits, range from 1-100), seen in the example above, with the numeric digits for your assigned Username*
 
 ### INSTALLATION IS COMPLETE!
 
-[Click to return to Landing Page](https://agileintegration.ga)
 
-### ATTENTION!!! Code Ready Workspace starting up issue in Integreatly 1.5.2 TEMP FIX
-
-Step 1:
-Go to CodeReady workspace, scale down CodeReady Operator to ***0*** 
-
-Step 2: 
-In the same workspace, Resource -> ConfigMap, edit the *che*
-update the 
-
-**CHE_WORKSPACE_JAVA__OPTIONS** and **CHE_WORKSPACE_MAVEN__OPTIONS** to aleast 500M
-example
-```
-  CHE_WORKSPACE_JAVA__OPTIONS: >-
-    -XX:MaxRAM=2048m -XX:MaxRAMFraction=2 -XX:+UseParallelGC
-    -XX:MinHeapFreeRatio=10 -XX:MaxHeapFreeRatio=20 -XX:GCTimeRatio=4
-    -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xms20m
-    -Djava.security.egd=file:/dev/./urandom 
-  CHE_WORKSPACE_MAVEN__OPTIONS: >-
-    -XX:MaxRAM=1024m -XX:MaxRAMFraction=2 -XX:+UseParallelGC
-    -XX:MinHeapFreeRatio=10 -XX:MaxHeapFreeRatio=20 -XX:GCTimeRatio=4
-    -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xms20m
-    -Djava.security.egd=file:/dev/./urandom 
-```
-
-Step 3: Redeploy "codeready" 
-
-Step 4: Login to Code Ready using admin, in Stacks click on ***Red Hat Fuse***, 
-Click on *Raw Configuration* and you will see the stack configuration in JSON format, under "installers"
-remove ***com.redhat.bayesian.lsp***
-so it looks like following:
-
-```
-   "installers": [
-              "org.eclipse.che.exec",
-              "org.eclipse.che.terminal",
-              "org.eclipse.che.ws-agent",
-              "org.eclipse.che.ls.camel",
-              "org.eclipse.che.ls.java"
-            ],
-```
-
-Save and you are good to go. 
-              
 
 
 
