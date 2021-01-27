@@ -46,39 +46,40 @@ Your password is: `{user-password}`
 [id="customize-dev-portal"]
 == Customizing Developer Portal
 
-. Switch to the web browser windown, displaying the console for the *Red Hat 3scale API Management Platform*.
+. Switch to the web browser window, displaying the console for the *Red Hat 3scale API Management Platform*.
 
 . Log in to link:{3scale-admin-url}[3scale Admin, window="_blank"] web console using `{user-username}` and password: `{user-password}`. Click on *Sign in*.
 +
 image::images/01-login.png[01-login.png, role="integr8ly-img-responsive"]
 
+. Select the *SSO Location API* from the dropdown to edit the application plan settings.
++
+image::images/3scale-sso-location-app-plan.png[3scale-sso-location-app-plan, role="integr8ly-img-responsive"]
+
+. Click on the *Applications* on the left menu. Select *Application plans* from the listed dropdown. 
+
+. Publish your application plan by clicking in on the *Publish* option on the page.
++
+image::images/3scale-sso-location-app-plan-publish.png[3scale-sso-location-app-plan-publish, role="integr8ly-img-responsive"]
+
 . Click on the *Developer Portal* tab to access the developer portal settings.
 +
-image::images/10-developer-portal.png[10-developer-portal.png, role="integr8ly-img-responsive"]
+image::images/3scale-dev-portal-link.png[3scale-dev-portal-link, role="integr8ly-img-responsive"]
 
-. On the left menu select *Home Page*, and replace the entire content with what's in the example link: https://raw.githubusercontent.com/RedHatWorkshops/dayinthelife-integration/master/docs/labs/developer-track/lab06/support/homepage.example[example]
+. On the left menu select *Home Page*, and replace the entire content with what's in the example link: https://raw.githubusercontent.com/RedHat-Middleware-Workshops/dayinthelife-integration/master/docs/labs/developer-track/lab06/support/homepage.example[example]
 +
-image::images/15-homepage-devportal.png[15-homepage-devportal.png, role="integr8ly-img-responsive"]
-
-. Replace the `CHANGE_ME_URL` to the `PLAN_URL` you get from last lab.
-+
-image::images/16-replace.png[16-replace.png, role="integr8ly-img-responsive"]
+image::images/3scale-dev-portal-homepage.png[3scale-dev-portal-homepage, role="integr8ly-img-responsive"]
 
 . Click the _Publish_ button at the bottom of the editor to save the changes and made them available in the site.
-+
-image::images/14-publish-devportal.png[14-publish-devportal.png, role="integr8ly-img-responsive"]
-
-. Select the *SSO Location API* from the dropdown to edit to application plan settings.
-+
-image::images/14a-select-sso-api.png[14a-select-sso-api.png, role="integr8ly-img-responsive"]
-
-. Click on the *Applications* on the left menu. Select *Application plans* from the listed dropdown. And publish your application plan by clicking in on the *Publish* option on the page.
-+
-image::images/17-publishplan.png[17-publishplan.png, role="integr8ly-img-responsive"]
 
 . Go back to your *Audience*. Click on the *Visit Developer Portal* to take a look of how your developer portal looks like.
 +
-image::images/11-visit-devportal.png[11-visit-devportal.png, role="integr8ly-img-responsive"]
+image::images/3scale-visit-dev-portal-link.png[3scale-visit-dev-portal-link, role="integr8ly-img-responsive"]
+
+. The Developer Portal should show the _Location API_ and the _Secure_ plan with a sign up button.
++
+image::images/3scale-dev-portal.png[3scale-dev-portal, role="integr8ly-img-responsive"]
+
 
 [type=verification]
 Were you able to customize the developer portal?
@@ -93,77 +94,47 @@ Try to redo this section, if any problem persists have your instructor check the
 
 . Take the place of one of your developers and signup for the *Secure* plan.
 +
-image::images/16a-signup-limited.png[16a-signup-limited.png, role="integr8ly-img-responsive"]
+image::images/3scale-dev-portal signup.png[3scale-dev-portal signup, role="integr8ly-img-responsive"]
 
 . Fill in your information and an email to register as a developer. Click on the *Sign up* button.
 +
-image::images/16b-signup-form.png[16b-signup-form.png, role="integr8ly-img-responsive"]
+image::images/3scale-dev-portal-signup-form.png[3scale-dev-portal-signup-form, role="integr8ly-img-responsive"]
 
 . The system will try to send a message with an activation link.
 +
-image::images/16bb-signup-thankyou.png[16bb-signup-thankyou.png, role="integr8ly-img-responsive"]
+image::images/3scale-dev-portal-signup-thanks.png[3scale-dev-portal-signup-thanks, role="integr8ly-img-responsive"]
 +
 _Currently the lab environment doesn't have a configured email server, so we won't be able to receive the email_.
 
 . Go back to your _Admin Portal_ tab and navigate to *Audience* to activate the new account.
-+
-image::images/16bc-developers-tab.png[16bc-developers-tab.png, role="integr8ly-img-responsive"]
 
 . Find your user under the _Accounts_ and click the *Activate* link.
 +
-image::images/16cc-activate-account.png[16cc-activate-account.png, role="integr8ly-img-responsive"]
+image::images/3scale-user-activate.png[3scale-user-activate, role="integr8ly-img-responsive"]
 +
 _Your user is now active and can log into the portal_.
 
-. Now we need to make sure the the application will redirect the user to the correct page after successful login. Go to the Developer tab and click on the user you have create in the previous steps.
+. Now we need to make sure the the application will redirect the user to the correct page after successful login. Go to the Developer tab and login as the user you have created in the previous step.
 +
-image::images/20-developers.png[20-developers.png, role="integr8ly-img-responsive"]
+image::images/3scale-dev-portal-signin.png[3scale-dev-portal-signin, role="integr8ly-img-responsive"]
 
-. Click on *Applications*.
+. Click on *See you Applications & their credentials* link.
 +
-image::images/20a-select-applications.png[20a-select-applications.png, role="integr8ly-img-responsive"]
+image::images/3scale-dev-portal-app-link.png[3scale-dev-portal-app-link, role="integr8ly-img-responsive"]
 
 . Select the application for the `SSO Location API` service
 +
-image::images/21-select-application.png[21-select-application.png, role="integr8ly-img-responsive"]
+image::images/3scale-app-location-sso.png[3scale-app-location-sso, role="integr8ly-img-responsive"]
 
 . Update redirect link to `http://www-{user-username}.{openshift-app-host}/*`
 +
-image::images/22-updare-redirect-link.png[22-updare-redirect-link.png, role="integr8ly-img-responsive"]
+image::images/3scale-location-redirect-url.png[3scale-location-redirect-url, role="integr8ly-img-responsive"]
++
+_Copy down the client id and client secret credentials as it you will use them to authenticate yourself to the managed API_.
+
 
 [type=verification]
 Were you able to activate your user account?
-
-[type=verificationFail]
-Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the 3scale API Management application.
-
-[time=10]
-[id="login-dev-portal"]
-== Login to Developer Portal
-
-. As your portal is not currently public, you will need your portal code to
-login. You can get the code in your admin portal navigating to: menu:Audience[Developer Portal > Domains & Access] (You may need to scroll down in the menu).
-+
-image::images/16d-access-portal.png[16d-access-portal.png, role="integr8ly-img-responsive"]
-
-. Open a new _Incognito/Private_ browser window to test the Developer Portal login. Navigate to: `https://{user-username}.{openshift-app-host}/`
-
-. Type your portal code to finish the login.
-+
-image::images/16e-ingress-code.png[16e-ingress-code.png, role="integr8ly-img-responsive"]
-
-. Sign in to the portal.
-+
-image::images/16f-dev-signin.png[16f-dev-signin.png, role="integr8ly-img-responsive"]
-
-. You will land in the developers homepage, where you will be able to check your developers settings and retrieve your newly created *Client ID* and *Client Secret* for the *SSO Location API* service.
-+
-image::images/16g-user-credentials.png[16g-user-credentials.png, role="integr8ly-img-responsive"]
-+
-_Copy down this credentials as it you will use them to authenticate yourself to the managed API_.
-
-[type=verification]
-Were you able to customize the developer portal?
 
 [type=verificationFail]
 Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the 3scale API Management application.

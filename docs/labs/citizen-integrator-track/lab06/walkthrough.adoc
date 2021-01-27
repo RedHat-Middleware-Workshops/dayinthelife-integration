@@ -3,7 +3,7 @@
 :3scale-url: https://www.3scale.net/
 :3scale-admin-url: https://{user-username}-admin.{openshift-app-host}/p/login
 :3scale-dev-portal-url: https://{user-username}.{openshift-app-host}/
-:sso-url: https://sso-sso.{openshift-app-host}/auth/admin/{user-username}/console
+:sso-url: https://keycloak-sso.{openshift-app-host}/auth/admin/{user-username}/console
 :openshift-url: {openshift-host}/console
 :user-password: openshift
 
@@ -53,33 +53,37 @@ OpenShift allows you to automatically redeploy your changes when you setup a Con
 . Navigate to the Solution Explorer on that tab.
 . Click on the *Red Hat OpenShift* link.
 
-. Open your link:{openshift-url}[Openshift Console, window="_blank"]. Navigate to your project's overview page. It will be called `{user-username} Project`.
+. Open your link:{openshift-url}[Openshift Console, window="_blank"]. Navigate to your project's overview page. It will be called `{user-username}`.
 
-. Scroll down and click in the *www* link in the BUILDS section.
+. Scroll down and click in the *www* link in the _Builds_ section.
 +
-image::images/deploy-10.png[01-scroll-down, role="integr8ly-img-responsive"]
+image::images/www-builds-list.png[01-scroll-down, role="integr8ly-img-responsive"]
 
-. In the build configuration page, replace the *CLIENT_ID* from `CHANGE_ME` to the one generated from Integrator Lab 4 (Task 4.6).
+. In the build configuration page, find the *CLIENT_ID* value. It should be `CHANGE_ME`. 
 +
-image::images/deploy-11.png[02-client-id, role="integr8ly-img-responsive"]
+image::images/www-build-env-client-id.png[02-client-id, role="integr8ly-img-responsive"]
+
+. Find the value of the client Id from the Developer Portal in the previous lab and enter this value for *CLIENT_ID* in the build.
 +
-_Make sure the **`SSO_URL`** is set to begin with **`https`**. If it isn't, then replace the `http` with an `https`._
+image::images/3scale-dev-portal-clientid.png[3scale-client-id, role="integr8ly-img-responsive"]
 
 . Click the *Save* button to persist the changes. A green pop up will show you that the changes were saved.
 
 . Click the *Start Build* button to trigger a new build using the new environment variables pointing to your service.
 +
-image::images/deploy-12.png[03-start-build, role="integr8ly-img-responsive"]
+image::images/www-builds-start-build.png[03-start-build, role="integr8ly-img-responsive"]
 
-. A new build will be triggered. Expand the row by clicking the Builds Icon.
+. A new build will be triggered. Expand the logs and monitor until the build is marked complete.
 +
-image::images/deploy-13.png[04-view-build, role="integr8ly-img-responsive"]
+image::images/www-builds-2-complete.png[04-view-build, role="integr8ly-img-responsive"]
 +
 _The build process checks out the code from the git repo, runs a source-to-image container image build, and redeploys the container with the new image using a rolling upgrade strategy._
 
 . Wait for until the new Build to complete and the rolling upgrade to finish to test your new deployment.
 +
-image::images/consume-22.png[22-updated-app, role="integr8ly-img-responsive"]
+image::images/ocp-dev-topology-www.png[22-updated-app, role="integr8ly-img-responsive"]
+
+_Now the application is configured and ready to be tested._
 
 [type=verification]
 Was the build successful?
@@ -183,23 +187,7 @@ image::images/consume-23.png[23-realm-login, role="integr8ly-img-responsive"]
 +
 image::images/consume-14.png[11-locations-page, role="integr8ly-img-responsive"]
 
-== Troubleshooting the Locations Page
 
-. In most cases, the Locations web page will *NOT* show the locations because of a self-signed certificate issue in your web-browser.  See the below example with missing locations:
-+
-image::images/00-missing-locations.png[00-missing-locations, role="integr8ly-img-responsive"]
-
-. To resolve this issue in Chrome, navigate to _View > Developer > Developer Tools_ menu.  A Developer Tools console should appear.
-+
-image::images/00-developer-console.png[00-developer-console, role="integr8ly-img-responsive"]
-
-. In the developer console, a red error should appear indicating a cert issue. Click on the link and accept the certificate.
-+
-_Example link: `https://location-{user-username}-api-staging.amp.{openshift-app-host}/locations`_
-
-. Refresh the page, and the locations should appear.
-+
-image::images/consume-14.png[11-locations-page, role="integr8ly-img-responsive"]
 
 [type=verification]
 Are you able to observe the new locations?
