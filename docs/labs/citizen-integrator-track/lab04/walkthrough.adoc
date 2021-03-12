@@ -144,7 +144,7 @@ image::images/3scale-location-auth-oidc.png[04-authentication.png, role="integr8
 
 . Set the following values for **Authentication Settings**:
 ** OpenID Connect Issuer Type: *`Red Hat Single Sign-On`*
-** OpenID Connect Issuer: *`https://3scale-admin:clientsecret@keycloak-sso.{openshift-app-host}/auth/realms/{user-username}`*
+** OpenID Connect Issuer: *`https://3scale-admin:clientsecret@keycloak-sso.{openshift-app-host}/auth/realms/{user-username}-realm`*
 +
 image::images/3scale-location-oidc-settings.png[05-authentication-settings.png, role="integr8ly-img-responsive"]
 
