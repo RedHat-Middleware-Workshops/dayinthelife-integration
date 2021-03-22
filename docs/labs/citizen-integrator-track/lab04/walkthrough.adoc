@@ -76,6 +76,8 @@ _The secret is set to `clientsecret` for this lab._
 . Click on **Service Account Roles** tab of the _3scale-Admin_ client:
 +
 image::images/sso-3scale-admin-sa-roles.png[sa-roles.png, role="integr8ly-img-responsive"]
++
+NOTE: If you do not see the **Service Account Roles** tab, make sure **Service Accounts Enabled** is **ON** and click on **Save**
 
 . In _Client Roles_, enter **Realm Management**. Select all the available roles and click on **Add Selected** to move to the Assigned Roles text box.
 +
@@ -191,6 +193,8 @@ image::images/3scale-dev-location-app.png[11-create-application.png, role="integ
 . Check the API Credentials section. Click on **Add Random Key** for _Client Secret_.
 +
 image::images/3scale-dev-app-client-secret.png[11-create-application.png, role="integr8ly-img-responsive"]
++
+NOTE: If the **Client ID & Secret** are not seen, navigate to the **Application** page again and you should see the secret generated.
 
 . _Edit_ the _Redirect URL_ and enter the value **`http://www-{user-username}.{openshift-app-host}/`**
 
