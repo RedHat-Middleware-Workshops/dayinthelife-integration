@@ -53,9 +53,7 @@ image::images/3scale-location-product.png[location-api-link, role="integr8ly-img
 
 . Click on **Create Product**.
 
-. Click on **INTEGRATE THIS PRODUCT**  link for the Location API.
-+
-image::images/3scale-location-integrate.png[integrate-api-link, role="integr8ly-img-responsive"]
+. On the **Product: Location** overview page, Click on the **Integration** menu on the left to expand it.
 
 . Click on **Settings** to edit the API settings for the gateway.
 +
@@ -97,7 +95,11 @@ image::images/3scale-app-plan-create.png[app-plan-create-link, role="integr8ly-i
 . Leave the other values unchanged and click on **Create Application Plan**.
 +
 image::images/3scale-app-plan-location-create.png[app-plan-create-location, role="integr8ly-img-responsive"]
-    
+
+. Click on **Publish** button for the _Location Basic Plan_.
++
+image::images/3scale-location-app-plan-publish.png[app-create-location-publish, role="integr8ly-img-responsive"]
+
 . Click on **Product: Location** drop down and select **Audience**.
 +
 image::images/3scale-select-audience.png[audience-select, role="integr8ly-img-responsive"]
@@ -118,12 +120,6 @@ image::images/3scale-app-create-dev.png[app-create-dev, role="integr8ly-img-resp
 . Click on **Create Application** button.
 +
 image::images/3scale-app-create-location-dev.png[app-create-location-dev, role="integr8ly-img-responsive"]
-
-. Click on **Publish** button for the _Location Basic Plan_.
-+
-image::images/3scale-location-app-plan-publish.png[app-create-location-publish, role="integr8ly-img-responsive"]
-
-3scale-location-app-plan-publish.png
 
 [type=verification]
 Was the applcation plan and application created successfully?
@@ -228,6 +224,8 @@ image::images/3scale-policies-cors-headers.png[policies-06.png[policies-06, role
 image::images/3scale-policies-cors-methods-update.png[policies-09, role="integr8ly-img-responsive"]
 
 . Click the **Update Policy** button to save the policy configuration.
+
+. Click on **Update Policy Chain** button to save the policy order & configurations.
 
 [type=verification]
 Was the setup of the API Policy successful?
