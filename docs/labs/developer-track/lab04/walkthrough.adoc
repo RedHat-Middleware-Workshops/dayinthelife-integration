@@ -174,8 +174,8 @@ Try to redo this section, if any problem persists have your instructor check the
 
      ;
 
-     }
- }
+ ...
+
 ----
 
 . Now that we have our API service implementation, we can try to test this locally.  Navigate back to the Terminal and execute the following command:
