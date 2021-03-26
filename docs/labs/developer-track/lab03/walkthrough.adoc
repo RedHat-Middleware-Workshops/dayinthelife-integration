@@ -159,7 +159,7 @@ image::images/che-new-file-location-yaml.png[che-new-file-location-yaml, role="i
 
 . Copy the contents of this https://raw.githubusercontent.com/RedHat-Middleware-Workshops/dayinthelife-integration/master/docs/labs/developer-track/resources/Locations.yaml[file] to your newly created `location.yaml` file.  The file will auto-save so no need to click *Save*.
 
-. Open the *Terminal*. select *OpenShift Tools* and notice that a new terminal window opens in the lower section of the workspace.
+. Select *Open Terminal* -> *Open Terminal in a specific container* -> *openshift tools* and notice that a new terminal window opens in the lower section of the workspace.
 +
 image::images/che-terminal-openshift-tools.png[che-terminal-openshift-tools, role="integr8ly-img-responsive"]
 
