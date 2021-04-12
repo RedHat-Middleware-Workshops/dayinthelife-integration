@@ -1,5 +1,6 @@
 :walkthrough: Managed API using 3scale API Management tools
 :3scale-admin-url: http://{user-username}-admin.{openshift-app-host}
+:sso-url: https://keycloak-sso.{openshift-app-host}/auth/admin/{user-username}-realm/console
 :user-password: openshift
 :next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}/tutorial/dayinthelife-integration.git-developer-track-lab06/
 
@@ -22,20 +23,109 @@ Once you have APIs deployed in your environment, it becomes critically important
 
 Red Hat provides one the leading API Management tools which provide management services. The 3scale API Management solution enables you to quickly and easy protect and manage your APIs.
 
-*Skipping The Lab*
-
-If you are planning to follow to the next lab, there is an already running API proxy for the Location API Service in this endpoint:
 
 *Credentials:*
 
 Your username is: `{user-username}` +
 Your password is: `{user-password}`
 
+
+[type=walkthroughResource]
+.SSO Console
+****
+* link:{sso-url}[Console, window="_blank"]
+****
+
 [type=walkthroughResource]
 .3scale
 ****
 * link:{3scale-admin-url}[3scale Admin Console, window="_blank"]
 ****
+
+[time=3]
+[id="sso-sign-on"]
+== Sign-in to Red Hat SSO
+
+. Launch a new tab on your web browser.
+. Navigate to the Solution Explorer on that tab.
+. Click on the *Red Hat Single Sign-On* link.
+
+. Log in to link:{sso-url}[SSO Admin, window="_blank"] web console using `{user-username}` and password: `{user-password}`. Click on *Log in*.
++
+image::images/sso-login-form.png[00-login-sso.png, role="integr8ly-img-responsive"]
+
+. Select *Clients* from the left menu.
++
+image::images/sso-clients-link.png[00-clients.png, role="integr8ly-img-responsive"]
++
+_A 3scale-admin client and service account was already created for you_.
+
+. Click on the *3scale-admin* link to view the details.
++
+image::images/sso-client-3scale-admin.png[00-3scale-admin.png, role="integr8ly-img-responsive"]
+
+. Click the *Credentials* tab.
++
+image::images/sso-3scale-client-creds.png[00-sa-credentials.png, role="integr8ly-img-responsive"]
+
+. Take note of the client *Secret*. Copy and save it or write it down as you will use it to configure 3scale.
++
+image::images/sso-3scale-admin-secret.png[00-sa-secret.png, role="integr8ly-img-responsive"]
++
+_The secret is set to `clientsecret` for this lab._
+
+. Click on **Service Account Roles** tab of the _3scale-Admin_ client:
++
+image::images/sso-3scale-admin-sa-roles.png[sa-roles.png, role="integr8ly-img-responsive"]
++
+NOTE: If you do not see the **Service Account Roles** tab, make sure **Service Accounts Enabled** is **ON** and click on **Save**
+
+. In _Client Roles_, enter **Realm Management**. Select all the available roles and click on **Add Selected** to move to the Assigned Roles text box.
++
+image::images/sso-3scale-admin-sa-client-roles.png[sa-roles.png, role="integr8ly-img-responsive"]
+
+
+[type=verification]
+Were you able configure the Red Hat SSO correctly?
+
+[type=verificationFail]
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the RH-SSO application.
+
+[time=3]
+[id="add-user-realm"]
+== Add User to Realm
+
+NOTE: If the user is already added as part of the *Integrators* lab, you can skip this section.
+
+. Click on the *Users* menu on the left side of the screen.
++
+image::images/sso-users-link.png[00-users.png, role="integr8ly-img-responsive"]
+
+. Click the *Add user* button.
++
+image::images/sso-add-user-button.png[00-add-user.png, role="integr8ly-img-responsive"]
+
+. Type `apiuser` as the **Username**.
++
+image::images/sso-add-user-username.png[00-username.png, role="integr8ly-img-responsive"]
+
+. Click on the *Save* button.
+. Click on the *Credentials* tab to reset the password. Type `apipassword` as the **New Password** and **Password Confirmation**. Turn OFF the **Temporary** to avoid the password reset at the next login.
++
+image::images/sso-user-credentials.png[00-user-credentials.png, role="integr8ly-img-responsive"]
+
+. Click on **Reset Password**.
+. Click on the **Change password** button in the pop-up dialog.
++
+image::images/sso-change-password-popup.png[00-change-password.png, role="integr8ly-img-responsive"]
+
+[type=verification]
+Were you able to add a user?
+
+[type=verificationFail]
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the RH-SSO application.
+
+_Now you have a user to test your SSO integration._
 
 [time=10]
 [id="lab-instructions"]
