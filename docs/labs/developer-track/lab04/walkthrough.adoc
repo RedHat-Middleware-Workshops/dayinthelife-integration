@@ -92,6 +92,8 @@ Try to redo this section, if any problem persists have your instructor check the
 . In the OpenShift console, click on the route associated with the `location-soap` deployment.  A pop-up will appear.  Append the `/ws/location?wsdl` path to the URI and verify the WSDL appears. Copy the link to the clipboard.
 +
 image::images/00-verify-wsdl.png[00-verify-wsdl.png, role="integr8ly-img-responsive"]
++
+NOTE: The link from Code Ready Workspaces uses *https* protocol, change the URL to use *http* for the WSDL to load. Use the *http* endpoint for the rest of the lab.
 
 . Return to your CodeReady Workspaces workspace and open the `dayintelife-import/location-soap2rest` project.  Open the `pom.xml` file and scroll to the bottom.  Uncomment out the `cxf-codegen-plugin` entry at the bottom.  Update the `<wsdl>` entry with your fully qualified WSDL URL e.g. `http://location-soap-{user-username}.{openshift-app-host}/ws/location?wsdl`.
 +

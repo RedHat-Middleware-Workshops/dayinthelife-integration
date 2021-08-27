@@ -1,5 +1,5 @@
 :walkthrough: API Mocking
-:microcks-url: http://microcks.{openshift-app-host}
+:microcks-url: https://microcks-microcks.{openshift-app-host}
 :next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}/tutorial/dayinthelife-integration.git-developer-track-lab03/
 :user-password: openshift
 :wip-link: http://location-service-international.{openshift-app-host}/locations
