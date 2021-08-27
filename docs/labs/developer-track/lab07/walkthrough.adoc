@@ -1,7 +1,7 @@
 :walkthrough: Create a simple web application which consumes the API you built earlier in the exercises
 :user-password: openshift
 :next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}/tutorial/dayinthelife-integration.git-citizen-integrator-track-lab07/
-:sso-url: https://sso-sso.{openshift-app-host}/auth/admin/{user-username}/console
+:sso-url: https://keycloak-sso.{openshift-app-host}/auth/admin/{user-username}-realm/console
 
 ifdef::env-github[]
 :next-lab-url: ../../citizen-integrator-track/lab07/walkthrough.adoc
@@ -49,29 +49,31 @@ OpenShift let you automatically redeploy your changes when you setup a Continuou
 
 . Navigate to the link:{openshift-host}[OpenShift Console]. Go to your project's overview page.
 
-. Scroll down and click in the www link in the BUILDS section.
+. Scroll down and click on the *www* link in the _BUILDS_ section.
 +
-image::images/deploy-10.png[01-scroll-down, role="integr8ly-img-responsive"]
+image::images/ocp-build-www-link.png[ocp-build-www-link, role="integr8ly-img-responsive"]
 
-. In the build configuration page, replace the `CLIENT_ID` from `CHANGE_ME` to the one generated from https://tutorial-web-app-webapp.{openshift-app-host}/tutorial/dayinthelife-integration.git-developer-track-lab06/task/1[Lab 06 Step 2.9]
+. In the build configuration page, click on *Environment* tab.
+. Replace the `CLIENT_ID` from `CHANGE_ME` to the one generated from https://tutorial-web-app-webapp.{openshift-app-host}/tutorial/dayinthelife-integration.git-developer-track-lab06/task/1[Lab 06 Step 2.9]
 +
-image::images/deploy-11.png[02-client-id, role="integr8ly-img-responsive"]
+image::images/ocp-build-change-clientid.png[ocp-build-change-clientid, role="integr8ly-img-responsive"]
 
-. Click Save button to persist the changes. A green pop up will show you that the changes were saved.
+. Click Save button to persist the changes. A green message will show you that the changes were saved.
 
 . Click the Start Build button to trigger a new build using the new environment variables pointing to your service.
 +
-image::images/deploy-12.png[03-start-build, role="integr8ly-img-responsive"]
+image::images/ocp-build-start.png[ocp-build-start, role="integr8ly-img-responsive"]
 
-. A new build will be triggered. Expand the row by clicking the Builds Icon.
-+
-image::images/deploy-13.png[04-view-build, role="integr8ly-img-responsive"]
-+
-_The build process checks out the code from the git repo, runs a source-to-image container image build, and redeploys the container with the new image using a rolling upgrade strategy._
+. A new build will be triggered. 
+
+. _The build process checks out the code from the git repo, runs a source-to-image container image build, and redeploys the container with the new image using a rolling upgrade strategy._
 
 . Wait until the new Build to complete and the rolling upgrade to finish to test your new deployment.
+
+
+. Navigate to the *Topology* section and check that the pod is running.
 +
-image::images/consume-22.png[22-updated-app, role="integr8ly-img-responsive"]
+image::images/ocp-topology-pod.png[ocp-topology-pod, role="integr8ly-img-responsive"]
 
 [type=verification]
 Was the build successful?
@@ -89,11 +91,11 @@ Redirect URLs are a critical part of the OAuth flow. After a user successfully a
 
 . Log into Red Hat Single Sign On using your designated credentials: `{user-username}` and `{user-password}`. Click on *Sign In*.
 +
-image::images/00-login-sso.png[00-login-sso.png, role="integr8ly-img-responsive"]
+image::images/sso-realm-console-login.png[sso-realm-console-login, role="integr8ly-img-responsive"]
 
 . Select *Clients* from the left menu.
 +
-image::images/00-clients.png[00-clients.png, role="integr8ly-img-responsive"]
+image::images/sso-clients-list.png[sso-clients-list, role="integr8ly-img-responsive"]
 +
 
 _3scale, through it's https://github.com/3scale/zync/[zync] component, already synchronized the application information into the Red Hat SSO security realm_.
@@ -126,7 +128,7 @@ image::images/consume-24.png[24-client-application, role="integr8ly-img-responsi
 |===
 
 +
-image::images/consume-25.png[25-client-config, role="integr8ly-img-responsive"]
+image::images/sso-client-config.png[sso-client-config, role="integr8ly-img-responsive"]
 
 . Finally, click *Save* button to persist the changes.
 
@@ -144,15 +146,17 @@ Try to redo this section, if any problem persists have your instructor check the
 . Open a browser tab and navigate to `http://www-{user-username}.{openshift-app-host}/locations.html`.
 
 . Click the *Sign In to access the Location API Service* button.
++
+image::images/www-location-signin-link.png[www-location-signin-link, role="integr8ly-img-responsive"]
 
 . You are being redirected to Red Hat Single Sign On *Login Page*. Login using
  ** Username: *`{user-username}`*
  ** Password: *`{user-password}`*
 +
-image::images/consume-23.png[23-realm-login, role="integr8ly-img-responsive"]
+image::images/www-login-sso-realm.png[www-login-sso-realm, role="integr8ly-img-responsive"]
 
 . You will be redirected again to the *LOCATIONS* page where now you will be able to see the map with the International Inc Offices.
-If you can not see any locations on the map, it may be because the API endpoint uses a self-signed certificate. If this is the case, visit `https://location-{user-username}-api-staging.amp.{openshift-app-host}/locations` and accept the certificate. Reload the *LOCATIONS* page and the locations should be on the map.
+The locations should be on the map.
 +
 image::images/consume-14.png[11-locations-page, role="integr8ly-img-responsive"]
 

@@ -2,7 +2,7 @@
 :next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}/tutorial/dayinthelife-integration.git-citizen-integrator-track-lab05/
 :3scale-url: https://www.3scale.net/
 :3scale-admin-url: https://{user-username}-admin.{openshift-app-host}/p/login
-:sso-url: https://sso-sso.{openshift-app-host}/auth/admin/{user-username}/console
+:sso-url: https://keycloak-sso.{openshift-app-host}/auth/admin/{user-username}-realm/console
 :user-password: openshift
 
 ifdef::env-github[]
@@ -51,28 +51,41 @@ Your password is: `{user-password}`
 
 . Log in to link:{sso-url}[SSO Admin, window="_blank"] web console using `{user-username}` and password: `{user-password}`. Click on *Log in*.
 +
-image::images/00-login-sso.png[00-login-sso.png, role="integr8ly-img-responsive"]
+image::images/sso-login-form.png[00-login-sso.png, role="integr8ly-img-responsive"]
 
 . Select *Clients* from the left menu.
 +
-image::images/00-clients.png[00-clients.png, role="integr8ly-img-responsive"]
+image::images/sso-clients-link.png[00-clients.png, role="integr8ly-img-responsive"]
 +
 _A 3scale-admin client and service account was already created for you_.
 
 . Click on the *3scale-admin* link to view the details.
 +
-image::images/00-3scale-admin.png[00-3scale-admin.png, role="integr8ly-img-responsive"]
+image::images/sso-client-3scale-admin.png[00-3scale-admin.png, role="integr8ly-img-responsive"]
 
 . Click the *Credentials* tab.
 +
-image::images/00-sa-credentials.png[00-sa-credentials.png, role="integr8ly-img-responsive"]
+image::images/sso-3scale-client-creds.png[00-sa-credentials.png, role="integr8ly-img-responsive"]
 
-. Take note of the service account *Secret*. Copy and save it or write it down as you will use it to configure 3scale.
+. Take note of the client *Secret*. Copy and save it or write it down as you will use it to configure 3scale.
 +
-image::images/00-sa-secret.png[00-sa-secret.png, role="integr8ly-img-responsive"]
+image::images/sso-3scale-admin-secret.png[00-sa-secret.png, role="integr8ly-img-responsive"]
++
+_The secret is set to `clientsecret` for this lab._
+
+. Click on **Service Account Roles** tab of the _3scale-Admin_ client:
++
+image::images/sso-3scale-admin-sa-roles.png[sa-roles.png, role="integr8ly-img-responsive"]
++
+NOTE: If you do not see the **Service Account Roles** tab, make sure **Service Accounts Enabled** is **ON** and click on **Save**
+
+. In _Client Roles_, enter **Realm Management**. Select all the available roles and click on **Add Selected** to move to the Assigned Roles text box.
++
+image::images/sso-3scale-admin-sa-client-roles.png[sa-roles.png, role="integr8ly-img-responsive"]
+
 
 [type=verification]
-Were you able copy the details of the service account?
+Were you able configure the Red Hat SSO correctly?
 
 [type=verificationFail]
 Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the RH-SSO application.
@@ -83,25 +96,25 @@ Try to redo this section, if any problem persists have your instructor check the
 
 . Click on the *Users* menu on the left side of the screen.
 +
-image::images/00-users.png[00-users.png, role="integr8ly-img-responsive"]
+image::images/sso-users-link.png[00-users.png, role="integr8ly-img-responsive"]
 
 . Click the *Add user* button.
 +
-image::images/00-add-user.png[00-add-user.png, role="integr8ly-img-responsive"]
+image::images/sso-add-user-button.png[00-add-user.png, role="integr8ly-img-responsive"]
 
 . Type `apiuser` as the **Username**.
 +
-image::images/00-username.png[00-username.png, role="integr8ly-img-responsive"]
+image::images/sso-add-user-username.png[00-username.png, role="integr8ly-img-responsive"]
 
 . Click on the *Save* button.
 . Click on the *Credentials* tab to reset the password. Type `apipassword` as the **New Password** and **Password Confirmation**. Turn OFF the **Temporary** to avoid the password reset at the next login.
 +
-image::images/00-user-credentials.png[00-user-credentials.png, role="integr8ly-img-responsive"]
+image::images/sso-user-credentials.png[00-user-credentials.png, role="integr8ly-img-responsive"]
 
 . Click on **Reset Password**.
 . Click on the **Change password** button in the pop-up dialog.
 +
-image::images/00-change-password.png[00-change-password.png, role="integr8ly-img-responsive"]
+image::images/sso-change-password-popup.png[00-change-password.png, role="integr8ly-img-responsive"]
 
 [type=verification]
 Were you able to add a user?
@@ -109,7 +122,7 @@ Were you able to add a user?
 [type=verificationFail]
 Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the RH-SSO application.
 
-_Now you have a user to test your integration._
+_Now you have a user to test your SSO integration._
 
 [time=4]
 [id="configure-3scale-integration]
@@ -119,49 +132,39 @@ _Now you have a user to test your integration._
 +
 image::images/01-login.png[01-login.png, role="integr8ly-img-responsive"]
 
-. The first page you will land is the _API Management Dashboard_. Click on the **INTEGRATION** menu link.
+. The first page you will land is the _API Management Dashboard_. Click on the **INTEGRATION** menu link of the **LOCATION** API.
 +
-image::images/01a-dashboard.png[01a-dashboard.png, role="integr8ly-img-responsive"]
+image::images/3scale-location-api-integration.png[01a-dashboard.png, role="integr8ly-img-responsive"]
 
-. Click on the **edit integration settings** to edit the API settings for the gateway.
+. Click on the **Settings** to edit the API settings for the gateway.
 +
-image::images/03-edit-settings.png[03-edit-settings.png, role="integr8ly-img-responsive"]
+image::images/3scale-location-settings.png[03-edit-settings.png, role="integr8ly-img-responsive"]
 
-. Scroll down the page, under the _Authentication_ deployment options, select **OpenID Connect**.
+. Scroll down the page, under the _AUTHENTICATION_ deployment options, select **OpenID Connect**.
 +
-image::images/04-authentication.png[04-authentication.png, role="integr8ly-img-responsive"]
+image::images/3scale-location-auth-oidc.png[04-authentication.png, role="integr8ly-img-responsive"]
 
-. Click on the **Update Service** button.
+. Set the following values for **Authentication Settings**:
+** OpenID Connect Issuer Type: *`Red Hat Single Sign-On`*
+** OpenID Connect Issuer: *`https://3scale-admin:clientsecret@keycloak-sso.{openshift-app-host}/auth/realms/{user-username}-realm`*
++
+image::images/3scale-location-oidc-settings.png[05-authentication-settings.png, role="integr8ly-img-responsive"]
 
-. Dismiss the warning about changing the Authentication mode by clicking *OK*.
-+
-image::images/04b-authentication-warning.png[04b-authentication-warning.png, role="integr8ly-img-responsive"]
+. Scroll down to the _CREDENTIALS LOCATION_ and select **As HTTP Headers**.
 
-. Back in the service integration page, click on the **edit APIcast configuration**.
-+
-image::images/05-edit-apicast.png[05-edit-apicast.png, role="integr8ly-img-responsive"]
+. Scroll down to the bottom and click on **Update Product**.
 
-. Scroll down the page and expand the authentication options by clicking the **Authentication Settings** link.
+. Notice that the _Configuration_ has a warning indicating the API configuration changes are updated. Click on **Configuration** link.
 +
-image::images/05-authentication-settings.png[05-authentication-settings.png, role="integr8ly-img-responsive"]
+image::images/3scale-location-config.png[08-back-integration.png, role="integr8ly-img-responsive"]
 
-. In the **OpenID Connect Issuer** field, type in your previously noted client credentials with the URL of your Red Hat Single Sign On instance: *`https://3scale-admin:CLIENT_SECRET@sso-sso.{openshift-app-host}/auth/realms/{user-username}`*
+. Click on the **Promote v.2 to Staging APIcast** button.
 +
-_Don't forget to replace the `CLIENT_SECRET` in the URL with the secret copied from Lab 4 Task 1.5 (`3scale_admin` client secret)_
-+
-image::images/06-openid-issuer.png[06-openid-issuer.png, role="integr8ly-img-responsive"]
+image::images/3scale-location-promote-staging.png[08-back-integration.png, role="integr8ly-img-responsive"]
 
-. Scroll down the page and click on the **Update Staging Environment** button.
+. Promote to Production by clicking the **Promote v.2 to Production APIcast** button.
 +
-image::images/08-back-integration.png[08-back-integration.png, role="integr8ly-img-responsive"]
-
-. After the reload, scroll down again and click the **Back to Integration & Configuration** link.
-+
-image::images/07-update-environment.png[07-update-environment.png, role="integr8ly-img-responsive"]
-
-. Promote to Production by clicking the **Promote to Production** button.
-+
-image::images/08a-promote-production.png[08a-promote-production.png, role="integr8ly-img-responsive"]
+image::images/3scale-location-promote-prod.png[08a-promote-production.png, role="integr8ly-img-responsive"]
 
 [type=verification]
 Were you able to reconfigure APIcast?
@@ -177,30 +180,35 @@ Try to redo this section, if any problem persists have your instructor check the
 
 . Go to the _Audience_ dropdown and click on **Developers**.
 +
-image::images/09-developers.png[09-developers.png, role="integr8ly-img-responsive"]
+image::images/3scale-audience-dev.png[09-developers.png, role="integr8ly-img-responsive"]
 
 . Click on the **Applications** link.
 +
-image::images/10-applications.png[10-applications.png, role="integr8ly-img-responsive"]
+image::images/3scale-dev-apps.png[10-applications.png, role="integr8ly-img-responsive"]
 
-. Click on **Create Application** link.
+. Click on *dev_location_app** link. 
 +
-image::images/11-create-application.png[11-create-application.png, role="integr8ly-img-responsive"]
+image::images/3scale-dev-location-app.png[11-create-application.png, role="integr8ly-img-responsive"]
 
-. Select **Basic** plan from the combo box. Type the following information:
- ** Name: *`Secure App`*
- ** Description: *`OpenID Connect Secured Application`*
-
-. Finally, scroll down the page and click on the **Create Application** button.
+. Check the API Credentials section. Click on **Add Random Key** for _Client Secret_.
 +
-image::images/13-create-app.png[13-create-app.png, role="integr8ly-img-responsive"]
-
-. Update the **Redirect URL** to `http://www-{user-username}.{openshift-app-host}/*`. And note the **API Credentials**. Write them down as you will need the **Client ID** and the **Client Secret** to test your integration.
+image::images/3scale-dev-app-client-secret.png[11-create-application.png, role="integr8ly-img-responsive"]
 +
-image::images/14-app-credentials.png[14-app-credentials.png]
+NOTE: If the **Client ID & Secret** are not seen, navigate to the **Application** page again and you should see the secret generated.
+
+. _Edit_ the _Redirect URL_ and enter the value **`http://www-{user-username}.{openshift-app-host}/`**
+
+
+. Note the **Client ID** and the **Client Secret**, which is required later to test your integration.
++
+image::images/3scale-dev-app-credentials.png[14-app-credentials.png, role="integr8ly-img-responsive"]
+
+. Navigate back to the SSO portal and click on **Clients** list. You should see the new client with same client id as in 3scale created in SSO. 
++
+image::images/sso-app-client-list.png[sso-app-client-list.png.png, role="integr8ly-img-responsive"]
 
 [type=verification]
-Were you able to create an application?
+Were you able to update an application?
 
 [type=verificationFail]
 Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the 3scale API Management application.

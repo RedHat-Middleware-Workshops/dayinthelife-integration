@@ -73,19 +73,25 @@ public class CamelRoutes extends RouteBuilder {
 			//SSO and TOKENS
 			
 			.removeHeaders("CamelHttp*")
+			.removeHeaders("X-forwarded*")
+			.removeHeaders("x-forwarded*")
 			//Get TKN from SSO
 				.setHeader(Exchange.HTTP_METHOD, constant("POST"))
 				.setHeader(Exchange.CONTENT_TYPE, constant(MediaType.APPLICATION_FORM_URLENCODED_VALUE))
-				.setBody(simple("username={{env:SSO_USERNAME}}&password={{env:SSO_PASSWORD}}&grant_type=password&client_id=admin-cli"))
-			.toD("https4://sso-sso.${headers.openshiftappurl}/auth/realms/master/protocol/openid-connect/token?sslContextParameters=#ssl&bridgeEndpoint=true")
+				.setHeader(Exchange.CONTENT_ENCODING, constant("UTF-8"))
+				.setBody(constant("username={{env:SSO_USERNAME}}&grant_type=password&client_id=admin-cli&password={{env:SSO_PASSWORD}}"))
+				.to("log:DEBUG?showBody=true&showHeaders=true")
+			.toD("https4://keycloak-sso.${headers.openshiftappurl}/auth/realms/master/protocol/openid-connect/token?sslContextParameters=#ssl&bridgeEndpoint=true")
 			.setHeader("tkn").jsonpath("access_token")
-			//.log("return---->  ${header.tkn}")	
+			.log("return---->  ${header.tkn}")
 		
 			.removeHeaders("CamelHttp*")
+			.removeHeaders("X-forwarded*")
+			.removeHeaders("x-forwarded*")
 			//GET Client ID
 				.setHeader(Exchange.HTTP_METHOD, constant("GET"))
 				.setHeader("Authorization").simple("Bearer ${headers.tkn}")
-			.toD("https4://sso-sso.${headers.openshiftappurl}/auth/admin/realms/${headers.userid}/clients?sslContextParameters=#ssl&bridgeEndpoint=true")
+			.toD("https4://keycloak-sso.${headers.openshiftappurl}/auth/admin/realms/${headers.userid}-realm/clients?sslContextParameters=#ssl&bridgeEndpoint=true")
 			.setHeader("idClientAdmin").jsonpath("$..[?(@.clientId == '3scale-admin')].id")
 			//.log("return---->  ${headers.idClientAdmin}")	
 			
@@ -93,7 +99,7 @@ public class CamelRoutes extends RouteBuilder {
 			//GET Client Secret
 				.setHeader(Exchange.HTTP_METHOD, constant("GET"))
 				.setHeader("Authorization").simple("Bearer ${headers.tkn}")
-			.toD("https4://sso-sso.${headers.openshiftappurl}/auth/admin/realms/${headers.userid}/clients/${headers.idClientAdmin}/client-secret?sslContextParameters=#ssl&bridgeEndpoint=true")
+			.toD("https4://keycloak-sso.${headers.openshiftappurl}/auth/admin/realms/${headers.userid}-realm/clients/${headers.idClientAdmin}/client-secret?sslContextParameters=#ssl&bridgeEndpoint=true")
 			.setHeader("secret").jsonpath("value")
 			.log("return---->  ${headers.secret}")	
 		
@@ -102,6 +108,8 @@ public class CamelRoutes extends RouteBuilder {
 			//3scale Setups
 			
 			.removeHeaders("CamelHttp*")
+			.removeHeaders("X-forwarded*")
+			.removeHeaders("x-forwarded*")
 			//Create Service
 				//.setHeader("apiToken", constant(apiToken))
 				//.setHeader("userid", constant(userid))
@@ -125,7 +133,7 @@ public class CamelRoutes extends RouteBuilder {
 			//Setup Proxies
 				.setHeader(Exchange.HTTP_METHOD, constant("PATCH"))
 				.setHeader(Exchange.CONTENT_TYPE, constant(MediaType.APPLICATION_FORM_URLENCODED_VALUE))
-				.setBody(simple("access_token=${headers.apiToken}&endpoint=https%3A%2F%2Flocation-${headers.userid}-api.amp.${headers.openshiftappurl}%3A443&api_backend=http%3A%2F%2Flocation-service.${headers.userid}.svc%3A8080&sandbox_endpoint=https%3A%2F%2Flocation-${headers.userid}-api-staging.amp.${headers.openshiftappurl}%3A443&oidc_issuer_endpoint=https%3A%2F%2F3scale-admin%3A${headers.secret}%40sso-sso.${headers.openshiftappurl}%2Fauth%2Frealms%2F${headers.userid}"))
+				.setBody(simple("access_token=${headers.apiToken}&endpoint=https%3A%2F%2Flocation-${headers.userid}-api.${headers.openshiftappurl}%3A443&api_backend=http%3A%2F%2Flocation-service.${headers.userid}.svc%3A8080&sandbox_endpoint=https%3A%2F%2Flocation-${headers.userid}-apicast-staging.${headers.openshiftappurl}%3A443&oidc_issuer_endpoint=https%3A%2F%2F3scale-admin%3A${headers.secret}%40keycloak-sso.${headers.openshiftappurl}%2Fauth%2Frealms%2F${headers.userid}-realm"))
 			.toD("https4://${headers.userid}-admin.${headers.openshiftappurl}/admin/api/services/${headers.serviceid}/proxy.xml?sslContextParameters=#ssl&bridgeEndpoint=true")
 			
 			.removeHeaders("CamelHttp*")

@@ -1,5 +1,5 @@
 :walkthrough: Import an OpenAPI Specification using Apicurio Studio
-:apicurio-studio-url: http://apicurio-studio.{openshift-app-host}
+:api-designer-url: https:///apicurito-ui-apicurito.{openshift-app-host}
 :next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}/tutorial/dayinthelife-integration.git-developer-track-lab02/
 :user-password: openshift
 
@@ -10,7 +10,7 @@ endif::[]
 [id='api-design']
 = Developer Lab 1 - API Design
 
-In this lab you will use Apicurio Studio to Import a simple OpenAPI definition in APIcurio Studio.
+In this lab you will use Red Hat API Designer to Import a simple OpenAPI definition in APIcurio Studio.
 
 Audience: API Owner, Product Manager, Developers, Architects
 
@@ -28,112 +28,95 @@ Red Hat is one of the founding members of the Linux Foundation Open API Initiati
 
 If you are planning to skip this lab and follow the next one, here is a https://github.com/hguerrero/3scaleworkshop-openapi/blob/Lab-01/locations-api/Locations-UserX.yaml[link] to the specification generated in this lab.
 
-*Credentials:*
-
-Your username is: `{user-username}` +
-Your password is: `{user-password}`
 
 [type=walkthroughResource]
-.Apicurio
+.API Designer
 ****
-* link:{apicurio-studio-url}[Apicurio Studio, window="_blank"]
+* link:{api-designer-url}[API Designer, window="_blank"]
 ****
 
 [time=10]
-[id="importing-apis-with-apicurio-studio"]
-== Importing APIs with Apicurio Studio
+[id="importing-apis-with-api-designer"]
+== Importing APIs with API Designer
 
 . Launch a new tab on your web browser.
 . Navigate to the Solution Explorer on that tab.
-. Click on the *Apicurio* link.
+. Click on the *API Designer* link.
 
-. Log in to link:{apicurio-studio-url}[Apicurio Studio, window="_blank"] web console using `{user-username}` and `{user-password}`.
+. Open link:{api-designer-url}[Apicurio Studio, window="_blank"] web console.
 +
-image::images/design-01.png[design-login, role="integr8ly-img-responsive"]
+image::images/api-designer-console.png[api-designer-console, role="integr8ly-img-responsive"]
 
-. Click on *APIs* in the left side navigation menu from the Dashboard page.
-+
-image::images/design-02.png[design-apis, role="integr8ly-img-responsive"]
+. Import the API created by your friendly Citizen Integrator, download the following API specification to your laptop:
+ ** Url: `+https://raw.githubusercontent.com/RedHat-Middleware-Workshops/dayinthelife-integration/master/docs/labs/developer-track/resources/Locations.yaml+`
 
-. Click on *Import API*.
-+
-image::images/design-03.png[design-new-api, role="integr8ly-img-responsive"]
+. In the API Designer, click on *Open API* and select the *Locations.yaml* file.
 
-. Import the API created by your friendly Citizen Integrator:
- ** Import Type: *Import From URL*
- ** Url: `+https://raw.githubusercontent.com/RedHatWorkshops/dayinthelife-integration/master/docs/labs/developer-track/resources/Locations.yaml+`
-
-+
-image::images/design-04.png[design-import-api, role="integr8ly-img-responsive"]
-. Click on *Import API*.
-. Finally, click on *Edit API* to walkthrough your newly imported API.
-+
-image::images/design-05.png[design-edit-api, role="integr8ly-img-responsive"]
 
 [type=verification]
-Did the API successfully get created?
+Did the API successfully get imported?
 
 [type=verificationFail]
-Have your instructor check the Kubernetes pod that contains the Apicurio Studio application.
+Have your instructor check the Kubernetes pod that contains the API Designer application.
 
 === Step 2: Verifying APIs
 
-You are now in the main screen to edit your APIs. Different from other API editor products, Apicurio's Editor is a graphical, form-based editor. With Apicurio you don't need master in and out all the details of the *OpenAPI Specification*. It allows you to design beautiful, functionals APIs with zero coding.
+You are now in the main screen to edit your APIs. Different from other API editor products, API Designer's Editor is a graphical, form-based editor. With API Designer, you don't need master in and out all the details of the *OpenAPI Specification*. It allows you to design beautiful, functionals APIs with zero coding.
 
 Let's start verifying your API.
 
 . Time to verify our data definitions for the API. Click on the `+location/phone/{id}+` link under the _Paths_.
 +
-image::images/design-15.png[design-add-definition, role="integr8ly-img-responsive"]
+image::images/api-designer-location-path.png[api-designer-location-path, role="integr8ly-img-responsive"]
 
 . Notice that this API path has a single path parameter (`id` defined as an `int32`) and a single GET operation defined.  Click on the GET operation, then click the location drop-down which is part of the 200 OK response.
 +
-image::images/design-16.png[design-definition-name, role="integr8ly-img-responsive"]
+image::images/api-dsigner-id-int32.png[api-dsigner-id-int32, role="integr8ly-img-responsive"]
 
 . Notice that this API path has a single response defined (a `200 OK` response) and the type that is returned is a `location` object.
 +
-image::images/design-17.png[design-definition-types, role="integr8ly-img-responsive"]
+image::images/api-dsigner-location-response.png[api-dsigner-location-response, role="integr8ly-img-responsive"]
 
 [type=verification]
 Were the correct HTTP Response received?
 
 [type=verificationFail]
-Have your instructor check the Kubernetes pod that contains the Apicurio Studio application.
+Have your instructor check the Kubernetes pod that contains the API Designer application.
 
 === Step 3: Verify the location object
 
 . Click on the `</> location` object link under the _Data Types_ section.  Notice that the object has a bunch of properties defined which make up the object.
 +
-image::images/design-06.png[design-add-path, role="integr8ly-img-responsive"]
+image::images/api-designer-location-datatype.png[api-designer-location-datatype, role="integr8ly-img-responsive"]
 
 . Click on the source link and notice that we have both YAML and JSON schemas generated by our object design:
 +
-image::images/design-07.png[design-path, role="integr8ly-img-responsive"]
+image::images/api-designer-source.png[api-designer-source, role="integr8ly-img-responsive"]
 
 === Step 4: Verify the /locations path
 
 . Click the */locations* path.  Then click on the source tab.  Notice that we have both a GET and POST request defined, together with a couple of example requests.  Using a POST method, we can insert a new record into our sample database with Fuse.
 +
-image::images/design-23.png[design-locations-api, role="integr8ly-img-responsive"]
+image::images/api-designer-locations-path-methods.png[api-designer-locations-path-methods, role="integr8ly-img-responsive"]
 
 [type=verification]
 Were the location object successfully created?
 
 [type=verificationFail]
-Have your instructor check the Kubernetes pod that contains the Apicurio Studio application.
+Have your instructor check the Kubernetes pod that contains the API Designer application.
 
-_Congratulations!_ You have imported your first API definition based on the OpenAPI Specification  using Red Hat's Apicurio.
+_Congratulations!_ You have imported your first API definition based on the OpenAPI Specification  using Red Hat's API Designer.
 
 [time=1]
 [id="step-beyond"]
 == Steps Beyond
 
-So, you want more? Did you notice the link *source* when editing the _Paths_ or the _Definitions_? Get back to the API editor and follow the link. What do you see? Apicurio lets you follow the form-based editor or go one step beyond and also lets you direct edit the source of your API definition.
+So, you want more? Did you notice the link *source* when editing the _Paths_ or the _Definitions_? Get back to the API editor and follow the link. What do you see? API Designer lets you follow the form-based editor or go one step beyond and also lets you direct edit the source of your API definition.
 [time=1]
 [id="summary"]
 == Summary
 
-In this lab you used Apicurio Studio to import a simple API definition using the OpenAPI Specification (Swagger 2.0). You learned how to author and download a standards compliant API Specification using Red Hat's APICurio.
+In this lab you used API Designer to import a simple API definition using the OpenAPI Specification (Swagger 2.0). You learned how to author and download a standards compliant API Specification using Red Hat's APICurio.
 
 You can now proceed to link:{next-lab-url}[Lab 2].
 
