@@ -77,11 +77,12 @@ _The secret is set to `clientsecret` for this lab._
 +
 image::images/sso-3scale-admin-sa-roles.png[sa-roles.png, role="integr8ly-img-responsive"]
 +
-NOTE: If you do not see the **Service Account Roles** tab, make sure **Service Accounts Enabled** is **ON** and click on **Save**
+NOTE: If you do not see the **Service Account Roles** tab, make sure **Service Accounts Enabled** is **ON**, **Standard Flow Enabled** is **OFF** and click on **Save**. 
 
 . In _Client Roles_, enter **Realm Management**. Select all the available roles and click on **Add Selected** to move to the Assigned Roles text box.
 +
 image::images/sso-3scale-admin-sa-client-roles.png[sa-roles.png, role="integr8ly-img-responsive"]
+
 
 
 [type=verification]
