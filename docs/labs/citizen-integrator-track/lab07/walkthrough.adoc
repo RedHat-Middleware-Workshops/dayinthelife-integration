@@ -3,7 +3,7 @@
 :3scale-admin-url: https://{user-username}-admin.{openshift-app-host}/p/login
 :3scale-dev-portal-url: https://{user-username}.{openshift-app-host}/
 :fuse-online-url: https://syndesis-{user-username}-fuse.{openshift-app-host}
-:openshift-url: {openshift-host}/console
+:openshift-url: {openshift-host}/
 :user-password: openshift
 
 [id='fuse-bonus-lab']
@@ -236,7 +236,7 @@ image::images/n30-choose-data-mapping.png[n30-choose-data-mapping, role="integr8
 +
 image::images/fuse-online-api-datamapper-done.png[n31-data-map-response, role="integr8ly-img-responsive"]
 
-. Click *Publish* on the next screen. 
+. Click *Publish* on the next screen.
 +
 image::images/fuse-online-int-publish.png[n32-publish, role="integr8ly-img-responsive"]
 
@@ -244,7 +244,7 @@ image::images/fuse-online-int-publish.png[n32-publish, role="integr8ly-img-respo
 +
 image::images/fuse-online-int-save-publish.png[n32-publish, role="integr8ly-img-responsive"]
 
-. Wait for a couple of minutes until the API is published. 
+. Wait for a couple of minutes until the API is published.
 +
 image::images/fuse-online-int-published.png[fuse-online-int-published.png, role="integr8ly-img-responsive"]
 +
@@ -387,7 +387,7 @@ image::images/3scale-int-create-app-link.png[3scale-int-create-app-link.png, rol
 . Select *basic-integration* as the _Application Plan_.
 . Select *Default* as the _Service Plan_.
 . Enter *i-integration* as the _Name_.
-. Click *Create Application*. 
+. Click *Create Application*.
 +
 image::images/3scale-int-create-app-form.png[3scale-int-create-app-form.png, role="integr8ly-img-responsive"]
 

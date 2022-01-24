@@ -77,7 +77,7 @@ _The secret is set to `clientsecret` for this lab._
 +
 image::images/sso-3scale-admin-sa-roles.png[sa-roles.png, role="integr8ly-img-responsive"]
 +
-NOTE: If you do not see the **Service Account Roles** tab, make sure **Service Accounts Enabled** is **ON**, **Standard Flow Enabled** is **OFF** and click on **Save**. 
+NOTE: If you do not see the **Service Account Roles** tab, make sure **Service Accounts Enabled** is **ON**, **Standard Flow Enabled** is **OFF** and click on **Save**.
 
 . In _Client Roles_, enter **Realm Management**. Select all the available roles and click on **Add Selected** to move to the Assigned Roles text box.
 +
@@ -187,7 +187,7 @@ image::images/3scale-audience-dev.png[09-developers.png, role="integr8ly-img-res
 +
 image::images/3scale-dev-apps.png[10-applications.png, role="integr8ly-img-responsive"]
 
-. Click on *dev_location_app** link. 
+. Click on *dev_location_app* link.
 +
 image::images/3scale-dev-location-app.png[11-create-application.png, role="integr8ly-img-responsive"]
 
@@ -204,7 +204,7 @@ NOTE: If the **Client ID & Secret** are not seen, navigate to the **Application*
 +
 image::images/3scale-dev-app-credentials.png[14-app-credentials.png, role="integr8ly-img-responsive"]
 
-. Navigate back to the SSO portal and click on **Clients** list. You should see the new client with same client id as in 3scale created in SSO. 
+. Navigate back to the SSO portal and click on **Clients** list. You should see the new client with same client id as in 3scale created in SSO.
 +
 image::images/sso-app-client-list.png[sso-app-client-list.png.png, role="integr8ly-img-responsive"]
 

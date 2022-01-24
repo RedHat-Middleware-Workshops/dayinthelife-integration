@@ -78,7 +78,7 @@ image::images/api-dsigner-id-int32.png[api-dsigner-id-int32, role="integr8ly-img
 image::images/api-dsigner-location-response.png[api-dsigner-location-response, role="integr8ly-img-responsive"]
 
 [type=verification]
-Were the correct HTTP Response received?
+Did you verify the `200 OK` response returns a `location`?
 
 [type=verificationFail]
 Have your instructor check the Kubernetes pod that contains the API Designer application.
@@ -100,7 +100,7 @@ image::images/api-designer-source.png[api-designer-source, role="integr8ly-img-r
 image::images/api-designer-locations-path-methods.png[api-designer-locations-path-methods, role="integr8ly-img-responsive"]
 
 [type=verification]
-Were the location object successfully created?
+Did you locate the `get` and `post` requests in the source for `/locations`?
 
 [type=verificationFail]
 Have your instructor check the Kubernetes pod that contains the API Designer application.

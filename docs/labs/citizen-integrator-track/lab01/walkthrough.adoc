@@ -234,7 +234,7 @@ image::images/new-design-19.png[design-location-type, role="integr8ly-img-respon
 +
 image::images/new-design-20.png[design-location-type, role="integr8ly-img-responsive"]
 
-. Click on the `Create Operation` button underneath *GET*, then click the green *GET* button.
+. Click on the `Add Operation` button underneath *GET*, then click the green *GET* button.
 +
 image::images/new-design-21.png[design-location-type, role="integr8ly-img-responsive"]
 

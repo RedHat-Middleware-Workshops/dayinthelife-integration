@@ -1,6 +1,6 @@
 :walkthrough: Contract-first API development with a database interface, implemented using CodeReady Workspaces
 :codeready-url: http://che-che.{openshift-app-host}
-:openshift-url: {openshift-host}/console
+:openshift-url: {openshift-host}
 :next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}/tutorial/dayinthelife-integration.git-developer-track-lab04/
 :user-password: openshift
 
@@ -39,7 +39,7 @@ Your password is: `{user-password}`
 ****
 
 [type=walkthroughResource]
-.Openshift Console
+.OpenShift Console
 ****
 * link:{openshift-url}[Console, window="_blank"]
 ****
@@ -48,34 +48,30 @@ Your password is: `{user-password}`
 [id="Che setup"]
 == Create a CodeReady Workspaces environment
 
-. Launch a new tab on your web browser.
-. Navigate to the Solution Explorer on that tab.
-. Click on the *Red Hat CodeReady Workspaces* link.
-
-. Logon to link:{codeready-url}[CodeReady Workspaces, window="_blank"] using the  credentials provided above. Click *Log In*.
+. Logon to link:{codeready-url}[CodeReady Workspaces, window="_blank"] with username `{user-username}` and password `{user-password}`.
 +
 image::images/che-login-page.png[che-login-page, role="integr8ly-img-responsive"]
 
-. Notice a workspace `{user-username}/dil-ai-{user-username}` is created for you. Click on the workspace to see the details.
+. Notice a workspace `dil-ai-{user-username}` is created for you. Click on the workspace to see the details.
 +
 image::images/che-user-workspaces.png[che-user-workspaces, role="integr8ly-img-responsive"]
 
-. Notice the workspace is in _Running_ state. 
+. Notice the workspace is in _Running_ state.
 +
 image::images/che-workspace-details.png[che-workspace-details, role="integr8ly-img-responsive"]
 
-. Click on *Open* to enter the workspace.
+. Click on the *Actions* dropdown, then *Open* to enter the workspace.
 +
 image::images/che-workspace-details.png[che-workspace-details, role="integr8ly-img-responsive"]
 
-. After a couple of minutes, the workspace opens and a project is cloned from the git repository for the workshop.
+. After a couple of minutes, the workspace opens and a project is cloned from the git repository for the workshop. (Tip: You need to click *Yes, I trust* in the bottom right corner if prompted.)
 +
 image::images/che-user-workspace-dashboard.png[che-user-workspace-dashboard, role="integr8ly-img-responsive"]
 
 
 
 [type=verification]
-Were you able to open the workspace?
+Was the `DILAgileIntegration` project opened in the workspace?
 
 [type=verificationFail]
 Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the CodeReady Workspaces application.
@@ -84,7 +80,7 @@ Try to redo this section, if any problem persists have your instructor check the
 [id="DB setup"]
 == Setup a sample database
 
-. Open your link:{openshift-url}[Openshift Console, window="_blank"].
+. Open your link:{openshift-url}[OpenShift Console, window="_blank"].
 
 . Enter your credentials: `{user-username}` and `{user-password}`
 
@@ -92,7 +88,7 @@ Try to redo this section, if any problem persists have your instructor check the
 +
 image::images/ocp-adm-project-view.png[ocp-adm-project-view, role="integr8ly-img-responsive"]
 
-. Choose the *Developer view*.
+. Choose the *Developer* view.
 +
 image::images/ocp-view-developer.png[ocp-view-developer, role="integr8ly-img-responsive"]
 
@@ -104,7 +100,7 @@ image::images/ocp-user-add-db.png[ocp-user-add-db, role="integr8ly-img-responsiv
 +
 image::images/ocp-add-db-postgresql-template.png[ocp-add-db-postgresql-template, role="integr8ly-img-responsive"]
 
-. In the pop-up window that appears, click on *Instantiate template*.
+. In the pop-up window that appears, click on *Instantiate Template*.
 +
 image::images/ocp-add-db-postgresql-instantiate.png[ocp-add-db-postgresql-instantiate, role="integr8ly-img-responsive"]
 
@@ -115,7 +111,7 @@ image::images/ocp-db-postgresql-config.png[ocp-db-postgresql-config, role="integ
 . Click *Create* to generate the service.
 
 [type=verification]
-Were you able to generate the service?
+Did `(DC) postgresql` pod appear with a dark blue circle around it?
 
 [type=verificationFail]
 Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the CodeReady Workspaces application.
@@ -145,7 +141,7 @@ Try to redo this section, if any problem persists have your instructor check the
 
 Once you've received the OpenAPI specification (API contract) from your friendly Citizen Integrator, we need to import it into our skeleton Maven project (`location-service`).  Follow these steps:
 
-. Expand the `location-service` project and right-click on the `src` folder, selecting New > Folder. 
+. Expand the `location-service` project and right-click on the `src` folder, selecting *New Folder*.
 +
 image::images/che-location-service-new-folder.png[che-location-service-new-folder.png, role="integr8ly-img-responsive"]
 
@@ -153,25 +149,27 @@ image::images/che-location-service-new-folder.png[che-location-service-new-folde
 +
 image::images/che-create-folder-spec.png[che-create-folder-spec, role="integr8ly-img-responsive"]
 
-. Right-click on your newly created spec folder and select New > File.  Name the file `location.yaml`.
+. Right-click on your newly created spec folder and select *New File*.  Name the file `location.yaml`.
 +
 image::images/che-new-file-location-yaml.png[che-new-file-location-yaml, role="integr8ly-img-responsive"]
 
-. Copy the contents of this https://raw.githubusercontent.com/RedHat-Middleware-Workshops/dayinthelife-integration/master/docs/labs/developer-track/resources/Locations.yaml[file] to your newly created `location.yaml` file.  The file will auto-save so no need to click *Save*.
+. Copy and paste the contents of the following file into your newly created `location.yaml`: https://raw.githubusercontent.com/RedHat-Middleware-Workshops/dayinthelife-integration/master/docs/labs/developer-track/resources/Locations.yaml. (CodeReady Workspaces will auto-save the file.)
 
-. Select *Open Terminal* -> *Open Terminal in a specific container* -> *openshift tools* and notice that a new terminal window opens in the lower section of the workspace.
+. Click *Terminal* -> *Open Terminal in specific container* -> *openshift-tools* and notice that a new terminal window opens in the lower section of the workspace.
 +
 image::images/che-terminal-openshift-tools.png[che-terminal-openshift-tools, role="integr8ly-img-responsive"]
 
-. We need to login to OpenShift via the Terminal.  Navigate back to the OpenShift web UI and click the **Copy Login Command** link.
+. We need to login to OpenShift via the Terminal.  Navigate back to the OpenShift web UI, click the *{user-username}* menu, and select the **Copy Login Command** link.
 +
 image::images/ocp-copy-login-command.png[ocp-copy-login-command, role="integr8ly-img-responsive"]
 
-. Login to OpenShift web console and click on *Display Token* to view the login token. Copy the *oc login* command.
+. Login to OpenShift web console and click on *Display Token* to view the login token. Copy the `oc login ...` command.
 +
 image::images/ocp-client-token-copy.png[ocp-client-token-copy, role="integr8ly-img-responsive"]
 
-. Once you've logged-in, select the OpenShift project you created earlier using command below:
+. Switch back to CodeReady Workspaces, and paste the `oc login ...` command into the `openshift-tools` terminal that you opened previously.
+
+. Once you've logged-in, select your OpenShift project using command below:
 +
 [source,text,subs="attributes+"]
 ----
@@ -182,17 +180,17 @@ oc project {user-username}
 +
 [source,text]
 ----
-cd DILAgileIntegration/location-service/
+cd location-service/
 ----
 
 . Next, enter the Maven command to run the build:
 +
 [source,text]
 ----
-mvn camel-restdsl-swagger:generate 
+mvn camel-restdsl-swagger:generate
 ----
 
-. If everything completes successfully, it should generate a new file under `src/main/java/com/redhat` called `CamelRoutes.java`.  If the Maven script fails, it's probably because you forgot to first highlight the `location-service` project in the previous step.  Be sure to do this and re-run the command to fix the error.
+. If everything completes successfully, it should generate a new file under `src/main/java/com/redhat` called `CamelRoutes.java`.  If the Maven script fails, it's probably because you forgot to first change into the `location-service` project in the previous step.  Be sure to do this and re-run the command to fix the error.
 +
 image::images/che-mvn-generate-camelroutes.png[che-mvn-generate-camelroutes, role="integr8ly-img-responsive"]
 
@@ -390,7 +388,7 @@ mvn spring-boot:run
 . If the build is successful, you will see the camel routes being started locally.
 
 [type=verification]
-Were you able to run the script?
+Were you able to start the app? (Tip: this `mvn` command will not exit; look for output like: `Started Application in 5.207 seconds (JVM running for 128.535)`)
 
 [type=verificationFail]
 Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the CodeReady Workspaces application.
@@ -399,11 +397,11 @@ Try to redo this section, if any problem persists have your instructor check the
 [id="test-springboot"]
 == Test local spring:boot service
 
-. Once SpringBoot has started-up, notice the pop-up link on exposing the port 8080 as a route. Click on *open in New Tab* to open the route.
+. Once Spring Boot has started-up, notice the pop-up link on exposing the port 8080 as a route. Click on *open in New Tab* to open the route.
 +
 image::images/che-location-service-8080-url.png[che-location-service-8080-url, role="integr8ly-img-responsive"]
 
-. Click on the route link and this would open in a new tab. Append `/locations` to the URI.  As a result, you should receive a list of all locations.
+. After the tab opens, you will initially see a 404 error. Append `/locations` to the URI. As a result, you should receive a list of all locations.
 +
 image::images/che-location-service-test.png[che-location-service-test, role="integr8ly-img-responsive"]
 
@@ -415,9 +413,9 @@ Try to redo this section, if any problem persists have your instructor check the
 
 [time=3]
 [id="deploy-location-service"]
-== Deploy location service to Openshift
+== Deploy location service to OpenShift
 
-. Now that we've tested our API service implementation locally, we can deploy it to our running OpenShift environment.  First of all, stop the *spring:boot* process by entering *Ctrl + C* in the terminal. 
+. Now that we've tested our API service implementation locally, we can deploy it to our running OpenShift environment.  First of all, stop the Spring Boot process by entering *Ctrl + C* in the terminal.
 
 . Enter the following *Maven* command to deploy the application to OpenShift.
 +
@@ -428,7 +426,7 @@ mvn fabric8:deploy
 +
 image::images/che-location-service-ocp-deploy.png[che-location-service-ocp-deploy, role="integr8ly-img-responsive"]
 
-. If the deployment script completes successfully, navigate back to your {user-username} Openshift web console and verify the pod is running
+. If the deployment script completes successfully, navigate back to the OpenShift web console and verify the pod is running.
 +
 image::images/op-location-service-deploy.png[op-location-service-deploy, role="integr8ly-img-responsive"]
 

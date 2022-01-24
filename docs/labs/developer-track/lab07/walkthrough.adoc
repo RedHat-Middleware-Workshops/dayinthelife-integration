@@ -30,7 +30,7 @@ Your username is: `{user-username}` +
 Your password is: `{user-password}`
 
 [type=walkthroughResource]
-.Openshift Console
+.OpenShift Console
 ****
 * link:{openshift-host}[Console, window="_blank"]
 ****
@@ -64,7 +64,7 @@ image::images/ocp-build-change-clientid.png[ocp-build-change-clientid, role="int
 +
 image::images/ocp-build-start.png[ocp-build-start, role="integr8ly-img-responsive"]
 
-. A new build will be triggered. 
+. A new build will be triggered.
 
 . _The build process checks out the code from the git repo, runs a source-to-image container image build, and redeploys the container with the new image using a rolling upgrade strategy._
 
