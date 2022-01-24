@@ -38,14 +38,14 @@ Your password is: `{user-password}`
 ****
 
 [type=walkthroughResource]
-.Openshift Console
+.OpenShift Console
 ****
 * link:{openshift-host}[Console, window="_blank"]
 ****
 
 [time=5]
 [id="instructions"]
-== Import the sample SOAP project into your Openshift project
+== Import the sample SOAP project into your OpenShift project
 
 . Navigate back to your CodeReady Workspaces workspace and open the terminal window.
 . Ensure you are using the *OpenShift tools* terminal and are logged in to your OpenShift console as in the last lab.
@@ -63,7 +63,7 @@ Your password is: `{user-password}`
  oc new-app s2i-fuse71-spring-boot-camel -p GIT_REPO=https://github.com/RedHat-Middleware-Workshops/dayinthelife-integration -p CONTEXT_DIR=/projects/location-soap -p APP_NAME=location-soap -p GIT_REF=master -n {user-username}
 ----
 
-. Once the build and deploy is complete, navigate back to your Openshift web console and verify the project is running.
+. Once the build and deploy is complete, navigate back to your OpenShift web console and verify the project is running.
 +
 image::images/ocp-location-soap-deploy.png[ocp-location-soap-deploy, role="integr8ly-img-responsive"]
 
@@ -88,16 +88,16 @@ NOTE: The link from Code Ready Workspaces uses *https* protocol, change the URL 
 +
 image::images/che-location-soap2rest-pom-edit.png[che-location-soap2rest-pom-edit, role="integr8ly-img-responsive"]
 
-. We now need to generate the POJO objects from the WSDL contract. 
+. We now need to generate the POJO objects from the WSDL contract.
 . Navigate to the following project in the Terminal:
- +
++
 [source,bash,subs="attributes+"]
 ----
 cd /projects/DILAgileIntegration/location-soap2rest
 ----
 
 . Run the following maven command from the Terminal:
- +
++
 [source,bash,subs="attributes+"]
 ----
 mvn generate-sources
@@ -181,7 +181,7 @@ Try to redo this section, if any problem persists have your instructor check the
 ----
 
 . Now that we have our API service implementation, we can try to test this locally.  Navigate back to the Terminal and execute the following command:
- +
++
 [source,bash,subs="attributes+"]
 ----
 mvn spring-boot:run
@@ -197,7 +197,7 @@ image::images/che-location-soap-sample-request.png[che-location-soap-sample-requ
 
 . Now that we've successfully tested our new SOAP to REST service locally, we can deploy it to OpenShift.  Stop the running application by clicking *Ctrl + C*.
 . Run the following command in the terminal to deploy the application to OpenShift:
- +
++
 [source,bash,subs="attributes+"]
 ----
 mvn fabric8:deploy
@@ -205,7 +205,7 @@ mvn fabric8:deploy
 +
 image::images/che-location-soap-build-success.png[che-location-soap-build-success, role="integr8ly-img-responsive"]
 
-. If the deployment script completes successfully, navigate back to your Openshift web console and verify the pod is running
+. If the deployment script completes successfully, navigate back to your OpenShift web console and verify the pod is running
 +
 image::images/ocp-location-soap2rest-deploy.png[ocp-location-soap2rest-deploy, role="integr8ly-img-responsive"]
 

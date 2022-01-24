@@ -1,4 +1,4 @@
-# Setup a Jenkins Pipeline for Integration flow deployment on Openshift
+# Setup a Jenkins Pipeline for Integration flow deployment on OpenShift
 
 Blah
 

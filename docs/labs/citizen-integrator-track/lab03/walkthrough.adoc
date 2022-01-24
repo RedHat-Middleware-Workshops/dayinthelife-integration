@@ -168,7 +168,7 @@ _The default mapping is the root ("/") of our API resources, and this example ap
 /locations
 ----
 
-. Select **locations_all** as Method from the combo box.
+. Select **Get Locations** as Metric or Method to increment from the combo box, then click on **Update Mapping Rule**.
 +
 image::images/3scale-mapping-rule-edit.png[mapping-rule-get, role="integr8ly-img-responsive"]
 
@@ -211,9 +211,9 @@ image::images/3scale-policies-chain-order.png[policies-04, role="integr8ly-img-r
 +
 image::images/3scale-policy-cors-edit.png[policies-05, role="integr8ly-img-responsive"]
 
-. In the *Edit Policy* section, click the green **+** button to add the allowed headers.
-. . Type **`Authorization`** in the *Allowed headers* field.
-. Tick the **allow_credentials** checkbox and fill in with a star `*` in the _allow_origin_ text box.
+. In the *Edit Policy* section, click the green **+** button under **ALLOW_HEADERS** to add the allowed headers.
+. Type **`Authorization`** in the *Allowed headers* field.
+. Tick the **allow_credentials** checkbox and fill in with a star `*` in the **allow_origin** text box.
 +
 image::images/3scale-policies-cors-headers.png[policies-06.png[policies-06, role="integr8ly-img-responsive"]
 
@@ -276,11 +276,11 @@ image::images/3scale-location-api-urls.png[location-api-urls, role="integr8ly-im
 
 . Click on the **Configuration** link to enter the **Configuration** section.
 
-. Click on the **Update the Staging Environment** to save the changes and check the connection between client, gateway and API.
+. Click on the **Promote v. 1 to Staging APIcast** button to save the changes and check the connection between client, gateway and API.
 +
 image::images/3scale-location-promote-staging.png[update-staging, role="integr8ly-img-responsive"]
 
-. Click on the **Promote v.1 to Production** button to promote your configuration from staging to production.
+. Click on the **Promote v.1 to Production APIcast** button to promote your configuration from staging to production.
 +
 image::images/3scale-update-staging.png[promote-to-production, role="integr8ly-img-responsive"]
 

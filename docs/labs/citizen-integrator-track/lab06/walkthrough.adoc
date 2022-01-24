@@ -4,7 +4,7 @@
 :3scale-admin-url: https://{user-username}-admin.{openshift-app-host}/p/login
 :3scale-dev-portal-url: https://{user-username}.{openshift-app-host}/
 :sso-url: https://keycloak-sso.{openshift-app-host}/auth/admin/{user-username}/console
-:openshift-url: {openshift-host}/console
+:openshift-url: {openshift-host}
 :user-password: openshift
 
 ifdef::env-github[]
@@ -32,7 +32,7 @@ Your username is: `{user-username}` +
 Your password is: `{user-password}`
 
 [type=walkthroughResource]
-.Openshift Console
+.OpenShift Console
 ****
 * link:{openshift-url}[Console, window="_blank"]
 ****
@@ -53,13 +53,13 @@ OpenShift allows you to automatically redeploy your changes when you setup a Con
 . Navigate to the Solution Explorer on that tab.
 . Click on the *Red Hat OpenShift* link.
 
-. Open your link:{openshift-url}[Openshift Console, window="_blank"]. Navigate to your project's overview page. It will be called `{user-username}`.
+. Open your link:{openshift-url}[OpenShift Console, window="_blank"]. Navigate to your project's overview page. It will be called `{user-username}`.
 
 . Scroll down and click in the *www* link in the _Builds_ section.
 +
 image::images/www-builds-list.png[01-scroll-down, role="integr8ly-img-responsive"]
 
-. In the build configuration page, find the *CLIENT_ID* value. It should be `CHANGE_ME`. 
+. In the build configuration page, find the *CLIENT_ID* value. It should be `CHANGE_ME`.
 +
 image::images/www-build-env-client-id.png[02-client-id, role="integr8ly-img-responsive"]
 
