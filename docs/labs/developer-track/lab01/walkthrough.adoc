@@ -67,11 +67,11 @@ Let's start verifying your API.
 
 . Time to verify our data definitions for the API. Click on the `+location/phone/{id}+` link under the _Paths_.
 +
-image::images/api-designer-path.png[api-designer-path, role="integr8ly-img-responsive"]
+image::images/api-designer-location-phone.png[api-designer-location-phone, role="integr8ly-img-responsive"]
 
 . Notice that this API path has a single path parameter (`id` defined as an `int32`) and a single GET operation defined.  Click on the GET operation, then click the location drop-down which is part of the 200 OK response.
 +
-image::images/api-dsigner-id-int32.png[api-dsigner-id-int32, role="integr8ly-img-responsive"]
+image::images/api-designer-path.png[api-designer-path, role="integr8ly-img-responsive"]
 
 . Notice that this API path has a single response defined (a `200 OK` response) and the type that is returned is a `location` object.
 +
