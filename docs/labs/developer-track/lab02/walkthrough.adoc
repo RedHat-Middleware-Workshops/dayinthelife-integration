@@ -39,78 +39,8 @@ Your password is: `{user-password}`
 * link:{microcks-url}[Microcks Console, window="_blank"]
 ****
 
-[type=walkthroughResource]
-.Gogs
-****
-* link:{gogs-url}[Gogs Console, window="_blank"]
-****
 
-[time=5]
-[id="Prerequisite"]
-== Prerequisite: Setup the collaboration environment using Git (Gogs)
 
-For the Developer track, we require a collaboration environment based on Git. For this purpose, we  decided to use Gogs which is a hosted, lighter-weight version of Gitlab. This lab environment has created a user for you in Gogs.
-
-Follow this instructions to set up the repository.
-
-. Click on the *Gogs Console* link, located on the right of this walkthrough.
-
-. Click on *Sign In*.
-+
-image::images/gogs-signin-link.png[microcks-signin-link, role="integr8ly-img-responsive"]
-
-. Log into Gogs using `{user-username}` and `{user-password}`. You should see the repository dashboard.
-+
-image::images/gogs-dashboard.png[gogs-dashboard, role="integr8ly-img-responsive"]
-
-. In the main page, click in the + sign in the right top corner to display the New menu. Click the *New Migration* option.
-+
-image::images/gogs-new-migration.png[gogs-new-migration, role="integr8ly-img-responsive"]
-
-. Fill in the information of the repository migration with the following values:
- ** Clone Address: *https://github.com/RedHatWorkshops/dayinthelife-openapi.git*
- ** Owner: *`{user-username}`*
- ** Repository Name: *locations-api*
-+
-image::images/gogs-migrate-repository.png[gogs-migrate-repository, role="integr8ly-img-responsive"]
-
-. Click on *Migrate Repository* to fork the GitHub repo into Gogs.
-. Switch to branch `dev-track-lab-02`
-+
-image::images/gogs-switch-branch.png[gogs-switch-branch, role="integr8ly-img-responsive"]
-
-. Open the `locations-api` folder and click on the filename link *Locations-userX.json* to open and review the file.
-+
-image::images/gogs-locations-userX.png[gogs-locations-userX, role="integr8ly-img-responsive"]
-
-. Click the *pencil* button to edit the file.
-+
-image::images/gogs-locations-userX-edit.png[gogs-locations-userX-edit, role="integr8ly-img-responsive"]
-
-. Replace all occurances of *userX* with your user number i.e. ``{user-username}``.
-+
-image::images/gogs-locations-userX-replace.png[gogs-locations-userX-replace, role="integr8ly-img-responsive"]
-
-. Scroll down to bottom of the page and click *Commit Changes*.
-+
-image::images/gogs-locations-userX-commit.png[gogs-locations-userX-commit, role="integr8ly-img-responsive"]
-
-. Click the *RAW* button to get the raw download version of the file.
-+
-image::images/gogs-locations-userX-raw.png[gogs-locations-userX-raw, role="integr8ly-img-responsive"]
-
-. Copy the browser tab URL. Store that URL address as you will use it in the next steps of the lab. The URL should look like the following:
-+
-[source,bash,subs="attributes+"]
-----
-http://gogs.{openshift-app-host}/{user-username}/locations-api/raw/dev-track-lab-02/locations-api/Locations-{user-username}.json
-----
-
-[type=verification]
-Did you confirm the URL of the raw file matches the example shown?
-
-[type=verificationFail]
-Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the Gogs application.
 
 [time=6]
 [id="Microcks setup"]
@@ -128,39 +58,22 @@ image::images/microcks-login-page.png[microcks-login-page.png, role="integr8ly-i
 +
 image::images/microcks-importers-link.png[microcks-importers-link, role="integr8ly-img-responsive"]
 
-. Click the *Create* button to create your first job.
+. Click the *upload* button to create your first job.
 +
-image::images/microcks-import-job-create.png[microcks-import-job-create, role="integr8ly-img-responsive"]
+image::images/api-mocking-upload.png[api-mocking-upload, role="integr8ly-img-responsive"]
 
-. In the _Create a New Job_ dialog, type in the following information. Click *Next*.
- ** Name: *`Locations-{user-username}`*
- ** Repository URL: *`http://gogs.{openshift-app-host}/{user-username}/locations-api/raw/dev-track-lab-02/locations-api/Locations-{user-username}.json`*
-
-. Click *Next* for the Authentication options.
+. Upload the Locations.yaml file(Open API specification file) we used with the API Designer in the preious lab here. In case you skipped the previous lab you can download the file from here:
+  ** Url: `+https://raw.githubusercontent.com/RedHat-Middleware-Workshops/dayinthelife-integration/master/docs/labs/developer-track/resources/Locations.yaml+`
 +
-image::images/microcks-import-form.png[microcks-import-form, role="integr8ly-img-responsive"]
+image::images/api-mocking-file.png[api-mocking-file, role="integr8ly-img-responsive"]
 
-. Leave Authentication options unchanged and click *Next*.
-
-. Review the details and click on *Create* to create the job.
+. After the upload is complete, click on APIs|Services tab to locate your mock API
 +
-image::images/microcks-import-job-complete.png[microcks-import-job-complete, role="integr8ly-img-responsive"]
+image::images/api-mocking-apis-services.png[api-mocking-apis-services, role="integr8ly-img-responsive"]
 
-. Click on the *kebab menu* (three dots), then select the *Force Import* option. This will start the synchronization job.
+. Click on the API that is listed
 +
-image::images/microcks-job-force-import.png[microcks-job-force-import, role="integr8ly-img-responsive"]
-
-. Refresh your window to get it to the latest state.
-
-. You will see three labels next to your job. Click the *Services* label.
-+
-image::images/microcks-import-services.png[microcks-import-services, role="integr8ly-img-responsive"]
-
-. In the dialog you will see your service listed. Click on the *Locations-{user-username} - 1.0.0* link.
-+
-image::images/microcks-service-link.png[microcks-service-link, role="integr8ly-img-responsive"]
-
-. Click *Close* to dismiss the dialog.
+image::images/api-mocking-locate-api.png[api-mocking-locate-api, role="integr8ly-img-responsive"]
 
 . This is your new REST mock service based on the OpenAPI definition you just loaded to Microcks. Click on the arrow to expand the *GET /locations* operation.
 +
@@ -189,13 +102,13 @@ We now have a working REST mock service listening for requests. We will use an o
 curl https://microcks.{openshift-app-host}/rest/Locations-{user-username}/1.0.0/locations
 ----
 
-. Click the *Send* button.
+. Click the *Run* button.
 +
-image::images/online-curl-test.png[online-curl-test, role="integr8ly-img-responsive"]
+image::images/req-bin-run.png[req-bin-run, role="integr8ly-img-responsive"]
 
 . The page will load the response information from the service. The _Content_ tab contains the examples we added during the design phase. You can also review the _Headers_ tab if you'd like.
 +
-image::images/online-curl-response.png[online-curl-response, role="integr8ly-img-responsive"]
+image::images/req-bin-result.png[req-bin-result, role="integr8ly-img-responsive"]
 
 [type=verification]
 Did the response include the example JSON added during the design phase?
