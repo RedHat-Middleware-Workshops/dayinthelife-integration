@@ -81,7 +81,7 @@ image::images/microcks-expand-get-operation.png[microcks-expand-get-operation, r
 
 . You can check that the example we added to the definition in Lab 1 will be used to return the mock values. Scroll down, copy and save the *Mock URL*, we will use that endpoint to test the REST mock service.
 +
-image::images/microcks-mock-service-url.png[microcks-mock-service-url, role="integr8ly-img-responsive"]
+image::images/api-mocking-get-location.png[api-mocking-get-location, role="integr8ly-img-responsive"]
 
 [type=verification]
 Did you copy the *Mock URL*?
