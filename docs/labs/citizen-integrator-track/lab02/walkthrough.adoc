@@ -114,6 +114,8 @@ image::images/req-bin-run.png[req-bin-run, role="integr8ly-img-responsive"]
 . The page will load the response information from the service. The _Content_ tab contains the examples we added during the design phase. You can also review the _Headers_ tab if you'd like.
 +
 image::images/req-bin-result.png[req-bin-result, role="integr8ly-img-responsive"]
++
+image::images/req-bin-header.png[req-bin-header, role="integr8ly-img-responsive"]
 
 [type=verification]
 Did the response include the example JSON added during the design phase?
