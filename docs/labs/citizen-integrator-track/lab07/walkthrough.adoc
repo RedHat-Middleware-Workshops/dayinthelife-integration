@@ -118,13 +118,13 @@ image::images/fuse-online-int-datatype-add.png[n06-data-type, role="integr8ly-im
 ** Name: *locationinput*
 ** JSON Example:
 +
-image::images/fuse-online-int-define-datatype.png[n07-location-input-datatype, role="integr8ly-img-responsive"]
-+
 [source,bash]
 ----
 { "id": 1, "name": "Kamarhati", "type": "Regional Branch", "status": "1", "location": { "lat": "-28.32555", "lng": "-5.91531" } }
 ----
 +
+image::images/add-data-type-form.png[add-data-type-form, role="integr8ly-img-responsive"]
+
 . Create another datatype, this time with the following config and click *Save*.
 ** Name: *location*
 ** JSON Example:
@@ -150,9 +150,17 @@ image::images/fuse-online-int-operation-post.png[n11-post-method, role="integr8l
 +
 image::images/fuse-online-int-request-body.png[n13-request, role="integr8ly-img-responsive"]
 
+. Choose *required* from the drop drown shown below
++
+image::images/select-required.png[select-required, role="integr8ly-img-responsive"]
+
+. Click on *Add a media type* and select *application/json* from the drop drown. Proceed to add the media type
++
+image::images/add-media-type.png[add-media-type, role="integr8ly-img-responsive"]
+
 . Choose *locationinput* as the _Request Body Type_
 +
-image::images/fuse-online-int-request-body-complete.png[n14-post-request-location-input, role="integr8ly-img-responsive"]
+image::images/location_input.png[location_input, role="integr8ly-img-responsive"]
 
 . Click the *Add a response* link.
 
@@ -162,7 +170,7 @@ image::images/fuse-online-int-response-code.png[n15-post-response, role="integr8
 
 . Click on _No Description_ and place *Location Added* in _Description_ box. Click on the tick to save the changes
 
-. Click on the _Type_ dropdown and select *location*.
+. Click on *Add a Response Body* link and in the _Type_ dropdown and select *location*.
 +
 image::images/fuse-online-int-response-complete.png[n17-post-response-type, role="integr8ly-img-responsive"]
 
@@ -187,7 +195,8 @@ _Congratulations! You've created an API Contract.  Next up is the API implementa
 == Implement the API
 
 . Save the integration
-+image::images/fuse-online-int-save.png[n19b-save.png, role="integr8ly-img-responsive"]
++
+image::images/fuse-online-int-save.png[n19b-save.png, role="integr8ly-img-responsive"]
 
 . Set the following values:
 ** Integration Name: *`addLocation`*
@@ -201,7 +210,6 @@ image::images/fuse-online-int-save-form.png[n20-integration-name, role="integr8l
 image::images/fuse-online-int-create-flow.png[n19a-create, role="integr8ly-img-responsive"]
 
 . Click on the _plus sign_ between API entry and return endpoint.
-+
 +
 image::images/fuse-online-int-add-step.png[n22-add-db-connection, role="integr8ly-img-responsive"]
 
@@ -272,13 +280,13 @@ We will use 3scale to secure our newly deployed Fuse Online integration. We intr
 
 . Log in to link:{3scale-admin-url}[3scale Admin, window="_blank"] web console using `{user-username}` and password: `{user-password}`.
 +
-image::images/01-login.png[01-login, role="integr8ly-img-responsive"]
+image::images/3scale-login.png[3scale-login, role="integr8ly-img-responsive"]
 
 . The first page you will land is the _API Management Dashboard_. Click on the *API* menu link.
 
-. Click on the *New Proeuct*.
+. Click on the *Create Product*.
 +
-image::images/3scale-new-product-link.png[3scale-new-product-link, role="integr8ly-img-responsive"]
+image::images/create-product.png[3scale-new-product-link, role="integr8ly-img-responsive"]
 
 . Click on _Authenticate to enable this option_ so we can import our new API from OpenShift.
 +
@@ -292,11 +300,11 @@ image::images/secure-06.png[secure-06, role="integr8ly-img-responsive"]
 +
 image::images/3scale-import-ocp-fuse.png[3scale-import-ocp-fuse, role="integr8ly-img-responsive"]
 
-. The page should return to the dashboard. Refresh the page. Notice that the _I-ADDLOCATION API_ has been added to the list. Click *INTEGRATION*.
+. The page should return to the dashboard. Refresh the page. Notice that the _I-ADDLOCATION API_ has been added to the list. Choose *INTEGRATION* from the kebab menu.
 +
-image::images/3scale-addlocation-integrate.png[3scale-addlocation-integrate, role="integr8ly-img-responsive"]
+image::images/i-add-location-kebab.png[i-add-location-kebab, role="integr8ly-img-responsive"]
 
-_Notice that the Staging Gateway URL is already provided and configuration of the backend is set up correctly._
+. Notice that the Staging Gateway URL is already provided and configuration of the backend is set up correctly.
 +
 image::images/3scale-int-staging-url.png[3scale-int-staging-url, role="integr8ly-img-responsive"]
 
@@ -363,7 +371,7 @@ image::images/3scale-int-create-app-plan.png[3scale-int-create-app-plan, role="i
 
 . Click *Create Application Plan* link again.
 +
-image::images/3scale-int-create-app-plan-link.png[3scale-int-create-app-plan-link, role="integr8ly-img-responsive"]
+image::images/create-app-plan-button.png[create-app-plan-button, role="integr8ly-img-responsive"]
 
 . Enter the Application Plan details, then click *Create Application Plan*.
 **Name: *`basic-integration`*
@@ -371,25 +379,26 @@ image::images/3scale-int-create-app-plan-link.png[3scale-int-create-app-plan-lin
 +
 image::images/3scale-int-app-plan-form.png[3scale-int-app-plan-form, role="integr8ly-img-responsive"]
 
-. Click on *Publish* to publish your newly minted plan.
+. Click on the kebab menu and *Publish* your newly minted plan.
 +
-image::images/3scale-int-app-plan-publish.png[3scale-int-app-plan-publish, role="integr8ly-img-responsive"]
+image::images/publish-app-plan.png[publish-app-plan, role="integr8ly-img-responsive"]
 
-. Click on the *API: i-addlocation* dropdown menu, then select *Audience*. Next click *Listing* on the side menu. A listing of _Accounts_ should appear. Next click the link under *Apps* for *Developer* Account as shown below.
+. Click on the dropdown menu, then select *Audience*. Next click *Listing* on the side menu. A listing of _Accounts_ should appear. Next click the link under *Apps* for *Developer* Account as shown below.
 +
 image::images/3scale-int-app-create.png[04-setup-account, role="integr8ly-img-responsive"]
 
 
 . Click on *Create Application*.
 +
-image::images/3scale-int-create-app-link.png[3scale-int-create-app-link.png, role="integr8ly-img-responsive"]
+image::images/create-app.png[create-app.png, role="integr8ly-img-responsive"]
 
+. Select *i-addlocation* as the _Product_.
 . Select *basic-integration* as the _Application Plan_.
-. Select *Default* as the _Service Plan_.
 . Enter *i-integration* as the _Name_.
+. Enter *i-integration* as the _Description_.
 . Click *Create Application*.
 +
-image::images/3scale-int-create-app-form.png[3scale-int-create-app-form.png, role="integr8ly-img-responsive"]
+image::images/new-app-details-form.png[new-app-details-form.png, role="integr8ly-img-responsive"]
 
 . An Application page should appear. It will contain a newly created API User Key for use with your new `i-integration` application.
 +
@@ -405,6 +414,10 @@ Try to redo this section, if any problem persists have your instructor check the
 [time=15]
 [id="complete-apicast-config"]
 == Complete APIcast configuration
+
+. From the drop down menu choose *Products* and navigate to the *Integration* link if our *iaddlocation* product
++
+image::images/product-list.png[product-list, role="integr8ly-img-responsive"]
 
 . Next, click on the _Integration > Configuration_ side-menu.
 
@@ -428,13 +441,15 @@ Try to redo this section, if any problem persists have your instructor check the
 
 We will use an API Tester tool to create a record field in database.
 
-. Open a browser window and navigate to: *`https://apitester.com/`*
+. Open a browser window and navigate to: *`https://reqbin.com/post-online`*
 
 . Below are the values for the request. Note: `id:101` in the payload as we are creating 101th record in the database. You will change this record number based on your user number shortly.
-** Method: *POST*
+** Paste the staging URL you copied in the previous step in box 1 
 ** URL: *`https://i-addlocation-{user-username}-apicast-staging.amp.{openshift-app-host}:443/locations?user_key=XXX [copy the information you need from the 3scale curl command you copied earlier]`*
-** Request Header: *`Content-Type` and `application/json`*
-** Post Data:
+** Choose POST from box 2 
+** Click on Content and choose JSON(application/json)
+** Click on Authorization and choose Custom
+** Paste the below payload in text box 3
 +
 [source,bash]
 ----
@@ -443,13 +458,16 @@ We will use an API Tester tool to create a record field in database.
 +
 _Don't forget to update the id field to end with your user number e.g. 102 if you are user2._
 +
-image::images/15-apitester.png[15-apitester, role="integr8ly-img-responsive"]
+image::images/req-bin-content.png[req-bin-content, role="integr8ly-img-responsive"]
++
+image::images/req-bin-header.png[req-bin-header, role="integr8ly-img-responsive"]
+
 
 . The page will load the `201` response information from the service which means the request was successfully fulfilled.
 +
-image::images/16-response-header.png[16-response-header, role="integr8ly-img-responsive"]
+image::images/status-201.png[status-201, role="integr8ly-img-responsive"]
 
-. Click on _Activity > Refresh_ and verify if the newly record is created.
+. Go back to Fuse Online. Navigate to Integrations and Click on _Activity > Refresh_ and verify if the newly record is created.
 +
 image::images/fuse-online-int-activity.png[fuse-online-int-activity, role="integr8ly-img-responsive"]
 
