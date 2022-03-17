@@ -1,5 +1,5 @@
 :walkthrough: Bring your APIs to life
-:testing-url: https://onlinecurl.com/
+:testing-url: https://reqbin.com/curl
 :microcks-url: https://microcks-microcks.{openshift-app-host}
 :next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}/tutorial/dayinthelife-integration.git-citizen-integrator-track-lab03/
 :user-password: openshift
