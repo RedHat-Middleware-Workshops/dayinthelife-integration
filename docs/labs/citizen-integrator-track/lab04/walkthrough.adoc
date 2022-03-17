@@ -79,7 +79,7 @@ image::images/sso-3scale-admin-sa-roles.png[sa-roles.png, role="integr8ly-img-re
 +
 NOTE: If you do not see the **Service Account Roles** tab, make sure **Service Accounts Enabled** is **ON**, **Standard Flow Enabled** is **OFF** and click on **Save**.
 
-. In _Client Roles_, enter **Realm Management**. Select all the available roles and click on **Add Selected** to move to the Assigned Roles text box.
+. In _Client Roles_, enter **realm-management**. Select all the available roles and click on **Add Selected** to move to the Assigned Roles text box. Ignore if the roles are already under the Assigned Roles text box. 
 +
 image::images/sso-3scale-admin-sa-client-roles.png[sa-roles.png, role="integr8ly-img-responsive"]
 
@@ -110,12 +110,12 @@ image::images/sso-add-user-username.png[00-username.png, role="integr8ly-img-res
 . Click on the *Save* button.
 . Click on the *Credentials* tab to reset the password. Type `apipassword` as the **New Password** and **Password Confirmation**. Turn OFF the **Temporary** to avoid the password reset at the next login.
 +
-image::images/sso-user-credentials.png[00-user-credentials.png, role="integr8ly-img-responsive"]
+image::images/sso-user-cred-set.png[sso-user-cred-set, role="integr8ly-img-responsive"]
 
-. Click on **Reset Password**.
-. Click on the **Change password** button in the pop-up dialog.
+. Click on **Set Password**.
+. Click on the **Set password** button in the pop-up dialog.
 +
-image::images/sso-change-password-popup.png[00-change-password.png, role="integr8ly-img-responsive"]
+image::images/set-user-pwd.png[set-user-pwd, role="integr8ly-img-responsive"]
 
 [type=verification]
 Were you able to add a user?
@@ -131,11 +131,11 @@ _Now you have a user to test your SSO integration._
 
 . Log in to link:{3scale-admin-url}[3scale Admin, window="_blank"] web console using `{user-username}` and password: `{user-password}`.
 +
-image::images/01-login.png[01-login.png, role="integr8ly-img-responsive"]
+image::images/3scale-login.png[3scale-login.png, role="integr8ly-img-responsive"]
 
-. The first page you will land is the _API Management Dashboard_. Click on the **INTEGRATION** menu link of the **LOCATION** API.
+. The first page you will land is the _API Management Dashboard_. Click on the kebab menu of the **LOCATION** API and select **Integration**
 +
-image::images/3scale-location-api-integration.png[01a-dashboard.png, role="integr8ly-img-responsive"]
+image::images/3scale-product-kebab.png[3scale-product-kebab.png, role="integr8ly-img-responsive"]
 
 . Click on the **Settings** to edit the API settings for the gateway.
 +
@@ -152,6 +152,8 @@ image::images/3scale-location-auth-oidc.png[04-authentication.png, role="integr8
 image::images/3scale-location-oidc-settings.png[05-authentication-settings.png, role="integr8ly-img-responsive"]
 
 . Scroll down to the _CREDENTIALS LOCATION_ and select **As HTTP Headers**.
++
+image::images/http-headers.png[http-headers.png, role="integr8ly-img-responsive"]
 
 . Scroll down to the bottom and click on **Update Product**.
 
@@ -195,7 +197,7 @@ image::images/3scale-dev-location-app.png[11-create-application.png, role="integ
 +
 image::images/3scale-dev-app-client-secret.png[11-create-application.png, role="integr8ly-img-responsive"]
 +
-NOTE: If the **Client ID & Secret** are not seen, navigate to the **Application** page again and you should see the secret generated.
+**NOTE: If the Client ID & Secret are not seen, navigate to the Application page again and you should see the secret generated**.
 
 . _Edit_ the _Redirect URL_ and enter the value **`http://www-{user-username}.{openshift-app-host}/`**
 
