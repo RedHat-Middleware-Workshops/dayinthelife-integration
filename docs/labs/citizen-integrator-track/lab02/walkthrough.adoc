@@ -95,10 +95,6 @@ Try to redo this section, if any problem persists have your instructor check the
 == Test the REST Mock Service
 
 [type=taskResource]
-.Testing
-****
-* link:{testing-url}[cURL Online, window="_blank"]
-****
 
 We now have a working REST mock service listening for requests. We will use an online cURL tool to test it.
 
