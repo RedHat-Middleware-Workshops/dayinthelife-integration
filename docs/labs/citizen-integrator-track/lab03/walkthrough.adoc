@@ -230,7 +230,7 @@ image::images/3scale-policies-cors-headers.png[policies-06.png[policies-06, role
 
 . Click the green **+** button under *ALLOW_METHODS* twice to enable two combo boxes for the CORS allowed methods.
 
-. Select **GET** from the first box and **OPTIONS** from the second box.
+. Select **OPTIONS** from the first box and **GET** from the second box.
 +
 image::images/3scale-policies-cors-methods-update.png[policies-09, role="integr8ly-img-responsive"]
 
