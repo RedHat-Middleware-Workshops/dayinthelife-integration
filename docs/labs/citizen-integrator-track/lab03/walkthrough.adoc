@@ -40,9 +40,11 @@ Your password is: `{user-password}`
 
 . Log in to link:{3scale-admin-url}[3scale Admin, window="_blank"] web console using `{user-username}` and password: `{user-password}`.
 +
-image::images/01-login.png[3scale-admin-login, role="integr8ly-img-responsive"]
+image::images/3scale-login-page.png[3scale-admin-login, role="integr8ly-img-responsive"]
 
-. The first page you will land is the *API Management Dashboard*. Click on the **NEW PRODUCT**  link.
+. The first page you will land is the *API Management Dashboard*. Click on the **Create Product**  link.
++
+image::images/create-product-button.png[create-product-button, role="integr8ly-img-responsive"]
 
 . Enter the following values:
 ** Name: *`Location`*
@@ -84,9 +86,9 @@ Try to redo this section, if any problem persists have your instructor check the
 +
 image::images/3scale-application-plans-link.png[app-plan-selection, role="integr8ly-img-responsive"]
 
-. Click on **Create Application Plan** link.
+. Click on **Create Application Plan** button.
 +
-image::images/3scale-app-plan-create.png[app-plan-create-link, role="integr8ly-img-responsive"]
+image::images/create-app-plan.png[create-app-plan, role="integr8ly-img-responsive"]
 
 . In the **Create Application Plan** form, enter the following values:
 ** Name: *`Location Basic Plan`*
@@ -96,13 +98,13 @@ image::images/3scale-app-plan-create.png[app-plan-create-link, role="integr8ly-i
 +
 image::images/3scale-app-plan-location-create.png[app-plan-create-location, role="integr8ly-img-responsive"]
 
-. Click on **Publish** button for the _Location Basic Plan_.
+. Click on Kebab menu and select **Publish** for the _Location Basic Plan_.
 +
-image::images/3scale-location-app-plan-publish.png[app-create-location-publish, role="integr8ly-img-responsive"]
+image::images/app-plan-publish.png[app-plan-publish, role="integr8ly-img-responsive"]
 
-. Click on **Product: Location** drop down and select **Audience**.
+. Click on **Product** drop down and select **Audience**.
 +
-image::images/3scale-select-audience.png[audience-select, role="integr8ly-img-responsive"]
+image::images/audience-menu.png[audience-menu, role="integr8ly-img-responsive"]
 
 . There will be one default Account **Developer**. Click on the **1** link under **Apps**
 +
@@ -110,16 +112,17 @@ image::images/3scale-dev-select-app.png[audience-select-apps, role="integr8ly-im
 
 . In the next page, click on **Create Application**.
 +
-image::images/3scale-app-create-dev.png[app-create-dev, role="integr8ly-img-responsive"]
+image::images/audience-create-app.png[audience-create-app, role="integr8ly-img-responsive"]
 
 . In the **Create Application** form, enter following values:
+** Product: *`Location`*
 ** Application Plan: *`Location Basic Plan`*
 ** Name: *`dev_location_app`*
 ** Description: *`Developer Location Basic App`*
 
 . Click on **Create Application** button.
 +
-image::images/3scale-app-create-location-dev.png[app-create-location-dev, role="integr8ly-img-responsive"]
+image::images/new-app-details.png[new-app-details, role="integr8ly-img-responsive"]
 
 [type=verification]
 Was the applcation plan and application created successfully?
@@ -132,13 +135,21 @@ Try to redo this section, if any problem persists have your instructor check the
 [id="update-integration-settings"]
 == Update Methods, Metrics & Mapping Rules
 
-. Click on the **Metric or Method (Define)** link.
+. Click on **Audience** drop down and select **Product**.
++
+image::images/product-dropdown.png[product-dropdown, role="integr8ly-img-responsive"]
+
+. Click on **Location** product.
++
+image::images/location-product-list.png[location-product-list, role="integr8ly-img-responsive"]
+
+. Click on the **Metric or Method** link.
 +
 image::images/3scale-methods-metrics.png[methods-metrics, role="integr8ly-img-responsive"]
 
 . Click on the **New Method** link in the *Methods* section.
 +
-image::images/07b-new-method.png[new-method, role="integr8ly-img-responsive"]
+image::images/create-new-method.png[create-new-method, role="integr8ly-img-responsive"]
 
 . Fill in the information for your Fuse Method.
 ** Friendly name: *`Get Locations`*
@@ -146,15 +157,15 @@ image::images/07b-new-method.png[new-method, role="integr8ly-img-responsive"]
 ** Description: *`Method to return all locations`*
 
 +
-image::images/07b-new-method-data.png[new-method-data, role="integr8ly-img-responsive"]
+image::images/new-method-details.png[new-method-details, role="integr8ly-img-responsive"]
 
 . Click on **Create Method**.
 
 . Click on the **Mapping Rules** section to define the Mapping Rules for the API.
 +
-image::images/3scale-mapping-rules.png[mapping-rules, role="integr8ly-img-responsive"]
+image::images/edit-mapping-rules.png[edit-mapping-rules, role="integr8ly-img-responsive"]
 
-. Click on the *Edit* button to edit th edefault mapping rule.
+. Click on the *Edit* button to edit the default mapping rule.
 +
 _The default mapping is the root ("/") of our API resources, and this example application will not use that mapping. The following actions will redefine that default root ("/") mapping_.
 
@@ -195,7 +206,7 @@ _The default policy in the Policy Chain is APIcast. This is the main policy and 
 
 . Click the **Add Policy** link to add a new policy to the chain.
 +
-image::images/3scale-policy-add.png[policies-02, role="integr8ly-img-responsive"]
+image::images/add-policy.png[add-policy, role="integr8ly-img-responsive"]
 +
 _Out-of-the-box 3scale includes a set of policies you can use to modify the way your API gateway behaves. For this lab, we will focus on the **Cross Origin Resource Sharing (CORS)** one as we will use it in the consumption lab._
 
@@ -219,13 +230,15 @@ image::images/3scale-policies-cors-headers.png[policies-06.png[policies-06, role
 
 . Click the green **+** button under *ALLOW_METHODS* twice to enable two combo boxes for the CORS allowed methods.
 
-. Select **GET** from the first box and **OPTIONS** from the second box.
+. Select **OPTIONS** from the first box and **GET** from the second box.
 +
 image::images/3scale-policies-cors-methods-update.png[policies-09, role="integr8ly-img-responsive"]
 
 . Click the **Update Policy** button to save the policy configuration.
 
 . Click on **Update Policy Chain** button to save the policy order & configurations.
++
+image::images/update-policy-chain.png[update-policy-chain, role="integr8ly-img-responsive"]
 
 [type=verification]
 Was the setup of the API Policy successful?
@@ -241,9 +254,9 @@ Try to redo this section, if any problem persists have your instructor check the
 +
 image::images/3scale-add-backend.png[backend-configuration, role="integr8ly-img-responsive"]
 
-. Click on **Create a Backend that can be used by any Product** link.
+. Click on **Create a new Backend** link.
 +
-image::images/3scale-create-backend.png[backend-create, role="integr8ly-img-responsive"]
+image::images/create-new-backend.png[create-new-backend, role="integr8ly-img-responsive"]
 
 . In the **New Backend** form, fill in the information for the API backend:
 
@@ -254,19 +267,13 @@ image::images/3scale-create-backend.png[backend-create, role="integr8ly-img-resp
 +
 _We are using the internal API service, as we are deploying our services inside the same OpenShift cluster._
 +
-image::images/3scale-location-backend-edit.png[baseurl-configuration, role="integr8ly-img-responsive"]
+image::images/create-backend-form.png[create-backend-form, role="integr8ly-img-responsive"]
 
 . Click on **Create Backend**.
 
-. Click on the **Backend: Location Backend** dropdown at the top of the page and select *Location* product.
+. Click on **Add to product**.
 +
-image::images/3scale-dropbox-location-api.png[location-product-select, role="integr8ly-img-responsive"]
-
-. Navigate back to **Integration -> Backends** and select **Location Backend** in the Backend drop box. Provide path as **/**.
-+
-image::images/3scale-location-add-backend.png[location-product-add-backend, role="integr8ly-img-responsive"]
-
-. Click on **Add to Product**.
+image::images/add-backend-to-product.png[add-backend-to-product, role="integr8ly-img-responsive"]
 
 . Click on **Settings** link and observe the staging and production URLs of the API.
 +
@@ -297,20 +304,22 @@ Try to redo this section, if any problem persists have your instructor check the
 
 In this section, you can test the API staging and production URLs and ensure the API Gateway is routing requests to the backend API correctly, and is authenticating the user.
 
-. In a new browser window, navigate to **link:https://reqbin.com/curl[Online CURL]** link.
+. In a new browser window, navigate to **link:https://reqbin.com/curl[Reqbin]** link.
 
 
-. Paste the Staging curl request into the text box and click on **Send**.
+. Copy the Staging curl Url and paste it in the reqbin text box as shown below and click on **Run**.
 +
-image::images/3scale-online-curl-request.png[online-curl-request, role="integr8ly-img-responsive"]
+image::images/staging-curl.png[staging-curl, role="integr8ly-img-responsive"]
++
+image::images/req-bin-run.png[req-bin-run, role="integr8ly-img-responsive"]
 
 . Check that you get a **Status: 200(OK)** response and get a valid response message body.
 +
-image::images/3scale-online-curl-response.png[online-curl-response, role="integr8ly-img-responsive"]
+image::images/reqbin-result.png[reqbin-result, role="integr8ly-img-responsive"]
 
 . Change the **user_key** in the request to a random string and try again. This time you should get a **Status: 403 (Forbidden)** message.
 +
-image::images/3scale-online-curl-bad-req.png[online-curl-bad-response, role="integr8ly-img-responsive"]
+image::images/reqbin-bad-result.png[reqbin-bad-result, role="integr8ly-img-responsive"]
 
 . Try the same for the **Production** URLs with a valid user key & an invalid user key.
 
