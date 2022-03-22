@@ -50,19 +50,19 @@ Your password is: `{user-password}`
 
 . Logon to link:{codeready-url}[CodeReady Workspaces, window="_blank"] with username `{user-username}` and password `{user-password}`.
 +
-image::images/che-login-page.png[che-login-page, role="integr8ly-img-responsive"]
+image::images/code-ready-login.png[code-ready-login, role="integr8ly-img-responsive"]
 
 . Notice a workspace `dil-ai-{user-username}` is created for you. Click on the workspace to see the details.
 +
-image::images/che-user-workspaces.png[che-user-workspaces, role="integr8ly-img-responsive"]
+image::images/code-ready-workspace.png[code-ready-workspace, role="integr8ly-img-responsive"]
 
 . Notice the workspace is in _Running_ state.
 +
-image::images/che-workspace-details.png[che-workspace-details, role="integr8ly-img-responsive"]
+image::images/code-ready-workspace-details.png[code-ready-workspace-details, role="integr8ly-img-responsive"]
 
 . Click on the *Actions* dropdown, then *Open* to enter the workspace.
 +
-image::images/che-workspace-details.png[che-workspace-details, role="integr8ly-img-responsive"]
+image::images/code-ready-open.png[code-ready-open, role="integr8ly-img-responsive"]
 
 . After a couple of minutes, the workspace opens and a project is cloned from the git repository for the workshop. (Tip: You need to click *Yes, I trust* in the bottom right corner if prompted.)
 +
@@ -94,7 +94,7 @@ image::images/ocp-view-developer.png[ocp-view-developer, role="integr8ly-img-res
 
 . Navigate your mouse pointer to the *+Add* link and click on *Database*.
 +
-image::images/ocp-user-add-db.png[ocp-user-add-db, role="integr8ly-img-responsive"]
+image::images/developer-view-add-database.png[developer-view-add-database, role="integr8ly-img-responsive"]
 
 . Select the *PostgreSQL (Ephemeral)* template.
 +
@@ -187,7 +187,7 @@ cd location-service/
 +
 [source,text]
 ----
-mvn camel-restdsl-swagger:generate
+mvn camel-restdsl-openapi:generate
 ----
 
 . If everything completes successfully, it should generate a new file under `src/main/java/com/redhat` called `CamelRoutes.java`.  If the Maven script fails, it's probably because you forgot to first change into the `location-service` project in the previous step.  Be sure to do this and re-run the command to fix the error.
@@ -265,11 +265,11 @@ import org.apache.camel.model.rest.RestBindingMode;
 ----
  ...
  /**
- * Generated from Swagger specification by Camel REST DSL generator.
+ * Generated from OpenApi specification by Camel REST DSL generator.
  */
- @Generated("org.apache.camel.generator.swagger.PathGenerator")
- @Component
- public class CamelRoutes extends RouteBuilder {
+@Generated("org.apache.camel.generator.openapi.PathGenerator")
+@Component
+public final class CamelRoutes extends RouteBuilder {
  ...
 ----
 
