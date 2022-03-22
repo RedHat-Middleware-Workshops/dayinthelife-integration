@@ -50,21 +50,23 @@ Your password is: `{user-password}`
 
 . Log in to link:{3scale-admin-url}[3scale Admin, window="_blank"] web console using `{user-username}` and password: `{user-password}`. Click on *Sign in*.
 +
-image::images/01-login.png[01-login.png, role="integr8ly-img-responsive"]
+image::images/3scale-login.png[3scale-login, role="integr8ly-img-responsive"]
 
-. Select the *SSO Location API* from the dropdown to edit the application plan settings.
+. Select 'Products' from the dropdown menu and Select the *SSO Location API*.
 +
-image::images/3scale-sso-location-app-plan.png[3scale-sso-location-app-plan, role="integr8ly-img-responsive"]
+image::images/product-selection.png[product-selection, role="integr8ly-img-responsive"]
 
 . Click on the *Applications* on the left menu. Select *Application plans* from the listed dropdown. 
-
-. Publish your application plan by clicking in on the *Publish* option on the page.
 +
-image::images/3scale-sso-location-app-plan-publish.png[3scale-sso-location-app-plan-publish, role="integr8ly-img-responsive"]
+image::images/application-listing.png[application-listing, role="integr8ly-img-responsive"]
 
-. Click on the *Developer Portal* tab to access the developer portal settings.
+. Publish your application plan by clicking on the kebab menu and selecting *Publish*.
 +
-image::images/3scale-dev-portal-link.png[3scale-dev-portal-link, role="integr8ly-img-responsive"]
+image::images/publish-kebab.png[publish-kebab, role="integr8ly-img-responsive"]
+
+. Navigate back to the 'Dashboard' and Click on the *Developer Portal* tab to access the developer portal settings.
++
+image::images/dev-portal-navigation.png[dev-portal-navigation, role="integr8ly-img-responsive"]
 
 . On the left menu select *Home Page*, and replace the entire content with what's in the example link: https://raw.githubusercontent.com/RedHat-Middleware-Workshops/dayinthelife-integration/master/docs/labs/developer-track/lab06/support/homepage.example[example]
 +
@@ -72,7 +74,7 @@ image::images/3scale-dev-portal-homepage.png[3scale-dev-portal-homepage, role="i
 
 . Click the _Publish_ button at the bottom of the editor to save the changes and made them available in the site.
 
-. Go back to your *Audience*. Click on the *Visit Developer Portal* to take a look of how your developer portal looks like.
+. Go back to your *Audience*. Click on the *Visit Portal* to take a look of how your developer portal looks like.
 +
 image::images/3scale-visit-dev-portal-link.png[3scale-visit-dev-portal-link, role="integr8ly-img-responsive"]
 
@@ -114,7 +116,11 @@ image::images/3scale-user-activate.png[3scale-user-activate, role="integr8ly-img
 +
 _Your user is now active and can log into the portal_.
 
-. Now we need to make sure the the application will redirect the user to the correct page after successful login. Go to the Developer tab and login as the user you have created in the previous step.
+. Now we need to make sure the the application will redirect the user to the correct page after successful login. Go to the Developer tab and click on SIGN IN. 
++
+image::images/dev-signin.png[dev-signin, role="integr8ly-img-responsive"]
+
+. Login as the user you have created in the previous step.
 +
 image::images/3scale-dev-portal-signin.png[3scale-dev-portal-signin, role="integr8ly-img-responsive"]
 
