@@ -52,7 +52,7 @@ Your password is: `{user-password}`
 
 . Log in to link:{sso-url}[SSO Admin, window="_blank"] web console using `{user-username}` and password: `{user-password}`. Click on *Log in*.
 +
-image::images/sso-login-form.png[00-login-sso.png, role="integr8ly-img-responsive"]
+image::images/sso-sign-in.png[sso-sign-in, role="integr8ly-img-responsive"]
 
 . Select *Clients* from the left menu.
 +
@@ -80,7 +80,7 @@ image::images/sso-3scale-admin-sa-roles.png[sa-roles.png, role="integr8ly-img-re
 +
 NOTE: If you do not see the **Service Account Roles** tab, make sure **Service Accounts Enabled** is **ON**, **Standard Flow Enabled** is **OFF** and click on **Save**. 
 
-. In _Client Roles_, enter **Realm Management**. Select all the available roles and click on **Add Selected** to move to the Assigned Roles text box.
+. In _Client Roles_, enter **realm-management**. Select all the available roles and click on **Add Selected** to move to the Assigned Roles text box. Ignore of the roles are already assigned.
 +
 image::images/sso-3scale-admin-sa-client-roles.png[sa-roles.png, role="integr8ly-img-responsive"]
 
@@ -112,12 +112,12 @@ image::images/sso-add-user-username.png[00-username.png, role="integr8ly-img-res
 . Click on the *Save* button.
 . Click on the *Credentials* tab to reset the password. Type `apipassword` as the **New Password** and **Password Confirmation**. Turn OFF the **Temporary** to avoid the password reset at the next login.
 +
-image::images/sso-user-credentials.png[00-user-credentials.png, role="integr8ly-img-responsive"]
+image::images/api-password.png[api-password.png, role="integr8ly-img-responsive"]
 
-. Click on **Reset Password**.
-. Click on the **Change password** button in the pop-up dialog.
+. Click on **Set Password**.
+. Click on the **Set password** button in the pop-up dialog.
 +
-image::images/sso-change-password-popup.png[00-change-password.png, role="integr8ly-img-responsive"]
+image::images/set-pwd.png[set-pwd, role="integr8ly-img-responsive"]
 
 [type=verification]
 Were you able to add a user?
@@ -135,17 +135,15 @@ Your 3scale Admin Portal provides access to a number of configuration features. 
 
 . Log in to link:{3scale-admin-url}[3scale Admin, window="_blank"] web console using `{user-username}` and password: `{user-password}`. Click on *Sign in*.
 +
-image::images/01-login.png[01-login.png, role="integr8ly-img-responsive"]
+image::images/3scale-login-page.png[3scale-login-page, role="integr8ly-img-responsive"]
 
-. The first page you will land is the _API Management Dashboard_. Click on the *Gear Icon* on the top.
+. The first page you will land is the _API Management Dashboard_. Click on the drop on arrow and navigate to Account Settings 
 +
-image::images/3scale-access-token-link.png[3scale-access-token-link, role="integr8ly-img-responsive"]
+image::images/account-settings.png[account-settings, role="integr8ly-img-responsive"]
 
 . Click onto  *Personal*. On the dropdown, Click on *Tokens*.
 
-. Click  Access Token* link .
-
-. Click on *New Access Token* to create a new token.
+. Click on *Add Access Token* to create a new token.
 +
 image::images/3scale-add-access-token-link.png[3scale-add-access-token-link, role="integr8ly-img-responsive"]
 
@@ -153,7 +151,7 @@ image::images/3scale-add-access-token-link.png[3scale-add-access-token-link, rol
 +
 image::images/3scale-add-access-token-form.png[3scale-add-access-token-form, role="integr8ly-img-responsive"]
 
-. Please make sure you copy the *Token* to somewhere safe, and don't forget it. Click on *I have copied the token* to finish off.
+. Please make sure you copy the *Token* to somewhere safe, and don't forget it. Do not click on the I have copied button before you have completed copying and saving the token somewhere safe. Click on *I have copied the token* to finish off.
 +
 image::images/3scale-copy-access-token.png[3scale-copy-access-token, role="integr8ly-img-responsive"]
 
