@@ -49,6 +49,9 @@ Your password is: `{user-password}`
 
 . Navigate back to your CodeReady Workspaces workspace and open the terminal window.
 . Ensure you are using the *OpenShift tools* terminal and are logged in to your OpenShift console as in the last lab.
++
+image::images/openshift-tools.png[openshift-tools, role="integr8ly-img-responsive"]
+
 . Ensure you are in the `{user-username}` project in openshift:
 +
 [source,bash,subs="attributes+"]
@@ -56,7 +59,7 @@ Your password is: `{user-password}`
  oc project {user-username}
 ----
 
-. Build and deploy the SOAP application using source to image(S2i) template. Paste the commend to the terminal.
+. Build and deploy the SOAP application using source to image(S2i) template. Paste and run the command to the terminal. The app will take a couple of minutes to get deployed on OpenShift
 +
 [source,bash,subs="attributes+"]
 ----
@@ -78,7 +81,11 @@ Try to redo this section, if any problem persists have your instructor check the
 [id="instructions"]
 == Modify the skeleton project
 
-. In the OpenShift console, click on the route associated with the `location-soap` deployment.  A pop-up will appear.  Append the `/ws/location?wsdl` path to the URI and verify the WSDL appears. Copy the link to the clipboard.
+. In the OpenShift console, click on the route associated with the `location-soap` deployment.
++
+image::images/soap-route.png[soap-route, role="integr8ly-img-responsive"]
+
+. A pop-up will appear.  Append the `/ws/location?wsdl` path to the URI and verify the WSDL appears. Make sure you use *http* instead of *https* for the rest of the lab. Copy the link to the clipboard.
 +
 image::images/00-verify-wsdl.png[00-verify-wsdl.png, role="integr8ly-img-responsive"]
 +
@@ -120,7 +127,7 @@ Try to redo this section, if any problem persists have your instructor check the
 [id="instructions"]
 == Update the Camel Route
 
-. Open up the `CamelRoutes.java` file.  Notice that the existing implementation is barebones. First of all, we need to enter the SOAP service address and WSDL location for our CXF client to call.
+. Open up the `CamelRoutes.java` file under 'src/main/java/com/redhat' folder.  Notice that the existing implementation is barebones. First of all, we need to enter the SOAP service address and WSDL location for our CXF client to call.
 +
 [source,java,subs="attributes+"]
 ----
@@ -191,12 +198,12 @@ image::images/che-location-soap-url-link.png[che-location-soap-url-link, role="i
 
 . Once the application starts, navigate to the Servers window and click on the URL corresponding to port 8080.  A new tab should appear.
 
-. In the new tab, append the URL with the following URI: `/location/contact/2`.  A contact should be returned:
+. In the new tab, append the URL with the following URI: `/location/contact/2`.  Make sure it's *http* and not *https* . A contact should be returned:
 +
 image::images/che-location-soap-sample-request.png[che-location-soap-sample-request, role="integr8ly-img-responsive"]
 
 . Now that we've successfully tested our new SOAP to REST service locally, we can deploy it to OpenShift.  Stop the running application by clicking *Ctrl + C*.
-. Run the following command in the terminal to deploy the application to OpenShift:
+. Run the following command in the terminal to deploy the application to OpenShift. The app will take a couple of minutes to get deployed on OpenShift:
 +
 [source,bash,subs="attributes+"]
 ----
@@ -209,7 +216,7 @@ image::images/che-location-soap-build-success.png[che-location-soap-build-succes
 +
 image::images/ocp-location-soap2rest-deploy.png[ocp-location-soap2rest-deploy, role="integr8ly-img-responsive"]
 
-. Click on the route link above the location-soap2rest pod and append `/location/contact/2` to the URI.  As a result, you should get a contact back.
+. Click on the route link above the location-soap2rest pod and append `/location/contact/2` to the URI.  Make sure it's *http* and not *https*. As a result, you should get a contact back.
 
 [type=verification]
 Were you able to retrieve a contact?
