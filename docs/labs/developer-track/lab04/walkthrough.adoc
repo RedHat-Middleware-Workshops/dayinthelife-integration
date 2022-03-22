@@ -1,5 +1,5 @@
 :walkthrough: Contract-first API development wrapping an existing SOAP service, implemented using CodeReady Workspaces
-:codeready-url: https://che-che.{openshift-app-host}
+:codeready-url: https://codeready-che.{openshift-app-host}
 :next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}/tutorial/dayinthelife-integration.git-developer-track-lab05/
 :user-password: openshift
 
